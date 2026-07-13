@@ -92,6 +92,7 @@ target_sources(viamsdk
     components/power_sensor.cpp
     components/private/arm_client.cpp
     components/private/arm_server.cpp
+    components/private/arm_trajectory_validation.cpp
     components/private/audio_in_server.cpp
     components/private/audio_in_client.cpp
     components/private/audio_out_client.cpp

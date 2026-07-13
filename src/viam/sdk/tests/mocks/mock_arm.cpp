@@ -1,12 +1,11 @@
-#include "viam/sdk/common/mesh.hpp"
-#include "viam/sdk/rpc/grpc_context_observer.hpp"
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 
 #include <stdexcept>
 
 #include <grpcpp/support/status.h>
 
-#include "mock_arm.hpp"
+#include <viam/sdk/common/mesh.hpp>
+#include <viam/sdk/rpc/grpc_context_observer.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -66,11 +65,11 @@ sdk::Arm::stream_outcome MockArm::move_through_joint_positions_streamed(
     }
 
     switch (streamed_fault) {
-        case StreamFault::none:
+        case stream_fault::k_none:
             break;
-        case StreamFault::runtime_error:
+        case stream_fault::k_runtime_error:
             throw std::runtime_error("mock arm streamed fault");
-        case StreamFault::grpc_status:
+        case stream_fault::k_grpc_status:
             throw grpc::Status(grpc::StatusCode::FAILED_PRECONDITION,
                                "mock arm streamed grpc fault");
     }

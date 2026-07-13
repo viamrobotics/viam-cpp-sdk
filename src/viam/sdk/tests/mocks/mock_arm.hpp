@@ -46,14 +46,13 @@ class MockArm : public sdk::Arm {
     sdk::ProtoStruct peek_command;
     std::vector<std::string> viam_client_metadata;
 
-    // Streaming trajectory hooks. move_through_joint_positions_streamed records
-    // each batch it receives into peek_streamed_batches and counts the updates
-    // it emits in peek_streamed_ack_count. If streamed_fault is set, it throws
-    // after draining to exercise terminal-error propagation: runtime_error maps
-    // to a std::exception (INTERNAL at the wire), grpc_status to a thrown
-    // grpc::Status carried through verbatim.
-    enum class StreamFault : std::uint8_t { none, runtime_error, grpc_status };
-    StreamFault streamed_fault = StreamFault::none;
+    // Recorded state and controls for move_through_joint_positions_streamed:
+    // the batches it received, the count of updates it emitted, and an optional
+    // fault to raise once the batches drain, which exercises terminal-error
+    // propagation. k_runtime_error throws a std::exception (INTERNAL at the
+    // wire); k_grpc_status throws a grpc::Status carried through verbatim.
+    enum class stream_fault : std::uint8_t { k_none = 0, k_runtime_error = 1, k_grpc_status = 2 };
+    stream_fault streamed_fault = stream_fault::k_none;
     std::vector<std::vector<sdk::Arm::trajectory_point>> peek_streamed_batches;
     int peek_streamed_ack_count = 0;
 };

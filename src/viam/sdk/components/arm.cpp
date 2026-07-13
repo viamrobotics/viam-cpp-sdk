@@ -57,6 +57,20 @@ Arm::trajectory_point from_proto_impl<viam::component::arm::v1::TrajectoryPoint>
     return result;
 }
 
+void to_proto_impl<Arm::trajectory_update>::operator()(
+    const Arm::trajectory_update&,
+    viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const {
+    // trajectory_update carries no data yet, so the response is left empty.
+    // Wiring the conversion now means neither stub has to change when the type
+    // grows fields.
+}
+
+Arm::trajectory_update
+from_proto_impl<viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>::operator()(
+    const viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const {
+    return {};
+}
+
 }  // namespace proto_convert_details
 
 }  // namespace sdk

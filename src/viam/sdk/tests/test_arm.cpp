@@ -1,5 +1,7 @@
 #define BOOST_TEST_MODULE test module test_arm
-#include <viam/sdk/components/arm.hpp>
+
+#include <stdexcept>
+#include <thread>
 
 #include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
@@ -7,15 +9,13 @@
 #include <boost/variant/apply_visitor.hpp>
 #include <boost/variant/static_visitor.hpp>
 
-#include <stdexcept>
-#include <thread>
-
 #include <grpcpp/support/status.h>
 
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
 #include <viam/api/component/arm/v1/arm.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/components/arm.hpp>
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -112,13 +112,13 @@ std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_pump(
 
 using Batches = std::vector<std::vector<Arm::trajectory_point>>;
 
-using RawRequest = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
-using RawResponse = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
+using raw_request = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
+using raw_response = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
 
 // Builds the top-level Init request. The resource name lives at the top level
 // of the request, not inside the Init payload.
-RawRequest make_init(const std::string& name) {
-    RawRequest request;
+raw_request make_init(const std::string& name) {
+    raw_request request;
     request.set_name(name);
     request.mutable_init();
     return request;
@@ -135,13 +135,13 @@ RawRequest make_init(const std::string& name) {
 // blocked in Write waiting for the other to read. Interleaving reader and
 // writer mirrors what the real ArmClient does and keeps the wire draining.
 grpc::Status drive_raw_stream(const std::shared_ptr<grpc::Channel>& channel,
-                              const std::vector<RawRequest>& requests) {
+                              const std::vector<raw_request>& requests) {
     auto stub = ::viam::component::arm::v1::ArmService::NewStub(channel);
     grpc::ClientContext ctx;
     auto stream = stub->MoveThroughJointPositionsStreamed(&ctx);
 
     std::thread reader([&] {
-        RawResponse response;
+        raw_response response;
         while (stream->Read(&response)) {
         }
     });
@@ -392,34 +392,9 @@ BOOST_AUTO_TEST_CASE(streamed_happy_path) {
     });
 }
 
-BOOST_AUTO_TEST_CASE(streamed_empty_batches_filtered) {
-    auto mock = MockArm::get_mock_arm();
-    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
-        // The empty middle batch is dropped on the wire and never reaches the
-        // impl; the surrounding points still form a valid monotonic stream.
-        auto batches = std::make_shared<Batches>(Batches{
-            {make_point(0, {1.0})},
-            {},
-            {make_point(10, {2.0})},
-        });
-
-        int client_acks = 0;
-        client.move_through_joint_positions_streamed(batch_pump(batches),
-                                                     [&](Arm::trajectory_update) {
-                                                         ++client_acks;
-                                                         return true;
-                                                     },
-                                                     {});
-
-        BOOST_CHECK_EQUAL(mock->peek_streamed_batches.size(), 2U);
-        BOOST_CHECK_EQUAL(mock->peek_streamed_ack_count, 2);
-        BOOST_CHECK_EQUAL(client_acks, 2);
-    });
-}
-
 BOOST_AUTO_TEST_CASE(streamed_impl_runtime_error_propagates) {
     auto mock = MockArm::get_mock_arm();
-    mock->streamed_fault = MockArm::StreamFault::runtime_error;
+    mock->streamed_fault = MockArm::stream_fault::k_runtime_error;
     client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
         auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
         BOOST_CHECK_THROW(client.move_through_joint_positions_streamed(
@@ -430,7 +405,7 @@ BOOST_AUTO_TEST_CASE(streamed_impl_runtime_error_propagates) {
 
 BOOST_AUTO_TEST_CASE(streamed_impl_grpc_status_propagates) {
     auto mock = MockArm::get_mock_arm();
-    mock->streamed_fault = MockArm::StreamFault::grpc_status;
+    mock->streamed_fault = MockArm::stream_fault::k_grpc_status;
     client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
         auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
         try {
@@ -478,37 +453,6 @@ BOOST_AUTO_TEST_CASE(streamed_update_handler_throw_propagates) {
     });
 }
 
-BOOST_AUTO_TEST_CASE(streamed_client_rejects_invalid_trajectories) {
-    auto mock = MockArm::get_mock_arm();
-    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
-        // Each malformed trajectory must be rejected locally, as a plain
-        // Exception, before any of it reaches the server as a GRPCException.
-        const auto expect_local_reject = [&](Batches bad) {
-            auto batches = std::make_shared<Batches>(std::move(bad));
-            try {
-                client.move_through_joint_positions_streamed(
-                    batch_pump(batches), [](Arm::trajectory_update) { return true; }, {});
-                BOOST_FAIL("expected a local validation exception");
-            } catch (const GRPCException&) {
-                BOOST_FAIL("expected a local validation Exception, not a GRPCException");
-            } catch (const Exception& e) {
-                BOOST_CHECK(std::string(e.what()).find("move_through_joint_positions_streamed") !=
-                            std::string::npos);
-            }
-        };
-
-        expect_local_reject({{make_point(5, {1.0})}});
-        expect_local_reject({{make_point(0, {1.0}), make_point(0, {2.0})}});
-        expect_local_reject({{make_point(0, {})}});
-        expect_local_reject({{make_point(0, {1.0}, std::vector<double>{1.0, 2.0})}});
-        // Cross-batch: the second batch rewinds time relative to the first
-        // batch's last point. Exercises the validator's state carried across
-        // batch boundaries, not just within a single batch.
-        expect_local_reject(
-            {{make_point(0, {1.0}), make_point(10, {2.0})}, {make_point(10, {3.0})}});
-    });
-}
-
 BOOST_AUTO_TEST_CASE(streamed_server_rejects_stream_without_init) {
     auto mock = MockArm::get_mock_arm();
     channel_to_mock_pipeline(mock, [&](const std::shared_ptr<grpc::Channel>& channel) {
@@ -522,7 +466,7 @@ BOOST_AUTO_TEST_CASE(streamed_server_requires_init_first) {
     auto mock = MockArm::get_mock_arm();
     channel_to_mock_pipeline(mock, [&](const std::shared_ptr<grpc::Channel>& channel) {
         // A Batch as the very first message is a protocol violation.
-        RawRequest batch_first;
+        raw_request batch_first;
         *batch_first.mutable_batch()->add_points() = to_proto(make_point(0, {1.0}));
         BOOST_CHECK(drive_raw_stream(channel, {batch_first}).error_code() ==
                     grpc::StatusCode::INVALID_ARGUMENT);
@@ -541,7 +485,7 @@ BOOST_AUTO_TEST_CASE(streamed_server_rejects_non_batch_payload) {
     auto mock = MockArm::get_mock_arm();
     channel_to_mock_pipeline(mock, [&](const std::shared_ptr<grpc::Channel>& channel) {
         // A request with neither oneof arm set, after a valid Init.
-        RawRequest empty_oneof;
+        raw_request empty_oneof;
         BOOST_CHECK(
             drive_raw_stream(channel, {make_init(mock->name()), empty_oneof}).error_code() ==
             grpc::StatusCode::INVALID_ARGUMENT);
@@ -554,13 +498,13 @@ BOOST_AUTO_TEST_CASE(streamed_server_validates_trajectory) {
         // The server enforces the trajectory invariants itself, independent of
         // any client-side check, because callers need not reach it through
         // ArmClient. First point with a nonzero time:
-        RawRequest bad_time;
+        raw_request bad_time;
         *bad_time.mutable_batch()->add_points() = to_proto(make_point(5, {1.0}));
         BOOST_CHECK(drive_raw_stream(channel, {make_init(mock->name()), bad_time}).error_code() ==
                     grpc::StatusCode::INVALID_ARGUMENT);
 
         // Velocities that do not match the position count:
-        RawRequest bad_dims;
+        raw_request bad_dims;
         *bad_dims.mutable_batch()->add_points() =
             to_proto(make_point(0, {1.0}, std::vector<double>{1.0, 2.0}));
         BOOST_CHECK(drive_raw_stream(channel, {make_init(mock->name()), bad_dims}).error_code() ==
@@ -574,10 +518,10 @@ BOOST_AUTO_TEST_CASE(streamed_server_validates_trajectory) {
         // batches, so this is rejected even though each batch is internally
         // fine. The valid first batch does reach the impl before the second is
         // rejected, so this case comes after the empty check above.
-        RawRequest batch_a;
+        raw_request batch_a;
         *batch_a.mutable_batch()->add_points() = to_proto(make_point(0, {1.0}));
         *batch_a.mutable_batch()->add_points() = to_proto(make_point(10, {2.0}));
-        RawRequest batch_b;
+        raw_request batch_b;
         *batch_b.mutable_batch()->add_points() = to_proto(make_point(10, {3.0}));
         BOOST_CHECK(
             drive_raw_stream(channel, {make_init(mock->name()), batch_a, batch_b}).error_code() ==

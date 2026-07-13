@@ -25,6 +25,7 @@ namespace arm {
 namespace v1 {
 
 class TrajectoryPoint;
+class MoveThroughJointPositionsStreamedResponse;
 
 }  // namespace v1
 }  // namespace arm
@@ -129,9 +130,7 @@ class Arm : public Component, public Stoppable {
         /// @brief Target kinematic constraints at a waypoint.
         ///
         /// `velocities` is required whenever this struct is present;
-        /// `accelerations` is independently optional. The
-        /// accelerations-require-velocities invariant is enforced by the type
-        /// system, not just documentation.
+        /// `accelerations` is independently optional.
         struct kinematic_constraints {
             std::vector<double> velocities;
             boost::optional<std::vector<double>> accelerations;
@@ -144,23 +143,24 @@ class Arm : public Component, public Stoppable {
         /// `google.protobuf.Duration` conversion; sub-microsecond distinctions
         /// are not preserved on the wire.
         std::chrono::microseconds time;
+
+        /// @brief Target position at this waypoint, one value per joint.
         std::vector<double> positions;
+
+        /// @brief Optional velocity and acceleration constraints at this waypoint.
         boost::optional<kinematic_constraints> constraints;
     };
 
-    /// @brief An update emitted by the implementation as a streamed trajectory
-    /// executes.
+    /// @brief An update emitted while a streamed trajectory executes.
     ///
-    /// Updates flow back independently of the input batches: the implementation
-    /// may emit them at any cadence, or not at all, and a future implementation
-    /// may deliver them as a truly asynchronous channel. Currently empty; it
-    /// will grow fields carrying per-execution status.
+    /// An arm may emit them at any cadence.
     struct trajectory_update {};
 
     /// @brief How a streamed trajectory execution ended.
     enum class stream_outcome : std::uint8_t {
-        k_completed,                 ///< The trajectory ran to its natural end.
-        k_halted_by_update_handler,  ///< update_handler returned false, stopping the stream early.
+        k_completed = 0,  ///< The trajectory ran to its natural end.
+        k_halted_by_update_handler =
+            1,  ///< update_handler returned false, stopping the stream early.
     };
 
     /// @brief Execute a stream of trajectory points in order.
@@ -175,78 +175,42 @@ class Arm : public Component, public Stoppable {
 
     /// @brief Execute a stream of trajectory points in order.
     ///
-    /// `batch_source` returns the next batch of points or `boost::none` on
-    /// client EOF or cancellation. Empty batches and protocol-noise messages
-    /// are filtered out by the dispatcher and never surface here.
+    /// This is the streamed analogue of `move_through_joint_positions`. It is
+    /// implemented on both sides of the RPC: an arm driver implements it to
+    /// execute a trajectory, and the SDK arm client implements it to forward the
+    /// call to a remote arm. The contract described here binds both.
     ///
-    /// `update_handler` consumes each `trajectory_update` the implementation
-    /// emits. It returns `true` to continue or `false` to stop the stream
-    /// early. The `false` return is bivalent by side: on the CLIENT it is the
-    /// caller electing to halt (perhaps reacting to what it sees coming back),
-    /// which ends the call with `stream_outcome::k_halted_by_update_handler`;
-    /// on the SERVER it is the framework telling the implementation to stop
-    /// (cancellation, wire failure). If `update_handler` throws, the exception
-    /// is not swallowed -- it propagates out of the call on the client, and
-    /// converts to a terminal gRPC status on the server. It need not be
-    /// `noexcept`.
+    /// An implementation pulls the trajectory from `batch_source` and reports
+    /// progress through `update_handler` until the stream is exhausted, it is
+    /// asked to stop, or it faults. A fault is reported by throwing: a
+    /// server-side implementation has its exception converted to a terminal gRPC
+    /// status delivered to the remote caller, and a client-side implementation
+    /// rethrows to its caller. An exception thrown out of `update_handler` is
+    /// propagated the same way rather than swallowed, so neither callback is
+    /// required to be `noexcept`.
     ///
-    /// Both callbacks are borrowed only for the duration of the call: the
-    /// implementation invokes them but must not retain them past its return.
+    /// Threading: because the stream is bidirectional, an implementation is
+    /// permitted to invoke the two callbacks from different threads and to run
+    /// them concurrently with each other. A caller must therefore not assume the
+    /// callbacks are serialized against one another or pinned to a single
+    /// thread, and must synchronize any mutable state it shares between them. A
+    /// given callback is never invoked concurrently with itself.
     ///
-    /// Returns `stream_outcome::k_completed` when the trajectory ran to its
-    /// natural end, or `k_halted_by_update_handler` when `update_handler`
-    /// stopped it. Throwing from `batch_source` or from the implementation
-    /// converts to a terminal gRPC status surfaced to the client.
-    ///
-    /// THREADING:
-    /// - On the SERVER (i.e., when invoked through ArmServer dispatch),
-    ///   `batch_source` and `update_handler` are both invoked on the gRPC
-    ///   handler thread, and the implementation runs on that thread too. No
-    ///   additional threads. The two callbacks are mutually serialized on
-    ///   that thread: while the implementation is blocked in
-    ///   `batch_source`'s Read it cannot emit a `trajectory_update`, and vice
-    ///   versa. Update-emit latency on the wire is therefore bounded by the
-    ///   client's send cadence.
-    ///   TODO: this mutual serialization must be lifted before
-    ///   `trajectory_update` grows non-empty fields and updates need to flow at
-    ///   a cadence independent of the inbound batches. See ERROR SURFACING
-    ///   below for the narrow consequence today and why the obvious fix is not
-    ///   trivial.
-    /// - On the CLIENT (i.e., when invoked through ArmClient on a remote
-    ///   arm), `batch_source` runs on the caller's thread and
-    ///   `update_handler` runs on a separate SDK-managed reader thread. The
-    ///   two callbacks may execute concurrently. Each is called serially
-    ///   with respect to itself (no concurrent calls to the same callback).
-    ///   Implementations sharing mutable state between the two callbacks
-    ///   must provide their own synchronization.
-    ///
-    /// ERROR SURFACING: the single-threaded server dispatch narrows, but does
-    /// not defeat, the point of a bidi stream. A terminal arm-side fault reaches
-    /// the client at one of two moments. While the client is still sending, the
-    /// fault surfaces on the next `batch_source` Read -- bounded by the client's
-    /// inter-batch cadence, which is small precisely for the tight-cadence
-    /// streams batching exists to serve. Once the client half-closes its send
-    /// side (the common shape for a pre-kinematized trajectory, whose sends
-    /// finish in milliseconds while execution runs for seconds), the handler is
-    /// no longer parked in Read and a fault surfaces promptly. Robust surfacing
-    /// therefore assumes a well-behaved client that closes its send side when
-    /// done; a client that stops sending without half-closing and then idles can
-    /// leave a fault unreported until it does. Non-terminal per-update status is
-    /// the case that genuinely needs concurrent emit, and it stays gated behind
-    /// `trajectory_update` growing fields.
-    ///
-    /// The obvious fix -- a background reader thread feeding a queue -- is not
-    /// trivial: a thread parked in `stream->Read` only unblocks once the RPC
-    /// finishes, which needs the handler to return, so it cannot be joined
-    /// before returning (the deadlock rdk's recv path hit). `TryCancel` unblocks
-    /// the Read but flattens the client-visible status to CANCELLED, losing the
-    /// specific fault code. A proper fix points at the async CompletionQueue
-    /// gRPC API -- a large change, disproportionate for this landing.
-    ///
-    /// @param batch_source Pull-source for the next batch of waypoints.
-    /// @param update_handler Handler invoked for each update the implementation emits.
+    /// @param batch_source Pull-source for the trajectory. Call it to obtain the
+    /// next batch of waypoints; it yields `boost::none` once no more points are
+    /// coming, after which the implementation should finish executing what it
+    /// already has and return. Points arrive grouped into the batches the sender
+    /// chose; an implementation that wants per-point handling iterates within
+    /// each batch.
+    /// @param update_handler Sink for execution updates. Call it with each
+    /// `trajectory_update` to report progress; it returns `true` to keep going
+    /// and `false` to ask that the stream stop early, in which case the
+    /// implementation should stop executing and return
+    /// `stream_outcome::k_halted_by_update_handler`.
     /// @param extra Any additional arguments to the method.
-    /// @return How the stream ended.
+    /// @return `stream_outcome::k_completed` if the trajectory ran to its natural
+    /// end, or `stream_outcome::k_halted_by_update_handler` if `update_handler`
+    /// asked it to stop.
     virtual stream_outcome move_through_joint_positions_streamed(
         const std::function<boost::optional<std::vector<trajectory_point>>()>& batch_source,
         const std::function<bool(trajectory_update)>& update_handler,
@@ -316,6 +280,18 @@ struct to_proto_impl<Arm::trajectory_point> {
 template <>
 struct from_proto_impl<viam::component::arm::v1::TrajectoryPoint> {
     Arm::trajectory_point operator()(const viam::component::arm::v1::TrajectoryPoint*) const;
+};
+
+template <>
+struct to_proto_impl<Arm::trajectory_update> {
+    void operator()(const Arm::trajectory_update&,
+                    viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const;
+};
+
+template <>
+struct from_proto_impl<viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse> {
+    Arm::trajectory_update operator()(
+        const viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const;
 };
 
 }  // namespace proto_convert_details

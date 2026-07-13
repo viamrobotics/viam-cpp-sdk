@@ -103,65 +103,93 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerReaderWriter<
         ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse,
         ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* stream) noexcept {
-    using RequestT = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
-    using ResponseT = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
+    using request_type = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
+    using response_type = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
 
+    // TODO(RSDK-14164): like ArmClient, this hand-rolls the bidi stream pending a
+    // shared bidi client/server helper (RSDK-14164).
+    //
+    // The dispatcher is single-threaded: it reads Init, looks up the arm, and
+    // runs the implementation on this same gRPC handler thread, with
+    // batch_source blocking in stream->Read and update_handler in stream->Write.
+    // There is no background reader, which keeps the handler clear of the
+    // recv-goroutine deadlock rdk's bidi server hit, at one cost worth knowing:
+    // while the implementation is parked in batch_source's Read it cannot
+    // service an update, so a terminal arm-side fault only reaches the client on
+    // the next inbound batch (cadence-bounded, and small for the tight-cadence
+    // streams batching serves) or promptly once the client half-closes its send
+    // side. A client that stops sending without half-closing and then idles can
+    // leave a fault unreported until it does. Lifting this needs the async
+    // CompletionQueue API -- try_cancel would unblock a background Read but
+    // flattens the client-visible status to CANCELLED -- and is deferred until
+    // trajectory_update carries fields that must flow independently of the
+    // inbound batches.
     ServerSpanGuard span_guard{context, "ArmServer::MoveThroughJointPositionsStreamed"};
 
-    // 1. Read the Init message. The stream must start with exactly one Init.
-    RequestT first;
+    // The stream must start with exactly one Init message.
+    request_type first;
     if (!stream->Read(&first)) {
         return span_guard.commit(
             ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                            "MoveThroughJointPositionsStreamed: stream closed before Init message"));
     }
-    if (first.message_case() != RequestT::kInit) {
+    if (first.message_case() != request_type::kInit) {
         return span_guard.commit(
             ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                            "MoveThroughJointPositionsStreamed: first message must be Init"));
     }
     const auto& init = first.init();
 
-    // Everything downstream of the Init read may throw (proto conversions,
-    // resource lookup, the impl itself, and the batch_source closure which
-    // throws grpc::Status on protocol violations). We are noexcept, so wrap
-    // it all in a single try and catch every throw type.
+    // Resolve the arm up front: nothing downstream matters if the named resource
+    // is not here. This mirrors ServiceHelper, which resolves the resource
+    // before running the method body and fails NOT_FOUND when the name does not
+    // resolve (it does not separately special-case a missing name).
+    const auto arm = resource_manager()->resource<Arm>(first.name());
+    if (!arm) {
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::NOT_FOUND,
+                           "MoveThroughJointPositionsStreamed: arm not found: " + first.name()));
+    }
+
+    // Everything downstream may throw (proto conversions, the impl itself, and
+    // the batch_source closure which throws grpc::Status on protocol
+    // violations). We are noexcept, so wrap it all in a single try and catch
+    // every throw type.
     try {
         const ProtoStruct extra = from_proto(init.extra());
 
-        // 2. Resource lookup by name.
-        const auto arm = resource_manager()->resource<Arm>(first.name());
-        if (!arm) {
-            return span_guard.commit(::grpc::Status(
-                ::grpc::StatusCode::NOT_FOUND,
-                "MoveThroughJointPositionsStreamed: arm not found: " + first.name()));
-        }
-
-        // 3. batch_source: pull the next batch off the stream. Empty batches
-        // are tolerated as wire no-ops (the impl never sees them). A second
-        // Init or a missing oneof is a protocol violation surfaced via a
-        // thrown grpc::Status so the client gets a clear INVALID_ARGUMENT. Each
-        // point is validated against the trajectory invariants as it arrives;
-        // the validator persists across batches so it can enforce the
-        // stream-wide monotonic-time contract. The server does not trust the
-        // client to have validated, so it checks regardless of who is calling.
+        // batch_source pulls the next batch off the stream. Empty batches are
+        // tolerated as wire no-ops -- the impl never sees them -- while a second
+        // Init or a missing oneof is a protocol violation surfaced as a thrown
+        // grpc::Status so the client gets a clear INVALID_ARGUMENT. Each point
+        // is validated as it arrives; the validator persists across batches to
+        // enforce the stream-wide monotonic-time contract. The server validates
+        // regardless of who is calling, since it cannot trust the client to have
+        // done so.
+        //
+        // A cancelled context and Read returning false both yield boost::none,
+        // deliberately indistinguishable to the impl: both mean no more batches
+        // are coming, and the impl's only reaction either way is to stop pulling
+        // and finish what it already has. Read goes false on a clean client
+        // half-close and on a broken or cancelled stream alike; separating those
+        // is grpc's concern via the terminal status, not the impl's.
         auto batch_source = [stream, context, validator = TrajectoryStreamValidator{}]() mutable
             -> boost::optional<std::vector<Arm::trajectory_point>> {
             while (true) {
                 if (context->IsCancelled()) {
                     return boost::none;
                 }
-                RequestT msg;
+                request_type msg;
                 if (!stream->Read(&msg)) {
                     return boost::none;
                 }
                 const auto mc = msg.message_case();
-                if (mc == RequestT::kInit) {
+                if (mc == request_type::kInit) {
                     throw ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                                          "MoveThroughJointPositionsStreamed: Init may only "
                                          "appear as the first message");
                 }
-                if (mc != RequestT::kBatch) {
+                if (mc != request_type::kBatch) {
                     throw ::grpc::Status(
                         ::grpc::StatusCode::INVALID_ARGUMENT,
                         "MoveThroughJointPositionsStreamed: expected TrajectoryBatch");
@@ -183,25 +211,27 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
             }
         };
 
-        // 4. update_handler: write one update on the wire. Returns false on
-        // cancellation or wire failure so the impl knows to stop.
-        auto update_handler = [stream, context](Arm::trajectory_update) -> bool {
+        // update_handler serializes one update onto the wire. It converts the
+        // update through to_proto so the wire payload tracks the type as it
+        // grows fields. Returns false on cancellation or wire failure so the
+        // impl knows to stop.
+        auto update_handler = [stream, context](Arm::trajectory_update update) -> bool {
             if (context->IsCancelled()) {
                 return false;
             }
-            ResponseT pb;
+            const response_type pb = to_proto(update);
             return stream->Write(pb);
         };
 
-        // 5. Enable the thread-local context observer so the impl can read
-        // incoming gRPC metadata (e.g. viam_client) and check cancellation
-        // state via GrpcContextObserver::current() — same setup
-        // ServiceHelper does for non-streaming methods.
+        // Enable the thread-local context observer so the impl can read incoming
+        // gRPC metadata (e.g. viam_client) and check cancellation state via
+        // GrpcContextObserver::current() -- the same setup ServiceHelper does
+        // for non-streaming methods.
         const GrpcContextObserver::Enable observer_enable{*context};
 
-        // 6. Call the virtual. Its stream_outcome is meaningful only to a
-        // direct caller of the impl; over the wire the client reconstructs its
-        // own outcome, so the dispatcher intentionally discards it here.
+        // Call the virtual. Its stream_outcome is meaningful only to a direct
+        // caller of the impl; over the wire the client reconstructs its own
+        // outcome, so the dispatcher intentionally discards it here.
         arm->move_through_joint_positions_streamed(batch_source, update_handler, extra);
     } catch (const ::grpc::Status& s) {
         return span_guard.commit(s);

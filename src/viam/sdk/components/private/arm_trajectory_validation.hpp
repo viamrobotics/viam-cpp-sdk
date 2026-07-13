@@ -1,6 +1,6 @@
-/// @file components/private/arm_trajectory_validation.hpp
-///
-/// @brief Shared invariant checking for streamed arm trajectories.
+// components/private/arm_trajectory_validation.hpp
+//
+// Invariant checking for streamed arm trajectories.
 #pragma once
 
 #include <chrono>
@@ -15,12 +15,14 @@ namespace sdk {
 namespace impl {
 
 // Validates the invariants of a streamed joint-space trajectory as its points
-// arrive. One instance validates one logical stream: feed it each point in
-// wire order via check(). The detection is identical on both sides of the RPC;
-// the client and server differ only in how they react to a violation, so this
-// reports the offending invariant as a message and leaves the throwing to the
-// caller. On a valid point the running state advances; on a violation the state
-// is left untouched.
+// arrive. One instance validates one logical stream: feed it each point in wire
+// order via check(). It is deliberately agnostic of the RPC layer -- it reports
+// the offending invariant as a message rather than throwing, leaving its caller
+// (the server dispatcher) to map that message onto the appropriate
+// grpc::Status. Keeping it free of gRPC types leaves it a self-contained
+// invariant checker rather than entangling it with transport concerns. On a
+// valid point the running state advances; on a violation the state is left
+// untouched.
 //
 // Invariants:
 //   - the first point of the stream has time zero;
@@ -35,38 +37,7 @@ class TrajectoryStreamValidator {
    public:
     // Returns a description of the first invariant the point violates, or
     // boost::none if the point is valid in sequence.
-    boost::optional<std::string> check(const Arm::trajectory_point& point) {
-        if (!seen_first_) {
-            if (point.time != std::chrono::microseconds::zero()) {
-                return std::string("first trajectory point must have time zero");
-            }
-        } else if (point.time <= last_time_) {
-            return std::string("trajectory point times must strictly increase");
-        }
-
-        if (point.positions.empty()) {
-            return std::string("trajectory point must carry at least one position");
-        }
-
-        if (point.constraints) {
-            const auto& constraints = *point.constraints;
-            if (constraints.velocities.size() != point.positions.size()) {
-                return std::string(
-                    "trajectory point must carry one velocity per position when constraints "
-                    "are present");
-            }
-            if (constraints.accelerations &&
-                constraints.accelerations->size() != constraints.velocities.size()) {
-                return std::string(
-                    "trajectory point must carry one acceleration per velocity when "
-                    "accelerations are present");
-            }
-        }
-
-        seen_first_ = true;
-        last_time_ = point.time;
-        return boost::none;
-    }
+    boost::optional<std::string> check(const Arm::trajectory_point& point);
 
    private:
     bool seen_first_ = false;
