@@ -18,7 +18,7 @@ namespace {{ .ModuleSnake }} {
 // Return the names of any resources that must exist before this resource can be built.
 // Throw an exception if cfg contains invalid configuration.
 std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
-    return {};
+    return {}};
 }
 
 viam::sdk::Navigation::Mode {{ .ModelPascal }}::get_mode(const viam::sdk::ProtoStruct & extra)
