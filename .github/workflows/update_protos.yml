@@ -11,51 +11,11 @@ jobs:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/viamrobotics/rdk-devenv:amd64
+      image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
-
-      # note (erodkin): these dependencies were cribbed from what we use to build the SDK
-      # in the release job. Only very cursory effort was made to prune.
-      - name: install dependencies
-        run: |
-          sudo apt-get update && apt-get upgrade -y
-          apt-get install -y software-properties-common
-          apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
-          apt-get update
-          apt-get -y dist-upgrade
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              curl \
-              g++ \
-              gdb \
-              gnupg \
-              gpg \
-              less \
-              libboost-all-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libssl-dev \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              sudo \
-              wget \
-
-      - uses: MarkusJx/install-boost@v2.4.4
-        with:
-          boost_version: 1.81.0
-          platform_version: 22.04
-
-      - uses: lukka/get-cmake@latest
-        with:
-          cmakeVersion: 3.25.2
-          ninjaVersion: 1.11.1
 
       - uses: bufbuild/buf-setup-action@v1.50.0
 
@@ -64,17 +24,10 @@ jobs:
       - name: Update buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-buf
-        env:
-          BOOST_ROOT: ${{ github.workspace }}/boost/boost
 
       - name: Generate buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-static-protos
-        env:
-          BOOST_ROOT: ${{ github.workspace }}/boost/boost
-
-      - name: cleanup
-        run: rm -rf boost/
 
       - name: Set event-specific variables (repository_dispatch)
         if: github.event_name == 'repository_dispatch'
