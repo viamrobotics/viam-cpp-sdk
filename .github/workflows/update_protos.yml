@@ -18,8 +18,12 @@ jobs:
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
       - uses: bufbuild/buf-setup-action@v1.50.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: arduino/setup-protoc@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update buf
         run: |
