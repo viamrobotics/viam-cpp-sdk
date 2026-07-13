@@ -16,13 +16,15 @@ namespace impl {
 
 // Validates the invariants of a streamed joint-space trajectory as its points
 // arrive. One instance validates one logical stream: feed it each point in wire
-// order via check(). It is deliberately agnostic of the RPC layer -- it reports
-// the offending invariant as a message rather than throwing, leaving its caller
-// (the server dispatcher) to map that message onto the appropriate
-// grpc::Status. Keeping it free of gRPC types leaves it a self-contained
-// invariant checker rather than entangling it with transport concerns. On a
-// valid point the running state advances; on a violation the state is left
-// untouched.
+// order via check(). On a valid point the running state advances; on a
+// violation the state is left untouched.
+//
+// check() reports the offending invariant as a string instead of throwing, and
+// the class pulls in no gRPC types. The only caller today is the server
+// dispatcher, which turns that string into a grpc::Status (so it could just as
+// well throw), but keeping it free of gRPC means that if we ever want the client
+// to validate before sending, this drops straight in and raises whatever error
+// the client wants from the same message.
 //
 // Invariants:
 //   - the first point of the stream has time zero;

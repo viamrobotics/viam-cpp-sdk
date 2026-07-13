@@ -55,8 +55,8 @@ struct CheckVector : boost::static_visitor<> {
 
 namespace {
 
-// Builds a trajectory point. Passing velocities engages the constraints;
-// passing accelerations too engages those within.
+// Builds a trajectory point. Passing velocities gives it constraints; passing
+// accelerations too includes those.
 Arm::trajectory_point make_point(std::int64_t time_us,
                                  std::vector<double> positions,
                                  boost::optional<std::vector<double>> velocities = boost::none,
@@ -131,8 +131,8 @@ raw_request make_init(const std::string& name) {
 // Responses are drained on a separate thread while the requests are written.
 // This is not just tidiness: the server may write an update as soon as it
 // accepts a valid batch, and if we wrote every request before reading any
-// response, a server-side Write and our next Write could deadlock -- each side
-// blocked in Write waiting for the other to read. Interleaving reader and
+// response, a server-side Write and our next Write could deadlock, with each
+// side blocked in Write waiting for the other to read. Interleaving reader and
 // writer mirrors what the real ArmClient does and keeps the wire draining.
 grpc::Status drive_raw_stream(const std::shared_ptr<grpc::Channel>& channel,
                               const std::vector<raw_request>& requests) {
@@ -425,8 +425,8 @@ BOOST_AUTO_TEST_CASE(streamed_update_handler_halt) {
             {make_point(0, {1.0})},
             {make_point(10, {2.0})},
         });
-        // Halting on the first update is a deliberate stop, not a fault: the
-        // call returns the halted outcome rather than throwing.
+        // Halting on the first update is the caller choosing to stop, not a
+        // fault: the call returns the halted outcome rather than throwing.
         const auto outcome = client.move_through_joint_positions_streamed(
             batch_pump(batches), [](Arm::trajectory_update) { return false; }, {});
         BOOST_CHECK(outcome == Arm::stream_outcome::k_halted_by_update_handler);

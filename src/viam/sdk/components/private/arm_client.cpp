@@ -115,112 +115,101 @@ Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
     const std::function<boost::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
     const std::function<bool(Arm::trajectory_update)>& update_handler,
     const ProtoStruct& extra) {
-    // TODO(RSDK-14164): this method hand-rolls the bidi stream because the SDK
-    // has no bidi client/server helper yet; RSDK-14164 tracks adding one, at
-    // which point this drops down onto that. Until then we drive grpc++
-    // directly, and use the SDK's ClientContext wrapper rather than a raw
-    // grpc::ClientContext so the call carries what ClientHelper attaches
-    // automatically for non-bidi RPCs: the authorization Bearer token (required
-    // for authenticated Viam cloud connections), the viam_client version
-    // metadata, the macOS authority workaround (RSDK-5194), and the
-    // OpenTelemetry trace context.
+    // TODO(RSDK-14164): this hand-rolls the bidi stream because the SDK has no
+    // bidi client/server helper yet (RSDK-14164 tracks adding one). We use the
+    // SDK's ClientContext wrapper rather than a raw grpc::ClientContext so the
+    // call carries what ClientHelper would attach for a unary RPC: the
+    // authorization bearer token (needed for authenticated cloud connections),
+    // the viam_client version metadata, the macOS authority workaround
+    // (RSDK-5194), and the OpenTelemetry trace context.
     ClientContext ctx(*channel_);
     auto stream = stub_->MoveThroughJointPositionsStreamed(ctx);
 
-    // Reap the RPC exactly once, on every exit path. Finish() completes the call
-    // -- including one we cancelled via try_cancel -- and releases its
-    // resources; an early return that skipped it would leak an in-flight call.
-    // The reader must be joined before Finish() runs: we call reap() explicitly
-    // once it has, and the destructor is only a backstop for the paths that
-    // throw before a reader is even running.
-    struct stream_reaper {
+    // Finish() reaps the RPC (an unfinished call leaks), and its status is how a
+    // server-side fault reaches us on the happy path: the server aborts, our
+    // Read and Write stop returning true, and Finish() reports why. We need that
+    // status for the decision after the block below, and a destructor runs too
+    // late to hand back a value, so the guard's job is only to guarantee Finish()
+    // runs on every way out of the block and to stash its status where we can
+    // read it. The reader is joined inside the block, so Finish() runs after it.
+    ::grpc::Status finish_status;
+    struct finish_guard {
         decltype(stream.get()) stream;
-        ::grpc::Status status;
-        bool reaped = false;
-        const ::grpc::Status& reap() {
-            if (!reaped) {
-                reaped = true;
-                status = stream->Finish();
-            }
-            return status;
+        ::grpc::Status& status;
+        ~finish_guard() {
+            status = stream->Finish();
         }
-        ~stream_reaper() {
-            reap();
-        }
-    } reaper{stream.get()};
+    };
 
-    // Send Init on the caller's thread before any other thread is involved.
-    ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest init_msg;
-    init_msg.set_name(this->name());
-    auto* init_payload = init_msg.mutable_init();
-    *init_payload->mutable_extra() = to_proto(extra);
-    if (!stream->Write(init_msg)) {
-        throw GRPCException(&reaper.reap());
-    }
-
-    // One reader thread: read each response, convert it to a trajectory_update,
-    // and hand it to update_handler. A false return means the caller is electing
-    // to halt; record it so teardown reports k_halted_by_update_handler rather
-    // than the CANCELLED status our own try_cancel will produce.
+    bool init_write_failed = false;
     bool update_handler_halted = false;
-    std::exception_ptr reader_exception;
-    std::thread reader([&] {
-        try {
-            ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse pb;
-            while (stream->Read(&pb)) {
-                if (!update_handler(from_proto(pb))) {
-                    update_handler_halted = true;
-                    ctx.try_cancel();
-                    return;
-                }
-            }
-        } catch (...) {
-            reader_exception = std::current_exception();
-            ctx.try_cancel();
-        }
-    });
-
-    // Writer loop runs on the caller's thread. Validation is the server's job
-    // (it cannot trust callers, which need not reach it through this client), so
-    // we do not revalidate here.
     std::exception_ptr writer_exception;
-    try {
-        while (auto batch = batch_source()) {
-            // Skip empty batches rather than putting a no-op message on the wire.
-            if (batch->empty()) {
-                continue;
+    std::exception_ptr reader_exception;
+
+    {
+        const finish_guard guard{stream.get(), finish_status};
+
+        // Send Init on the caller's thread, before the reader starts.
+        ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest init_msg;
+        init_msg.set_name(this->name());
+        *init_msg.mutable_init()->mutable_extra() = to_proto(extra);
+        if (!stream->Write(init_msg)) {
+            init_write_failed = true;
+        } else {
+            // Reader thread: read each response, turn it into a
+            // trajectory_update, and pass it to update_handler. A false return
+            // is the caller asking to stop, so we remember it and report
+            // k_halted_by_update_handler rather than the CANCELLED status our
+            // own try_cancel produces.
+            std::thread reader([&] {
+                try {
+                    ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse pb;
+                    while (stream->Read(&pb)) {
+                        if (!update_handler(from_proto(pb))) {
+                            update_handler_halted = true;
+                            ctx.try_cancel();
+                            return;
+                        }
+                    }
+                } catch (...) {
+                    reader_exception = std::current_exception();
+                    ctx.try_cancel();
+                }
+            });
+
+            // Writer loop, on the caller's thread. Validating the trajectory is
+            // the server's job (a caller need not reach the server through this
+            // client at all), so we send whatever we are handed.
+            try {
+                while (auto batch = batch_source()) {
+                    ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest msg;
+                    auto* trajectory_batch = msg.mutable_batch();
+                    for (const auto& point : *batch) {
+                        *trajectory_batch->add_points() = to_proto(point);
+                    }
+                    if (!stream->Write(msg)) {
+                        // A false Write means the server closed the stream,
+                        // which it does when it faults or cancels. Nothing to
+                        // raise here: stop writing, and finish_status will carry
+                        // the server's terminal status.
+                        break;
+                    }
+                }
+                stream->WritesDone();
+            } catch (...) {
+                writer_exception = std::current_exception();
+                ctx.try_cancel();
             }
-            ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest msg;
-            auto* trajectory_batch = msg.mutable_batch();
-            for (const auto& point : *batch) {
-                *trajectory_batch->add_points() = to_proto(point);
-            }
-            if (!stream->Write(msg)) {
-                // A false Write means the server has closed the stream, which it
-                // does when it faults or cancels. There is nothing to raise
-                // here: we stop writing and fall through to WritesDone and the
-                // join, after which reap() below surfaces the server's terminal
-                // status as the call's result.
-                break;
-            }
+
+            reader.join();
         }
-        stream->WritesDone();
-    } catch (...) {
-        writer_exception = std::current_exception();
-        ctx.try_cancel();
     }
 
-    reader.join();
-
-    // Reap now that the reader has joined and no other thread touches the stream.
-    const auto& status = reaper.reap();
-
-    // Prefer a stashed callback exception over Finish()'s status: after a
-    // try_cancel that status is a generic CANCELLED that hides the real cause,
-    // whereas the exception carries it. When both threads stashed one the
-    // writer's wins, because it runs on the caller's thread and reflects the
-    // originating fault (e.g. batch_source threw), while the reader's is usually
-    // just the downstream consequence of the same teardown.
+    // A stashed callback exception beats finish_status, which after a try_cancel
+    // is a bare CANCELLED that hides the real cause. If both threads stashed one,
+    // take the writer's: it runs on the caller's thread and is the likely origin
+    // (say batch_source threw), while the reader's is usually just fallout from
+    // the same teardown.
     if (writer_exception) {
         std::rethrow_exception(writer_exception);
     }
@@ -228,17 +217,14 @@ Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
         std::rethrow_exception(reader_exception);
     }
 
-    // A deliberate caller-driven stop is an outcome, not a fault: report it
-    // rather than throwing the CANCELLED status our own try_cancel produced.
-    // This is checked after the exception rethrows above by design: if the
-    // caller both halted and something faulted, the fault is the more urgent
-    // signal and wins.
+    // A caller-driven stop is an outcome, not a fault. Checked after the
+    // rethrows: if the caller stopped and something also faulted, the fault wins.
     if (update_handler_halted) {
         return Arm::stream_outcome::k_halted_by_update_handler;
     }
 
-    if (!status.ok()) {
-        throw GRPCException(&status);
+    if (init_write_failed || !finish_status.ok()) {
+        throw GRPCException(&finish_status);
     }
 
     return Arm::stream_outcome::k_completed;

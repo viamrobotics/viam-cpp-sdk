@@ -106,24 +106,23 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     using request_type = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
     using response_type = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
 
-    // TODO(RSDK-14164): like ArmClient, this hand-rolls the bidi stream pending a
-    // shared bidi client/server helper (RSDK-14164).
+    // TODO(RSDK-14164): like ArmClient, this hand-rolls the bidi stream, pending
+    // a shared bidi client/server helper (RSDK-14164).
     //
-    // The dispatcher is single-threaded: it reads Init, looks up the arm, and
-    // runs the implementation on this same gRPC handler thread, with
-    // batch_source blocking in stream->Read and update_handler in stream->Write.
-    // There is no background reader, which keeps the handler clear of the
-    // recv-goroutine deadlock rdk's bidi server hit, at one cost worth knowing:
-    // while the implementation is parked in batch_source's Read it cannot
-    // service an update, so a terminal arm-side fault only reaches the client on
-    // the next inbound batch (cadence-bounded, and small for the tight-cadence
-    // streams batching serves) or promptly once the client half-closes its send
-    // side. A client that stops sending without half-closing and then idles can
-    // leave a fault unreported until it does. Lifting this needs the async
-    // CompletionQueue API -- try_cancel would unblock a background Read but
-    // flattens the client-visible status to CANCELLED -- and is deferred until
-    // trajectory_update carries fields that must flow independently of the
-    // inbound batches.
+    // The point of the bidi stream is that an arm-side fault can reach the client
+    // mid-execution rather than only at the end. This dispatcher runs the
+    // implementation on the gRPC handler thread itself, with batch_source
+    // blocking in stream->Read and update_handler in stream->Write, and no
+    // background reader. That sidesteps the recv-thread deadlock rdk's bidi
+    // server hit, but it costs us something specific to synchronous grpc++: while
+    // the implementation is parked in a batch_source Read it can't send an
+    // update, so a fault reaches the client only on the next inbound batch, or
+    // promptly once the client half-closes its send side (a client that stops
+    // sending without half-closing, then sits idle, can hold onto an unreported
+    // fault). The fix is the async CompletionQueue API (try_cancel would unblock
+    // a background Read, but it replaces the real status with CANCELLED), and it
+    // waits until trajectory_update carries data that has to flow while the
+    // client is still sending.
     ServerSpanGuard span_guard{context, "ArmServer::MoveThroughJointPositionsStreamed"};
 
     // The stream must start with exactly one Init message.
@@ -158,21 +157,20 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     try {
         const ProtoStruct extra = from_proto(init.extra());
 
-        // batch_source pulls the next batch off the stream. Empty batches are
-        // tolerated as wire no-ops -- the impl never sees them -- while a second
-        // Init or a missing oneof is a protocol violation surfaced as a thrown
-        // grpc::Status so the client gets a clear INVALID_ARGUMENT. Each point
-        // is validated as it arrives; the validator persists across batches to
-        // enforce the stream-wide monotonic-time contract. The server validates
-        // regardless of who is calling, since it cannot trust the client to have
-        // done so.
+        // batch_source pulls the next batch off the stream. An empty batch is
+        // tolerated as a no-op (the impl never sees it); a second Init, or a
+        // message with no oneof set, is a protocol violation and gets a thrown
+        // grpc::Status so the client sees a clear INVALID_ARGUMENT. Each point is
+        // validated as it arrives, and the validator lives across calls so it can
+        // enforce the stream-wide strictly-increasing-time rule. The server
+        // always validates, since it can't trust that the caller did.
         //
-        // A cancelled context and Read returning false both yield boost::none,
-        // deliberately indistinguishable to the impl: both mean no more batches
-        // are coming, and the impl's only reaction either way is to stop pulling
-        // and finish what it already has. Read goes false on a clean client
-        // half-close and on a broken or cancelled stream alike; separating those
-        // is grpc's concern via the terminal status, not the impl's.
+        // A cancelled context and a false Read both return boost::none, and the
+        // impl can't tell them apart: either way no more batches are coming, and
+        // all it can do is stop pulling and finish what it has. Read goes false
+        // both on a clean client half-close and on a broken or cancelled stream,
+        // and sorting out which is grpc's problem (via the terminal status), not
+        // the impl's.
         auto batch_source = [stream, context, validator = TrajectoryStreamValidator{}]() mutable
             -> boost::optional<std::vector<Arm::trajectory_point>> {
             while (true) {
@@ -223,10 +221,10 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
             return stream->Write(pb);
         };
 
-        // Enable the thread-local context observer so the impl can read incoming
-        // gRPC metadata (e.g. viam_client) and check cancellation state via
-        // GrpcContextObserver::current() -- the same setup ServiceHelper does
-        // for non-streaming methods.
+        // Turn on the thread-local context observer so the impl can read
+        // incoming gRPC metadata (e.g. viam_client) and check cancellation via
+        // GrpcContextObserver::current(), the same setup ServiceHelper does for
+        // the non-streaming methods.
         const GrpcContextObserver::Enable observer_enable{*context};
 
         // Call the virtual. Its stream_outcome is meaningful only to a direct

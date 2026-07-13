@@ -178,7 +178,7 @@ class Arm : public Component, public Stoppable {
     /// This is the streamed analogue of `move_through_joint_positions`. It is
     /// implemented on both sides of the RPC: an arm driver implements it to
     /// execute a trajectory, and the SDK arm client implements it to forward the
-    /// call to a remote arm. The contract described here binds both.
+    /// call to a remote arm. Both sides must follow the contract below.
     ///
     /// An implementation pulls the trajectory from `batch_source` and reports
     /// progress through `update_handler` until the stream is exhausted, it is
