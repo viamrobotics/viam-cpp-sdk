@@ -22,41 +22,14 @@ jobs:
   update_templates:
     runs-on: ubuntu-latest
     container:
-      image: debian:bookworm
+      image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
 
     steps:
-      - name: Install dependencies
+      - name: Install generator-only dependencies
         run: |
           apt-get update
-          apt-get -y dist-upgrade
-
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              cmake \
-              curl \
-              doxygen \
-              g++ \
-              gettext \
-              gdb \
-              git \
-              gnupg \
-              gpg \
-              less \
-              libboost-all-dev \
-              libc-ares-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libre2-dev \
-              libssl-dev \
-              lsof \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              sudo \
-              wget \
-              zlib1g-dev
+              software-properties-common
 
           bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/llvm.asc'
           apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
@@ -82,7 +55,8 @@ jobs:
           cd build
           cmake .. -G Ninja \
             -DCMAKE_CXX_COMPILER=clang++-15 \
-            -DLLVM_DIR=/usr/lib/llvm-15
+            -DLLVM_DIR=/usr/lib/llvm-15/lib/cmake/llvm \
+            -DClang_DIR=/usr/lib/llvm-15/lib/cmake/clang
           ninja install
           cl_gen -h
 
