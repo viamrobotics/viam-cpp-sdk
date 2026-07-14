@@ -160,7 +160,7 @@ class Arm : public Component, public Stoppable {
     enum class stream_outcome : std::uint8_t {
         k_completed = 0,  ///< The trajectory ran to its natural end.
         k_halted_by_update_handler =
-            1,  ///< update_handler returned false, stopping the stream early.
+            1,  ///< `update_handler` returned false, stopping the stream early.
     };
 
     /// @brief Execute a stream of trajectory points in order.

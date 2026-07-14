@@ -81,7 +81,7 @@ class TestServer {
 // without starting another process.
 //
 // The test_case receives the raw in-process gRPC channel. It may build a typed
-// resource client from it (see client_to_mock_pipeline) or a raw service stub
+// resource client from it (see `client_to_mock_pipeline`) or a raw service stub
 // to drive malformed requests a typed client would never emit. That second path
 // is how server-side validation and protocol enforcement get exercised, since a
 // typed client masks them.

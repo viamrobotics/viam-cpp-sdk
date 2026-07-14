@@ -16,12 +16,12 @@ namespace impl {
 
 // Validates the invariants of a streamed joint-space trajectory as its points
 // arrive. One instance validates one logical stream: feed it each point in wire
-// order via check(). On a valid point the running state advances; on a
+// order via `check()`. On a valid point the running state advances; on a
 // violation the state is left untouched.
 //
-// check() reports the offending invariant as a string instead of throwing, and
+// `check()` reports the offending invariant as a string instead of throwing, and
 // the class pulls in no gRPC types. The only caller today is the server
-// dispatcher, which turns that string into a grpc::Status (so it could just as
+// dispatcher, which turns that string into a `grpc::Status` (so it could just as
 // well throw), but keeping it free of gRPC means that if we ever want the client
 // to validate before sending, this drops straight in and raises whatever error
 // the client wants from the same message.
@@ -38,7 +38,7 @@ namespace impl {
 class TrajectoryStreamValidator {
    public:
     // Returns a description of the first invariant the point violates, or
-    // boost::none if the point is valid in sequence.
+    // `boost::none` if the point is valid in sequence.
     boost::optional<std::string> check(const Arm::trajectory_point& point);
 
    private:

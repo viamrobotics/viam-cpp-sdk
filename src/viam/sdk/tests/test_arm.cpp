@@ -95,8 +95,8 @@ void check_points_equal(const Arm::trajectory_point& got, const Arm::trajectory_
     }
 }
 
-// A pull-source over a fixed list of batches, suitable as a batch_source. Each
-// call yields the next batch, then boost::none. The batches are held by shared
+// A pull-source over a fixed list of batches, suitable as a `batch_source`. Each
+// call yields the next batch, then `boost::none`. The batches are held by shared
 // ownership so callers may inspect them after the stream completes.
 std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_pump(
     std::shared_ptr<std::vector<std::vector<Arm::trajectory_point>>> batches) {
@@ -115,8 +115,8 @@ using Batches = std::vector<std::vector<Arm::trajectory_point>>;
 using raw_request = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
 using raw_response = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
 
-// Builds the top-level Init request. The resource name lives at the top level
-// of the request, not inside the Init payload.
+// Builds the top-level `Init` request. The resource name lives at the top level
+// of the request, not inside the `Init` payload.
 raw_request make_init(const std::string& name) {
     raw_request request;
     request.set_name(name);
@@ -124,16 +124,16 @@ raw_request make_init(const std::string& name) {
     return request;
 }
 
-// Drives the bidi RPC with a raw service stub, bypassing ArmClient so we can
+// Drives the BiDi RPC with a raw service stub, bypassing `ArmClient` so we can
 // send sequences a typed client would never emit. Sends each request in order,
 // half-closes, drains responses, and returns the terminal status.
 //
 // Responses are drained on a separate thread while the requests are written.
 // This is not just tidiness: the server may write an update as soon as it
 // accepts a valid batch, and if we wrote every request before reading any
-// response, a server-side Write and our next Write could deadlock, with each
-// side blocked in Write waiting for the other to read. Interleaving reader and
-// writer mirrors what the real ArmClient does and keeps the wire draining.
+// response, a server-side `Write` and our next `Write` could deadlock, with each
+// side blocked in `Write` waiting for the other to read. Interleaving reader and
+// writer mirrors what the real `ArmClient` does and keeps the wire draining.
 grpc::Status drive_raw_stream(const std::shared_ptr<grpc::Channel>& channel,
                               const std::vector<raw_request>& requests) {
     auto stub = ::viam::component::arm::v1::ArmService::NewStub(channel);
@@ -438,7 +438,7 @@ BOOST_AUTO_TEST_CASE(streamed_update_handler_throw_propagates) {
     client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
         auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
         // A throwing handler propagates its exception as-is, not wrapped as a
-        // GRPCException and not swallowed into an outcome.
+        // `GRPCException` and not swallowed into an outcome.
         try {
             client.move_through_joint_positions_streamed(
                 batch_pump(batches),
@@ -497,7 +497,7 @@ BOOST_AUTO_TEST_CASE(streamed_server_validates_trajectory) {
     channel_to_mock_pipeline(mock, [&](const std::shared_ptr<grpc::Channel>& channel) {
         // The server enforces the trajectory invariants itself, independent of
         // any client-side check, because callers need not reach it through
-        // ArmClient. First point with a nonzero time:
+        // `ArmClient`. First point with a nonzero time:
         raw_request bad_time;
         *bad_time.mutable_batch()->add_points() = to_proto(make_point(5, {1.0}));
         BOOST_CHECK(drive_raw_stream(channel, {make_init(mock->name()), bad_time}).error_code() ==

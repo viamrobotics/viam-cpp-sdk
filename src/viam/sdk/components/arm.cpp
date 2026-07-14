@@ -26,6 +26,7 @@ void to_proto_impl<Arm::trajectory_point>::operator()(
     const Arm::trajectory_point& self, viam::component::arm::v1::TrajectoryPoint* proto) const {
     *proto->mutable_time() = to_proto(self.time);
     *proto->mutable_positions()->mutable_values() = {self.positions.begin(), self.positions.end()};
+
     if (self.constraints) {
         auto* pb_kc = proto->mutable_constraints();
         *pb_kc->mutable_velocities()->mutable_values() = {self.constraints->velocities.begin(),
@@ -42,6 +43,7 @@ Arm::trajectory_point from_proto_impl<viam::component::arm::v1::TrajectoryPoint>
     Arm::trajectory_point result;
     result.time = from_proto(proto->time());
     result.positions.assign(proto->positions().values().begin(), proto->positions().values().end());
+
     if (proto->has_constraints()) {
         Arm::trajectory_point::kinematic_constraints kc;
         const auto& pb_kc = proto->constraints();
@@ -60,7 +62,7 @@ Arm::trajectory_point from_proto_impl<viam::component::arm::v1::TrajectoryPoint>
 void to_proto_impl<Arm::trajectory_update>::operator()(
     const Arm::trajectory_update&,
     viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const {
-    // trajectory_update carries no data yet, so the response is left empty.
+    // `trajectory_update` carries no data yet, so the response is left empty.
     // Wiring the conversion now means neither stub has to change when the type
     // grows fields.
 }

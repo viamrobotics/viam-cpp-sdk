@@ -46,11 +46,11 @@ class MockArm : public sdk::Arm {
     sdk::ProtoStruct peek_command;
     std::vector<std::string> viam_client_metadata;
 
-    // Recorded state and controls for move_through_joint_positions_streamed:
+    // Recorded state and controls for `move_through_joint_positions_streamed`:
     // the batches it received, the count of updates it emitted, and an optional
     // fault to raise once the batches drain, which exercises terminal-error
-    // propagation. k_runtime_error throws a std::exception (INTERNAL at the
-    // wire); k_grpc_status throws a grpc::Status carried through verbatim.
+    // propagation. `k_runtime_error` throws a `std::exception` (`INTERNAL` at the
+    // wire); `k_grpc_status` throws a `grpc::Status` carried through verbatim.
     enum class stream_fault : std::uint8_t { k_none = 0, k_runtime_error = 1, k_grpc_status = 2 };
     stream_fault streamed_fault = stream_fault::k_none;
     std::vector<std::vector<sdk::Arm::trajectory_point>> peek_streamed_batches;
