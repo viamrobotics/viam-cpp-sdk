@@ -33381,6 +33381,7 @@ class ModuleVersion final :
     kEntrypointFieldNumber = 4,
     kFirstRunFieldNumber = 5,
     kMarkdownDescriptionFieldNumber = 6,
+    kMinViamServerVersionFieldNumber = 9,
     kDeprecatedStatusFieldNumber = 8,
   };
   // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
@@ -33501,6 +33502,24 @@ class ModuleVersion final :
   std::string* _internal_mutable_markdown_description();
   public:
 
+  // optional string min_viam_server_version = 9 [json_name = "minViamServerVersion"];
+  bool has_min_viam_server_version() const;
+  private:
+  bool _internal_has_min_viam_server_version() const;
+  public:
+  void clear_min_viam_server_version();
+  const std::string& min_viam_server_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_min_viam_server_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_min_viam_server_version();
+  PROTOBUF_NODISCARD std::string* release_min_viam_server_version();
+  void set_allocated_min_viam_server_version(std::string* min_viam_server_version);
+  private:
+  const std::string& _internal_min_viam_server_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_min_viam_server_version(const std::string& value);
+  std::string* _internal_mutable_min_viam_server_version();
+  public:
+
   // optional .viam.app.v1.DeprecatedStatus deprecated_status = 8 [json_name = "deprecatedStatus"];
   bool has_deprecated_status() const;
   private:
@@ -33535,6 +33554,7 @@ class ModuleVersion final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr min_viam_server_version_;
   ::viam::app::v1::DeprecatedStatus* deprecated_status_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -33665,6 +33685,7 @@ class ModuleMetadata final :
     kEntrypointFieldNumber = 3,
     kFirstRunFieldNumber = 4,
     kMarkdownDescriptionFieldNumber = 5,
+    kMinViamServerVersionFieldNumber = 9,
     kSourceTypeFieldNumber = 7,
     kLanguageFieldNumber = 8,
   };
@@ -33772,6 +33793,24 @@ class ModuleMetadata final :
   std::string* _internal_mutable_markdown_description();
   public:
 
+  // optional string min_viam_server_version = 9 [json_name = "minViamServerVersion"];
+  bool has_min_viam_server_version() const;
+  private:
+  bool _internal_has_min_viam_server_version() const;
+  public:
+  void clear_min_viam_server_version();
+  const std::string& min_viam_server_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_min_viam_server_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_min_viam_server_version();
+  PROTOBUF_NODISCARD std::string* release_min_viam_server_version();
+  void set_allocated_min_viam_server_version(std::string* min_viam_server_version);
+  private:
+  const std::string& _internal_min_viam_server_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_min_viam_server_version(const std::string& value);
+  std::string* _internal_mutable_min_viam_server_version();
+  public:
+
   // optional .viam.app.v1.ModuleSourceType source_type = 7 [json_name = "sourceType"];
   bool has_source_type() const;
   private:
@@ -33813,6 +33852,7 @@ class ModuleMetadata final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr min_viam_server_version_;
   int source_type_;
   int language_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -39791,6 +39831,7 @@ class UpdateModuleMetadata final :
     kModelsFieldNumber = 1,
     kAppsFieldNumber = 3,
     kEntrypointFieldNumber = 2,
+    kMinViamServerVersionFieldNumber = 6,
     kSourceTypeFieldNumber = 4,
     kLanguageFieldNumber = 5,
   };
@@ -39844,6 +39885,24 @@ class UpdateModuleMetadata final :
   std::string* _internal_mutable_entrypoint();
   public:
 
+  // optional string min_viam_server_version = 6 [json_name = "minViamServerVersion"];
+  bool has_min_viam_server_version() const;
+  private:
+  bool _internal_has_min_viam_server_version() const;
+  public:
+  void clear_min_viam_server_version();
+  const std::string& min_viam_server_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_min_viam_server_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_min_viam_server_version();
+  PROTOBUF_NODISCARD std::string* release_min_viam_server_version();
+  void set_allocated_min_viam_server_version(std::string* min_viam_server_version);
+  private:
+  const std::string& _internal_min_viam_server_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_min_viam_server_version(const std::string& value);
+  std::string* _internal_mutable_min_viam_server_version();
+  public:
+
   // optional .viam.app.v1.ModuleSourceType source_type = 4 [json_name = "sourceType"];
   bool has_source_type() const;
   private:
@@ -39882,6 +39941,7 @@ class UpdateModuleMetadata final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App > apps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr min_viam_server_version_;
   int source_type_;
   int language_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -76276,7 +76336,7 @@ ModuleVersion::apps() const {
 
 // optional .viam.app.v1.DeprecatedStatus deprecated_status = 8 [json_name = "deprecatedStatus"];
 inline bool ModuleVersion::_internal_has_deprecated_status() const {
-  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
   PROTOBUF_ASSUME(!value || deprecated_status_ != nullptr);
   return value;
 }
@@ -76285,7 +76345,7 @@ inline bool ModuleVersion::has_deprecated_status() const {
 }
 inline void ModuleVersion::clear_deprecated_status() {
   if (deprecated_status_ != nullptr) deprecated_status_->Clear();
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline const ::viam::app::v1::DeprecatedStatus& ModuleVersion::_internal_deprecated_status() const {
   const ::viam::app::v1::DeprecatedStatus* p = deprecated_status_;
@@ -76303,14 +76363,14 @@ inline void ModuleVersion::unsafe_arena_set_allocated_deprecated_status(
   }
   deprecated_status_ = deprecated_status;
   if (deprecated_status) {
-    _has_bits_[0] |= 0x00000004u;
+    _has_bits_[0] |= 0x00000008u;
   } else {
-    _has_bits_[0] &= ~0x00000004u;
+    _has_bits_[0] &= ~0x00000008u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ModuleVersion.deprecated_status)
 }
 inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::release_deprecated_status() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
   ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
   deprecated_status_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -76326,13 +76386,13 @@ inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::release_deprecated_stat
 }
 inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::unsafe_arena_release_deprecated_status() {
   // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersion.deprecated_status)
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
   ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
   deprecated_status_ = nullptr;
   return temp;
 }
 inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::_internal_mutable_deprecated_status() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
   if (deprecated_status_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::app::v1::DeprecatedStatus>(GetArenaForAllocation());
     deprecated_status_ = p;
@@ -76356,12 +76416,80 @@ inline void ModuleVersion::set_allocated_deprecated_status(::viam::app::v1::Depr
       deprecated_status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, deprecated_status, submessage_arena);
     }
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  deprecated_status_ = deprecated_status;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.deprecated_status)
+}
+
+// optional string min_viam_server_version = 9 [json_name = "minViamServerVersion"];
+inline bool ModuleVersion::_internal_has_min_viam_server_version() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool ModuleVersion::has_min_viam_server_version() const {
+  return _internal_has_min_viam_server_version();
+}
+inline void ModuleVersion::clear_min_viam_server_version() {
+  min_viam_server_version_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& ModuleVersion::min_viam_server_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersion.min_viam_server_version)
+  return _internal_min_viam_server_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleVersion::set_min_viam_server_version(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000004u;
+ min_viam_server_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersion.min_viam_server_version)
+}
+inline std::string* ModuleVersion::mutable_min_viam_server_version() {
+  std::string* _s = _internal_mutable_min_viam_server_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersion.min_viam_server_version)
+  return _s;
+}
+inline const std::string& ModuleVersion::_internal_min_viam_server_version() const {
+  return min_viam_server_version_.Get();
+}
+inline void ModuleVersion::_internal_set_min_viam_server_version(const std::string& value) {
+  _has_bits_[0] |= 0x00000004u;
+  min_viam_server_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleVersion::_internal_mutable_min_viam_server_version() {
+  _has_bits_[0] |= 0x00000004u;
+  return min_viam_server_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleVersion::release_min_viam_server_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersion.min_viam_server_version)
+  if (!_internal_has_min_viam_server_version()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000004u;
+  auto* p = min_viam_server_version_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (min_viam_server_version_.IsDefault()) {
+    min_viam_server_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void ModuleVersion::set_allocated_min_viam_server_version(std::string* min_viam_server_version) {
+  if (min_viam_server_version != nullptr) {
     _has_bits_[0] |= 0x00000004u;
   } else {
     _has_bits_[0] &= ~0x00000004u;
   }
-  deprecated_status_ = deprecated_status;
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.deprecated_status)
+  min_viam_server_version_.SetAllocated(min_viam_server_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (min_viam_server_version_.IsDefault()) {
+    min_viam_server_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.min_viam_server_version)
 }
 
 // -------------------------------------------------------------------
@@ -76676,7 +76804,7 @@ ModuleMetadata::apps() const {
 
 // optional .viam.app.v1.ModuleSourceType source_type = 7 [json_name = "sourceType"];
 inline bool ModuleMetadata::_internal_has_source_type() const {
-  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
   return value;
 }
 inline bool ModuleMetadata::has_source_type() const {
@@ -76684,7 +76812,7 @@ inline bool ModuleMetadata::has_source_type() const {
 }
 inline void ModuleMetadata::clear_source_type() {
   source_type_ = 0;
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline ::viam::app::v1::ModuleSourceType ModuleMetadata::_internal_source_type() const {
   return static_cast< ::viam::app::v1::ModuleSourceType >(source_type_);
@@ -76694,7 +76822,7 @@ inline ::viam::app::v1::ModuleSourceType ModuleMetadata::source_type() const {
   return _internal_source_type();
 }
 inline void ModuleMetadata::_internal_set_source_type(::viam::app::v1::ModuleSourceType value) {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
   source_type_ = value;
 }
 inline void ModuleMetadata::set_source_type(::viam::app::v1::ModuleSourceType value) {
@@ -76704,7 +76832,7 @@ inline void ModuleMetadata::set_source_type(::viam::app::v1::ModuleSourceType va
 
 // optional .viam.app.v1.ModuleLanguage language = 8 [json_name = "language"];
 inline bool ModuleMetadata::_internal_has_language() const {
-  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline bool ModuleMetadata::has_language() const {
@@ -76712,7 +76840,7 @@ inline bool ModuleMetadata::has_language() const {
 }
 inline void ModuleMetadata::clear_language() {
   language_ = 0;
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline ::viam::app::v1::ModuleLanguage ModuleMetadata::_internal_language() const {
   return static_cast< ::viam::app::v1::ModuleLanguage >(language_);
@@ -76722,12 +76850,80 @@ inline ::viam::app::v1::ModuleLanguage ModuleMetadata::language() const {
   return _internal_language();
 }
 inline void ModuleMetadata::_internal_set_language(::viam::app::v1::ModuleLanguage value) {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
   language_ = value;
 }
 inline void ModuleMetadata::set_language(::viam::app::v1::ModuleLanguage value) {
   _internal_set_language(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.ModuleMetadata.language)
+}
+
+// optional string min_viam_server_version = 9 [json_name = "minViamServerVersion"];
+inline bool ModuleMetadata::_internal_has_min_viam_server_version() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool ModuleMetadata::has_min_viam_server_version() const {
+  return _internal_has_min_viam_server_version();
+}
+inline void ModuleMetadata::clear_min_viam_server_version() {
+  min_viam_server_version_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& ModuleMetadata::min_viam_server_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleMetadata.min_viam_server_version)
+  return _internal_min_viam_server_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleMetadata::set_min_viam_server_version(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000004u;
+ min_viam_server_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleMetadata.min_viam_server_version)
+}
+inline std::string* ModuleMetadata::mutable_min_viam_server_version() {
+  std::string* _s = _internal_mutable_min_viam_server_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleMetadata.min_viam_server_version)
+  return _s;
+}
+inline const std::string& ModuleMetadata::_internal_min_viam_server_version() const {
+  return min_viam_server_version_.Get();
+}
+inline void ModuleMetadata::_internal_set_min_viam_server_version(const std::string& value) {
+  _has_bits_[0] |= 0x00000004u;
+  min_viam_server_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleMetadata::_internal_mutable_min_viam_server_version() {
+  _has_bits_[0] |= 0x00000004u;
+  return min_viam_server_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleMetadata::release_min_viam_server_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleMetadata.min_viam_server_version)
+  if (!_internal_has_min_viam_server_version()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000004u;
+  auto* p = min_viam_server_version_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (min_viam_server_version_.IsDefault()) {
+    min_viam_server_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void ModuleMetadata::set_allocated_min_viam_server_version(std::string* min_viam_server_version) {
+  if (min_viam_server_version != nullptr) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  min_viam_server_version_.SetAllocated(min_viam_server_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (min_viam_server_version_.IsDefault()) {
+    min_viam_server_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleMetadata.min_viam_server_version)
 }
 
 // -------------------------------------------------------------------
@@ -82106,7 +82302,7 @@ UpdateModuleMetadata::apps() const {
 
 // optional .viam.app.v1.ModuleSourceType source_type = 4 [json_name = "sourceType"];
 inline bool UpdateModuleMetadata::_internal_has_source_type() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
 inline bool UpdateModuleMetadata::has_source_type() const {
@@ -82114,7 +82310,7 @@ inline bool UpdateModuleMetadata::has_source_type() const {
 }
 inline void UpdateModuleMetadata::clear_source_type() {
   source_type_ = 0;
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline ::viam::app::v1::ModuleSourceType UpdateModuleMetadata::_internal_source_type() const {
   return static_cast< ::viam::app::v1::ModuleSourceType >(source_type_);
@@ -82124,7 +82320,7 @@ inline ::viam::app::v1::ModuleSourceType UpdateModuleMetadata::source_type() con
   return _internal_source_type();
 }
 inline void UpdateModuleMetadata::_internal_set_source_type(::viam::app::v1::ModuleSourceType value) {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
   source_type_ = value;
 }
 inline void UpdateModuleMetadata::set_source_type(::viam::app::v1::ModuleSourceType value) {
@@ -82134,7 +82330,7 @@ inline void UpdateModuleMetadata::set_source_type(::viam::app::v1::ModuleSourceT
 
 // optional .viam.app.v1.ModuleLanguage language = 5 [json_name = "language"];
 inline bool UpdateModuleMetadata::_internal_has_language() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
 inline bool UpdateModuleMetadata::has_language() const {
@@ -82142,7 +82338,7 @@ inline bool UpdateModuleMetadata::has_language() const {
 }
 inline void UpdateModuleMetadata::clear_language() {
   language_ = 0;
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline ::viam::app::v1::ModuleLanguage UpdateModuleMetadata::_internal_language() const {
   return static_cast< ::viam::app::v1::ModuleLanguage >(language_);
@@ -82152,12 +82348,80 @@ inline ::viam::app::v1::ModuleLanguage UpdateModuleMetadata::language() const {
   return _internal_language();
 }
 inline void UpdateModuleMetadata::_internal_set_language(::viam::app::v1::ModuleLanguage value) {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
   language_ = value;
 }
 inline void UpdateModuleMetadata::set_language(::viam::app::v1::ModuleLanguage value) {
   _internal_set_language(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleMetadata.language)
+}
+
+// optional string min_viam_server_version = 6 [json_name = "minViamServerVersion"];
+inline bool UpdateModuleMetadata::_internal_has_min_viam_server_version() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UpdateModuleMetadata::has_min_viam_server_version() const {
+  return _internal_has_min_viam_server_version();
+}
+inline void UpdateModuleMetadata::clear_min_viam_server_version() {
+  min_viam_server_version_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UpdateModuleMetadata::min_viam_server_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleMetadata.min_viam_server_version)
+  return _internal_min_viam_server_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateModuleMetadata::set_min_viam_server_version(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ min_viam_server_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleMetadata.min_viam_server_version)
+}
+inline std::string* UpdateModuleMetadata::mutable_min_viam_server_version() {
+  std::string* _s = _internal_mutable_min_viam_server_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleMetadata.min_viam_server_version)
+  return _s;
+}
+inline const std::string& UpdateModuleMetadata::_internal_min_viam_server_version() const {
+  return min_viam_server_version_.Get();
+}
+inline void UpdateModuleMetadata::_internal_set_min_viam_server_version(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  min_viam_server_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateModuleMetadata::_internal_mutable_min_viam_server_version() {
+  _has_bits_[0] |= 0x00000001u;
+  return min_viam_server_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateModuleMetadata::release_min_viam_server_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateModuleMetadata.min_viam_server_version)
+  if (!_internal_has_min_viam_server_version()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = min_viam_server_version_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (min_viam_server_version_.IsDefault()) {
+    min_viam_server_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void UpdateModuleMetadata::set_allocated_min_viam_server_version(std::string* min_viam_server_version) {
+  if (min_viam_server_version != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  min_viam_server_version_.SetAllocated(min_viam_server_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (min_viam_server_version_.IsDefault()) {
+    min_viam_server_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleMetadata.min_viam_server_version)
 }
 
 // -------------------------------------------------------------------
