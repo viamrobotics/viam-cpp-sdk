@@ -28,6 +28,7 @@ namespace impl {
 //
 // Invariants:
 //   - the first point of the stream has time zero;
+//   - the first point starts from rest, so any velocities it carries are zero;
 //   - times strictly increase across the entire stream;
 //   - every point carries at least one position;
 //   - when constraints are present, velocities carries one entry per position;

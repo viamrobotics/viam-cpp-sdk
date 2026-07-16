@@ -510,6 +510,15 @@ BOOST_AUTO_TEST_CASE(streamed_server_validates_trajectory) {
         BOOST_CHECK(drive_raw_stream(channel, {make_init(mock->name()), bad_dims}).error_code() ==
                     grpc::StatusCode::INVALID_ARGUMENT);
 
+        // First point moving: the trajectory must start from rest, so a t=0
+        // point that carries a nonzero velocity is rejected.
+        raw_request moving_start;
+        *moving_start.mutable_batch()->add_points() =
+            to_proto(make_point(0, {1.0}, std::vector<double>{1.0}));
+        BOOST_CHECK(
+            drive_raw_stream(channel, {make_init(mock->name()), moving_start}).error_code() ==
+            grpc::StatusCode::INVALID_ARGUMENT);
+
         // None of the above malformed single points ever reached the impl.
         BOOST_CHECK(mock->peek_streamed_batches.empty());
 
@@ -526,6 +535,13 @@ BOOST_AUTO_TEST_CASE(streamed_server_validates_trajectory) {
         BOOST_CHECK(
             drive_raw_stream(channel, {make_init(mock->name()), batch_a, batch_b}).error_code() ==
             grpc::StatusCode::INVALID_ARGUMENT);
+
+        // The rest requirement rejects a moving start, not velocities as such: a
+        // first point that spells out a zero velocity is accepted.
+        raw_request rest_start;
+        *rest_start.mutable_batch()->add_points() =
+            to_proto(make_point(0, {1.0}, std::vector<double>{0.0}));
+        BOOST_CHECK(drive_raw_stream(channel, {make_init(mock->name()), rest_start}).ok());
     });
 }
 

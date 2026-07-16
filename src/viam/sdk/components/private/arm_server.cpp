@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <viam/sdk/components/private/arm_server.hpp>
 
 #include <utility>
@@ -233,6 +234,8 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         arm->move_through_joint_positions_streamed(batch_source, update_handler, extra);
     } catch (const ::grpc::Status& s) {
         return span_guard.commit(s);
+    } catch (const std::invalid_argument& e) {
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT, e.what()));
     } catch (const std::exception& e) {
         return span_guard.commit(::grpc::Status(::grpc::StatusCode::INTERNAL, e.what()));
     } catch (...) {

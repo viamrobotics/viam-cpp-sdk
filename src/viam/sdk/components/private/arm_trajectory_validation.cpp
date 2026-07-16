@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include <viam/sdk/components/private/arm_trajectory_validation.hpp>
 
 namespace viam {
@@ -23,6 +25,13 @@ boost::optional<std::string> TrajectoryStreamValidator::check(const Arm::traject
             return std::string(
                 "trajectory point must carry one velocity per position when constraints "
                 "are present");
+        }
+        // We require a trajectory to start from rest, so a first point that
+        // specifies velocities must specify them all as zero.
+        if (!seen_first_ && std::any_of(constraints.velocities.begin(),
+                                        constraints.velocities.end(),
+                                        [](double velocity) { return velocity != 0.0; })) {
+            return std::string("first trajectory point must start from rest (all velocities zero)");
         }
         if (constraints.accelerations &&
             constraints.accelerations->size() != constraints.velocities.size()) {

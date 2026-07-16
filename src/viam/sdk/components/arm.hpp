@@ -130,7 +130,10 @@ class Arm : public Component, public Stoppable {
         /// @brief Target kinematic constraints at a waypoint.
         ///
         /// `velocities` is required whenever this struct is present;
-        /// `accelerations` is independently optional.
+        /// `accelerations` is independently optional. Both are one value per
+        /// joint and, like everything else on this interface, denominated in
+        /// degrees: `velocities` in degrees per second and `accelerations` in
+        /// degrees per second squared.
         struct kinematic_constraints {
             std::vector<double> velocities;
             boost::optional<std::vector<double>> accelerations;
@@ -144,7 +147,7 @@ class Arm : public Component, public Stoppable {
         /// are not preserved on the wire.
         std::chrono::microseconds time;
 
-        /// @brief Target position at this waypoint, one value per joint.
+        /// @brief Target position at this waypoint, one value per joint, in degrees.
         std::vector<double> positions;
 
         /// @brief Optional velocity and acceleration constraints at this waypoint.
