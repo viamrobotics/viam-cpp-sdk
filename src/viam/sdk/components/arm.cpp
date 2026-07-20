@@ -29,11 +29,13 @@ void to_proto_impl<Arm::trajectory_point>::operator()(
 
     if (self.constraints) {
         auto* pb_kc = proto->mutable_constraints();
-        *pb_kc->mutable_velocities()->mutable_values() = {self.constraints->velocities_degs_per_sec.begin(),
-                                                          self.constraints->velocities_degs_per_sec.end()};
+        *pb_kc->mutable_velocities()->mutable_values() = {
+            self.constraints->velocities_degs_per_sec.begin(),
+            self.constraints->velocities_degs_per_sec.end()};
         if (self.constraints->accelerations_degs_per_sec2) {
             *pb_kc->mutable_accelerations()->mutable_values() = {
-                self.constraints->accelerations_degs_per_sec2->begin(), self.constraints->accelerations_degs_per_sec2->end()};
+                self.constraints->accelerations_degs_per_sec2->begin(),
+                self.constraints->accelerations_degs_per_sec2->end()};
         }
     }
 }
@@ -48,7 +50,7 @@ Arm::trajectory_point from_proto_impl<viam::component::arm::v1::TrajectoryPoint>
         Arm::trajectory_point::kinematic_constraints kc;
         const auto& pb_kc = proto->constraints();
         kc.velocities_degs_per_sec.assign(pb_kc.velocities().values().begin(),
-                             pb_kc.velocities().values().end());
+                                          pb_kc.velocities().values().end());
         if (pb_kc.has_accelerations()) {
             std::vector<double> accs(pb_kc.accelerations().values().begin(),
                                      pb_kc.accelerations().values().end());

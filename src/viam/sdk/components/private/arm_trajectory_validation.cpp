@@ -34,7 +34,8 @@ boost::optional<std::string> TrajectoryStreamValidator::check(const Arm::traject
             return std::string("first trajectory point must start from rest (all velocities zero)");
         }
         if (constraints.accelerations_degs_per_sec2 &&
-            constraints.accelerations_degs_per_sec2->size() != constraints.velocities_degs_per_sec.size()) {
+            constraints.accelerations_degs_per_sec2->size() !=
+                constraints.velocities_degs_per_sec.size()) {
             return std::string(
                 "trajectory point must carry one acceleration per velocity when "
                 "accelerations are present");
