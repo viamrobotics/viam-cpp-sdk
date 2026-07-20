@@ -42,40 +42,36 @@ jobs:
           steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash &&
           github.event.schedule != '0 10 * * 0'
 
-  build_macos:
-    if: github.repository_owner == 'viamrobotics'
-    needs: [prepare]
-    runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: aarch64-apple-darwin
-            platform: macosx_arm64
-          - target: x86_64-apple-darwin
-            platform: macosx_x86_64
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          cmake --version
-          python --version
-          ninja --version
-          brew install buf
-          python -m pip install conan
-
-      - name: Create package
-        run: |
-          # `buf` tries to read a CLI config file that we don't actually use located at
-          # ~/.config/buf/config.yaml. We don't always have permission to access this
-          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
-          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
-          # more details.
-          export BUF_CONFIG_DIR=$(mktemp -d)
-          conan profile detect
-          conan create . --build=missing -s:a compiler.cppstd=17
+  # TEMP: disabled while debugging the conan-image conversion on docker-conan-image.
+  # build_macos:
+  #   if: github.repository_owner == 'viamrobotics'
+  #   needs: [prepare]
+  #   runs-on: macos-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - target: aarch64-apple-darwin
+  #           platform: macosx_arm64
+  #         - target: x86_64-apple-darwin
+  #           platform: macosx_x86_64
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Install dependencies
+  #       run: |
+  #         cmake --version
+  #         python --version
+  #         ninja --version
+  #         brew install buf
+  #         python -m pip install conan
+  #
+  #     - name: Create package
+  #       run: |
+  #         export BUF_CONFIG_DIR=$(mktemp -d)
+  #         conan profile detect
+  #         conan create . --build=missing -s:a compiler.cppstd=17
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
@@ -150,38 +146,39 @@ jobs:
 
           conan create . --build=missing -s:a compiler.cppstd=17
 
-  build_windows:
-    if: github.repository_owner == 'viamrobotics'
-    needs: [prepare]
-    runs-on: windows-2022
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: x86_64-windows
-            platform: windows_x86_64
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.prepare.outputs.sha }}
-
-      - name: Install dependencies
-        run: choco install -y conan git
-
-      - name: Create package
-        shell: powershell
-        run: |
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
-          conan profile detect
-          conan remote add viamconan $env:CONAN_REMOTE_URL
-          conan remote auth --force -cc core:non_interactive=True viamconan
-          conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
-        env:
-          CONAN_USER_HOME: c:/cache
-          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
-          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
-          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
+  # TEMP: disabled while debugging the conan-image conversion on docker-conan-image.
+  # build_windows:
+  #   if: github.repository_owner == 'viamrobotics'
+  #   needs: [prepare]
+  #   runs-on: windows-2022
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - target: x86_64-windows
+  #           platform: windows_x86_64
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ needs.prepare.outputs.sha }}
+  #
+  #     - name: Install dependencies
+  #       run: choco install -y conan git
+  #
+  #     - name: Create package
+  #       shell: powershell
+  #       run: |
+  #         Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+  #         refreshenv
+  #         conan profile detect
+  #         conan remote add viamconan $env:CONAN_REMOTE_URL
+  #         conan remote auth --force -cc core:non_interactive=True viamconan
+  #         conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
+  #       env:
+  #         CONAN_USER_HOME: c:/cache
+  #         CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+  #         CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+  #         CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
+  #         CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
 
