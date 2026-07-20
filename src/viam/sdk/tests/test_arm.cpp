@@ -66,8 +66,8 @@ Arm::trajectory_point make_point(std::int64_t time_us,
     point.positions = std::move(positions);
     if (velocities) {
         Arm::trajectory_point::kinematic_constraints constraints;
-        constraints.velocities = std::move(*velocities);
-        constraints.accelerations = std::move(accelerations);
+        constraints.velocities_degs_per_sec = std::move(*velocities);
+        constraints.accelerations_degs_per_sec2 = std::move(accelerations);
         point.constraints = std::move(constraints);
     }
     return point;
@@ -81,17 +81,17 @@ void check_points_equal(const Arm::trajectory_point& got, const Arm::trajectory_
     if (!want.constraints) {
         return;
     }
-    BOOST_CHECK_EQUAL_COLLECTIONS(got.constraints->velocities.begin(),
-                                  got.constraints->velocities.end(),
-                                  want.constraints->velocities.begin(),
-                                  want.constraints->velocities.end());
-    BOOST_REQUIRE_EQUAL(static_cast<bool>(got.constraints->accelerations),
-                        static_cast<bool>(want.constraints->accelerations));
-    if (want.constraints->accelerations) {
-        BOOST_CHECK_EQUAL_COLLECTIONS(got.constraints->accelerations->begin(),
-                                      got.constraints->accelerations->end(),
-                                      want.constraints->accelerations->begin(),
-                                      want.constraints->accelerations->end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(got.constraints->velocities_degs_per_sec.begin(),
+                                  got.constraints->velocities_degs_per_sec.end(),
+                                  want.constraints->velocities_degs_per_sec.begin(),
+                                  want.constraints->velocities_degs_per_sec.end());
+    BOOST_REQUIRE_EQUAL(static_cast<bool>(got.constraints->accelerations_degs_per_sec2),
+                        static_cast<bool>(want.constraints->accelerations_degs_per_sec2));
+    if (want.constraints->accelerations_degs_per_sec2) {
+        BOOST_CHECK_EQUAL_COLLECTIONS(got.constraints->accelerations_degs_per_sec2->begin(),
+                                      got.constraints->accelerations_degs_per_sec2->end(),
+                                      want.constraints->accelerations_degs_per_sec2->begin(),
+                                      want.constraints->accelerations_degs_per_sec2->end());
     }
 }
 

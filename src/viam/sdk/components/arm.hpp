@@ -135,8 +135,8 @@ class Arm : public Component, public Stoppable {
         /// degrees: `velocities` in degrees per second and `accelerations` in
         /// degrees per second squared.
         struct kinematic_constraints {
-            std::vector<double> velocities;
-            boost::optional<std::vector<double>> accelerations;
+            std::vector<double> velocities_degs_per_sec;
+            boost::optional<std::vector<double>> accelerations_degs_per_sec2;
         };
 
         /// @brief Offset of this waypoint from the start of the trajectory.
@@ -204,7 +204,9 @@ class Arm : public Component, public Stoppable {
     /// coming, after which the implementation should finish executing what it
     /// already has and return. Points arrive grouped into the batches the sender
     /// chose; an implementation that wants per-point handling iterates within
-    /// each batch.
+    /// each batch. Note that for servers, a disengaged return is ambiguous
+    /// between end-of-stream and cancellation. Arm implementors are expected
+    /// to explicitly check for cancellation.
     /// @param update_handler Sink for execution updates. Call it with each
     /// `trajectory_update` to report progress; it returns `true` to keep going
     /// and `false` to ask that the stream stop early, in which case the
