@@ -16,6 +16,9 @@ set -euo pipefail
 apt_install python3 python3-venv
 
 python3 -m venv /opt/conan-venv
+# Upgrade pip first: the pip bundled on older distros (e.g. bullseye's 20.3) ships
+# the legacy resolver, which crashes resolving conan's deps (KeyError: 'markupsafe').
+/opt/conan-venv/bin/pip install --no-cache-dir --upgrade pip
 /opt/conan-venv/bin/pip install --no-cache-dir "conan~=2.0"
 
 # Source the venv activate for conan on PATH; profile.d carries it to runtime shells.
