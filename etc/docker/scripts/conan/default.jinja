@@ -1,0 +1,13 @@
+{# Single default conan profile for the cpp-sdk-conan images, rendered per      #}
+{# machine at conan load time via jinja2. detect_api fills arch and the         #}
+{# installed gcc version; the rest is the image's pinned toolchain of record    #}
+{# (gcc / libstdc++11 / C++17).                                                 #}
+{% set _c = detect_api.detect_default_compiler() %}
+[settings]
+os=Linux
+arch={{ detect_api.detect_arch() }}
+build_type=RelWithDebInfo
+compiler=gcc
+compiler.version={{ detect_api.default_compiler_version(_c[0], _c[1]) }}
+compiler.cppstd=17
+compiler.libcxx=libstdc++11
