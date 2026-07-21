@@ -39,7 +39,7 @@ jobs:
   build_windows:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
-    runs-on: windows-latest
+    runs-on: windows-2022
     strategy:
       fail-fast: false
       matrix:
@@ -64,7 +64,7 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan install . --output-folder=build-conan --build=missing
+          conan install . --output-folder=build-conan --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
           cmake . --preset conan-default
           cmake --build --preset=conan-release --target ALL_BUILD install -j 8
         env:
@@ -151,11 +151,11 @@ jobs:
         include:
           - target: aarch64-ubuntu-jammy-gnu
             platform: linux_aarch64-ubuntu-jammy
-            image: ubuntu:22.04
+            image: ghcr.io/viamrobotics/cpp-sdk-system-ubuntu:jammy
             runs_on: github-linux-arm64-8core
           - target: x86_64-ubuntu-jammy-gnu
             platform: linux_x86_64-ubuntu-jammy
-            image: ubuntu:22.04
+            image: ghcr.io/viamrobotics/cpp-sdk-system-ubuntu:jammy
             runs_on: ubuntu-large
 
     steps:
@@ -163,39 +163,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ needs.prepare.outputs.sha }}
-
-      - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get -y dist-upgrade
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              curl \
-              doxygen \
-              g++ \
-              gdb \
-              git \
-              gnupg \
-              gpg \
-              less \
-              libboost-all-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libssl-dev \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              sudo \
-              wget \
-
-          sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
-
-          apt-get update
-          apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
 
       - name: Setup build directory
         run: mkdir builds
@@ -234,11 +201,11 @@ jobs:
         include:
           - target: aarch64-debian-bookworm
             platform: linux_aarch64-debian-bookworm
-            image: debian:bookworm
+            image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
             runs_on: github-linux-arm64-8core
           - target: x86_64-debian-bookworm
             platform: linux_x86_64-debian-bookworm
-            image: debian:bookworm
+            image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
             runs_on: ubuntu-large
 
     steps:
@@ -246,36 +213,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ needs.prepare.outputs.sha }}
-
-      - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get -y dist-upgrade
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              cmake \
-              curl \
-              doxygen \
-              g++ \
-              gdb \
-              git \
-              gnupg \
-              gpg \
-              less \
-              libboost-all-dev \
-              libc-ares-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libre2-dev \
-              libssl-dev \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              sudo \
-              wget \
-              zlib1g-dev
 
       - name: Setup build directory
         run: mkdir builds

@@ -33,6 +33,7 @@
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "app/datasync/v1/data_sync.pb.h"
+#include "app/packages/v1/packages.pb.h"
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
 #include <google/protobuf/duration.pb.h>
@@ -152,6 +153,9 @@ extern ModuleStatusDefaultTypeInternal _ModuleStatus_default_instance_;
 class Operation;
 struct OperationDefaultTypeInternal;
 extern OperationDefaultTypeInternal _Operation_default_instance_;
+class PackageStatus;
+struct PackageStatusDefaultTypeInternal;
+extern PackageStatusDefaultTypeInternal _PackageStatus_default_instance_;
 class PeerConnectionInfo;
 struct PeerConnectionInfoDefaultTypeInternal;
 extern PeerConnectionInfoDefaultTypeInternal _PeerConnectionInfo_default_instance_;
@@ -287,6 +291,7 @@ template<> ::viam::robot::v1::LogResponse* Arena::CreateMaybeMessage<::viam::rob
 template<> ::viam::robot::v1::ModuleModel* Arena::CreateMaybeMessage<::viam::robot::v1::ModuleModel>(Arena*);
 template<> ::viam::robot::v1::ModuleStatus* Arena::CreateMaybeMessage<::viam::robot::v1::ModuleStatus>(Arena*);
 template<> ::viam::robot::v1::Operation* Arena::CreateMaybeMessage<::viam::robot::v1::Operation>(Arena*);
+template<> ::viam::robot::v1::PackageStatus* Arena::CreateMaybeMessage<::viam::robot::v1::PackageStatus>(Arena*);
 template<> ::viam::robot::v1::PeerConnectionInfo* Arena::CreateMaybeMessage<::viam::robot::v1::PeerConnectionInfo>(Arena*);
 template<> ::viam::robot::v1::ResourceNamesRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceNamesRequest>(Arena*);
 template<> ::viam::robot::v1::ResourceNamesResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceNamesResponse>(Arena*);
@@ -408,6 +413,35 @@ inline bool ModuleStatus_State_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ModuleStatus_State* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ModuleStatus_State>(
     ModuleStatus_State_descriptor(), name, value);
+}
+enum PackageStatus_State : int {
+  PackageStatus_State_STATE_UNSPECIFIED = 0,
+  PackageStatus_State_STATE_DOWNLOADING = 1,
+  PackageStatus_State_STATE_LOADING = 2,
+  PackageStatus_State_STATE_FIRST_RUN = 3,
+  PackageStatus_State_STATE_READY = 4,
+  PackageStatus_State_STATE_FAILED = 5,
+  PackageStatus_State_PackageStatus_State_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PackageStatus_State_PackageStatus_State_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool PackageStatus_State_IsValid(int value);
+constexpr PackageStatus_State PackageStatus_State_State_MIN = PackageStatus_State_STATE_UNSPECIFIED;
+constexpr PackageStatus_State PackageStatus_State_State_MAX = PackageStatus_State_STATE_FAILED;
+constexpr int PackageStatus_State_State_ARRAYSIZE = PackageStatus_State_State_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PackageStatus_State_descriptor();
+template<typename T>
+inline const std::string& PackageStatus_State_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PackageStatus_State>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function PackageStatus_State_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    PackageStatus_State_descriptor(), enum_t_value);
+}
+inline bool PackageStatus_State_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PackageStatus_State* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PackageStatus_State>(
+    PackageStatus_State_descriptor(), name, value);
 }
 enum PeerConnectionType : int {
   PEER_CONNECTION_TYPE_UNSPECIFIED = 0,
@@ -9012,6 +9046,7 @@ class GetMachineStatusResponse final :
     kResourcesFieldNumber = 1,
     kJobStatusesFieldNumber = 4,
     kModulesFieldNumber = 5,
+    kPackagesFieldNumber = 6,
     kConfigFieldNumber = 2,
     kStateFieldNumber = 3,
   };
@@ -9069,6 +9104,24 @@ class GetMachineStatusResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus >&
       modules() const;
 
+  // repeated .viam.robot.v1.PackageStatus packages = 6 [json_name = "packages"];
+  int packages_size() const;
+  private:
+  int _internal_packages_size() const;
+  public:
+  void clear_packages();
+  ::viam::robot::v1::PackageStatus* mutable_packages(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::PackageStatus >*
+      mutable_packages();
+  private:
+  const ::viam::robot::v1::PackageStatus& _internal_packages(int index) const;
+  ::viam::robot::v1::PackageStatus* _internal_add_packages();
+  public:
+  const ::viam::robot::v1::PackageStatus& packages(int index) const;
+  ::viam::robot::v1::PackageStatus* add_packages();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::PackageStatus >&
+      packages() const;
+
   // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
   bool has_config() const;
   private:
@@ -9106,6 +9159,7 @@ class GetMachineStatusResponse final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ResourceStatus > resources_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus > job_statuses_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus > modules_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::PackageStatus > packages_;
   ::viam::robot::v1::ConfigStatus* config_;
   int state_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -9819,6 +9873,288 @@ class ModuleStatus final :
 };
 // -------------------------------------------------------------------
 
+class PackageStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.PackageStatus) */ {
+ public:
+  inline PackageStatus() : PackageStatus(nullptr) {}
+  ~PackageStatus() override;
+  explicit PROTOBUF_CONSTEXPR PackageStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PackageStatus(const PackageStatus& from);
+  PackageStatus(PackageStatus&& from) noexcept
+    : PackageStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline PackageStatus& operator=(const PackageStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PackageStatus& operator=(PackageStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PackageStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PackageStatus* internal_default_instance() {
+    return reinterpret_cast<const PackageStatus*>(
+               &_PackageStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    60;
+
+  friend void swap(PackageStatus& a, PackageStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PackageStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PackageStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PackageStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PackageStatus>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PackageStatus& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PackageStatus& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PackageStatus* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.PackageStatus";
+  }
+  protected:
+  explicit PackageStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef PackageStatus_State State;
+  static constexpr State STATE_UNSPECIFIED =
+    PackageStatus_State_STATE_UNSPECIFIED;
+  static constexpr State STATE_DOWNLOADING =
+    PackageStatus_State_STATE_DOWNLOADING;
+  static constexpr State STATE_LOADING =
+    PackageStatus_State_STATE_LOADING;
+  static constexpr State STATE_FIRST_RUN =
+    PackageStatus_State_STATE_FIRST_RUN;
+  static constexpr State STATE_READY =
+    PackageStatus_State_STATE_READY;
+  static constexpr State STATE_FAILED =
+    PackageStatus_State_STATE_FAILED;
+  static inline bool State_IsValid(int value) {
+    return PackageStatus_State_IsValid(value);
+  }
+  static constexpr State State_MIN =
+    PackageStatus_State_State_MIN;
+  static constexpr State State_MAX =
+    PackageStatus_State_State_MAX;
+  static constexpr int State_ARRAYSIZE =
+    PackageStatus_State_State_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  State_descriptor() {
+    return PackageStatus_State_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& State_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, State>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function State_Name.");
+    return PackageStatus_State_Name(enum_t_value);
+  }
+  static inline bool State_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      State* value) {
+    return PackageStatus_State_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kErrorFieldNumber = 4,
+    kVersionFieldNumber = 6,
+    kLastUpdatedFieldNumber = 5,
+    kTypeFieldNumber = 2,
+    kStateFieldNumber = 3,
+    kBytesDownloadedFieldNumber = 7,
+    kTotalBytesFieldNumber = 8,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string error = 4 [json_name = "error"];
+  void clear_error();
+  const std::string& error() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_error(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_error();
+  PROTOBUF_NODISCARD std::string* release_error();
+  void set_allocated_error(std::string* error);
+  private:
+  const std::string& _internal_error() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
+  std::string* _internal_mutable_error();
+  public:
+
+  // string version = 6 [json_name = "version"];
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
+  public:
+
+  // .google.protobuf.Timestamp last_updated = 5 [json_name = "lastUpdated"];
+  bool has_last_updated() const;
+  private:
+  bool _internal_has_last_updated() const;
+  public:
+  void clear_last_updated();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_updated() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_updated();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_updated();
+  void set_allocated_last_updated(::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_updated() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_updated();
+  public:
+  void unsafe_arena_set_allocated_last_updated(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_updated();
+
+  // .viam.app.packages.v1.PackageType type = 2 [json_name = "type"];
+  void clear_type();
+  ::viam::app::packages::v1::PackageType type() const;
+  void set_type(::viam::app::packages::v1::PackageType value);
+  private:
+  ::viam::app::packages::v1::PackageType _internal_type() const;
+  void _internal_set_type(::viam::app::packages::v1::PackageType value);
+  public:
+
+  // .viam.robot.v1.PackageStatus.State state = 3 [json_name = "state"];
+  void clear_state();
+  ::viam::robot::v1::PackageStatus_State state() const;
+  void set_state(::viam::robot::v1::PackageStatus_State value);
+  private:
+  ::viam::robot::v1::PackageStatus_State _internal_state() const;
+  void _internal_set_state(::viam::robot::v1::PackageStatus_State value);
+  public:
+
+  // uint64 bytes_downloaded = 7 [json_name = "bytesDownloaded"];
+  void clear_bytes_downloaded();
+  uint64_t bytes_downloaded() const;
+  void set_bytes_downloaded(uint64_t value);
+  private:
+  uint64_t _internal_bytes_downloaded() const;
+  void _internal_set_bytes_downloaded(uint64_t value);
+  public:
+
+  // uint64 total_bytes = 8 [json_name = "totalBytes"];
+  void clear_total_bytes();
+  uint64_t total_bytes() const;
+  void set_total_bytes(uint64_t value);
+  private:
+  uint64_t _internal_total_bytes() const;
+  void _internal_set_total_bytes(uint64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.PackageStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated_;
+  int type_;
+  int state_;
+  uint64_t bytes_downloaded_;
+  uint64_t total_bytes_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class ConfigStatus final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.ConfigStatus) */ {
  public:
@@ -9867,7 +10203,7 @@ class ConfigStatus final :
                &_ConfigStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    61;
 
   friend void swap(ConfigStatus& a, ConfigStatus& b) {
     a.Swap(&b);
@@ -10034,7 +10370,7 @@ class GetVersionRequest final :
                &_GetVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    62;
 
   friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
     a.Swap(&b);
@@ -10151,7 +10487,7 @@ class GetVersionResponse final :
                &_GetVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    63;
 
   friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
     a.Swap(&b);
@@ -10331,7 +10667,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    64;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -10535,7 +10871,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    65;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -15060,6 +15396,46 @@ GetMachineStatusResponse::modules() const {
   return modules_;
 }
 
+// repeated .viam.robot.v1.PackageStatus packages = 6 [json_name = "packages"];
+inline int GetMachineStatusResponse::_internal_packages_size() const {
+  return packages_.size();
+}
+inline int GetMachineStatusResponse::packages_size() const {
+  return _internal_packages_size();
+}
+inline void GetMachineStatusResponse::clear_packages() {
+  packages_.Clear();
+}
+inline ::viam::robot::v1::PackageStatus* GetMachineStatusResponse::mutable_packages(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetMachineStatusResponse.packages)
+  return packages_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::PackageStatus >*
+GetMachineStatusResponse::mutable_packages() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.GetMachineStatusResponse.packages)
+  return &packages_;
+}
+inline const ::viam::robot::v1::PackageStatus& GetMachineStatusResponse::_internal_packages(int index) const {
+  return packages_.Get(index);
+}
+inline const ::viam::robot::v1::PackageStatus& GetMachineStatusResponse::packages(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetMachineStatusResponse.packages)
+  return _internal_packages(index);
+}
+inline ::viam::robot::v1::PackageStatus* GetMachineStatusResponse::_internal_add_packages() {
+  return packages_.Add();
+}
+inline ::viam::robot::v1::PackageStatus* GetMachineStatusResponse::add_packages() {
+  ::viam::robot::v1::PackageStatus* _add = _internal_add_packages();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.GetMachineStatusResponse.packages)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::PackageStatus >&
+GetMachineStatusResponse::packages() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.GetMachineStatusResponse.packages)
+  return packages_;
+}
+
 // -------------------------------------------------------------------
 
 // JobStatus
@@ -15799,6 +16175,325 @@ inline void ModuleStatus::_internal_set_consecutive_failures(uint32_t value) {
 inline void ModuleStatus::set_consecutive_failures(uint32_t value) {
   _internal_set_consecutive_failures(value);
   // @@protoc_insertion_point(field_set:viam.robot.v1.ModuleStatus.consecutive_failures)
+}
+
+// -------------------------------------------------------------------
+
+// PackageStatus
+
+// string name = 1 [json_name = "name"];
+inline void PackageStatus::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& PackageStatus::name() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PackageStatus::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PackageStatus.name)
+}
+inline std::string* PackageStatus::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.PackageStatus.name)
+  return _s;
+}
+inline const std::string& PackageStatus::_internal_name() const {
+  return name_.Get();
+}
+inline void PackageStatus::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PackageStatus::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PackageStatus::release_name() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.PackageStatus.name)
+  return name_.Release();
+}
+inline void PackageStatus::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.PackageStatus.name)
+}
+
+// .viam.app.packages.v1.PackageType type = 2 [json_name = "type"];
+inline void PackageStatus::clear_type() {
+  type_ = 0;
+}
+inline ::viam::app::packages::v1::PackageType PackageStatus::_internal_type() const {
+  return static_cast< ::viam::app::packages::v1::PackageType >(type_);
+}
+inline ::viam::app::packages::v1::PackageType PackageStatus::type() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.type)
+  return _internal_type();
+}
+inline void PackageStatus::_internal_set_type(::viam::app::packages::v1::PackageType value) {
+  
+  type_ = value;
+}
+inline void PackageStatus::set_type(::viam::app::packages::v1::PackageType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PackageStatus.type)
+}
+
+// .viam.robot.v1.PackageStatus.State state = 3 [json_name = "state"];
+inline void PackageStatus::clear_state() {
+  state_ = 0;
+}
+inline ::viam::robot::v1::PackageStatus_State PackageStatus::_internal_state() const {
+  return static_cast< ::viam::robot::v1::PackageStatus_State >(state_);
+}
+inline ::viam::robot::v1::PackageStatus_State PackageStatus::state() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.state)
+  return _internal_state();
+}
+inline void PackageStatus::_internal_set_state(::viam::robot::v1::PackageStatus_State value) {
+  
+  state_ = value;
+}
+inline void PackageStatus::set_state(::viam::robot::v1::PackageStatus_State value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PackageStatus.state)
+}
+
+// string error = 4 [json_name = "error"];
+inline void PackageStatus::clear_error() {
+  error_.ClearToEmpty();
+}
+inline const std::string& PackageStatus::error() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.error)
+  return _internal_error();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PackageStatus::set_error(ArgT0&& arg0, ArgT... args) {
+ 
+ error_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PackageStatus.error)
+}
+inline std::string* PackageStatus::mutable_error() {
+  std::string* _s = _internal_mutable_error();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.PackageStatus.error)
+  return _s;
+}
+inline const std::string& PackageStatus::_internal_error() const {
+  return error_.Get();
+}
+inline void PackageStatus::_internal_set_error(const std::string& value) {
+  
+  error_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PackageStatus::_internal_mutable_error() {
+  
+  return error_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PackageStatus::release_error() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.PackageStatus.error)
+  return error_.Release();
+}
+inline void PackageStatus::set_allocated_error(std::string* error) {
+  if (error != nullptr) {
+    
+  } else {
+    
+  }
+  error_.SetAllocated(error, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (error_.IsDefault()) {
+    error_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.PackageStatus.error)
+}
+
+// .google.protobuf.Timestamp last_updated = 5 [json_name = "lastUpdated"];
+inline bool PackageStatus::_internal_has_last_updated() const {
+  return this != internal_default_instance() && last_updated_ != nullptr;
+}
+inline bool PackageStatus::has_last_updated() const {
+  return _internal_has_last_updated();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& PackageStatus::_internal_last_updated() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_updated_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& PackageStatus::last_updated() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.last_updated)
+  return _internal_last_updated();
+}
+inline void PackageStatus::unsafe_arena_set_allocated_last_updated(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_updated_);
+  }
+  last_updated_ = last_updated;
+  if (last_updated) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.PackageStatus.last_updated)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PackageStatus::release_last_updated() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_updated_;
+  last_updated_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PackageStatus::unsafe_arena_release_last_updated() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.PackageStatus.last_updated)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_updated_;
+  last_updated_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PackageStatus::_internal_mutable_last_updated() {
+  
+  if (last_updated_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_updated_ = p;
+  }
+  return last_updated_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PackageStatus::mutable_last_updated() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_updated();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.PackageStatus.last_updated)
+  return _msg;
+}
+inline void PackageStatus::set_allocated_last_updated(::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_updated_);
+  }
+  if (last_updated) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_updated));
+    if (message_arena != submessage_arena) {
+      last_updated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_updated, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  last_updated_ = last_updated;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.PackageStatus.last_updated)
+}
+
+// string version = 6 [json_name = "version"];
+inline void PackageStatus::clear_version() {
+  version_.ClearToEmpty();
+}
+inline const std::string& PackageStatus::version() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.version)
+  return _internal_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PackageStatus::set_version(ArgT0&& arg0, ArgT... args) {
+ 
+ version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PackageStatus.version)
+}
+inline std::string* PackageStatus::mutable_version() {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.PackageStatus.version)
+  return _s;
+}
+inline const std::string& PackageStatus::_internal_version() const {
+  return version_.Get();
+}
+inline void PackageStatus::_internal_set_version(const std::string& value) {
+  
+  version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PackageStatus::_internal_mutable_version() {
+  
+  return version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PackageStatus::release_version() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.PackageStatus.version)
+  return version_.Release();
+}
+inline void PackageStatus::set_allocated_version(std::string* version) {
+  if (version != nullptr) {
+    
+  } else {
+    
+  }
+  version_.SetAllocated(version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.PackageStatus.version)
+}
+
+// uint64 bytes_downloaded = 7 [json_name = "bytesDownloaded"];
+inline void PackageStatus::clear_bytes_downloaded() {
+  bytes_downloaded_ = uint64_t{0u};
+}
+inline uint64_t PackageStatus::_internal_bytes_downloaded() const {
+  return bytes_downloaded_;
+}
+inline uint64_t PackageStatus::bytes_downloaded() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.bytes_downloaded)
+  return _internal_bytes_downloaded();
+}
+inline void PackageStatus::_internal_set_bytes_downloaded(uint64_t value) {
+  
+  bytes_downloaded_ = value;
+}
+inline void PackageStatus::set_bytes_downloaded(uint64_t value) {
+  _internal_set_bytes_downloaded(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PackageStatus.bytes_downloaded)
+}
+
+// uint64 total_bytes = 8 [json_name = "totalBytes"];
+inline void PackageStatus::clear_total_bytes() {
+  total_bytes_ = uint64_t{0u};
+}
+inline uint64_t PackageStatus::_internal_total_bytes() const {
+  return total_bytes_;
+}
+inline uint64_t PackageStatus::total_bytes() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PackageStatus.total_bytes)
+  return _internal_total_bytes();
+}
+inline void PackageStatus::_internal_set_total_bytes(uint64_t value) {
+  
+  total_bytes_ = value;
+}
+inline void PackageStatus::set_total_bytes(uint64_t value) {
+  _internal_set_total_bytes(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PackageStatus.total_bytes)
 }
 
 // -------------------------------------------------------------------
@@ -16544,6 +17239,8 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -16567,6 +17264,11 @@ template <> struct is_proto_enum< ::viam::robot::v1::ModuleStatus_State> : ::std
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::robot::v1::ModuleStatus_State>() {
   return ::viam::robot::v1::ModuleStatus_State_descriptor();
+}
+template <> struct is_proto_enum< ::viam::robot::v1::PackageStatus_State> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::robot::v1::PackageStatus_State>() {
+  return ::viam::robot::v1::PackageStatus_State_descriptor();
 }
 template <> struct is_proto_enum< ::viam::robot::v1::PeerConnectionType> : ::std::true_type {};
 template <>

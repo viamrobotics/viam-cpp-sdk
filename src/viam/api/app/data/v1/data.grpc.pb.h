@@ -363,6 +363,15 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>> PrepareAsyncSequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>>(PrepareAsyncSequencesByDatasetIDRaw(context, request, cq));
     }
+    // GetSequenceBinaryData returns paginated binary data records matching the
+    // sequence's time range and binary resources.
+    virtual ::grpc::Status GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceBinaryDataResponse>> AsyncGetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceBinaryDataResponse>>(AsyncGetSequenceBinaryDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceBinaryDataResponse>> PrepareAsyncGetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceBinaryDataResponse>>(PrepareAsyncGetSequenceBinaryDataRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -487,6 +496,10 @@ class DataService final {
       // SequencesByDatasetID lists sequences that belong to the given dataset.
       virtual void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetSequenceBinaryData returns paginated binary data records matching the
+      // sequence's time range and binary resources.
+      virtual void GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -573,6 +586,8 @@ class DataService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>* PrepareAsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>* AsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>* PrepareAsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceBinaryDataResponse>* AsyncGetSequenceBinaryDataRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceBinaryDataResponse>* PrepareAsyncGetSequenceBinaryDataRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -859,6 +874,13 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>> PrepareAsyncSequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>>(PrepareAsyncSequencesByDatasetIDRaw(context, request, cq));
     }
+    ::grpc::Status GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>> AsyncGetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>>(AsyncGetSequenceBinaryDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>> PrepareAsyncGetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>>(PrepareAsyncGetSequenceBinaryDataRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -941,6 +963,8 @@ class DataService final {
       void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, std::function<void(::grpc::Status)>) override;
       void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -1033,6 +1057,8 @@ class DataService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>* PrepareAsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>* AsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>* PrepareAsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>* AsyncGetSequenceBinaryDataRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>* PrepareAsyncGetSequenceBinaryDataRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataBySQL_;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByMQL_;
@@ -1073,6 +1099,7 @@ class DataService final {
     const ::grpc::internal::RpcMethod rpcmethod_DeleteSequence_;
     const ::grpc::internal::RpcMethod rpcmethod_ListSequences_;
     const ::grpc::internal::RpcMethod rpcmethod_SequencesByDatasetID_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetSequenceBinaryData_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -1162,6 +1189,9 @@ class DataService final {
     virtual ::grpc::Status ListSequences(::grpc::ServerContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response);
     // SequencesByDatasetID lists sequences that belong to the given dataset.
     virtual ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response);
+    // GetSequenceBinaryData returns paginated binary data records matching the
+    // sequence's time range and binary resources.
+    virtual ::grpc::Status GetSequenceBinaryData(::grpc::ServerContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_TabularDataByFilter : public BaseClass {
@@ -1963,7 +1993,27 @@ class DataService final {
       ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_TabularDataBySQL<WithAsyncMethod_TabularDataByMQL<WithAsyncMethod_ExportTabularData<WithAsyncMethod_GetLatestTabularData<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularData<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<WithAsyncMethod_AddBoundingBoxToImageByID<WithAsyncMethod_RemoveBoundingBoxFromImageByID<WithAsyncMethod_BoundingBoxLabelsByFilter<WithAsyncMethod_UpdateBoundingBox<WithAsyncMethod_GetDatabaseConnection<WithAsyncMethod_ConfigureDatabaseUser<WithAsyncMethod_AddBinaryDataToDatasetByIDs<WithAsyncMethod_RemoveBinaryDataFromDatasetByIDs<WithAsyncMethod_AddSequencesToDataset<WithAsyncMethod_RemoveSequencesFromDataset<WithAsyncMethod_CreateIndex<WithAsyncMethod_ListIndexes<WithAsyncMethod_DeleteIndex<WithAsyncMethod_CreateSavedQuery<WithAsyncMethod_UpdateSavedQuery<WithAsyncMethod_GetSavedQuery<WithAsyncMethod_DeleteSavedQuery<WithAsyncMethod_ListSavedQueries<WithAsyncMethod_CreateBinaryDataSignedURL<WithAsyncMethod_CreateSequence<WithAsyncMethod_GetSequence<WithAsyncMethod_UpdateSequence<WithAsyncMethod_DeleteSequence<WithAsyncMethod_ListSequences<WithAsyncMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetSequenceBinaryData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetSequenceBinaryData() {
+      ::grpc::Service::MarkMethodAsync(40);
+    }
+    ~WithAsyncMethod_GetSequenceBinaryData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequenceBinaryData(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* /*request*/, ::viam::app::data::v1::GetSequenceBinaryDataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSequenceBinaryData(::grpc::ServerContext* context, ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::GetSequenceBinaryDataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_TabularDataBySQL<WithAsyncMethod_TabularDataByMQL<WithAsyncMethod_ExportTabularData<WithAsyncMethod_GetLatestTabularData<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularData<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<WithAsyncMethod_AddBoundingBoxToImageByID<WithAsyncMethod_RemoveBoundingBoxFromImageByID<WithAsyncMethod_BoundingBoxLabelsByFilter<WithAsyncMethod_UpdateBoundingBox<WithAsyncMethod_GetDatabaseConnection<WithAsyncMethod_ConfigureDatabaseUser<WithAsyncMethod_AddBinaryDataToDatasetByIDs<WithAsyncMethod_RemoveBinaryDataFromDatasetByIDs<WithAsyncMethod_AddSequencesToDataset<WithAsyncMethod_RemoveSequencesFromDataset<WithAsyncMethod_CreateIndex<WithAsyncMethod_ListIndexes<WithAsyncMethod_DeleteIndex<WithAsyncMethod_CreateSavedQuery<WithAsyncMethod_UpdateSavedQuery<WithAsyncMethod_GetSavedQuery<WithAsyncMethod_DeleteSavedQuery<WithAsyncMethod_ListSavedQueries<WithAsyncMethod_CreateBinaryDataSignedURL<WithAsyncMethod_CreateSequence<WithAsyncMethod_GetSequence<WithAsyncMethod_UpdateSequence<WithAsyncMethod_DeleteSequence<WithAsyncMethod_ListSequences<WithAsyncMethod_SequencesByDatasetID<WithAsyncMethod_GetSequenceBinaryData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TabularDataByFilter : public BaseClass {
    private:
@@ -3039,7 +3089,34 @@ class DataService final {
     virtual ::grpc::ServerUnaryReactor* SequencesByDatasetID(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_TabularDataBySQL<WithCallbackMethod_TabularDataByMQL<WithCallbackMethod_ExportTabularData<WithCallbackMethod_GetLatestTabularData<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularData<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<WithCallbackMethod_AddBoundingBoxToImageByID<WithCallbackMethod_RemoveBoundingBoxFromImageByID<WithCallbackMethod_BoundingBoxLabelsByFilter<WithCallbackMethod_UpdateBoundingBox<WithCallbackMethod_GetDatabaseConnection<WithCallbackMethod_ConfigureDatabaseUser<WithCallbackMethod_AddBinaryDataToDatasetByIDs<WithCallbackMethod_RemoveBinaryDataFromDatasetByIDs<WithCallbackMethod_AddSequencesToDataset<WithCallbackMethod_RemoveSequencesFromDataset<WithCallbackMethod_CreateIndex<WithCallbackMethod_ListIndexes<WithCallbackMethod_DeleteIndex<WithCallbackMethod_CreateSavedQuery<WithCallbackMethod_UpdateSavedQuery<WithCallbackMethod_GetSavedQuery<WithCallbackMethod_DeleteSavedQuery<WithCallbackMethod_ListSavedQueries<WithCallbackMethod_CreateBinaryDataSignedURL<WithCallbackMethod_CreateSequence<WithCallbackMethod_GetSequence<WithCallbackMethod_UpdateSequence<WithCallbackMethod_DeleteSequence<WithCallbackMethod_ListSequences<WithCallbackMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetSequenceBinaryData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetSequenceBinaryData() {
+      ::grpc::Service::MarkMethodCallback(40,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response) { return this->GetSequenceBinaryData(context, request, response); }));}
+    void SetMessageAllocatorFor_GetSequenceBinaryData(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetSequenceBinaryData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequenceBinaryData(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* /*request*/, ::viam::app::data::v1::GetSequenceBinaryDataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetSequenceBinaryData(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* /*request*/, ::viam::app::data::v1::GetSequenceBinaryDataResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_TabularDataBySQL<WithCallbackMethod_TabularDataByMQL<WithCallbackMethod_ExportTabularData<WithCallbackMethod_GetLatestTabularData<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularData<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<WithCallbackMethod_AddBoundingBoxToImageByID<WithCallbackMethod_RemoveBoundingBoxFromImageByID<WithCallbackMethod_BoundingBoxLabelsByFilter<WithCallbackMethod_UpdateBoundingBox<WithCallbackMethod_GetDatabaseConnection<WithCallbackMethod_ConfigureDatabaseUser<WithCallbackMethod_AddBinaryDataToDatasetByIDs<WithCallbackMethod_RemoveBinaryDataFromDatasetByIDs<WithCallbackMethod_AddSequencesToDataset<WithCallbackMethod_RemoveSequencesFromDataset<WithCallbackMethod_CreateIndex<WithCallbackMethod_ListIndexes<WithCallbackMethod_DeleteIndex<WithCallbackMethod_CreateSavedQuery<WithCallbackMethod_UpdateSavedQuery<WithCallbackMethod_GetSavedQuery<WithCallbackMethod_DeleteSavedQuery<WithCallbackMethod_ListSavedQueries<WithCallbackMethod_CreateBinaryDataSignedURL<WithCallbackMethod_CreateSequence<WithCallbackMethod_GetSequence<WithCallbackMethod_UpdateSequence<WithCallbackMethod_DeleteSequence<WithCallbackMethod_ListSequences<WithCallbackMethod_SequencesByDatasetID<WithCallbackMethod_GetSequenceBinaryData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TabularDataByFilter : public BaseClass {
@@ -3717,6 +3794,23 @@ class DataService final {
     }
     // disable synchronous version of this method
     ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetSequenceBinaryData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetSequenceBinaryData() {
+      ::grpc::Service::MarkMethodGeneric(40);
+    }
+    ~WithGenericMethod_GetSequenceBinaryData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequenceBinaryData(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* /*request*/, ::viam::app::data::v1::GetSequenceBinaryDataResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -4519,6 +4613,26 @@ class DataService final {
     }
     void RequestSequencesByDatasetID(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetSequenceBinaryData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetSequenceBinaryData() {
+      ::grpc::Service::MarkMethodRaw(40);
+    }
+    ~WithRawMethod_GetSequenceBinaryData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequenceBinaryData(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* /*request*/, ::viam::app::data::v1::GetSequenceBinaryDataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSequenceBinaryData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5399,6 +5513,28 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SequencesByDatasetID(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetSequenceBinaryData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetSequenceBinaryData() {
+      ::grpc::Service::MarkMethodRawCallback(40,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSequenceBinaryData(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetSequenceBinaryData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequenceBinaryData(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* /*request*/, ::viam::app::data::v1::GetSequenceBinaryDataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetSequenceBinaryData(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -6454,7 +6590,34 @@ class DataService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedSequencesByDatasetID(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::SequencesByDatasetIDRequest,::viam::app::data::v1::SequencesByDatasetIDResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_AddSequencesToDataset<WithStreamedUnaryMethod_RemoveSequencesFromDataset<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<WithStreamedUnaryMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetSequenceBinaryData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetSequenceBinaryData() {
+      ::grpc::Service::MarkMethodStreamed(40,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse>* streamer) {
+                       return this->StreamedGetSequenceBinaryData(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetSequenceBinaryData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetSequenceBinaryData(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* /*request*/, ::viam::app::data::v1::GetSequenceBinaryDataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetSequenceBinaryData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::GetSequenceBinaryDataRequest,::viam::app::data::v1::GetSequenceBinaryDataResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_AddSequencesToDataset<WithStreamedUnaryMethod_RemoveSequencesFromDataset<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<WithStreamedUnaryMethod_SequencesByDatasetID<WithStreamedUnaryMethod_GetSequenceBinaryData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_ExportTabularData : public BaseClass {
    private:
@@ -6483,7 +6646,7 @@ class DataService final {
     virtual ::grpc::Status StreamedExportTabularData(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::data::v1::ExportTabularDataRequest,::viam::app::data::v1::ExportTabularDataResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_ExportTabularData<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithSplitStreamingMethod_ExportTabularData<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_AddSequencesToDataset<WithStreamedUnaryMethod_RemoveSequencesFromDataset<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<WithStreamedUnaryMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithSplitStreamingMethod_ExportTabularData<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_AddSequencesToDataset<WithStreamedUnaryMethod_RemoveSequencesFromDataset<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<WithStreamedUnaryMethod_SequencesByDatasetID<WithStreamedUnaryMethod_GetSequenceBinaryData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
