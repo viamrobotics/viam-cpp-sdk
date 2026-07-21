@@ -84,7 +84,9 @@ struct CreatePackageResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreatePackageResponseDefaultTypeInternal _CreatePackageResponse_default_instance_;
 PROTOBUF_CONSTEXPR DeletePackageRequest::DeletePackageRequest(
     ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  : types_()
+  , _types_cached_byte_size_(0)
+  , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , type_(0)
 {}
@@ -249,6 +251,7 @@ const uint32_t TableStruct_app_2fpackages_2fv1_2fpackages_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::app::packages::v1::DeletePackageRequest, id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::packages::v1::DeletePackageRequest, version_),
   PROTOBUF_FIELD_OFFSET(::viam::app::packages::v1::DeletePackageRequest, type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::packages::v1::DeletePackageRequest, types_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::packages::v1::DeletePackageResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -319,12 +322,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 32, -1, -1, sizeof(::viam::app::packages::v1::CreatePackageRequest)},
   { 41, -1, -1, sizeof(::viam::app::packages::v1::CreatePackageResponse)},
   { 49, -1, -1, sizeof(::viam::app::packages::v1::DeletePackageRequest)},
-  { 58, -1, -1, sizeof(::viam::app::packages::v1::DeletePackageResponse)},
-  { 64, -1, -1, sizeof(::viam::app::packages::v1::Package)},
-  { 75, 86, -1, sizeof(::viam::app::packages::v1::GetPackageRequest)},
-  { 91, -1, -1, sizeof(::viam::app::packages::v1::GetPackageResponse)},
-  { 98, 109, -1, sizeof(::viam::app::packages::v1::ListPackagesRequest)},
-  { 114, -1, -1, sizeof(::viam::app::packages::v1::ListPackagesResponse)},
+  { 59, -1, -1, sizeof(::viam::app::packages::v1::DeletePackageResponse)},
+  { 65, -1, -1, sizeof(::viam::app::packages::v1::Package)},
+  { 76, 87, -1, sizeof(::viam::app::packages::v1::GetPackageRequest)},
+  { 92, -1, -1, sizeof(::viam::app::packages::v1::GetPackageResponse)},
+  { 99, 110, -1, sizeof(::viam::app::packages::v1::ListPackagesRequest)},
+  { 115, -1, -1, sizeof(::viam::app::packages::v1::ListPackagesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -360,52 +363,53 @@ const char descriptor_table_protodef_app_2fpackages_2fv1_2fpackages_2eproto[] PR
   "\001 \001(\0132!.viam.app.packages.v1.PackageInfo"
   "H\000R\004info\022\034\n\010contents\030\002 \001(\014H\000R\010contentsB\t"
   "\n\007package\"A\n\025CreatePackageResponse\022\016\n\002id"
-  "\030\001 \001(\tR\002id\022\030\n\007version\030\002 \001(\tR\007version\"w\n\024"
-  "DeletePackageRequest\022\016\n\002id\030\001 \001(\tR\002id\022\030\n\007"
-  "version\030\002 \001(\tR\007version\0225\n\004type\030\003 \001(\0162!.v"
-  "iam.app.packages.v1.PackageTypeR\004type\"\027\n"
-  "\025DeletePackageResponse\"\271\001\n\007Package\0225\n\004in"
-  "fo\030\001 \001(\0132!.viam.app.packages.v1.PackageI"
-  "nfoR\004info\022\020\n\003url\030\002 \001(\tR\003url\0229\n\ncreated_o"
-  "n\030\003 \001(\0132\032.google.protobuf.TimestampR\tcre"
-  "atedOn\022\032\n\010checksum\030\004 \001(\tR\010checksum\022\016\n\002id"
-  "\030\005 \001(\tR\002id\"\346\001\n\021GetPackageRequest\022\016\n\002id\030\001"
-  " \001(\tR\002id\022\030\n\007version\030\002 \001(\tR\007version\022$\n\013in"
-  "clude_url\030\003 \001(\010H\000R\nincludeUrl\210\001\001\022:\n\004type"
-  "\030\004 \001(\0162!.viam.app.packages.v1.PackageTyp"
-  "eH\001R\004type\210\001\001\022\037\n\010platform\030\005 \001(\tH\002R\010platfo"
-  "rm\210\001\001B\016\n\014_include_urlB\007\n\005_typeB\013\n\t_platf"
-  "orm\"M\n\022GetPackageResponse\0227\n\007package\030\001 \001"
-  "(\0132\035.viam.app.packages.v1.PackageR\007packa"
-  "ge\"\206\002\n\023ListPackagesRequest\022\'\n\017organizati"
-  "on_id\030\001 \001(\tR\016organizationId\022\027\n\004name\030\002 \001("
-  "\tH\000R\004name\210\001\001\022\035\n\007version\030\003 \001(\tH\001R\007version"
-  "\210\001\001\022:\n\004type\030\004 \001(\0162!.viam.app.packages.v1"
-  ".PackageTypeH\002R\004type\210\001\001\022$\n\013include_url\030\005"
-  " \001(\010H\003R\nincludeUrl\210\001\001B\007\n\005_nameB\n\n\010_versi"
-  "onB\007\n\005_typeB\016\n\014_include_url\"Q\n\024ListPacka"
-  "gesResponse\0229\n\010packages\030\001 \003(\0132\035.viam.app"
-  ".packages.v1.PackageR\010packages*\262\001\n\013Packa"
-  "geType\022\034\n\030PACKAGE_TYPE_UNSPECIFIED\020\000\022\030\n\024"
-  "PACKAGE_TYPE_ARCHIVE\020\001\022\031\n\025PACKAGE_TYPE_M"
-  "L_MODEL\020\002\022\027\n\023PACKAGE_TYPE_MODULE\020\003\022\031\n\025PA"
-  "CKAGE_TYPE_SLAM_MAP\020\004\022\034\n\030PACKAGE_TYPE_ML"
-  "_TRAINING\020\0052\240\004\n\016PackageService\022\207\001\n\rCreat"
-  "ePackage\022*.viam.app.packages.v1.CreatePa"
-  "ckageRequest\032+.viam.app.packages.v1.Crea"
-  "tePackageResponse\"\033\202\323\344\223\002\025\"\023/packages/v1/"
-  "create(\001\022\205\001\n\rDeletePackage\022*.viam.app.pa"
-  "ckages.v1.DeletePackageRequest\032+.viam.ap"
-  "p.packages.v1.DeletePackageResponse\"\033\202\323\344"
-  "\223\002\025*\023/packages/v1/delete\022y\n\nGetPackage\022\'"
-  ".viam.app.packages.v1.GetPackageRequest\032"
-  "(.viam.app.packages.v1.GetPackageRespons"
-  "e\"\030\202\323\344\223\002\022\022\020/packages/v1/get\022\200\001\n\014ListPack"
-  "ages\022).viam.app.packages.v1.ListPackages"
-  "Request\032*.viam.app.packages.v1.ListPacka"
-  "gesResponse\"\031\202\323\344\223\002\023\022\021/packages/v1/listB!"
-  "Z\037go.viam.com/api/app/packages/v1b\006proto"
-  "3"
+  "\030\001 \001(\tR\002id\022\030\n\007version\030\002 \001(\tR\007version\"\260\001\n"
+  "\024DeletePackageRequest\022\016\n\002id\030\001 \001(\tR\002id\022\030\n"
+  "\007version\030\002 \001(\tR\007version\0225\n\004type\030\003 \001(\0162!."
+  "viam.app.packages.v1.PackageTypeR\004type\0227"
+  "\n\005types\030\004 \003(\0162!.viam.app.packages.v1.Pac"
+  "kageTypeR\005types\"\027\n\025DeletePackageResponse"
+  "\"\271\001\n\007Package\0225\n\004info\030\001 \001(\0132!.viam.app.pa"
+  "ckages.v1.PackageInfoR\004info\022\020\n\003url\030\002 \001(\t"
+  "R\003url\0229\n\ncreated_on\030\003 \001(\0132\032.google.proto"
+  "buf.TimestampR\tcreatedOn\022\032\n\010checksum\030\004 \001"
+  "(\tR\010checksum\022\016\n\002id\030\005 \001(\tR\002id\"\346\001\n\021GetPack"
+  "ageRequest\022\016\n\002id\030\001 \001(\tR\002id\022\030\n\007version\030\002 "
+  "\001(\tR\007version\022$\n\013include_url\030\003 \001(\010H\000R\ninc"
+  "ludeUrl\210\001\001\022:\n\004type\030\004 \001(\0162!.viam.app.pack"
+  "ages.v1.PackageTypeH\001R\004type\210\001\001\022\037\n\010platfo"
+  "rm\030\005 \001(\tH\002R\010platform\210\001\001B\016\n\014_include_urlB"
+  "\007\n\005_typeB\013\n\t_platform\"M\n\022GetPackageRespo"
+  "nse\0227\n\007package\030\001 \001(\0132\035.viam.app.packages"
+  ".v1.PackageR\007package\"\206\002\n\023ListPackagesReq"
+  "uest\022\'\n\017organization_id\030\001 \001(\tR\016organizat"
+  "ionId\022\027\n\004name\030\002 \001(\tH\000R\004name\210\001\001\022\035\n\007versio"
+  "n\030\003 \001(\tH\001R\007version\210\001\001\022:\n\004type\030\004 \001(\0162!.vi"
+  "am.app.packages.v1.PackageTypeH\002R\004type\210\001"
+  "\001\022$\n\013include_url\030\005 \001(\010H\003R\nincludeUrl\210\001\001B"
+  "\007\n\005_nameB\n\n\010_versionB\007\n\005_typeB\016\n\014_includ"
+  "e_url\"Q\n\024ListPackagesResponse\0229\n\010package"
+  "s\030\001 \003(\0132\035.viam.app.packages.v1.PackageR\010"
+  "packages*\262\001\n\013PackageType\022\034\n\030PACKAGE_TYPE"
+  "_UNSPECIFIED\020\000\022\030\n\024PACKAGE_TYPE_ARCHIVE\020\001"
+  "\022\031\n\025PACKAGE_TYPE_ML_MODEL\020\002\022\027\n\023PACKAGE_T"
+  "YPE_MODULE\020\003\022\031\n\025PACKAGE_TYPE_SLAM_MAP\020\004\022"
+  "\034\n\030PACKAGE_TYPE_ML_TRAINING\020\0052\240\004\n\016Packag"
+  "eService\022\207\001\n\rCreatePackage\022*.viam.app.pa"
+  "ckages.v1.CreatePackageRequest\032+.viam.ap"
+  "p.packages.v1.CreatePackageResponse\"\033\202\323\344"
+  "\223\002\025\"\023/packages/v1/create(\001\022\205\001\n\rDeletePac"
+  "kage\022*.viam.app.packages.v1.DeletePackag"
+  "eRequest\032+.viam.app.packages.v1.DeletePa"
+  "ckageResponse\"\033\202\323\344\223\002\025*\023/packages/v1/dele"
+  "te\022y\n\nGetPackage\022\'.viam.app.packages.v1."
+  "GetPackageRequest\032(.viam.app.packages.v1"
+  ".GetPackageResponse\"\030\202\323\344\223\002\022\022\020/packages/v"
+  "1/get\022\200\001\n\014ListPackages\022).viam.app.packag"
+  "es.v1.ListPackagesRequest\032*.viam.app.pac"
+  "kages.v1.ListPackagesResponse\"\031\202\323\344\223\002\023\022\021/"
+  "packages/v1/listB!Z\037go.viam.com/api/app/"
+  "packages/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fpackages_2fv1_2fpackages_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
@@ -414,7 +418,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fpackages_2fv1
 };
 static ::_pbi::once_flag descriptor_table_app_2fpackages_2fv1_2fpackages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fpackages_2fv1_2fpackages_2eproto = {
-    false, false, 2521, descriptor_table_protodef_app_2fpackages_2fv1_2fpackages_2eproto,
+    false, false, 2579, descriptor_table_protodef_app_2fpackages_2fv1_2fpackages_2eproto,
     "app/packages/v1/packages.proto",
     &descriptor_table_app_2fpackages_2fv1_2fpackages_2eproto_once, descriptor_table_app_2fpackages_2fv1_2fpackages_2eproto_deps, 3, 11,
     schemas, file_default_instances, TableStruct_app_2fpackages_2fv1_2fpackages_2eproto::offsets,
@@ -1703,12 +1707,14 @@ class DeletePackageRequest::_Internal {
 
 DeletePackageRequest::DeletePackageRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  types_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.packages.v1.DeletePackageRequest)
 }
 DeletePackageRequest::DeletePackageRequest(const DeletePackageRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      types_(from.types_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1767,6 +1773,7 @@ void DeletePackageRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  types_.Clear();
   id_.ClearToEmpty();
   version_.ClearToEmpty();
   type_ = 0;
@@ -1805,6 +1812,18 @@ const char* DeletePackageRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_type(static_cast<::viam::app::packages::v1::PackageType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.app.packages.v1.PackageType types = 4 [json_name = "types"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedEnumParser(_internal_mutable_types(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 32) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_add_types(static_cast<::viam::app::packages::v1::PackageType>(val));
         } else
           goto handle_unusual;
         continue;
@@ -1864,6 +1883,15 @@ uint8_t* DeletePackageRequest::_InternalSerialize(
       3, this->_internal_type(), target);
   }
 
+  // repeated .viam.app.packages.v1.PackageType types = 4 [json_name = "types"];
+  {
+    int byte_size = _types_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteEnumPacked(
+          4, types_, byte_size, target);
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1879,6 +1907,23 @@ size_t DeletePackageRequest::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated .viam.app.packages.v1.PackageType types = 4 [json_name = "types"];
+  {
+    size_t data_size = 0;
+    unsigned int count = static_cast<unsigned int>(this->_internal_types_size());for (unsigned int i = 0; i < count; i++) {
+      data_size += ::_pbi::WireFormatLite::EnumSize(
+        this->_internal_types(static_cast<int>(i)));
+    }
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _types_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
 
   // string id = 1 [json_name = "id"];
   if (!this->_internal_id().empty()) {
@@ -1922,6 +1967,7 @@ void DeletePackageRequest::MergeFrom(const DeletePackageRequest& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  types_.MergeFrom(from.types_);
   if (!from._internal_id().empty()) {
     _internal_set_id(from._internal_id());
   }
@@ -1950,6 +1996,7 @@ void DeletePackageRequest::InternalSwap(DeletePackageRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  types_.InternalSwap(&other->types_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &id_, lhs_arena,
       &other->id_, rhs_arena

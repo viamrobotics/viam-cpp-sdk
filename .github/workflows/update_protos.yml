@@ -11,70 +11,32 @@ jobs:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/viamrobotics/rdk-devenv:amd64
+      image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
-      # note (erodkin): these dependencies were cribbed from what we use to build the SDK
-      # in the release job. Only very cursory effort was made to prune.
-      - name: install dependencies
+      - name: Install workflow tools
         run: |
-          sudo apt-get update && apt-get upgrade -y
-          apt-get install -y software-properties-common
-          apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
           apt-get update
-          apt-get -y dist-upgrade
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              curl \
-              g++ \
-              gdb \
-              gnupg \
-              gpg \
-              less \
-              libboost-all-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libssl-dev \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              sudo \
-              wget \
-
-      - uses: MarkusJx/install-boost@v2.4.4
-        with:
-          boost_version: 1.81.0
-          platform_version: 22.04
-
-      - uses: lukka/get-cmake@latest
-        with:
-          cmakeVersion: 3.25.2
-          ninjaVersion: 1.11.1
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install jq unzip
 
       - uses: bufbuild/buf-setup-action@v1.50.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: arduino/setup-protoc@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-buf
-        env:
-          BOOST_ROOT: ${{ github.workspace }}/boost/boost
 
       - name: Generate buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-static-protos
-        env:
-          BOOST_ROOT: ${{ github.workspace }}/boost/boost
-
-      - name: cleanup
-        run: rm -rf boost/
 
       - name: Set event-specific variables (repository_dispatch)
         if: github.event_name == 'repository_dispatch'
@@ -97,7 +59,7 @@ jobs:
         run: echo "${{ env.API_PROTO_TAG_VERSION }}" > src/viam/api/api_proto_tag.lock
 
       - name: Add + Commit + Open PR
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: '[WORKFLOW] Updating protos from ${{ env.PROTO_REPO_NAME }}, commit: ${{ env.PROTO_SHA }}'
           branch: 'workflow/update-protos'
