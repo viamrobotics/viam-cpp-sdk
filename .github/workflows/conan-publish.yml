@@ -138,7 +138,8 @@ jobs:
       run: |
         conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-        conan create . --build=missing -s:a compiler.cppstd=17 \
+        # Pin Release; the image profile defaults to RelWithDebInfo, but releases stay Release.
+        conan create . --build=missing -s:a compiler.cppstd=17 -s:a build_type=Release \
         --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
         conan upload "viam-cpp-sdk/*" -r viamconan -c
