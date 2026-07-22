@@ -97,7 +97,7 @@ class ModelRegistration {
     // is provided in construction. No dependencies are returned.
     Model model_;
     API api_;
-    static std::vector<std::string> default_validator(ResourceConfig cfg) {
+    static std::vector<std::string> default_validator(ResourceConfig) {
         return {};
     };
 };

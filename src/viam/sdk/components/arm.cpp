@@ -1,5 +1,14 @@
 #include <viam/sdk/components/arm.hpp>
 
+#include <utility>
+#include <vector>
+
+#include <google/protobuf/duration.pb.h>
+
+#include <viam/api/component/arm/v1/arm.pb.h>
+
+#include <viam/sdk/common/utils.hpp>
+
 namespace viam {
 namespace sdk {
 
@@ -12,6 +21,63 @@ API API::traits<Arm>::api() {
 }
 
 Arm::Arm(std::string name) : Component(std::move(name)) {}
+
+namespace proto_convert_details {
+
+void to_proto_impl<Arm::trajectory_point>::operator()(
+    const Arm::trajectory_point& self, viam::component::arm::v1::TrajectoryPoint* proto) const {
+    *proto->mutable_time() = to_proto(self.time);
+    *proto->mutable_positions()->mutable_values() = {self.positions.begin(), self.positions.end()};
+
+    if (self.constraints) {
+        auto* pb_kc = proto->mutable_constraints();
+        *pb_kc->mutable_velocities()->mutable_values() = {
+            self.constraints->velocities_degs_per_sec.begin(),
+            self.constraints->velocities_degs_per_sec.end()};
+        if (self.constraints->accelerations_degs_per_sec2) {
+            *pb_kc->mutable_accelerations()->mutable_values() = {
+                self.constraints->accelerations_degs_per_sec2->begin(),
+                self.constraints->accelerations_degs_per_sec2->end()};
+        }
+    }
+}
+
+Arm::trajectory_point from_proto_impl<viam::component::arm::v1::TrajectoryPoint>::operator()(
+    const viam::component::arm::v1::TrajectoryPoint* proto) const {
+    Arm::trajectory_point result;
+    result.time = from_proto(proto->time());
+    result.positions.assign(proto->positions().values().begin(), proto->positions().values().end());
+
+    if (proto->has_constraints()) {
+        Arm::trajectory_point::kinematic_constraints kc;
+        const auto& pb_kc = proto->constraints();
+        kc.velocities_degs_per_sec.assign(pb_kc.velocities().values().begin(),
+                                          pb_kc.velocities().values().end());
+        if (pb_kc.has_accelerations()) {
+            std::vector<double> accs(pb_kc.accelerations().values().begin(),
+                                     pb_kc.accelerations().values().end());
+            kc.accelerations_degs_per_sec2 = std::move(accs);
+        }
+        result.constraints = std::move(kc);
+    }
+    return result;
+}
+
+void to_proto_impl<Arm::trajectory_update>::operator()(
+    const Arm::trajectory_update&,
+    viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const {
+    // `trajectory_update` carries no data yet, so the response is left empty.
+    // Wiring the conversion now means neither stub has to change when the type
+    // grows fields.
+}
+
+Arm::trajectory_update
+from_proto_impl<viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>::operator()(
+    const viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const {
+    return {};
+}
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam
