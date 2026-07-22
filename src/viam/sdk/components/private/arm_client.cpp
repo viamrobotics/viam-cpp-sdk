@@ -142,10 +142,10 @@ Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
     // read it. The reader is joined inside the block, so `Finish()` runs after it.
     ::grpc::Status finish_status;
     struct finish_guard {
-        decltype(stream.get()) stream;
+        decltype(stream.get()) str;
         ::grpc::Status& status;
         ~finish_guard() {
-            status = stream->Finish();
+            status = str->Finish();
         }
     };
 
