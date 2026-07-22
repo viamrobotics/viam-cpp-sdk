@@ -26,30 +26,30 @@ class MovementSensor : public Component {
     /// @struct compassheading
     struct compassheading {
         /// A number from 0-359 where 0 is North, 90 is East, 180 is South, and 270 is   West
-        double value;
+        double value = 0.0;
     };
 
     /// @struct orientation
     /// @brief Struct version of viam::common::v1::Orientation.
     /// TODO: we already have this in orientation_types.hpp
     struct orientation {
-        double o_x, o_y, o_z, theta;
+        double o_x = 0.0, o_y = 0.0, o_z = 0.0, theta = 0.0;
     };
 
     /// @struct position
     struct position {
         geo_point coordinate;
-        float altitude_m;
+        float altitude_m = 0.0f;
     };
 
     /// @struct properties
     struct properties {
-        bool linear_velocity_supported;
-        bool angular_velocity_supported;
-        bool orientation_supported;
-        bool position_supported;
-        bool compass_heading_supported;
-        bool linear_acceleration_supported;
+        bool linear_velocity_supported = false;
+        bool angular_velocity_supported = false;
+        bool orientation_supported = false;
+        bool position_supported = false;
+        bool compass_heading_supported = false;
+        bool linear_acceleration_supported = false;
     };
 
     API api() const override;
