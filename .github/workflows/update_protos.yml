@@ -63,7 +63,9 @@ jobs:
         with:
           commit-message: '[WORKFLOW] Updating protos from ${{ env.PROTO_REPO_NAME }}, commit: ${{ env.PROTO_SHA }}'
           branch: 'workflow/update-protos'
-          add-paths: src/viam/api/*
+          add-paths: |
+            src/viam/api/*
+            buf.lock
           delete-branch: true
           title: Automated Protos Update
           body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes
