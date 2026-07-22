@@ -1,6 +1,6 @@
-#include <stdexcept>
 #include <viam/sdk/components/private/arm_server.hpp>
 
+#include <stdexcept>
 #include <utility>
 #include <vector>
 

@@ -3,6 +3,8 @@
 #include <utility>
 #include <vector>
 
+#include <google/protobuf/duration.pb.h>
+
 #include <viam/api/component/arm/v1/arm.pb.h>
 
 #include <viam/sdk/common/utils.hpp>

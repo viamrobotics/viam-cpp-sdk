@@ -4,7 +4,6 @@
 #pragma once
 
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
-#include <viam/api/component/arm/v1/arm.pb.h>
 
 #include <viam/sdk/components/arm.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>

@@ -9,9 +9,6 @@
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 
-#include <viam/api/component/arm/v1/arm.grpc.pb.h>
-#include <viam/api/component/arm/v1/arm.pb.h>
-
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
