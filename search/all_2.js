@@ -41,7 +41,7 @@ var searchData=
   ['component_5fname_38',['component_name',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a938900876ca30090794822e7ee1eb178',1,'viam::sdk::Motion::plan_status_with_id::component_name'],['../structviam_1_1sdk_1_1Motion_1_1plan.html#a62bc1d9a42ed4a7f09eba4d377633403',1,'viam::sdk::Motion::plan::component_name']]],
   ['connectivity_20and_20webrtc_20functionality_39',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md5',1,'']]],
   ['constants_40',['MIME type constants.',['../group__MimeTypes.html',1,'']]],
-  ['constraints_41',['constraints',['../structviam_1_1sdk_1_1Motion_1_1constraints.html',1,'viam::sdk::Motion']]],
+  ['constraints_41',['constraints',['../structviam_1_1sdk_1_1Motion_1_1constraints.html',1,'viam::sdk::Motion::constraints'],['../structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#ab3b73ffa9071b630f29999463db0e78b',1,'viam::sdk::Arm::trajectory_point::constraints']]],
   ['construct_5fresource_42',['construct_resource',['../classviam_1_1sdk_1_1ModelRegistration.html#a4089b61b35308baec8f6bf3c116c82aa',1,'viam::sdk::ModelRegistration']]],
   ['context_43',['context',['../classviam_1_1sdk_1_1GrpcContextObserver.html#ab59947533087c2501750b7fb54a20a27',1,'viam::sdk::GrpcContextObserver']]],
   ['coordinates_44',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],

@@ -83,13 +83,17 @@ $(function() {
 
 <p>Defines an <code>Arm</code> component.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;boost/optional/optional.hpp&gt;</code><br />
 <code>#include &lt;boost/variant/variant.hpp&gt;</code><br />
 <code>#include &lt;viam/sdk/common/kinematics.hpp&gt;</code><br />
 <code>#include &lt;viam/sdk/common/mesh.hpp&gt;</code><br />
 <code>#include &lt;viam/sdk/common/pose.hpp&gt;</code><br />
+<code>#include &lt;viam/sdk/common/proto_convert.hpp&gt;</code><br />
 <code>#include &lt;viam/sdk/resource/stoppable.hpp&gt;</code><br />
 <code>#include &lt;viam/sdk/spatialmath/geometry.hpp&gt;</code><br />
 </div>
@@ -103,7 +107,24 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">viam::sdk::Arm::MoveOptions</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Movement specifications for move_through_joint_positions.  <a href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">viam::sdk::Arm::trajectory_point</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single waypoint in a streamed joint-space trajectory.  <a href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point_1_1kinematic__constraints.html">viam::sdk::Arm::trajectory_point::kinematic_constraints</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target kinematic constraints at a waypoint.  <a href="structviam_1_1sdk_1_1Arm_1_1trajectory__point_1_1kinematic__constraints.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">viam::sdk::Arm::trajectory_update</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An update emitted while a streamed trajectory executes.  <a href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1API_1_1traits_3_01Arm_01_4.html">viam::sdk::API::traits&lt; Arm &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1trajectory__point_01_4.html">viam::sdk::proto_convert_details::to_proto_impl&lt; Arm::trajectory_point &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1_1v1_1_1TrajectoryPoint_01_4.html">viam::sdk::proto_convert_details::from_proto_impl&lt; viam::component::arm::v1::TrajectoryPoint &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1trajectory__update_01_4.html">viam::sdk::proto_convert_details::to_proto_impl&lt; Arm::trajectory_update &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1ac9a1863e95aa6b031a992167c9dc1dc.html">viam::sdk::proto_convert_details::from_proto_impl&lt; viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

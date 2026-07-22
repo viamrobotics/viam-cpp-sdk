@@ -10,5 +10,6 @@ var searchData=
   ['position_5fmm_7',['position_mm',['../structviam_1_1sdk_1_1Gantry_1_1movement__coordinate.html#ac574c5e8a90122742d528d60d5e7f03e',1,'viam::sdk::Gantry::movement_coordinate']]],
   ['position_5fpolling_5ffrequency_5fhz_8',['position_polling_frequency_hz',['../structviam_1_1sdk_1_1motion__configuration.html#aba47f2fc7d5d05619681b48efc53dd65',1,'viam::sdk::motion_configuration']]],
   ['position_5freporting_9',['position_reporting',['../structviam_1_1sdk_1_1Motor_1_1properties.html#a6cfffefae3df6f503ead3e5f8f3b9dd9',1,'viam::sdk::Motor::properties']]],
-  ['power_5fpct_10',['power_pct',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a2a0673d493b18e92e14fedd7dab50d1a',1,'viam::sdk::Motor::power_status']]]
+  ['positions_10',['positions',['../structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#a870dc182963c9a451606f15ff708ae50',1,'viam::sdk::Arm::trajectory_point']]],
+  ['power_5fpct_11',['power_pct',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a2a0673d493b18e92e14fedd7dab50d1a',1,'viam::sdk::Motor::power_status']]]
 ];

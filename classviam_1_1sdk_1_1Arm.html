@@ -109,9 +109,20 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Movement specifications for move_through_joint_positions.  <a href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">trajectory_point</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single waypoint in a streamed joint-space trajectory.  <a href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">trajectory_update</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An update emitted while a streamed trajectory executes.  <a href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:a25a4d8fa0712fb79b3dbb045d5e0ec91" id="r_a25a4d8fa0712fb79b3dbb045d5e0ec91"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">stream_outcome</a> : std::uint8_t { <a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91ac35bb6dced3c2024c6955b48405a432e">k_completed</a> = 0
+, <a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91ab4ab1a6a700fcd8e27a8396d278b9858">k_halted_by_update_handler</a>
+ }</td></tr>
+<tr class="memdesc:a25a4d8fa0712fb79b3dbb045d5e0ec91"><td class="mdescLeft">&#160;</td><td class="mdescRight">How a streamed trajectory execution ended.  <a href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">More...</a><br /></td></tr>
+<tr class="separator:a25a4d8fa0712fb79b3dbb045d5e0ec91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43d85acd5248bca5d8911a54e539958b" id="r_a43d85acd5248bca5d8911a54e539958b"><td class="memItemLeft" align="right" valign="top"><a id="a43d85acd5248bca5d8911a54e539958b" name="a43d85acd5248bca5d8911a54e539958b"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>MoveLimit</b> = boost::variant&lt;double, std::vector&lt;double&gt;&gt;</td></tr>
 <tr class="memdesc:a43d85acd5248bca5d8911a54e539958b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A movement limit: either a single scalar applied uniformly, or per-joint values. <br /></td></tr>
@@ -150,6 +161,12 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a09c9addd617929098027755f757f3340" id="r_a09c9addd617929098027755f757f3340"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09c9addd617929098027755f757f3340">move_through_joint_positions</a> (const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;positions, const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a> &amp;options, const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:a09c9addd617929098027755f757f3340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm through the positions specified in.  <br /></td></tr>
 <tr class="separator:a09c9addd617929098027755f757f3340"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa38b9c4abe62bc1d4c8ee1022df7488" id="r_afa38b9c4abe62bc1d4c8ee1022df7488"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">stream_outcome</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa38b9c4abe62bc1d4c8ee1022df7488">move_through_joint_positions_streamed</a> (const std::function&lt; boost::optional&lt; std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">trajectory_point</a> &gt; &gt;()&gt; &amp;batch_source, const std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">trajectory_update</a>)&gt; &amp;update_handler)</td></tr>
+<tr class="memdesc:afa38b9c4abe62bc1d4c8ee1022df7488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a stream of trajectory points in order.  <br /></td></tr>
+<tr class="separator:afa38b9c4abe62bc1d4c8ee1022df7488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a4de18263e135edd3c9e0998f0274e" id="r_a40a4de18263e135edd3c9e0998f0274e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">stream_outcome</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40a4de18263e135edd3c9e0998f0274e">move_through_joint_positions_streamed</a> (const std::function&lt; boost::optional&lt; std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">trajectory_point</a> &gt; &gt;()&gt; &amp;batch_source, const std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">trajectory_update</a>)&gt; &amp;update_handler, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a40a4de18263e135edd3c9e0998f0274e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a stream of trajectory points in order.  <br /></td></tr>
+<tr class="separator:a40a4de18263e135edd3c9e0998f0274e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03e67125cfd7e762a3ead084aa488b07" id="r_a03e67125cfd7e762a3ead084aa488b07"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03e67125cfd7e762a3ead084aa488b07">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:a03e67125cfd7e762a3ead084aa488b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the arm is in motion.  <br /></td></tr>
 <tr class="separator:a03e67125cfd7e762a3ead084aa488b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,7 +247,38 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An <code><a class="el" href="classviam_1_1sdk_1_1Arm.html" title="An Arm represents a physical robot arm that exists in three-dimensional space.">Arm</a></code> represents a physical robot arm that exists in three-dimensional space. </p>
 <p>This acts as an abstract parent class to be inherited from by any drivers representing specific arm implementations. This class cannot be used on its own. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a25a4d8fa0712fb79b3dbb045d5e0ec91" name="a25a4d8fa0712fb79b3dbb045d5e0ec91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">&#9670;&#160;</a></span>stream_outcome</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">viam::sdk::Arm::stream_outcome</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>How a streamed trajectory execution ended. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a25a4d8fa0712fb79b3dbb045d5e0ec91ac35bb6dced3c2024c6955b48405a432e" name="a25a4d8fa0712fb79b3dbb045d5e0ec91ac35bb6dced3c2024c6955b48405a432e"></a>k_completed&#160;</td><td class="fielddoc"><p>The trajectory ran to its natural end. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a25a4d8fa0712fb79b3dbb045d5e0ec91ab4ab1a6a700fcd8e27a8396d278b9858" name="a25a4d8fa0712fb79b3dbb045d5e0ec91ab4ab1a6a700fcd8e27a8396d278b9858"></a>k_halted_by_update_handler&#160;</td><td class="fielddoc"><p><code>update_handler</code> returned false, stopping the stream early. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="afd2ecaaf6572ef29d81b92d2dbd4e1dd" name="afd2ecaaf6572ef29d81b92d2dbd4e1dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd2ecaaf6572ef29d81b92d2dbd4e1dd">&#9670;&#160;</a></span>api()</h2>
 
@@ -698,6 +746,95 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#af04abb33323a81ee5f5ebe712923347b">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a09c9addd617929098027755f757f3340">viam::sdk::impl::ArmClient</a>.</p>
+
+</div>
+</div>
+<a id="afa38b9c4abe62bc1d4c8ee1022df7488" name="afa38b9c4abe62bc1d4c8ee1022df7488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa38b9c4abe62bc1d4c8ee1022df7488">&#9670;&#160;</a></span>move_through_joint_positions_streamed() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">stream_outcome</a> viam::sdk::Arm::move_through_joint_positions_streamed </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; boost::optional&lt; std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">trajectory_point</a> &gt; &gt;()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>batch_source</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">trajectory_update</a>)&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>update_handler</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execute a stream of trajectory points in order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">batch_source</td><td>Pull-source for the next batch of waypoints. </td></tr>
+    <tr><td class="paramname">update_handler</td><td>Handler invoked for each update the implementation emits. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>How the stream ended. </dd></dl>
+
+</div>
+</div>
+<a id="a40a4de18263e135edd3c9e0998f0274e" name="a40a4de18263e135edd3c9e0998f0274e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a4de18263e135edd3c9e0998f0274e">&#9670;&#160;</a></span>move_through_joint_positions_streamed() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91">stream_outcome</a> viam::sdk::Arm::move_through_joint_positions_streamed </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; boost::optional&lt; std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">trajectory_point</a> &gt; &gt;()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>batch_source</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">trajectory_update</a>)&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>update_handler</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execute a stream of trajectory points in order. </p>
+<p>This is the streamed analogue of <code>move_through_joint_positions</code>. It is implemented on both sides of the RPC: an arm driver implements it to execute a trajectory, and the SDK arm client implements it to forward the call to a remote arm. Both sides must follow the contract below.</p>
+<p>An implementation pulls the trajectory from <code>batch_source</code> and reports progress through <code>update_handler</code> until the stream is exhausted, it is asked to stop, or it faults. A fault is reported by throwing: a server-side implementation has its exception converted to a terminal gRPC status delivered to the remote caller, and a client-side implementation rethrows to its caller. An exception thrown out of <code>update_handler</code> is propagated the same way rather than swallowed, so neither callback is required to be <code>noexcept</code>.</p>
+<p>Threading: because the stream is bidirectional, an implementation is permitted to invoke the two callbacks from different threads and to run them concurrently with each other. A caller must therefore not assume the callbacks are serialized against one another or pinned to a single thread, and must synchronize any mutable state it shares between them. A given callback is never invoked concurrently with itself.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">batch_source</td><td>Pull-source for the trajectory. Call it to obtain the next batch of waypoints; it yields <code>boost::none</code> once no more points are coming, after which the implementation should finish executing what it already has and return. Points arrive grouped into the batches the sender chose; an implementation that wants per-point handling iterates within each batch. Note that for servers, a disengaged return is ambiguous between end-of-stream and cancellation. <a class="el" href="classviam_1_1sdk_1_1Arm.html" title="An Arm represents a physical robot arm that exists in three-dimensional space.">Arm</a> implementors are expected to explicitly check for cancellation. </td></tr>
+    <tr><td class="paramname">update_handler</td><td>Sink for execution updates. Call it with each <code><a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html" title="An update emitted while a streamed trajectory executes.">trajectory_update</a></code> to report progress; it returns <code>true</code> to keep going and <code>false</code> to ask that the stream stop early, in which case the implementation should stop executing and return <code><a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91ab4ab1a6a700fcd8e27a8396d278b9858" title="update_handler returned false, stopping the stream early.">stream_outcome::k_halted_by_update_handler</a></code>. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91ac35bb6dced3c2024c6955b48405a432e" title="The trajectory ran to its natural end.">stream_outcome::k_completed</a></code> if the trajectory ran to its natural end, or <code><a class="el" href="#a25a4d8fa0712fb79b3dbb045d5e0ec91ab4ab1a6a700fcd8e27a8396d278b9858" title="update_handler returned false, stopping the stream early.">stream_outcome::k_halted_by_update_handler</a></code> if <code>update_handler</code> asked it to stop. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a40a4de18263e135edd3c9e0998f0274e">viam::sdk::impl::ArmClient</a>.</p>
 
 </div>
 </div>

@@ -37,6 +37,8 @@ var searchData=
   ['from_5fproto_5fimpl_3c_20robot_3a_3av1_3a_3aframesystemconfig_20_3e_34',['from_proto_impl&lt; robot::v1::FrameSystemConfig &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01robot_1_1v1_1_1FrameSystemConfig_01_4.html',1,'viam::sdk::proto_convert_details']]],
   ['from_5fproto_5fimpl_3c_20robot_3a_3av1_3a_3aoperation_20_3e_35',['from_proto_impl&lt; robot::v1::Operation &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01robot_1_1v1_1_1Operation_01_4.html',1,'viam::sdk::proto_convert_details']]],
   ['from_5fproto_5fimpl_3c_20service_3a_3adiscovery_3a_3av1_3a_3adiscoverresourcesresponse_20_3e_36',['from_proto_impl&lt; service::discovery::v1::DiscoverResourcesResponse &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01service_1_1discovery_1_1v1883fa31aeec2ffd079bc64c2f096b3d8.html',1,'viam::sdk::proto_convert_details']]],
-  ['from_5fstr_37',['from_str',['../classviam_1_1sdk_1_1Model.html#a556dde7b55041d14d6ee4afc208615d6',1,'viam::sdk::Model']]],
-  ['functionality_38',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md5',1,'']]]
+  ['from_5fproto_5fimpl_3c_20viam_3a_3acomponent_3a_3aarm_3a_3av1_3a_3amovethroughjointpositionsstreamedresponse_20_3e_37',['from_proto_impl&lt; viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1ac9a1863e95aa6b031a992167c9dc1dc.html',1,'viam::sdk::proto_convert_details']]],
+  ['from_5fproto_5fimpl_3c_20viam_3a_3acomponent_3a_3aarm_3a_3av1_3a_3atrajectorypoint_20_3e_38',['from_proto_impl&lt; viam::component::arm::v1::TrajectoryPoint &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1_1v1_1_1TrajectoryPoint_01_4.html',1,'viam::sdk::proto_convert_details']]],
+  ['from_5fstr_39',['from_str',['../classviam_1_1sdk_1_1Model.html#a556dde7b55041d14d6ee4afc208615d6',1,'viam::sdk::Model']]],
+  ['functionality_40',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md5',1,'']]]
 ];
