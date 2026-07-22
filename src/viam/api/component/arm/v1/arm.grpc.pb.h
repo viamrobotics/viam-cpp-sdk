@@ -83,6 +83,15 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>> PrepareAsyncMoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>>(PrepareAsyncMoveThroughJointPositionsRaw(context, request, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>> MoveThroughJointPositionsStreamed(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>>(MoveThroughJointPositionsStreamedRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>> AsyncMoveThroughJointPositionsStreamed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>>(AsyncMoveThroughJointPositionsStreamedRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>> PrepareAsyncMoveThroughJointPositionsStreamed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>>(PrepareAsyncMoveThroughJointPositionsStreamedRaw(context, cq));
+    }
     // Stop stops a robot's arm
     virtual ::grpc::Status Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::viam::component::arm::v1::StopResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>> AsyncStop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
@@ -161,6 +170,7 @@ class ArmService final {
       // This will block until done or a new operation cancels this one
       virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void MoveThroughJointPositionsStreamed(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest,::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* reactor) = 0;
       // Stop stops a robot's arm
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -197,6 +207,9 @@ class ArmService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveToJointPositionsResponse>* PrepareAsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* AsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* PrepareAsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* MoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* AsyncMoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* PrepareAsyncMoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -249,6 +262,15 @@ class ArmService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>> PrepareAsyncMoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>>(PrepareAsyncMoveThroughJointPositionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>> MoveThroughJointPositionsStreamed(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>>(MoveThroughJointPositionsStreamedRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>> AsyncMoveThroughJointPositionsStreamed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>>(AsyncMoveThroughJointPositionsStreamedRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>> PrepareAsyncMoveThroughJointPositionsStreamed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>>(PrepareAsyncMoveThroughJointPositionsStreamedRaw(context, cq));
     }
     ::grpc::Status Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::viam::component::arm::v1::StopResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>> AsyncStop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
@@ -312,6 +334,7 @@ class ArmService final {
       void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, std::function<void(::grpc::Status)>) override;
       void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void MoveThroughJointPositionsStreamed(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest,::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* reactor) override;
       void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) override;
       void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) override;
@@ -347,6 +370,9 @@ class ArmService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToJointPositionsResponse>* PrepareAsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* AsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* PrepareAsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* MoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* AsyncMoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* PrepareAsyncMoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -366,6 +392,7 @@ class ArmService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetJointPositions_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveToJointPositions_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveThroughJointPositions_;
+    const ::grpc::internal::RpcMethod rpcmethod_MoveThroughJointPositionsStreamed_;
     const ::grpc::internal::RpcMethod rpcmethod_Stop_;
     const ::grpc::internal::RpcMethod rpcmethod_IsMoving_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
@@ -394,6 +421,7 @@ class ArmService final {
     // obeying the specified velocity and acceleration limits.
     // This will block until done or a new operation cancels this one
     virtual ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response);
+    virtual ::grpc::Status MoveThroughJointPositionsStreamed(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* stream);
     // Stop stops a robot's arm
     virtual ::grpc::Status Stop(::grpc::ServerContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response);
     // IsMoving reports if a component is in motion
@@ -510,12 +538,32 @@ class ArmService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_MoveThroughJointPositionsStreamed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_MoveThroughJointPositionsStreamed() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_MoveThroughJointPositionsStreamed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositionsStreamed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMoveThroughJointPositionsStreamed(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(5, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Stop() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -526,7 +574,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::viam::component::arm::v1::StopRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::StopResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -535,7 +583,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_IsMoving() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -546,7 +594,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::viam::component::arm::v1::IsMovingRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::IsMovingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -555,7 +603,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(8);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -566,7 +614,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -575,7 +623,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStatus() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -586,7 +634,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::viam::common::v1::GetStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -595,7 +643,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -606,7 +654,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::viam::common::v1::GetKinematicsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetKinematicsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -615,7 +663,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -626,7 +674,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -635,7 +683,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Get3DModels() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(12);
     }
     ~WithAsyncMethod_Get3DModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -646,10 +694,10 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGet3DModels(::grpc::ServerContext* context, ::viam::common::v1::Get3DModelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::Get3DModelsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_MoveThroughJointPositions<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<WithAsyncMethod_Get3DModels<Service > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_MoveThroughJointPositions<WithAsyncMethod_MoveThroughJointPositionsStreamed<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<WithAsyncMethod_Get3DModels<Service > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetEndPosition : public BaseClass {
    private:
@@ -786,18 +834,41 @@ class ArmService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_MoveThroughJointPositionsStreamed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_MoveThroughJointPositionsStreamed() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackBidiHandler< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->MoveThroughJointPositionsStreamed(context); }));
+    }
+    ~WithCallbackMethod_MoveThroughJointPositionsStreamed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositionsStreamed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* MoveThroughJointPositionsStreamed(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response) { return this->Stop(context, request, response); }));}
     void SetMessageAllocatorFor_Stop(
         ::grpc::MessageAllocator< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -818,13 +889,13 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response) { return this->IsMoving(context, request, response); }));}
     void SetMessageAllocatorFor_IsMoving(
         ::grpc::MessageAllocator< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -845,13 +916,13 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -872,13 +943,13 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) { return this->GetStatus(context, request, response); }));}
     void SetMessageAllocatorFor_GetStatus(
         ::grpc::MessageAllocator< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -899,13 +970,13 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response) { return this->GetKinematics(context, request, response); }));}
     void SetMessageAllocatorFor_GetKinematics(
         ::grpc::MessageAllocator< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -926,13 +997,13 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
         ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -953,13 +1024,13 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Get3DModels() {
-      ::grpc::Service::MarkMethodCallback(11,
+      ::grpc::Service::MarkMethodCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response) { return this->Get3DModels(context, request, response); }));}
     void SetMessageAllocatorFor_Get3DModels(
         ::grpc::MessageAllocator< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -974,7 +1045,7 @@ class ArmService final {
     virtual ::grpc::ServerUnaryReactor* Get3DModels(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_MoveThroughJointPositions<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetKinematics<WithCallbackMethod_GetGeometries<WithCallbackMethod_Get3DModels<Service > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_MoveThroughJointPositions<WithCallbackMethod_MoveThroughJointPositionsStreamed<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetKinematics<WithCallbackMethod_GetGeometries<WithCallbackMethod_Get3DModels<Service > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetEndPosition : public BaseClass {
@@ -1062,12 +1133,29 @@ class ArmService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_MoveThroughJointPositionsStreamed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_MoveThroughJointPositionsStreamed() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_MoveThroughJointPositionsStreamed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositionsStreamed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Stop() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1084,7 +1172,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_IsMoving() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1101,7 +1189,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(8);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1118,7 +1206,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStatus() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1135,7 +1223,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1152,7 +1240,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1169,7 +1257,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Get3DModels() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(12);
     }
     ~WithGenericMethod_Get3DModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1281,12 +1369,32 @@ class ArmService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_MoveThroughJointPositionsStreamed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_MoveThroughJointPositionsStreamed() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_MoveThroughJointPositionsStreamed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositionsStreamed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMoveThroughJointPositionsStreamed(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(5, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Stop() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1297,7 +1405,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1306,7 +1414,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1317,7 +1425,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1326,7 +1434,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(8);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1337,7 +1445,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1346,7 +1454,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1357,7 +1465,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1366,7 +1474,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1377,7 +1485,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1386,7 +1494,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1397,7 +1505,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1406,7 +1514,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Get3DModels() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(12);
     }
     ~WithRawMethod_Get3DModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1417,7 +1525,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGet3DModels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1531,12 +1639,35 @@ class ArmService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_MoveThroughJointPositionsStreamed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_MoveThroughJointPositionsStreamed() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->MoveThroughJointPositionsStreamed(context); }));
+    }
+    ~WithRawCallbackMethod_MoveThroughJointPositionsStreamed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositionsStreamed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* MoveThroughJointPositionsStreamed(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Stop(context, request, response); }));
@@ -1558,7 +1689,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsMoving(context, request, response); }));
@@ -1580,7 +1711,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1602,7 +1733,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStatus(context, request, response); }));
@@ -1624,7 +1755,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetKinematics(context, request, response); }));
@@ -1646,7 +1777,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
@@ -1668,7 +1799,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Get3DModels() {
-      ::grpc::Service::MarkMethodRawCallback(11,
+      ::grpc::Service::MarkMethodRawCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get3DModels(context, request, response); }));
@@ -1825,7 +1956,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Stop() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>(
             [this](::grpc::ServerContext* context,
@@ -1852,7 +1983,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_IsMoving() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>(
             [this](::grpc::ServerContext* context,
@@ -1879,7 +2010,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1906,7 +2037,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStatus() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](::grpc::ServerContext* context,
@@ -1933,7 +2064,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
             [this](::grpc::ServerContext* context,
@@ -1960,7 +2091,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1987,7 +2118,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Get3DModels() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>(
             [this](::grpc::ServerContext* context,

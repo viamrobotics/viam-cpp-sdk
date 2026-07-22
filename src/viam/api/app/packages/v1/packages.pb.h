@@ -1040,28 +1040,10 @@ class DeletePackageRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTypesFieldNumber = 4,
     kIdFieldNumber = 1,
     kVersionFieldNumber = 2,
     kTypeFieldNumber = 3,
   };
-  // repeated .viam.app.packages.v1.PackageType types = 4 [json_name = "types"];
-  int types_size() const;
-  private:
-  int _internal_types_size() const;
-  public:
-  void clear_types();
-  private:
-  ::viam::app::packages::v1::PackageType _internal_types(int index) const;
-  void _internal_add_types(::viam::app::packages::v1::PackageType value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* _internal_mutable_types();
-  public:
-  ::viam::app::packages::v1::PackageType types(int index) const;
-  void set_types(int index, ::viam::app::packages::v1::PackageType value);
-  void add_types(::viam::app::packages::v1::PackageType value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>& types() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* mutable_types();
-
   // string id = 1 [json_name = "id"];
   void clear_id();
   const std::string& id() const;
@@ -1106,8 +1088,6 @@ class DeletePackageRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int> types_;
-  mutable std::atomic<int> _types_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   int type_;
@@ -3054,49 +3034,6 @@ inline void DeletePackageRequest::_internal_set_type(::viam::app::packages::v1::
 inline void DeletePackageRequest::set_type(::viam::app::packages::v1::PackageType value) {
   _internal_set_type(value);
   // @@protoc_insertion_point(field_set:viam.app.packages.v1.DeletePackageRequest.type)
-}
-
-// repeated .viam.app.packages.v1.PackageType types = 4 [json_name = "types"];
-inline int DeletePackageRequest::_internal_types_size() const {
-  return types_.size();
-}
-inline int DeletePackageRequest::types_size() const {
-  return _internal_types_size();
-}
-inline void DeletePackageRequest::clear_types() {
-  types_.Clear();
-}
-inline ::viam::app::packages::v1::PackageType DeletePackageRequest::_internal_types(int index) const {
-  return static_cast< ::viam::app::packages::v1::PackageType >(types_.Get(index));
-}
-inline ::viam::app::packages::v1::PackageType DeletePackageRequest::types(int index) const {
-  // @@protoc_insertion_point(field_get:viam.app.packages.v1.DeletePackageRequest.types)
-  return _internal_types(index);
-}
-inline void DeletePackageRequest::set_types(int index, ::viam::app::packages::v1::PackageType value) {
-  types_.Set(index, value);
-  // @@protoc_insertion_point(field_set:viam.app.packages.v1.DeletePackageRequest.types)
-}
-inline void DeletePackageRequest::_internal_add_types(::viam::app::packages::v1::PackageType value) {
-  types_.Add(value);
-}
-inline void DeletePackageRequest::add_types(::viam::app::packages::v1::PackageType value) {
-  _internal_add_types(value);
-  // @@protoc_insertion_point(field_add:viam.app.packages.v1.DeletePackageRequest.types)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>&
-DeletePackageRequest::types() const {
-  // @@protoc_insertion_point(field_list:viam.app.packages.v1.DeletePackageRequest.types)
-  return types_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
-DeletePackageRequest::_internal_mutable_types() {
-  return &types_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
-DeletePackageRequest::mutable_types() {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.packages.v1.DeletePackageRequest.types)
-  return _internal_mutable_types();
 }
 
 // -------------------------------------------------------------------
