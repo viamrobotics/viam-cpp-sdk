@@ -114,12 +114,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>   <span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">   39</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a> {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">int</span> width_px;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordtype">int</span> height_px;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">double</span> focal_x_px;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">double</span> focal_y_px;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">double</span> center_x_px;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordtype">double</span> center_y_px;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">int</span> width_px = 0;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordtype">int</span> height_px = 0;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">double</span> focal_x_px = 0.0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">double</span> focal_y_px = 0.0;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">double</span> center_x_px = 0.0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordtype">double</span> center_y_px = 0.0;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    };</div>
 </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
@@ -141,7 +141,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1properties.html">   67</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a> {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a">   69</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a">supports_pcd</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a">   69</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a">supports_pcd</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1properties.html#ad0cc2dc7f21fd1215975f4e6e366329f">   72</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a> <a class="code hl_struct" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a>;</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
@@ -151,7 +151,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1properties.html#affdc2cf4e032a426abc02e4fe73df15f">   81</a></span>        <a class="code hl_typedef" href="classviam_1_1sdk_1_1Camera.html#ad07b74c95a1fb9435323b4bf590112cd">Camera::mime_types</a> <a class="code hl_variable" href="structviam_1_1sdk_1_1Camera_1_1properties.html#affdc2cf4e032a426abc02e4fe73df15f">mime_types</a>;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1properties.html#aa2707df5f858c380edc0a555d17aa92e">   84</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1Camera_1_1properties.html#aa2707df5f858c380edc0a555d17aa92e">frame_rate</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Camera_1_1properties.html#aa2707df5f858c380edc0a555d17aa92e">   84</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1Camera_1_1properties.html#aa2707df5f858c380edc0a555d17aa92e">frame_rate</a> = 0.0f;</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    };</div>
 </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>

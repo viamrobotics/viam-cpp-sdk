@@ -118,11 +118,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Vector3.html#ad082518c70490f827e19d817cbc57d01">   34</a></span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Vector3.html">Vector3</a>&amp; <a class="code hl_function" href="structviam_1_1sdk_1_1Vector3.html#ad082518c70490f827e19d817cbc57d01">set_y</a>(scalar_type y);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Vector3.html#adcab4ab40e44dfeb2f20248fc95f7383">   36</a></span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Vector3.html">Vector3</a>&amp; <a class="code hl_function" href="structviam_1_1sdk_1_1Vector3.html#adcab4ab40e44dfeb2f20248fc95f7383">set_z</a>(scalar_type z);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::array&lt;scalar_type, 3&gt; data;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::array&lt;scalar_type, 3&gt; data = {};</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Vector3.html">Vector3</a>&amp; a, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Vector3.html">Vector3</a>&amp; b) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> Vector3&amp; a, <span class="keyword">const</span> Vector3&amp; b) {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span> a.data == b.data;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
