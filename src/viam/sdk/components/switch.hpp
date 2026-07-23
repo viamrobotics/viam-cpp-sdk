@@ -27,7 +27,7 @@ class Switch : public Component {
     /// @brief Information on the positions supported by this switch and their labels.
     /// @remark position_labels, if not empty, will have size num_positions.
     struct position_info {
-        uint32_t num_positions;
+        uint32_t num_positions = 0;
         std::vector<std::string> position_labels;
     };
 

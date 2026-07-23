@@ -23,16 +23,16 @@ constexpr const char* FLAC = "flac";
 /// @brief Properties of an audio component (input or output)
 struct audio_properties {
     std::vector<std::string> supported_codecs;
-    int sample_rate_hz;
-    int num_channels;
+    int sample_rate_hz = 0;
+    int num_channels = 0;
 };
 
 /// @struct audio_info
 /// @brief Information about a piece of audio data
 struct audio_info {
     std::string codec;
-    int sample_rate_hz;
-    int num_channels;
+    int sample_rate_hz = 0;
+    int num_channels = 0;
 };
 
 /// @brief Equality operator for properties

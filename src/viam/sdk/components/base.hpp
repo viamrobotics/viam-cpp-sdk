@@ -27,9 +27,9 @@ class Base : public Component, public Stoppable {
     /// @struct properties
     /// @brief Information about the physical base
     struct properties {
-        double width_meters;
-        double turning_radius_meters;
-        double wheel_circumference_meters;
+        double width_meters = 0.0;
+        double turning_radius_meters = 0.0;
+        double wheel_circumference_meters = 0.0;
     };
     friend std::ostream& operator<<(std::ostream& os, const properties& v);
     friend bool operator==(const properties& lhs, const properties& rhs);

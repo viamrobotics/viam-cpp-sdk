@@ -32,18 +32,18 @@ namespace sdk {
 enum class GeometryType { box, sphere, capsule, point };
 
 struct box {
-    double x;
-    double y;
-    double z;
+    double x = 0.0;
+    double y = 0.0;
+    double z = 0.0;
     friend bool operator==(const box& lhs, const box& rhs);
 };
 struct sphere {
-    double radius;
+    double radius = 0.0;
     friend bool operator==(const sphere& lhs, const sphere& rhs);
 };
 struct capsule {
-    double radius;
-    double length;
+    double radius = 0.0;
+    double length = 0.0;
     friend bool operator==(const capsule& lhs, const capsule& rhs);
 };
 
@@ -86,7 +86,7 @@ class GeometryConfig {
 struct geo_point {
     // TODO it really bugs me that this is not in lat-long but this would break existing
     // aggregate initializers
-    double longitude, latitude;
+    double longitude = 0.0, latitude = 0.0;
 
     friend bool operator==(const geo_point& lhs, const geo_point& rhs);
     friend std::ostream& operator<<(std::ostream& os, const geo_point& v);

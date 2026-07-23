@@ -39,7 +39,7 @@ class Navigation : public Service {
     /// @ingroup Navigation
     struct LocationResponse {
         geo_point location;
-        double compass_heading;
+        double compass_heading = 0.0;
 
         bool operator==(const LocationResponse& rhs) const {
             return compass_heading == rhs.compass_heading && location == rhs.location;
@@ -50,7 +50,7 @@ class Navigation : public Service {
     /// @brief A set of attributes for this nav service.
     /// @ingroup Navigation
     struct Properties {
-        MapType map_type;
+        MapType map_type = MapType::k_unspecified;
     };
 
     /// @struct Waypoint
