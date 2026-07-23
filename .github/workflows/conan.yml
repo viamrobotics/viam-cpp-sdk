@@ -68,14 +68,15 @@ jobs:
 
       - name: Create package
         run: |
-          # `buf` tries to read a CLI config file that we don't actually use located at
-          # ~/.config/buf/config.yaml. We don't always have permission to access this
-          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
-          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
-          # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
+          conan remote add viamconan "$CONAN_REMOTE_URL"
+          conan remote auth --force -cc core:non_interactive=True viamconan
           conan create . --build=missing -s:a compiler.cppstd=17
+        env:
+          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
+          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
@@ -89,53 +90,30 @@ jobs:
         include:
           - target: aarch64-ubuntu-jammy-gnu
             platform: linux_aarch64-ubuntu-jammy
-            image: ubuntu:22.04
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:jammy
             runs_on: github-linux-arm64-8core
           - target: x86_64-ubuntu-jammy-gnu
             platform: linux_x86_64-ubuntu-jammy
-            image: ubuntu:22.04
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:jammy
             runs_on: ubuntu-large
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get -y dist-upgrade
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              autoconf \
-              automake \
-              build-essential \
-              ca-certificates \
-              curl \
-              doxygen \
-              g++ \
-              gdb \
-              gnupg \
-              gpg \
-              less \
-              ninja-build \
-              python3 \
-              python3-pip \
-              software-properties-common \
-              sudo \
-              wget \
-
-          sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
-
-          apt-get update
-          apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
-
-          pip install conan
-
+      # Custom shell replaces GH's default `bash --noprofile --norc -eo pipefail {0}`.
+      # -l (login) sources /etc/profile.d/conan-venv.sh, putting the image's conan on
+      # PATH; we re-add -eo pipefail since our string overrides the default's flags.
       - name: Create package
-        shell: bash
+        shell: bash -leo pipefail {0}
         run: |
-          conan profile detect
+          conan remote add viamconan "$CONAN_REMOTE_URL"
+          conan remote auth --force -cc core:non_interactive=True viamconan
           conan create . --build=missing -s:a compiler.cppstd=17
+        env:
+          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
+          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
@@ -149,75 +127,42 @@ jobs:
         include:
           - target: aarch64-debian-bullseye
             platform: linux_aarch64-debian-bullseye
-            image: debian:bullseye
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye
             runs_on: github-linux-arm64-8core
           - target: x86_64-debian-bullseye
             platform: linux_x86_64-debian-bullseye
-            image: debian:bullseye
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye
             runs_on: ubuntu-large
           - target: aarch64-debian-bookworm
             platform: linux_aarch64-debian-bookworm
-            image: debian:bookworm
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-debian:bookworm
             runs_on: github-linux-arm64-8core
           - target: x86_64-debian-bookworm
             platform: linux_x86_64-debian-bookworm
-            image: debian:bookworm
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-debian:bookworm
             runs_on: ubuntu-large
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      # Custom shell replaces GH's default `bash --noprofile --norc -eo pipefail {0}`.
+      # -l (login) sources /etc/profile.d/conan-venv.sh, putting the image's conan on
+      # PATH; we re-add -eo pipefail since our string overrides the default's flags.
+      - name: Create package
+        shell: bash -leo pipefail {0}
         run: |
-          apt-get update
-          apt-get -y dist-upgrade
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              autoconf \
-              build-essential \
-              ca-certificates \
-              cmake \
-              curl \
-              g++ \
-              gdb \
-              gnupg \
-              gpg \
-              less \
-              ninja-build \
-              python3 \
-              python3-pip \
-              python3-venv \
-              software-properties-common \
-              sudo \
-              wget
-
-      - name: Update CMake for bullseye
-        if: ${{ matrix.image  == 'debian:bullseye' }}
-        run: |
-          apt-get install -y software-properties-common
-          apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
-
-          apt-get update
-          apt-get -y install cmake
-
-          apt-get -y --no-install-recommends install -t bullseye-backports cmake
-
-      # Note bullseye can use regular pip + conan no problem, but
-      # bookworm is a managed environment, so we use a venv in both because it is more
-      # trouble to bifurcate them.
-      - name: Install conan in venv and create package
-        shell: bash
-        run: |
-          python3 -m venv ./conan_venv
-          source ./conan_venv/bin/activate
-
-          pip install conan
-          conan profile detect
+          conan remote add viamconan "$CONAN_REMOTE_URL"
+          conan remote auth --force -cc core:non_interactive=True viamconan
 
           conan install -r conancenter --update \
-          --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
+            --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
 
           conan create . --build=missing -s:a compiler.cppstd=17
+        env:
+          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
+          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
 
   build_windows:
     if: github.repository_owner == 'viamrobotics'
