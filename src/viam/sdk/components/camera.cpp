@@ -173,7 +173,9 @@ bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
     return lhs.supports_pcd == rhs.supports_pcd &&
            lhs.intrinsic_parameters == rhs.intrinsic_parameters &&
            lhs.distortion_parameters == rhs.distortion_parameters &&
-           lhs.frame_rate == rhs.frame_rate;
+           lhs.extrinsic_parameters == rhs.extrinsic_parameters &&
+           lhs.frame_rate == rhs.frame_rate &&
+           lhs.mime_types == rhs.mime_types;
 }
 
 }  // namespace sdk
