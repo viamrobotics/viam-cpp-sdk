@@ -89,6 +89,7 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
         Camera::properties expected = fake_properties();
 
         BOOST_CHECK(expected == props);
+        BOOST_CHECK(expected.mime_types == props.mime_types);
     });
 }
 
