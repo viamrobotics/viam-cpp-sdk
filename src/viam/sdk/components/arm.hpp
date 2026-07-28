@@ -3,6 +3,9 @@
 /// @brief Defines an `Arm` component
 #pragma once
 
+#include <chrono>
+#include <cstdint>
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -12,8 +15,22 @@
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
+
+namespace viam {
+namespace component {
+namespace arm {
+namespace v1 {
+
+class TrajectoryPoint;
+class MoveThroughJointPositionsStreamedResponse;
+
+}  // namespace v1
+}  // namespace arm
+}  // namespace component
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -105,6 +122,105 @@ class Arm : public Component, public Stoppable {
                                               const MoveOptions& options,
                                               const ProtoStruct& extra) = 0;
 
+    /// @brief A single waypoint in a streamed joint-space trajectory.
+    ///
+    /// The first point of a stream must have @ref time equal to zero; subsequent
+    /// points must be strictly increasing in time across the entire stream.
+    struct trajectory_point {
+        /// @brief Target kinematic constraints at a waypoint.
+        ///
+        /// `velocities` is required whenever this struct is present;
+        /// `accelerations` is independently optional. Both are one value per
+        /// joint and, like everything else on this interface, denominated in
+        /// degrees: `velocities` in degrees per second and `accelerations` in
+        /// degrees per second squared.
+        struct kinematic_constraints {
+            std::vector<double> velocities_degs_per_sec;
+            boost::optional<std::vector<double>> accelerations_degs_per_sec2;
+        };
+
+        /// @brief Offset of this waypoint from the start of the trajectory.
+        ///
+        /// Must be zero at the first point of a stream and strictly increasing
+        /// thereafter. Microsecond resolution matches the SDK's
+        /// `google.protobuf.Duration` conversion; sub-microsecond distinctions
+        /// are not preserved on the wire.
+        std::chrono::microseconds time;
+
+        /// @brief Target position at this waypoint, one value per joint, in degrees.
+        std::vector<double> positions;
+
+        /// @brief Optional velocity and acceleration constraints at this waypoint.
+        boost::optional<kinematic_constraints> constraints;
+    };
+
+    /// @brief An update emitted while a streamed trajectory executes.
+    ///
+    /// An arm may emit them at any cadence.
+    struct trajectory_update {};
+
+    /// @brief How a streamed trajectory execution ended.
+    enum class stream_outcome : std::uint8_t {
+        k_completed = 0,  ///< The trajectory ran to its natural end.
+        k_halted_by_update_handler =
+            1,  ///< `update_handler` returned false, stopping the stream early.
+    };
+
+    /// @brief Execute a stream of trajectory points in order.
+    /// @param batch_source Pull-source for the next batch of waypoints.
+    /// @param update_handler Handler invoked for each update the implementation emits.
+    /// @return How the stream ended.
+    inline stream_outcome move_through_joint_positions_streamed(
+        const std::function<boost::optional<std::vector<trajectory_point>>()>& batch_source,
+        const std::function<bool(trajectory_update)>& update_handler) {
+        return move_through_joint_positions_streamed(batch_source, update_handler, {});
+    }
+
+    /// @brief Execute a stream of trajectory points in order.
+    ///
+    /// This is the streamed analogue of `move_through_joint_positions`. It is
+    /// implemented on both sides of the RPC: an arm driver implements it to
+    /// execute a trajectory, and the SDK arm client implements it to forward the
+    /// call to a remote arm. Both sides must follow the contract below.
+    ///
+    /// An implementation pulls the trajectory from `batch_source` and reports
+    /// progress through `update_handler` until the stream is exhausted, it is
+    /// asked to stop, or it faults. A fault is reported by throwing: a
+    /// server-side implementation has its exception converted to a terminal gRPC
+    /// status delivered to the remote caller, and a client-side implementation
+    /// rethrows to its caller. An exception thrown out of `update_handler` is
+    /// propagated the same way rather than swallowed, so neither callback is
+    /// required to be `noexcept`.
+    ///
+    /// Threading: because the stream is bidirectional, an implementation is
+    /// permitted to invoke the two callbacks from different threads and to run
+    /// them concurrently with each other. A caller must therefore not assume the
+    /// callbacks are serialized against one another or pinned to a single
+    /// thread, and must synchronize any mutable state it shares between them. A
+    /// given callback is never invoked concurrently with itself.
+    ///
+    /// @param batch_source Pull-source for the trajectory. Call it to obtain the
+    /// next batch of waypoints; it yields `boost::none` once no more points are
+    /// coming, after which the implementation should finish executing what it
+    /// already has and return. Points arrive grouped into the batches the sender
+    /// chose; an implementation that wants per-point handling iterates within
+    /// each batch. Note that for servers, a disengaged return is ambiguous
+    /// between end-of-stream and cancellation. Arm implementors are expected
+    /// to explicitly check for cancellation.
+    /// @param update_handler Sink for execution updates. Call it with each
+    /// `trajectory_update` to report progress; it returns `true` to keep going
+    /// and `false` to ask that the stream stop early, in which case the
+    /// implementation should stop executing and return
+    /// `stream_outcome::k_halted_by_update_handler`.
+    /// @param extra Any additional arguments to the method.
+    /// @return `stream_outcome::k_completed` if the trajectory ran to its natural
+    /// end, or `stream_outcome::k_halted_by_update_handler` if `update_handler`
+    /// asked it to stop.
+    virtual stream_outcome move_through_joint_positions_streamed(
+        const std::function<boost::optional<std::vector<trajectory_point>>()>& batch_source,
+        const std::function<bool(trajectory_update)>& update_handler,
+        const ProtoStruct& extra) = 0;
+
     /// @brief Reports if the arm is in motion.
     virtual bool is_moving() = 0;
 
@@ -158,6 +274,32 @@ template <>
 struct API::traits<Arm> {
     static API api();
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto_impl<Arm::trajectory_point> {
+    void operator()(const Arm::trajectory_point&, viam::component::arm::v1::TrajectoryPoint*) const;
+};
+
+template <>
+struct from_proto_impl<viam::component::arm::v1::TrajectoryPoint> {
+    Arm::trajectory_point operator()(const viam::component::arm::v1::TrajectoryPoint*) const;
+};
+
+template <>
+struct to_proto_impl<Arm::trajectory_update> {
+    void operator()(const Arm::trajectory_update&,
+                    viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const;
+};
+
+template <>
+struct from_proto_impl<viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse> {
+    Arm::trajectory_update operator()(
+        const viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const;
+};
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam

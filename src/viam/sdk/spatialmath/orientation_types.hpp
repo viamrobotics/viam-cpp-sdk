@@ -35,7 +35,7 @@ struct orientation_vector {
 };
 
 struct orientation_vector_degrees {
-    double x, y, z, theta;
+    double x = 0.0, y = 0.0, z = 0.0, theta = 0.0;
 };
 
 struct quaternion {

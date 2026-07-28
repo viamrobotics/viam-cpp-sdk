@@ -30,6 +30,7 @@ static const char* ArmService_method_names[] = {
   "/viam.component.arm.v1.ArmService/GetJointPositions",
   "/viam.component.arm.v1.ArmService/MoveToJointPositions",
   "/viam.component.arm.v1.ArmService/MoveThroughJointPositions",
+  "/viam.component.arm.v1.ArmService/MoveThroughJointPositionsStreamed",
   "/viam.component.arm.v1.ArmService/Stop",
   "/viam.component.arm.v1.ArmService/IsMoving",
   "/viam.component.arm.v1.ArmService/DoCommand",
@@ -51,13 +52,14 @@ ArmService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_GetJointPositions_(ArmService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MoveToJointPositions_(ArmService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MoveThroughJointPositions_(ArmService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Stop_(ArmService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsMoving_(ArmService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(ArmService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(ArmService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKinematics_(ArmService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(ArmService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Get3DModels_(ArmService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveThroughJointPositionsStreamed_(ArmService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_Stop_(ArmService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(ArmService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(ArmService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(ArmService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematics_(ArmService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(ArmService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get3DModels_(ArmService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ArmService::Stub::GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::viam::component::arm::v1::GetEndPositionResponse* response) {
@@ -173,6 +175,22 @@ void ArmService::Stub::async::MoveThroughJointPositions(::grpc::ClientContext* c
     this->PrepareAsyncMoveThroughJointPositionsRaw(context, request, cq);
   result->StartCall();
   return result;
+}
+
+::grpc::ClientReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* ArmService::Stub::MoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>::Create(channel_.get(), rpcmethod_MoveThroughJointPositionsStreamed_, context);
+}
+
+void ArmService::Stub::async::MoveThroughJointPositionsStreamed(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest,::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderWriterFactory< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest,::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_MoveThroughJointPositionsStreamed_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* ArmService::Stub::AsyncMoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>::Create(channel_.get(), cq, rpcmethod_MoveThroughJointPositionsStreamed_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>* ArmService::Stub::PrepareAsyncMoveThroughJointPositionsStreamedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>::Create(channel_.get(), cq, rpcmethod_MoveThroughJointPositionsStreamed_, context, false, nullptr);
 }
 
 ::grpc::Status ArmService::Stub::Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::viam::component::arm::v1::StopResponse* response) {
@@ -389,6 +407,16 @@ ArmService::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ArmService_method_names[5],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< ArmService::Service, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>(
+          [](ArmService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReaderWriter<::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse,
+             ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* stream) {
+               return service->MoveThroughJointPositionsStreamed(ctx, stream);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ArmService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -398,7 +426,7 @@ ArmService::Service::Service() {
                return service->Stop(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[6],
+      ArmService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -408,7 +436,7 @@ ArmService::Service::Service() {
                return service->IsMoving(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[7],
+      ArmService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -418,7 +446,7 @@ ArmService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[8],
+      ArmService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -428,7 +456,7 @@ ArmService::Service::Service() {
                return service->GetStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[9],
+      ArmService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -438,7 +466,7 @@ ArmService::Service::Service() {
                return service->GetKinematics(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[10],
+      ArmService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -448,7 +476,7 @@ ArmService::Service::Service() {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[11],
+      ArmService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -494,6 +522,12 @@ ArmService::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ArmService::Service::MoveThroughJointPositionsStreamed(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse, ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* stream) {
+  (void) context;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

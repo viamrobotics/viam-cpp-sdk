@@ -37,12 +37,12 @@ class Camera : public Component {
     /// @struct intrinsic parameters
     /// @brief The properties of the camera.
     struct intrinsic_parameters {
-        int width_px;
-        int height_px;
-        double focal_x_px;
-        double focal_y_px;
-        double center_x_px;
-        double center_y_px;
+        int width_px = 0;
+        int height_px = 0;
+        double focal_x_px = 0.0;
+        double focal_y_px = 0.0;
+        double center_x_px = 0.0;
+        double center_y_px = 0.0;
     };
 
     /// @brief ExtrinsicParameters define the position of the camera relative to a reference frame
@@ -66,7 +66,7 @@ class Camera : public Component {
     /// @brief The camera's supported features and settings.
     struct properties {
         /// @brief Indicates whether the camera has a valid implementation of `get_point_cloud`.
-        bool supports_pcd;
+        bool supports_pcd = false;
 
         /// @brief Contains the camera's intrinsic parameters.
         struct intrinsic_parameters intrinsic_parameters;
@@ -81,7 +81,7 @@ class Camera : public Component {
         Camera::mime_types mime_types;
 
         /// @brief Contains the camera's frame rate.
-        float frame_rate;
+        float frame_rate = 0.0f;
     };
 
     /// @struct point_cloud

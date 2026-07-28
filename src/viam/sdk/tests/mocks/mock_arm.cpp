@@ -1,8 +1,11 @@
-#include "viam/sdk/common/mesh.hpp"
-#include "viam/sdk/rpc/grpc_context_observer.hpp"
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 
-#include "mock_arm.hpp"
+#include <stdexcept>
+
+#include <grpcpp/support/status.h>
+
+#include <viam/sdk/common/mesh.hpp>
+#include <viam/sdk/rpc/grpc_context_observer.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -47,6 +50,31 @@ void MockArm::move_through_joint_positions(const std::vector<std::vector<double>
     }
     move_thru_positions = positions;
     move_opts = opts;
+}
+
+sdk::Arm::stream_outcome MockArm::move_through_joint_positions_streamed(
+    const std::function<boost::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
+    const std::function<bool(Arm::trajectory_update)>& update_handler,
+    const sdk::ProtoStruct&) {
+    while (auto batch = batch_source()) {
+        peek_streamed_batches.push_back(*batch);
+        if (!update_handler(Arm::trajectory_update{})) {
+            return sdk::Arm::stream_outcome::k_halted_by_update_handler;
+        }
+        ++peek_streamed_ack_count;
+    }
+
+    switch (streamed_fault) {
+        case stream_fault::k_none:
+            break;
+        case stream_fault::k_runtime_error:
+            throw std::runtime_error("mock arm streamed fault");
+        case stream_fault::k_grpc_status:
+            throw grpc::Status(grpc::StatusCode::FAILED_PRECONDITION,
+                               "mock arm streamed grpc fault");
+    }
+
+    return sdk::Arm::stream_outcome::k_completed;
 }
 
 void MockArm::stop(const sdk::ProtoStruct&) {
