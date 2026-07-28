@@ -58,6 +58,14 @@ void {{ .ModelPascal }}::move_through_joint_positions(
     throw std::logic_error("\"move_through_joint_positions\" not implemented");
 }
 
+viam::sdk::Arm::stream_outcome {{ .ModelPascal }}::move_through_joint_positions_streamed(
+        const std::function<boost::optional<std::vector<trajectory_point>> ()> & batch_source,
+        const std::function<bool (trajectory_update)> & update_handler,
+        const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"move_through_joint_positions_streamed\" not implemented");
+}
+
 bool {{ .ModelPascal }}::is_moving()
 {
     throw std::logic_error("\"is_moving\" not implemented");

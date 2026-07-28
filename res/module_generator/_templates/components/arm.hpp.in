@@ -34,6 +34,11 @@ public:
         const viam::sdk::Arm::MoveOptions & options,
         const viam::sdk::ProtoStruct & extra) override;
 
+    viam::sdk::Arm::stream_outcome move_through_joint_positions_streamed(
+        const std::function<boost::optional<std::vector<trajectory_point>> ()> & batch_source,
+        const std::function<bool (trajectory_update)> & update_handler,
+        const viam::sdk::ProtoStruct & extra) override;
+
     bool is_moving() override;
 
     viam::sdk::ProtoStruct get_status() override;
