@@ -17902,6 +17902,7 @@ class SequencesByDatasetIDRequest final :
     kDatasetIdFieldNumber = 1,
     kPageTokenFieldNumber = 2,
     kPageSizeFieldNumber = 3,
+    kCountOnlyFieldNumber = 4,
   };
   // string dataset_id = 1 [json_name = "datasetId"];
   void clear_dataset_id();
@@ -17940,6 +17941,15 @@ class SequencesByDatasetIDRequest final :
   void _internal_set_page_size(uint32_t value);
   public:
 
+  // bool count_only = 4 [json_name = "countOnly"];
+  void clear_count_only();
+  bool count_only() const;
+  void set_count_only(bool value);
+  private:
+  bool _internal_count_only() const;
+  void _internal_set_count_only(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.data.v1.SequencesByDatasetIDRequest)
  private:
   class _Internal;
@@ -17950,6 +17960,7 @@ class SequencesByDatasetIDRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dataset_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
   uint32_t page_size_;
+  bool count_only_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
 };
@@ -18076,6 +18087,7 @@ class SequencesByDatasetIDResponse final :
   enum : int {
     kSequencesFieldNumber = 1,
     kNextPageTokenFieldNumber = 2,
+    kCountFieldNumber = 3,
   };
   // repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
   int sequences_size() const;
@@ -18109,6 +18121,15 @@ class SequencesByDatasetIDResponse final :
   std::string* _internal_mutable_next_page_token();
   public:
 
+  // uint64 count = 3 [json_name = "count"];
+  void clear_count();
+  uint64_t count() const;
+  void set_count(uint64_t value);
+  private:
+  uint64_t _internal_count() const;
+  void _internal_set_count(uint64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.data.v1.SequencesByDatasetIDResponse)
  private:
   class _Internal;
@@ -18118,6 +18139,7 @@ class SequencesByDatasetIDResponse final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence > sequences_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr next_page_token_;
+  uint64_t count_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
 };
@@ -33487,6 +33509,26 @@ inline void SequencesByDatasetIDRequest::set_page_size(uint32_t value) {
   // @@protoc_insertion_point(field_set:viam.app.data.v1.SequencesByDatasetIDRequest.page_size)
 }
 
+// bool count_only = 4 [json_name = "countOnly"];
+inline void SequencesByDatasetIDRequest::clear_count_only() {
+  count_only_ = false;
+}
+inline bool SequencesByDatasetIDRequest::_internal_count_only() const {
+  return count_only_;
+}
+inline bool SequencesByDatasetIDRequest::count_only() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequencesByDatasetIDRequest.count_only)
+  return _internal_count_only();
+}
+inline void SequencesByDatasetIDRequest::_internal_set_count_only(bool value) {
+  
+  count_only_ = value;
+}
+inline void SequencesByDatasetIDRequest::set_count_only(bool value) {
+  _internal_set_count_only(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequencesByDatasetIDRequest.count_only)
+}
+
 // -------------------------------------------------------------------
 
 // SequencesByDatasetIDResponse
@@ -33579,6 +33621,26 @@ inline void SequencesByDatasetIDResponse::set_allocated_next_page_token(std::str
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token)
+}
+
+// uint64 count = 3 [json_name = "count"];
+inline void SequencesByDatasetIDResponse::clear_count() {
+  count_ = uint64_t{0u};
+}
+inline uint64_t SequencesByDatasetIDResponse::_internal_count() const {
+  return count_;
+}
+inline uint64_t SequencesByDatasetIDResponse::count() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequencesByDatasetIDResponse.count)
+  return _internal_count();
+}
+inline void SequencesByDatasetIDResponse::_internal_set_count(uint64_t value) {
+  
+  count_ = value;
+}
+inline void SequencesByDatasetIDResponse::set_count(uint64_t value) {
+  _internal_set_count(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequencesByDatasetIDResponse.count)
 }
 
 // -------------------------------------------------------------------
