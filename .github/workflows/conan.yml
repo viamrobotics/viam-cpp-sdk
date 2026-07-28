@@ -71,12 +71,9 @@ jobs:
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
           conan remote add viamconan "$CONAN_REMOTE_URL"
-          conan remote auth --force -cc core:non_interactive=True viamconan
           conan create . --build=missing -s:a compiler.cppstd=17
         env:
           CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
-          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
@@ -107,13 +104,7 @@ jobs:
       - name: Create package
         shell: bash -leo pipefail {0}
         run: |
-          conan remote add viamconan "$CONAN_REMOTE_URL"
-          conan remote auth --force -cc core:non_interactive=True viamconan
-          conan create . --build=missing -s:a compiler.cppstd=17
-        env:
-          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
-          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
+          conan create . --build=missing -pr:a viam-system-gcc-release
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
@@ -152,17 +143,10 @@ jobs:
       - name: Create package
         shell: bash -leo pipefail {0}
         run: |
-          conan remote add viamconan "$CONAN_REMOTE_URL"
-          conan remote auth --force -cc core:non_interactive=True viamconan
-
           conan install -r conancenter --update \
-            --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
+            --tool-requires=b2/5.3.1 --build=b2/5.3.1 -pr:a viam-system-gcc-release
 
-          conan create . --build=missing -s:a compiler.cppstd=17
-        env:
-          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
-          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
+          conan create . --build=missing -pr:a viam-system-gcc-release
 
   build_windows:
     if: github.repository_owner == 'viamrobotics'
@@ -190,12 +174,9 @@ jobs:
           refreshenv
           conan profile detect
           conan remote add viamconan $env:CONAN_REMOTE_URL
-          conan remote auth --force -cc core:non_interactive=True viamconan
           conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
           CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername }}
-          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
 

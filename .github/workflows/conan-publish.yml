@@ -108,18 +108,16 @@ jobs:
 
     - name: Authenticate viam conan remote
       env:
-        CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
         CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
         CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
       run: |
-        conan remote add viamconan "$CONAN_REMOTE_URL"
         conan remote auth --force -cc core:non_interactive=True viamconan
 
     - name: Pre-install b2 (bullseye)
       if: matrix.image == 'ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye'
       run: |
         conan install -r conancenter --update \
-        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -s compiler.cppstd=17 -s:a compiler.cppstd=17
+        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a viam-system-gcc-release
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
@@ -128,10 +126,9 @@ jobs:
     - name: Create and upload package
       run: |
         # TEMP(test): skip lockfile pin + upload; just build the branch to smoke-test the image.
-        # Pin Release; the image profile defaults to RelWithDebInfo, but releases stay Release.
-        conan create . --build=missing -s:a compiler.cppstd=17 -s:a build_type=Release
+        conan create . --build=missing -pr:a viam-system-gcc-release
         # conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
-        # conan create . --build=missing -s:a compiler.cppstd=17 -s:a build_type=Release \
+        # conan create . --build=missing -pr:a viam-system-gcc-release \
         # --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
         # conan upload "viam-cpp-sdk/*" -r viamconan -c
 
