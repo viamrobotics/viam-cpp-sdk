@@ -17,10 +17,11 @@ pip_conf=/etc/pip.conf
 trap 'rm -f "${pip_conf}"' EXIT
 printf '[global]\nbreak-system-packages = true\n' > "${pip_conf}"
 
-# bullseye's pip 20.3.4 dies building conan's deps (toml decoder IndexError);
-# fails identically without the override.
-pip3 install --no-cache-dir --upgrade pip
-pip3 install --no-cache-dir "conan~=2.0"
+# --ignore-installed: pip refuses to uninstall dpkg-owned packages, and /usr/local
+# shadows dist-packages on sys.path anyway. Upgrade first -- bullseye's pip 20.3.4
+# dies building conan's deps (toml decoder IndexError).
+pip3 install --no-cache-dir --ignore-installed --upgrade pip
+pip3 install --no-cache-dir --ignore-installed "conan~=2.0"
 
 rm -f "${pip_conf}"
 trap - EXIT
