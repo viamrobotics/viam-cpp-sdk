@@ -89,12 +89,6 @@ jobs:
     runs-on: ${{ matrix.runner }}
     container:
       image: ${{ matrix.image }}
-    # The conan toolchain image supplies conan (venv on PATH via profile.d), cmake,
-    # and the compilers, so every conan step runs under a login shell to source
-    # /etc/profile.d/conan-venv.sh; -eo pipefail re-adds what the login string drops.
-    defaults:
-      run:
-        shell: bash -leo pipefail {0}
 
     steps:
     # TEMP(test): checkout the triggering branch instead of releases/v${{ inputs.ref }}.

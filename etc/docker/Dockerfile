@@ -50,10 +50,9 @@ RUN rm -rf /opt/scripts
 
 FROM base AS conan
 
-# Pin CONAN_HOME so the baked default profile is found regardless of runtime HOME.
-# GitHub Actions `container:` overrides HOME to /github/home, which would otherwise
-# send conan looking for its home (and the default profile) in the wrong place.
-ENV CONAN_HOME=/opt/conan-home
+# Expands to /root/.conan2 at build time, pinning the baked profiles and remote to
+# a fixed path -- GitHub Actions `container:` overrides HOME to /github/home.
+ENV CONAN_HOME=$HOME/.conan2
 
 RUN /opt/scripts/install-conan.sh
 

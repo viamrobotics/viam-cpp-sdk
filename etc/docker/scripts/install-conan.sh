@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 #
-# conan strategy: python3 + conan in an isolated venv, plus the jinja2 profile
+# conan strategy: conan in the system python, plus the jinja2 profile
 # `viam-system-gcc-release` and a `default` that include()s it.
-#
-# The venv keeps us off PEP-668 "externally managed" distros' toes. We source
-# its activate script so conan lands on PATH.
 
 set -euo pipefail
 [[ "${DEBUG:-}" ]] && set -x
@@ -12,19 +9,21 @@ set -euo pipefail
 # shellcheck disable=SC1091
 . "$(dirname "$0")/lib/common.sh"
 
-# venv (not global pip): managed-environment distros forbid a global install.
-apt_install python3 python3-venv
+apt_install python3 python3-pip
 
-python3 -m venv /opt/conan-venv
-# Upgrade pip first: the pip bundled on older distros (e.g. bullseye's 20.3) ships
-# the legacy resolver, which crashes resolving conan's deps (KeyError: 'markupsafe').
-/opt/conan-venv/bin/pip install --no-cache-dir --upgrade pip
-/opt/conan-venv/bin/pip install --no-cache-dir "conan~=2.0"
+# PEP-668 blocks pip on bookworm+/noble+. Grant break-system-packages for the
+# install only; older distros carry no marker and ignore the unknown key.
+pip_conf=/etc/pip.conf
+trap 'rm -f "${pip_conf}"' EXIT
+printf '[global]\nbreak-system-packages = true\n' > "${pip_conf}"
 
-# Source the venv activate for conan on PATH; profile.d carries it to runtime shells.
-echo '. /opt/conan-venv/bin/activate' > /etc/profile.d/conan-venv.sh
-# shellcheck disable=SC1091
-. /opt/conan-venv/bin/activate
+# bullseye's pip 20.3.4 dies building conan's deps (toml decoder IndexError);
+# fails identically without the override.
+pip3 install --no-cache-dir --upgrade pip
+pip3 install --no-cache-dir "conan~=2.0"
+
+rm -f "${pip_conf}"
+trap - EXIT
 
 # Install the jinja2 toolchain profile plus the `default` that include()s it.
 profile=viam-system-gcc-release

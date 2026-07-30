@@ -98,11 +98,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Custom shell replaces GH's default `bash --noprofile --norc -eo pipefail {0}`.
-      # -l (login) sources /etc/profile.d/conan-venv.sh, putting the image's conan on
-      # PATH; we re-add -eo pipefail since our string overrides the default's flags.
       - name: Create package
-        shell: bash -leo pipefail {0}
         run: |
           conan create . --build=missing -pr:a default
 
@@ -137,11 +133,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Custom shell replaces GH's default `bash --noprofile --norc -eo pipefail {0}`.
-      # -l (login) sources /etc/profile.d/conan-venv.sh, putting the image's conan on
-      # PATH; we re-add -eo pipefail since our string overrides the default's flags.
       - name: Create package
-        shell: bash -leo pipefail {0}
         run: |
           conan install -r conancenter --update \
             --tool-requires=b2/5.3.1 --build=b2/5.3.1 -pr:a default
