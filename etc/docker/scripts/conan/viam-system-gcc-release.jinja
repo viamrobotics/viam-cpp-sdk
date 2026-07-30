@@ -1,11 +1,9 @@
-{# The only conan profile in the cpp-sdk-conan images, rendered per machine at  #}
-{# conan load time via jinja2. detect_api fills arch and the installed gcc      #}
-{# version; the rest is the image's pinned toolchain of record (gcc /           #}
-{# libstdc++11 / C++17).                                                        #}
-{#                                                                              #}
-{# Installed under this name, never as `default`: the images deliberately ship  #}
-{# no default profile, so callers are required to pass                          #}
-{# -pr:a viam-system-gcc-release explicitly.                                    #}
+{# The cpp-sdk-conan images' toolchain of record, rendered per machine at conan  #}
+{# load time via jinja2. detect_api fills arch and the installed gcc version;    #}
+{# the rest is pinned (gcc / libstdc++11 / C++17).                               #}
+{#                                                                               #}
+{# The sibling `default` profile is a one-line include() of this one, so a bare   #}
+{# `conan create .` and an explicit -pr:a viam-system-gcc-release agree.          #}
 {% set _c = detect_api.detect_default_compiler() %}
 [settings]
 os=Linux

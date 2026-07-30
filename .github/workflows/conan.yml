@@ -104,7 +104,7 @@ jobs:
       - name: Create package
         shell: bash -leo pipefail {0}
         run: |
-          conan create . --build=missing -pr:a viam-system-gcc-release
+          conan create . --build=missing -pr:a default
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
@@ -144,9 +144,9 @@ jobs:
         shell: bash -leo pipefail {0}
         run: |
           conan install -r conancenter --update \
-            --tool-requires=b2/5.3.1 --build=b2/5.3.1 -pr:a viam-system-gcc-release
+            --tool-requires=b2/5.3.1 --build=b2/5.3.1 -pr:a default
 
-          conan create . --build=missing -pr:a viam-system-gcc-release
+          conan create . --build=missing -pr:a default
 
   build_windows:
     if: github.repository_owner == 'viamrobotics'

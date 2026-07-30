@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# conan strategy: python3 + conan in an isolated venv, plus a single jinja2
-# profile, `viam-system-gcc-release`.
+# conan strategy: python3 + conan in an isolated venv, plus the jinja2 profile
+# `viam-system-gcc-release` and a `default` that include()s it.
 #
 # The venv keeps us off PEP-668 "externally managed" distros' toes. We source
 # its activate script so conan lands on PATH.
@@ -26,11 +26,12 @@ echo '. /opt/conan-venv/bin/activate' > /etc/profile.d/conan-venv.sh
 # shellcheck disable=SC1091
 . /opt/conan-venv/bin/activate
 
-# Install the single jinja2 profile.
+# Install the jinja2 toolchain profile plus the `default` that include()s it.
 profile=viam-system-gcc-release
 conan_home="$(conan config home)"
 mkdir -p "${conan_home}/profiles"
 install -m 0644 "$(dirname "$0")/conan/${profile}.jinja" "${conan_home}/profiles/${profile}"
+install -m 0644 "$(dirname "$0")/conan/default" "${conan_home}/profiles/default"
 
 CONAN_REMOTE_URL="https://viam.jfrog.io/artifactory/api/conan/viamconan"
 conan remote add viamconan "${CONAN_REMOTE_URL}"

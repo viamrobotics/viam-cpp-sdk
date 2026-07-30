@@ -117,7 +117,7 @@ jobs:
       if: matrix.image == 'ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye'
       run: |
         conan install -r conancenter --update \
-        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a viam-system-gcc-release
+        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a default
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
@@ -126,9 +126,9 @@ jobs:
     - name: Create and upload package
       run: |
         # TEMP(test): skip lockfile pin + upload; just build the branch to smoke-test the image.
-        conan create . --build=missing -pr:a viam-system-gcc-release
+        conan create . --build=missing -pr:a default
         # conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
-        # conan create . --build=missing -pr:a viam-system-gcc-release \
+        # conan create . --build=missing -pr:a default \
         # --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
         # conan upload "viam-cpp-sdk/*" -r viamconan -c
 
