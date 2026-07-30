@@ -133,11 +133,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Create package
+      # Force a local b2 build; the cached conancenter binary links a glibc newer than bullseye's.
+      - name: Pre-install b2 (bullseye)
+        if: matrix.image == 'ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye'
         run: |
           conan install -r conancenter --update \
-            --tool-requires=b2/5.3.1 --build=b2/5.3.1 -pr:a default
+            --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a default
 
+      - name: Create package
+        run: |
           conan create . --build=missing -pr:a default
 
   build_windows:

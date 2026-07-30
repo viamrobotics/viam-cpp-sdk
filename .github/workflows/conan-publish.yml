@@ -107,11 +107,12 @@ jobs:
       run: |
         conan remote auth --force -cc core:non_interactive=True viamconan
 
+    # Force a local b2 build; the cached conancenter binary links a glibc newer than bullseye's.
     - name: Pre-install b2 (bullseye)
       if: matrix.image == 'ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye'
       run: |
         conan install -r conancenter --update \
-        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a default
+          --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a default
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
