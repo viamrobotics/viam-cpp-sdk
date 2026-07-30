@@ -17,6 +17,11 @@ on:
         description: "push images + create manifest lists (off = build-only dry run)"
         type: boolean
         default: false
+      strategy:
+        description: "which strategy's cells to build"
+        type: choice
+        default: all
+        options: [all, conan, system]
   # Rebuild when the image definition changes.
   push:
     branches: [main]
@@ -47,7 +52,10 @@ jobs:
       - id: gen
         name: Derive cell matrix from bake --print
         working-directory: etc/docker
-        run: ../../.github/workflows/derive-cells.sh docker-bake.hcl
+        # Empty on push events; derive-cells.sh falls back to both strategies.
+        env:
+          STRATEGIES: ${{ inputs.strategy == 'all' && 'system|conan' || inputs.strategy }}
+        run: ../../.github/workflows/derive-cells.sh docker-bake.hcl "$STRATEGIES"
 
   # ---------------------------------------------------------------------------
   # One job per (cell, arch). Native runner per arch, build a single named bake

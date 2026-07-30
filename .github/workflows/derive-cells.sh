@@ -12,16 +12,18 @@
 # Writes `cells=<json>` to $GITHUB_OUTPUT when set, and always echoes the
 # pretty-printed matrix to stdout for the run log.
 #
-# Usage: derive-cells.sh [bake-file]   (default: docker-bake.hcl)
+# Usage: derive-cells.sh [bake-file] [strategy-regex]
+#   defaults: docker-bake.hcl, "system|conan" (both strategies)
 set -euo pipefail
 
 bake_file="${1:-docker-bake.hcl}"
+strategies="${2:-system|conan}"
 
 cells=$(docker buildx bake -f "$bake_file" --print \
-  | jq -c '[
+  | jq -c --arg s "$strategies" '[
       .target
       | to_entries[]
-      | select(.key | test("^(system|conan)-"))
+      | select(.key | test("^(" + $s + ")-"))
       | { target: .key, tag: (.value.tags[0]), image: (.value.tags[0] | split(":")[0]) }
     ]')
 
