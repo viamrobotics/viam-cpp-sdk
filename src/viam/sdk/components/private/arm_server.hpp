@@ -4,7 +4,6 @@
 #pragma once
 
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
-#include <viam/api/component/arm/v1/arm.pb.h>
 
 #include <viam/sdk/components/arm.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
@@ -48,6 +47,13 @@ class ArmServer : public ResourceServer, public viam::component::arm::v1::ArmSer
         ::grpc::ServerContext* context,
         const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request,
         ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) noexcept override;
+
+    ::grpc::Status MoveThroughJointPositionsStreamed(
+        ::grpc::ServerContext* context,
+        ::grpc::ServerReaderWriter<
+            ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse,
+            ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* stream) noexcept
+        override;
 
     ::grpc::Status Stop(::grpc::ServerContext* context,
                         const ::viam::component::arm::v1::StopRequest* request,

@@ -32,6 +32,10 @@ class ArmClient : public Arm {
     void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
                                       const Arm::MoveOptions& options,
                                       const ProtoStruct& extra) override;
+    Arm::stream_outcome move_through_joint_positions_streamed(
+        const std::function<boost::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
+        const std::function<bool(Arm::trajectory_update)>& update_handler,
+        const ProtoStruct& extra) override;
     bool is_moving() override;
     ProtoStruct get_status() override;
     void stop(const ProtoStruct& extra) override;
@@ -48,6 +52,7 @@ class ArmClient : public Arm {
     using Arm::get_joint_positions;
     using Arm::get_kinematics;
     using Arm::move_through_joint_positions;
+    using Arm::move_through_joint_positions_streamed;
     using Arm::move_to_joint_positions;
     using Arm::move_to_position;
     using Arm::stop;

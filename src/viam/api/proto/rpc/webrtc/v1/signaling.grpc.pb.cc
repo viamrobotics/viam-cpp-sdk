@@ -29,6 +29,7 @@ static const char* SignalingService_method_names[] = {
   "/proto.rpc.webrtc.v1.SignalingService/CallUpdate",
   "/proto.rpc.webrtc.v1.SignalingService/Answer",
   "/proto.rpc.webrtc.v1.SignalingService/OptionalWebRTCConfig",
+  "/proto.rpc.webrtc.v1.SignalingService/ReportConnectionMetadata",
 };
 
 std::unique_ptr< SignalingService::Stub> SignalingService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -42,6 +43,7 @@ SignalingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& c
   , rpcmethod_CallUpdate_(SignalingService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Answer_(SignalingService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   , rpcmethod_OptionalWebRTCConfig_(SignalingService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReportConnectionMetadata_(SignalingService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::ClientReader< ::proto::rpc::webrtc::v1::CallResponse>* SignalingService::Stub::CallRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request) {
@@ -122,6 +124,29 @@ void SignalingService::Stub::async::OptionalWebRTCConfig(::grpc::ClientContext* 
   return result;
 }
 
+::grpc::Status SignalingService::Stub::ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ReportConnectionMetadata_, context, request, response);
+}
+
+void SignalingService::Stub::async::ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReportConnectionMetadata_, context, request, response, std::move(f));
+}
+
+void SignalingService::Stub::async::ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReportConnectionMetadata_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* SignalingService::Stub::PrepareAsyncReportConnectionMetadataRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse, ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ReportConnectionMetadata_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* SignalingService::Stub::AsyncReportConnectionMetadataRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncReportConnectionMetadataRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 SignalingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SignalingService_method_names[0],
@@ -163,6 +188,16 @@ SignalingService::Service::Service() {
              ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* resp) {
                return service->OptionalWebRTCConfig(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SignalingService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< SignalingService::Service, ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](SignalingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* req,
+             ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* resp) {
+               return service->ReportConnectionMetadata(ctx, req, resp);
+             }, this)));
 }
 
 SignalingService::Service::~Service() {
@@ -189,6 +224,13 @@ SignalingService::Service::~Service() {
 }
 
 ::grpc::Status SignalingService::Service::OptionalWebRTCConfig(::grpc::ServerContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SignalingService::Service::ReportConnectionMetadata(::grpc::ServerContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -296,12 +296,56 @@ struct OptionalWebRTCConfigResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OptionalWebRTCConfigResponseDefaultTypeInternal _OptionalWebRTCConfigResponse_default_instance_;
+PROTOBUF_CONSTEXPR ConnectionCandidate::ConnectionCandidate(
+    ::_pbi::ConstantInitialized)
+  : relay_address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , type_(0)
+{}
+struct ConnectionCandidateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectionCandidateDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectionCandidateDefaultTypeInternal() {}
+  union {
+    ConnectionCandidate _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectionCandidateDefaultTypeInternal _ConnectionCandidate_default_instance_;
+PROTOBUF_CONSTEXPR ReportConnectionMetadataRequest::ReportConnectionMetadataRequest(
+    ::_pbi::ConstantInitialized)
+  : local_(nullptr)
+  , remote_(nullptr)
+  , reached_stage_(0)
+
+  , duration_ms_(0u)
+  , signaling_path_(0)
+
+  , failure_code_(0){}
+struct ReportConnectionMetadataRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ReportConnectionMetadataRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ReportConnectionMetadataRequestDefaultTypeInternal() {}
+  union {
+    ReportConnectionMetadataRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReportConnectionMetadataRequestDefaultTypeInternal _ReportConnectionMetadataRequest_default_instance_;
+PROTOBUF_CONSTEXPR ReportConnectionMetadataResponse::ReportConnectionMetadataResponse(
+    ::_pbi::ConstantInitialized){}
+struct ReportConnectionMetadataResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ReportConnectionMetadataResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ReportConnectionMetadataResponseDefaultTypeInternal() {}
+  union {
+    ReportConnectionMetadataResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReportConnectionMetadataResponseDefaultTypeInternal _ReportConnectionMetadataResponse_default_instance_;
 }  // namespace v1
 }  // namespace webrtc
 }  // namespace rpc
 }  // namespace proto
-static ::_pb::Metadata file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[22];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[25];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto = nullptr;
 
 const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -488,6 +532,32 @@ const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offset
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse, config_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ConnectionCandidate, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ConnectionCandidate, type_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ConnectionCandidate, relay_address_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, local_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, remote_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, reached_stage_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, duration_ms_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, signaling_path_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, failure_code_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 10, -1, sizeof(::proto::rpc::webrtc::v1::ICECandidate)},
@@ -512,6 +582,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 158, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponse)},
   { 170, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest)},
   { 176, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse)},
+  { 183, -1, -1, sizeof(::proto::rpc::webrtc::v1::ConnectionCandidate)},
+  { 191, -1, -1, sizeof(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest)},
+  { 203, -1, -1, sizeof(::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -537,6 +610,9 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::proto::rpc::webrtc::v1::_AnswerResponse_default_instance_._instance,
   &::proto::rpc::webrtc::v1::_OptionalWebRTCConfigRequest_default_instance_._instance,
   &::proto::rpc::webrtc::v1::_OptionalWebRTCConfigResponse_default_instance_._instance,
+  &::proto::rpc::webrtc::v1::_ConnectionCandidate_default_instance_._instance,
+  &::proto::rpc::webrtc::v1::_ReportConnectionMetadataRequest_default_instance_._instance,
+  &::proto::rpc::webrtc::v1::_ReportConnectionMetadataResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -608,21 +684,54 @@ const char descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2epro
   "\n\033OptionalWebRTCConfigRequest\"Y\n\034Optiona"
   "lWebRTCConfigResponse\0229\n\006config\030\001 \001(\0132!."
   "proto.rpc.webrtc.v1.WebRTCConfigR\006config"
-  "2\206\004\n\020SignalingService\022j\n\004Call\022 .proto.rp"
-  "c.webrtc.v1.CallRequest\032!.proto.rpc.webr"
-  "tc.v1.CallResponse\"\033\202\323\344\223\002\025\"\023/rpc/webrtc/"
-  "v1/call0\001\022\201\001\n\nCallUpdate\022&.proto.rpc.web"
-  "rtc.v1.CallUpdateRequest\032\'.proto.rpc.web"
-  "rtc.v1.CallUpdateResponse\"\"\202\323\344\223\002\034\032\032/rpc/"
-  "webrtc/v1/call_update\022U\n\006Answer\022#.proto."
-  "rpc.webrtc.v1.AnswerResponse\032\".proto.rpc"
-  ".webrtc.v1.AnswerRequest(\0010\001\022\252\001\n\024Optiona"
-  "lWebRTCConfig\0220.proto.rpc.webrtc.v1.Opti"
-  "onalWebRTCConfigRequest\0321.proto.rpc.webr"
-  "tc.v1.OptionalWebRTCConfigResponse\"-\202\323\344\223"
-  "\002\'\022%/rpc/webrtc/v1/optional_webrtc_confi"
-  "gB\'Z%go.viam.com/utils/proto/rpc/webrtc/"
-  "v1b\006proto3"
+  "\"u\n\023ConnectionCandidate\0229\n\004type\030\001 \001(\0162%."
+  "proto.rpc.webrtc.v1.ICECandidateTypeR\004ty"
+  "pe\022#\n\rrelay_address\030\002 \001(\tR\014relayAddress\""
+  "\201\003\n\037ReportConnectionMetadataRequest\022>\n\005l"
+  "ocal\030\001 \001(\0132(.proto.rpc.webrtc.v1.Connect"
+  "ionCandidateR\005local\022@\n\006remote\030\002 \001(\0132(.pr"
+  "oto.rpc.webrtc.v1.ConnectionCandidateR\006r"
+  "emote\022C\n\rreached_stage\030\003 \001(\0162\036.proto.rpc"
+  ".webrtc.v1.DialStageR\014reachedStage\022\037\n\013du"
+  "ration_ms\030\004 \001(\rR\ndurationMs\022S\n\016signaling"
+  "_path\030\005 \001(\0162,.proto.rpc.webrtc.v1.Connec"
+  "tionSignalingPathR\rsignalingPath\022!\n\014fail"
+  "ure_code\030\006 \001(\005R\013failureCode\"\"\n ReportCon"
+  "nectionMetadataResponse*\216\001\n\020ICECandidate"
+  "Type\022\"\n\036ICE_CANDIDATE_TYPE_UNSPECIFIED\020\000"
+  "\022\033\n\027ICE_CANDIDATE_TYPE_HOST\020\001\022\033\n\027ICE_CAN"
+  "DIDATE_TYPE_STUN\020\002\022\034\n\030ICE_CANDIDATE_TYPE"
+  "_RELAY\020\003*\370\001\n\tDialStage\022\032\n\026DIAL_STAGE_UNS"
+  "PECIFIED\020\000\022\"\n\036DIAL_STAGE_SIGNALING_CONNE"
+  "CTED\020\001\022\035\n\031DIAL_STAGE_CONFIG_FETCHED\020\002\022\031\n"
+  "\025DIAL_STAGE_OFFER_SENT\020\003\022\036\n\032DIAL_STAGE_A"
+  "NSWER_RECEIVED\020\004\022\034\n\030DIAL_STAGE_ICE_CONNE"
+  "CTED\020\005\022\035\n\031DIAL_STAGE_DTLS_CONNECTED\020\006\022\024\n"
+  "\020DIAL_STAGE_READY\020\007*\301\001\n\027ConnectionSignal"
+  "ingPath\022)\n%CONNECTION_SIGNALING_PATH_UNS"
+  "PECIFIED\020\000\022,\n(CONNECTION_SIGNALING_PATH_"
+  "CLOUD_SIGNALED\020\001\022(\n$CONNECTION_SIGNALING"
+  "_PATH_MDNS_LOCAL\020\002\022#\n\037CONNECTION_SIGNALI"
+  "NG_PATH_LOCAL\020\0032\303\005\n\020SignalingService\022j\n\004"
+  "Call\022 .proto.rpc.webrtc.v1.CallRequest\032!"
+  ".proto.rpc.webrtc.v1.CallResponse\"\033\202\323\344\223\002"
+  "\025\"\023/rpc/webrtc/v1/call0\001\022\201\001\n\nCallUpdate\022"
+  "&.proto.rpc.webrtc.v1.CallUpdateRequest\032"
+  "\'.proto.rpc.webrtc.v1.CallUpdateResponse"
+  "\"\"\202\323\344\223\002\034\032\032/rpc/webrtc/v1/call_update\022U\n\006"
+  "Answer\022#.proto.rpc.webrtc.v1.AnswerRespo"
+  "nse\032\".proto.rpc.webrtc.v1.AnswerRequest("
+  "\0010\001\022\252\001\n\024OptionalWebRTCConfig\0220.proto.rpc"
+  ".webrtc.v1.OptionalWebRTCConfigRequest\0321"
+  ".proto.rpc.webrtc.v1.OptionalWebRTCConfi"
+  "gResponse\"-\202\323\344\223\002\'\022%/rpc/webrtc/v1/option"
+  "al_webrtc_config\022\272\001\n\030ReportConnectionMet"
+  "adata\0224.proto.rpc.webrtc.v1.ReportConnec"
+  "tionMetadataRequest\0325.proto.rpc.webrtc.v"
+  "1.ReportConnectionMetadataResponse\"1\202\323\344\223"
+  "\002+\")/rpc/webrtc/v1/report_connection_met"
+  "adataB\'Z%go.viam.com/utils/proto/rpc/web"
+  "rtc/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
@@ -631,9 +740,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrt
 };
 static ::_pbi::once_flag descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto = {
-    false, false, 3290, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
+    false, false, 4614, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
     "proto/rpc/webrtc/v1/signaling.proto",
-    &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once, descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps, 3, 22,
+    &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once, descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps, 3, 25,
     schemas, file_default_instances, TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offsets,
     file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto, file_level_enum_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
     file_level_service_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
@@ -648,6 +757,58 @@ namespace proto {
 namespace rpc {
 namespace webrtc {
 namespace v1 {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ICECandidateType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto);
+  return file_level_enum_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[0];
+}
+bool ICECandidateType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* DialStage_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto);
+  return file_level_enum_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[1];
+}
+bool DialStage_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ConnectionSignalingPath_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto);
+  return file_level_enum_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[2];
+}
+bool ConnectionSignalingPath_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -5405,6 +5566,604 @@ void OptionalWebRTCConfigResponse::InternalSwap(OptionalWebRTCConfigResponse* ot
       file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[21]);
 }
 
+// ===================================================================
+
+class ConnectionCandidate::_Internal {
+ public:
+};
+
+ConnectionCandidate::ConnectionCandidate(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:proto.rpc.webrtc.v1.ConnectionCandidate)
+}
+ConnectionCandidate::ConnectionCandidate(const ConnectionCandidate& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  relay_address_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    relay_address_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_relay_address().empty()) {
+    relay_address_.Set(from._internal_relay_address(), 
+      GetArenaForAllocation());
+  }
+  type_ = from.type_;
+  // @@protoc_insertion_point(copy_constructor:proto.rpc.webrtc.v1.ConnectionCandidate)
+}
+
+inline void ConnectionCandidate::SharedCtor() {
+relay_address_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  relay_address_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+type_ = 0;
+}
+
+ConnectionCandidate::~ConnectionCandidate() {
+  // @@protoc_insertion_point(destructor:proto.rpc.webrtc.v1.ConnectionCandidate)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ConnectionCandidate::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  relay_address_.Destroy();
+}
+
+void ConnectionCandidate::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ConnectionCandidate::Clear() {
+// @@protoc_insertion_point(message_clear_start:proto.rpc.webrtc.v1.ConnectionCandidate)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  relay_address_.ClearToEmpty();
+  type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ConnectionCandidate::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .proto.rpc.webrtc.v1.ICECandidateType type = 1 [json_name = "type"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::proto::rpc::webrtc::v1::ICECandidateType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // string relay_address = 2 [json_name = "relayAddress"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_relay_address();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.webrtc.v1.ConnectionCandidate.relay_address"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ConnectionCandidate::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.webrtc.v1.ConnectionCandidate)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .proto.rpc.webrtc.v1.ICECandidateType type = 1 [json_name = "type"];
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_type(), target);
+  }
+
+  // string relay_address = 2 [json_name = "relayAddress"];
+  if (!this->_internal_relay_address().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_relay_address().data(), static_cast<int>(this->_internal_relay_address().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.webrtc.v1.ConnectionCandidate.relay_address");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_relay_address(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.webrtc.v1.ConnectionCandidate)
+  return target;
+}
+
+size_t ConnectionCandidate::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:proto.rpc.webrtc.v1.ConnectionCandidate)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string relay_address = 2 [json_name = "relayAddress"];
+  if (!this->_internal_relay_address().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_relay_address());
+  }
+
+  // .proto.rpc.webrtc.v1.ICECandidateType type = 1 [json_name = "type"];
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ConnectionCandidate::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ConnectionCandidate::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ConnectionCandidate::GetClassData() const { return &_class_data_; }
+
+void ConnectionCandidate::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ConnectionCandidate *>(to)->MergeFrom(
+      static_cast<const ConnectionCandidate &>(from));
+}
+
+
+void ConnectionCandidate::MergeFrom(const ConnectionCandidate& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.webrtc.v1.ConnectionCandidate)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_relay_address().empty()) {
+    _internal_set_relay_address(from._internal_relay_address());
+  }
+  if (from._internal_type() != 0) {
+    _internal_set_type(from._internal_type());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ConnectionCandidate::CopyFrom(const ConnectionCandidate& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:proto.rpc.webrtc.v1.ConnectionCandidate)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ConnectionCandidate::IsInitialized() const {
+  return true;
+}
+
+void ConnectionCandidate::InternalSwap(ConnectionCandidate* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &relay_address_, lhs_arena,
+      &other->relay_address_, rhs_arena
+  );
+  swap(type_, other->type_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ConnectionCandidate::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_getter, &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once,
+      file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[22]);
+}
+
+// ===================================================================
+
+class ReportConnectionMetadataRequest::_Internal {
+ public:
+  static const ::proto::rpc::webrtc::v1::ConnectionCandidate& local(const ReportConnectionMetadataRequest* msg);
+  static const ::proto::rpc::webrtc::v1::ConnectionCandidate& remote(const ReportConnectionMetadataRequest* msg);
+};
+
+const ::proto::rpc::webrtc::v1::ConnectionCandidate&
+ReportConnectionMetadataRequest::_Internal::local(const ReportConnectionMetadataRequest* msg) {
+  return *msg->local_;
+}
+const ::proto::rpc::webrtc::v1::ConnectionCandidate&
+ReportConnectionMetadataRequest::_Internal::remote(const ReportConnectionMetadataRequest* msg) {
+  return *msg->remote_;
+}
+ReportConnectionMetadataRequest::ReportConnectionMetadataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+}
+ReportConnectionMetadataRequest::ReportConnectionMetadataRequest(const ReportConnectionMetadataRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_local()) {
+    local_ = new ::proto::rpc::webrtc::v1::ConnectionCandidate(*from.local_);
+  } else {
+    local_ = nullptr;
+  }
+  if (from._internal_has_remote()) {
+    remote_ = new ::proto::rpc::webrtc::v1::ConnectionCandidate(*from.remote_);
+  } else {
+    remote_ = nullptr;
+  }
+  ::memcpy(&reached_stage_, &from.reached_stage_,
+    static_cast<size_t>(reinterpret_cast<char*>(&failure_code_) -
+    reinterpret_cast<char*>(&reached_stage_)) + sizeof(failure_code_));
+  // @@protoc_insertion_point(copy_constructor:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+}
+
+inline void ReportConnectionMetadataRequest::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&local_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&failure_code_) -
+    reinterpret_cast<char*>(&local_)) + sizeof(failure_code_));
+}
+
+ReportConnectionMetadataRequest::~ReportConnectionMetadataRequest() {
+  // @@protoc_insertion_point(destructor:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ReportConnectionMetadataRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete local_;
+  if (this != internal_default_instance()) delete remote_;
+}
+
+void ReportConnectionMetadataRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ReportConnectionMetadataRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && local_ != nullptr) {
+    delete local_;
+  }
+  local_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && remote_ != nullptr) {
+    delete remote_;
+  }
+  remote_ = nullptr;
+  ::memset(&reached_stage_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&failure_code_) -
+      reinterpret_cast<char*>(&reached_stage_)) + sizeof(failure_code_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ReportConnectionMetadataRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .proto.rpc.webrtc.v1.ConnectionCandidate local = 1 [json_name = "local"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_local(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .proto.rpc.webrtc.v1.ConnectionCandidate remote = 2 [json_name = "remote"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_remote(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .proto.rpc.webrtc.v1.DialStage reached_stage = 3 [json_name = "reachedStage"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_reached_stage(static_cast<::proto::rpc::webrtc::v1::DialStage>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 duration_ms = 4 [json_name = "durationMs"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          duration_ms_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .proto.rpc.webrtc.v1.ConnectionSignalingPath signaling_path = 5 [json_name = "signalingPath"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_signaling_path(static_cast<::proto::rpc::webrtc::v1::ConnectionSignalingPath>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 failure_code = 6 [json_name = "failureCode"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          failure_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ReportConnectionMetadataRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .proto.rpc.webrtc.v1.ConnectionCandidate local = 1 [json_name = "local"];
+  if (this->_internal_has_local()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::local(this),
+        _Internal::local(this).GetCachedSize(), target, stream);
+  }
+
+  // .proto.rpc.webrtc.v1.ConnectionCandidate remote = 2 [json_name = "remote"];
+  if (this->_internal_has_remote()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::remote(this),
+        _Internal::remote(this).GetCachedSize(), target, stream);
+  }
+
+  // .proto.rpc.webrtc.v1.DialStage reached_stage = 3 [json_name = "reachedStage"];
+  if (this->_internal_reached_stage() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_reached_stage(), target);
+  }
+
+  // uint32 duration_ms = 4 [json_name = "durationMs"];
+  if (this->_internal_duration_ms() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_duration_ms(), target);
+  }
+
+  // .proto.rpc.webrtc.v1.ConnectionSignalingPath signaling_path = 5 [json_name = "signalingPath"];
+  if (this->_internal_signaling_path() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_signaling_path(), target);
+  }
+
+  // int32 failure_code = 6 [json_name = "failureCode"];
+  if (this->_internal_failure_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_failure_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+  return target;
+}
+
+size_t ReportConnectionMetadataRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .proto.rpc.webrtc.v1.ConnectionCandidate local = 1 [json_name = "local"];
+  if (this->_internal_has_local()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *local_);
+  }
+
+  // .proto.rpc.webrtc.v1.ConnectionCandidate remote = 2 [json_name = "remote"];
+  if (this->_internal_has_remote()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *remote_);
+  }
+
+  // .proto.rpc.webrtc.v1.DialStage reached_stage = 3 [json_name = "reachedStage"];
+  if (this->_internal_reached_stage() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_reached_stage());
+  }
+
+  // uint32 duration_ms = 4 [json_name = "durationMs"];
+  if (this->_internal_duration_ms() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_duration_ms());
+  }
+
+  // .proto.rpc.webrtc.v1.ConnectionSignalingPath signaling_path = 5 [json_name = "signalingPath"];
+  if (this->_internal_signaling_path() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_signaling_path());
+  }
+
+  // int32 failure_code = 6 [json_name = "failureCode"];
+  if (this->_internal_failure_code() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_failure_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReportConnectionMetadataRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ReportConnectionMetadataRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReportConnectionMetadataRequest::GetClassData() const { return &_class_data_; }
+
+void ReportConnectionMetadataRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ReportConnectionMetadataRequest *>(to)->MergeFrom(
+      static_cast<const ReportConnectionMetadataRequest &>(from));
+}
+
+
+void ReportConnectionMetadataRequest::MergeFrom(const ReportConnectionMetadataRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_local()) {
+    _internal_mutable_local()->::proto::rpc::webrtc::v1::ConnectionCandidate::MergeFrom(from._internal_local());
+  }
+  if (from._internal_has_remote()) {
+    _internal_mutable_remote()->::proto::rpc::webrtc::v1::ConnectionCandidate::MergeFrom(from._internal_remote());
+  }
+  if (from._internal_reached_stage() != 0) {
+    _internal_set_reached_stage(from._internal_reached_stage());
+  }
+  if (from._internal_duration_ms() != 0) {
+    _internal_set_duration_ms(from._internal_duration_ms());
+  }
+  if (from._internal_signaling_path() != 0) {
+    _internal_set_signaling_path(from._internal_signaling_path());
+  }
+  if (from._internal_failure_code() != 0) {
+    _internal_set_failure_code(from._internal_failure_code());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ReportConnectionMetadataRequest::CopyFrom(const ReportConnectionMetadataRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:proto.rpc.webrtc.v1.ReportConnectionMetadataRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ReportConnectionMetadataRequest::IsInitialized() const {
+  return true;
+}
+
+void ReportConnectionMetadataRequest::InternalSwap(ReportConnectionMetadataRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ReportConnectionMetadataRequest, failure_code_)
+      + sizeof(ReportConnectionMetadataRequest::failure_code_)
+      - PROTOBUF_FIELD_OFFSET(ReportConnectionMetadataRequest, local_)>(
+          reinterpret_cast<char*>(&local_),
+          reinterpret_cast<char*>(&other->local_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReportConnectionMetadataRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_getter, &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once,
+      file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[23]);
+}
+
+// ===================================================================
+
+class ReportConnectionMetadataResponse::_Internal {
+ public:
+};
+
+ReportConnectionMetadataResponse::ReportConnectionMetadataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:proto.rpc.webrtc.v1.ReportConnectionMetadataResponse)
+}
+ReportConnectionMetadataResponse::ReportConnectionMetadataResponse(const ReportConnectionMetadataResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:proto.rpc.webrtc.v1.ReportConnectionMetadataResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReportConnectionMetadataResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReportConnectionMetadataResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReportConnectionMetadataResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_getter, &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once,
+      file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[24]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace webrtc
@@ -5498,6 +6257,18 @@ Arena::CreateMaybeMessage< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest
 template<> PROTOBUF_NOINLINE ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse*
 Arena::CreateMaybeMessage< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::webrtc::v1::ConnectionCandidate*
+Arena::CreateMaybeMessage< ::proto::rpc::webrtc::v1::ConnectionCandidate >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::webrtc::v1::ConnectionCandidate >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest*
+Arena::CreateMaybeMessage< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse*
+Arena::CreateMaybeMessage< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
