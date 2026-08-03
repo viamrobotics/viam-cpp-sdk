@@ -34,10 +34,10 @@ class Board : public Component {
     /// help with this conversion. Consult your ADC's documentation and Viam's `Board`
     /// documentation for more details.
     struct analog_response {
-        analog_value value;
-        float min_range;  // Minimum possible voltage read by the analog reader
-        float max_range;  // Maximum possible voltage read by the analog reader
-        float step_size;  // Volts represented in each step in the value
+        analog_value value = 0;
+        float min_range = 0.0f;  // Minimum possible voltage read by the analog reader
+        float max_range = 0.0f;  // Maximum possible voltage read by the analog reader
+        float step_size = 0.0f;  // Volts represented in each step in the value
     };
 
     /// @brief Depending on the type of digital interrupt, this can have different meanings. If a
@@ -61,10 +61,10 @@ class Board : public Component {
         std::string pin_name;
 
         /// time in nanoseconds the tick occured. This does not represent an absolute time.
-        std::chrono::nanoseconds time;
+        std::chrono::nanoseconds time = std::chrono::nanoseconds::zero();
 
         /// bool high or low.
-        bool high;
+        bool high = false;
     };
 
     /// @enum power_mode

@@ -24,17 +24,17 @@ class PowerSensor : public Component {
     /// @struct voltage
     struct voltage {
         /// Voltage in volts.
-        double volts;
+        double volts = 0.0;
         /// Whether the voltage is DC or AC.
-        bool is_ac;
+        bool is_ac = false;
     };
 
     /// @struct current
     struct current {
         /// Current in amperes.
-        double amperes;
+        double amperes = 0.0;
         /// Whether the current is DC or AC.
-        bool is_ac;
+        bool is_ac = false;
     };
 
     API api() const override;

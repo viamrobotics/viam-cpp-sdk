@@ -33,15 +33,15 @@ class Encoder : public Component {
     /// @struct position
     /// @brief reported position.
     struct position {
-        float value;
-        position_type type;
+        float value = 0.0f;
+        position_type type = position_type::unspecified;
     };
 
     /// @struct properties
     /// @brief Encodes the supported modes of this encoder
     struct properties {
-        bool ticks_count_supported;
-        bool angle_degrees_supported;
+        bool ticks_count_supported = false;
+        bool angle_degrees_supported = false;
     };
 
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an

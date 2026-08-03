@@ -24,7 +24,7 @@ class Gripper : public Component, public Stoppable {
     /// @struct holding_status
     /// @brief whether the gripper is holding something (along with other contextual info)
     struct holding_status {
-        bool is_holding_something;
+        bool is_holding_something = false;
         ProtoStruct meta;
     };
 
