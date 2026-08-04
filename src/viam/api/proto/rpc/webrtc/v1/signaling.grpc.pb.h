@@ -90,6 +90,15 @@ class SignalingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>> PrepareAsyncOptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>>(PrepareAsyncOptionalWebRTCConfigRaw(context, request, cq));
     }
+    // ReportConnectionMetadata reports metadata about a WebRTC connection attempt.
+    // The host must be in the rpc-host metadata field.
+    virtual ::grpc::Status ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>> AsyncReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>>(AsyncReportConnectionMetadataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>> PrepareAsyncReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>>(PrepareAsyncReportConnectionMetadataRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -117,6 +126,10 @@ class SignalingService final {
       // The host to get a config for must be in the rpc-host metadata field.
       virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ReportConnectionMetadata reports metadata about a WebRTC connection attempt.
+      // The host must be in the rpc-host metadata field.
+      virtual void ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -132,6 +145,8 @@ class SignalingService final {
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::webrtc::v1::AnswerResponse, ::proto::rpc::webrtc::v1::AnswerRequest>* PrepareAsyncAnswerRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* AsyncOptionalWebRTCConfigRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* PrepareAsyncOptionalWebRTCConfigRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* AsyncReportConnectionMetadataRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* PrepareAsyncReportConnectionMetadataRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -168,6 +183,13 @@ class SignalingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>> PrepareAsyncOptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>>(PrepareAsyncOptionalWebRTCConfigRaw(context, request, cq));
     }
+    ::grpc::Status ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>> AsyncReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>>(AsyncReportConnectionMetadataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>> PrepareAsyncReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>>(PrepareAsyncReportConnectionMetadataRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -177,6 +199,8 @@ class SignalingService final {
       void Answer(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::webrtc::v1::AnswerResponse,::proto::rpc::webrtc::v1::AnswerRequest>* reactor) override;
       void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, std::function<void(::grpc::Status)>) override;
       void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response, std::function<void(::grpc::Status)>) override;
+      void ReportConnectionMetadata(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -198,10 +222,13 @@ class SignalingService final {
     ::grpc::ClientAsyncReaderWriter< ::proto::rpc::webrtc::v1::AnswerResponse, ::proto::rpc::webrtc::v1::AnswerRequest>* PrepareAsyncAnswerRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* AsyncOptionalWebRTCConfigRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* PrepareAsyncOptionalWebRTCConfigRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* AsyncReportConnectionMetadataRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* PrepareAsyncReportConnectionMetadataRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Call_;
     const ::grpc::internal::RpcMethod rpcmethod_CallUpdate_;
     const ::grpc::internal::RpcMethod rpcmethod_Answer_;
     const ::grpc::internal::RpcMethod rpcmethod_OptionalWebRTCConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_ReportConnectionMetadata_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -231,6 +258,9 @@ class SignalingService final {
     // OptionalWebRTCConfig returns any WebRTC configuration the caller may want to use.
     // The host to get a config for must be in the rpc-host metadata field.
     virtual ::grpc::Status OptionalWebRTCConfig(::grpc::ServerContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response);
+    // ReportConnectionMetadata reports metadata about a WebRTC connection attempt.
+    // The host must be in the rpc-host metadata field.
+    virtual ::grpc::Status ReportConnectionMetadata(::grpc::ServerContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Call : public BaseClass {
@@ -312,7 +342,27 @@ class SignalingService final {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Call<WithAsyncMethod_CallUpdate<WithAsyncMethod_Answer<WithAsyncMethod_OptionalWebRTCConfig<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_ReportConnectionMetadata : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ReportConnectionMetadata() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_ReportConnectionMetadata() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReportConnectionMetadata(::grpc::ServerContext* /*context*/, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* /*request*/, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestReportConnectionMetadata(::grpc::ServerContext* context, ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Call<WithAsyncMethod_CallUpdate<WithAsyncMethod_Answer<WithAsyncMethod_OptionalWebRTCConfig<WithAsyncMethod_ReportConnectionMetadata<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Call : public BaseClass {
    private:
@@ -412,7 +462,34 @@ class SignalingService final {
     virtual ::grpc::ServerUnaryReactor* OptionalWebRTCConfig(
       ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* /*request*/, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Call<WithCallbackMethod_CallUpdate<WithCallbackMethod_Answer<WithCallbackMethod_OptionalWebRTCConfig<Service > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_ReportConnectionMetadata : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ReportConnectionMetadata() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* request, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* response) { return this->ReportConnectionMetadata(context, request, response); }));}
+    void SetMessageAllocatorFor_ReportConnectionMetadata(
+        ::grpc::MessageAllocator< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ReportConnectionMetadata() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReportConnectionMetadata(::grpc::ServerContext* /*context*/, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* /*request*/, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ReportConnectionMetadata(
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* /*request*/, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Call<WithCallbackMethod_CallUpdate<WithCallbackMethod_Answer<WithCallbackMethod_OptionalWebRTCConfig<WithCallbackMethod_ReportConnectionMetadata<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Call : public BaseClass {
@@ -478,6 +555,23 @@ class SignalingService final {
     }
     // disable synchronous version of this method
     ::grpc::Status OptionalWebRTCConfig(::grpc::ServerContext* /*context*/, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* /*request*/, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ReportConnectionMetadata : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ReportConnectionMetadata() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_ReportConnectionMetadata() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReportConnectionMetadata(::grpc::ServerContext* /*context*/, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* /*request*/, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -560,6 +654,26 @@ class SignalingService final {
     }
     void RequestOptionalWebRTCConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ReportConnectionMetadata : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ReportConnectionMetadata() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_ReportConnectionMetadata() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReportConnectionMetadata(::grpc::ServerContext* /*context*/, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* /*request*/, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestReportConnectionMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -652,6 +766,28 @@ class SignalingService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_ReportConnectionMetadata : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ReportConnectionMetadata() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ReportConnectionMetadata(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ReportConnectionMetadata() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReportConnectionMetadata(::grpc::ServerContext* /*context*/, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* /*request*/, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ReportConnectionMetadata(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_CallUpdate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -705,7 +841,34 @@ class SignalingService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedOptionalWebRTCConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest,::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_CallUpdate<WithStreamedUnaryMethod_OptionalWebRTCConfig<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ReportConnectionMetadata : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ReportConnectionMetadata() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* streamer) {
+                       return this->StreamedReportConnectionMetadata(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ReportConnectionMetadata() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ReportConnectionMetadata(::grpc::ServerContext* /*context*/, const ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest* /*request*/, ::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedReportConnectionMetadata(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest,::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_CallUpdate<WithStreamedUnaryMethod_OptionalWebRTCConfig<WithStreamedUnaryMethod_ReportConnectionMetadata<Service > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_Call : public BaseClass {
    private:
@@ -734,7 +897,7 @@ class SignalingService final {
     virtual ::grpc::Status StreamedCall(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::proto::rpc::webrtc::v1::CallRequest,::proto::rpc::webrtc::v1::CallResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_Call<Service > SplitStreamedService;
-  typedef WithSplitStreamingMethod_Call<WithStreamedUnaryMethod_CallUpdate<WithStreamedUnaryMethod_OptionalWebRTCConfig<Service > > > StreamedService;
+  typedef WithSplitStreamingMethod_Call<WithStreamedUnaryMethod_CallUpdate<WithStreamedUnaryMethod_OptionalWebRTCConfig<WithStreamedUnaryMethod_ReportConnectionMetadata<Service > > > > StreamedService;
 };
 
 }  // namespace v1
