@@ -2,7 +2,8 @@
 # Derive the docker base-image cell matrix from the bake file.
 #
 # Reads the cell surface straight out of docker-bake.hcl via `bake --print`
-# (the documented contract) and emits one JSON object per system-* target:
+# (the documented contract) and emits one JSON object per published cell target
+# (system-* and conan-*):
 #   { target, tag, image }
 # `tag` is the published multi-arch reference the merge job creates; `image`
 # is that tag with the version stripped (the per-cell repo digests are pushed
@@ -11,16 +12,18 @@
 # Writes `cells=<json>` to $GITHUB_OUTPUT when set, and always echoes the
 # pretty-printed matrix to stdout for the run log.
 #
-# Usage: derive-cells.sh [bake-file]   (default: docker-bake.hcl)
+# Usage: derive-cells.sh [bake-file] [strategy-regex]
+#   defaults: docker-bake.hcl, "system|conan" (both strategies)
 set -euo pipefail
 
 bake_file="${1:-docker-bake.hcl}"
+strategies="${2:-system|conan}"
 
-cells=$(docker buildx bake -f "$bake_file" system --print \
-  | jq -c '[
+cells=$(docker buildx bake -f "$bake_file" --print \
+  | jq -c --arg s "$strategies" '[
       .target
       | to_entries[]
-      | select(.key | startswith("system-"))
+      | select(.key | test("^(" + $s + ")-"))
       | { target: .key, tag: (.value.tags[0]), image: (.value.tags[0] | split(":")[0]) }
     ]')
 

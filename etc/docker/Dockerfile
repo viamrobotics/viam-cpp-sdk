@@ -4,8 +4,9 @@
 # Stages:
 #   base   - distro + universal devkit + LLVM + cmake. Internal only, not published.
 #   system - base + apt -dev packages (grpc-from-source fallback on old distros). Published.
+#   conan  - base + python3 + conan (venv) + default profile. Published.
 #
-# Strategy is selected by bake `target = "system"`, not a build arg.
+# Strategy is selected by bake `target = "system"` / `target = "conan"`, not a build arg.
 # Distro-conditional logic lives in scripts/, not in RUN steps here.
 
 # Required parameters
@@ -43,5 +44,16 @@ ARG GRPC_SOURCE_VERSION_OVERRIDE
 ENV GRPC_SOURCE_VERSION_OVERRIDE=${GRPC_SOURCE_VERSION_OVERRIDE}
 
 RUN /opt/scripts/install-system-deps.sh
+
+RUN rm -rf /opt/scripts
+
+
+FROM base AS conan
+
+# Expands to /root/.conan2 at build time, pinning the baked profiles and remote to
+# a fixed path -- GitHub Actions `container:` overrides HOME to /github/home.
+ENV CONAN_HOME=$HOME/.conan2
+
+RUN /opt/scripts/install-conan.sh
 
 RUN rm -rf /opt/scripts
