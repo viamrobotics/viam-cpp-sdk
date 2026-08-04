@@ -13,7 +13,7 @@ variable "REGISTRY" {
 }
 
 group "default" {
-  targets = ["system"]
+  targets = ["system", "conan"]
 }
 
 // Holds everything common to the strategies stacked on top of it.
@@ -60,5 +60,41 @@ target "system" {
     "viam.cellAxis.distro"   = cell.distro
     "viam.cellAxis.version"  = cell.version
     "viam.cellAxis.strategy" = "system"
+  }
+}
+
+target "conan" {
+  inherits = ["base"]
+  name     = "conan-${cell.distro}-${cell.version}"
+  target   = "conan"
+
+  // (distro, version) cells in the `conan` strategy. Independent of `system`'s
+  // matrix: drop a cell here without touching the system matrix, and vice versa.
+  matrix = {
+    cell = [
+      { distro = "debian", version = "bullseye" },
+      { distro = "debian", version = "bookworm" },
+      { distro = "debian", version = "trixie" },
+      { distro = "debian", version = "sid" },
+      { distro = "ubuntu", version = "focal" },
+      { distro = "ubuntu", version = "jammy" },
+      { distro = "ubuntu", version = "noble" },
+      { distro = "ubuntu", version = "resolute" },
+    ]
+  }
+
+  args = {
+    DISTRO  = cell.distro
+    VERSION = cell.version
+  }
+
+  tags = [
+    "${REGISTRY}/cpp-sdk-conan-${cell.distro}:${cell.version}",
+  ]
+
+  labels = {
+    "viam.cellAxis.distro"   = cell.distro
+    "viam.cellAxis.version"  = cell.version
+    "viam.cellAxis.strategy" = "conan"
   }
 }
