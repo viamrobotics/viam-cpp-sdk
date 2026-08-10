@@ -1396,6 +1396,32 @@ inline bool LoginMethod_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<LoginMethod>(
     LoginMethod_descriptor(), name, value);
 }
+enum LogOrder : int {
+  LOG_ORDER_UNSPECIFIED = 0,
+  LOG_ORDER_ASCENDING = 1,
+  LOG_ORDER_DESCENDING = 2,
+  LogOrder_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  LogOrder_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool LogOrder_IsValid(int value);
+constexpr LogOrder LogOrder_MIN = LOG_ORDER_UNSPECIFIED;
+constexpr LogOrder LogOrder_MAX = LOG_ORDER_DESCENDING;
+constexpr int LogOrder_ARRAYSIZE = LogOrder_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LogOrder_descriptor();
+template<typename T>
+inline const std::string& LogOrder_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, LogOrder>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function LogOrder_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    LogOrder_descriptor(), enum_t_value);
+}
+inline bool LogOrder_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, LogOrder* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<LogOrder>(
+    LogOrder_descriptor(), name, value);
+}
 enum FragmentVisibility : int {
   FRAGMENT_VISIBILITY_UNSPECIFIED = 0,
   FRAGMENT_VISIBILITY_PRIVATE = 1,
@@ -17381,11 +17407,13 @@ class GetRobotPartLogsRequest final :
     kFilterFieldNumber = 3,
     kPageTokenFieldNumber = 4,
     kSourceFieldNumber = 9,
+    kRangeFieldNumber = 12,
     kStartFieldNumber = 6,
     kEndFieldNumber = 7,
-    kLimitFieldNumber = 8,
     kErrorsOnlyFieldNumber = 2,
     kUserFacingOnlyFieldNumber = 10,
+    kOrderFieldNumber = 11,
+    kLimitFieldNumber = 8,
   };
   // repeated string levels = 5 [json_name = "levels"];
   int levels_size() const;
@@ -17479,6 +17507,24 @@ class GetRobotPartLogsRequest final :
   std::string* _internal_mutable_source();
   public:
 
+  // optional string range = 12 [json_name = "range"];
+  bool has_range() const;
+  private:
+  bool _internal_has_range() const;
+  public:
+  void clear_range();
+  const std::string& range() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_range(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_range();
+  PROTOBUF_NODISCARD std::string* release_range();
+  void set_allocated_range(std::string* range);
+  private:
+  const std::string& _internal_range() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_range(const std::string& value);
+  std::string* _internal_mutable_range();
+  public:
+
   // optional .google.protobuf.Timestamp start = 6 [json_name = "start"];
   bool has_start() const;
   private:
@@ -17515,19 +17561,6 @@ class GetRobotPartLogsRequest final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* end);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_end();
 
-  // optional int64 limit = 8 [json_name = "limit"];
-  bool has_limit() const;
-  private:
-  bool _internal_has_limit() const;
-  public:
-  void clear_limit();
-  int64_t limit() const;
-  void set_limit(int64_t value);
-  private:
-  int64_t _internal_limit() const;
-  void _internal_set_limit(int64_t value);
-  public:
-
   // bool errors_only = 2 [json_name = "errorsOnly", deprecated = true];
   PROTOBUF_DEPRECATED void clear_errors_only();
   PROTOBUF_DEPRECATED bool errors_only() const;
@@ -17550,6 +17583,32 @@ class GetRobotPartLogsRequest final :
   void _internal_set_user_facing_only(bool value);
   public:
 
+  // optional .viam.app.v1.LogOrder order = 11 [json_name = "order"];
+  bool has_order() const;
+  private:
+  bool _internal_has_order() const;
+  public:
+  void clear_order();
+  ::viam::app::v1::LogOrder order() const;
+  void set_order(::viam::app::v1::LogOrder value);
+  private:
+  ::viam::app::v1::LogOrder _internal_order() const;
+  void _internal_set_order(::viam::app::v1::LogOrder value);
+  public:
+
+  // optional int64 limit = 8 [json_name = "limit"];
+  bool has_limit() const;
+  private:
+  bool _internal_has_limit() const;
+  public:
+  void clear_limit();
+  int64_t limit() const;
+  void set_limit(int64_t value);
+  private:
+  int64_t _internal_limit() const;
+  void _internal_set_limit(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartLogsRequest)
  private:
   class _Internal;
@@ -17564,11 +17623,13 @@ class GetRobotPartLogsRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filter_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr source_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr range_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* start_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* end_;
-  int64_t limit_;
   bool errors_only_;
   bool user_facing_only_;
+  int order_;
+  int64_t limit_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -64318,7 +64379,7 @@ GetRobotPartLogsRequest::mutable_levels() {
 
 // optional .google.protobuf.Timestamp start = 6 [json_name = "start"];
 inline bool GetRobotPartLogsRequest::_internal_has_start() const {
-  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || start_ != nullptr);
   return value;
 }
@@ -64341,14 +64402,14 @@ inline void GetRobotPartLogsRequest::unsafe_arena_set_allocated_start(
   }
   start_ = start;
   if (start) {
-    _has_bits_[0] |= 0x00000008u;
+    _has_bits_[0] |= 0x00000010u;
   } else {
-    _has_bits_[0] &= ~0x00000008u;
+    _has_bits_[0] &= ~0x00000010u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartLogsRequest.start)
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::release_start() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_;
   start_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -64364,13 +64425,13 @@ inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::release_star
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::unsafe_arena_release_start() {
   // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.start)
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_;
   start_ = nullptr;
   return temp;
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::_internal_mutable_start() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
   if (start_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
     start_ = p;
@@ -64395,9 +64456,9 @@ inline void GetRobotPartLogsRequest::set_allocated_start(::PROTOBUF_NAMESPACE_ID
       start = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, start, submessage_arena);
     }
-    _has_bits_[0] |= 0x00000008u;
+    _has_bits_[0] |= 0x00000010u;
   } else {
-    _has_bits_[0] &= ~0x00000008u;
+    _has_bits_[0] &= ~0x00000010u;
   }
   start_ = start;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.start)
@@ -64405,7 +64466,7 @@ inline void GetRobotPartLogsRequest::set_allocated_start(::PROTOBUF_NAMESPACE_ID
 
 // optional .google.protobuf.Timestamp end = 7 [json_name = "end"];
 inline bool GetRobotPartLogsRequest::_internal_has_end() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
   PROTOBUF_ASSUME(!value || end_ != nullptr);
   return value;
 }
@@ -64428,14 +64489,14 @@ inline void GetRobotPartLogsRequest::unsafe_arena_set_allocated_end(
   }
   end_ = end;
   if (end) {
-    _has_bits_[0] |= 0x00000010u;
+    _has_bits_[0] |= 0x00000020u;
   } else {
-    _has_bits_[0] &= ~0x00000010u;
+    _has_bits_[0] &= ~0x00000020u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartLogsRequest.end)
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::release_end() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_;
   end_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -64451,13 +64512,13 @@ inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::release_end(
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::unsafe_arena_release_end() {
   // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.end)
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_;
   end_ = nullptr;
   return temp;
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartLogsRequest::_internal_mutable_end() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
   if (end_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
     end_ = p;
@@ -64482,9 +64543,9 @@ inline void GetRobotPartLogsRequest::set_allocated_end(::PROTOBUF_NAMESPACE_ID::
       end = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, end, submessage_arena);
     }
-    _has_bits_[0] |= 0x00000010u;
+    _has_bits_[0] |= 0x00000020u;
   } else {
-    _has_bits_[0] &= ~0x00000010u;
+    _has_bits_[0] &= ~0x00000020u;
   }
   end_ = end;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.end)
@@ -64492,7 +64553,7 @@ inline void GetRobotPartLogsRequest::set_allocated_end(::PROTOBUF_NAMESPACE_ID::
 
 // optional int64 limit = 8 [json_name = "limit"];
 inline bool GetRobotPartLogsRequest::_internal_has_limit() const {
-  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_has_bits_[0] & 0x00000100u) != 0;
   return value;
 }
 inline bool GetRobotPartLogsRequest::has_limit() const {
@@ -64500,7 +64561,7 @@ inline bool GetRobotPartLogsRequest::has_limit() const {
 }
 inline void GetRobotPartLogsRequest::clear_limit() {
   limit_ = int64_t{0};
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline int64_t GetRobotPartLogsRequest::_internal_limit() const {
   return limit_;
@@ -64510,7 +64571,7 @@ inline int64_t GetRobotPartLogsRequest::limit() const {
   return _internal_limit();
 }
 inline void GetRobotPartLogsRequest::_internal_set_limit(int64_t value) {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000100u;
   limit_ = value;
 }
 inline void GetRobotPartLogsRequest::set_limit(int64_t value) {
@@ -64612,6 +64673,102 @@ inline void GetRobotPartLogsRequest::_internal_set_user_facing_only(bool value) 
 inline void GetRobotPartLogsRequest::set_user_facing_only(bool value) {
   _internal_set_user_facing_only(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.user_facing_only)
+}
+
+// optional .viam.app.v1.LogOrder order = 11 [json_name = "order"];
+inline bool GetRobotPartLogsRequest::_internal_has_order() const {
+  bool value = (_has_bits_[0] & 0x00000080u) != 0;
+  return value;
+}
+inline bool GetRobotPartLogsRequest::has_order() const {
+  return _internal_has_order();
+}
+inline void GetRobotPartLogsRequest::clear_order() {
+  order_ = 0;
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline ::viam::app::v1::LogOrder GetRobotPartLogsRequest::_internal_order() const {
+  return static_cast< ::viam::app::v1::LogOrder >(order_);
+}
+inline ::viam::app::v1::LogOrder GetRobotPartLogsRequest::order() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.order)
+  return _internal_order();
+}
+inline void GetRobotPartLogsRequest::_internal_set_order(::viam::app::v1::LogOrder value) {
+  _has_bits_[0] |= 0x00000080u;
+  order_ = value;
+}
+inline void GetRobotPartLogsRequest::set_order(::viam::app::v1::LogOrder value) {
+  _internal_set_order(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.order)
+}
+
+// optional string range = 12 [json_name = "range"];
+inline bool GetRobotPartLogsRequest::_internal_has_range() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool GetRobotPartLogsRequest::has_range() const {
+  return _internal_has_range();
+}
+inline void GetRobotPartLogsRequest::clear_range() {
+  range_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const std::string& GetRobotPartLogsRequest::range() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.range)
+  return _internal_range();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetRobotPartLogsRequest::set_range(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000008u;
+ range_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.range)
+}
+inline std::string* GetRobotPartLogsRequest::mutable_range() {
+  std::string* _s = _internal_mutable_range();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartLogsRequest.range)
+  return _s;
+}
+inline const std::string& GetRobotPartLogsRequest::_internal_range() const {
+  return range_.Get();
+}
+inline void GetRobotPartLogsRequest::_internal_set_range(const std::string& value) {
+  _has_bits_[0] |= 0x00000008u;
+  range_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetRobotPartLogsRequest::_internal_mutable_range() {
+  _has_bits_[0] |= 0x00000008u;
+  return range_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetRobotPartLogsRequest::release_range() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.range)
+  if (!_internal_has_range()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000008u;
+  auto* p = range_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (range_.IsDefault()) {
+    range_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetRobotPartLogsRequest::set_allocated_range(std::string* range) {
+  if (range != nullptr) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  range_.SetAllocated(range, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (range_.IsDefault()) {
+    range_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.range)
 }
 
 // -------------------------------------------------------------------
@@ -91897,6 +92054,11 @@ template <> struct is_proto_enum< ::viam::app::v1::LoginMethod> : ::std::true_ty
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::LoginMethod>() {
   return ::viam::app::v1::LoginMethod_descriptor();
+}
+template <> struct is_proto_enum< ::viam::app::v1::LogOrder> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::LogOrder>() {
+  return ::viam::app::v1::LogOrder_descriptor();
 }
 template <> struct is_proto_enum< ::viam::app::v1::FragmentVisibility> : ::std::true_type {};
 template <>
