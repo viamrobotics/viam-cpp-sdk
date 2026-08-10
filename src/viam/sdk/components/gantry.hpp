@@ -25,11 +25,11 @@ class Gantry : public Component, public Stoppable {
     /// requested speed.
     struct movement_coordinate {
         /// @brief A position for the axis of the gantry to move to, in millimeters.
-        double position_mm;
+        double position_mm = 0.0;
 
         /// @brief A speed in millimeters per second for the gantry to move at respective to the
         /// axis.
-        double speed_mm_per_sec;
+        double speed_mm_per_sec = 0.0;
     };
 
     /// @brief Get the positions of the axes of the gantry in millimeters.

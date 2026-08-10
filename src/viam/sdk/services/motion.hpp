@@ -83,10 +83,10 @@ class Motion : public Service {
     /// @ingroup Motion
     struct plan_status {
         /// @brief The state of the plan execution
-        plan_state state;
+        plan_state state = {};
 
         /// @brief The time the executing plan transitioned to the state.
-        time_pt timestamp;
+        time_pt timestamp = {};
 
         /// @brief The reason for the state change. The error message if the plan failed, or the
         /// re-plan reason if re-planning was necessary.
@@ -159,15 +159,15 @@ class Motion : public Service {
     /// @struct linear_constraint
     /// @brief Specifies that the component being moved should move linearly to its goal.
     struct linear_constraint {
-        float line_tolerance_mm;
-        float orientation_tolerance_degs;
+        float line_tolerance_mm = 0.0f;
+        float orientation_tolerance_degs = 0.0f;
     };
 
     /// @struct orientation_constraint
     /// @brief Specifies that the component being moved will not deviate its orientation beyond the
     /// specified threshold.
     struct orientation_constraint {
-        float orientation_tolerance_degs;
+        float orientation_tolerance_degs = 0.0f;
     };
 
     /// @struct collision_specification
