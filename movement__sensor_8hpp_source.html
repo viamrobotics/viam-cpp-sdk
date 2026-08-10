@@ -103,31 +103,31 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>   <span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html">   27</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html">compassheading</a> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html#a5c037ef6b176e742a77dbc64d2c43a7c">   29</a></span>        <span class="keywordtype">double</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html#a5c037ef6b176e742a77dbc64d2c43a7c">value</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html#a5c037ef6b176e742a77dbc64d2c43a7c">   29</a></span>        <span class="keywordtype">double</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html#a5c037ef6b176e742a77dbc64d2c43a7c">value</a> = 0.0;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    };</div>
 </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1MovementSensor_1_1orientation.html">   35</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1MovementSensor_1_1orientation.html">orientation</a> {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">double</span> o_x, o_y, o_z, theta;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">double</span> o_x = 0.0, o_y = 0.0, o_z = 0.0, theta = 0.0;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    };</div>
 </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1MovementSensor_1_1position.html">   40</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1MovementSensor_1_1position.html">position</a> {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> coordinate;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">float</span> altitude_m;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">float</span> altitude_m = 0.0f;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    };</div>
 </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="foldopen" id="foldopen00046" data-start="{" data-end="};">
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1MovementSensor_1_1properties.html">   46</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1MovementSensor_1_1properties.html">properties</a> {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">bool</span> linear_velocity_supported;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">bool</span> angular_velocity_supported;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordtype">bool</span> orientation_supported;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">bool</span> position_supported;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordtype">bool</span> compass_heading_supported;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordtype">bool</span> linear_acceleration_supported;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">bool</span> linear_velocity_supported = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">bool</span> angular_velocity_supported = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordtype">bool</span> orientation_supported = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">bool</span> position_supported = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordtype">bool</span> compass_heading_supported = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordtype">bool</span> linear_acceleration_supported = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
 </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>

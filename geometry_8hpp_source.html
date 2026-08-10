@@ -118,22 +118,22 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1box.html">   34</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1box.html">box</a> {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">double</span> x;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">double</span> y;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">double</span> z;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">double</span> x = 0.0;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">double</span> y = 0.0;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">double</span> z = 0.0;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1box.html">box</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1box.html">box</a>&amp; rhs);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
 <div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1sphere.html">   40</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1sphere.html">sphere</a> {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">double</span> radius;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">double</span> radius = 0.0;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1sphere.html">sphere</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1sphere.html">sphere</a>&amp; rhs);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
 </div>
 <div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1capsule.html">   44</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1capsule.html">capsule</a> {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">double</span> radius;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">double</span> length;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">double</span> radius = 0.0;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">double</span> length = 0.0;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1capsule.html">capsule</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1capsule.html">capsule</a>&amp; rhs);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
 </div>
@@ -176,7 +176,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1geo__point.html">   86</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> {</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// TODO it really bugs me that this is not in lat-long but this would break existing</span></div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// aggregate initializers</span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">double</span> longitude, latitude;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">double</span> longitude = 0.0, latitude = 0.0;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; rhs);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; v);</div>

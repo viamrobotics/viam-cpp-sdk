@@ -104,10 +104,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">   36</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_typedef" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a> value;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">float</span> min_range;  <span class="comment">// Minimum possible voltage read by the analog reader</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">float</span> max_range;  <span class="comment">// Maximum possible voltage read by the analog reader</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">float</span> step_size;  <span class="comment">// Volts represented in each step in the value</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_typedef" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a> value = 0;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">float</span> min_range = 0.0f;  <span class="comment">// Minimum possible voltage read by the analog reader</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">float</span> max_range = 0.0f;  <span class="comment">// Maximum possible voltage read by the analog reader</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">float</span> step_size = 0.0f;  <span class="comment">// Volts represented in each step in the value</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    };</div>
 </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
@@ -124,9 +124,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Board_1_1Tick.html">   59</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> {</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Board_1_1Tick.html#a184710552160686a8e17f997d88f88a1">   61</a></span>        std::string <a class="code hl_variable" href="structviam_1_1sdk_1_1Board_1_1Tick.html#a184710552160686a8e17f997d88f88a1">pin_name</a>;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Board_1_1Tick.html#a01ab8c12e21ca0022548948dba5735d8">   64</a></span>        std::chrono::nanoseconds <a class="code hl_variable" href="structviam_1_1sdk_1_1Board_1_1Tick.html#a01ab8c12e21ca0022548948dba5735d8">time</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Board_1_1Tick.html#a01ab8c12e21ca0022548948dba5735d8">   64</a></span>        std::chrono::nanoseconds <a class="code hl_variable" href="structviam_1_1sdk_1_1Board_1_1Tick.html#a01ab8c12e21ca0022548948dba5735d8">time</a> = {};</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Board_1_1Tick.html#ac50f2e1597a07d9a5d8abdd06451b597">   67</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1Board_1_1Tick.html#ac50f2e1597a07d9a5d8abdd06451b597">high</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Board_1_1Tick.html#ac50f2e1597a07d9a5d8abdd06451b597">   67</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structviam_1_1sdk_1_1Board_1_1Tick.html#ac50f2e1597a07d9a5d8abdd06451b597">high</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    };</div>
 </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>

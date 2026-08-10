@@ -119,7 +119,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Navigation_1_1LocationResponse.html">   40</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1Navigation_1_1LocationResponse.html">LocationResponse</a> {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> location;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">double</span> compass_heading;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">double</span> compass_heading = 0.0;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Navigation_1_1LocationResponse.html">LocationResponse</a>&amp; rhs)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keywordflow">return</span> compass_heading == rhs.compass_heading &amp;&amp; location == rhs.location;</div>
@@ -129,7 +129,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1Navigation_1_1Properties.html">   52</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1Navigation_1_1Properties.html">Properties</a> {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_enumeration" href="classviam_1_1sdk_1_1Navigation.html#a42d8307600d3084e20e4ceae293f63c4">MapType</a> map_type;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_enumeration" href="classviam_1_1sdk_1_1Navigation.html#a42d8307600d3084e20e4ceae293f63c4">MapType</a> map_type = MapType::k_unspecified;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    };</div>
 </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
