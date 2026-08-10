@@ -61,7 +61,7 @@ class Board : public Component {
         std::string pin_name;
 
         /// time in nanoseconds the tick occured. This does not represent an absolute time.
-        std::chrono::nanoseconds time = std::chrono::nanoseconds::zero();
+        std::chrono::nanoseconds time = {};
 
         /// bool high or low.
         bool high = false;

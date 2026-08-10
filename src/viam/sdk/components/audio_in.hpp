@@ -29,8 +29,8 @@ class AudioIn : public Component {
     struct audio_chunk {
         std::vector<uint8_t> audio_data;
         audio_info info;
-        std::chrono::nanoseconds start_timestamp_ns = std::chrono::nanoseconds::zero();
-        std::chrono::nanoseconds end_timestamp_ns = std::chrono::nanoseconds::zero();
+        std::chrono::nanoseconds start_timestamp_ns = {};
+        std::chrono::nanoseconds end_timestamp_ns = {};
         int sequence_number = 0;  // sequential chunk number
         std::string request_id;
     };
