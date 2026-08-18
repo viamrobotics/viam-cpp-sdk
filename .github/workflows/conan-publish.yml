@@ -22,7 +22,9 @@ on:
 jobs:
   build_macos:
     # If GitHub bumps this image's default Xcode past apple-clang 21, add a step
-    # asserting `clang --version` matches the etc/conan/macos.profile pin.
+    # asserting `clang --version` matches the etc/conan/macos.profile pin. The
+    # profile pins compiler.version without verifying it, so a drifted image would
+    # silently publish binaries built with a newer clang under the pinned package_id.
     runs-on: macos-26
 
     steps:

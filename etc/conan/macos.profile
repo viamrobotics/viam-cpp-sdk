@@ -4,6 +4,7 @@
 # the runner/Xcode pin in conan.yml and conan-publish.yml.
 include(default)
 
+# macOS 14 Sonoma
 [settings]
 os=Macos
 os.version=14.0
