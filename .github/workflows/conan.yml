@@ -65,7 +65,8 @@ jobs:
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
           conan remote add viamconan "$CONAN_REMOTE_URL"
-          conan create . --build=missing -pr:a etc/conan/macos.profile
+          conan create . --build=missing -pr:a etc/conan/macos.profile \
+            --lockfile etc/conan/conan.lock --lockfile-partial
         env:
           CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
 
