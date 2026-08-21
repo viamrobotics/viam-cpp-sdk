@@ -45,15 +45,7 @@ jobs:
   build_macos:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
-    runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: aarch64-apple-darwin
-            platform: macosx_arm64
-          - target: x86_64-apple-darwin
-            platform: macosx_x86_64
+    runs-on: macos-26
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -71,7 +63,8 @@ jobs:
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
           conan remote add viamconan "$CONAN_REMOTE_URL"
-          conan create . --build=missing -s:a compiler.cppstd=17
+          conan create . --build=missing -pr:a etc/conan/macos.profile \
+            --lockfile etc/conan/conan.lock --lockfile-partial
         env:
           CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
 

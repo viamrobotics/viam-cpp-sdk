@@ -21,8 +21,7 @@ on:
 
 jobs:
   build_macos:
-    # Not sure if we actually need x64 macos-latest
-    runs-on: macos-latest
+    runs-on: macos-26
 
     steps:
       - name: Checkout code
@@ -64,7 +63,7 @@ jobs:
 
           conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-          conan create . --build=missing -s:a compiler.cppstd=17 \
+          conan create . --build=missing -pr:a etc/conan/macos.profile \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
           conan upload "viam-cpp-sdk/*" -r viamconan -c
@@ -153,6 +152,7 @@ jobs:
         path: conan.lock
 
     - name: Upload additional deps
+      if: inputs.upload_deps
       run: |
         conan upload "boost/*" -r viamconan -c
         conan upload "abseil/*" -r viamconan -c
