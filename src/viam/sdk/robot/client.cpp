@@ -256,9 +256,8 @@ bool operator==(const RobotClient::operation& lhs, const RobotClient::operation&
 }
 
 bool operator==(const RobotClient::resource_status& lhs, const RobotClient::resource_status& rhs) {
-    return lhs.name == rhs.name && lhs.state == rhs.state &&
-           lhs.last_updated == rhs.last_updated && lhs.revision == rhs.revision &&
-           lhs.error == rhs.error;
+    return lhs.name == rhs.name && lhs.state == rhs.state && lhs.last_updated == rhs.last_updated &&
+           lhs.revision == rhs.revision && lhs.error == rhs.error;
 }
 
 bool operator==(const RobotClient::config_status& lhs, const RobotClient::config_status& rhs) {
