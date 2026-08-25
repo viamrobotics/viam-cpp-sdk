@@ -4,6 +4,7 @@
 
 #include <grpcpp/support/status.h>
 
+#include <app/packages/v1/packages.pb.h>
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.pb.h>
 
@@ -99,6 +100,70 @@ PoseInFrame mock_proto_transform_response() {
     PoseInFrame response;
     *response.mutable_reference_frame() = "arm";
     *response.mutable_pose() = default_proto_pose();
+    return response;
+}
+
+RobotClient::machine_status mock_machine_status_response() {
+    RobotClient::machine_status ms;
+    ms.state = RobotClient::status::k_running;
+
+    RobotClient::resource_status rs;
+    rs.name = Name({kRDK, kComponent, "motor"}, "", "mock_motor");
+    rs.state = RobotClient::resource_status::resource_state::k_ready;
+    rs.revision = "rev1";
+    ms.resources = {rs};
+
+    ms.config.revision = "config_rev";
+
+    RobotClient::module_status mod;
+    mod.module_name = "mock_module";
+    mod.state = RobotClient::module_status::module_state::k_ready;
+    mod.consecutive_failures = 0;
+    ms.modules = {mod};
+
+    RobotClient::package_status pkg;
+    pkg.name = "mock_package";
+    pkg.type = RobotClient::package_status::package_type::k_module;
+    pkg.state = RobotClient::package_status::package_state::k_ready;
+    pkg.version = "1.0.0";
+    pkg.bytes_downloaded = 100;
+    pkg.total_bytes = 100;
+    ms.packages = {pkg};
+
+    RobotClient::job_status job;
+    job.job_name = "mock_job";
+    ms.job_statuses = {job};
+
+    return ms;
+}
+
+viam::robot::v1::GetMachineStatusResponse mock_proto_machine_status_response() {
+    viam::robot::v1::GetMachineStatusResponse response;
+    response.set_state(viam::robot::v1::GetMachineStatusResponse_State_STATE_RUNNING);
+
+    auto* rs = response.add_resources();
+    *rs->mutable_name() = to_proto(Name({kRDK, kComponent, "motor"}, "", "mock_motor"));
+    rs->set_state(viam::robot::v1::ResourceStatus_State_STATE_READY);
+    rs->set_revision("rev1");
+
+    response.mutable_config()->set_revision("config_rev");
+
+    auto* mod = response.add_modules();
+    mod->set_module_name("mock_module");
+    mod->set_state(viam::robot::v1::ModuleStatus_State_STATE_READY);
+    mod->set_consecutive_failures(0);
+
+    auto* pkg = response.add_packages();
+    pkg->set_name("mock_package");
+    pkg->set_type(viam::app::packages::v1::PACKAGE_TYPE_MODULE);
+    pkg->set_state(viam::robot::v1::PackageStatus_State_STATE_READY);
+    pkg->set_version("1.0.0");
+    pkg->set_bytes_downloaded(100);
+    pkg->set_total_bytes(100);
+
+    auto* job = response.add_job_statuses();
+    job->set_job_name("mock_job");
+
     return response;
 }
 
@@ -337,7 +402,7 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
                               "viam_client info not properly set in metadata");
     }
 
-    response->set_state(::viam::robot::v1::GetMachineStatusResponse_State_STATE_RUNNING);
+    *response = mock_proto_machine_status_response();
 
     return ::grpc::Status();
 }
