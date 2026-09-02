@@ -38,6 +38,11 @@ class MockArm : public sdk::Arm {
     sdk::KinematicsData get_kinematics(const sdk::ProtoStruct&) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct&) override;
     std::map<std::string, sdk::mesh> get_3d_models(const sdk::ProtoStruct&) override;
+    sdk::Arm::properties get_properties(const sdk::ProtoStruct&) override;
+    void set_manual_mode(bool manual_mode,
+                         std::chrono::seconds enabled_for,
+                         const sdk::ProtoStruct&) override;
+    bool get_manual_mode(const sdk::ProtoStruct&) override;
     sdk::pose current_location;
     std::vector<double> joint_positions;
     std::vector<std::vector<double>> move_thru_positions;

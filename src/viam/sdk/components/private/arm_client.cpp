@@ -274,6 +274,30 @@ std::vector<GeometryConfig> ArmClient::get_geometries(const ProtoStruct& extra) 
         .invoke([](auto& response) { return from_proto(response); });
 }
 
+Arm::properties ArmClient::get_properties(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetProperties)
+        .with(extra)
+        .invoke([](auto& response) { return from_proto(response); });
+}
+
+void ArmClient::set_manual_mode(bool manual_mode,
+                                std::chrono::seconds enabled_for,
+                                const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::SetManualMode)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_manual_mode(manual_mode);
+                  request.set_enabled_for(static_cast<int32_t>(enabled_for.count()));
+              })
+        .invoke();
+}
+
+bool ArmClient::get_manual_mode(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetManualMode)
+        .with(extra)
+        .invoke([](auto& response) { return response.manual_mode(); });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

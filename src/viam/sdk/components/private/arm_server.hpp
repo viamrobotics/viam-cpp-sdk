@@ -85,6 +85,21 @@ class ArmServer : public ResourceServer, public viam::component::arm::v1::ArmSer
         ::grpc::ServerContext* context,
         const ::viam::common::v1::GetGeometriesRequest* request,
         ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
+
+    ::grpc::Status GetProperties(
+        ::grpc::ServerContext* context,
+        const ::viam::component::arm::v1::GetPropertiesRequest* request,
+        ::viam::component::arm::v1::GetPropertiesResponse* response) noexcept override;
+
+    ::grpc::Status SetManualMode(
+        ::grpc::ServerContext* context,
+        const ::viam::component::arm::v1::SetManualModeRequest* request,
+        ::viam::component::arm::v1::SetManualModeResponse* response) noexcept override;
+
+    ::grpc::Status GetManualMode(
+        ::grpc::ServerContext* context,
+        const ::viam::component::arm::v1::GetManualModeRequest* request,
+        ::viam::component::arm::v1::GetManualModeResponse* response) noexcept override;
 };
 
 }  // namespace impl

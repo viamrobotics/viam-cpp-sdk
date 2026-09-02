@@ -4,6 +4,7 @@
 
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/rpc/grpc_context_observer.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -103,6 +104,21 @@ std::vector<sdk::GeometryConfig> MockArm::get_geometries(const sdk::ProtoStruct&
 
 std::map<std::string, sdk::mesh> MockArm::get_3d_models(const sdk::ProtoStruct&) {
     return fake_3d_models();
+}
+
+sdk::Arm::properties MockArm::get_properties(const sdk::ProtoStruct&) {
+    // The mock implements move_to_position but does not support manual mode.
+    return {/*support_manual_mode=*/false, /*support_cartesian_commands=*/true};
+}
+
+void MockArm::set_manual_mode(bool, std::chrono::seconds, const sdk::ProtoStruct&) {
+    throw sdk::Exception(sdk::ErrorCondition::k_not_supported,
+                         "mock arm does not support manual mode");
+}
+
+bool MockArm::get_manual_mode(const sdk::ProtoStruct&) {
+    throw sdk::Exception(sdk::ErrorCondition::k_not_supported,
+                         "mock arm does not support manual mode");
 }
 
 }  // namespace arm

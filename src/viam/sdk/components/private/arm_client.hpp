@@ -43,6 +43,11 @@ class ArmClient : public Arm {
     ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;
     std::map<std::string, mesh> get_3d_models(const ProtoStruct& extra) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
+    Arm::properties get_properties(const ProtoStruct& extra) override;
+    void set_manual_mode(bool manual_mode,
+                         std::chrono::seconds enabled_for,
+                         const ProtoStruct& extra) override;
+    bool get_manual_mode(const ProtoStruct& extra) override;
 
     // Using declarations to introduce convenience overloads of interface which do not need to be
     // passed the ProtoStruct parameter.
@@ -51,10 +56,13 @@ class ArmClient : public Arm {
     using Arm::get_geometries;
     using Arm::get_joint_positions;
     using Arm::get_kinematics;
+    using Arm::get_manual_mode;
+    using Arm::get_properties;
     using Arm::move_through_joint_positions;
     using Arm::move_through_joint_positions_streamed;
     using Arm::move_to_joint_positions;
     using Arm::move_to_position;
+    using Arm::set_manual_mode;
     using Arm::stop;
 
    private:
