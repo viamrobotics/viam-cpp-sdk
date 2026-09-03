@@ -140,9 +140,7 @@ jobs:
       env:
         IMAGE_NAME: "${{ matrix.image }}"
       run: |
-        IMAGE_NAME=${{ env.IMAGE_NAME }}
-        IMAGE_NAME=${IMAGE_NAME//[:\/]/-} # replace colons and slashes with hyphens
-        echo IMAGE_NAME=${IMAGE_NAME} >> $GITHUB_ENV
+        echo "IMAGE_NAME=$(echo "$IMAGE_NAME" | tr ':/' '--')" >> "$GITHUB_ENV"
 
     - name: Upload lockfile artifact
       if: inputs.lockfile_release_update
