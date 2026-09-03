@@ -53,6 +53,7 @@ target_link_libraries(viamsdk_test
   PUBLIC viam-cpp-sdk::viamsdk
   # Tests compile Boost.Test in via boost/test/included/unit_test.hpp; also linking
   # the shared unit_test_framework duplicates its globals and double-frees at exit.
+  # Sources here must therefore not reference Boost.Test (see test_utils.hpp).
   PUBLIC Boost::headers
 )
 

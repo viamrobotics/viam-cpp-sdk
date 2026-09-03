@@ -1,8 +1,15 @@
 #pragma once
 
+#include <iostream>
+#include <sstream>
+
 #include <grpcpp/grpcpp.h>
 
+// Only the BOOST_TEST_MODULE translation unit may reference Boost.Test: this header is also
+// compiled into libviamsdk_test, and a dylib with unresolved Boost.Test symbols fails to link.
+#ifdef BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
+#endif
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -19,7 +26,10 @@ struct GlobalFixture {
     }
 };
 
+// Boost.Test requires the global fixture statement in exactly one compilation unit per module.
+#ifdef BOOST_TEST_MODULE
 BOOST_TEST_GLOBAL_FIXTURE(GlobalFixture);
+#endif
 
 // Buffer output filter to test console logging.
 // In practice this is a pain and makes it hard to inspect Boost.Test output,
