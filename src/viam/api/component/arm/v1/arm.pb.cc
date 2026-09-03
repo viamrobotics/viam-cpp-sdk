@@ -352,11 +352,88 @@ struct MoveOptionsDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MoveOptionsDefaultTypeInternal _MoveOptions_default_instance_;
+PROTOBUF_CONSTEXPR SetManualModeRequest::SetManualModeRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr)
+  , manual_mode_(false)
+  , enabled_for_(0){}
+struct SetManualModeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetManualModeRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetManualModeRequestDefaultTypeInternal() {}
+  union {
+    SetManualModeRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetManualModeRequestDefaultTypeInternal _SetManualModeRequest_default_instance_;
+PROTOBUF_CONSTEXPR SetManualModeResponse::SetManualModeResponse(
+    ::_pbi::ConstantInitialized){}
+struct SetManualModeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetManualModeResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetManualModeResponseDefaultTypeInternal() {}
+  union {
+    SetManualModeResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetManualModeResponseDefaultTypeInternal _SetManualModeResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetManualModeRequest::GetManualModeRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct GetManualModeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetManualModeRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetManualModeRequestDefaultTypeInternal() {}
+  union {
+    GetManualModeRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetManualModeRequestDefaultTypeInternal _GetManualModeRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetManualModeResponse::GetManualModeResponse(
+    ::_pbi::ConstantInitialized)
+  : manual_mode_(false){}
+struct GetManualModeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetManualModeResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetManualModeResponseDefaultTypeInternal() {}
+  union {
+    GetManualModeResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetManualModeResponseDefaultTypeInternal _GetManualModeResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct GetPropertiesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesRequestDefaultTypeInternal() {}
+  union {
+    GetPropertiesRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
+    ::_pbi::ConstantInitialized)
+  : support_manual_mode_(false)
+  , support_cartesian_commands_(false){}
+struct GetPropertiesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesResponseDefaultTypeInternal() {}
+  union {
+    GetPropertiesResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 }  // namespace v1
 }  // namespace arm
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2farm_2fv1_2farm_2eproto[26];
+static ::_pb::Metadata file_level_metadata_component_2farm_2fv1_2farm_2eproto[32];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2farm_2fv1_2farm_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2farm_2fv1_2farm_2eproto = nullptr;
 
@@ -576,6 +653,53 @@ const uint32_t TableStruct_component_2farm_2fv1_2farm_2eproto::offsets[] PROTOBU
   ~0u,
   ~0u,
   2,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::SetManualModeRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::SetManualModeRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::SetManualModeRequest, manual_mode_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::SetManualModeRequest, enabled_for_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::SetManualModeRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::SetManualModeResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetManualModeRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetManualModeRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetManualModeRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetManualModeResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetManualModeResponse, manual_mode_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetPropertiesRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetPropertiesRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetPropertiesRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetPropertiesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetPropertiesResponse, support_manual_mode_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetPropertiesResponse, support_cartesian_commands_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::arm::v1::GetEndPositionRequest)},
@@ -604,6 +728,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 185, -1, -1, sizeof(::viam::component::arm::v1::IsMovingRequest)},
   { 192, -1, -1, sizeof(::viam::component::arm::v1::IsMovingResponse)},
   { 199, 210, -1, sizeof(::viam::component::arm::v1::MoveOptions)},
+  { 215, -1, -1, sizeof(::viam::component::arm::v1::SetManualModeRequest)},
+  { 225, -1, -1, sizeof(::viam::component::arm::v1::SetManualModeResponse)},
+  { 231, -1, -1, sizeof(::viam::component::arm::v1::GetManualModeRequest)},
+  { 239, -1, -1, sizeof(::viam::component::arm::v1::GetManualModeResponse)},
+  { 246, -1, -1, sizeof(::viam::component::arm::v1::GetPropertiesRequest)},
+  { 254, -1, -1, sizeof(::viam::component::arm::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -633,6 +763,12 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::arm::v1::_IsMovingRequest_default_instance_._instance,
   &::viam::component::arm::v1::_IsMovingResponse_default_instance_._instance,
   &::viam::component::arm::v1::_MoveOptions_default_instance_._instance,
+  &::viam::component::arm::v1::_SetManualModeRequest_default_instance_._instance,
+  &::viam::component::arm::v1::_SetManualModeResponse_default_instance_._instance,
+  &::viam::component::arm::v1::_GetManualModeRequest_default_instance_._instance,
+  &::viam::component::arm::v1::_GetManualModeResponse_default_instance_._instance,
+  &::viam::component::arm::v1::_GetPropertiesRequest_default_instance_._instance,
+  &::viam::component::arm::v1::_GetPropertiesResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -713,61 +849,88 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "maxAccDegsPerSec2Joints\022\'\n\rmax_tcp_speed"
   "\030\005 \001(\001H\002R\013maxTcpSpeed\210\001\001B\027\n\025_max_vel_deg"
   "s_per_secB\030\n\026_max_acc_degs_per_sec2B\020\n\016_"
-  "max_tcp_speed2\273\020\n\nArmService\022\241\001\n\016GetEndP"
-  "osition\022,.viam.component.arm.v1.GetEndPo"
-  "sitionRequest\032-.viam.component.arm.v1.Ge"
-  "tEndPositionResponse\"2\202\323\344\223\002,\022*/viam/api/"
-  "v1/component/arm/{name}/position\022\245\001\n\016Mov"
-  "eToPosition\022,.viam.component.arm.v1.Move"
-  "ToPositionRequest\032-.viam.component.arm.v"
-  "1.MoveToPositionResponse\"6\240\222)\001\202\323\344\223\002,\032*/v"
-  "iam/api/v1/component/arm/{name}/position"
-  "\022\261\001\n\021GetJointPositions\022/.viam.component."
-  "arm.v1.GetJointPositionsRequest\0320.viam.c"
-  "omponent.arm.v1.GetJointPositionsRespons"
-  "e\"9\202\323\344\223\0023\0221/viam/api/v1/component/arm/{n"
-  "ame}/joint_positions\022\276\001\n\024MoveToJointPosi"
-  "tions\0222.viam.component.arm.v1.MoveToJoin"
-  "tPositionsRequest\0323.viam.component.arm.v"
-  "1.MoveToJointPositionsResponse\"=\240\222)\001\202\323\344\223"
-  "\0023\0321/viam/api/v1/component/arm/{name}/jo"
-  "int_positions\022\332\001\n\031MoveThroughJointPositi"
-  "ons\0227.viam.component.arm.v1.MoveThroughJ"
-  "ointPositionsRequest\0328.viam.component.ar"
-  "m.v1.MoveThroughJointPositionsResponse\"J"
-  "\240\222)\001\202\323\344\223\002@\">/viam/api/v1/component/arm/{"
-  "name}/move_through_joint_positions\022\260\001\n!M"
-  "oveThroughJointPositionsStreamed\022\?.viam."
-  "component.arm.v1.MoveThroughJointPositio"
-  "nsStreamedRequest\032@.viam.component.arm.v"
-  "1.MoveThroughJointPositionsStreamedRespo"
-  "nse\"\004\240\222)\001(\0010\001\022\177\n\004Stop\022\".viam.component.a"
-  "rm.v1.StopRequest\032#.viam.component.arm.v"
-  "1.StopResponse\".\202\323\344\223\002(\"&/viam/api/v1/com"
-  "ponent/arm/{name}/stop\022\220\001\n\010IsMoving\022&.vi"
-  "am.component.arm.v1.IsMovingRequest\032\'.vi"
-  "am.component.arm.v1.IsMovingResponse\"3\202\323"
-  "\344\223\002-\022+/viam/api/v1/component/arm/{name}/"
-  "is_moving\022\206\001\n\tDoCommand\022 .viam.common.v1"
-  ".DoCommandRequest\032!.viam.common.v1.DoCom"
-  "mandResponse\"4\202\323\344\223\002.\",/viam/api/v1/compo"
-  "nent/arm/{name}/do_command\022\206\001\n\tGetStatus"
-  "\022 .viam.common.v1.GetStatusRequest\032!.via"
-  "m.common.v1.GetStatusResponse\"4\202\323\344\223\002.\022,/"
-  "viam/api/v1/component/arm/{name}/get_sta"
-  "tus\022\222\001\n\rGetKinematics\022$.viam.common.v1.G"
-  "etKinematicsRequest\032%.viam.common.v1.Get"
-  "KinematicsResponse\"4\202\323\344\223\002.\022,/viam/api/v1"
-  "/component/arm/{name}/kinematics\022\222\001\n\rGet"
-  "Geometries\022$.viam.common.v1.GetGeometrie"
-  "sRequest\032%.viam.common.v1.GetGeometriesR"
-  "esponse\"4\202\323\344\223\002.\022,/viam/api/v1/component/"
-  "arm/{name}/geometries\022\213\001\n\013Get3DModels\022\"."
-  "viam.common.v1.Get3DModelsRequest\032#.viam"
-  ".common.v1.Get3DModelsResponse\"3\202\323\344\223\002-\022+"
-  "/viam/api/v1/component/arm/{name}/3d_mod"
-  "elsB=\n\031com.viam.component.arm.v1Z go.via"
-  "m.com/api/component/arm/v1b\006proto3"
+  "max_tcp_speed\"\233\001\n\024SetManualModeRequest\022\022"
+  "\n\004name\030\001 \001(\tR\004name\022\037\n\013manual_mode\030\002 \001(\010R"
+  "\nmanualMode\022\037\n\013enabled_for\030\003 \001(\005R\nenable"
+  "dFor\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
+  "ructR\005extra\"\027\n\025SetManualModeResponse\"Y\n\024"
+  "GetManualModeRequest\022\022\n\004name\030\001 \001(\tR\004name"
+  "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
+  "R\005extra\"8\n\025GetManualModeResponse\022\037\n\013manu"
+  "al_mode\030\001 \001(\010R\nmanualMode\"Y\n\024GetProperti"
+  "esRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c"
+  " \001(\0132\027.google.protobuf.StructR\005extra\"\205\001\n"
+  "\025GetPropertiesResponse\022.\n\023support_manual"
+  "_mode\030\001 \001(\010R\021supportManualMode\022<\n\032suppor"
+  "t_cartesian_commands\030\002 \001(\010R\030supportCarte"
+  "sianCommands2\244\024\n\nArmService\022\241\001\n\016GetEndPo"
+  "sition\022,.viam.component.arm.v1.GetEndPos"
+  "itionRequest\032-.viam.component.arm.v1.Get"
+  "EndPositionResponse\"2\202\323\344\223\002,\022*/viam/api/v"
+  "1/component/arm/{name}/position\022\245\001\n\016Move"
+  "ToPosition\022,.viam.component.arm.v1.MoveT"
+  "oPositionRequest\032-.viam.component.arm.v1"
+  ".MoveToPositionResponse\"6\240\222)\001\202\323\344\223\002,\032*/vi"
+  "am/api/v1/component/arm/{name}/position\022"
+  "\261\001\n\021GetJointPositions\022/.viam.component.a"
+  "rm.v1.GetJointPositionsRequest\0320.viam.co"
+  "mponent.arm.v1.GetJointPositionsResponse"
+  "\"9\202\323\344\223\0023\0221/viam/api/v1/component/arm/{na"
+  "me}/joint_positions\022\276\001\n\024MoveToJointPosit"
+  "ions\0222.viam.component.arm.v1.MoveToJoint"
+  "PositionsRequest\0323.viam.component.arm.v1"
+  ".MoveToJointPositionsResponse\"=\240\222)\001\202\323\344\223\002"
+  "3\0321/viam/api/v1/component/arm/{name}/joi"
+  "nt_positions\022\332\001\n\031MoveThroughJointPositio"
+  "ns\0227.viam.component.arm.v1.MoveThroughJo"
+  "intPositionsRequest\0328.viam.component.arm"
+  ".v1.MoveThroughJointPositionsResponse\"J\240"
+  "\222)\001\202\323\344\223\002@\">/viam/api/v1/component/arm/{n"
+  "ame}/move_through_joint_positions\022\260\001\n!Mo"
+  "veThroughJointPositionsStreamed\022\?.viam.c"
+  "omponent.arm.v1.MoveThroughJointPosition"
+  "sStreamedRequest\032@.viam.component.arm.v1"
+  ".MoveThroughJointPositionsStreamedRespon"
+  "se\"\004\240\222)\001(\0010\001\022\177\n\004Stop\022\".viam.component.ar"
+  "m.v1.StopRequest\032#.viam.component.arm.v1"
+  ".StopResponse\".\202\323\344\223\002(\"&/viam/api/v1/comp"
+  "onent/arm/{name}/stop\022\220\001\n\010IsMoving\022&.via"
+  "m.component.arm.v1.IsMovingRequest\032\'.via"
+  "m.component.arm.v1.IsMovingResponse\"3\202\323\344"
+  "\223\002-\022+/viam/api/v1/component/arm/{name}/i"
+  "s_moving\022\206\001\n\tDoCommand\022 .viam.common.v1."
+  "DoCommandRequest\032!.viam.common.v1.DoComm"
+  "andResponse\"4\202\323\344\223\002.\",/viam/api/v1/compon"
+  "ent/arm/{name}/do_command\022\206\001\n\tGetStatus\022"
+  " .viam.common.v1.GetStatusRequest\032!.viam"
+  ".common.v1.GetStatusResponse\"4\202\323\344\223\002.\022,/v"
+  "iam/api/v1/component/arm/{name}/get_stat"
+  "us\022\222\001\n\rGetKinematics\022$.viam.common.v1.Ge"
+  "tKinematicsRequest\032%.viam.common.v1.GetK"
+  "inematicsResponse\"4\202\323\344\223\002.\022,/viam/api/v1/"
+  "component/arm/{name}/kinematics\022\222\001\n\rGetG"
+  "eometries\022$.viam.common.v1.GetGeometries"
+  "Request\032%.viam.common.v1.GetGeometriesRe"
+  "sponse\"4\202\323\344\223\002.\022,/viam/api/v1/component/a"
+  "rm/{name}/geometries\022\213\001\n\013Get3DModels\022\".v"
+  "iam.common.v1.Get3DModelsRequest\032#.viam."
+  "common.v1.Get3DModelsResponse\"3\202\323\344\223\002-\022+/"
+  "viam/api/v1/component/arm/{name}/3d_mode"
+  "ls\022\241\001\n\rSetManualMode\022+.viam.component.ar"
+  "m.v1.SetManualModeRequest\032,.viam.compone"
+  "nt.arm.v1.SetManualModeResponse\"5\202\323\344\223\002/\032"
+  "-/viam/api/v1/component/arm/{name}/manua"
+  "l_mode\022\241\001\n\rGetManualMode\022+.viam.componen"
+  "t.arm.v1.GetManualModeRequest\032,.viam.com"
+  "ponent.arm.v1.GetManualModeResponse\"5\202\323\344"
+  "\223\002/\022-/viam/api/v1/component/arm/{name}/m"
+  "anual_mode\022\236\001\n\rGetProperties\022+.viam.comp"
+  "onent.arm.v1.GetPropertiesRequest\032,.viam"
+  ".component.arm.v1.GetPropertiesResponse\""
+  "2\202\323\344\223\002,\022*/viam/api/v1/component/arm/{nam"
+  "e}/featuresB=\n\031com.viam.component.arm.v1"
+  "Z go.viam.com/api/component/arm/v1b\006prot"
+  "o3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -777,9 +940,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 5274, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 6322, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
-    &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 4, 26,
+    &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 4, 32,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,
     file_level_metadata_component_2farm_2fv1_2farm_2eproto, file_level_enum_descriptors_component_2farm_2fv1_2farm_2eproto,
     file_level_service_descriptors_component_2farm_2fv1_2farm_2eproto,
@@ -6142,6 +6305,1208 @@ void MoveOptions::InternalSwap(MoveOptions* other) {
       file_level_metadata_component_2farm_2fv1_2farm_2eproto[25]);
 }
 
+// ===================================================================
+
+class SetManualModeRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const SetManualModeRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+SetManualModeRequest::_Internal::extra(const SetManualModeRequest* msg) {
+  return *msg->extra_;
+}
+void SetManualModeRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+SetManualModeRequest::SetManualModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.SetManualModeRequest)
+}
+SetManualModeRequest::SetManualModeRequest(const SetManualModeRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  ::memcpy(&manual_mode_, &from.manual_mode_,
+    static_cast<size_t>(reinterpret_cast<char*>(&enabled_for_) -
+    reinterpret_cast<char*>(&manual_mode_)) + sizeof(enabled_for_));
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.SetManualModeRequest)
+}
+
+inline void SetManualModeRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&enabled_for_) -
+    reinterpret_cast<char*>(&extra_)) + sizeof(enabled_for_));
+}
+
+SetManualModeRequest::~SetManualModeRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.arm.v1.SetManualModeRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SetManualModeRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void SetManualModeRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SetManualModeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.arm.v1.SetManualModeRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  ::memset(&manual_mode_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&enabled_for_) -
+      reinterpret_cast<char*>(&manual_mode_)) + sizeof(enabled_for_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SetManualModeRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.arm.v1.SetManualModeRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool manual_mode = 2 [json_name = "manualMode"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          manual_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 enabled_for = 3 [json_name = "enabledFor"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          enabled_for_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SetManualModeRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.arm.v1.SetManualModeRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.arm.v1.SetManualModeRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // bool manual_mode = 2 [json_name = "manualMode"];
+  if (this->_internal_manual_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_manual_mode(), target);
+  }
+
+  // int32 enabled_for = 3 [json_name = "enabledFor"];
+  if (this->_internal_enabled_for() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_enabled_for(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.arm.v1.SetManualModeRequest)
+  return target;
+}
+
+size_t SetManualModeRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.arm.v1.SetManualModeRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  // bool manual_mode = 2 [json_name = "manualMode"];
+  if (this->_internal_manual_mode() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 enabled_for = 3 [json_name = "enabledFor"];
+  if (this->_internal_enabled_for() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_enabled_for());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetManualModeRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SetManualModeRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetManualModeRequest::GetClassData() const { return &_class_data_; }
+
+void SetManualModeRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SetManualModeRequest *>(to)->MergeFrom(
+      static_cast<const SetManualModeRequest &>(from));
+}
+
+
+void SetManualModeRequest::MergeFrom(const SetManualModeRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.arm.v1.SetManualModeRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  if (from._internal_manual_mode() != 0) {
+    _internal_set_manual_mode(from._internal_manual_mode());
+  }
+  if (from._internal_enabled_for() != 0) {
+    _internal_set_enabled_for(from._internal_enabled_for());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetManualModeRequest::CopyFrom(const SetManualModeRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.arm.v1.SetManualModeRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetManualModeRequest::IsInitialized() const {
+  return true;
+}
+
+void SetManualModeRequest::InternalSwap(SetManualModeRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SetManualModeRequest, enabled_for_)
+      + sizeof(SetManualModeRequest::enabled_for_)
+      - PROTOBUF_FIELD_OFFSET(SetManualModeRequest, extra_)>(
+          reinterpret_cast<char*>(&extra_),
+          reinterpret_cast<char*>(&other->extra_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetManualModeRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[26]);
+}
+
+// ===================================================================
+
+class SetManualModeResponse::_Internal {
+ public:
+};
+
+SetManualModeResponse::SetManualModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.SetManualModeResponse)
+}
+SetManualModeResponse::SetManualModeResponse(const SetManualModeResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.SetManualModeResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetManualModeResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetManualModeResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetManualModeResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[27]);
+}
+
+// ===================================================================
+
+class GetManualModeRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetManualModeRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetManualModeRequest::_Internal::extra(const GetManualModeRequest* msg) {
+  return *msg->extra_;
+}
+void GetManualModeRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+GetManualModeRequest::GetManualModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.GetManualModeRequest)
+}
+GetManualModeRequest::GetManualModeRequest(const GetManualModeRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.GetManualModeRequest)
+}
+
+inline void GetManualModeRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+GetManualModeRequest::~GetManualModeRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.arm.v1.GetManualModeRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetManualModeRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void GetManualModeRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetManualModeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.arm.v1.GetManualModeRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetManualModeRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.arm.v1.GetManualModeRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetManualModeRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.arm.v1.GetManualModeRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.arm.v1.GetManualModeRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.arm.v1.GetManualModeRequest)
+  return target;
+}
+
+size_t GetManualModeRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.arm.v1.GetManualModeRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetManualModeRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetManualModeRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetManualModeRequest::GetClassData() const { return &_class_data_; }
+
+void GetManualModeRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetManualModeRequest *>(to)->MergeFrom(
+      static_cast<const GetManualModeRequest &>(from));
+}
+
+
+void GetManualModeRequest::MergeFrom(const GetManualModeRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.arm.v1.GetManualModeRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetManualModeRequest::CopyFrom(const GetManualModeRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.arm.v1.GetManualModeRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetManualModeRequest::IsInitialized() const {
+  return true;
+}
+
+void GetManualModeRequest::InternalSwap(GetManualModeRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetManualModeRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[28]);
+}
+
+// ===================================================================
+
+class GetManualModeResponse::_Internal {
+ public:
+};
+
+GetManualModeResponse::GetManualModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.GetManualModeResponse)
+}
+GetManualModeResponse::GetManualModeResponse(const GetManualModeResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  manual_mode_ = from.manual_mode_;
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.GetManualModeResponse)
+}
+
+inline void GetManualModeResponse::SharedCtor() {
+manual_mode_ = false;
+}
+
+GetManualModeResponse::~GetManualModeResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.arm.v1.GetManualModeResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetManualModeResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetManualModeResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetManualModeResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.arm.v1.GetManualModeResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  manual_mode_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetManualModeResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool manual_mode = 1 [json_name = "manualMode"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          manual_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetManualModeResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.arm.v1.GetManualModeResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool manual_mode = 1 [json_name = "manualMode"];
+  if (this->_internal_manual_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_manual_mode(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.arm.v1.GetManualModeResponse)
+  return target;
+}
+
+size_t GetManualModeResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.arm.v1.GetManualModeResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool manual_mode = 1 [json_name = "manualMode"];
+  if (this->_internal_manual_mode() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetManualModeResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetManualModeResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetManualModeResponse::GetClassData() const { return &_class_data_; }
+
+void GetManualModeResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetManualModeResponse *>(to)->MergeFrom(
+      static_cast<const GetManualModeResponse &>(from));
+}
+
+
+void GetManualModeResponse::MergeFrom(const GetManualModeResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.arm.v1.GetManualModeResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_manual_mode() != 0) {
+    _internal_set_manual_mode(from._internal_manual_mode());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetManualModeResponse::CopyFrom(const GetManualModeResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.arm.v1.GetManualModeResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetManualModeResponse::IsInitialized() const {
+  return true;
+}
+
+void GetManualModeResponse::InternalSwap(GetManualModeResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(manual_mode_, other->manual_mode_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetManualModeResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[29]);
+}
+
+// ===================================================================
+
+class GetPropertiesRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPropertiesRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetPropertiesRequest::_Internal::extra(const GetPropertiesRequest* msg) {
+  return *msg->extra_;
+}
+void GetPropertiesRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+GetPropertiesRequest::GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.GetPropertiesRequest)
+}
+GetPropertiesRequest::GetPropertiesRequest(const GetPropertiesRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.GetPropertiesRequest)
+}
+
+inline void GetPropertiesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+GetPropertiesRequest::~GetPropertiesRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.arm.v1.GetPropertiesRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void GetPropertiesRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.arm.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.arm.v1.GetPropertiesRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.arm.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.arm.v1.GetPropertiesRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.arm.v1.GetPropertiesRequest)
+  return target;
+}
+
+size_t GetPropertiesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.arm.v1.GetPropertiesRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesRequest::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesRequest *>(to)->MergeFrom(
+      static_cast<const GetPropertiesRequest &>(from));
+}
+
+
+void GetPropertiesRequest::MergeFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.arm.v1.GetPropertiesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.arm.v1.GetPropertiesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesRequest::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[30]);
+}
+
+// ===================================================================
+
+class GetPropertiesResponse::_Internal {
+ public:
+};
+
+GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.GetPropertiesResponse)
+}
+GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&support_manual_mode_, &from.support_manual_mode_,
+    static_cast<size_t>(reinterpret_cast<char*>(&support_cartesian_commands_) -
+    reinterpret_cast<char*>(&support_manual_mode_)) + sizeof(support_cartesian_commands_));
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.GetPropertiesResponse)
+}
+
+inline void GetPropertiesResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&support_manual_mode_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&support_cartesian_commands_) -
+    reinterpret_cast<char*>(&support_manual_mode_)) + sizeof(support_cartesian_commands_));
+}
+
+GetPropertiesResponse::~GetPropertiesResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.arm.v1.GetPropertiesResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetPropertiesResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.arm.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&support_manual_mode_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&support_cartesian_commands_) -
+      reinterpret_cast<char*>(&support_manual_mode_)) + sizeof(support_cartesian_commands_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool support_manual_mode = 1 [json_name = "supportManualMode"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          support_manual_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool support_cartesian_commands = 2 [json_name = "supportCartesianCommands"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          support_cartesian_commands_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.arm.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool support_manual_mode = 1 [json_name = "supportManualMode"];
+  if (this->_internal_support_manual_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_support_manual_mode(), target);
+  }
+
+  // bool support_cartesian_commands = 2 [json_name = "supportCartesianCommands"];
+  if (this->_internal_support_cartesian_commands() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_support_cartesian_commands(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.arm.v1.GetPropertiesResponse)
+  return target;
+}
+
+size_t GetPropertiesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.arm.v1.GetPropertiesResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool support_manual_mode = 1 [json_name = "supportManualMode"];
+  if (this->_internal_support_manual_mode() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool support_cartesian_commands = 2 [json_name = "supportCartesianCommands"];
+  if (this->_internal_support_cartesian_commands() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesResponse::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesResponse *>(to)->MergeFrom(
+      static_cast<const GetPropertiesResponse &>(from));
+}
+
+
+void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.arm.v1.GetPropertiesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_support_manual_mode() != 0) {
+    _internal_set_support_manual_mode(from._internal_support_manual_mode());
+  }
+  if (from._internal_support_cartesian_commands() != 0) {
+    _internal_set_support_cartesian_commands(from._internal_support_cartesian_commands());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.arm.v1.GetPropertiesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesResponse::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, support_cartesian_commands_)
+      + sizeof(GetPropertiesResponse::support_cartesian_commands_)
+      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, support_manual_mode_)>(
+          reinterpret_cast<char*>(&support_manual_mode_),
+          reinterpret_cast<char*>(&other->support_manual_mode_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[31]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace arm
@@ -6251,6 +7616,30 @@ Arena::CreateMaybeMessage< ::viam::component::arm::v1::IsMovingResponse >(Arena*
 template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::MoveOptions*
 Arena::CreateMaybeMessage< ::viam::component::arm::v1::MoveOptions >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::arm::v1::MoveOptions >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::SetManualModeRequest*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::SetManualModeRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::SetManualModeRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::SetManualModeResponse*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::SetManualModeResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::SetManualModeResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::GetManualModeRequest*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::GetManualModeRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::GetManualModeRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::GetManualModeResponse*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::GetManualModeResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::GetManualModeResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::GetPropertiesRequest*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::GetPropertiesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::GetPropertiesRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::GetPropertiesResponse*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::GetPropertiesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::GetPropertiesResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
