@@ -12,6 +12,7 @@ on:
     paths:
       - conanfile.py
       - test_package/conanfile.py
+      - etc/conan/conan.lock
       - .github/workflows/conan.yml
 
 jobs:
