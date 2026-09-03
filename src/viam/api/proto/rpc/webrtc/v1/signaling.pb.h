@@ -30,6 +30,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "google/api/annotations.pb.h"
@@ -68,6 +71,9 @@ extern AnswerRequestHeartbeatStageDefaultTypeInternal _AnswerRequestHeartbeatSta
 class AnswerRequestInitStage;
 struct AnswerRequestInitStageDefaultTypeInternal;
 extern AnswerRequestInitStageDefaultTypeInternal _AnswerRequestInitStage_default_instance_;
+class AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse;
+struct AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUseDefaultTypeInternal;
+extern AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUseDefaultTypeInternal _AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse_default_instance_;
 class AnswerRequestUpdateStage;
 struct AnswerRequestUpdateStageDefaultTypeInternal;
 extern AnswerRequestUpdateStageDefaultTypeInternal _AnswerRequestUpdateStage_default_instance_;
@@ -138,6 +144,7 @@ template<> ::proto::rpc::webrtc::v1::AnswerRequestDoneStage* Arena::CreateMaybeM
 template<> ::proto::rpc::webrtc::v1::AnswerRequestErrorStage* Arena::CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerRequestErrorStage>(Arena*);
 template<> ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* Arena::CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage>(Arena*);
 template<> ::proto::rpc::webrtc::v1::AnswerRequestInitStage* Arena::CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerRequestInitStage>(Arena*);
+template<> ::proto::rpc::webrtc::v1::AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse* Arena::CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse>(Arena*);
 template<> ::proto::rpc::webrtc::v1::AnswerRequestUpdateStage* Arena::CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerRequestUpdateStage>(Arena*);
 template<> ::proto::rpc::webrtc::v1::AnswerResponse* Arena::CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerResponse>(Arena*);
 template<> ::proto::rpc::webrtc::v1::AnswerResponseDoneStage* Arena::CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerResponseDoneStage>(Arena*);
@@ -1814,6 +1821,34 @@ class WebRTCConfig final :
 };
 // -------------------------------------------------------------------
 
+class AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse& other);
+  static const AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse*>(&_AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "proto.rpc.webrtc.v1.AnswerRequestInitStage.CallerAuthMetadataEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "proto.rpc.webrtc.v1.AnswerRequestInitStage.CallerAuthMetadataEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto;
+};
+
+// -------------------------------------------------------------------
+
 class AnswerRequestInitStage final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:proto.rpc.webrtc.v1.AnswerRequestInitStage) */ {
  public:
@@ -1862,7 +1897,7 @@ class AnswerRequestInitStage final :
                &_AnswerRequestInitStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(AnswerRequestInitStage& a, AnswerRequestInitStage& b) {
     a.Swap(&b);
@@ -1921,6 +1956,8 @@ class AnswerRequestInitStage final :
   protected:
   explicit AnswerRequestInitStage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -1930,13 +1967,33 @@ class AnswerRequestInitStage final :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
+    kCallerAuthMetadataFieldNumber = 5,
     kSdpFieldNumber = 1,
+    kCallerAuthEntityFieldNumber = 4,
     kOptionalConfigFieldNumber = 2,
     kDeadlineFieldNumber = 3,
   };
+  // map<string, string> caller_auth_metadata = 5 [json_name = "callerAuthMetadata"];
+  int caller_auth_metadata_size() const;
+  private:
+  int _internal_caller_auth_metadata_size() const;
+  public:
+  void clear_caller_auth_metadata();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_caller_auth_metadata() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_caller_auth_metadata();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      caller_auth_metadata() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_caller_auth_metadata();
+
   // string sdp = 1 [json_name = "sdp"];
   void clear_sdp();
   const std::string& sdp() const;
@@ -1949,6 +2006,20 @@ class AnswerRequestInitStage final :
   const std::string& _internal_sdp() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_sdp(const std::string& value);
   std::string* _internal_mutable_sdp();
+  public:
+
+  // string caller_auth_entity = 4 [json_name = "callerAuthEntity"];
+  void clear_caller_auth_entity();
+  const std::string& caller_auth_entity() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_caller_auth_entity(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_caller_auth_entity();
+  PROTOBUF_NODISCARD std::string* release_caller_auth_entity();
+  void set_allocated_caller_auth_entity(std::string* caller_auth_entity);
+  private:
+  const std::string& _internal_caller_auth_entity() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_caller_auth_entity(const std::string& value);
+  std::string* _internal_mutable_caller_auth_entity();
   public:
 
   // .proto.rpc.webrtc.v1.WebRTCConfig optional_config = 2 [json_name = "optionalConfig"];
@@ -1996,7 +2067,13 @@ class AnswerRequestInitStage final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> caller_auth_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sdp_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr caller_auth_entity_;
   ::proto::rpc::webrtc::v1::WebRTCConfig* optional_config_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* deadline_;
   friend struct ::TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto;
@@ -2051,7 +2128,7 @@ class AnswerRequestUpdateStage final :
                &_AnswerRequestUpdateStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(AnswerRequestUpdateStage& a, AnswerRequestUpdateStage& b) {
     a.Swap(&b);
@@ -2202,7 +2279,7 @@ class AnswerRequestDoneStage final :
                &_AnswerRequestDoneStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(AnswerRequestDoneStage& a, AnswerRequestDoneStage& b) {
     a.Swap(&b);
@@ -2319,7 +2396,7 @@ class AnswerRequestErrorStage final :
                &_AnswerRequestErrorStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(AnswerRequestErrorStage& a, AnswerRequestErrorStage& b) {
     a.Swap(&b);
@@ -2470,7 +2547,7 @@ class AnswerRequestHeartbeatStage final :
                &_AnswerRequestHeartbeatStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(AnswerRequestHeartbeatStage& a, AnswerRequestHeartbeatStage& b) {
     a.Swap(&b);
@@ -2596,7 +2673,7 @@ class AnswerRequest final :
                &_AnswerRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(AnswerRequest& a, AnswerRequest& b) {
     a.Swap(&b);
@@ -2860,7 +2937,7 @@ class AnswerResponseInitStage final :
                &_AnswerResponseInitStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(AnswerResponseInitStage& a, AnswerResponseInitStage& b) {
     a.Swap(&b);
@@ -3008,7 +3085,7 @@ class AnswerResponseUpdateStage final :
                &_AnswerResponseUpdateStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(AnswerResponseUpdateStage& a, AnswerResponseUpdateStage& b) {
     a.Swap(&b);
@@ -3159,7 +3236,7 @@ class AnswerResponseDoneStage final :
                &_AnswerResponseDoneStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(AnswerResponseDoneStage& a, AnswerResponseDoneStage& b) {
     a.Swap(&b);
@@ -3276,7 +3353,7 @@ class AnswerResponseErrorStage final :
                &_AnswerResponseErrorStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(AnswerResponseErrorStage& a, AnswerResponseErrorStage& b) {
     a.Swap(&b);
@@ -3436,7 +3513,7 @@ class AnswerResponse final :
                &_AnswerResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(AnswerResponse& a, AnswerResponse& b) {
     a.Swap(&b);
@@ -3678,7 +3755,7 @@ class OptionalWebRTCConfigRequest final :
                &_OptionalWebRTCConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(OptionalWebRTCConfigRequest& a, OptionalWebRTCConfigRequest& b) {
     a.Swap(&b);
@@ -3795,7 +3872,7 @@ class OptionalWebRTCConfigResponse final :
                &_OptionalWebRTCConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(OptionalWebRTCConfigResponse& a, OptionalWebRTCConfigResponse& b) {
     a.Swap(&b);
@@ -3947,7 +4024,7 @@ class ConnectionCandidate final :
                &_ConnectionCandidate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(ConnectionCandidate& a, ConnectionCandidate& b) {
     a.Swap(&b);
@@ -4106,7 +4183,7 @@ class ReportConnectionMetadataRequest final :
                &_ReportConnectionMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(ReportConnectionMetadataRequest& a, ReportConnectionMetadataRequest& b) {
     a.Swap(&b);
@@ -4321,7 +4398,7 @@ class ReportConnectionMetadataResponse final :
                &_ReportConnectionMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(ReportConnectionMetadataResponse& a, ReportConnectionMetadataResponse& b) {
     a.Swap(&b);
@@ -5536,6 +5613,8 @@ inline void WebRTCConfig::set_disable_trickle(bool value) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 // AnswerRequestInitStage
 
 // string sdp = 1 [json_name = "sdp"];
@@ -5763,6 +5842,85 @@ inline void AnswerRequestInitStage::set_allocated_deadline(::PROTOBUF_NAMESPACE_
   }
   deadline_ = deadline;
   // @@protoc_insertion_point(field_set_allocated:proto.rpc.webrtc.v1.AnswerRequestInitStage.deadline)
+}
+
+// string caller_auth_entity = 4 [json_name = "callerAuthEntity"];
+inline void AnswerRequestInitStage::clear_caller_auth_entity() {
+  caller_auth_entity_.ClearToEmpty();
+}
+inline const std::string& AnswerRequestInitStage::caller_auth_entity() const {
+  // @@protoc_insertion_point(field_get:proto.rpc.webrtc.v1.AnswerRequestInitStage.caller_auth_entity)
+  return _internal_caller_auth_entity();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AnswerRequestInitStage::set_caller_auth_entity(ArgT0&& arg0, ArgT... args) {
+ 
+ caller_auth_entity_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:proto.rpc.webrtc.v1.AnswerRequestInitStage.caller_auth_entity)
+}
+inline std::string* AnswerRequestInitStage::mutable_caller_auth_entity() {
+  std::string* _s = _internal_mutable_caller_auth_entity();
+  // @@protoc_insertion_point(field_mutable:proto.rpc.webrtc.v1.AnswerRequestInitStage.caller_auth_entity)
+  return _s;
+}
+inline const std::string& AnswerRequestInitStage::_internal_caller_auth_entity() const {
+  return caller_auth_entity_.Get();
+}
+inline void AnswerRequestInitStage::_internal_set_caller_auth_entity(const std::string& value) {
+  
+  caller_auth_entity_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AnswerRequestInitStage::_internal_mutable_caller_auth_entity() {
+  
+  return caller_auth_entity_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AnswerRequestInitStage::release_caller_auth_entity() {
+  // @@protoc_insertion_point(field_release:proto.rpc.webrtc.v1.AnswerRequestInitStage.caller_auth_entity)
+  return caller_auth_entity_.Release();
+}
+inline void AnswerRequestInitStage::set_allocated_caller_auth_entity(std::string* caller_auth_entity) {
+  if (caller_auth_entity != nullptr) {
+    
+  } else {
+    
+  }
+  caller_auth_entity_.SetAllocated(caller_auth_entity, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (caller_auth_entity_.IsDefault()) {
+    caller_auth_entity_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:proto.rpc.webrtc.v1.AnswerRequestInitStage.caller_auth_entity)
+}
+
+// map<string, string> caller_auth_metadata = 5 [json_name = "callerAuthMetadata"];
+inline int AnswerRequestInitStage::_internal_caller_auth_metadata_size() const {
+  return caller_auth_metadata_.size();
+}
+inline int AnswerRequestInitStage::caller_auth_metadata_size() const {
+  return _internal_caller_auth_metadata_size();
+}
+inline void AnswerRequestInitStage::clear_caller_auth_metadata() {
+  caller_auth_metadata_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+AnswerRequestInitStage::_internal_caller_auth_metadata() const {
+  return caller_auth_metadata_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+AnswerRequestInitStage::caller_auth_metadata() const {
+  // @@protoc_insertion_point(field_map:proto.rpc.webrtc.v1.AnswerRequestInitStage.caller_auth_metadata)
+  return _internal_caller_auth_metadata();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+AnswerRequestInitStage::_internal_mutable_caller_auth_metadata() {
+  return caller_auth_metadata_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+AnswerRequestInitStage::mutable_caller_auth_metadata() {
+  // @@protoc_insertion_point(field_mutable_map:proto.rpc.webrtc.v1.AnswerRequestInitStage.caller_auth_metadata)
+  return _internal_mutable_caller_auth_metadata();
 }
 
 // -------------------------------------------------------------------
@@ -7432,6 +7590,8 @@ inline void ReportConnectionMetadataRequest::set_failure_code(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
