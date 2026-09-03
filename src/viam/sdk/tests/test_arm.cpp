@@ -346,6 +346,26 @@ BOOST_AUTO_TEST_CASE(test_get_3d_models) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_properties) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [](Arm& client) {
+        const Arm::properties properties = client.get_properties();
+        const Arm::properties expected{/*support_manual_mode=*/false,
+                                       /*support_cartesian_commands=*/true};
+        BOOST_CHECK(properties == expected);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_manual_mode_unsupported) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [](Arm& client) {
+        // The mock throws `k_not_supported`; through the real client and server
+        // the caller sees it as a gRPC error.
+        BOOST_CHECK_THROW(client.set_manual_mode(true), GRPCException);
+        BOOST_CHECK_THROW(client.get_manual_mode(), GRPCException);
+    });
+}
+
 BOOST_AUTO_TEST_CASE(streamed_trajectory_point_proto_roundtrip) {
     // Full point: an odd microsecond count to catch precision loss, plus both
     // velocities and accelerations.
