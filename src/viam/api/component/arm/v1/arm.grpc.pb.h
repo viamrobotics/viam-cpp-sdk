@@ -148,6 +148,30 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>> PrepareAsyncGet3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>>(PrepareAsyncGet3DModelsRaw(context, request, cq));
     }
+    // SetManualMode enters or exits manual mode for an arm that supports it
+    virtual ::grpc::Status SetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::viam::component::arm::v1::SetManualModeResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::SetManualModeResponse>> AsyncSetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::SetManualModeResponse>>(AsyncSetManualModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::SetManualModeResponse>> PrepareAsyncSetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::SetManualModeResponse>>(PrepareAsyncSetManualModeRaw(context, request, cq));
+    }
+    // GetManualMode returns whether the arm is currently in manual mode
+    virtual ::grpc::Status GetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::viam::component::arm::v1::GetManualModeResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetManualModeResponse>> AsyncGetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetManualModeResponse>>(AsyncGetManualModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetManualModeResponse>> PrepareAsyncGetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetManualModeResponse>>(PrepareAsyncGetManualModeRaw(context, request, cq));
+    }
+    // GetProperties returns a message indicating which features the arm supports
+    virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::viam::component::arm::v1::GetPropertiesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -192,6 +216,15 @@ class ArmService final {
       // Get3DModels returns the 3D models of the component
       virtual void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // SetManualMode enters or exits manual mode for an arm that supports it
+      virtual void SetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest* request, ::viam::component::arm::v1::SetManualModeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest* request, ::viam::component::arm::v1::SetManualModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetManualMode returns whether the arm is currently in manual mode
+      virtual void GetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest* request, ::viam::component::arm::v1::GetManualModeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest* request, ::viam::component::arm::v1::GetManualModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetProperties returns a message indicating which features the arm supports
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest* request, ::viam::component::arm::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest* request, ::viam::component::arm::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -224,6 +257,12 @@ class ArmService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>* AsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>* PrepareAsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::SetManualModeResponse>* AsyncSetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::SetManualModeResponse>* PrepareAsyncSetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetManualModeResponse>* AsyncGetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetManualModeResponse>* PrepareAsyncGetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -321,6 +360,27 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>> PrepareAsyncGet3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>>(PrepareAsyncGet3DModelsRaw(context, request, cq));
     }
+    ::grpc::Status SetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::viam::component::arm::v1::SetManualModeResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::SetManualModeResponse>> AsyncSetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::SetManualModeResponse>>(AsyncSetManualModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::SetManualModeResponse>> PrepareAsyncSetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::SetManualModeResponse>>(PrepareAsyncSetManualModeRaw(context, request, cq));
+    }
+    ::grpc::Status GetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::viam::component::arm::v1::GetManualModeResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetManualModeResponse>> AsyncGetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetManualModeResponse>>(AsyncGetManualModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetManualModeResponse>> PrepareAsyncGetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetManualModeResponse>>(PrepareAsyncGetManualModeRaw(context, request, cq));
+    }
+    ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::viam::component::arm::v1::GetPropertiesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -349,6 +409,12 @@ class ArmService final {
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, std::function<void(::grpc::Status)>) override;
       void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest* request, ::viam::component::arm::v1::SetManualModeResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest* request, ::viam::component::arm::v1::SetManualModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest* request, ::viam::component::arm::v1::GetManualModeResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetManualMode(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest* request, ::viam::component::arm::v1::GetManualModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest* request, ::viam::component::arm::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest* request, ::viam::component::arm::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -387,6 +453,12 @@ class ArmService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>* AsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>* PrepareAsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::SetManualModeResponse>* AsyncSetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::SetManualModeResponse>* PrepareAsyncSetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::SetManualModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetManualModeResponse>* AsyncGetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetManualModeResponse>* PrepareAsyncGetManualModeRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetManualModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetEndPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveToPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetJointPositions_;
@@ -400,6 +472,9 @@ class ArmService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetKinematics_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGeometries_;
     const ::grpc::internal::RpcMethod rpcmethod_Get3DModels_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetManualMode_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetManualMode_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -436,6 +511,12 @@ class ArmService final {
     virtual ::grpc::Status GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response);
     // Get3DModels returns the 3D models of the component
     virtual ::grpc::Status Get3DModels(::grpc::ServerContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response);
+    // SetManualMode enters or exits manual mode for an arm that supports it
+    virtual ::grpc::Status SetManualMode(::grpc::ServerContext* context, const ::viam::component::arm::v1::SetManualModeRequest* request, ::viam::component::arm::v1::SetManualModeResponse* response);
+    // GetManualMode returns whether the arm is currently in manual mode
+    virtual ::grpc::Status GetManualMode(::grpc::ServerContext* context, const ::viam::component::arm::v1::GetManualModeRequest* request, ::viam::component::arm::v1::GetManualModeResponse* response);
+    // GetProperties returns a message indicating which features the arm supports
+    virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::component::arm::v1::GetPropertiesRequest* request, ::viam::component::arm::v1::GetPropertiesResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetEndPosition : public BaseClass {
@@ -697,7 +778,67 @@ class ArmService final {
       ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_MoveThroughJointPositions<WithAsyncMethod_MoveThroughJointPositionsStreamed<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<WithAsyncMethod_Get3DModels<Service > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetManualMode() {
+      ::grpc::Service::MarkMethodAsync(13);
+    }
+    ~WithAsyncMethod_SetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::SetManualModeRequest* /*request*/, ::viam::component::arm::v1::SetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetManualMode(::grpc::ServerContext* context, ::viam::component::arm::v1::SetManualModeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::SetManualModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetManualMode() {
+      ::grpc::Service::MarkMethodAsync(14);
+    }
+    ~WithAsyncMethod_GetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetManualModeRequest* /*request*/, ::viam::component::arm::v1::GetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetManualMode(::grpc::ServerContext* context, ::viam::component::arm::v1::GetManualModeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::GetManualModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetProperties() {
+      ::grpc::Service::MarkMethodAsync(15);
+    }
+    ~WithAsyncMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetPropertiesRequest* /*request*/, ::viam::component::arm::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::viam::component::arm::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_MoveThroughJointPositions<WithAsyncMethod_MoveThroughJointPositionsStreamed<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<WithAsyncMethod_Get3DModels<WithAsyncMethod_SetManualMode<WithAsyncMethod_GetManualMode<WithAsyncMethod_GetProperties<Service > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetEndPosition : public BaseClass {
    private:
@@ -1045,7 +1186,88 @@ class ArmService final {
     virtual ::grpc::ServerUnaryReactor* Get3DModels(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_MoveThroughJointPositions<WithCallbackMethod_MoveThroughJointPositionsStreamed<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetKinematics<WithCallbackMethod_GetGeometries<WithCallbackMethod_Get3DModels<Service > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetManualMode() {
+      ::grpc::Service::MarkMethodCallback(13,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::SetManualModeRequest, ::viam::component::arm::v1::SetManualModeResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::SetManualModeRequest* request, ::viam::component::arm::v1::SetManualModeResponse* response) { return this->SetManualMode(context, request, response); }));}
+    void SetMessageAllocatorFor_SetManualMode(
+        ::grpc::MessageAllocator< ::viam::component::arm::v1::SetManualModeRequest, ::viam::component::arm::v1::SetManualModeResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::SetManualModeRequest, ::viam::component::arm::v1::SetManualModeResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::SetManualModeRequest* /*request*/, ::viam::component::arm::v1::SetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetManualMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::SetManualModeRequest* /*request*/, ::viam::component::arm::v1::SetManualModeResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetManualMode() {
+      ::grpc::Service::MarkMethodCallback(14,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetManualModeRequest, ::viam::component::arm::v1::GetManualModeResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::GetManualModeRequest* request, ::viam::component::arm::v1::GetManualModeResponse* response) { return this->GetManualMode(context, request, response); }));}
+    void SetMessageAllocatorFor_GetManualMode(
+        ::grpc::MessageAllocator< ::viam::component::arm::v1::GetManualModeRequest, ::viam::component::arm::v1::GetManualModeResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetManualModeRequest, ::viam::component::arm::v1::GetManualModeResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetManualModeRequest* /*request*/, ::viam::component::arm::v1::GetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetManualMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetManualModeRequest* /*request*/, ::viam::component::arm::v1::GetManualModeResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(15,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetPropertiesRequest, ::viam::component::arm::v1::GetPropertiesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::GetPropertiesRequest* request, ::viam::component::arm::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    void SetMessageAllocatorFor_GetProperties(
+        ::grpc::MessageAllocator< ::viam::component::arm::v1::GetPropertiesRequest, ::viam::component::arm::v1::GetPropertiesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetPropertiesRequest, ::viam::component::arm::v1::GetPropertiesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetPropertiesRequest* /*request*/, ::viam::component::arm::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetPropertiesRequest* /*request*/, ::viam::component::arm::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_MoveThroughJointPositions<WithCallbackMethod_MoveThroughJointPositionsStreamed<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetKinematics<WithCallbackMethod_GetGeometries<WithCallbackMethod_Get3DModels<WithCallbackMethod_SetManualMode<WithCallbackMethod_GetManualMode<WithCallbackMethod_GetProperties<Service > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetEndPosition : public BaseClass {
@@ -1264,6 +1486,57 @@ class ArmService final {
     }
     // disable synchronous version of this method
     ::grpc::Status Get3DModels(::grpc::ServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetManualMode() {
+      ::grpc::Service::MarkMethodGeneric(13);
+    }
+    ~WithGenericMethod_SetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::SetManualModeRequest* /*request*/, ::viam::component::arm::v1::SetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetManualMode() {
+      ::grpc::Service::MarkMethodGeneric(14);
+    }
+    ~WithGenericMethod_GetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetManualModeRequest* /*request*/, ::viam::component::arm::v1::GetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetProperties() {
+      ::grpc::Service::MarkMethodGeneric(15);
+    }
+    ~WithGenericMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetPropertiesRequest* /*request*/, ::viam::component::arm::v1::GetPropertiesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1526,6 +1799,66 @@ class ArmService final {
     }
     void RequestGet3DModels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetManualMode() {
+      ::grpc::Service::MarkMethodRaw(13);
+    }
+    ~WithRawMethod_SetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::SetManualModeRequest* /*request*/, ::viam::component::arm::v1::SetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetManualMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetManualMode() {
+      ::grpc::Service::MarkMethodRaw(14);
+    }
+    ~WithRawMethod_GetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetManualModeRequest* /*request*/, ::viam::component::arm::v1::GetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetManualMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRaw(15);
+    }
+    ~WithRawMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetPropertiesRequest* /*request*/, ::viam::component::arm::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1813,6 +2146,72 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Get3DModels(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetManualMode() {
+      ::grpc::Service::MarkMethodRawCallback(13,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetManualMode(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::SetManualModeRequest* /*request*/, ::viam::component::arm::v1::SetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetManualMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetManualMode() {
+      ::grpc::Service::MarkMethodRawCallback(14,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetManualMode(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetManualModeRequest* /*request*/, ::viam::component::arm::v1::GetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetManualMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(15,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetPropertiesRequest* /*request*/, ::viam::component::arm::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -2139,9 +2538,90 @@ class ArmService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGet3DModels(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::Get3DModelsRequest,::viam::common::v1::Get3DModelsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_Get3DModels<Service > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetManualMode() {
+      ::grpc::Service::MarkMethodStreamed(13,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::arm::v1::SetManualModeRequest, ::viam::component::arm::v1::SetManualModeResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::arm::v1::SetManualModeRequest, ::viam::component::arm::v1::SetManualModeResponse>* streamer) {
+                       return this->StreamedSetManualMode(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::SetManualModeRequest* /*request*/, ::viam::component::arm::v1::SetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetManualMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::arm::v1::SetManualModeRequest,::viam::component::arm::v1::SetManualModeResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetManualMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetManualMode() {
+      ::grpc::Service::MarkMethodStreamed(14,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::arm::v1::GetManualModeRequest, ::viam::component::arm::v1::GetManualModeResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::arm::v1::GetManualModeRequest, ::viam::component::arm::v1::GetManualModeResponse>* streamer) {
+                       return this->StreamedGetManualMode(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetManualMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetManualMode(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetManualModeRequest* /*request*/, ::viam::component::arm::v1::GetManualModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetManualMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::arm::v1::GetManualModeRequest,::viam::component::arm::v1::GetManualModeResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetProperties() {
+      ::grpc::Service::MarkMethodStreamed(15,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::arm::v1::GetPropertiesRequest, ::viam::component::arm::v1::GetPropertiesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::arm::v1::GetPropertiesRequest, ::viam::component::arm::v1::GetPropertiesResponse>* streamer) {
+                       return this->StreamedGetProperties(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::GetPropertiesRequest* /*request*/, ::viam::component::arm::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::arm::v1::GetPropertiesRequest,::viam::component::arm::v1::GetPropertiesResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_Get3DModels<WithStreamedUnaryMethod_SetManualMode<WithStreamedUnaryMethod_GetManualMode<WithStreamedUnaryMethod_GetProperties<Service > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_Get3DModels<Service > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_Get3DModels<WithStreamedUnaryMethod_SetManualMode<WithStreamedUnaryMethod_GetManualMode<WithStreamedUnaryMethod_GetProperties<Service > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

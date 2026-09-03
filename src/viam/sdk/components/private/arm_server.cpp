@@ -316,6 +316,38 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status ArmServer::GetProperties(
+    ::grpc::ServerContext* context,
+    const ::viam::component::arm::v1::GetPropertiesRequest* request,
+    ::viam::component::arm::v1::GetPropertiesResponse* response) noexcept {
+    return make_service_helper<Arm>(
+        "ArmServer::GetProperties", this, context, request)([&](auto& helper, auto& arm) {
+        *response = to_proto(arm->get_properties(helper.getExtra()));
+    });
+}
+
+::grpc::Status ArmServer::SetManualMode(
+    ::grpc::ServerContext* context,
+    const ::viam::component::arm::v1::SetManualModeRequest* request,
+    ::viam::component::arm::v1::SetManualModeResponse*) noexcept {
+    return make_service_helper<Arm>(
+        "ArmServer::SetManualMode", this, context, request)([&](auto& helper, auto& arm) {
+        arm->set_manual_mode(request->manual_mode(),
+                             std::chrono::seconds(request->enabled_for()),
+                             helper.getExtra());
+    });
+}
+
+::grpc::Status ArmServer::GetManualMode(
+    ::grpc::ServerContext* context,
+    const ::viam::component::arm::v1::GetManualModeRequest* request,
+    ::viam::component::arm::v1::GetManualModeResponse* response) noexcept {
+    return make_service_helper<Arm>(
+        "ArmServer::GetManualMode", this, context, request)([&](auto& helper, auto& arm) {
+        response->set_manual_mode(arm->get_manual_mode(helper.getExtra()));
+    });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

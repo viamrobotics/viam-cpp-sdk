@@ -22,6 +22,11 @@ API API::traits<Arm>::api() {
 
 Arm::Arm(std::string name) : Component(std::move(name)) {}
 
+bool operator==(const Arm::properties& lhs, const Arm::properties& rhs) {
+    return (lhs.support_manual_mode == rhs.support_manual_mode &&
+            lhs.support_cartesian_commands == rhs.support_cartesian_commands);
+}
+
 namespace proto_convert_details {
 
 void to_proto_impl<Arm::trajectory_point>::operator()(
@@ -75,6 +80,20 @@ Arm::trajectory_update
 from_proto_impl<viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse>::operator()(
     const viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const {
     return {};
+}
+
+void to_proto_impl<Arm::properties>::operator()(
+    const Arm::properties& self, viam::component::arm::v1::GetPropertiesResponse* proto) const {
+    proto->set_support_manual_mode(self.support_manual_mode);
+    proto->set_support_cartesian_commands(self.support_cartesian_commands);
+}
+
+Arm::properties from_proto_impl<viam::component::arm::v1::GetPropertiesResponse>::operator()(
+    const viam::component::arm::v1::GetPropertiesResponse* proto) const {
+    Arm::properties result;
+    result.support_manual_mode = proto->support_manual_mode();
+    result.support_cartesian_commands = proto->support_cartesian_commands();
+    return result;
 }
 
 }  // namespace proto_convert_details

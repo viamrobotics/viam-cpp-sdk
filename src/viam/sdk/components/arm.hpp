@@ -26,6 +26,7 @@ namespace v1 {
 
 class TrajectoryPoint;
 class MoveThroughJointPositionsStreamedResponse;
+class GetPropertiesResponse;
 
 }  // namespace v1
 }  // namespace arm
@@ -64,6 +65,15 @@ class Arm : public Component, public Stoppable {
         boost::optional<MoveLimit> max_vel_degs_per_sec;
         boost::optional<MoveLimit> max_acc_degs_per_sec2;
         boost::optional<double> max_tcp_speed;
+    };
+
+    /// @struct properties
+    /// @brief Optional features that the specific arm supports
+    struct properties {
+        /// True if the arm supports software-enabled manual mode
+        bool support_manual_mode = false;
+        /// True if the arm supports direct cartesian commands (move_to_position is implemented)
+        bool support_cartesian_commands = false;
     };
 
     /// @brief Get the current position of the end of the arm.
@@ -264,6 +274,52 @@ class Arm : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
+    /// @brief Returns the properties of the arm which comprises the booleans indicating
+    /// which optional features the arm supports.
+    inline properties get_properties() {
+        return get_properties({});
+    }
+
+    /// @brief Returns the properties of the arm which comprises the booleans indicating
+    /// which optional features the arm supports.
+    /// @param extra Any additional arguments to the method.
+    virtual properties get_properties(const ProtoStruct& extra) = 0;
+
+    /// @brief Enter or exit manual mode, with no time limit.
+    /// @param manual_mode True to enter manual mode, false to exit it.
+    /// @throws `Exception` if manual mode is not supported
+    inline void set_manual_mode(bool manual_mode) {
+        return set_manual_mode(manual_mode, std::chrono::seconds::zero(), {});
+    }
+
+    /// @brief Enter or exit manual mode.
+    /// @param manual_mode True to enter manual mode, false to exit it.
+    /// @param enabled_for How long to stay in manual mode; zero means no time limit.
+    /// @throws `Exception` if manual mode is not supported
+    inline void set_manual_mode(bool manual_mode, std::chrono::seconds enabled_for) {
+        return set_manual_mode(manual_mode, enabled_for, {});
+    }
+
+    /// @brief Enter or exit manual mode.
+    /// @param manual_mode True to enter manual mode, false to exit it.
+    /// @param enabled_for How long to stay in manual mode; zero means no time limit.
+    /// @param extra Any additional arguments to the method.
+    /// @throws `Exception` if manual mode is not supported
+    virtual void set_manual_mode(bool manual_mode,
+                                 std::chrono::seconds enabled_for,
+                                 const ProtoStruct& extra) = 0;
+
+    /// @brief Reports whether the arm is currently in manual mode.
+    /// @throws `Exception` if manual mode is not supported
+    inline bool get_manual_mode() {
+        return get_manual_mode({});
+    }
+
+    /// @brief Reports whether the arm is currently in manual mode.
+    /// @param extra Any additional arguments to the method.
+    /// @throws `Exception` if manual mode is not supported
+    virtual bool get_manual_mode(const ProtoStruct& extra) = 0;
+
     API api() const override;
 
    protected:
@@ -274,6 +330,8 @@ template <>
 struct API::traits<Arm> {
     static API api();
 };
+
+bool operator==(const Arm::properties& lhs, const Arm::properties& rhs);
 
 namespace proto_convert_details {
 
@@ -297,6 +355,16 @@ template <>
 struct from_proto_impl<viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse> {
     Arm::trajectory_update operator()(
         const viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) const;
+};
+
+template <>
+struct to_proto_impl<Arm::properties> {
+    void operator()(const Arm::properties&, viam::component::arm::v1::GetPropertiesResponse*) const;
+};
+
+template <>
+struct from_proto_impl<viam::component::arm::v1::GetPropertiesResponse> {
+    Arm::properties operator()(const viam::component::arm::v1::GetPropertiesResponse*) const;
 };
 
 }  // namespace proto_convert_details
