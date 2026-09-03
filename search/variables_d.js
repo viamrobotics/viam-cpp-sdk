@@ -6,5 +6,7 @@ var searchData=
   ['status_3',['status',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a24594dd4ba8f5c1d2ef55fa469c5b4a1',1,'viam::sdk::Motion::plan_status_with_id::status'],['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a276dfc0b121457b4b8bf6ab795870ea2',1,'viam::sdk::Motion::plan_with_status::status']]],
   ['status_5fhistory_4',['status_history',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#af9e92f1b33c48bb09e153fb107620393',1,'viam::sdk::Motion::plan_with_status']]],
   ['steps_5',['steps',['../structviam_1_1sdk_1_1Motion_1_1plan.html#ae66ef8ca1f675780c64ebaf8914ca492',1,'viam::sdk::Motion::plan']]],
-  ['supports_5fpcd_6',['supports_pcd',['../structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a',1,'viam::sdk::Camera::properties']]]
+  ['support_5fcartesian_5fcommands_6',['support_cartesian_commands',['../structviam_1_1sdk_1_1Arm_1_1properties.html#a6e5cc076dabab4ab6638b9f4876e7ef3',1,'viam::sdk::Arm::properties']]],
+  ['support_5fmanual_5fmode_7',['support_manual_mode',['../structviam_1_1sdk_1_1Arm_1_1properties.html#ae232c55fecbf88614044c86029a89607',1,'viam::sdk::Arm::properties']]],
+  ['supports_5fpcd_8',['supports_pcd',['../structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a',1,'viam::sdk::Camera::properties']]]
 ];

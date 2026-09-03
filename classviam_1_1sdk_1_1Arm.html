@@ -109,6 +109,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Movement specifications for move_through_joint_positions.  <a href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1properties.html">properties</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional features that the specific arm supports.  <a href="structviam_1_1sdk_1_1Arm_1_1properties.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">trajectory_point</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single waypoint in a streamed joint-space trajectory.  <a href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +198,28 @@ std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">Geo
 <tr class="memitem:aeed2dcf6c5f23a31730aec1fdf73db52" id="r_aeed2dcf6c5f23a31730aec1fdf73db52"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeed2dcf6c5f23a31730aec1fdf73db52">get_geometries</a> (const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:aeed2dcf6c5f23a31730aec1fdf73db52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling arm.  <br /></td></tr>
 <tr class="separator:aeed2dcf6c5f23a31730aec1fdf73db52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab27d40b97e29c8d62c424aca8e6ad56" id="r_aab27d40b97e29c8d62c424aca8e6ad56"><td class="memItemLeft" align="right" valign="top"><a id="aab27d40b97e29c8d62c424aca8e6ad56" name="aab27d40b97e29c8d62c424aca8e6ad56"></a>
+<a class="el" href="structviam_1_1sdk_1_1Arm_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_properties</b> ()</td></tr>
+<tr class="memdesc:aab27d40b97e29c8d62c424aca8e6ad56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the properties of the arm which comprises the booleans indicating which optional features the arm supports. <br /></td></tr>
+<tr class="separator:aab27d40b97e29c8d62c424aca8e6ad56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af766dfe5e917de0828c3984428f9859e" id="r_af766dfe5e917de0828c3984428f9859e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Arm_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af766dfe5e917de0828c3984428f9859e">get_properties</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:af766dfe5e917de0828c3984428f9859e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the properties of the arm which comprises the booleans indicating which optional features the arm supports.  <br /></td></tr>
+<tr class="separator:af766dfe5e917de0828c3984428f9859e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64dc4008c9d251c03d409c99d073937c" id="r_a64dc4008c9d251c03d409c99d073937c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64dc4008c9d251c03d409c99d073937c">set_manual_mode</a> (bool manual_mode)</td></tr>
+<tr class="memdesc:a64dc4008c9d251c03d409c99d073937c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter or exit manual mode, with no time limit.  <br /></td></tr>
+<tr class="separator:a64dc4008c9d251c03d409c99d073937c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affb60ffb1930ffc76114b9a328cdfa4a" id="r_affb60ffb1930ffc76114b9a328cdfa4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affb60ffb1930ffc76114b9a328cdfa4a">set_manual_mode</a> (bool manual_mode, std::chrono::seconds enabled_for)</td></tr>
+<tr class="memdesc:affb60ffb1930ffc76114b9a328cdfa4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter or exit manual mode.  <br /></td></tr>
+<tr class="separator:affb60ffb1930ffc76114b9a328cdfa4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3dd56d193f84504da6db981599118a1" id="r_ac3dd56d193f84504da6db981599118a1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3dd56d193f84504da6db981599118a1">set_manual_mode</a> (bool manual_mode, std::chrono::seconds enabled_for, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:ac3dd56d193f84504da6db981599118a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter or exit manual mode.  <br /></td></tr>
+<tr class="separator:ac3dd56d193f84504da6db981599118a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15d862b8ccdf63596a4945a7082cc84e" id="r_a15d862b8ccdf63596a4945a7082cc84e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15d862b8ccdf63596a4945a7082cc84e">get_manual_mode</a> ()</td></tr>
+<tr class="memdesc:a15d862b8ccdf63596a4945a7082cc84e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether the arm is currently in manual mode.  <br /></td></tr>
+<tr class="separator:a15d862b8ccdf63596a4945a7082cc84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbd5ccbcee42d92728a97f6e3991b705" id="r_adbd5ccbcee42d92728a97f6e3991b705"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbd5ccbcee42d92728a97f6e3991b705">get_manual_mode</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:adbd5ccbcee42d92728a97f6e3991b705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether the arm is currently in manual mode.  <br /></td></tr>
+<tr class="separator:adbd5ccbcee42d92728a97f6e3991b705"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd2ecaaf6572ef29d81b92d2dbd4e1dd" id="r_afd2ecaaf6572ef29d81b92d2dbd4e1dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd2ecaaf6572ef29d81b92d2dbd4e1dd">api</a> () const override</td></tr>
 <tr class="memdesc:afd2ecaaf6572ef29d81b92d2dbd4e1dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:afd2ecaaf6572ef29d81b92d2dbd4e1dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -606,6 +631,115 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a15d862b8ccdf63596a4945a7082cc84e" name="a15d862b8ccdf63596a4945a7082cc84e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15d862b8ccdf63596a4945a7082cc84e">&#9670;&#160;</a></span>get_manual_mode() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool viam::sdk::Arm::get_manual_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports whether the arm is currently in manual mode. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`Exception`</td><td>if manual mode is not supported </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adbd5ccbcee42d92728a97f6e3991b705" name="adbd5ccbcee42d92728a97f6e3991b705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbd5ccbcee42d92728a97f6e3991b705">&#9670;&#160;</a></span>get_manual_mode() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool viam::sdk::Arm::get_manual_mode </td>
+          <td>(</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports whether the arm is currently in manual mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`Exception`</td><td>if manual mode is not supported </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a16e2034de8c60a91b4c745d8db857fb8">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#adbd5ccbcee42d92728a97f6e3991b705">viam::sdk::impl::ArmClient</a>.</p>
+
+</div>
+</div>
+<a id="af766dfe5e917de0828c3984428f9859e" name="af766dfe5e917de0828c3984428f9859e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af766dfe5e917de0828c3984428f9859e">&#9670;&#160;</a></span>get_properties()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Arm_1_1properties.html">properties</a> viam::sdk::Arm::get_properties </td>
+          <td>(</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the properties of the arm which comprises the booleans indicating which optional features the arm supports. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a6ba2783610458b42c18ed8cacb4da09c">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#af766dfe5e917de0828c3984428f9859e">viam::sdk::impl::ArmClient</a>.</p>
+
+</div>
+</div>
 <a id="a1d27752eefcffb3bce59e7e18db787ab" name="a1d27752eefcffb3bce59e7e18db787ab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d27752eefcffb3bce59e7e18db787ab">&#9670;&#160;</a></span>get_status()</h2>
 
@@ -982,6 +1116,141 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a734742d9cb644567f865dea933175383">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a09cbee10b6b87fb9151d390d0f4000f9">viam::sdk::impl::ArmClient</a>.</p>
+
+</div>
+</div>
+<a id="a64dc4008c9d251c03d409c99d073937c" name="a64dc4008c9d251c03d409c99d073937c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64dc4008c9d251c03d409c99d073937c">&#9670;&#160;</a></span>set_manual_mode() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Arm::set_manual_mode </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>manual_mode</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enter or exit manual mode, with no time limit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">manual_mode</td><td>True to enter manual mode, false to exit it. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`Exception`</td><td>if manual mode is not supported </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="affb60ffb1930ffc76114b9a328cdfa4a" name="affb60ffb1930ffc76114b9a328cdfa4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affb60ffb1930ffc76114b9a328cdfa4a">&#9670;&#160;</a></span>set_manual_mode() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Arm::set_manual_mode </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>manual_mode</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::seconds</td>          <td class="paramname"><span class="paramname"><em>enabled_for</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enter or exit manual mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">manual_mode</td><td>True to enter manual mode, false to exit it. </td></tr>
+    <tr><td class="paramname">enabled_for</td><td>How long to stay in manual mode; zero means no time limit. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`Exception`</td><td>if manual mode is not supported </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac3dd56d193f84504da6db981599118a1" name="ac3dd56d193f84504da6db981599118a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3dd56d193f84504da6db981599118a1">&#9670;&#160;</a></span>set_manual_mode() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void viam::sdk::Arm::set_manual_mode </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>manual_mode</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::seconds</td>          <td class="paramname"><span class="paramname"><em>enabled_for</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enter or exit manual mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">manual_mode</td><td>True to enter manual mode, false to exit it. </td></tr>
+    <tr><td class="paramname">enabled_for</td><td>How long to stay in manual mode; zero means no time limit. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`Exception`</td><td>if manual mode is not supported </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a6916ba07c21b476a566c5b0276c320c7">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#ac3dd56d193f84504da6db981599118a1">viam::sdk::impl::ArmClient</a>.</p>
 
 </div>
 </div>
