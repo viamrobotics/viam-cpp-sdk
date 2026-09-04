@@ -51,6 +51,15 @@ public:
 
     std::vector<viam::sdk::GeometryConfig> get_geometries(const viam::sdk::ProtoStruct & extra) override;
 
+    viam::sdk::Arm::properties get_properties(const viam::sdk::ProtoStruct & extra) override;
+
+    void set_manual_mode(
+        bool manual_mode,
+        std::chrono::seconds enabled_for,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    bool get_manual_mode(const viam::sdk::ProtoStruct & extra) override;
+
 };
 
 } // namespace {{ .ModuleSnake }}
