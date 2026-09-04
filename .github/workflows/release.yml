@@ -58,12 +58,25 @@ jobs:
           choco install -y conan git
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+      - name: Set up conan remote
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
+
+          conan profile detect
+          conan remote add viamconan $env:CONAN_REMOTE_URL
+        env:
+          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+          CONAN_USER_HOME: c:/cache
+          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+
       - name: Create package
         shell: powershell
         run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
-          conan profile detect
           conan install . --output-folder=build-conan --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
           cmake . --preset conan-default
           cmake --build --preset=conan-release --target ALL_BUILD install -j 8
