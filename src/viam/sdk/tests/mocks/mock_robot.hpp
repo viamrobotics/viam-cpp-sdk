@@ -68,6 +68,8 @@ std::vector<RobotClient::frame_system_config> mock_config_response();
 std::vector<viam::robot::v1::FrameSystemConfig> mock_proto_config_response();
 pose_in_frame mock_transform_response();
 common::v1::PoseInFrame mock_proto_transform_response();
+RobotClient::machine_status mock_machine_status_response();
+viam::robot::v1::GetMachineStatusResponse mock_proto_machine_status_response();
 
 }  // namespace robot
 }  // namespace sdktests

@@ -15,6 +15,7 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/api/app/packages/v1/packages.pb.h>
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
@@ -36,9 +37,16 @@ namespace viam {
 namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
+using viam::app::packages::v1::PackageType;
 using viam::common::v1::Transform;
+using viam::robot::v1::ConfigStatus;
 using viam::robot::v1::FrameSystemConfig;
+using viam::robot::v1::GetMachineStatusResponse;
+using viam::robot::v1::JobStatus;
+using viam::robot::v1::ModuleStatus;
 using viam::robot::v1::Operation;
+using viam::robot::v1::PackageStatus;
+using viam::robot::v1::ResourceStatus;
 using viam::robot::v1::RobotService;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
@@ -76,6 +84,164 @@ RobotClient::operation from_proto_impl<Operation>::operator()(const Operation* p
     return op;
 }
 
+RobotClient::resource_status from_proto_impl<ResourceStatus>::operator()(
+    const ResourceStatus* proto) const {
+    RobotClient::resource_status rs;
+    rs.name = from_proto(proto->name());
+    switch (proto->state()) {
+        case robot::v1::ResourceStatus_State_STATE_UNCONFIGURED:
+            rs.state = RobotClient::resource_status::resource_state::k_unconfigured;
+            break;
+        case robot::v1::ResourceStatus_State_STATE_CONFIGURING:
+            rs.state = RobotClient::resource_status::resource_state::k_configuring;
+            break;
+        case robot::v1::ResourceStatus_State_STATE_READY:
+            rs.state = RobotClient::resource_status::resource_state::k_ready;
+            break;
+        case robot::v1::ResourceStatus_State_STATE_REMOVING:
+            rs.state = RobotClient::resource_status::resource_state::k_removing;
+            break;
+        case robot::v1::ResourceStatus_State_STATE_UNHEALTHY:
+            rs.state = RobotClient::resource_status::resource_state::k_unhealthy;
+            break;
+        case robot::v1::ResourceStatus_State_STATE_UNSPECIFIED:
+        default:
+            rs.state = RobotClient::resource_status::resource_state::k_unspecified;
+    }
+    if (proto->has_last_updated()) {
+        rs.last_updated = from_proto(proto->last_updated());
+    }
+    rs.revision = proto->revision();
+    rs.error = proto->error();
+    return rs;
+}
+
+RobotClient::config_status from_proto_impl<ConfigStatus>::operator()(
+    const ConfigStatus* proto) const {
+    RobotClient::config_status cs;
+    cs.revision = proto->revision();
+    if (proto->has_last_updated()) {
+        cs.last_updated = from_proto(proto->last_updated());
+    }
+    return cs;
+}
+
+RobotClient::module_status from_proto_impl<ModuleStatus>::operator()(
+    const ModuleStatus* proto) const {
+    RobotClient::module_status ms;
+    ms.module_name = proto->module_name();
+    switch (proto->state()) {
+        case robot::v1::ModuleStatus_State_STATE_PENDING:
+            ms.state = RobotClient::module_status::module_state::k_pending;
+            break;
+        case robot::v1::ModuleStatus_State_STATE_STARTING:
+            ms.state = RobotClient::module_status::module_state::k_starting;
+            break;
+        case robot::v1::ModuleStatus_State_STATE_READY:
+            ms.state = RobotClient::module_status::module_state::k_ready;
+            break;
+        case robot::v1::ModuleStatus_State_STATE_UNHEALTHY:
+            ms.state = RobotClient::module_status::module_state::k_unhealthy;
+            break;
+        case robot::v1::ModuleStatus_State_STATE_CLOSING:
+            ms.state = RobotClient::module_status::module_state::k_closing;
+            break;
+        case robot::v1::ModuleStatus_State_STATE_UNSPECIFIED:
+        default:
+            ms.state = RobotClient::module_status::module_state::k_unspecified;
+    }
+    if (proto->has_last_updated()) {
+        ms.last_updated = from_proto(proto->last_updated());
+    }
+    ms.error = proto->error();
+    ms.consecutive_failures = proto->consecutive_failures();
+    return ms;
+}
+
+RobotClient::package_status from_proto_impl<PackageStatus>::operator()(
+    const PackageStatus* proto) const {
+    RobotClient::package_status ps;
+    ps.name = proto->name();
+    switch (proto->type()) {
+        case PackageType::PACKAGE_TYPE_ARCHIVE:
+            ps.type = RobotClient::package_status::package_type::k_archive;
+            break;
+        case PackageType::PACKAGE_TYPE_ML_MODEL:
+            ps.type = RobotClient::package_status::package_type::k_ml_model;
+            break;
+        case PackageType::PACKAGE_TYPE_MODULE:
+            ps.type = RobotClient::package_status::package_type::k_module;
+            break;
+        case PackageType::PACKAGE_TYPE_SLAM_MAP:
+            ps.type = RobotClient::package_status::package_type::k_slam_map;
+            break;
+        case PackageType::PACKAGE_TYPE_ML_TRAINING:
+            ps.type = RobotClient::package_status::package_type::k_ml_training;
+            break;
+        case PackageType::PACKAGE_TYPE_UNSPECIFIED:
+        default:
+            ps.type = RobotClient::package_status::package_type::k_unspecified;
+    }
+    switch (proto->state()) {
+        case robot::v1::PackageStatus_State_STATE_DOWNLOADING:
+            ps.state = RobotClient::package_status::package_state::k_downloading;
+            break;
+        case robot::v1::PackageStatus_State_STATE_LOADING:
+            ps.state = RobotClient::package_status::package_state::k_loading;
+            break;
+        case robot::v1::PackageStatus_State_STATE_FIRST_RUN:
+            ps.state = RobotClient::package_status::package_state::k_first_run;
+            break;
+        case robot::v1::PackageStatus_State_STATE_READY:
+            ps.state = RobotClient::package_status::package_state::k_ready;
+            break;
+        case robot::v1::PackageStatus_State_STATE_FAILED:
+            ps.state = RobotClient::package_status::package_state::k_failed;
+            break;
+        case robot::v1::PackageStatus_State_STATE_UNSPECIFIED:
+        default:
+            ps.state = RobotClient::package_status::package_state::k_unspecified;
+    }
+    ps.error = proto->error();
+    if (proto->has_last_updated()) {
+        ps.last_updated = from_proto(proto->last_updated());
+    }
+    ps.version = proto->version();
+    ps.bytes_downloaded = proto->bytes_downloaded();
+    ps.total_bytes = proto->total_bytes();
+    return ps;
+}
+
+RobotClient::job_status from_proto_impl<JobStatus>::operator()(const JobStatus* proto) const {
+    RobotClient::job_status js;
+    js.job_name = proto->job_name();
+    js.recent_successful_runs = impl::from_repeated_field(proto->recent_successful_runs());
+    js.recent_failed_runs = impl::from_repeated_field(proto->recent_failed_runs());
+    return js;
+}
+
+RobotClient::machine_status from_proto_impl<GetMachineStatusResponse>::operator()(
+    const GetMachineStatusResponse* proto) const {
+    RobotClient::machine_status ms;
+    switch (proto->state()) {
+        case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:
+            ms.state = RobotClient::status::k_initializing;
+            break;
+        case robot::v1::GetMachineStatusResponse_State_STATE_RUNNING:
+            ms.state = RobotClient::status::k_running;
+            break;
+        case robot::v1::GetMachineStatusResponse_State_STATE_UNSPECIFIED:
+        default:
+            ms.state = RobotClient::status::k_unspecified;
+    }
+    ms.resources = impl::from_repeated_field(proto->resources());
+    ms.config = from_proto(proto->config());
+    ms.modules = impl::from_repeated_field(proto->modules());
+    ms.packages = impl::from_repeated_field(proto->packages());
+    ms.job_statuses = impl::from_repeated_field(proto->job_statuses());
+    return ms;
+}
+
 }  // namespace proto_convert_details
 
 bool operator==(const RobotClient::frame_system_config& lhs,
@@ -87,6 +253,40 @@ bool operator==(const RobotClient::frame_system_config& lhs,
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
     return lhs.id == rhs.id && lhs.method == rhs.method && lhs.session_id == rhs.session_id &&
            lhs.arguments == rhs.arguments && lhs.started == rhs.started;
+}
+
+bool operator==(const RobotClient::resource_status& lhs, const RobotClient::resource_status& rhs) {
+    return lhs.name == rhs.name && lhs.state == rhs.state && lhs.last_updated == rhs.last_updated &&
+           lhs.revision == rhs.revision && lhs.error == rhs.error;
+}
+
+bool operator==(const RobotClient::config_status& lhs, const RobotClient::config_status& rhs) {
+    return lhs.revision == rhs.revision && lhs.last_updated == rhs.last_updated;
+}
+
+bool operator==(const RobotClient::module_status& lhs, const RobotClient::module_status& rhs) {
+    return lhs.module_name == rhs.module_name && lhs.state == rhs.state &&
+           lhs.last_updated == rhs.last_updated && lhs.error == rhs.error &&
+           lhs.consecutive_failures == rhs.consecutive_failures;
+}
+
+bool operator==(const RobotClient::package_status& lhs, const RobotClient::package_status& rhs) {
+    return lhs.name == rhs.name && lhs.type == rhs.type && lhs.state == rhs.state &&
+           lhs.error == rhs.error && lhs.last_updated == rhs.last_updated &&
+           lhs.version == rhs.version && lhs.bytes_downloaded == rhs.bytes_downloaded &&
+           lhs.total_bytes == rhs.total_bytes;
+}
+
+bool operator==(const RobotClient::job_status& lhs, const RobotClient::job_status& rhs) {
+    return lhs.job_name == rhs.job_name &&
+           lhs.recent_successful_runs == rhs.recent_successful_runs &&
+           lhs.recent_failed_runs == rhs.recent_failed_runs;
+}
+
+bool operator==(const RobotClient::machine_status& lhs, const RobotClient::machine_status& rhs) {
+    return lhs.state == rhs.state && lhs.resources == rhs.resources && lhs.config == rhs.config &&
+           lhs.modules == rhs.modules && lhs.packages == rhs.packages &&
+           lhs.job_statuses == rhs.job_statuses;
 }
 
 struct RobotClient::impl {
@@ -488,19 +688,9 @@ pose_in_frame RobotClient::get_pose(const std::string& component_name,
         .invoke([](const auto& resp) { return from_proto(resp.pose()); });
 }
 
-RobotClient::status RobotClient::get_machine_status() const {
+RobotClient::machine_status RobotClient::get_machine_status() const {
     return impl::client_helper(impl_, &RobotService::Stub::GetMachineStatus)
-        .invoke([](const auto& resp) {
-            switch (resp.state()) {
-                case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:
-                    return RobotClient::status::k_initializing;
-                case robot::v1::GetMachineStatusResponse_State_STATE_RUNNING:
-                    return RobotClient::status::k_running;
-                case robot::v1::GetMachineStatusResponse_State_STATE_UNSPECIFIED:
-                default:
-                    return RobotClient::status::k_unspecified;
-            }
-        });
+        .invoke([](const auto& resp) { return from_proto(resp); });
 }
 
 }  // namespace sdk

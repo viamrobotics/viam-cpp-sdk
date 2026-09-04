@@ -192,8 +192,9 @@ BOOST_AUTO_TEST_CASE(test_get_machine_status) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto status = client->get_machine_status();
+            auto mock_status = mock_machine_status_response();
 
-            BOOST_CHECK_EQUAL(status, RobotClient::status::k_running);
+            BOOST_CHECK(status == mock_status);
         });
 }
 
