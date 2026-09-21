@@ -44,6 +44,7 @@
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 #include <viam/sdk/tracing/private/span_guard.hpp>
 #include <viam/sdk/tracing/private/tracer.hpp>
 
@@ -244,6 +245,17 @@ Dependencies ModuleService::get_dependencies_(
     google::protobuf::RepeatedPtrField<std::string> const* proto,
     std::string const& resource_name) {
     Dependencies deps;
+
+    // viam-server strips $framesystem from the dependency list it sends, so we seed it ourselves,
+    // the same way the Go module does. Every modular resource then gets a client to the machine's
+    // frame system without being handed the whole parent RobotClient. Both AddResource and
+    // ReconfigureResource come through here, so a reconfigured resource keeps it too. With no
+    // parent address there is no viam-server to reach (VIAM_NO_MODULE_PARENT), and nothing to seed.
+    if (!parent_addr_.empty()) {
+        const Name frame_system_name = FrameSystem::public_name();
+        deps.emplace(frame_system_name, get_parent_resource_(frame_system_name));
+    }
+
     for (const auto& dep : *proto) {
         auto dep_name = Name::from_string(dep);
         const std::shared_ptr<Resource> dep_resource = get_parent_resource_(dep_name);

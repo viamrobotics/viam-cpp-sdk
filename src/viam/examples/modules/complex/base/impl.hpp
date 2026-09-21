@@ -5,6 +5,7 @@
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 
 using namespace viam::sdk;
 
@@ -44,4 +45,5 @@ class MyBase : public Base {
    private:
     std::shared_ptr<Motor> left_;
     std::shared_ptr<Motor> right_;
+    std::shared_ptr<FrameSystem> frame_system_;
 };

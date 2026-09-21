@@ -68,6 +68,12 @@ class MockRobotService : public ResourceServer, public viam::robot::v1::RobotSer
                                  const ::viam::robot::v1::GetOperationsRequest* request,
                                  ::viam::robot::v1::GetOperationsResponse* response) override;
 
+    // A module connected to this mock forwards its logs here. Accepting them keeps the module
+    // from complaining on the console about every line it could not deliver.
+    ::grpc::Status Log(::grpc::ServerContext* context,
+                       const ::viam::robot::v1::LogRequest* request,
+                       ::viam::robot::v1::LogResponse* response) override;
+
    private:
     std::mutex lock_;
     ::viam::robot::v1::GetPoseRequest last_get_pose_request_;

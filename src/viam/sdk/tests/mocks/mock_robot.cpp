@@ -487,6 +487,12 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     return ::grpc::Status();
 }
 
+::grpc::Status MockRobotService::Log(::grpc::ServerContext*,
+                                     const ::viam::robot::v1::LogRequest*,
+                                     ::viam::robot::v1::LogResponse*) {
+    return ::grpc::Status();
+}
+
 }  // namespace robot
 }  // namespace sdktests
 }  // namespace viam
