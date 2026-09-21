@@ -16,6 +16,7 @@
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -24,7 +25,6 @@ namespace robot {
 namespace v1 {
 
 class ConfigStatus;
-class FrameSystemConfig;
 class GetMachineStatusResponse;
 class JobStatus;
 class ModuleStatus;
@@ -64,11 +64,7 @@ class RobotClient {
 
     friend std::ostream& operator<<(std::ostream& os, const status& v);
 
-    struct frame_system_config {
-        WorldState::transform frame;
-        ProtoStruct kinematics;
-        friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
-    };
+    using frame_system_config = FrameSystem::frame_system_config;
 
     struct operation {
         std::string id;
@@ -217,6 +213,9 @@ class RobotClient {
     ///
     /// Because the return type here is a `Resource`, the user will need to manually
     /// cast to the desired type.
+    ///
+    /// The machine's frame system is not listed in `resource_names()` but can be requested here
+    /// under `FrameSystem::public_name()`, or as `resource_by_name<FrameSystem>("$framesystem")`.
     std::shared_ptr<Resource> resource_by_name(const Name& name);
 
     template <typename T>
@@ -345,11 +344,6 @@ namespace proto_convert_details {
 template <>
 struct from_proto_impl<robot::v1::Operation> {
     RobotClient::operation operator()(const robot::v1::Operation*) const;
-};
-
-template <>
-struct from_proto_impl<robot::v1::FrameSystemConfig> {
-    RobotClient::frame_system_config operator()(const robot::v1::FrameSystemConfig*) const;
 };
 
 template <>

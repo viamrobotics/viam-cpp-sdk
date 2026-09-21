@@ -221,8 +221,8 @@ std::vector<ResourceName> mock_proto_resource_names_response() {
     return vec;
 }
 
-std::vector<RobotClient::frame_system_config> mock_config_response() {
-    RobotClient::frame_system_config config;
+std::vector<FrameSystem::frame_system_config> mock_config_response() {
+    FrameSystem::frame_system_config config;
     WorldState::transform t;
     t.reference_frame = "some-reference-frame";
     pose_in_frame pif("reference0", default_pose());
@@ -230,7 +230,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     config.frame = t;
     config.kinematics = {{"fake-key", 1.0}};
 
-    RobotClient::frame_system_config config1;
+    FrameSystem::frame_system_config config1;
     WorldState::transform t1;
     t1.reference_frame = "another-reference-frame";
     pose_in_frame pif1("reference1", default_pose(1));
@@ -238,7 +238,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     config1.frame = t1;
     config1.kinematics = {{"new-fake-key", 2.0}};
 
-    std::vector<RobotClient::frame_system_config> response;
+    std::vector<FrameSystem::frame_system_config> response;
     response.push_back(config);
     response.push_back(config1);
     return response;

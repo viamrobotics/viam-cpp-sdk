@@ -30,6 +30,8 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
+#include <viam/sdk/services/framesystem.hpp>
+#include <viam/sdk/services/private/framesystem_client.hpp>
 #include <viam/sdk/services/service.hpp>
 #include <viam/sdk/tracing/private/tracer.hpp>
 
@@ -40,7 +42,6 @@ using google::protobuf::RepeatedPtrField;
 using viam::app::packages::v1::PackageType;
 using viam::common::v1::Transform;
 using viam::robot::v1::ConfigStatus;
-using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::GetMachineStatusResponse;
 using viam::robot::v1::JobStatus;
 using viam::robot::v1::ModuleStatus;
@@ -57,16 +58,6 @@ using viam::robot::v1::RobotService;
 const std::string kStreamRemoved("Stream removed");
 
 namespace proto_convert_details {
-
-RobotClient::frame_system_config from_proto_impl<FrameSystemConfig>::operator()(
-    const FrameSystemConfig* proto) const {
-    RobotClient::frame_system_config fsconfig;
-    fsconfig.frame = from_proto(proto->frame());
-    if (proto->has_kinematics()) {
-        fsconfig.kinematics = from_proto(proto->kinematics());
-    }
-    return fsconfig;
-}
 
 RobotClient::operation from_proto_impl<Operation>::operator()(const Operation* proto) const {
     RobotClient::operation op;
@@ -243,12 +234,6 @@ RobotClient::machine_status from_proto_impl<GetMachineStatusResponse>::operator(
 }
 
 }  // namespace proto_convert_details
-
-bool operator==(const RobotClient::frame_system_config& lhs,
-                const RobotClient::frame_system_config& rhs) {
-    return lhs.frame == rhs.frame && to_proto(lhs.kinematics).SerializeAsString() ==
-                                         to_proto(rhs.kinematics).SerializeAsString();
-}
 
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
     return lhs.id == rhs.id && lhs.method == rhs.method && lhs.session_id == rhs.session_id &&
@@ -636,6 +621,12 @@ std::vector<unsigned char> RobotClient::transform_pcd(const std::vector<unsigned
 }
 
 std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
+    // viam-server never reports the frame system in ResourceNames, so refresh never puts it in
+    // the resource manager. We build the client on demand instead, the way Go's ResourceByName
+    // answers for $framesystem itself.
+    if (name == FrameSystem::public_name()) {
+        return std::make_shared<sdk::impl::FrameSystemClient>(name.name(), viam_channel_);
+    }
     return resource_manager_.resource(name.name());
 }
 

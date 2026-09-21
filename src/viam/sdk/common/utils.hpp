@@ -36,6 +36,7 @@ const std::string kComponent = "component";
 const std::string kResource = "resource";
 const std::string kService = "service";
 const std::string kRDK = "rdk";
+const std::string kRDKInternal = "rdk-internal";
 const std::string kBuiltin = "builtin";
 
 using time_pt = std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>;

@@ -13,6 +13,7 @@
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
@@ -266,6 +267,28 @@ BOOST_AUTO_TEST_CASE(test_get_resource) {
             // appropriately registered such that we can actually use it.
             BOOST_CHECK(!mock_motor->is_moving());
         });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_frame_system) {
+    robot_client_to_mocks_pipeline([](std::shared_ptr<RobotClient> client,
+                                      MockRobotService& service) -> void {
+        // the frame system is never in resource_names, yet resource_by_name hands it out
+        auto names = client->resource_names();
+        BOOST_CHECK(std::find(names.begin(), names.end(), FrameSystem::public_name()) ==
+                    names.end());
+
+        auto frame_system = client->resource_by_name<FrameSystem>(FrameSystem::kPublicName);
+        BOOST_REQUIRE(frame_system);
+        BOOST_CHECK(frame_system->get_resource_name() == FrameSystem::public_name());
+
+        auto untyped = client->resource_by_name(FrameSystem::public_name());
+        BOOST_CHECK(std::dynamic_pointer_cast<FrameSystem>(untyped));
+
+        // and it goes over the same connection as the robot client itself
+        BOOST_CHECK_EQUAL(frame_system->get_pose("mock_motor"), mock_get_pose_response("world"));
+        BOOST_TEST(frame_system->get_frame_system_config() == mock_config_response(),
+                   boost::test_tools::per_element());
+    });
 }
 
 BOOST_AUTO_TEST_SUITE_END()

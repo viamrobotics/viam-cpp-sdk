@@ -52,6 +52,7 @@
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/private/discovery_client.hpp>
 #include <viam/sdk/services/private/discovery_server.hpp>
+#include <viam/sdk/services/private/framesystem_client.hpp>
 #include <viam/sdk/services/private/generic_client.hpp>
 #include <viam/sdk/services/private/generic_server.hpp>
 #include <viam/sdk/services/private/mlmodel_client.hpp>
@@ -225,6 +226,9 @@ void Registry::register_resources() {
 
     // Register all services
     register_resource<impl::DiscoveryClient, impl::DiscoveryServer>();
+    // The frame system has no server side here: its RPCs are served by viam-server's
+    // RobotService, so there is nothing for a module to host and only the client is registered.
+    register_resource_client<impl::FrameSystemClient>();
     register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
     register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
     register_resource<impl::MotionClient, impl::MotionServer>();

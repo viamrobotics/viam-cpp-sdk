@@ -8,6 +8,7 @@
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -79,7 +80,7 @@ std::vector<RobotClient::operation> mock_operations_response();
 std::vector<viam::robot::v1::Operation> mock_proto_operations_response();
 std::vector<Name> mock_resource_names_response();
 std::vector<common::v1::ResourceName> mock_proto_resource_names_response();
-std::vector<RobotClient::frame_system_config> mock_config_response();
+std::vector<FrameSystem::frame_system_config> mock_config_response();
 std::vector<viam::robot::v1::FrameSystemConfig> mock_proto_config_response();
 pose_in_frame mock_transform_response();
 common::v1::PoseInFrame mock_proto_transform_response();
