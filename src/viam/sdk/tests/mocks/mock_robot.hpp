@@ -46,6 +46,19 @@ class MockRobotService : public ResourceServer, public viam::robot::v1::RobotSer
                                  const ::viam::robot::v1::TransformPoseRequest* request,
                                  ::viam::robot::v1::TransformPoseResponse* response) override;
 
+    ::grpc::Status TransformPCD(::grpc::ServerContext* context,
+                                const ::viam::robot::v1::TransformPCDRequest* request,
+                                ::viam::robot::v1::TransformPCDResponse* response) override;
+
+    ::grpc::Status GetPose(::grpc::ServerContext* context,
+                           const ::viam::robot::v1::GetPoseRequest* request,
+                           ::viam::robot::v1::GetPoseResponse* response) override;
+
+    // The most recent request each of these RPCs received, so tests can check what the client put
+    // on the wire and not just how it decoded the canned response.
+    ::viam::robot::v1::GetPoseRequest last_get_pose_request();
+    ::viam::robot::v1::TransformPCDRequest last_transform_pcd_request();
+
     ::grpc::Status GetMachineStatus(::grpc::ServerContext* context,
                                     const ::viam::robot::v1::GetMachineStatusRequest* request,
                                     ::viam::robot::v1::GetMachineStatusResponse* response) override;
@@ -56,6 +69,8 @@ class MockRobotService : public ResourceServer, public viam::robot::v1::RobotSer
 
    private:
     std::mutex lock_;
+    ::viam::robot::v1::GetPoseRequest last_get_pose_request_;
+    ::viam::robot::v1::TransformPCDRequest last_transform_pcd_request_;
     std::vector<common::v1::ResourceName> generate_metadata_();
 };
 
@@ -68,6 +83,10 @@ std::vector<RobotClient::frame_system_config> mock_config_response();
 std::vector<viam::robot::v1::FrameSystemConfig> mock_proto_config_response();
 pose_in_frame mock_transform_response();
 common::v1::PoseInFrame mock_proto_transform_response();
+pose_in_frame mock_get_pose_response(const std::string& destination_frame);
+common::v1::PoseInFrame mock_proto_get_pose_response(const std::string& destination_frame);
+std::vector<unsigned char> mock_transform_pcd_response();
+std::string mock_proto_transform_pcd_response();
 RobotClient::machine_status mock_machine_status_response();
 viam::robot::v1::GetMachineStatusResponse mock_proto_machine_status_response();
 

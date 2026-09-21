@@ -623,6 +623,18 @@ pose_in_frame RobotClient::transform_pose(
         .invoke([](const auto& resp) { return from_proto(resp.pose()); });
 }
 
+std::vector<unsigned char> RobotClient::transform_pcd(const std::vector<unsigned char>& pcd,
+                                                      const std::string& source,
+                                                      const std::string& destination) {
+    return impl::client_helper(impl_, &RobotService::Stub::TransformPCD)
+        .with([&](auto& req) {
+            *req.mutable_point_cloud_pcd() = bytes_to_string(pcd);
+            *req.mutable_source() = source;
+            *req.mutable_destination() = destination;
+        })
+        .invoke([](const auto& resp) { return string_to_bytes(resp.point_cloud_pcd()); });
+}
+
 std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
     return resource_manager_.resource(name.name());
 }

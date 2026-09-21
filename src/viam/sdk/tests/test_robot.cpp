@@ -188,6 +188,48 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
         });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_pose) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            // the short overload asks for the world frame with nothing else attached
+            auto pose = client->get_pose("mock_motor");
+            BOOST_CHECK_EQUAL(pose, mock_get_pose_response("world"));
+
+            auto request = service.last_get_pose_request();
+            BOOST_CHECK_EQUAL(request.component_name(), "mock_motor");
+            BOOST_CHECK_EQUAL(request.destination_frame(), "world");
+            BOOST_CHECK_EQUAL(request.supplemental_transforms_size(), 0);
+            BOOST_CHECK_EQUAL(request.extra().fields_size(), 0);
+
+            WorldState::transform extra_frame;
+            extra_frame.reference_frame = "extra-frame";
+            extra_frame.pose_in_observer_frame = pose_in_frame("world", default_pose());
+            pose = client->get_pose("mock_motor", "mock_camera", {extra_frame}, fake_map());
+            BOOST_CHECK_EQUAL(pose, mock_get_pose_response("mock_camera"));
+
+            request = service.last_get_pose_request();
+            BOOST_CHECK_EQUAL(request.component_name(), "mock_motor");
+            BOOST_CHECK_EQUAL(request.destination_frame(), "mock_camera");
+            BOOST_REQUIRE_EQUAL(request.supplemental_transforms_size(), 1);
+            BOOST_CHECK_EQUAL(request.supplemental_transforms(0).reference_frame(), "extra-frame");
+            BOOST_CHECK(from_proto(request.extra()) == fake_map());
+        });
+}
+
+BOOST_AUTO_TEST_CASE(test_transform_pcd) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            const std::vector<unsigned char> pcd = {'i', 'n', 'p', 'u', 't', 0x00, 0xff};
+            auto transformed = client->transform_pcd(pcd, "mock_camera", "world");
+            BOOST_CHECK(transformed == mock_transform_pcd_response());
+
+            auto request = service.last_transform_pcd_request();
+            BOOST_CHECK_EQUAL(request.point_cloud_pcd(), bytes_to_string(pcd));
+            BOOST_CHECK_EQUAL(request.source(), "mock_camera");
+            BOOST_CHECK_EQUAL(request.destination(), "world");
+        });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_machine_status) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {

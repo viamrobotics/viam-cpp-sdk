@@ -246,6 +246,18 @@ class RobotClient {
         std::string destination,
         const std::vector<WorldState::transform>& additional_transforms = {});
 
+    /// @brief Transform a point cloud from one reference frame to another.
+    /// @param pcd The point cloud, serialized in PCD format.
+    /// @param source The reference frame the point cloud is currently expressed in.
+    /// @param destination The reference frame to express the point cloud in.
+    /// @return The transformed point cloud, serialized in PCD format.
+    ///
+    /// The SDK has no point cloud type, so this takes and returns the raw PCD bytes rather than a
+    /// `Camera::point_cloud`, whose mime type would always be PCD here anyway.
+    std::vector<unsigned char> transform_pcd(const std::vector<unsigned char>& pcd,
+                                             const std::string& source,
+                                             const std::string& destination);
+
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.
     void block_for_operation(std::string id);
