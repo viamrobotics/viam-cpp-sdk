@@ -87,10 +87,32 @@ jobs:
             platform: linux_x86_64-ubuntu-jammy
             image: ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:jammy
             runs_on: ubuntu-large
+          - target: aarch64-ubuntu-focal-gnu
+            platform: linux_aarch64-ubuntu-focal
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:focal
+            runs_on: github-linux-arm64-8core
+          - target: x86_64-ubuntu-focal-gnu
+            platform: linux_x86_64-ubuntu-focal
+            image: ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:focal
+            runs_on: ubuntu-large
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Read locked b2 version
+        run: echo "B2_REF=$(grep -oE '"b2/[0-9.]+' etc/conan/conan.lock | head -1 | tr -d '"')" >> "$GITHUB_ENV"
+
+      # b2's package_id ignores the compiler, so conancenter's binary (newer glibc) would match
+      # focal. Take the locked b2 from viamconan, building only if it has no binary; fall back to
+      # a source build from conancenter's recipe for a version viamconan has never seen.
+      - name: Pre-install b2 (focal)
+        if: contains(matrix.image, 'focal')
+        run: |
+          conan install --tool-requires="$B2_REF" -r viamconan --build=missing -pr:a default \
+              --lockfile etc/conan/conan.lock --lockfile-partial \
+          || conan install --tool-requires="$B2_REF" -r conancenter --build="$B2_REF" -pr:a default \
+              --lockfile etc/conan/conan.lock --lockfile-partial
 
       - name: Create package
         run: |
@@ -107,14 +129,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: aarch64-debian-bullseye
-            platform: linux_aarch64-debian-bullseye
-            image: ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye
-            runs_on: github-linux-arm64-8core
-          - target: x86_64-debian-bullseye
-            platform: linux_x86_64-debian-bullseye
-            image: ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye
-            runs_on: ubuntu-large
           - target: aarch64-debian-bookworm
             platform: linux_aarch64-debian-bookworm
             image: ghcr.io/viamrobotics/cpp-sdk-conan-debian:bookworm
@@ -127,13 +141,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      # Force a local b2 build; the cached conancenter binary links a glibc newer than bullseye's.
-      - name: Pre-install b2 (bullseye)
-        if: matrix.image == 'ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye'
-        run: |
-          conan install -r conancenter --update \
-            --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a default
 
       - name: Create package
         run: |
