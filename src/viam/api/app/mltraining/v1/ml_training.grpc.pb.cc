@@ -33,6 +33,9 @@ static const char* MLTrainingService_method_names[] = {
   "/viam.app.mltraining.v1.MLTrainingService/DeleteCompletedTrainingJob",
   "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJobLogs",
   "/viam.app.mltraining.v1.MLTrainingService/ListSupportedContainers",
+  "/viam.app.mltraining.v1.MLTrainingService/ListContainers",
+  "/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer",
+  "/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer",
 };
 
 std::unique_ptr< MLTrainingService::Stub> MLTrainingService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -50,6 +53,9 @@ MLTrainingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& 
   , rpcmethod_DeleteCompletedTrainingJob_(MLTrainingService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetTrainingJobLogs_(MLTrainingService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListSupportedContainers_(MLTrainingService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListContainers_(MLTrainingService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RegisterCustomTrainingContainer_(MLTrainingService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteCustomTrainingContainer_(MLTrainingService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MLTrainingService::Stub::SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response) {
@@ -236,6 +242,75 @@ void MLTrainingService::Stub::async::ListSupportedContainers(::grpc::ClientConte
   return result;
 }
 
+::grpc::Status MLTrainingService::Stub::ListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::viam::app::mltraining::v1::ListContainersResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::mltraining::v1::ListContainersRequest, ::viam::app::mltraining::v1::ListContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListContainers_, context, request, response);
+}
+
+void MLTrainingService::Stub::async::ListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::mltraining::v1::ListContainersRequest, ::viam::app::mltraining::v1::ListContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListContainers_, context, request, response, std::move(f));
+}
+
+void MLTrainingService::Stub::async::ListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListContainers_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListContainersResponse>* MLTrainingService::Stub::PrepareAsyncListContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::mltraining::v1::ListContainersResponse, ::viam::app::mltraining::v1::ListContainersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListContainers_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListContainersResponse>* MLTrainingService::Stub::AsyncListContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListContainersRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MLTrainingService::Stub::RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RegisterCustomTrainingContainer_, context, request, response);
+}
+
+void MLTrainingService::Stub::async::RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RegisterCustomTrainingContainer_, context, request, response, std::move(f));
+}
+
+void MLTrainingService::Stub::async::RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RegisterCustomTrainingContainer_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* MLTrainingService::Stub::PrepareAsyncRegisterCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RegisterCustomTrainingContainer_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* MLTrainingService::Stub::AsyncRegisterCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRegisterCustomTrainingContainerRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MLTrainingService::Stub::DeleteCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest& request, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteCustomTrainingContainer_, context, request, response);
+}
+
+void MLTrainingService::Stub::async::DeleteCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteCustomTrainingContainer_, context, request, response, std::move(f));
+}
+
+void MLTrainingService::Stub::async::DeleteCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteCustomTrainingContainer_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>* MLTrainingService::Stub::PrepareAsyncDeleteCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteCustomTrainingContainer_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>* MLTrainingService::Stub::AsyncDeleteCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteCustomTrainingContainerRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MLTrainingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MLTrainingService_method_names[0],
@@ -317,6 +392,36 @@ MLTrainingService::Service::Service() {
              ::viam::app::mltraining::v1::ListSupportedContainersResponse* resp) {
                return service->ListSupportedContainers(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MLTrainingService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MLTrainingService::Service, ::viam::app::mltraining::v1::ListContainersRequest, ::viam::app::mltraining::v1::ListContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MLTrainingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::mltraining::v1::ListContainersRequest* req,
+             ::viam::app::mltraining::v1::ListContainersResponse* resp) {
+               return service->ListContainers(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MLTrainingService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MLTrainingService::Service, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MLTrainingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* req,
+             ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* resp) {
+               return service->RegisterCustomTrainingContainer(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MLTrainingService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MLTrainingService::Service, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MLTrainingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* req,
+             ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* resp) {
+               return service->DeleteCustomTrainingContainer(ctx, req, resp);
+             }, this)));
 }
 
 MLTrainingService::Service::~Service() {
@@ -372,6 +477,27 @@ MLTrainingService::Service::~Service() {
 }
 
 ::grpc::Status MLTrainingService::Service::ListSupportedContainers(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MLTrainingService::Service::ListContainers(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MLTrainingService::Service::RegisterCustomTrainingContainer(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MLTrainingService::Service::DeleteCustomTrainingContainer(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* response) {
   (void) context;
   (void) request;
   (void) response;
