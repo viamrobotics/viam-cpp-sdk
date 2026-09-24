@@ -4,6 +4,12 @@
 #pragma once
 
 #include <string>
+#include <functional>
+#include <vector>
+#include <cstdint>
+
+#include <boost/optional.hpp>
+#include <boost/variant.hpp>
 
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -12,6 +18,30 @@
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/service.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
+
+// Forward declarations for proto types
+namespace viam {
+namespace component {
+namespace arm {
+namespace v1 {
+class MoveOptions;
+class JointPositions;
+}  // namespace v1
+}  // namespace arm
+}  // namespace component
+namespace service {
+namespace motion {
+namespace v1 {
+class TempStreamOptions;
+class TempStreamArmJointPositionsRequest_Init;
+class TempStreamArmJointPositionsRequest_Targets;
+class TempStreamArmJointPositionsRequest;
+class TempStreamArmJointPositionsResponse;
+}  // namespace v1
+}  // namespace motion
+}  // namespace service
+}  // namespace viam
+
 
 namespace viam {
 namespace sdk {
@@ -153,7 +183,49 @@ class Motion : public Service {
         /// @brief The prior status changes that have happened during plan execution.
         std::vector<plan_status> status_history;
 
-        friend bool operator==(const plan_with_status& lhs, const plan_with_status& rhs);
+        friend bool operator==(const plan_with_status& lhs, const plan_status& rhs);
+    };
+
+    /// @struct TempStreamOptions
+    /// @brief Options for streaming arm joint positions.
+    struct TempStreamOptions {
+        boost::optional<int32_t> arm_side_target_runway_ms;
+        boost::optional<int32_t> send_to_arm_interval_ms;
+        boost::optional<int32_t> diagnostics_window_secs;
+        boost::optional<viam::component::arm::v1::MoveOptions> move_options;
+    };
+
+    /// @struct TempStreamArmJointPositionsRequest_Init
+    /// @brief Initial message for TempStreamArmJointPositions.
+    struct TempStreamArmJointPositionsRequest_Init {
+        std::string component_name;
+        boost::optional<TempStreamOptions> options;
+        ProtoStruct extra;
+    };
+
+    /// @struct TempStreamArmJointPositionsRequest_Targets
+    /// @brief Target joint positions for TempStreamArmJointPositions.
+    struct TempStreamArmJointPositionsRequest_Targets {
+        std::vector<viam::component::arm::v1::JointPositions> positions;
+    };
+
+    /// @struct TempStreamArmJointPositionsRequest
+    /// @brief Request for TempStreamArmJointPositions.
+    struct TempStreamArmJointPositionsRequest {
+        std::string name;
+        boost::variant<TempStreamArmJointPositionsRequest_Init, TempStreamArmJointPositionsRequest_Targets> message;
+    };
+
+    /// @struct TempStreamArmJointPositionsResponse
+    /// @brief Response for TempStreamArmJointPositions.
+    struct TempStreamArmJointPositionsResponse {};
+
+    /// @enum stream_outcome
+    /// @brief How a streamed trajectory execution ended.
+    enum class stream_outcome : std::uint8_t {
+        k_completed = 0,  ///< The trajectory ran to its natural end.
+        k_halted_by_update_handler =
+            1,  ///< `update_handler` returned false, stopping the stream early.
     };
 
     /// @struct linear_constraint
@@ -168,6 +240,7 @@ class Motion : public Service {
     /// specified threshold.
     struct orientation_constraint {
         float orientation_tolerance_degs = 0.0f;
+        bool ignore_theta = false;
     };
 
     /// @struct collision_specification
@@ -456,6 +529,22 @@ class Motion : public Service {
     virtual std::vector<plan_status_with_id> list_active_plan_statuses(
         const ProtoStruct& extra) = 0;
 
+    /// @brief Streams joint-space waypoints to an arm. The first message on the stream must
+    /// be an Init; every subsequent message must be a Targets batch. Closing the
+    /// request stream drains any buffered trajectory to the arm before ending the
+    /// call; canceling the call's context aborts the session immediately.
+    ///
+    /// This method and its associated types are named as Temp because this API is
+    /// under active development, and its current shape should not be depended on.
+    /// @param batch_source Pull-source for the next batch of waypoints.
+    /// @param update_handler Handler invoked for each update the implementation emits.
+    /// @param init_request The initial message for the stream.
+    /// @return How the stream ended.
+    virtual stream_outcome temp_stream_arm_joint_positions(
+        const std::function<boost::optional<TempStreamArmJointPositionsRequest_Targets>()>& batch_source,
+        const std::function<bool(TempStreamArmJointPositionsResponse)>& update_handler,
+        const TempStreamArmJointPositionsRequest_Init& init_request) = 0;
+
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
@@ -473,6 +562,69 @@ template <>
 struct API::traits<Motion> {
     static API api();
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto_impl<Motion::TempStreamOptions> {
+    void operator()(const Motion::TempStreamOptions&,
+                    viam::service::motion::v1::TempStreamOptions*) const;
+};
+
+template <>
+struct from_proto_impl<viam::service::motion::v1::TempStreamOptions> {
+    Motion::TempStreamOptions operator()(const viam::service::motion::v1::TempStreamOptions*) const;
+};
+
+template <>
+struct to_proto_impl<Motion::TempStreamArmJointPositionsRequest_Init> {
+    void operator()(const Motion::TempStreamArmJointPositionsRequest_Init&,
+                    viam::service::motion::v1::TempStreamArmJointPositionsRequest_Init*) const;
+};
+
+template <>
+struct from_proto_impl<viam::service::motion::v1::TempStreamArmJointPositionsRequest_Init> {
+    Motion::TempStreamArmJointPositionsRequest_Init operator()(
+        const viam::service::motion::v1::TempStreamArmJointPositionsRequest_Init*) const;
+};
+
+template <>
+struct to_proto_impl<Motion::TempStreamArmJointPositionsRequest_Targets> {
+    void operator()(const Motion::TempStreamArmJointPositionsRequest_Targets&,
+                    viam::service::motion::v1::TempStreamArmJointPositionsRequest_Targets*) const;
+};
+
+template <>
+struct from_proto_impl<viam::service::motion::v1::TempStreamArmJointPositionsRequest_Targets> {
+    Motion::TempStreamArmJointPositionsRequest_Targets operator()(
+        const viam::service::motion::v1::TempStreamArmJointPositionsRequest_Targets*) const;
+};
+
+template <>
+struct to_proto_impl<Motion::TempStreamArmJointPositionsRequest> {
+    void operator()(const Motion::TempStreamArmJointPositionsRequest&,
+                    viam::service::motion::v1::TempStreamArmJointPositionsRequest*) const;
+};
+
+template <>
+struct from_proto_impl<viam::service::motion::v1::TempStreamArmJointPositionsRequest> {
+    Motion::TempStreamArmJointPositionsRequest operator()(
+        const viam::service::motion::v1::TempStreamArmJointPositionsRequest*) const;
+};
+
+template <>
+struct to_proto_impl<Motion::TempStreamArmJointPositionsResponse> {
+    void operator()(const Motion::TempStreamArmJointPositionsResponse&,
+                    viam::service::motion::v1::TempStreamArmJointPositionsResponse*) const;
+};
+
+template <>
+struct from_proto_impl<viam::service::motion::v1::TempStreamArmJointPositionsResponse> {
+    Motion::TempStreamArmJointPositionsResponse operator()(
+        const viam::service::motion::v1::TempStreamArmJointPositionsResponse*) const;
+};
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam

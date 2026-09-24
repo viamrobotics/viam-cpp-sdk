@@ -54,8 +54,10 @@
 #include <viam/sdk/services/private/discovery_server.hpp>
 #include <viam/sdk/services/private/generic_client.hpp>
 #include <viam/sdk/services/private/generic_server.hpp>
-#include <viam/sdk/services/private/mlmodel_client.hpp>
-#include <viam/sdk/services/private/mlmodel_server.hpp>
+#include <viam/sdk/services/private/ml_model_client.hpp>
+#include <viam/sdk/services/private/ml_model_server.hpp>
+#include <viam/sdk/services/private/ml_training_client.hpp>
+#include <viam/sdk/services/private/ml_training_server.hpp>
 #include <viam/sdk/services/private/motion_client.hpp>
 #include <viam/sdk/services/private/motion_server.hpp>
 #include <viam/sdk/services/private/navigation_client.hpp>
@@ -227,6 +229,7 @@ void Registry::register_resources() {
     register_resource<impl::DiscoveryClient, impl::DiscoveryServer>();
     register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
     register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
+    register_resource<impl::MLTrainingServiceClient, impl::MLTrainingServiceServer>();
     register_resource<impl::MotionClient, impl::MotionServer>();
     register_resource<impl::NavigationClient, impl::NavigationServer>();
 }

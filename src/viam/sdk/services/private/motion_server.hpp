@@ -46,6 +46,11 @@ class MotionServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::service::motion::v1::GetPlanRequest* request,
         ::viam::service::motion::v1::GetPlanResponse* response) noexcept override;
+    ::grpc::Status TempStreamArmJointPositions(
+        ::grpc::ServerContext* context,
+        ::grpc::ServerReaderWriter<
+            ::viam::service::motion::v1::TempStreamArmJointPositionsResponse,
+            ::viam::service::motion::v1::TempStreamArmJointPositionsRequest>* stream) noexcept override;
     ::grpc::Status ListPlanStatuses(
         ::grpc::ServerContext* context,
         const ::viam::service::motion::v1::ListPlanStatusesRequest* request,

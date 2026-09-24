@@ -81,6 +81,11 @@ class MockMotion : public sdk::Motion {
     static plan_with_status fake_plan_with_status();
     static plan_status_with_id fake_plan_status_with_id();
 
+    sdk::stream_outcome temp_stream_arm_joint_positions(
+        const std::function<boost::optional<TempStreamArmJointPositionsRequest_Targets>()>& batch_source,
+        const std::function<bool(TempStreamArmJointPositionsResponse)>& update_handler,
+        const TempStreamArmJointPositionsRequest_Init& init_request) override;
+
     // These variables allow the testing infra to `peek` into the mock
     // and ensure that the correct values were passed
     sdk::pose_in_frame current_location;
@@ -100,6 +105,12 @@ class MockMotion : public sdk::Motion {
     std::vector<sdk::geo_geometry> peek_bounding_regions;
     std::shared_ptr<sdk::WorldState> peek_world_state;
 
+    Motion::TempStreamArmJointPositionsRequest_Init peek_temp_stream_init_request;
+    std::vector<Motion::TempStreamArmJointPositionsRequest_Targets> peek_temp_stream_batches;
+    int peek_temp_stream_ack_count = 0;
+    enum class stream_fault : std::uint8_t { k_none = 0, k_runtime_error = 1, k_grpc_status = 2 };
+    stream_fault temp_stream_fault = stream_fault::k_none;
+
     MockMotion(std::string name)
         : sdk::Motion(std::move(name)), current_location(init_fake_pose()) {}
 };
@@ -107,3 +118,17 @@ class MockMotion : public sdk::Motion {
 }  // namespace motion
 }  // namespace sdktests
 }  // namespace viam
+
+// This function is used to create a fake motion configuration.
+// It is used in tests to provide a default motion configuration.
+inline std::shared_ptr<sdk::motion_configuration> fake_motion_configuration() {
+    auto mc = std::make_shared<sdk::motion_configuration>();
+    mc->obstacle_segment_length = 1.0;
+    mc->rotation_allowance = 0.1;
+    mc->rotation_retries = 10;
+    mc->linear_weight = 0.5;
+    mc->angular_weight = 0.5;
+    mc->default_elevation = 0.0;
+    mc->ignore_theta = true;
+    return mc;
+}

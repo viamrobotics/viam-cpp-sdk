@@ -82,6 +82,9 @@ class Camera : public Component {
 
         /// @brief Contains the camera's frame rate.
         float frame_rate = 0.0f;
+
+        /// @brief The default reference frame of the camera.
+        std::string default_reference_frame;
     };
 
     /// @struct point_cloud
@@ -212,6 +215,17 @@ class Camera : public Component {
     /// @brief Get the camera's properties.
     /// @return The camera properties.
     virtual properties get_properties() = 0;
+
+    /// @brief Get the default reference frame of the camera.
+    /// @return The default reference frame.
+    inline std::string default_reference_frame() {
+        return default_reference_frame({});
+    }
+
+    /// @brief Get the default reference frame of the camera.
+    /// @param extra Any additional arguments to the method.
+    /// @return The default reference frame.
+    virtual std::string default_reference_frame(const ProtoStruct& extra) = 0;
 
     API api() const override;
 

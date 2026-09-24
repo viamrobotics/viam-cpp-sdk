@@ -90,6 +90,7 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
 
         BOOST_CHECK(expected == props);
         BOOST_CHECK(expected.mime_types == props.mime_types);
+        BOOST_CHECK_EQUAL(props.default_reference_frame, expected.default_reference_frame);
     });
 }
 
@@ -144,6 +145,14 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
         const ProtoStruct status = client.get_status();
         const ProtoStruct expected = fake_status();
         BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_default_reference_frame) {
+    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
+        const std::string default_frame = client.default_reference_frame();
+        BOOST_CHECK_EQUAL(default_frame, "test_frame");
     });
 }
 

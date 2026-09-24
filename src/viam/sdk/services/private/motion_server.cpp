@@ -11,6 +11,7 @@
 #include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/services/private/motion_server.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
+#include <viam/api/component/arm/v1/arm.pb.h>
 
 namespace viam {
 namespace sdk {
@@ -149,6 +150,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     for (const auto& proto_oc : proto.orientation_constraint()) {
         Motion::orientation_constraint oc;
         oc.orientation_tolerance_degs = proto_oc.orientation_tolerance_degs();
+        oc.ignore_theta = proto_oc.ignore_theta();
         ocs.push_back(oc);
     }
 
@@ -364,6 +366,93 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         const ProtoStruct result = motion->get_status();
         *response->mutable_result() = to_proto(result);
     });
+}
+
+::grpc::Status MotionServer::TempStreamArmJointPositions(
+    ::grpc::ServerContext* context,
+    ::grpc::ServerReaderWriter<
+        ::viam::service::motion::v1::TempStreamArmJointPositionsResponse,
+        ::viam::service::motion::v1::TempStreamArmJointPositionsRequest>* stream) noexcept {
+    using request_type = ::viam::service::motion::v1::TempStreamArmJointPositionsRequest;
+
+    ServerSpanGuard span_guard{context, "MotionServer::TempStreamArmJointPositions"};
+
+    request_type first;
+    if (!stream->Read(&first)) {
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                           "TempStreamArmJointPositions: stream closed before Init message"));
+    }
+    if (first.message_case() != request_type::kInit) {
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                           "TempStreamArmJointPositions: first message must be Init"));
+    }
+    const auto& init = first.init();
+
+    try {
+        const auto service = resource_manager()->resource<Motion>(first.name());
+        if (!service) {
+            return span_guard.commit(::grpc::Status(
+                ::grpc::StatusCode::NOT_FOUND,
+                "TempStreamArmJointPositions: service not found: " + first.name()));
+        }
+
+        const Motion::TempStreamArmJointPositionsRequest_Init init_request = from_proto(init);
+
+        auto batch_source = [stream, context]() mutable
+            -> boost::optional<Motion::TempStreamArmJointPositionsRequest_Targets> {
+            while (true) {
+                if (context->IsCancelled()) {
+                    return boost::none;
+                }
+
+                request_type msg;
+                if (!stream->Read(&msg)) {
+                    return boost::none;
+                }
+
+                const auto mc = msg.message_case();
+                if (mc == request_type::kInit) {
+                    throw ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                         "TempStreamArmJointPositions: Init may only "
+                                         "appear as the first message");
+                }
+                if (mc != request_type::kTargets) {
+                    throw ::grpc::Status(
+                        ::grpc::StatusCode::INVALID_ARGUMENT,
+                        "TempStreamArmJointPositions: expected Targets message");
+                }
+
+                Motion::TempStreamArmJointPositionsRequest_Targets targets = from_proto(msg.targets());
+
+                if (!targets.positions.empty()) {
+                    return targets;
+                }
+            }
+        };
+
+        auto update_handler = [stream, context](Motion::TempStreamArmJointPositionsResponse update) {
+            if (context->IsCancelled()) {
+                return false;
+            }
+            return stream->Write(to_proto(update));
+        };
+
+        const GrpcContextObserver::Enable observer_enable{*context};
+
+        service->temp_stream_arm_joint_positions(batch_source, update_handler, init_request);
+    } catch (const ::grpc::Status& s) {
+        return span_guard.commit(s);
+    } catch (const std::invalid_argument& e) {
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT, e.what()));
+    } catch (const std::exception& e) {
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INTERNAL, e.what()));
+    } catch (...) {
+        return span_guard.commit(::grpc::Status(
+            ::grpc::StatusCode::INTERNAL, "TempStreamArmJointPositions: unknown exception"));
+    }
+    return span_guard.commit(::grpc::Status::OK);
 }
 
 }  // namespace impl

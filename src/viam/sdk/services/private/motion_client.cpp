@@ -5,6 +5,7 @@
 #include <grpcpp/channel.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/api/component/arm/v1/arm.pb.h>
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
 #include <viam/api/service/motion/v1/motion.pb.h>
 
@@ -70,6 +71,7 @@ service::motion::v1::Constraints to_proto(const Motion::constraints& cs) {
     for (const auto& oc : cs.orientation_constraints) {
         service::motion::v1::OrientationConstraint proto_oc;
         proto_oc.set_orientation_tolerance_degs(oc.orientation_tolerance_degs);
+        proto_oc.set_ignore_theta(oc.ignore_theta);
         *proto.mutable_orientation_constraint()->Add() = std::move(proto_oc);
     }
 
@@ -361,6 +363,91 @@ ProtoStruct MotionClient::get_status() {
     return make_client_helper(this, *stub_, &StubType::GetStatus).invoke([](auto& response) {
         return from_proto(response.result());
     });
+}
+
+Motion::stream_outcome MotionClient::temp_stream_arm_joint_positions(
+    const std::function<boost::optional<TempStreamArmJointPositionsRequest_Targets>()>& batch_source,
+    const std::function<bool(TempStreamArmJointPositionsResponse)>& update_handler,
+    const TempStreamArmJointPositionsRequest_Init& init_request) {
+    ClientContext ctx(*channel_);
+    auto stream = stub_->TempStreamArmJointPositions(&ctx);
+
+    // Send `Init` on the caller's thread. If it fails there is no reader yet and
+    // nothing to tear down, so reap and report right here.
+    ::viam::service::motion::v1::TempStreamArmJointPositionsRequest init_proto_msg;
+    init_proto_msg.set_name(this->name());
+    *init_proto_msg.mutable_init() = to_proto(init_request);
+    if (!stream->Write(init_proto_msg)) {
+        const ::grpc::Status status = stream->Finish();
+        throw GRPCException(&status);
+    }
+
+    ::grpc::Status finish_status;
+    struct finish_guard {
+        decltype(stream.get()) str;
+        ::grpc::Status& status;
+        ~finish_guard() {
+            status = str->Finish();
+        }
+    };
+
+    bool update_handler_halted = false;
+    std::exception_ptr writer_exception;
+    std::exception_ptr reader_exception;
+
+    {
+        const finish_guard guard{stream.get(), finish_status};
+
+        std::thread reader([&] {
+            try {
+                ::viam::service::motion::v1::TempStreamArmJointPositionsResponse pb;
+                while (stream->Read(&pb)) {
+                    if (!update_handler(from_proto(pb))) {
+                        update_handler_halted = true;
+                        ctx.try_cancel();
+                        return;
+                    }
+                }
+            } catch (...) {
+                reader_exception = std::current_exception();
+                ctx.try_cancel();
+            }
+        });
+
+        try {
+            while (auto batch = batch_source()) {
+                ::viam::service::motion::v1::TempStreamArmJointPositionsRequest msg;
+                msg.set_name(this->name());
+                *msg.mutable_targets() = to_proto(*batch);
+                if (!stream->Write(msg)) {
+                    break;
+                }
+            }
+            stream->WritesDone();
+        } catch (...) {
+            writer_exception = std::current_exception();
+            ctx.try_cancel();
+        }
+
+        reader.join();
+    }
+
+    if (writer_exception) {
+        std::rethrow_exception(writer_exception);
+    }
+    if (reader_exception) {
+        std::rethrow_exception(reader_exception);
+    }
+
+    if (update_handler_halted) {
+        return Motion::stream_outcome::k_halted_by_update_handler;
+    }
+
+    if (!finish_status.ok()) {
+        throw GRPCException(&finish_status);
+    }
+
+    return Motion::stream_outcome::k_completed;
 }
 
 }  // namespace impl

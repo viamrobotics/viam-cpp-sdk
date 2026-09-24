@@ -54,6 +54,9 @@ class CameraClient : public Camera {
     using Camera::get_geometries;
     using Camera::get_images;
     using Camera::get_point_cloud;
+    std::string default_reference_frame(const ProtoStruct& extra) override;
+
+    using Camera::default_reference_frame;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing
