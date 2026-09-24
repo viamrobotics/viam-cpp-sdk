@@ -9,6 +9,7 @@
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
+#include <viam/api/component/arm/v1/arm.pb.h>
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::WorldState)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::geo_geometry>)
@@ -282,6 +283,120 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
         const ProtoStruct status = client.get_status();
         const ProtoStruct expected = fake_status();
         BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_temp_stream_arm_joint_positions) {
+    auto mock = std::make_shared<MockMotion>("mock_motion");
+    client_to_mock_pipeline<Motion>(mock, [&](Motion& client) {
+        Motion::TempStreamArmJointPositionsRequest_Init init_req;
+        init_req.component_name = "arm0";
+        init_req.extra["foo"] = ProtoValue("bar");
+
+        auto batches = std::make_shared<std::vector<Motion::TempStreamArmJointPositionsRequest_Targets>>(
+            {
+                {std::vector<viam::component::arm::v1::JointPositions>{viam::component::arm::v1::JointPositions(), viam::component::arm::v1::JointPositions()}},
+                {std::vector<viam::component::arm::v1::JointPositions>{viam::component::arm::v1::JointPositions(), viam::component::arm::v1::JointPositions()}},
+            });
+
+        auto batch_source = [batches = std::move(batches), index = 0]() mutable
+            -> boost::optional<Motion::TempStreamArmJointPositionsRequest_Targets> {
+            if (index >= batches->size()) {
+                return boost::none;
+            }
+            return (*batches)[index++];
+        };
+
+        int client_acks = 0;
+        const auto outcome = client.temp_stream_arm_joint_positions(
+            batch_source,
+            [&](Motion::TempStreamArmJointPositionsResponse) {
+                ++client_acks;
+                return true;
+            },
+            init_req);
+
+        BOOST_CHECK(outcome == Motion::stream_outcome::k_completed);
+        BOOST_CHECK_EQUAL(client_acks, 2);
+        BOOST_CHECK_EQUAL(mock->peek_temp_stream_ack_count, 2);
+        BOOST_CHECK_EQUAL(mock->peek_temp_stream_init_request.component_name, init_req.component_name);
+        BOOST_CHECK(mock->peek_temp_stream_init_request.extra.at("foo").is_a<std::string>());
+        BOOST_CHECK_EQUAL(mock->peek_temp_stream_init_request.extra.at("foo").get_unchecked<std::string>(), "bar");
+        BOOST_REQUIRE_EQUAL(mock->peek_temp_stream_batches.size(), 2U);
+        BOOST_REQUIRE_EQUAL(mock->peek_temp_stream_batches[0].positions.size(), 2U);
+        BOOST_REQUIRE_EQUAL(mock->peek_temp_stream_batches[1].positions.size(), 2U);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_temp_stream_arm_joint_positions_impl_runtime_error_propagates) {
+    auto mock = std::make_shared<MockMotion>("mock_motion");
+    mock->temp_stream_fault = MockMotion::stream_fault::k_runtime_error;
+    client_to_mock_pipeline<Motion>(mock, [&](Motion& client) {
+        Motion::TempStreamArmJointPositionsRequest_Init init_req;
+        init_req.component_name = "arm0";
+        auto batches = std::make_shared<std::vector<Motion::TempStreamArmJointPositionsRequest_Targets>>(
+            {{std::vector<viam::component::arm::v1::JointPositions>{viam::component::arm::v1::JointPositions()}}});
+        auto batch_source = [batches = std::move(batches), index = 0]() mutable
+            -> boost::optional<Motion::TempStreamArmJointPositionsRequest_Targets> {
+            if (index >= batches->size()) {
+                return boost::none;
+            }
+            return (*batches)[index++];
+        };
+        BOOST_CHECK_THROW(client.temp_stream_arm_joint_positions(
+                              batch_source, [](Motion::TempStreamArmJointPositionsResponse) { return true; }, init_req),
+                          GRPCException);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_temp_stream_arm_joint_positions_update_handler_halt) {
+    auto mock = std::make_shared<MockMotion>("mock_motion");
+    client_to_mock_pipeline<Motion>(mock, [&](Motion& client) {
+        Motion::TempStreamArmJointPositionsRequest_Init init_req;
+        init_req.component_name = "arm0";
+        auto batches = std::make_shared<std::vector<Motion::TempStreamArmJointPositionsRequest_Targets>>(
+            {
+                {std::vector<viam::component::arm::v1::JointPositions>{viam::component::arm::v1::JointPositions()}},
+                {std::vector<viam::component::arm::v1::JointPositions>{viam::component::arm::v1::JointPositions()}},
+            });
+        auto batch_source = [batches = std::move(batches), index = 0]() mutable
+            -> boost::optional<Motion::TempStreamArmJointPositionsRequest_Targets> {
+            if (index >= batches->size()) {
+                return boost::none;
+            }
+            return (*batches)[index++];
+        };
+        const auto outcome = client.temp_stream_arm_joint_positions(
+            batch_source, [](Motion::TempStreamArmJointPositionsResponse) { return false; }, init_req);
+        BOOST_CHECK(outcome == Motion::stream_outcome::k_halted_by_update_handler);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_temp_stream_arm_joint_positions_update_handler_throw_propagates) {
+    auto mock = std::make_shared<MockMotion>("mock_motion");
+    client_to_mock_pipeline<Motion>(mock, [&](Motion& client) {
+        Motion::TempStreamArmJointPositionsRequest_Init init_req;
+        init_req.component_name = "arm0";
+        auto batches = std::make_shared<std::vector<Motion::TempStreamArmJointPositionsRequest_Targets>>(
+            {{std::vector<viam::component::arm::v1::JointPositions>{viam::component::arm::v1::JointPositions()}}});
+        auto batch_source = [batches = std::move(batches), index = 0]() mutable
+            -> boost::optional<Motion::TempStreamArmJointPositionsRequest_Targets> {
+            if (index >= batches->size()) {
+                return boost::none;
+            }
+            return (*batches)[index++];
+        };
+        try {
+            client.temp_stream_arm_joint_positions(
+                batch_source,
+                [](Motion::TempStreamArmJointPositionsResponse) -> bool { throw std::runtime_error("handler blew up"); },
+                init_req);
+            BOOST_FAIL("expected the handler's exception to propagate");
+        } catch (const GRPCException&) {
+            BOOST_FAIL("handler exception should propagate as-is, not as a GRPCException");
+        } catch (const std::runtime_error& e) {
+            BOOST_CHECK_EQUAL(std::string(e.what()), "handler blew up");
+        }
     });
 }
 

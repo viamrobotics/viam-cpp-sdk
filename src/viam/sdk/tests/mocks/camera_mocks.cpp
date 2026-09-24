@@ -45,6 +45,10 @@ Camera::properties MockCamera::get_properties() {
     return camera_properties_;
 }
 
+std::string MockCamera::default_reference_frame(const ProtoStruct&) {
+    return default_reference_frame_;
+}
+
 Camera::image_collection fake_raw_images() {
     Camera::image_collection collection;
     std::vector<Camera::raw_image> images;
@@ -117,6 +121,7 @@ Camera::properties fake_properties() {
     properties.distortion_parameters = fake_distortion_parameters();
     properties.mime_types = fake_mime_types();
     properties.frame_rate = 10.0;
+    properties.default_reference_frame = "test_frame";
     return properties;
 }
 
@@ -130,6 +135,7 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     camera->distortion_parameters_ = fake_distortion_parameters();
     camera->map_ = fake_map();
     camera->geometries_ = fake_geometries();
+    camera->default_reference_frame_ = "test_frame";
     return camera;
 }
 

@@ -46,6 +46,10 @@ class CameraServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetPropertiesRequest* request,
         ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept override;
+    ::grpc::Status GetDefaultReferenceFrame(
+        ::grpc::ServerContext* context,
+        const ::viam::component::camera::v1::GetPropertiesRequest* request,
+        ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept override;
 };
 
 }  // namespace impl

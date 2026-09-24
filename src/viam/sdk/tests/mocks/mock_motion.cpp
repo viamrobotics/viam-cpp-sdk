@@ -170,6 +170,7 @@ geo_point fake_geo_point() {
 std::shared_ptr<motion_configuration> fake_motion_configuration() {
     auto mc = std::make_shared<motion_configuration>();
     mc->plan_deviation_m = 55;
+    mc->ignore_theta = true;
     return mc;
 }
 
@@ -182,6 +183,35 @@ std::vector<geo_geometry> fake_obstacles() {
 std::vector<geo_geometry> fake_bounding_regions() {
     GeometryConfig gc({{1, 2, 3}, {0, 0, 0}, 90}, sphere{2}, axis_angles{1, 2, 3, 4}, "label");
     return {{fake_geo_point(), {std::move(gc)}}};
+}
+
+Motion::stream_outcome MockMotion::temp_stream_arm_joint_positions(
+    const std::function<boost::optional<TempStreamArmJointPositionsRequest_Targets>()>& batch_source,
+    const std::function<bool(TempStreamArmJointPositionsResponse)>& update_handler,
+    const TempStreamArmJointPositionsRequest_Init& init_request) {
+    peek_temp_stream_init_request = init_request;
+    peek_temp_stream_batches.clear();
+    peek_temp_stream_ack_count = 0;
+
+    while (auto batch = batch_source()) {
+        peek_temp_stream_batches.push_back(*batch);
+        if (!update_handler(Motion::TempStreamArmJointPositionsResponse{})) {
+            return Motion::stream_outcome::k_halted_by_update_handler;
+        }
+        ++peek_temp_stream_ack_count;
+    }
+
+    switch (temp_stream_fault) {
+        case stream_fault::k_none:
+            break;
+        case stream_fault::k_runtime_error:
+            throw std::runtime_error("mock motion streamed fault");
+        case stream_fault::k_grpc_status:
+            throw grpc::Status(grpc::StatusCode::FAILED_PRECONDITION,
+                               "mock motion streamed grpc fault");
+    }
+
+    return Motion::stream_outcome::k_completed;
 }
 
 }  // namespace motion

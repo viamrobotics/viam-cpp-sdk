@@ -17,6 +17,7 @@ class MockCamera : public Camera {
     point_cloud get_point_cloud(std::string mime_type, const sdk::ProtoStruct& extra) override;
     std::vector<GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
     properties get_properties() override;
+    std::string default_reference_frame(const sdk::ProtoStruct& extra) override;
     static std::shared_ptr<MockCamera> get_mock_camera();
     MockCamera(std::string name) : Camera(std::move(name)) {}
 
@@ -37,6 +38,7 @@ class MockCamera : public Camera {
     std::vector<GeometryConfig> geometries_;
     std::vector<std::string> last_filter_source_names_;
     ProtoStruct last_extra_;
+    std::string default_reference_frame_;
 };
 
 Camera::image_collection fake_raw_images();

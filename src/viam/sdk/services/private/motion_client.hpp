@@ -75,6 +75,13 @@ class MotionClient : public Motion {
 
     std::vector<Motion::plan_status_with_id> list_plan_statuses(const ProtoStruct& extra) override;
 
+    Motion::stream_outcome temp_stream_arm_joint_positions(
+        const std::function<boost::optional<TempStreamArmJointPositionsRequest_Targets>()>& batch_source,
+        const std::function<bool(TempStreamArmJointPositionsResponse)>& update_handler,
+        const TempStreamArmJointPositionsRequest_Init& init_request) override;
+
+    using Motion::temp_stream_arm_joint_positions;
+
     ProtoStruct do_command(const ProtoStruct& command) override;
     ProtoStruct get_status() override;
 

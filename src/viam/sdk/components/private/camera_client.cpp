@@ -91,12 +91,13 @@ Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesRe
             from_proto(proto.extrinsic_parameters()),
             from_proto(proto.distortion_parameters()),
             {proto.mime_types().begin(), proto.mime_types().end()},
-            (proto.frame_rate())};
+            (proto.frame_rate()),
+            proto.default_reference_frame()};
 }
 
 CameraClient::CameraClient(std::string name, const ViamChannel& channel)
     : Camera(std::move(name)),
-      stub_(viam::component::camera::v1::CameraService::NewStub(channel.channel())),
+      stub_(viam.component.camera.v1.CameraService::NewStub(channel.channel())),
       channel_(&channel) {}
 
 ProtoStruct CameraClient::do_command(const ProtoStruct& command) {
@@ -139,6 +140,12 @@ Camera::properties CameraClient::get_properties() {
         return from_proto(response);
     });
 };
+
+std::string CameraClient::default_reference_frame(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetProperties)
+        .with(extra)
+        .invoke([](auto& response) { return response.default_reference_frame(); });
+}
 
 ProtoStruct CameraClient::get_status() {
     return make_client_helper(this, *stub_, &StubType::GetStatus).invoke([](auto& response) {

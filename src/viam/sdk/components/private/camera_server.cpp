@@ -123,7 +123,20 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         for (const auto& mt : properties.mime_types) {
             response->add_mime_types(mt);
         }
+        response->set_default_reference_frame(properties.default_reference_frame);
     });
+}
+
+::grpc::Status CameraServer::GetDefaultReferenceFrame(
+    ::grpc::ServerContext* context,
+    const ::viam::component::camera::v1::GetPropertiesRequest* request,
+    ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::GetDefaultReferenceFrame", this, context, request)(
+        [&](auto&, auto& camera) {
+            const Camera::properties properties = camera->get_properties();
+            response->set_default_reference_frame(properties.default_reference_frame);
+        });
 }
 
 ::grpc::Status CameraServer::GetStatus(::grpc::ServerContext* context,
