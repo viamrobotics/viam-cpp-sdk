@@ -17,6 +17,11 @@ on:
         type: boolean
         default: false
         description: If true, add a conan.lock artifact to the draft release
+      upload_relwithdebinfo:
+        required: true
+        type: boolean
+        default: true
+        description: If true, also publish a RelWithDebInfo build of the SDK (deps stay Release)
 
 
 jobs:
@@ -66,6 +71,14 @@ jobs:
           conan create . --build=missing -pr:a etc/conan/macos.profile \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
+          # No lockfile-out: must not rewrite the release lock.
+          if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+            conan create . --build=missing -pr:a etc/conan/macos.profile \
+              --lockfile etc/conan/conan.lock \
+              -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+          fi
+
+          # One upload pushes both build_types now in the cache (RWDI only if built).
           conan upload "viam-cpp-sdk/*" -r viamconan -c
 
       - name: Upload lockfile artifact
@@ -150,6 +163,14 @@ jobs:
         conan create . --build=missing -pr:a default \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
+        # No lockfile-out: must not rewrite the release lock.
+        if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+          conan create . --build=missing -pr:a default \
+            --lockfile etc/conan/conan.lock \
+            -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+        fi
+
+        # One upload pushes both build_types now in the cache (RWDI only if built).
         conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Sanitize image name for artifact
@@ -219,6 +240,14 @@ jobs:
         refreshenv
 
         conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
+
+        if ('${{ inputs.upload_relwithdebinfo }}' -eq 'true') {
+          conan create . --build=missing -s:a compiler.cppstd=17 `
+            --lockfile etc/conan/conan.lock --lockfile-partial `
+            -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+        }
+
+        # One upload pushes both build_types now in the cache (RWDI only if built).
         conan upload "viam-cpp-sdk/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
