@@ -71,21 +71,17 @@ jobs:
           conan create . --build=missing -pr:a etc/conan/macos.profile \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
-          conan upload "viam-cpp-sdk/*" -r viamconan -c
+          # Second pass: flip only the SDK to RelWithDebInfo (deps stay Release
+          # via the profile, so --build=missing recompiles the SDK alone and
+          # reuses the deps built above). No lockfile-out: must not rewrite the
+          # release lock.
+          if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+            conan create . --build=missing -pr:a etc/conan/macos.profile \
+              --lockfile etc/conan/conan.lock \
+              -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+          fi
 
-      # Second pass: flip only the SDK to RelWithDebInfo; deps stay Release so
-      # --build=missing recompiles the SDK alone and reuses the Release deps
-      # built above. No lockfile-out: this pass must not rewrite the release lock.
-      - name: Create and upload package (RelWithDebInfo)
-        if: inputs.upload_relwithdebinfo
-        run: |
-          export BUF_CONFIG_DIR=$(mktemp -d)
-
-          conan create . --build=missing -pr:a etc/conan/macos.profile \
-            --lockfile etc/conan/conan.lock \
-            -s:a build_type=Release \
-            -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
-
+          # One upload pushes both build_types now in the cache (RWDI only if built).
           conan upload "viam-cpp-sdk/*" -r viamconan -c
 
       - name: Upload lockfile artifact
@@ -170,19 +166,17 @@ jobs:
         conan create . --build=missing -pr:a default \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
-        conan upload "viam-cpp-sdk/*" -r viamconan -c
+        # Second pass: flip only the SDK to RelWithDebInfo (deps stay Release
+        # via the profile, so --build=missing recompiles the SDK alone and
+        # reuses the deps built above). No lockfile-out: must not rewrite the
+        # release lock.
+        if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+          conan create . --build=missing -pr:a default \
+            --lockfile etc/conan/conan.lock \
+            -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+        fi
 
-    # Second pass: flip only the SDK to RelWithDebInfo; deps stay Release so
-    # --build=missing recompiles the SDK alone and reuses the Release deps
-    # built above. No lockfile-out: this pass must not rewrite the release lock.
-    - name: Create and upload package (RelWithDebInfo)
-      if: inputs.upload_relwithdebinfo
-      run: |
-        conan create . --build=missing -pr:a default \
-          --lockfile etc/conan/conan.lock \
-          -s:a build_type=Release \
-          -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
-
+        # One upload pushes both build_types now in the cache (RWDI only if built).
         conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Sanitize image name for artifact
@@ -252,25 +246,17 @@ jobs:
         refreshenv
 
         conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
-        conan upload "viam-cpp-sdk/*" -r viamconan -c
-      env:
-        CONAN_USER_HOME: c:/cache
-        CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
-    # Second pass: flip only the SDK to RelWithDebInfo; deps stay Release so
-    # --build=missing recompiles the SDK alone and reuses the Release deps built above.
-    - name: Create and upload package (RelWithDebInfo)
-      if: inputs.upload_relwithdebinfo
-      shell: powershell
-      run: |
-        $ErrorActionPreference = "Stop"
-        Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-        refreshenv
+        # Second pass: flip only the SDK to RelWithDebInfo (deps stay Release
+        # via the detected default profile, so --build=missing recompiles the
+        # SDK alone and reuses the deps built above).
+        if ('${{ inputs.upload_relwithdebinfo }}' -eq 'true') {
+          conan create . --build=missing -s:a compiler.cppstd=17 `
+            --lockfile etc/conan/conan.lock --lockfile-partial `
+            -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+        }
 
-        conan create . --build=missing -s:a compiler.cppstd=17 `
-          --lockfile etc/conan/conan.lock --lockfile-partial `
-          -s:a build_type=Release `
-          -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+        # One upload pushes both build_types now in the cache (RWDI only if built).
         conan upload "viam-cpp-sdk/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
