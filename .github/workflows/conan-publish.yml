@@ -71,10 +71,7 @@ jobs:
           conan create . --build=missing -pr:a etc/conan/macos.profile \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
-          # Second pass: flip only the SDK to RelWithDebInfo (deps stay Release
-          # via the profile, so --build=missing recompiles the SDK alone and
-          # reuses the deps built above). No lockfile-out: must not rewrite the
-          # release lock.
+          # No lockfile-out: must not rewrite the release lock.
           if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
             conan create . --build=missing -pr:a etc/conan/macos.profile \
               --lockfile etc/conan/conan.lock \
@@ -166,10 +163,7 @@ jobs:
         conan create . --build=missing -pr:a default \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
-        # Second pass: flip only the SDK to RelWithDebInfo (deps stay Release
-        # via the profile, so --build=missing recompiles the SDK alone and
-        # reuses the deps built above). No lockfile-out: must not rewrite the
-        # release lock.
+        # No lockfile-out: must not rewrite the release lock.
         if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
           conan create . --build=missing -pr:a default \
             --lockfile etc/conan/conan.lock \
@@ -247,9 +241,6 @@ jobs:
 
         conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
 
-        # Second pass: flip only the SDK to RelWithDebInfo (deps stay Release
-        # via the detected default profile, so --build=missing recompiles the
-        # SDK alone and reuses the deps built above).
         if ('${{ inputs.upload_relwithdebinfo }}' -eq 'true') {
           conan create . --build=missing -s:a compiler.cppstd=17 `
             --lockfile etc/conan/conan.lock --lockfile-partial `
