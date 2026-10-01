@@ -110,6 +110,14 @@ class MLTrainingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListContainersResponse>> PrepareAsyncListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListContainersResponse>>(PrepareAsyncListContainersRaw(context, request, cq));
     }
+    // GetContainer retrieves a container by its ID.
+    virtual ::grpc::Status GetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::viam::app::mltraining::v1::GetContainerResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetContainerResponse>> AsyncGetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetContainerResponse>>(AsyncGetContainerRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetContainerResponse>> PrepareAsyncGetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetContainerResponse>>(PrepareAsyncGetContainerRaw(context, request, cq));
+    }
     // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
     virtual ::grpc::Status RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>> AsyncRegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) {
@@ -156,6 +164,9 @@ class MLTrainingService final {
       // ListContainers lists the containers available for a custom training job for a given organization.
       virtual void ListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetContainer retrieves a container by its ID.
+      virtual void GetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest* request, ::viam::app::mltraining::v1::GetContainerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest* request, ::viam::app::mltraining::v1::GetContainerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
       virtual void RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -185,6 +196,8 @@ class MLTrainingService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* PrepareAsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListContainersResponse>* AsyncListContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListContainersResponse>* PrepareAsyncListContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetContainerResponse>* AsyncGetContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetContainerResponse>* PrepareAsyncGetContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* AsyncRegisterCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* PrepareAsyncRegisterCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>* AsyncDeleteCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -256,6 +269,13 @@ class MLTrainingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListContainersResponse>> PrepareAsyncListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListContainersResponse>>(PrepareAsyncListContainersRaw(context, request, cq));
     }
+    ::grpc::Status GetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::viam::app::mltraining::v1::GetContainerResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetContainerResponse>> AsyncGetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetContainerResponse>>(AsyncGetContainerRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetContainerResponse>> PrepareAsyncGetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetContainerResponse>>(PrepareAsyncGetContainerRaw(context, request, cq));
+    }
     ::grpc::Status RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>> AsyncRegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>>(AsyncRegisterCustomTrainingContainerRaw(context, request, cq));
@@ -291,6 +311,8 @@ class MLTrainingService final {
       void ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response, std::function<void(::grpc::Status)>) override;
       void ListContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest* request, ::viam::app::mltraining::v1::GetContainerResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest* request, ::viam::app::mltraining::v1::GetContainerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response, std::function<void(::grpc::Status)>) override;
       void RegisterCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DeleteCustomTrainingContainer(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* response, std::function<void(::grpc::Status)>) override;
@@ -324,6 +346,8 @@ class MLTrainingService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* PrepareAsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListContainersResponse>* AsyncListContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListContainersResponse>* PrepareAsyncListContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListContainersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetContainerResponse>* AsyncGetContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetContainerResponse>* PrepareAsyncGetContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetContainerRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* AsyncRegisterCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* PrepareAsyncRegisterCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>* AsyncDeleteCustomTrainingContainerRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -337,6 +361,7 @@ class MLTrainingService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetTrainingJobLogs_;
     const ::grpc::internal::RpcMethod rpcmethod_ListSupportedContainers_;
     const ::grpc::internal::RpcMethod rpcmethod_ListContainers_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetContainer_;
     const ::grpc::internal::RpcMethod rpcmethod_RegisterCustomTrainingContainer_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteCustomTrainingContainer_;
   };
@@ -364,6 +389,8 @@ class MLTrainingService final {
     virtual ::grpc::Status ListSupportedContainers(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response);
     // ListContainers lists the containers available for a custom training job for a given organization.
     virtual ::grpc::Status ListContainers(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::ListContainersRequest* request, ::viam::app::mltraining::v1::ListContainersResponse* response);
+    // GetContainer retrieves a container by its ID.
+    virtual ::grpc::Status GetContainer(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::GetContainerRequest* request, ::viam::app::mltraining::v1::GetContainerResponse* response);
     // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
     virtual ::grpc::Status RegisterCustomTrainingContainer(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response);
     // DeleteCustomTrainingContainer deletes a custom container from the database
@@ -550,12 +577,32 @@ class MLTrainingService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetContainer : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetContainer() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_GetContainer() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetContainer(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::GetContainerRequest* /*request*/, ::viam::app::mltraining::v1::GetContainerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetContainer(::grpc::ServerContext* context, ::viam::app::mltraining::v1::GetContainerRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::mltraining::v1::GetContainerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_RegisterCustomTrainingContainer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RegisterCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_RegisterCustomTrainingContainer() override {
       BaseClassMustBeDerivedFromService(this);
@@ -566,7 +613,7 @@ class MLTrainingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRegisterCustomTrainingContainer(::grpc::ServerContext* context, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -575,7 +622,7 @@ class MLTrainingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_DeleteCustomTrainingContainer() override {
       BaseClassMustBeDerivedFromService(this);
@@ -586,10 +633,10 @@ class MLTrainingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCustomTrainingContainer(::grpc::ServerContext* context, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SubmitTrainingJob<WithAsyncMethod_SubmitCustomTrainingJob<WithAsyncMethod_GetTrainingJob<WithAsyncMethod_ListTrainingJobs<WithAsyncMethod_CancelTrainingJob<WithAsyncMethod_DeleteCompletedTrainingJob<WithAsyncMethod_GetTrainingJobLogs<WithAsyncMethod_ListSupportedContainers<WithAsyncMethod_ListContainers<WithAsyncMethod_RegisterCustomTrainingContainer<WithAsyncMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_SubmitTrainingJob<WithAsyncMethod_SubmitCustomTrainingJob<WithAsyncMethod_GetTrainingJob<WithAsyncMethod_ListTrainingJobs<WithAsyncMethod_CancelTrainingJob<WithAsyncMethod_DeleteCompletedTrainingJob<WithAsyncMethod_GetTrainingJobLogs<WithAsyncMethod_ListSupportedContainers<WithAsyncMethod_ListContainers<WithAsyncMethod_GetContainer<WithAsyncMethod_RegisterCustomTrainingContainer<WithAsyncMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SubmitTrainingJob : public BaseClass {
    private:
@@ -834,18 +881,45 @@ class MLTrainingService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::ListContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListContainersResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetContainer : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetContainer() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetContainerRequest, ::viam::app::mltraining::v1::GetContainerResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::GetContainerRequest* request, ::viam::app::mltraining::v1::GetContainerResponse* response) { return this->GetContainer(context, request, response); }));}
+    void SetMessageAllocatorFor_GetContainer(
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::GetContainerRequest, ::viam::app::mltraining::v1::GetContainerResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetContainerRequest, ::viam::app::mltraining::v1::GetContainerResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetContainer() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetContainer(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::GetContainerRequest* /*request*/, ::viam::app::mltraining::v1::GetContainerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetContainer(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetContainerRequest* /*request*/, ::viam::app::mltraining::v1::GetContainerResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_RegisterCustomTrainingContainer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_RegisterCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse* response) { return this->RegisterCustomTrainingContainer(context, request, response); }));}
     void SetMessageAllocatorFor_RegisterCustomTrainingContainer(
         ::grpc::MessageAllocator< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -866,13 +940,13 @@ class MLTrainingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* request, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* response) { return this->DeleteCustomTrainingContainer(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteCustomTrainingContainer(
         ::grpc::MessageAllocator< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -887,7 +961,7 @@ class MLTrainingService final {
     virtual ::grpc::ServerUnaryReactor* DeleteCustomTrainingContainer(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest* /*request*/, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SubmitTrainingJob<WithCallbackMethod_SubmitCustomTrainingJob<WithCallbackMethod_GetTrainingJob<WithCallbackMethod_ListTrainingJobs<WithCallbackMethod_CancelTrainingJob<WithCallbackMethod_DeleteCompletedTrainingJob<WithCallbackMethod_GetTrainingJobLogs<WithCallbackMethod_ListSupportedContainers<WithCallbackMethod_ListContainers<WithCallbackMethod_RegisterCustomTrainingContainer<WithCallbackMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_SubmitTrainingJob<WithCallbackMethod_SubmitCustomTrainingJob<WithCallbackMethod_GetTrainingJob<WithCallbackMethod_ListTrainingJobs<WithCallbackMethod_CancelTrainingJob<WithCallbackMethod_DeleteCompletedTrainingJob<WithCallbackMethod_GetTrainingJobLogs<WithCallbackMethod_ListSupportedContainers<WithCallbackMethod_ListContainers<WithCallbackMethod_GetContainer<WithCallbackMethod_RegisterCustomTrainingContainer<WithCallbackMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SubmitTrainingJob : public BaseClass {
@@ -1043,12 +1117,29 @@ class MLTrainingService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetContainer : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetContainer() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_GetContainer() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetContainer(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::GetContainerRequest* /*request*/, ::viam::app::mltraining::v1::GetContainerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_RegisterCustomTrainingContainer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RegisterCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_RegisterCustomTrainingContainer() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1065,7 +1156,7 @@ class MLTrainingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_DeleteCustomTrainingContainer() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1257,12 +1348,32 @@ class MLTrainingService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetContainer : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetContainer() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_GetContainer() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetContainer(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::GetContainerRequest* /*request*/, ::viam::app::mltraining::v1::GetContainerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetContainer(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_RegisterCustomTrainingContainer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RegisterCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_RegisterCustomTrainingContainer() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1273,7 +1384,7 @@ class MLTrainingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRegisterCustomTrainingContainer(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1282,7 +1393,7 @@ class MLTrainingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_DeleteCustomTrainingContainer() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1293,7 +1404,7 @@ class MLTrainingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCustomTrainingContainer(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1495,12 +1606,34 @@ class MLTrainingService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetContainer : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetContainer() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetContainer(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetContainer() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetContainer(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::GetContainerRequest* /*request*/, ::viam::app::mltraining::v1::GetContainerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetContainer(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_RegisterCustomTrainingContainer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_RegisterCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RegisterCustomTrainingContainer(context, request, response); }));
@@ -1522,7 +1655,7 @@ class MLTrainingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteCustomTrainingContainer(context, request, response); }));
@@ -1782,12 +1915,39 @@ class MLTrainingService final {
     virtual ::grpc::Status StreamedListContainers(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::mltraining::v1::ListContainersRequest,::viam::app::mltraining::v1::ListContainersResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetContainer : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetContainer() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::mltraining::v1::GetContainerRequest, ::viam::app::mltraining::v1::GetContainerResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::mltraining::v1::GetContainerRequest, ::viam::app::mltraining::v1::GetContainerResponse>* streamer) {
+                       return this->StreamedGetContainer(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetContainer() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetContainer(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::GetContainerRequest* /*request*/, ::viam::app::mltraining::v1::GetContainerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetContainer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::mltraining::v1::GetContainerRequest,::viam::app::mltraining::v1::GetContainerResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_RegisterCustomTrainingContainer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RegisterCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest, ::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse>(
             [this](::grpc::ServerContext* context,
@@ -1814,7 +1974,7 @@ class MLTrainingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteCustomTrainingContainer() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest, ::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>(
             [this](::grpc::ServerContext* context,
@@ -1835,9 +1995,9 @@ class MLTrainingService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDeleteCustomTrainingContainer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest,::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<WithStreamedUnaryMethod_ListSupportedContainers<WithStreamedUnaryMethod_ListContainers<WithStreamedUnaryMethod_RegisterCustomTrainingContainer<WithStreamedUnaryMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<WithStreamedUnaryMethod_ListSupportedContainers<WithStreamedUnaryMethod_ListContainers<WithStreamedUnaryMethod_GetContainer<WithStreamedUnaryMethod_RegisterCustomTrainingContainer<WithStreamedUnaryMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<WithStreamedUnaryMethod_ListSupportedContainers<WithStreamedUnaryMethod_ListContainers<WithStreamedUnaryMethod_RegisterCustomTrainingContainer<WithStreamedUnaryMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<WithStreamedUnaryMethod_ListSupportedContainers<WithStreamedUnaryMethod_ListContainers<WithStreamedUnaryMethod_GetContainer<WithStreamedUnaryMethod_RegisterCustomTrainingContainer<WithStreamedUnaryMethod_DeleteCustomTrainingContainer<Service > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
