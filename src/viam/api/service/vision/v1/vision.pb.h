@@ -64,6 +64,9 @@ extern ClassificationDefaultTypeInternal _Classification_default_instance_;
 class Detection;
 struct DetectionDefaultTypeInternal;
 extern DetectionDefaultTypeInternal _Detection_default_instance_;
+class Detection3D;
+struct Detection3DDefaultTypeInternal;
+extern Detection3DDefaultTypeInternal _Detection3D_default_instance_;
 class GetClassificationsFromCameraRequest;
 struct GetClassificationsFromCameraRequestDefaultTypeInternal;
 extern GetClassificationsFromCameraRequestDefaultTypeInternal _GetClassificationsFromCameraRequest_default_instance_;
@@ -76,6 +79,12 @@ extern GetClassificationsRequestDefaultTypeInternal _GetClassificationsRequest_d
 class GetClassificationsResponse;
 struct GetClassificationsResponseDefaultTypeInternal;
 extern GetClassificationsResponseDefaultTypeInternal _GetClassificationsResponse_default_instance_;
+class GetDetections3DRequest;
+struct GetDetections3DRequestDefaultTypeInternal;
+extern GetDetections3DRequestDefaultTypeInternal _GetDetections3DRequest_default_instance_;
+class GetDetections3DResponse;
+struct GetDetections3DResponseDefaultTypeInternal;
+extern GetDetections3DResponseDefaultTypeInternal _GetDetections3DResponse_default_instance_;
 class GetDetectionsFromCameraRequest;
 struct GetDetectionsFromCameraRequestDefaultTypeInternal;
 extern GetDetectionsFromCameraRequestDefaultTypeInternal _GetDetectionsFromCameraRequest_default_instance_;
@@ -109,10 +118,13 @@ template<> ::viam::service::vision::v1::CaptureAllFromCameraRequest* Arena::Crea
 template<> ::viam::service::vision::v1::CaptureAllFromCameraResponse* Arena::CreateMaybeMessage<::viam::service::vision::v1::CaptureAllFromCameraResponse>(Arena*);
 template<> ::viam::service::vision::v1::Classification* Arena::CreateMaybeMessage<::viam::service::vision::v1::Classification>(Arena*);
 template<> ::viam::service::vision::v1::Detection* Arena::CreateMaybeMessage<::viam::service::vision::v1::Detection>(Arena*);
+template<> ::viam::service::vision::v1::Detection3D* Arena::CreateMaybeMessage<::viam::service::vision::v1::Detection3D>(Arena*);
 template<> ::viam::service::vision::v1::GetClassificationsFromCameraRequest* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetClassificationsFromCameraRequest>(Arena*);
 template<> ::viam::service::vision::v1::GetClassificationsFromCameraResponse* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetClassificationsFromCameraResponse>(Arena*);
 template<> ::viam::service::vision::v1::GetClassificationsRequest* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetClassificationsRequest>(Arena*);
 template<> ::viam::service::vision::v1::GetClassificationsResponse* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetClassificationsResponse>(Arena*);
+template<> ::viam::service::vision::v1::GetDetections3DRequest* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetDetections3DRequest>(Arena*);
+template<> ::viam::service::vision::v1::GetDetections3DResponse* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetDetections3DResponse>(Arena*);
 template<> ::viam::service::vision::v1::GetDetectionsFromCameraRequest* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetDetectionsFromCameraRequest>(Arena*);
 template<> ::viam::service::vision::v1::GetDetectionsFromCameraResponse* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetDetectionsFromCameraResponse>(Arena*);
 template<> ::viam::service::vision::v1::GetDetectionsRequest* Arena::CreateMaybeMessage<::viam::service::vision::v1::GetDetectionsRequest>(Arena*);
@@ -2010,6 +2022,534 @@ class Classification final :
 };
 // -------------------------------------------------------------------
 
+class GetDetections3DRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.vision.v1.GetDetections3DRequest) */ {
+ public:
+  inline GetDetections3DRequest() : GetDetections3DRequest(nullptr) {}
+  ~GetDetections3DRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetDetections3DRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetDetections3DRequest(const GetDetections3DRequest& from);
+  GetDetections3DRequest(GetDetections3DRequest&& from) noexcept
+    : GetDetections3DRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetDetections3DRequest& operator=(const GetDetections3DRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetDetections3DRequest& operator=(GetDetections3DRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetDetections3DRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetDetections3DRequest* internal_default_instance() {
+    return reinterpret_cast<const GetDetections3DRequest*>(
+               &_GetDetections3DRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(GetDetections3DRequest& a, GetDetections3DRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetDetections3DRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetDetections3DRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetDetections3DRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetDetections3DRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetDetections3DRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetDetections3DRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetDetections3DRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.vision.v1.GetDetections3DRequest";
+  }
+  protected:
+  explicit GetDetections3DRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kCameraNameFieldNumber = 2,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string camera_name = 2 [json_name = "cameraName"];
+  void clear_camera_name();
+  const std::string& camera_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_camera_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_camera_name();
+  PROTOBUF_NODISCARD std::string* release_camera_name();
+  void set_allocated_camera_name(std::string* camera_name);
+  private:
+  const std::string& _internal_camera_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_camera_name(const std::string& value);
+  std::string* _internal_mutable_camera_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.service.vision.v1.GetDetections3DRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr camera_name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fvision_2fv1_2fvision_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetDetections3DResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.vision.v1.GetDetections3DResponse) */ {
+ public:
+  inline GetDetections3DResponse() : GetDetections3DResponse(nullptr) {}
+  ~GetDetections3DResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetDetections3DResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetDetections3DResponse(const GetDetections3DResponse& from);
+  GetDetections3DResponse(GetDetections3DResponse&& from) noexcept
+    : GetDetections3DResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetDetections3DResponse& operator=(const GetDetections3DResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetDetections3DResponse& operator=(GetDetections3DResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetDetections3DResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetDetections3DResponse* internal_default_instance() {
+    return reinterpret_cast<const GetDetections3DResponse*>(
+               &_GetDetections3DResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(GetDetections3DResponse& a, GetDetections3DResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetDetections3DResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetDetections3DResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetDetections3DResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetDetections3DResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetDetections3DResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetDetections3DResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetDetections3DResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.vision.v1.GetDetections3DResponse";
+  }
+  protected:
+  explicit GetDetections3DResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDetections3DFieldNumber = 1,
+  };
+  // repeated .viam.service.vision.v1.Detection3D detections_3d = 1 [json_name = "detections3d"];
+  int detections_3d_size() const;
+  private:
+  int _internal_detections_3d_size() const;
+  public:
+  void clear_detections_3d();
+  ::viam::service::vision::v1::Detection3D* mutable_detections_3d(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >*
+      mutable_detections_3d();
+  private:
+  const ::viam::service::vision::v1::Detection3D& _internal_detections_3d(int index) const;
+  ::viam::service::vision::v1::Detection3D* _internal_add_detections_3d();
+  public:
+  const ::viam::service::vision::v1::Detection3D& detections_3d(int index) const;
+  ::viam::service::vision::v1::Detection3D* add_detections_3d();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >&
+      detections_3d() const;
+
+  // @@protoc_insertion_point(class_scope:viam.service.vision.v1.GetDetections3DResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D > detections_3d_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fvision_2fv1_2fvision_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Detection3D final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.vision.v1.Detection3D) */ {
+ public:
+  inline Detection3D() : Detection3D(nullptr) {}
+  ~Detection3D() override;
+  explicit PROTOBUF_CONSTEXPR Detection3D(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Detection3D(const Detection3D& from);
+  Detection3D(Detection3D&& from) noexcept
+    : Detection3D() {
+    *this = ::std::move(from);
+  }
+
+  inline Detection3D& operator=(const Detection3D& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Detection3D& operator=(Detection3D&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Detection3D& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Detection3D* internal_default_instance() {
+    return reinterpret_cast<const Detection3D*>(
+               &_Detection3D_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(Detection3D& a, Detection3D& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Detection3D* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Detection3D* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Detection3D* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Detection3D>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Detection3D& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Detection3D& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Detection3D* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.vision.v1.Detection3D";
+  }
+  protected:
+  explicit Detection3D(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTransformsFieldNumber = 1,
+    kClassificationsFieldNumber = 2,
+    kMetadataFieldNumber = 99,
+  };
+  // repeated .viam.common.v1.Transform transforms = 1 [json_name = "transforms"];
+  int transforms_size() const;
+  private:
+  int _internal_transforms_size() const;
+  public:
+  void clear_transforms();
+  ::viam::common::v1::Transform* mutable_transforms(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >*
+      mutable_transforms();
+  private:
+  const ::viam::common::v1::Transform& _internal_transforms(int index) const;
+  ::viam::common::v1::Transform* _internal_add_transforms();
+  public:
+  const ::viam::common::v1::Transform& transforms(int index) const;
+  ::viam::common::v1::Transform* add_transforms();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >&
+      transforms() const;
+
+  // repeated .viam.service.vision.v1.Classification classifications = 2 [json_name = "classifications"];
+  int classifications_size() const;
+  private:
+  int _internal_classifications_size() const;
+  public:
+  void clear_classifications();
+  ::viam::service::vision::v1::Classification* mutable_classifications(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Classification >*
+      mutable_classifications();
+  private:
+  const ::viam::service::vision::v1::Classification& _internal_classifications(int index) const;
+  ::viam::service::vision::v1::Classification* _internal_add_classifications();
+  public:
+  const ::viam::service::vision::v1::Classification& classifications(int index) const;
+  ::viam::service::vision::v1::Classification* add_classifications();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Classification >&
+      classifications() const;
+
+  // .google.protobuf.Struct metadata = 99 [json_name = "metadata"];
+  bool has_metadata() const;
+  private:
+  bool _internal_has_metadata() const;
+  public:
+  void clear_metadata();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& metadata() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_metadata();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_metadata();
+  void set_allocated_metadata(::PROTOBUF_NAMESPACE_ID::Struct* metadata);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_metadata() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_metadata();
+  public:
+  void unsafe_arena_set_allocated_metadata(
+      ::PROTOBUF_NAMESPACE_ID::Struct* metadata);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_metadata();
+
+  // @@protoc_insertion_point(class_scope:viam.service.vision.v1.Detection3D)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform > transforms_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Classification > classifications_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fvision_2fv1_2fvision_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetObjectPointCloudsRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.vision.v1.GetObjectPointCloudsRequest) */ {
  public:
@@ -2058,7 +2598,7 @@ class GetObjectPointCloudsRequest final :
                &_GetObjectPointCloudsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    13;
 
   friend void swap(GetObjectPointCloudsRequest& a, GetObjectPointCloudsRequest& b) {
     a.Swap(&b);
@@ -2258,7 +2798,7 @@ class GetObjectPointCloudsResponse final :
                &_GetObjectPointCloudsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    14;
 
   friend void swap(GetObjectPointCloudsResponse& a, GetObjectPointCloudsResponse& b) {
     a.Swap(&b);
@@ -2426,7 +2966,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    15;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -2594,7 +3134,7 @@ class CaptureAllFromCameraRequest final :
                &_CaptureAllFromCameraRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    16;
 
   friend void swap(CaptureAllFromCameraRequest& a, CaptureAllFromCameraRequest& b) {
     a.Swap(&b);
@@ -2672,6 +3212,7 @@ class CaptureAllFromCameraRequest final :
     kReturnClassificationsFieldNumber = 4,
     kReturnDetectionsFieldNumber = 5,
     kReturnObjectPointCloudsFieldNumber = 6,
+    kReturnDetections3DFieldNumber = 7,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -2755,6 +3296,15 @@ class CaptureAllFromCameraRequest final :
   void _internal_set_return_object_point_clouds(bool value);
   public:
 
+  // bool return_detections_3d = 7 [json_name = "returnDetections3d"];
+  void clear_return_detections_3d();
+  bool return_detections_3d() const;
+  void set_return_detections_3d(bool value);
+  private:
+  bool _internal_return_detections_3d() const;
+  void _internal_set_return_detections_3d(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.service.vision.v1.CaptureAllFromCameraRequest)
  private:
   class _Internal;
@@ -2769,6 +3319,7 @@ class CaptureAllFromCameraRequest final :
   bool return_classifications_;
   bool return_detections_;
   bool return_object_point_clouds_;
+  bool return_detections_3d_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fvision_2fv1_2fvision_2eproto;
 };
@@ -2822,7 +3373,7 @@ class CaptureAllFromCameraResponse final :
                &_CaptureAllFromCameraResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    17;
 
   friend void swap(CaptureAllFromCameraResponse& a, CaptureAllFromCameraResponse& b) {
     a.Swap(&b);
@@ -2896,6 +3447,7 @@ class CaptureAllFromCameraResponse final :
     kDetectionsFieldNumber = 2,
     kClassificationsFieldNumber = 3,
     kObjectsFieldNumber = 4,
+    kDetections3DFieldNumber = 5,
     kImageFieldNumber = 1,
     kExtraFieldNumber = 99,
   };
@@ -2953,6 +3505,24 @@ class CaptureAllFromCameraResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::PointCloudObject >&
       objects() const;
 
+  // repeated .viam.service.vision.v1.Detection3D detections_3d = 5 [json_name = "detections3d"];
+  int detections_3d_size() const;
+  private:
+  int _internal_detections_3d_size() const;
+  public:
+  void clear_detections_3d();
+  ::viam::service::vision::v1::Detection3D* mutable_detections_3d(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >*
+      mutable_detections_3d();
+  private:
+  const ::viam::service::vision::v1::Detection3D& _internal_detections_3d(int index) const;
+  ::viam::service::vision::v1::Detection3D* _internal_add_detections_3d();
+  public:
+  const ::viam::service::vision::v1::Detection3D& detections_3d(int index) const;
+  ::viam::service::vision::v1::Detection3D* add_detections_3d();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >&
+      detections_3d() const;
+
   // .viam.component.camera.v1.Image image = 1 [json_name = "image"];
   bool has_image() const;
   private:
@@ -2999,6 +3569,7 @@ class CaptureAllFromCameraResponse final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection > detections_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Classification > classifications_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::PointCloudObject > objects_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D > detections_3d_;
   ::viam::component::camera::v1::Image* image_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -3054,7 +3625,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    18;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -3129,6 +3700,7 @@ class GetPropertiesResponse final :
     kClassificationsSupportedFieldNumber = 1,
     kDetectionsSupportedFieldNumber = 2,
     kObjectPointCloudsSupportedFieldNumber = 3,
+    kDetections3DSupportedFieldNumber = 5,
   };
   // optional string default_camera = 4 [json_name = "defaultCamera"];
   bool has_default_camera() const;
@@ -3175,6 +3747,15 @@ class GetPropertiesResponse final :
   void _internal_set_object_point_clouds_supported(bool value);
   public:
 
+  // bool detections_3d_supported = 5 [json_name = "detections3dSupported"];
+  void clear_detections_3d_supported();
+  bool detections_3d_supported() const;
+  void set_detections_3d_supported(bool value);
+  private:
+  bool _internal_detections_3d_supported() const;
+  void _internal_set_detections_3d_supported(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.service.vision.v1.GetPropertiesResponse)
  private:
   class _Internal;
@@ -3188,6 +3769,7 @@ class GetPropertiesResponse final :
   bool classifications_supported_;
   bool detections_supported_;
   bool object_point_clouds_supported_;
+  bool detections_3d_supported_;
   friend struct ::TableStruct_service_2fvision_2fv1_2fvision_2eproto;
 };
 // ===================================================================
@@ -4723,6 +5305,405 @@ inline void Classification::set_confidence(double value) {
 
 // -------------------------------------------------------------------
 
+// GetDetections3DRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetDetections3DRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetDetections3DRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.GetDetections3DRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetDetections3DRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.GetDetections3DRequest.name)
+}
+inline std::string* GetDetections3DRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.GetDetections3DRequest.name)
+  return _s;
+}
+inline const std::string& GetDetections3DRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetDetections3DRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetDetections3DRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetDetections3DRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.vision.v1.GetDetections3DRequest.name)
+  return name_.Release();
+}
+inline void GetDetections3DRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.vision.v1.GetDetections3DRequest.name)
+}
+
+// string camera_name = 2 [json_name = "cameraName"];
+inline void GetDetections3DRequest::clear_camera_name() {
+  camera_name_.ClearToEmpty();
+}
+inline const std::string& GetDetections3DRequest::camera_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.GetDetections3DRequest.camera_name)
+  return _internal_camera_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetDetections3DRequest::set_camera_name(ArgT0&& arg0, ArgT... args) {
+ 
+ camera_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.GetDetections3DRequest.camera_name)
+}
+inline std::string* GetDetections3DRequest::mutable_camera_name() {
+  std::string* _s = _internal_mutable_camera_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.GetDetections3DRequest.camera_name)
+  return _s;
+}
+inline const std::string& GetDetections3DRequest::_internal_camera_name() const {
+  return camera_name_.Get();
+}
+inline void GetDetections3DRequest::_internal_set_camera_name(const std::string& value) {
+  
+  camera_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetDetections3DRequest::_internal_mutable_camera_name() {
+  
+  return camera_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetDetections3DRequest::release_camera_name() {
+  // @@protoc_insertion_point(field_release:viam.service.vision.v1.GetDetections3DRequest.camera_name)
+  return camera_name_.Release();
+}
+inline void GetDetections3DRequest::set_allocated_camera_name(std::string* camera_name) {
+  if (camera_name != nullptr) {
+    
+  } else {
+    
+  }
+  camera_name_.SetAllocated(camera_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (camera_name_.IsDefault()) {
+    camera_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.vision.v1.GetDetections3DRequest.camera_name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetDetections3DRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetDetections3DRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetDetections3DRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetDetections3DRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.GetDetections3DRequest.extra)
+  return _internal_extra();
+}
+inline void GetDetections3DRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.vision.v1.GetDetections3DRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetDetections3DRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetDetections3DRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.vision.v1.GetDetections3DRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetDetections3DRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetDetections3DRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.GetDetections3DRequest.extra)
+  return _msg;
+}
+inline void GetDetections3DRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.vision.v1.GetDetections3DRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetDetections3DResponse
+
+// repeated .viam.service.vision.v1.Detection3D detections_3d = 1 [json_name = "detections3d"];
+inline int GetDetections3DResponse::_internal_detections_3d_size() const {
+  return detections_3d_.size();
+}
+inline int GetDetections3DResponse::detections_3d_size() const {
+  return _internal_detections_3d_size();
+}
+inline void GetDetections3DResponse::clear_detections_3d() {
+  detections_3d_.Clear();
+}
+inline ::viam::service::vision::v1::Detection3D* GetDetections3DResponse::mutable_detections_3d(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.GetDetections3DResponse.detections_3d)
+  return detections_3d_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >*
+GetDetections3DResponse::mutable_detections_3d() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.vision.v1.GetDetections3DResponse.detections_3d)
+  return &detections_3d_;
+}
+inline const ::viam::service::vision::v1::Detection3D& GetDetections3DResponse::_internal_detections_3d(int index) const {
+  return detections_3d_.Get(index);
+}
+inline const ::viam::service::vision::v1::Detection3D& GetDetections3DResponse::detections_3d(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.GetDetections3DResponse.detections_3d)
+  return _internal_detections_3d(index);
+}
+inline ::viam::service::vision::v1::Detection3D* GetDetections3DResponse::_internal_add_detections_3d() {
+  return detections_3d_.Add();
+}
+inline ::viam::service::vision::v1::Detection3D* GetDetections3DResponse::add_detections_3d() {
+  ::viam::service::vision::v1::Detection3D* _add = _internal_add_detections_3d();
+  // @@protoc_insertion_point(field_add:viam.service.vision.v1.GetDetections3DResponse.detections_3d)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >&
+GetDetections3DResponse::detections_3d() const {
+  // @@protoc_insertion_point(field_list:viam.service.vision.v1.GetDetections3DResponse.detections_3d)
+  return detections_3d_;
+}
+
+// -------------------------------------------------------------------
+
+// Detection3D
+
+// repeated .viam.common.v1.Transform transforms = 1 [json_name = "transforms"];
+inline int Detection3D::_internal_transforms_size() const {
+  return transforms_.size();
+}
+inline int Detection3D::transforms_size() const {
+  return _internal_transforms_size();
+}
+inline ::viam::common::v1::Transform* Detection3D::mutable_transforms(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.Detection3D.transforms)
+  return transforms_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >*
+Detection3D::mutable_transforms() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.vision.v1.Detection3D.transforms)
+  return &transforms_;
+}
+inline const ::viam::common::v1::Transform& Detection3D::_internal_transforms(int index) const {
+  return transforms_.Get(index);
+}
+inline const ::viam::common::v1::Transform& Detection3D::transforms(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.Detection3D.transforms)
+  return _internal_transforms(index);
+}
+inline ::viam::common::v1::Transform* Detection3D::_internal_add_transforms() {
+  return transforms_.Add();
+}
+inline ::viam::common::v1::Transform* Detection3D::add_transforms() {
+  ::viam::common::v1::Transform* _add = _internal_add_transforms();
+  // @@protoc_insertion_point(field_add:viam.service.vision.v1.Detection3D.transforms)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >&
+Detection3D::transforms() const {
+  // @@protoc_insertion_point(field_list:viam.service.vision.v1.Detection3D.transforms)
+  return transforms_;
+}
+
+// repeated .viam.service.vision.v1.Classification classifications = 2 [json_name = "classifications"];
+inline int Detection3D::_internal_classifications_size() const {
+  return classifications_.size();
+}
+inline int Detection3D::classifications_size() const {
+  return _internal_classifications_size();
+}
+inline void Detection3D::clear_classifications() {
+  classifications_.Clear();
+}
+inline ::viam::service::vision::v1::Classification* Detection3D::mutable_classifications(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.Detection3D.classifications)
+  return classifications_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Classification >*
+Detection3D::mutable_classifications() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.vision.v1.Detection3D.classifications)
+  return &classifications_;
+}
+inline const ::viam::service::vision::v1::Classification& Detection3D::_internal_classifications(int index) const {
+  return classifications_.Get(index);
+}
+inline const ::viam::service::vision::v1::Classification& Detection3D::classifications(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.Detection3D.classifications)
+  return _internal_classifications(index);
+}
+inline ::viam::service::vision::v1::Classification* Detection3D::_internal_add_classifications() {
+  return classifications_.Add();
+}
+inline ::viam::service::vision::v1::Classification* Detection3D::add_classifications() {
+  ::viam::service::vision::v1::Classification* _add = _internal_add_classifications();
+  // @@protoc_insertion_point(field_add:viam.service.vision.v1.Detection3D.classifications)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Classification >&
+Detection3D::classifications() const {
+  // @@protoc_insertion_point(field_list:viam.service.vision.v1.Detection3D.classifications)
+  return classifications_;
+}
+
+// .google.protobuf.Struct metadata = 99 [json_name = "metadata"];
+inline bool Detection3D::_internal_has_metadata() const {
+  return this != internal_default_instance() && metadata_ != nullptr;
+}
+inline bool Detection3D::has_metadata() const {
+  return _internal_has_metadata();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& Detection3D::_internal_metadata() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = metadata_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& Detection3D::metadata() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.Detection3D.metadata)
+  return _internal_metadata();
+}
+inline void Detection3D::unsafe_arena_set_allocated_metadata(
+    ::PROTOBUF_NAMESPACE_ID::Struct* metadata) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
+  }
+  metadata_ = metadata;
+  if (metadata) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.vision.v1.Detection3D.metadata)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Detection3D::release_metadata() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = metadata_;
+  metadata_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Detection3D::unsafe_arena_release_metadata() {
+  // @@protoc_insertion_point(field_release:viam.service.vision.v1.Detection3D.metadata)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = metadata_;
+  metadata_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Detection3D::_internal_mutable_metadata() {
+  
+  if (metadata_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    metadata_ = p;
+  }
+  return metadata_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Detection3D::mutable_metadata() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_metadata();
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.Detection3D.metadata)
+  return _msg;
+}
+inline void Detection3D::set_allocated_metadata(::PROTOBUF_NAMESPACE_ID::Struct* metadata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
+  }
+  if (metadata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata));
+    if (message_arena != submessage_arena) {
+      metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, metadata, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  metadata_ = metadata;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.vision.v1.Detection3D.metadata)
+}
+
+// -------------------------------------------------------------------
+
 // GetObjectPointCloudsRequest
 
 // string name = 1 [json_name = "name"];
@@ -5374,6 +6355,26 @@ inline void CaptureAllFromCameraRequest::set_return_object_point_clouds(bool val
   // @@protoc_insertion_point(field_set:viam.service.vision.v1.CaptureAllFromCameraRequest.return_object_point_clouds)
 }
 
+// bool return_detections_3d = 7 [json_name = "returnDetections3d"];
+inline void CaptureAllFromCameraRequest::clear_return_detections_3d() {
+  return_detections_3d_ = false;
+}
+inline bool CaptureAllFromCameraRequest::_internal_return_detections_3d() const {
+  return return_detections_3d_;
+}
+inline bool CaptureAllFromCameraRequest::return_detections_3d() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.CaptureAllFromCameraRequest.return_detections_3d)
+  return _internal_return_detections_3d();
+}
+inline void CaptureAllFromCameraRequest::_internal_set_return_detections_3d(bool value) {
+  
+  return_detections_3d_ = value;
+}
+inline void CaptureAllFromCameraRequest::set_return_detections_3d(bool value) {
+  _internal_set_return_detections_3d(value);
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.CaptureAllFromCameraRequest.return_detections_3d)
+}
+
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
 inline bool CaptureAllFromCameraRequest::_internal_has_extra() const {
   return this != internal_default_instance() && extra_ != nullptr;
@@ -5665,6 +6666,46 @@ CaptureAllFromCameraResponse::objects() const {
   return objects_;
 }
 
+// repeated .viam.service.vision.v1.Detection3D detections_3d = 5 [json_name = "detections3d"];
+inline int CaptureAllFromCameraResponse::_internal_detections_3d_size() const {
+  return detections_3d_.size();
+}
+inline int CaptureAllFromCameraResponse::detections_3d_size() const {
+  return _internal_detections_3d_size();
+}
+inline void CaptureAllFromCameraResponse::clear_detections_3d() {
+  detections_3d_.Clear();
+}
+inline ::viam::service::vision::v1::Detection3D* CaptureAllFromCameraResponse::mutable_detections_3d(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.CaptureAllFromCameraResponse.detections_3d)
+  return detections_3d_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >*
+CaptureAllFromCameraResponse::mutable_detections_3d() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.vision.v1.CaptureAllFromCameraResponse.detections_3d)
+  return &detections_3d_;
+}
+inline const ::viam::service::vision::v1::Detection3D& CaptureAllFromCameraResponse::_internal_detections_3d(int index) const {
+  return detections_3d_.Get(index);
+}
+inline const ::viam::service::vision::v1::Detection3D& CaptureAllFromCameraResponse::detections_3d(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.CaptureAllFromCameraResponse.detections_3d)
+  return _internal_detections_3d(index);
+}
+inline ::viam::service::vision::v1::Detection3D* CaptureAllFromCameraResponse::_internal_add_detections_3d() {
+  return detections_3d_.Add();
+}
+inline ::viam::service::vision::v1::Detection3D* CaptureAllFromCameraResponse::add_detections_3d() {
+  ::viam::service::vision::v1::Detection3D* _add = _internal_add_detections_3d();
+  // @@protoc_insertion_point(field_add:viam.service.vision.v1.CaptureAllFromCameraResponse.detections_3d)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::vision::v1::Detection3D >&
+CaptureAllFromCameraResponse::detections_3d() const {
+  // @@protoc_insertion_point(field_list:viam.service.vision.v1.CaptureAllFromCameraResponse.detections_3d)
+  return detections_3d_;
+}
+
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
 inline bool CaptureAllFromCameraResponse::_internal_has_extra() const {
   return this != internal_default_instance() && extra_ != nullptr;
@@ -5882,9 +6923,35 @@ inline void GetPropertiesResponse::set_allocated_default_camera(std::string* def
   // @@protoc_insertion_point(field_set_allocated:viam.service.vision.v1.GetPropertiesResponse.default_camera)
 }
 
+// bool detections_3d_supported = 5 [json_name = "detections3dSupported"];
+inline void GetPropertiesResponse::clear_detections_3d_supported() {
+  detections_3d_supported_ = false;
+}
+inline bool GetPropertiesResponse::_internal_detections_3d_supported() const {
+  return detections_3d_supported_;
+}
+inline bool GetPropertiesResponse::detections_3d_supported() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.GetPropertiesResponse.detections_3d_supported)
+  return _internal_detections_3d_supported();
+}
+inline void GetPropertiesResponse::_internal_set_detections_3d_supported(bool value) {
+  
+  detections_3d_supported_ = value;
+}
+inline void GetPropertiesResponse::set_detections_3d_supported(bool value) {
+  _internal_set_detections_3d_supported(value);
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.GetPropertiesResponse.detections_3d_supported)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
