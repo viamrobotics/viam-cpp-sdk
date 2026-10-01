@@ -26,7 +26,26 @@
 namespace viam {
 namespace sdk {
 
-/// @class Camera camera.hpp "components/camera.hpp"
+/// @class Classification
+/// @brief A classification of an object detected by the camera.
+struct Classification {
+    std::string class_name;
+    double confidence = 0.0;
+
+    friend bool operator==(const Classification& lhs, const Classification& rhs);
+};
+
+/// @class Detection3D
+/// @brief A 3D detection of an object.
+struct Detection3D {
+    std::vector<WorldState::transform> transforms;
+    std::vector<Classification> classifications;
+    ProtoStruct metadata;
+
+    friend bool operator==(const Detection3D& lhs, const Detection3D& rhs);
+};
+
+/// @class Camera Camera camera.hpp "components/camera.hpp"
 /// @brief A `Camera` represents any physical hardware that can capture frames.
 /// @ingroup Camera
 ///
@@ -82,6 +101,9 @@ class Camera : public Component {
 
         /// @brief Contains the camera's frame rate.
         float frame_rate = 0.0f;
+
+        /// @brief Indicates whether the camera has a valid implementation of `get_detections_3d`.
+        bool detections_3d_supported = false;
     };
 
     /// @struct point_cloud
@@ -108,6 +130,7 @@ class Camera : public Component {
     struct image_collection {
         std::vector<raw_image> images;
         response_metadata metadata;
+        std::vector<Detection3D> detections_3d;
     };
 
     /// @struct depth_map
@@ -231,6 +254,9 @@ bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic
 bool operator==(const Camera::extrinsic_parameters& lhs, const Camera::extrinsic_parameters& rhs);
 bool operator==(const Camera::distortion_parameters& lhs, const Camera::distortion_parameters& rhs);
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs);
+
+bool operator==(const Camera::Classification& lhs, const Camera::Classification& rhs);
+bool operator==(const Camera::Detection3D& lhs, const Camera::Detection3D& rhs);
 
 }  // namespace sdk
 }  // namespace viam

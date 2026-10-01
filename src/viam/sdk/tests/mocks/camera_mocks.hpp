@@ -6,6 +6,10 @@ namespace viam {
 namespace sdktests {
 namespace camera {
 
+// Forward declarations
+class Classification;
+class Detection3D;
+
 using namespace viam::sdk;
 
 class MockCamera : public Camera {
@@ -45,6 +49,8 @@ Camera::intrinsic_parameters fake_intrinsic_parameters();
 Camera::extrinsic_parameters fake_extrinsic_parameters();
 Camera::distortion_parameters fake_distortion_parameters();
 Camera::properties fake_properties();
+Camera::Classification fake_classification();
+Camera::Detection3D fake_detection_3d();
 
 }  // namespace camera
 }  // namespace sdktests
