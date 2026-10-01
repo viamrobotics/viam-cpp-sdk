@@ -16,6 +16,7 @@
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -24,7 +25,6 @@ namespace robot {
 namespace v1 {
 
 class ConfigStatus;
-class FrameSystemConfig;
 class GetMachineStatusResponse;
 class JobStatus;
 class ModuleStatus;
@@ -64,11 +64,7 @@ class RobotClient {
 
     friend std::ostream& operator<<(std::ostream& os, const status& v);
 
-    struct frame_system_config {
-        WorldState::transform frame;
-        ProtoStruct kinematics;
-        friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
-    };
+    using frame_system_config = FrameSystem::frame_system_config;
 
     struct operation {
         std::string id;
@@ -217,6 +213,9 @@ class RobotClient {
     ///
     /// Because the return type here is a `Resource`, the user will need to manually
     /// cast to the desired type.
+    ///
+    /// The machine's frame system is not listed in `resource_names()` but can be requested here
+    /// under `FrameSystem::public_name()`, or as `resource_by_name<FrameSystem>("$framesystem")`.
     std::shared_ptr<Resource> resource_by_name(const Name& name);
 
     template <typename T>
@@ -245,6 +244,18 @@ class RobotClient {
         const pose_in_frame& query,
         std::string destination,
         const std::vector<WorldState::transform>& additional_transforms = {});
+
+    /// @brief Transform a point cloud from one reference frame to another.
+    /// @param pcd The point cloud, serialized in PCD format.
+    /// @param source The reference frame the point cloud is currently expressed in.
+    /// @param destination The reference frame to express the point cloud in.
+    /// @return The transformed point cloud, serialized in PCD format.
+    ///
+    /// The SDK has no point cloud type, so this takes and returns the raw PCD bytes rather than a
+    /// `Camera::point_cloud`, whose mime type would always be PCD here anyway.
+    std::vector<unsigned char> transform_pcd(const std::vector<unsigned char>& pcd,
+                                             const std::string& source,
+                                             const std::string& destination);
 
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.
@@ -333,11 +344,6 @@ namespace proto_convert_details {
 template <>
 struct from_proto_impl<robot::v1::Operation> {
     RobotClient::operation operator()(const robot::v1::Operation*) const;
-};
-
-template <>
-struct from_proto_impl<robot::v1::FrameSystemConfig> {
-    RobotClient::frame_system_config operator()(const robot::v1::FrameSystemConfig*) const;
 };
 
 template <>

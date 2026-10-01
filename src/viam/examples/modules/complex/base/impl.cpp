@@ -47,6 +47,14 @@ MyBase::MyBase(const Dependencies& deps, const ResourceConfig& cfg) : Base(cfg.n
             right_ = std::dynamic_pointer_cast<Motor>(kv.second);
         }
     }
+
+    // Every modular resource also receives the machine's frame system in its dependencies, under
+    // FrameSystem::public_name(), without listing it in `validate`. We keep it to answer
+    // `do_command` queries about where our motors are.
+    auto frame_system = deps.find(FrameSystem::public_name());
+    if (frame_system != deps.end()) {
+        frame_system_ = std::dynamic_pointer_cast<FrameSystem>(frame_system->second);
+    }
 }
 
 std::vector<std::string> MyBase::validate(ResourceConfig cfg) {
@@ -108,6 +116,20 @@ void MyBase::set_power(const Vector3& linear, const Vector3& angular, const Prot
 ProtoStruct MyBase::do_command(const ProtoStruct& command) {
     // The VIAM_RESOURCE_LOG macro will associate log messages to the current resource
     VIAM_RESOURCE_LOG(*this, info) << "Received DoCommand request";
+
+    // `{"pose_of": "<component>"}` asks the frame system where a component sits in the world.
+    auto pose_of = command.find("pose_of");
+    if (pose_of != command.end() && frame_system_) {
+        const std::string* component = pose_of->second.get<std::string>();
+        if (!component) {
+            throw std::invalid_argument("pose_of must name a component");
+        }
+        const pose_in_frame pose = frame_system_->get_pose(*component);
+        return {{"reference_frame", pose.reference_frame},
+                {"x", pose.pose.coordinates.x},
+                {"y", pose.pose.coordinates.y},
+                {"z", pose.pose.coordinates.z}};
+    }
     return command;
 }
 
