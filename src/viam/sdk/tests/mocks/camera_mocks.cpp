@@ -21,19 +21,22 @@ Camera::image_collection MockCamera::get_images(std::vector<std::string> filter_
                                                 const ProtoStruct& extra) {
     last_filter_source_names_ = std::move(filter_source_names);
     last_extra_ = extra;
-    if (last_filter_source_names_.empty()) {
-        return images_;
-    }
-    Camera::image_collection filtered = images_;
-    filtered.images.clear();
-    for (const auto& img : images_.images) {
-        if (std::find(last_filter_source_names_.begin(),
-                      last_filter_source_names_.end(),
-                      img.source_name) != last_filter_source_names_.end()) {
-            filtered.images.push_back(img);
+    Camera::image_collection filtered_images = images_;
+    if (!last_filter_source_names_.empty()) {
+        filtered_images.images.clear();
+        for (const auto& img : images_.images) {
+            if (std::find(last_filter_source_names_.begin(),
+                          last_filter_source_names_.end(),
+                          img.source_name) != last_filter_source_names_.end()) {
+                filtered_images.images.push_back(img);
+            }
         }
     }
-    return filtered;
+    // Ensure detections_3d are populated if available, regardless of filter_source_names
+    if (!images_.detections_3d.empty()) {
+        filtered_images.detections_3d = images_.detections_3d;
+    }
+    return filtered_images;
 }
 Camera::point_cloud MockCamera::get_point_cloud(std::string, const ProtoStruct&) {
     return pc_;
@@ -42,7 +45,25 @@ std::vector<GeometryConfig> MockCamera::get_geometries(const ProtoStruct&) {
     return geometries_;
 }
 Camera::properties MockCamera::get_properties() {
+    // Ensure detections_3d_supported is true before returning
+    camera_properties_.detections_3d_supported = true;
     return camera_properties_;
+}
+
+Camera::classification fake_classification() {
+    Camera::classification classification;
+    classification.class_name = "test_class";
+    classification.confidence = 0.95;
+    return classification;
+}
+
+Camera::Detection3D fake_detection_3d() {
+    Camera::Detection3D detection_3d;
+    detection_3d.world_state.reference_frame = "test_frame";
+    detection_3d.world_state.pose_in_observer_frame = {1.0, 2.0, 3.0, 0.0, 0.0, 0.0, 0.0};
+    detection_3d.classification = fake_classification();
+    detection_3d.metadata["test_key"] = ProtoValue("test_value");
+    return detection_3d;
 }
 
 Camera::image_collection fake_raw_images() {
@@ -65,6 +86,10 @@ Camera::image_collection fake_raw_images() {
     collection.images = images;
     collection.metadata.captured_at =
         time_pt{std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos};
+    
+    // Add a fake 3D detection
+    collection.detections_3d.push_back(fake_detection_3d());
+    
     return collection;
 }
 
@@ -117,6 +142,8 @@ Camera::properties fake_properties() {
     properties.distortion_parameters = fake_distortion_parameters();
     properties.mime_types = fake_mime_types();
     properties.frame_rate = 10.0;
+    // Set detections_3d_supported to true
+    properties.detections_3d_supported = true;
     return properties;
 }
 

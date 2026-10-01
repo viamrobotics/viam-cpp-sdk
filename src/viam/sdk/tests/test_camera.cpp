@@ -20,6 +20,26 @@ using namespace camera;
 
 using namespace viam::sdk;
 
+// Equality operators for Camera::Classification and Camera::Detection3D
+bool operator==(const Camera::Classification& lhs, const Camera::Classification& rhs) {
+    return lhs.class_name == rhs.class_name && lhs.confidence == rhs.confidence;
+}
+
+bool operator==(const Camera::Detection3D& lhs, const Camera::Detection3D& rhs) {
+    return lhs.transforms == rhs.transforms && lhs.classifications == rhs.classifications &&
+           lhs.metadata == rhs.metadata;
+}
+
+// Equality operators for Camera::image_collection and Camera::properties
+bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs) {
+    return lhs.images == rhs.images && lhs.detections_3d == rhs.detections_3d;
+}
+
+bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
+    return lhs.mime_types == rhs.mime_types &&
+           lhs.detections_3d_supported == rhs.detections_3d_supported;
+}
+
 BOOST_AUTO_TEST_SUITE(test_camera)
 
 BOOST_AUTO_TEST_CASE(mock_get_api) {
@@ -90,6 +110,7 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
 
         BOOST_CHECK(expected == props);
         BOOST_CHECK(expected.mime_types == props.mime_types);
+        BOOST_CHECK(expected.detections_3d_supported == props.detections_3d_supported);
     });
 }
 
@@ -144,6 +165,54 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
         const ProtoStruct status = client.get_status();
         const ProtoStruct expected = fake_status();
         BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
+// Helper function to create fake raw images with a 3D detection
+Camera::image_collection fake_raw_images() {
+    Camera::image_collection images;
+    images.images.push_back(fake_image());
+    images.images.push_back(fake_depth_image());
+
+    // Add a 3D detection
+    Camera::Detection3D detection_3d;
+    detection_3d.transforms.push_back({WorldState::reference_frame::camera,
+                                       {1.0, 2.0, 3.0, 0.0, 0.0, 0.0, 0.0}});
+    detection_3d.classifications.push_back({"object", 0.9});
+    detection_3d.metadata["foo"] = ProtoValue("bar");
+    images.detections_3d.push_back(detection_3d);
+
+    return images;
+}
+
+// Helper function to create fake properties with 3D detection support
+Camera::properties fake_properties() {
+    Camera::properties properties;
+    properties.mime_types = {"image/jpeg", "image/png"};
+    properties.detections_3d_supported = true;
+    return properties;
+}
+
+BOOST_AUTO_TEST_CASE(test_get_images_with_detections_3d) {
+    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
+        Camera::image_collection expected_images = fake_raw_images();
+        Camera::image_collection images = client.get_images();
+
+        BOOST_CHECK(expected_images == images);
+        BOOST_CHECK_EQUAL(images.detections_3d.size(), 1);
+        BOOST_CHECK_EQUAL(images.detections_3d[0].classifications[0].class_name, "object");
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_properties_with_detections_3d_supported) {
+    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
+        Camera::properties props = client.get_properties();
+        Camera::properties expected = fake_properties();
+
+        BOOST_CHECK(expected == props);
+        BOOST_CHECK(props.detections_3d_supported);
     });
 }
 
