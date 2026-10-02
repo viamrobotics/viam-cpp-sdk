@@ -82,6 +82,11 @@ class Camera : public Component {
 
         /// @brief Contains the camera's frame rate.
         float frame_rate = 0.0f;
+
+        /// @brief Name of the reference frame that points from `get_point_cloud` are expressed in.
+        /// An empty string means the frame is unknown; the frame is not guaranteed to exist in the
+        /// frame system.
+        std::string default_reference_frame;
     };
 
     /// @struct point_cloud
