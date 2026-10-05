@@ -113,10 +113,7 @@ class FrameSystem : public Service {
     /// @param pcd The point cloud, serialized in PCD format.
     /// @param source The reference frame the point cloud is currently expressed in.
     /// @param destination The reference frame to express the point cloud in.
-    /// @return The transformed point cloud, serialized in PCD format.
-    ///
-    /// The SDK has no point cloud type, so this works on raw PCD bytes. The transform happens on
-    /// the server, unlike the Go SDK which shifts the points locally.
+    /// @return The transformed point cloud, serialized in PCD format as raw PCD bytes.
     virtual std::vector<unsigned char> transform_pcd(const std::vector<unsigned char>& pcd,
                                                      const std::string& source,
                                                      const std::string& destination) = 0;

@@ -39,8 +39,10 @@ class FrameSystemClient : public FrameSystem {
                                              const std::string& destination) override;
 
    private:
-    // The frame system RPCs still live on RobotService. This alias is the one place that names it,
-    // so when a dedicated FrameSystemService lands only this line and the constructor change.
+    // There is no FrameSystemService in the API yet: the frame system RPCs live on RobotService,
+    // which is also why this service has a client but no server to register. This alias is the one
+    // place that names RobotService, so when a dedicated stub lands only this line and the
+    // constructor change.
     using StubType = viam::robot::v1::RobotService::StubInterface;
     std::unique_ptr<StubType> stub_;
     const ViamChannel* channel_;
