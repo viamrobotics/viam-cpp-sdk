@@ -9,6 +9,7 @@
 #include <robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -101,6 +102,25 @@ PoseInFrame mock_proto_transform_response() {
     *response.mutable_reference_frame() = "arm";
     *response.mutable_pose() = default_proto_pose();
     return response;
+}
+
+pose_in_frame mock_get_pose_response(const std::string& destination_frame) {
+    return {destination_frame, default_pose(3)};
+}
+
+PoseInFrame mock_proto_get_pose_response(const std::string& destination_frame) {
+    PoseInFrame response;
+    *response.mutable_reference_frame() = destination_frame;
+    *response.mutable_pose() = default_proto_pose(3);
+    return response;
+}
+
+std::vector<unsigned char> mock_transform_pcd_response() {
+    return {'m', 'o', 'c', 'k', 0x00, 0x01, 0x02};
+}
+
+std::string mock_proto_transform_pcd_response() {
+    return bytes_to_string(mock_transform_pcd_response());
 }
 
 RobotClient::machine_status mock_machine_status_response() {
@@ -201,8 +221,8 @@ std::vector<ResourceName> mock_proto_resource_names_response() {
     return vec;
 }
 
-std::vector<RobotClient::frame_system_config> mock_config_response() {
-    RobotClient::frame_system_config config;
+std::vector<FrameSystem::frame_system_config> mock_config_response() {
+    FrameSystem::frame_system_config config;
     WorldState::transform t;
     t.reference_frame = "some-reference-frame";
     pose_in_frame pif("reference0", default_pose());
@@ -210,7 +230,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     config.frame = t;
     config.kinematics = {{"fake-key", 1.0}};
 
-    RobotClient::frame_system_config config1;
+    FrameSystem::frame_system_config config1;
     WorldState::transform t1;
     t1.reference_frame = "another-reference-frame";
     pose_in_frame pif1("reference1", default_pose(1));
@@ -218,7 +238,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     config1.frame = t1;
     config1.kinematics = {{"new-fake-key", 2.0}};
 
-    std::vector<RobotClient::frame_system_config> response;
+    std::vector<FrameSystem::frame_system_config> response;
     response.push_back(config);
     response.push_back(config1);
     return response;
@@ -391,6 +411,50 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     return ::grpc::Status();
 }
 
+::grpc::Status MockRobotService::TransformPCD(::grpc::ServerContext* context,
+                                              const ::viam::robot::v1::TransformPCDRequest* request,
+                                              ::viam::robot::v1::TransformPCDResponse* response) {
+    auto client_md = context->client_metadata();
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
+        return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
+                              "viam_client info not properly set in metadata");
+    }
+    {
+        const std::lock_guard<std::mutex> lock(lock_);
+        last_transform_pcd_request_ = *request;
+    }
+    *response->mutable_point_cloud_pcd() = mock_proto_transform_pcd_response();
+    return ::grpc::Status();
+}
+
+::grpc::Status MockRobotService::GetPose(::grpc::ServerContext* context,
+                                         const ::viam::robot::v1::GetPoseRequest* request,
+                                         ::viam::robot::v1::GetPoseResponse* response) {
+    auto client_md = context->client_metadata();
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
+        return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
+                              "viam_client info not properly set in metadata");
+    }
+    {
+        const std::lock_guard<std::mutex> lock(lock_);
+        last_get_pose_request_ = *request;
+    }
+    *response->mutable_pose() = mock_proto_get_pose_response(request->destination_frame());
+    return ::grpc::Status();
+}
+
+::viam::robot::v1::GetPoseRequest MockRobotService::last_get_pose_request() {
+    const std::lock_guard<std::mutex> lock(lock_);
+    return last_get_pose_request_;
+}
+
+::viam::robot::v1::TransformPCDRequest MockRobotService::last_transform_pcd_request() {
+    const std::lock_guard<std::mutex> lock(lock_);
+    return last_transform_pcd_request_;
+}
+
 ::grpc::Status MockRobotService::GetMachineStatus(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::GetMachineStatusRequest*,
@@ -420,6 +484,12 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     for (auto& op : mock_proto_operations_response()) {
         *ops->Add() = op;
     }
+    return ::grpc::Status();
+}
+
+::grpc::Status MockRobotService::Log(::grpc::ServerContext*,
+                                     const ::viam::robot::v1::LogRequest*,
+                                     ::viam::robot::v1::LogResponse*) {
     return ::grpc::Status();
 }
 
