@@ -33,3 +33,10 @@ apt_install \
     pkg-config \
     sudo \
     wget
+
+if is_ubuntu && [[ "${DISTRO_CODENAME}" == "focal" ]]; then
+    apt_install gcc-10 g++-10
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 \
+        --slave /usr/bin/g++ g++ /usr/bin/g++-10 \
+        --slave /usr/bin/gcov gcov /usr/bin/gcov-10
+fi

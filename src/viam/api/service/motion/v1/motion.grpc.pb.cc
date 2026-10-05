@@ -32,6 +32,7 @@ static const char* MotionService_method_names[] = {
   "/viam.service.motion.v1.MotionService/StopPlan",
   "/viam.service.motion.v1.MotionService/ListPlanStatuses",
   "/viam.service.motion.v1.MotionService/GetPlan",
+  "/viam.service.motion.v1.MotionService/TempStreamArmJointPositions",
   "/viam.service.motion.v1.MotionService/DoCommand",
   "/viam.service.motion.v1.MotionService/GetStatus",
 };
@@ -50,8 +51,9 @@ MotionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_StopPlan_(MotionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListPlanStatuses_(MotionService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetPlan_(MotionService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(MotionService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(MotionService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TempStreamArmJointPositions_(MotionService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_DoCommand_(MotionService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(MotionService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotionService::Stub::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::viam::service::motion::v1::MoveResponse* response) {
@@ -215,6 +217,22 @@ void MotionService::Stub::async::GetPlan(::grpc::ClientContext* context, const :
   return result;
 }
 
+::grpc::ClientReaderWriter< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest, ::viam::service::motion::v1::TempStreamArmJointPositionsResponse>* MotionService::Stub::TempStreamArmJointPositionsRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest, ::viam::service::motion::v1::TempStreamArmJointPositionsResponse>::Create(channel_.get(), rpcmethod_TempStreamArmJointPositions_, context);
+}
+
+void MotionService::Stub::async::TempStreamArmJointPositions(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest,::viam::service::motion::v1::TempStreamArmJointPositionsResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderWriterFactory< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest,::viam::service::motion::v1::TempStreamArmJointPositionsResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_TempStreamArmJointPositions_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest, ::viam::service::motion::v1::TempStreamArmJointPositionsResponse>* MotionService::Stub::AsyncTempStreamArmJointPositionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest, ::viam::service::motion::v1::TempStreamArmJointPositionsResponse>::Create(channel_.get(), cq, rpcmethod_TempStreamArmJointPositions_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest, ::viam::service::motion::v1::TempStreamArmJointPositionsResponse>* MotionService::Stub::PrepareAsyncTempStreamArmJointPositionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::service::motion::v1::TempStreamArmJointPositionsRequest, ::viam::service::motion::v1::TempStreamArmJointPositionsResponse>::Create(channel_.get(), cq, rpcmethod_TempStreamArmJointPositions_, context, false, nullptr);
+}
+
 ::grpc::Status MotionService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
@@ -334,6 +352,16 @@ MotionService::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[7],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< MotionService::Service, ::viam::service::motion::v1::TempStreamArmJointPositionsRequest, ::viam::service::motion::v1::TempStreamArmJointPositionsResponse>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReaderWriter<::viam::service::motion::v1::TempStreamArmJointPositionsResponse,
+             ::viam::service::motion::v1::TempStreamArmJointPositionsRequest>* stream) {
+               return service->TempStreamArmJointPositions(ctx, stream);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotionService::Service* service,
@@ -343,7 +371,7 @@ MotionService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      MotionService_method_names[8],
+      MotionService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotionService::Service* service,
@@ -403,6 +431,12 @@ MotionService::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::TempStreamArmJointPositions(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::service::motion::v1::TempStreamArmJointPositionsResponse, ::viam::service::motion::v1::TempStreamArmJointPositionsRequest>* stream) {
+  (void) context;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

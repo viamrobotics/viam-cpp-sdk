@@ -108,6 +108,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
     ::_pbi::ConstantInitialized)
   : mime_types_()
+  , default_reference_frame_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , intrinsic_parameters_(nullptr)
   , distortion_parameters_(nullptr)
   , extrinsic_parameters_(nullptr)
@@ -280,11 +281,13 @@ const uint32_t TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets[] P
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPropertiesResponse, mime_types_),
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPropertiesResponse, frame_rate_),
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPropertiesResponse, extrinsic_parameters_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPropertiesResponse, default_reference_frame_),
   ~0u,
   ~0u,
   ~0u,
   ~0u,
   0,
+  ~0u,
   ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::Webcams, _internal_metadata_),
@@ -350,13 +353,13 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 27, -1, -1, sizeof(::viam::component::camera::v1::GetPointCloudRequest)},
   { 36, -1, -1, sizeof(::viam::component::camera::v1::GetPointCloudResponse)},
   { 44, -1, -1, sizeof(::viam::component::camera::v1::GetPropertiesRequest)},
-  { 51, 63, -1, sizeof(::viam::component::camera::v1::GetPropertiesResponse)},
-  { 69, -1, -1, sizeof(::viam::component::camera::v1::Webcams)},
-  { 76, -1, -1, sizeof(::viam::component::camera::v1::Webcam)},
-  { 87, -1, -1, sizeof(::viam::component::camera::v1::Property)},
-  { 97, -1, -1, sizeof(::viam::component::camera::v1::IntrinsicParameters)},
-  { 109, -1, -1, sizeof(::viam::component::camera::v1::DistortionParameters)},
-  { 117, -1, -1, sizeof(::viam::component::camera::v1::ExtrinsicParameters)},
+  { 51, 64, -1, sizeof(::viam::component::camera::v1::GetPropertiesResponse)},
+  { 71, -1, -1, sizeof(::viam::component::camera::v1::Webcams)},
+  { 78, -1, -1, sizeof(::viam::component::camera::v1::Webcam)},
+  { 89, -1, -1, sizeof(::viam::component::camera::v1::Property)},
+  { 99, -1, -1, sizeof(::viam::component::camera::v1::IntrinsicParameters)},
+  { 111, -1, -1, sizeof(::viam::component::camera::v1::DistortionParameters)},
+  { 119, -1, -1, sizeof(::viam::component::camera::v1::ExtrinsicParameters)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -398,7 +401,7 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "tCloudResponse\022\033\n\tmime_type\030\001 \001(\tR\010mimeT"
   "ype\022\037\n\013point_cloud\030\002 \001(\014R\npointCloud\"*\n\024"
   "GetPropertiesRequest\022\022\n\004name\030\001 \001(\tR\004name"
-  "\"\265\003\n\025GetPropertiesResponse\022!\n\014supports_p"
+  "\"\355\003\n\025GetPropertiesResponse\022!\n\014supports_p"
   "cd\030\001 \001(\010R\013supportsPcd\022`\n\024intrinsic_param"
   "eters\030\002 \001(\0132-.viam.component.camera.v1.I"
   "ntrinsicParametersR\023intrinsicParameters\022"
@@ -408,53 +411,54 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "R\tmimeTypes\022\"\n\nframe_rate\030\005 \001(\002H\000R\tframe"
   "Rate\210\001\001\022`\n\024extrinsic_parameters\030\006 \001(\0132-."
   "viam.component.camera.v1.ExtrinsicParame"
-  "tersR\023extrinsicParametersB\r\n\013_frame_rate"
-  "\"E\n\007Webcams\022:\n\007webcams\030\001 \003(\0132 .viam.comp"
-  "onent.camera.v1.WebcamR\007webcams\"\236\001\n\006Webc"
-  "am\022\024\n\005label\030\001 \001(\tR\005label\022\026\n\006status\030\002 \001(\t"
-  "R\006status\022B\n\nproperties\030\003 \003(\0132\".viam.comp"
-  "onent.camera.v1.PropertyR\nproperties\022\022\n\004"
-  "name\030\004 \001(\tR\004name\022\016\n\002id\030\005 \001(\tR\002id\"\204\001\n\010Pro"
-  "perty\022\031\n\010width_px\030\001 \001(\005R\007widthPx\022\033\n\theig"
-  "ht_px\030\002 \001(\005R\010heightPx\022!\n\014frame_format\030\003 "
-  "\001(\tR\013frameFormat\022\035\n\nframe_rate\030\004 \001(\002R\tfr"
-  "ameRate\"\311\001\n\023IntrinsicParameters\022\031\n\010width"
-  "_px\030\001 \001(\rR\007widthPx\022\033\n\theight_px\030\002 \001(\rR\010h"
-  "eightPx\022\034\n\nfocal_x_px\030\003 \001(\001R\010focalXPx\022\034\n"
-  "\nfocal_y_px\030\004 \001(\001R\010focalYPx\022\036\n\013center_x_"
-  "px\030\005 \001(\001R\tcenterXPx\022\036\n\013center_y_px\030\006 \001(\001"
-  "R\tcenterYPx\"L\n\024DistortionParameters\022\024\n\005m"
-  "odel\030\001 \001(\tR\005model\022\036\n\nparameters\030\002 \003(\001R\np"
-  "arameters\"\217\001\n\023ExtrinsicParameters\0229\n\013tra"
-  "nslation\030\001 \001(\0132\027.viam.common.v1.Vector3R"
-  "\013translation\022=\n\013orientation\030\002 \001(\0132\033.viam"
-  ".common.v1.OrientationR\013orientation2\264\007\n\r"
-  "CameraService\022\231\001\n\tGetImages\022*.viam.compo"
-  "nent.camera.v1.GetImagesRequest\032+.viam.c"
-  "omponent.camera.v1.GetImagesResponse\"3\202\323"
-  "\344\223\002-\022+/viam/api/v1/component/camera/{nam"
-  "e}/images\022\252\001\n\rGetPointCloud\022..viam.compo"
-  "nent.camera.v1.GetPointCloudRequest\032/.vi"
-  "am.component.camera.v1.GetPointCloudResp"
-  "onse\"8\202\323\344\223\0022\0220/viam/api/v1/component/cam"
-  "era/{name}/point_cloud\022\251\001\n\rGetProperties"
-  "\022..viam.component.camera.v1.GetPropertie"
-  "sRequest\032/.viam.component.camera.v1.GetP"
-  "ropertiesResponse\"7\202\323\344\223\0021\022//viam/api/v1/"
-  "component/camera/{name}/properties\022\211\001\n\tD"
-  "oCommand\022 .viam.common.v1.DoCommandReque"
-  "st\032!.viam.common.v1.DoCommandResponse\"7\202"
-  "\323\344\223\0021\"//viam/api/v1/component/camera/{na"
-  "me}/do_command\022\211\001\n\tGetStatus\022 .viam.comm"
-  "on.v1.GetStatusRequest\032!.viam.common.v1."
-  "GetStatusResponse\"7\202\323\344\223\0021\022//viam/api/v1/"
-  "component/camera/{name}/get_status\022\225\001\n\rG"
-  "etGeometries\022$.viam.common.v1.GetGeometr"
-  "iesRequest\032%.viam.common.v1.GetGeometrie"
-  "sResponse\"7\202\323\344\223\0021\022//viam/api/v1/componen"
-  "t/camera/{name}/geometriesBC\n\034com.viam.c"
-  "omponent.camera.v1Z#go.viam.com/api/comp"
-  "onent/camera/v1b\006proto3"
+  "tersR\023extrinsicParameters\0226\n\027default_ref"
+  "erence_frame\030\007 \001(\tR\025defaultReferenceFram"
+  "eB\r\n\013_frame_rate\"E\n\007Webcams\022:\n\007webcams\030\001"
+  " \003(\0132 .viam.component.camera.v1.WebcamR\007"
+  "webcams\"\236\001\n\006Webcam\022\024\n\005label\030\001 \001(\tR\005label"
+  "\022\026\n\006status\030\002 \001(\tR\006status\022B\n\nproperties\030\003"
+  " \003(\0132\".viam.component.camera.v1.Property"
+  "R\nproperties\022\022\n\004name\030\004 \001(\tR\004name\022\016\n\002id\030\005"
+  " \001(\tR\002id\"\204\001\n\010Property\022\031\n\010width_px\030\001 \001(\005R"
+  "\007widthPx\022\033\n\theight_px\030\002 \001(\005R\010heightPx\022!\n"
+  "\014frame_format\030\003 \001(\tR\013frameFormat\022\035\n\nfram"
+  "e_rate\030\004 \001(\002R\tframeRate\"\311\001\n\023IntrinsicPar"
+  "ameters\022\031\n\010width_px\030\001 \001(\rR\007widthPx\022\033\n\the"
+  "ight_px\030\002 \001(\rR\010heightPx\022\034\n\nfocal_x_px\030\003 "
+  "\001(\001R\010focalXPx\022\034\n\nfocal_y_px\030\004 \001(\001R\010focal"
+  "YPx\022\036\n\013center_x_px\030\005 \001(\001R\tcenterXPx\022\036\n\013c"
+  "enter_y_px\030\006 \001(\001R\tcenterYPx\"L\n\024Distortio"
+  "nParameters\022\024\n\005model\030\001 \001(\tR\005model\022\036\n\npar"
+  "ameters\030\002 \003(\001R\nparameters\"\217\001\n\023ExtrinsicP"
+  "arameters\0229\n\013translation\030\001 \001(\0132\027.viam.co"
+  "mmon.v1.Vector3R\013translation\022=\n\013orientat"
+  "ion\030\002 \001(\0132\033.viam.common.v1.OrientationR\013"
+  "orientation2\264\007\n\rCameraService\022\231\001\n\tGetIma"
+  "ges\022*.viam.component.camera.v1.GetImages"
+  "Request\032+.viam.component.camera.v1.GetIm"
+  "agesResponse\"3\202\323\344\223\002-\022+/viam/api/v1/compo"
+  "nent/camera/{name}/images\022\252\001\n\rGetPointCl"
+  "oud\022..viam.component.camera.v1.GetPointC"
+  "loudRequest\032/.viam.component.camera.v1.G"
+  "etPointCloudResponse\"8\202\323\344\223\0022\0220/viam/api/"
+  "v1/component/camera/{name}/point_cloud\022\251"
+  "\001\n\rGetProperties\022..viam.component.camera"
+  ".v1.GetPropertiesRequest\032/.viam.componen"
+  "t.camera.v1.GetPropertiesResponse\"7\202\323\344\223\002"
+  "1\022//viam/api/v1/component/camera/{name}/"
+  "properties\022\211\001\n\tDoCommand\022 .viam.common.v"
+  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+  "mmandResponse\"7\202\323\344\223\0021\"//viam/api/v1/comp"
+  "onent/camera/{name}/do_command\022\211\001\n\tGetSt"
+  "atus\022 .viam.common.v1.GetStatusRequest\032!"
+  ".viam.common.v1.GetStatusResponse\"7\202\323\344\223\002"
+  "1\022//viam/api/v1/component/camera/{name}/"
+  "get_status\022\225\001\n\rGetGeometries\022$.viam.comm"
+  "on.v1.GetGeometriesRequest\032%.viam.common"
+  ".v1.GetGeometriesResponse\"7\202\323\344\223\0021\022//viam"
+  "/api/v1/component/camera/{name}/geometri"
+  "esBC\n\034com.viam.component.camera.v1Z#go.v"
+  "iam.com/api/component/camera/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps[4] = {
   &::descriptor_table_app_2fdata_2fv1_2fdata_2eproto,
@@ -464,7 +468,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_
 };
 static ::_pbi::once_flag descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto = {
-    false, false, 3143, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
+    false, false, 3199, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
     "component/camera/v1/camera.proto",
     &descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once, descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps, 4, 13,
     schemas, file_default_instances, TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets,
@@ -2084,6 +2088,14 @@ GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
       _has_bits_(from._has_bits_),
       mime_types_(from.mime_types_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  default_reference_frame_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    default_reference_frame_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_default_reference_frame().empty()) {
+    default_reference_frame_.Set(from._internal_default_reference_frame(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_intrinsic_parameters()) {
     intrinsic_parameters_ = new ::viam::component::camera::v1::IntrinsicParameters(*from.intrinsic_parameters_);
   } else {
@@ -2106,6 +2118,10 @@ GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
 }
 
 inline void GetPropertiesResponse::SharedCtor() {
+default_reference_frame_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  default_reference_frame_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&intrinsic_parameters_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&frame_rate_) -
@@ -2123,6 +2139,7 @@ GetPropertiesResponse::~GetPropertiesResponse() {
 
 inline void GetPropertiesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  default_reference_frame_.Destroy();
   if (this != internal_default_instance()) delete intrinsic_parameters_;
   if (this != internal_default_instance()) delete distortion_parameters_;
   if (this != internal_default_instance()) delete extrinsic_parameters_;
@@ -2139,6 +2156,7 @@ void GetPropertiesResponse::Clear() {
   (void) cached_has_bits;
 
   mime_types_.Clear();
+  default_reference_frame_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && intrinsic_parameters_ != nullptr) {
     delete intrinsic_parameters_;
   }
@@ -2220,6 +2238,16 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
         } else
           goto handle_unusual;
         continue;
+      // string default_reference_frame = 7 [json_name = "defaultReferenceFrame"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_default_reference_frame();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.camera.v1.GetPropertiesResponse.default_reference_frame"));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2293,6 +2321,16 @@ uint8_t* GetPropertiesResponse::_InternalSerialize(
         _Internal::extrinsic_parameters(this).GetCachedSize(), target, stream);
   }
 
+  // string default_reference_frame = 7 [json_name = "defaultReferenceFrame"];
+  if (!this->_internal_default_reference_frame().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_default_reference_frame().data(), static_cast<int>(this->_internal_default_reference_frame().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.camera.v1.GetPropertiesResponse.default_reference_frame");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_default_reference_frame(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2315,6 +2353,13 @@ size_t GetPropertiesResponse::ByteSizeLong() const {
   for (int i = 0, n = mime_types_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
       mime_types_.Get(i));
+  }
+
+  // string default_reference_frame = 7 [json_name = "defaultReferenceFrame"];
+  if (!this->_internal_default_reference_frame().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_default_reference_frame());
   }
 
   // .viam.component.camera.v1.IntrinsicParameters intrinsic_parameters = 2 [json_name = "intrinsicParameters"];
@@ -2372,6 +2417,9 @@ void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
   (void) cached_has_bits;
 
   mime_types_.MergeFrom(from.mime_types_);
+  if (!from._internal_default_reference_frame().empty()) {
+    _internal_set_default_reference_frame(from._internal_default_reference_frame());
+  }
   if (from._internal_has_intrinsic_parameters()) {
     _internal_mutable_intrinsic_parameters()->::viam::component::camera::v1::IntrinsicParameters::MergeFrom(from._internal_intrinsic_parameters());
   }
@@ -2403,9 +2451,15 @@ bool GetPropertiesResponse::IsInitialized() const {
 
 void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   mime_types_.InternalSwap(&other->mime_types_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &default_reference_frame_, lhs_arena,
+      &other->default_reference_frame_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, frame_rate_)
       + sizeof(GetPropertiesResponse::frame_rate_)

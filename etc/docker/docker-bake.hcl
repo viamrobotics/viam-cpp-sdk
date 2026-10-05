@@ -36,7 +36,6 @@ target "system" {
   // it from this strategy without touching any other matrix.
   matrix = {
     cell = [
-      { distro = "debian", version = "bullseye" },
       { distro = "debian", version = "bookworm" },
       { distro = "debian", version = "trixie" },
       { distro = "debian", version = "sid" },
@@ -72,7 +71,6 @@ target "conan" {
   // matrix: drop a cell here without touching the system matrix, and vice versa.
   matrix = {
     cell = [
-      { distro = "debian", version = "bullseye" },
       { distro = "debian", version = "bookworm" },
       { distro = "debian", version = "trixie" },
       { distro = "debian", version = "sid" },

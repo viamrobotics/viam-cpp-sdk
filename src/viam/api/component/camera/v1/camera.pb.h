@@ -1299,6 +1299,7 @@ class GetPropertiesResponse final :
 
   enum : int {
     kMimeTypesFieldNumber = 4,
+    kDefaultReferenceFrameFieldNumber = 7,
     kIntrinsicParametersFieldNumber = 2,
     kDistortionParametersFieldNumber = 3,
     kExtrinsicParametersFieldNumber = 6,
@@ -1327,6 +1328,20 @@ class GetPropertiesResponse final :
   private:
   const std::string& _internal_mime_types(int index) const;
   std::string* _internal_add_mime_types();
+  public:
+
+  // string default_reference_frame = 7 [json_name = "defaultReferenceFrame"];
+  void clear_default_reference_frame();
+  const std::string& default_reference_frame() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_default_reference_frame(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_default_reference_frame();
+  PROTOBUF_NODISCARD std::string* release_default_reference_frame();
+  void set_allocated_default_reference_frame(std::string* default_reference_frame);
+  private:
+  const std::string& _internal_default_reference_frame() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_default_reference_frame(const std::string& value);
+  std::string* _internal_mutable_default_reference_frame();
   public:
 
   // .viam.component.camera.v1.IntrinsicParameters intrinsic_parameters = 2 [json_name = "intrinsicParameters"];
@@ -1415,6 +1430,7 @@ class GetPropertiesResponse final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> mime_types_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr default_reference_frame_;
   ::viam::component::camera::v1::IntrinsicParameters* intrinsic_parameters_;
   ::viam::component::camera::v1::DistortionParameters* distortion_parameters_;
   ::viam::component::camera::v1::ExtrinsicParameters* extrinsic_parameters_;
@@ -3844,6 +3860,56 @@ inline void GetPropertiesResponse::set_allocated_extrinsic_parameters(::viam::co
   }
   extrinsic_parameters_ = extrinsic_parameters;
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetPropertiesResponse.extrinsic_parameters)
+}
+
+// string default_reference_frame = 7 [json_name = "defaultReferenceFrame"];
+inline void GetPropertiesResponse::clear_default_reference_frame() {
+  default_reference_frame_.ClearToEmpty();
+}
+inline const std::string& GetPropertiesResponse::default_reference_frame() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetPropertiesResponse.default_reference_frame)
+  return _internal_default_reference_frame();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPropertiesResponse::set_default_reference_frame(ArgT0&& arg0, ArgT... args) {
+ 
+ default_reference_frame_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetPropertiesResponse.default_reference_frame)
+}
+inline std::string* GetPropertiesResponse::mutable_default_reference_frame() {
+  std::string* _s = _internal_mutable_default_reference_frame();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetPropertiesResponse.default_reference_frame)
+  return _s;
+}
+inline const std::string& GetPropertiesResponse::_internal_default_reference_frame() const {
+  return default_reference_frame_.Get();
+}
+inline void GetPropertiesResponse::_internal_set_default_reference_frame(const std::string& value) {
+  
+  default_reference_frame_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPropertiesResponse::_internal_mutable_default_reference_frame() {
+  
+  return default_reference_frame_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPropertiesResponse::release_default_reference_frame() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetPropertiesResponse.default_reference_frame)
+  return default_reference_frame_.Release();
+}
+inline void GetPropertiesResponse::set_allocated_default_reference_frame(std::string* default_reference_frame) {
+  if (default_reference_frame != nullptr) {
+    
+  } else {
+    
+  }
+  default_reference_frame_.SetAllocated(default_reference_frame, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (default_reference_frame_.IsDefault()) {
+    default_reference_frame_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetPropertiesResponse.default_reference_frame)
 }
 
 // -------------------------------------------------------------------

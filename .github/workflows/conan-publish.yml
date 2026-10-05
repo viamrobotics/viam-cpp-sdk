@@ -17,6 +17,11 @@ on:
         type: boolean
         default: false
         description: If true, add a conan.lock artifact to the draft release
+      upload_relwithdebinfo:
+        required: true
+        type: boolean
+        default: true
+        description: If true, also publish a RelWithDebInfo build of the SDK (deps stay Release)
 
 
 jobs:
@@ -66,6 +71,14 @@ jobs:
           conan create . --build=missing -pr:a etc/conan/macos.profile \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
+          # No lockfile-out: must not rewrite the release lock.
+          if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+            conan create . --build=missing -pr:a etc/conan/macos.profile \
+              --lockfile etc/conan/conan.lock \
+              -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+          fi
+
+          # One upload pushes both build_types now in the cache (RWDI only if built).
           conan upload "viam-cpp-sdk/*" -r viamconan -c
 
       - name: Upload lockfile artifact
@@ -94,7 +107,7 @@ jobs:
         image:
           - ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:jammy
           - ghcr.io/viamrobotics/cpp-sdk-conan-debian:bookworm
-          - ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye
+          - ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:focal
     runs-on: ${{ matrix.runner }}
     container:
       image: ${{ matrix.image }}
@@ -110,6 +123,9 @@ jobs:
         uname -a
         cat /etc/os-release
 
+    - name: Read locked b2 version
+      run: echo "B2_REF=$(grep -oE '"b2/[0-9.]+' etc/conan/conan.lock | head -1 | tr -d '"')" >> "$GITHUB_ENV"
+
     - name: Authenticate viam conan remote
       env:
         CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
@@ -117,12 +133,24 @@ jobs:
       run: |
         conan remote auth --force -cc core:non_interactive=True viamconan
 
-    # Force a local b2 build; the cached conancenter binary links a glibc newer than bullseye's.
-    - name: Pre-install b2 (bullseye)
-      if: matrix.image == 'ghcr.io/viamrobotics/cpp-sdk-conan-debian:bullseye'
+    # b2's package_id ignores the compiler, so conancenter's binary (newer glibc) would match
+    # focal. Take the locked b2 from viamconan, building only if it has no binary; fall back to
+    # a source build from conancenter's recipe for a version viamconan has never seen.
+    - name: Pre-install b2 (focal)
+      if: contains(matrix.image, 'focal')
       run: |
-        conan install -r conancenter --update \
-          --tool-requires=b2/5.4.2 --build=b2/5.4.2 -pr:a default
+        conan install --tool-requires="$B2_REF" -r viamconan --build=missing -pr:a default \
+            --lockfile etc/conan/conan.lock --lockfile-partial \
+        || conan install --tool-requires="$B2_REF" -r conancenter --build="$B2_REF" -pr:a default \
+            --lockfile etc/conan/conan.lock --lockfile-partial
+
+    # b2's package_id ignores the compiler, so every Linux leg shares one id and the
+    # first upload wins for all. Only the lowest-glibc leg may upload it, and it goes
+    # first so no later blanket upload can slip a foreign b2 in ahead of it.
+    - name: Upload b2 (focal)
+      if: inputs.upload_deps && contains(matrix.image, 'focal')
+      run: |
+        conan upload "b2/*" -r viamconan -c
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
@@ -135,6 +163,14 @@ jobs:
         conan create . --build=missing -pr:a default \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
+        # No lockfile-out: must not rewrite the release lock.
+        if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+          conan create . --build=missing -pr:a default \
+            --lockfile etc/conan/conan.lock \
+            -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+        fi
+
+        # One upload pushes both build_types now in the cache (RWDI only if built).
         conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Sanitize image name for artifact
@@ -162,6 +198,9 @@ jobs:
         conan upload "c-ares/*" -r viamconan -c
         conan upload "libbacktrace/*" -r viamconan -c
         conan upload "re2/*" -r viamconan -c
+        conan upload "openssl/*" -r viamconan -c
+        conan upload "zlib/*" -r viamconan -c
+        conan upload "bzip2/*" -r viamconan -c
 
   build_windows:
     runs-on: windows-2022
@@ -201,6 +240,14 @@ jobs:
         refreshenv
 
         conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
+
+        if ('${{ inputs.upload_relwithdebinfo }}' -eq 'true') {
+          conan create . --build=missing -s:a compiler.cppstd=17 `
+            --lockfile etc/conan/conan.lock --lockfile-partial `
+            -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
+        }
+
+        # One upload pushes both build_types now in the cache (RWDI only if built).
         conan upload "viam-cpp-sdk/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
