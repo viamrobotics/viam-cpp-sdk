@@ -56,6 +56,18 @@ T read_big_endian(const std::vector<unsigned char>& data, size_t* offset) {
     return value;
 }
 
+// Writes a depth value in big-endian order. Unlike append_big_endian it does no bounds check,
+// so callers must have sized the buffer.
+void write_big_endian_u16(unsigned char* out, uint16_t value) {
+    out[0] = static_cast<unsigned char>(value >> 8);
+    out[1] = static_cast<unsigned char>(value & 0xFF);
+}
+
+// Reads a big-endian depth value. Callers must have checked the buffer holds it.
+uint16_t read_big_endian_u16(const unsigned char* in) {
+    return static_cast<uint16_t>((in[0] << 8) | in[1]);
+}
+
 }  // namespace
 
 std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) {
@@ -75,9 +87,19 @@ std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) 
     append_big_endian(data, &offset, width);
     append_big_endian(data, &offset, height);
 
-    for (size_t i = 0; i < height; ++i) {
-        for (size_t j = 0; j < width; ++j) {
-            append_big_endian(data, &offset, m(i, j));
+    // A row-major map is written in one pass over its storage, which the compiler can
+    // vectorize; other layouts go through the map's own indexing.
+    unsigned char* out = data.data() + offset;
+    if (m.layout() == xt::layout_type::row_major) {
+        const uint16_t* in = m.data();
+        for (size_t i = 0; i < height * width; ++i) {
+            write_big_endian_u16(out + 2 * i, in[i]);
+        }
+    } else {
+        for (size_t i = 0; i < height; ++i) {
+            for (size_t j = 0; j < width; ++j) {
+                write_big_endian_u16(out + 2 * (i * width + j), m(i, j));
+            }
         }
     }
 
@@ -109,14 +131,22 @@ Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& dat
                         ". Width: " + std::to_string(width) + " Height: " + std::to_string(height));
     }
 
-    std::vector<uint16_t> depth_values;
-    depth_values.reserve(width * height);
-    for (size_t i = 0; i < width * height; ++i) {
-        depth_values.push_back(read_big_endian<uint16_t>(data, &offset));
-    }
-
+    // The size check above guarantees every value is in bounds, so they are read in one pass
+    // straight into the map's storage.
+    const unsigned char* in = data.data() + offset;
     xt::xarray<uint16_t> m = xt::xarray<uint16_t>::from_shape({height, width});
-    std::copy(depth_values.begin(), depth_values.end(), m.begin());
+    if (m.layout() == xt::layout_type::row_major) {
+        uint16_t* out = m.data();
+        for (size_t i = 0; i < height * width; ++i) {
+            out[i] = read_big_endian_u16(in + 2 * i);
+        }
+    } else {
+        for (size_t i = 0; i < height; ++i) {
+            for (size_t j = 0; j < width; ++j) {
+                m(i, j) = read_big_endian_u16(in + 2 * (i * width + j));
+            }
+        }
+    }
     return m;
 }
 

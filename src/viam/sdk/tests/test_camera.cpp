@@ -138,6 +138,42 @@ BOOST_AUTO_TEST_CASE(test_depth_map_encode_decode) {
         result_values.begin(), result_values.end(), expected_values.begin(), expected_values.end());
 }
 
+BOOST_AUTO_TEST_CASE(test_depth_map_encoding_bytes) {
+    xt::xarray<uint16_t> depth_map = xt::xarray<uint16_t>::from_shape({2, 3});  // height 2, width 3
+    depth_map(0, 0) = 0x0102;
+    depth_map(0, 1) = 0x0304;
+    depth_map(0, 2) = 0xFFFF;
+    depth_map(1, 0) = 0x0000;
+    depth_map(1, 1) = 0x00FF;
+    depth_map(1, 2) = 0xFF00;
+
+    // "DEPTHMAP", then width and height as big-endian 64-bit values, then the depth values in
+    // row-major order as big-endian 16-bit values.
+    const std::vector<unsigned char> expected = {
+        'D',  'E',  'P',  'T',  'H',  'M',  'A',  'P',  0,    0,    0,    0,
+        0,    0,    0,    3,    0,    0,    0,    0,    0,    0,    0,    2,
+        0x01, 0x02, 0x03, 0x04, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x00};
+    const std::vector<unsigned char> data = Camera::encode_depth_map(depth_map);
+    BOOST_CHECK_EQUAL_COLLECTIONS(data.begin(), data.end(), expected.begin(), expected.end());
+}
+
+BOOST_AUTO_TEST_CASE(test_depth_map_round_trip_camera_size) {
+    const size_t height = 480;
+    const size_t width = 848;
+    xt::xarray<uint16_t> depth_map = xt::xarray<uint16_t>::from_shape({height, width});
+    for (size_t i = 0; i < height; ++i) {
+        for (size_t j = 0; j < width; ++j) {
+            depth_map(i, j) = static_cast<uint16_t>((i * width + j) * 40503U);  // covers 0..0xFFFF
+        }
+    }
+
+    const auto result_map = Camera::decode_depth_map(Camera::encode_depth_map(depth_map));
+
+    BOOST_CHECK_EQUAL(result_map.shape()[0], height);
+    BOOST_CHECK_EQUAL(result_map.shape()[1], width);
+    BOOST_CHECK(result_map == depth_map);
+}
+
 BOOST_AUTO_TEST_CASE(test_get_status) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
     client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
