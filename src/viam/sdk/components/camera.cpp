@@ -124,7 +124,9 @@ Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& dat
     // The size check above guarantees the payload fills the map: copy it into the map's
     // row-major storage, then convert each value from big-endian.
     xt::xarray<uint16_t> m = xt::xarray<uint16_t>::from_shape({height, width});
-    std::copy(data.begin() + offset, data.end(), reinterpret_cast<unsigned char*>(m.data()));
+    std::copy(data.data() + offset,
+              data.data() + data.size(),
+              reinterpret_cast<unsigned char*>(m.data()));
     std::for_each(m.linear_begin(), m.linear_end(), [](uint16_t& value) {
         boost::endian::big_to_native_inplace(value);
     });
