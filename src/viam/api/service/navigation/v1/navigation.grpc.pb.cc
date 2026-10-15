@@ -25,15 +25,36 @@ namespace navigation {
 namespace v1 {
 
 static const char* NavigationService_method_names[] = {
-  "/viam.service.navigation.v1.NavigationService/GetMode",
-  "/viam.service.navigation.v1.NavigationService/SetMode",
+  "/viam.service.navigation.v1.NavigationService/AddLocation",
   "/viam.service.navigation.v1.NavigationService/GetLocation",
-  "/viam.service.navigation.v1.NavigationService/GetWaypoints",
-  "/viam.service.navigation.v1.NavigationService/AddWaypoint",
-  "/viam.service.navigation.v1.NavigationService/RemoveWaypoint",
-  "/viam.service.navigation.v1.NavigationService/GetObstacles",
-  "/viam.service.navigation.v1.NavigationService/GetPaths",
+  "/viam.service.navigation.v1.NavigationService/ListLocations",
+  "/viam.service.navigation.v1.NavigationService/UpdateLocation",
+  "/viam.service.navigation.v1.NavigationService/DeleteLocation",
+  "/viam.service.navigation.v1.NavigationService/AddRoute",
+  "/viam.service.navigation.v1.NavigationService/GetRoute",
+  "/viam.service.navigation.v1.NavigationService/ListRoutes",
+  "/viam.service.navigation.v1.NavigationService/UpdateRoute",
+  "/viam.service.navigation.v1.NavigationService/DeleteRoute",
+  "/viam.service.navigation.v1.NavigationService/AddZone",
+  "/viam.service.navigation.v1.NavigationService/GetZone",
+  "/viam.service.navigation.v1.NavigationService/ListZones",
+  "/viam.service.navigation.v1.NavigationService/UpdateZone",
+  "/viam.service.navigation.v1.NavigationService/DeleteZone",
+  "/viam.service.navigation.v1.NavigationService/NavigateToLocation",
+  "/viam.service.navigation.v1.NavigationService/NavigateToPoint",
+  "/viam.service.navigation.v1.NavigationService/NavigateRoute",
+  "/viam.service.navigation.v1.NavigationService/PlanToPoint",
+  "/viam.service.navigation.v1.NavigationService/PlanToLocation",
+  "/viam.service.navigation.v1.NavigationService/ExecutePlan",
+  "/viam.service.navigation.v1.NavigationService/GoToLocation",
+  "/viam.service.navigation.v1.NavigationService/GoToPoint",
+  "/viam.service.navigation.v1.NavigationService/Suspend",
+  "/viam.service.navigation.v1.NavigationService/Resume",
+  "/viam.service.navigation.v1.NavigationService/Cancel",
+  "/viam.service.navigation.v1.NavigationService/GetPosition",
+  "/viam.service.navigation.v1.NavigationService/GetNavigationStatus",
   "/viam.service.navigation.v1.NavigationService/GetProperties",
+  "/viam.service.navigation.v1.NavigationService/GetCostmap",
   "/viam.service.navigation.v1.NavigationService/DoCommand",
   "/viam.service.navigation.v1.NavigationService/GetStatus",
 };
@@ -45,61 +66,59 @@ std::unique_ptr< NavigationService::Stub> NavigationService::NewStub(const std::
 }
 
 NavigationService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetMode_(NavigationService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetMode_(NavigationService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetLocation_(NavigationService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetWaypoints_(NavigationService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddWaypoint_(NavigationService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveWaypoint_(NavigationService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetObstacles_(NavigationService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPaths_(NavigationService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProperties_(NavigationService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(NavigationService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(NavigationService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_AddLocation_(NavigationService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLocation_(NavigationService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListLocations_(NavigationService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateLocation_(NavigationService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteLocation_(NavigationService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddRoute_(NavigationService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRoute_(NavigationService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListRoutes_(NavigationService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateRoute_(NavigationService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRoute_(NavigationService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddZone_(NavigationService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetZone_(NavigationService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListZones_(NavigationService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateZone_(NavigationService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteZone_(NavigationService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NavigateToLocation_(NavigationService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NavigateToPoint_(NavigationService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NavigateRoute_(NavigationService_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PlanToPoint_(NavigationService_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PlanToLocation_(NavigationService_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ExecutePlan_(NavigationService_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GoToLocation_(NavigationService_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GoToPoint_(NavigationService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Suspend_(NavigationService_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Resume_(NavigationService_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Cancel_(NavigationService_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPosition_(NavigationService_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetNavigationStatus_(NavigationService_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProperties_(NavigationService_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCostmap_(NavigationService_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(NavigationService_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(NavigationService_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status NavigationService::Stub::GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::viam::service::navigation::v1::GetModeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMode_, context, request, response);
+::grpc::Status NavigationService::Stub::AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::viam::service::navigation::v1::AddLocationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddLocation_, context, request, response);
 }
 
-void NavigationService::Stub::async::GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMode_, context, request, response, std::move(f));
+void NavigationService::Stub::async::AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddLocation_, context, request, response, std::move(f));
 }
 
-void NavigationService::Stub::async::GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMode_, context, request, response, reactor);
+void NavigationService::Stub::async::AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddLocation_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>* NavigationService::Stub::PrepareAsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetModeResponse, ::viam::service::navigation::v1::GetModeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMode_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>* NavigationService::Stub::PrepareAsyncAddLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::AddLocationResponse, ::viam::service::navigation::v1::AddLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddLocation_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>* NavigationService::Stub::AsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>* NavigationService::Stub::AsyncAddLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetModeRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status NavigationService::Stub::SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::viam::service::navigation::v1::SetModeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetMode_, context, request, response);
-}
-
-void NavigationService::Stub::async::SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMode_, context, request, response, std::move(f));
-}
-
-void NavigationService::Stub::async::SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMode_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>* NavigationService::Stub::PrepareAsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::SetModeResponse, ::viam::service::navigation::v1::SetModeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetMode_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>* NavigationService::Stub::AsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetModeRaw(context, request, cq);
+    this->PrepareAsyncAddLocationRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -127,117 +146,600 @@ void NavigationService::Stub::async::GetLocation(::grpc::ClientContext* context,
   return result;
 }
 
-::grpc::Status NavigationService::Stub::GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::viam::service::navigation::v1::GetWaypointsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetWaypoints_, context, request, response);
+::grpc::Status NavigationService::Stub::ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::viam::service::navigation::v1::ListLocationsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListLocations_, context, request, response);
 }
 
-void NavigationService::Stub::async::GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWaypoints_, context, request, response, std::move(f));
+void NavigationService::Stub::async::ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, std::move(f));
 }
 
-void NavigationService::Stub::async::GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWaypoints_, context, request, response, reactor);
+void NavigationService::Stub::async::ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>* NavigationService::Stub::PrepareAsyncGetWaypointsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetWaypointsResponse, ::viam::service::navigation::v1::GetWaypointsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetWaypoints_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>* NavigationService::Stub::PrepareAsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::ListLocationsResponse, ::viam::service::navigation::v1::ListLocationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListLocations_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>* NavigationService::Stub::AsyncGetWaypointsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>* NavigationService::Stub::AsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetWaypointsRaw(context, request, cq);
+    this->PrepareAsyncListLocationsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status NavigationService::Stub::AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::viam::service::navigation::v1::AddWaypointResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddWaypoint_, context, request, response);
+::grpc::Status NavigationService::Stub::UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::viam::service::navigation::v1::UpdateLocationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateLocation_, context, request, response);
 }
 
-void NavigationService::Stub::async::AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddWaypoint_, context, request, response, std::move(f));
+void NavigationService::Stub::async::UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, std::move(f));
 }
 
-void NavigationService::Stub::async::AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddWaypoint_, context, request, response, reactor);
+void NavigationService::Stub::async::UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>* NavigationService::Stub::PrepareAsyncAddWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::AddWaypointResponse, ::viam::service::navigation::v1::AddWaypointRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddWaypoint_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>* NavigationService::Stub::PrepareAsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::UpdateLocationResponse, ::viam::service::navigation::v1::UpdateLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateLocation_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>* NavigationService::Stub::AsyncAddWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>* NavigationService::Stub::AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncAddWaypointRaw(context, request, cq);
+    this->PrepareAsyncUpdateLocationRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status NavigationService::Stub::RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::viam::service::navigation::v1::RemoveWaypointResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveWaypoint_, context, request, response);
+::grpc::Status NavigationService::Stub::DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::viam::service::navigation::v1::DeleteLocationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteLocation_, context, request, response);
 }
 
-void NavigationService::Stub::async::RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveWaypoint_, context, request, response, std::move(f));
+void NavigationService::Stub::async::DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, std::move(f));
 }
 
-void NavigationService::Stub::async::RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveWaypoint_, context, request, response, reactor);
+void NavigationService::Stub::async::DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>* NavigationService::Stub::PrepareAsyncRemoveWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::RemoveWaypointResponse, ::viam::service::navigation::v1::RemoveWaypointRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveWaypoint_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>* NavigationService::Stub::PrepareAsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::DeleteLocationResponse, ::viam::service::navigation::v1::DeleteLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteLocation_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>* NavigationService::Stub::AsyncRemoveWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>* NavigationService::Stub::AsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncRemoveWaypointRaw(context, request, cq);
+    this->PrepareAsyncDeleteLocationRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status NavigationService::Stub::GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::viam::service::navigation::v1::GetObstaclesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetObstacles_, context, request, response);
+::grpc::Status NavigationService::Stub::AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::viam::service::navigation::v1::AddRouteResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddRoute_, context, request, response);
 }
 
-void NavigationService::Stub::async::GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetObstacles_, context, request, response, std::move(f));
+void NavigationService::Stub::async::AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddRoute_, context, request, response, std::move(f));
 }
 
-void NavigationService::Stub::async::GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetObstacles_, context, request, response, reactor);
+void NavigationService::Stub::async::AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddRoute_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>* NavigationService::Stub::PrepareAsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetObstaclesResponse, ::viam::service::navigation::v1::GetObstaclesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetObstacles_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>* NavigationService::Stub::PrepareAsyncAddRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::AddRouteResponse, ::viam::service::navigation::v1::AddRouteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddRoute_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>* NavigationService::Stub::AsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>* NavigationService::Stub::AsyncAddRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetObstaclesRaw(context, request, cq);
+    this->PrepareAsyncAddRouteRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status NavigationService::Stub::GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::viam::service::navigation::v1::GetPathsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPaths_, context, request, response);
+::grpc::Status NavigationService::Stub::GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::viam::service::navigation::v1::GetRouteResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRoute_, context, request, response);
 }
 
-void NavigationService::Stub::async::GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPaths_, context, request, response, std::move(f));
+void NavigationService::Stub::async::GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRoute_, context, request, response, std::move(f));
 }
 
-void NavigationService::Stub::async::GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPaths_, context, request, response, reactor);
+void NavigationService::Stub::async::GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRoute_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* NavigationService::Stub::PrepareAsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetPathsResponse, ::viam::service::navigation::v1::GetPathsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPaths_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>* NavigationService::Stub::PrepareAsyncGetRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetRouteResponse, ::viam::service::navigation::v1::GetRouteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRoute_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* NavigationService::Stub::AsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>* NavigationService::Stub::AsyncGetRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetPathsRaw(context, request, cq);
+    this->PrepareAsyncGetRouteRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::viam::service::navigation::v1::ListRoutesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListRoutes_, context, request, response);
+}
+
+void NavigationService::Stub::async::ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListRoutes_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListRoutes_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>* NavigationService::Stub::PrepareAsyncListRoutesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::ListRoutesResponse, ::viam::service::navigation::v1::ListRoutesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListRoutes_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>* NavigationService::Stub::AsyncListRoutesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListRoutesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::viam::service::navigation::v1::UpdateRouteResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateRoute_, context, request, response);
+}
+
+void NavigationService::Stub::async::UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRoute_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRoute_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>* NavigationService::Stub::PrepareAsyncUpdateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::UpdateRouteResponse, ::viam::service::navigation::v1::UpdateRouteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateRoute_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>* NavigationService::Stub::AsyncUpdateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRouteRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::viam::service::navigation::v1::DeleteRouteResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteRoute_, context, request, response);
+}
+
+void NavigationService::Stub::async::DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRoute_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRoute_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>* NavigationService::Stub::PrepareAsyncDeleteRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::DeleteRouteResponse, ::viam::service::navigation::v1::DeleteRouteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteRoute_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>* NavigationService::Stub::AsyncDeleteRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteRouteRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::viam::service::navigation::v1::AddZoneResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddZone_, context, request, response);
+}
+
+void NavigationService::Stub::async::AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddZone_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddZone_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>* NavigationService::Stub::PrepareAsyncAddZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::AddZoneResponse, ::viam::service::navigation::v1::AddZoneRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddZone_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>* NavigationService::Stub::AsyncAddZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAddZoneRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::viam::service::navigation::v1::GetZoneResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetZone_, context, request, response);
+}
+
+void NavigationService::Stub::async::GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZone_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZone_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>* NavigationService::Stub::PrepareAsyncGetZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetZoneResponse, ::viam::service::navigation::v1::GetZoneRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetZone_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>* NavigationService::Stub::AsyncGetZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetZoneRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::viam::service::navigation::v1::ListZonesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListZones_, context, request, response);
+}
+
+void NavigationService::Stub::async::ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListZones_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListZones_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>* NavigationService::Stub::PrepareAsyncListZonesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::ListZonesResponse, ::viam::service::navigation::v1::ListZonesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListZones_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>* NavigationService::Stub::AsyncListZonesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListZonesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::viam::service::navigation::v1::UpdateZoneResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateZone_, context, request, response);
+}
+
+void NavigationService::Stub::async::UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateZone_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateZone_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>* NavigationService::Stub::PrepareAsyncUpdateZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::UpdateZoneResponse, ::viam::service::navigation::v1::UpdateZoneRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateZone_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>* NavigationService::Stub::AsyncUpdateZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateZoneRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::viam::service::navigation::v1::DeleteZoneResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteZone_, context, request, response);
+}
+
+void NavigationService::Stub::async::DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteZone_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteZone_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>* NavigationService::Stub::PrepareAsyncDeleteZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::DeleteZoneResponse, ::viam::service::navigation::v1::DeleteZoneRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteZone_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>* NavigationService::Stub::AsyncDeleteZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteZoneRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::viam::service::navigation::v1::NavigateToLocationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NavigateToLocation_, context, request, response);
+}
+
+void NavigationService::Stub::async::NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NavigateToLocation_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NavigateToLocation_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>* NavigationService::Stub::PrepareAsyncNavigateToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::NavigateToLocationResponse, ::viam::service::navigation::v1::NavigateToLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NavigateToLocation_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>* NavigationService::Stub::AsyncNavigateToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncNavigateToLocationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::viam::service::navigation::v1::NavigateToPointResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NavigateToPoint_, context, request, response);
+}
+
+void NavigationService::Stub::async::NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NavigateToPoint_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NavigateToPoint_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>* NavigationService::Stub::PrepareAsyncNavigateToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::NavigateToPointResponse, ::viam::service::navigation::v1::NavigateToPointRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NavigateToPoint_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>* NavigationService::Stub::AsyncNavigateToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncNavigateToPointRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::viam::service::navigation::v1::NavigateRouteResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NavigateRoute_, context, request, response);
+}
+
+void NavigationService::Stub::async::NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NavigateRoute_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NavigateRoute_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>* NavigationService::Stub::PrepareAsyncNavigateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::NavigateRouteResponse, ::viam::service::navigation::v1::NavigateRouteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NavigateRoute_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>* NavigationService::Stub::AsyncNavigateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncNavigateRouteRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::viam::service::navigation::v1::PlanToPointResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PlanToPoint_, context, request, response);
+}
+
+void NavigationService::Stub::async::PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlanToPoint_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlanToPoint_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>* NavigationService::Stub::PrepareAsyncPlanToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::PlanToPointResponse, ::viam::service::navigation::v1::PlanToPointRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PlanToPoint_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>* NavigationService::Stub::AsyncPlanToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPlanToPointRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::viam::service::navigation::v1::PlanToLocationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PlanToLocation_, context, request, response);
+}
+
+void NavigationService::Stub::async::PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlanToLocation_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlanToLocation_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>* NavigationService::Stub::PrepareAsyncPlanToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::PlanToLocationResponse, ::viam::service::navigation::v1::PlanToLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PlanToLocation_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>* NavigationService::Stub::AsyncPlanToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPlanToLocationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::viam::service::navigation::v1::ExecutePlanResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ExecutePlan_, context, request, response);
+}
+
+void NavigationService::Stub::async::ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecutePlan_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecutePlan_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>* NavigationService::Stub::PrepareAsyncExecutePlanRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::ExecutePlanResponse, ::viam::service::navigation::v1::ExecutePlanRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ExecutePlan_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>* NavigationService::Stub::AsyncExecutePlanRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncExecutePlanRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::viam::service::navigation::v1::GoToLocationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GoToLocation_, context, request, response);
+}
+
+void NavigationService::Stub::async::GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoToLocation_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoToLocation_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>* NavigationService::Stub::PrepareAsyncGoToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GoToLocationResponse, ::viam::service::navigation::v1::GoToLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GoToLocation_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>* NavigationService::Stub::AsyncGoToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGoToLocationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::viam::service::navigation::v1::GoToPointResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GoToPoint_, context, request, response);
+}
+
+void NavigationService::Stub::async::GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoToPoint_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoToPoint_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>* NavigationService::Stub::PrepareAsyncGoToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GoToPointResponse, ::viam::service::navigation::v1::GoToPointRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GoToPoint_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>* NavigationService::Stub::AsyncGoToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGoToPointRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::viam::service::navigation::v1::SuspendResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Suspend_, context, request, response);
+}
+
+void NavigationService::Stub::async::Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Suspend_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Suspend_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>* NavigationService::Stub::PrepareAsyncSuspendRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::SuspendResponse, ::viam::service::navigation::v1::SuspendRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Suspend_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>* NavigationService::Stub::AsyncSuspendRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSuspendRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::viam::service::navigation::v1::ResumeResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Resume_, context, request, response);
+}
+
+void NavigationService::Stub::async::Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Resume_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Resume_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>* NavigationService::Stub::PrepareAsyncResumeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::ResumeResponse, ::viam::service::navigation::v1::ResumeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Resume_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>* NavigationService::Stub::AsyncResumeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncResumeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::viam::service::navigation::v1::CancelResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Cancel_, context, request, response);
+}
+
+void NavigationService::Stub::async::Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Cancel_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Cancel_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>* NavigationService::Stub::PrepareAsyncCancelRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::CancelResponse, ::viam::service::navigation::v1::CancelRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Cancel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>* NavigationService::Stub::AsyncCancelRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCancelRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::viam::service::navigation::v1::GetPositionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPosition_, context, request, response);
+}
+
+void NavigationService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>* NavigationService::Stub::PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetPositionResponse, ::viam::service::navigation::v1::GetPositionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>* NavigationService::Stub::AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetNavigationStatus_, context, request, response);
+}
+
+void NavigationService::Stub::async::GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetNavigationStatus_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetNavigationStatus_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>* NavigationService::Stub::PrepareAsyncGetNavigationStatusRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetNavigationStatusResponse, ::viam::service::navigation::v1::GetNavigationStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetNavigationStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>* NavigationService::Stub::AsyncGetNavigationStatusRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetNavigationStatusRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -261,6 +763,29 @@ void NavigationService::Stub::async::GetProperties(::grpc::ClientContext* contex
 ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>* NavigationService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetPropertiesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NavigationService::Stub::GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::viam::service::navigation::v1::GetCostmapResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCostmap_, context, request, response);
+}
+
+void NavigationService::Stub::async::GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCostmap_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCostmap_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>* NavigationService::Stub::PrepareAsyncGetCostmapRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetCostmapResponse, ::viam::service::navigation::v1::GetCostmapRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCostmap_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>* NavigationService::Stub::AsyncGetCostmapRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCostmapRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -315,25 +840,15 @@ NavigationService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::service::navigation::v1::GetModeRequest* req,
-             ::viam::service::navigation::v1::GetModeResponse* resp) {
-               return service->GetMode(ctx, req, resp);
+             const ::viam::service::navigation::v1::AddLocationRequest* req,
+             ::viam::service::navigation::v1::AddLocationResponse* resp) {
+               return service->AddLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](NavigationService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::navigation::v1::SetModeRequest* req,
-             ::viam::service::navigation::v1::SetModeResponse* resp) {
-               return service->SetMode(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NavigationService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
@@ -343,57 +858,267 @@ NavigationService::Service::Service() {
                return service->GetLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NavigationService_method_names[3],
+      NavigationService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::service::navigation::v1::GetWaypointsRequest* req,
-             ::viam::service::navigation::v1::GetWaypointsResponse* resp) {
-               return service->GetWaypoints(ctx, req, resp);
+             const ::viam::service::navigation::v1::ListLocationsRequest* req,
+             ::viam::service::navigation::v1::ListLocationsResponse* resp) {
+               return service->ListLocations(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::UpdateLocationRequest* req,
+             ::viam::service::navigation::v1::UpdateLocationResponse* resp) {
+               return service->UpdateLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::service::navigation::v1::AddWaypointRequest* req,
-             ::viam::service::navigation::v1::AddWaypointResponse* resp) {
-               return service->AddWaypoint(ctx, req, resp);
+             const ::viam::service::navigation::v1::DeleteLocationRequest* req,
+             ::viam::service::navigation::v1::DeleteLocationResponse* resp) {
+               return service->DeleteLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::service::navigation::v1::RemoveWaypointRequest* req,
-             ::viam::service::navigation::v1::RemoveWaypointResponse* resp) {
-               return service->RemoveWaypoint(ctx, req, resp);
+             const ::viam::service::navigation::v1::AddRouteRequest* req,
+             ::viam::service::navigation::v1::AddRouteResponse* resp) {
+               return service->AddRoute(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::service::navigation::v1::GetObstaclesRequest* req,
-             ::viam::service::navigation::v1::GetObstaclesResponse* resp) {
-               return service->GetObstacles(ctx, req, resp);
+             const ::viam::service::navigation::v1::GetRouteRequest* req,
+             ::viam::service::navigation::v1::GetRouteResponse* resp) {
+               return service->GetRoute(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::service::navigation::v1::GetPathsRequest* req,
-             ::viam::service::navigation::v1::GetPathsResponse* resp) {
-               return service->GetPaths(ctx, req, resp);
+             const ::viam::service::navigation::v1::ListRoutesRequest* req,
+             ::viam::service::navigation::v1::ListRoutesResponse* resp) {
+               return service->ListRoutes(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::UpdateRouteRequest* req,
+             ::viam::service::navigation::v1::UpdateRouteResponse* resp) {
+               return service->UpdateRoute(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::DeleteRouteRequest* req,
+             ::viam::service::navigation::v1::DeleteRouteResponse* resp) {
+               return service->DeleteRoute(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::AddZoneRequest* req,
+             ::viam::service::navigation::v1::AddZoneResponse* resp) {
+               return service->AddZone(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::GetZoneRequest* req,
+             ::viam::service::navigation::v1::GetZoneResponse* resp) {
+               return service->GetZone(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::ListZonesRequest* req,
+             ::viam::service::navigation::v1::ListZonesResponse* resp) {
+               return service->ListZones(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[13],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::UpdateZoneRequest* req,
+             ::viam::service::navigation::v1::UpdateZoneResponse* resp) {
+               return service->UpdateZone(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[14],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::DeleteZoneRequest* req,
+             ::viam::service::navigation::v1::DeleteZoneResponse* resp) {
+               return service->DeleteZone(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[15],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::NavigateToLocationRequest* req,
+             ::viam::service::navigation::v1::NavigateToLocationResponse* resp) {
+               return service->NavigateToLocation(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[16],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::NavigateToPointRequest* req,
+             ::viam::service::navigation::v1::NavigateToPointResponse* resp) {
+               return service->NavigateToPoint(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[17],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::NavigateRouteRequest* req,
+             ::viam::service::navigation::v1::NavigateRouteResponse* resp) {
+               return service->NavigateRoute(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[18],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::PlanToPointRequest* req,
+             ::viam::service::navigation::v1::PlanToPointResponse* resp) {
+               return service->PlanToPoint(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[19],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::PlanToLocationRequest* req,
+             ::viam::service::navigation::v1::PlanToLocationResponse* resp) {
+               return service->PlanToLocation(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[20],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::ExecutePlanRequest* req,
+             ::viam::service::navigation::v1::ExecutePlanResponse* resp) {
+               return service->ExecutePlan(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[21],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::GoToLocationRequest* req,
+             ::viam::service::navigation::v1::GoToLocationResponse* resp) {
+               return service->GoToLocation(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[22],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::GoToPointRequest* req,
+             ::viam::service::navigation::v1::GoToPointResponse* resp) {
+               return service->GoToPoint(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[23],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::SuspendRequest* req,
+             ::viam::service::navigation::v1::SuspendResponse* resp) {
+               return service->Suspend(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[24],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::ResumeRequest* req,
+             ::viam::service::navigation::v1::ResumeResponse* resp) {
+               return service->Resume(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[25],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::CancelRequest* req,
+             ::viam::service::navigation::v1::CancelResponse* resp) {
+               return service->Cancel(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[26],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::GetPositionRequest* req,
+             ::viam::service::navigation::v1::GetPositionResponse* resp) {
+               return service->GetPosition(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[27],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::GetNavigationStatusRequest* req,
+             ::viam::service::navigation::v1::GetNavigationStatusResponse* resp) {
+               return service->GetNavigationStatus(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
@@ -403,7 +1128,17 @@ NavigationService::Service::Service() {
                return service->GetProperties(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NavigationService_method_names[9],
+      NavigationService_method_names[29],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::GetCostmapRequest* req,
+             ::viam::service::navigation::v1::GetCostmapResponse* resp) {
+               return service->GetCostmap(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
@@ -413,7 +1148,7 @@ NavigationService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NavigationService_method_names[10],
+      NavigationService_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
@@ -427,14 +1162,7 @@ NavigationService::Service::Service() {
 NavigationService::Service::~Service() {
 }
 
-::grpc::Status NavigationService::Service::GetMode(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status NavigationService::Service::SetMode(::grpc::ServerContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response) {
+::grpc::Status NavigationService::Service::AddLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -448,35 +1176,182 @@ NavigationService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status NavigationService::Service::GetWaypoints(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response) {
+::grpc::Status NavigationService::Service::ListLocations(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status NavigationService::Service::AddWaypoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response) {
+::grpc::Status NavigationService::Service::UpdateLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status NavigationService::Service::RemoveWaypoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response) {
+::grpc::Status NavigationService::Service::DeleteLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status NavigationService::Service::GetObstacles(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response) {
+::grpc::Status NavigationService::Service::AddRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status NavigationService::Service::GetPaths(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response) {
+::grpc::Status NavigationService::Service::GetRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::ListRoutes(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::UpdateRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::DeleteRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::AddZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::GetZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::ListZones(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::UpdateZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::DeleteZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::NavigateToLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::NavigateToPoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::NavigateRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::PlanToPoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::PlanToLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::ExecutePlan(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::GoToLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::GoToPoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::Suspend(::grpc::ServerContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::Resume(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::Cancel(::grpc::ServerContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::GetPosition(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::GetNavigationStatus(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -484,6 +1359,13 @@ NavigationService::Service::~Service() {
 }
 
 ::grpc::Status NavigationService::Service::GetProperties(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::GetCostmap(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response) {
   (void) context;
   (void) request;
   (void) response;
