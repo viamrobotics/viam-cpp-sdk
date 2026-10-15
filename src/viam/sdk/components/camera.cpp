@@ -1,5 +1,10 @@
 #include <viam/sdk/components/camera.hpp>
 
+#include <algorithm>
+#include <cstring>
+#include <memory>
+
+#include <boost/endian/buffers.hpp>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/util/time_util.h>
 
@@ -56,6 +61,13 @@ T read_big_endian(const std::vector<unsigned char>& data, size_t* offset) {
     return value;
 }
 
+// Depth values follow the header as big-endian 16-bit integers in row-major order.
+using big_endian_depth = boost::endian::big_uint16_buf_t;
+static_assert(sizeof(big_endian_depth) == sizeof(uint16_t) && alignof(big_endian_depth) == 1,
+              "a depth value must be exactly two unaligned bytes");
+static_assert(Camera::depth_map::static_layout == xt::layout_type::row_major,
+              "the depth map's storage must be in the encoding's row-major order");
+
 }  // namespace
 
 std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) {
@@ -75,11 +87,11 @@ std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) 
     append_big_endian(data, &offset, width);
     append_big_endian(data, &offset, height);
 
-    for (size_t i = 0; i < height; ++i) {
-        for (size_t j = 0; j < width; ++j) {
-            append_big_endian(data, &offset, m(i, j));
-        }
-    }
+    // The map's storage is row-major like the encoding, so its values are copied straight in,
+    // each constructed as a big-endian buffer.
+    std::uninitialized_copy(m.linear_cbegin(),
+                            m.linear_cend(),
+                            reinterpret_cast<big_endian_depth*>(data.data() + offset));
 
     return data;
 }
@@ -109,14 +121,15 @@ Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& dat
                         ". Width: " + std::to_string(width) + " Height: " + std::to_string(height));
     }
 
-    std::vector<uint16_t> depth_values;
-    depth_values.reserve(width * height);
-    for (size_t i = 0; i < width * height; ++i) {
-        depth_values.push_back(read_big_endian<uint16_t>(data, &offset));
-    }
-
+    // The size check above guarantees the payload fills the map: copy it into the map's
+    // row-major storage, then convert each value from big-endian.
     xt::xarray<uint16_t> m = xt::xarray<uint16_t>::from_shape({height, width});
-    std::copy(depth_values.begin(), depth_values.end(), m.begin());
+    std::copy(data.data() + offset,
+              data.data() + data.size(),
+              reinterpret_cast<unsigned char*>(m.data()));
+    std::for_each(m.linear_begin(), m.linear_end(), [](uint16_t& value) {
+        boost::endian::big_to_native_inplace(value);
+    });
     return m;
 }
 
