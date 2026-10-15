@@ -13,7 +13,7 @@ var searchData=
   ['server_10',['Server',['../classviam_1_1sdk_1_1Server.html',1,'viam::sdk']]],
   ['server_2ehpp_11',['server.hpp',['../server_8hpp.html',1,'']]],
   ['serverspanguard_12',['ServerSpanGuard',['../classviam_1_1sdk_1_1impl_1_1ServerSpanGuard.html',1,'viam::sdk::impl']]],
-  ['service_13',['Classes related to the Discovery service.',['../group__Discovery.html',1,'']]],
+  ['service_13',['service',['../group__Discovery.html',1,'Classes related to the Discovery service.'],['../group__FrameSystem.html',1,'Classes related to the FrameSystem service.']]],
   ['service_14',['Service',['../classviam_1_1sdk_1_1Service.html',1,'viam::sdk']]],
   ['service_5fdescriptor_15',['service_descriptor',['../classviam_1_1sdk_1_1ResourceServerRegistration.html#a24f0e02849432c433d06c799781a5603',1,'viam::sdk::ResourceServerRegistration']]],
   ['servicehelper_16',['ServiceHelper',['../classviam_1_1sdk_1_1ServiceHelper.html',1,'viam::sdk']]],

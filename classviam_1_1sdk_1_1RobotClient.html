@@ -95,8 +95,6 @@ $(function() {
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1config__status.html">config_status</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1frame__system__config.html">frame_system_config</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1job__status.html">job_status</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1machine__status.html">machine_status</a></td></tr>
@@ -118,6 +116,9 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ga60fba80ad18422e881355cdc54d98f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">the current status of the robot <br /></td></tr>
 <tr class="separator:ga60fba80ad18422e881355cdc54d98f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a518c995f81f5230957f89249d115c1a6" id="r_a518c995f81f5230957f89249d115c1a6"><td class="memItemLeft" align="right" valign="top"><a id="a518c995f81f5230957f89249d115c1a6" name="a518c995f81f5230957f89249d115c1a6"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>frame_system_config</b> = <a class="el" href="structviam_1_1sdk_1_1FrameSystem_1_1frame__system__config.html">FrameSystem::frame_system_config</a></td></tr>
+<tr class="separator:a518c995f81f5230957f89249d115c1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -142,7 +143,7 @@ std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &gt;
 <tr class="memitem:a6f04ae183a30f21e666a74f7ab172413"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6f04ae183a30f21e666a74f7ab172413">resource_by_name</a> (std::string name)</td></tr>
 <tr class="memdesc:a6f04ae183a30f21e666a74f7ab172413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup and return a <code>shared_ptr</code> to a resource of the requested type.  <br /></td></tr>
 <tr class="separator:a6f04ae183a30f21e666a74f7ab172413"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2489e10f774e614823059867598e1565" id="r_a2489e10f774e614823059867598e1565"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1frame__system__config.html">frame_system_config</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2489e10f774e614823059867598e1565">get_frame_system_config</a> (const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;additional_transforms={})</td></tr>
+<tr class="memitem:a2489e10f774e614823059867598e1565" id="r_a2489e10f774e614823059867598e1565"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1FrameSystem_1_1frame__system__config.html">frame_system_config</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2489e10f774e614823059867598e1565">get_frame_system_config</a> (const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;additional_transforms={})</td></tr>
 <tr class="memdesc:a2489e10f774e614823059867598e1565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configuration of the frame system of the given robot.  <br /></td></tr>
 <tr class="separator:a2489e10f774e614823059867598e1565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6954271085823a46068d3a4bb7fee69c" id="r_a6954271085823a46068d3a4bb7fee69c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1operation.html">operation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6954271085823a46068d3a4bb7fee69c">get_operations</a> ()</td></tr>
@@ -151,6 +152,9 @@ std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &gt;
 <tr class="memitem:a224a707fe7e12d6ab139c8d123d06ec2" id="r_a224a707fe7e12d6ab139c8d123d06ec2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a224a707fe7e12d6ab139c8d123d06ec2">transform_pose</a> (const <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;query, std::string destination, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;additional_transforms={})</td></tr>
 <tr class="memdesc:a224a707fe7e12d6ab139c8d123d06ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a given <code>Pose</code> to a new specified destination which is a reference frame.  <br /></td></tr>
 <tr class="separator:a224a707fe7e12d6ab139c8d123d06ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0ddf33885d63ac82f858f6909f5d9ce" id="r_ae0ddf33885d63ac82f858f6909f5d9ce"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0ddf33885d63ac82f858f6909f5d9ce">transform_pcd</a> (const std::vector&lt; unsigned char &gt; &amp;pcd, const std::string &amp;source, const std::string &amp;destination)</td></tr>
+<tr class="memdesc:ae0ddf33885d63ac82f858f6909f5d9ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a point cloud from one reference frame to another.  <br /></td></tr>
+<tr class="separator:ae0ddf33885d63ac82f858f6909f5d9ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ad6f6a74f684917be4da0000f9e2967" id="r_a5ad6f6a74f684917be4da0000f9e2967"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ad6f6a74f684917be4da0000f9e2967">block_for_operation</a> (std::string id)</td></tr>
 <tr class="memdesc:a5ad6f6a74f684917be4da0000f9e2967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks on the specified operation of the robot, returning when it is complete.  <br /></td></tr>
 <tr class="separator:a5ad6f6a74f684917be4da0000f9e2967"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -342,7 +346,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1frame__system__config.html">frame_system_config</a> &gt; viam::sdk::RobotClient::get_frame_system_config </td>
+          <td class="memname">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1FrameSystem_1_1frame__system__config.html">frame_system_config</a> &gt; viam::sdk::RobotClient::get_frame_system_config </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>additional_transforms</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span></td><td>)</td>
           <td></td>
@@ -474,7 +478,8 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the requested resource as an uncasted <code><a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a></code>.</dd></dl>
 <p>This method should not be called directly except in specific cases. The type-annotated <code>resource_by_name&lt;T&gt;(name)</code> overload is the preferred method for obtaining resources.</p>
-<p>Because the return type here is a <code><a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a></code>, the user will need to manually cast to the desired type. </p>
+<p>Because the return type here is a <code><a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a></code>, the user will need to manually cast to the desired type.</p>
+<p>The machine's frame system is not listed in <code>resource_names()</code> but can be requested here under <code><a class="el" href="classviam_1_1sdk_1_1FrameSystem.html#a9c44daf5a242562f35198c225280bbe2" title="The full resource name of the machine&#39;s frame system. Its short name is kPublicName.">FrameSystem::public_name()</a></code>, or as <code>resource_by_name&lt;<a class="el" href="classviam_1_1sdk_1_1FrameSystem.html" title="The machine&#39;s frame system: the tree of reference frames viam-server builds from the frame config of ...">FrameSystem</a>&gt;("$framesystem")</code>. </p>
 
 </div>
 </div>
@@ -542,6 +547,43 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ae0ddf33885d63ac82f858f6909f5d9ce" name="ae0ddf33885d63ac82f858f6909f5d9ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0ddf33885d63ac82f858f6909f5d9ce">&#9670;&#160;</a></span>transform_pcd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; unsigned char &gt; viam::sdk::RobotClient::transform_pcd </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; unsigned char &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>pcd</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>source</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>destination</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transform a point cloud from one reference frame to another. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcd</td><td>The point cloud, serialized in PCD format. </td></tr>
+    <tr><td class="paramname">source</td><td>The reference frame the point cloud is currently expressed in. </td></tr>
+    <tr><td class="paramname">destination</td><td>The reference frame to express the point cloud in. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The transformed point cloud, serialized in PCD format as raw PCD bytes. </dd></dl>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linear_5fm_5fper_5fsec_0',['linear_m_per_sec',['../structviam_1_1sdk_1_1motion__configuration.html#a959e4ef1d77474235c8121f9cb619a67',1,'viam::sdk::motion_configuration']]]
+  ['kpublicname_0',['kPublicName',['../classviam_1_1sdk_1_1FrameSystem.html#adbecf9184ba5e6a2a03b8f4a086be56c',1,'viam::sdk::FrameSystem']]]
 ];

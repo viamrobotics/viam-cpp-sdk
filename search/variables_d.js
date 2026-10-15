@@ -1,12 +1,5 @@
 var searchData=
 [
-  ['speed_5fmm_5fper_5fsec_0',['speed_mm_per_sec',['../structviam_1_1sdk_1_1Gantry_1_1movement__coordinate.html#a636c2522576a9f0d9e12eff0f6473f71',1,'viam::sdk::Gantry::movement_coordinate']]],
-  ['src_5ftype_1',['src_type',['../structviam_1_1sdk_1_1DataClient_1_1tabular__data__by__mql__opts.html#a2788bfb2d973431888bf7850a14b6ee5',1,'viam::sdk::DataClient::tabular_data_by_mql_opts']]],
-  ['state_2',['state',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html#a5bb5da1d6316c3673e3490e59ed374db',1,'viam::sdk::Motion::plan_status']]],
-  ['status_3',['status',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a24594dd4ba8f5c1d2ef55fa469c5b4a1',1,'viam::sdk::Motion::plan_status_with_id::status'],['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a276dfc0b121457b4b8bf6ab795870ea2',1,'viam::sdk::Motion::plan_with_status::status']]],
-  ['status_5fhistory_4',['status_history',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#af9e92f1b33c48bb09e153fb107620393',1,'viam::sdk::Motion::plan_with_status']]],
-  ['steps_5',['steps',['../structviam_1_1sdk_1_1Motion_1_1plan.html#ae66ef8ca1f675780c64ebaf8914ca492',1,'viam::sdk::Motion::plan']]],
-  ['support_5fcartesian_5fcommands_6',['support_cartesian_commands',['../structviam_1_1sdk_1_1Arm_1_1properties.html#a6e5cc076dabab4ab6638b9f4876e7ef3',1,'viam::sdk::Arm::properties']]],
-  ['support_5fmanual_5fmode_7',['support_manual_mode',['../structviam_1_1sdk_1_1Arm_1_1properties.html#ae232c55fecbf88614044c86029a89607',1,'viam::sdk::Arm::properties']]],
-  ['supports_5fpcd_8',['supports_pcd',['../structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a',1,'viam::sdk::Camera::properties']]]
+  ['reason_0',['reason',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html#ad8eb9b5f3f556d0faefbb55c1913e092',1,'viam::sdk::Motion::plan_status']]],
+  ['reference_5fframe_1',['reference_frame',['../structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html#abb0f00f07ccde842adf56cdf2d5d4737',1,'viam::sdk::WorldState::geometries_in_frame::reference_frame'],['../structviam_1_1sdk_1_1WorldState_1_1transform.html#a135d045c3e6a199dea43025133df4d99',1,'viam::sdk::WorldState::transform::reference_frame']]]
 ];
