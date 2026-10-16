@@ -60,6 +60,13 @@ std::string get_protocol(int argc, char** argv) {
     }
     return "unix:";
 }
+
+// Resource's ctor only receives the short name and cannot call the virtual api() to build the
+// full Name, so the <module>.<rdk:type:subtype/name> channel is applied here after construction.
+void set_resource_log_channel(Resource& res, const Name& name) {
+    log_detail::logger_access::logger(res).channel(LogManager::get().module_logger().channel() +
+                                                   "." + name.to_string());
+}
 }  // namespace
 
 struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
@@ -74,7 +81,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         impl::ServerSpanGuard span_guard{ctx, "AddResource"};
 
         const viam::app::v1::ComponentConfig& proto = request->config();
-        const ResourceConfig cfg = from_proto(proto);
+        ResourceConfig cfg = from_proto(proto);
         const std::lock_guard<std::mutex> lock(parent.lock_);
 
         std::shared_ptr<Resource> res;
@@ -84,6 +91,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         if (reg) {
             try {
                 res = reg->construct_resource(deps, cfg);
+                set_resource_log_channel(*res, cfg.resource_name());
                 res->set_log_level(cfg.get_log_level());
             } catch (const std::exception& exc) {
                 return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
@@ -144,7 +152,9 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 
         try {
             manager->replace_one(cfg.resource_name(), [&reg, &deps, &cfg]() {
-                return reg->construct_resource(deps, cfg);
+                auto res = reg->construct_resource(deps, cfg);
+                set_resource_log_channel(*res, cfg.resource_name());
+                return res;
             });
         } catch (const std::exception& exc) {
             return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));

@@ -4,6 +4,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <chrono>
 #include <csignal>
 #include <cstdlib>
@@ -42,11 +43,28 @@ class DepsSensor : public Sensor {
     DepsSensor(Dependencies deps, const ResourceConfig& cfg) : Sensor(cfg.name()) {
         const std::lock_guard<std::mutex> lock(lock_());
         constructed_().push_back(std::move(deps));
+        live_().push_back(this);
+    }
+
+    ~DepsSensor() override {
+        const std::lock_guard<std::mutex> lock(lock_());
+        auto& live = live_();
+        live.erase(std::remove(live.begin(), live.end(), this), live.end());
     }
 
     static std::vector<Dependencies> constructed() {
         const std::lock_guard<std::mutex> lock(lock_());
         return constructed_();
+    }
+
+    // Log channels of every instance still alive, so a test can see what ModuleService named them.
+    static std::vector<std::string> live_log_channels() {
+        const std::lock_guard<std::mutex> lock(lock_());
+        std::vector<std::string> channels;
+        for (const DepsSensor* s : live_()) {
+            channels.push_back(log_detail::logger_access::logger(*s).channel());
+        }
+        return channels;
     }
 
     ProtoStruct do_command(const ProtoStruct& command) override {
@@ -70,6 +88,10 @@ class DepsSensor : public Sensor {
     static std::vector<Dependencies>& constructed_() {
         static std::vector<Dependencies> constructed;
         return constructed;
+    }
+    static std::vector<DepsSensor*>& live_() {
+        static std::vector<DepsSensor*> live;
+        return live;
     }
 };
 
@@ -103,10 +125,13 @@ void module_to_mock_parent_pipeline(const Model& model, F&& test_case) {
     const std::string module_sock = dir + "/module.sock";
 
     // the mock parent only reports resources whose model is registered, like test_robot does
-    Registry::get().register_model(std::make_shared<ModelRegistration>(
-        API::get<Motor>(), Model("fake", "fake", "mock_motor"), [](Dependencies, ResourceConfig) {
-            return motor::MockMotor::get_mock_motor();
-        }));
+    const Model motor_model("fake", "fake", "mock_motor");
+    if (!Registry::get().lookup_model(API::get<Motor>(), motor_model)) {
+        Registry::get().register_model(std::make_shared<ModelRegistration>(
+            API::get<Motor>(), motor_model, [](Dependencies, ResourceConfig) {
+                return motor::MockMotor::get_mock_motor();
+            }));
+    }
 
     auto rm = std::make_shared<ResourceManager>();
     rm->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
@@ -201,6 +226,50 @@ BOOST_AUTO_TEST_CASE(test_framesystem_seeded_into_dependencies) {
             constructed = DepsSensor::constructed();
             BOOST_REQUIRE_EQUAL(constructed.size(), 2);
             check_deps(constructed.back());
+        });
+}
+
+BOOST_AUTO_TEST_CASE(test_resource_log_channel) {
+    Model model("viam", "test", "log_channel_sensor");
+    Registry::get().register_model(std::make_shared<ModelRegistration>(
+        API::get<Sensor>(), model, [](Dependencies deps, ResourceConfig cfg) {
+            return std::make_shared<DepsSensor>(std::move(deps), cfg);
+        }));
+
+    module_to_mock_parent_pipeline(
+        model, [&](viam::module::v1::ModuleService::StubInterface& stub, robot::MockRobotService&) {
+            ResourceConfig cfg("sensor", "sensor-1", "rdk", {}, "rdk:component:sensor", model);
+
+            // RDK names modular resource loggers <module>.<rdk:type:subtype/name>; the module
+            // name defaults because VIAM_MODULE_NAME is unset under test.
+            const std::string expected =
+                std::string(default_module_name()) + ".rdk:component:sensor/sensor-1";
+
+            auto check_channel = [&] {
+                const auto channels = DepsSensor::live_log_channels();
+                BOOST_REQUIRE_EQUAL(channels.size(), 1);
+                BOOST_CHECK_EQUAL(channels.front(), expected);
+            };
+
+            {
+                grpc::ClientContext ctx;
+                viam::module::v1::AddResourceRequest request;
+                *request.mutable_config() = to_proto(cfg);
+                viam::module::v1::AddResourceResponse response;
+                const auto status = stub.AddResource(&ctx, request, &response);
+                BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
+            }
+            check_channel();
+
+            {
+                grpc::ClientContext ctx;
+                viam::module::v1::ReconfigureResourceRequest request;
+                *request.mutable_config() = to_proto(cfg);
+                viam::module::v1::ReconfigureResourceResponse response;
+                const auto status = stub.ReconfigureResource(&ctx, request, &response);
+                BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
+            }
+            check_channel();
         });
 }
 
