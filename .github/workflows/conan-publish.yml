@@ -1,6 +1,8 @@
 name: Publish conan packages
 
 on:
+  release:
+    types: [published]
   workflow_dispatch:
     inputs:
       ref:
@@ -23,16 +25,47 @@ on:
         default: true
         description: If true, also publish a RelWithDebInfo build of the SDK (deps stay Release)
 
+permissions:
+  contents: read
 
 jobs:
+  # A release event carries no inputs; it publishes with the lockfile and RelWithDebInfo, without deps.
+  params:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.params.outputs.version }}
+      upload_deps: ${{ steps.params.outputs.upload_deps }}
+      lockfile_release_update: ${{ steps.params.outputs.lockfile_release_update }}
+      upload_relwithdebinfo: ${{ steps.params.outputs.upload_relwithdebinfo }}
+    steps:
+      - id: params
+        env:
+          REF: ${{ inputs.ref || github.event.release.tag_name }}
+          UPLOAD_DEPS: ${{ inputs.upload_deps || false }}
+          LOCKFILE_RELEASE_UPDATE: ${{ github.event_name == 'release' || inputs.lockfile_release_update }}
+          UPLOAD_RELWITHDEBINFO: ${{ github.event_name == 'release' || inputs.upload_relwithdebinfo }}
+        run: |
+          version="${REF#releases/v}"
+          if ! [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::'$REF' is not a version (eg 0.20.1) or a releases/vX.Y.Z tag"
+            exit 1
+          fi
+          {
+            echo "version=$version"
+            echo "upload_deps=$UPLOAD_DEPS"
+            echo "lockfile_release_update=$LOCKFILE_RELEASE_UPDATE"
+            echo "upload_relwithdebinfo=$UPLOAD_RELWITHDEBINFO"
+          } >> "$GITHUB_OUTPUT"
+
   build_macos:
+    needs: params
     runs-on: macos-26
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: releases/v${{ inputs.ref }}
+          ref: releases/v${{ needs.params.outputs.version }}
 
 
       - name: Install dependencies
@@ -54,7 +87,7 @@ jobs:
           conan remote auth --force -cc core:non_interactive=True viamconan
 
       - name: Set lockfile update arguments
-        if: inputs.lockfile_release_update
+        if: needs.params.outputs.lockfile_release_update == 'true'
         run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.lock --lockfile-clean" >> $GITHUB_ENV
 
       - name: Create and upload package
@@ -66,13 +99,13 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
 
-          conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
+          conan lock add --requires=viam-cpp-sdk/${{ needs.params.outputs.version }}
 
           conan create . --build=missing -pr:a etc/conan/macos.profile \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
           # No lockfile-out: must not rewrite the release lock.
-          if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+          if [ "${{ needs.params.outputs.upload_relwithdebinfo }}" = "true" ]; then
             conan create . --build=missing -pr:a etc/conan/macos.profile \
               --lockfile etc/conan/conan.lock \
               -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
@@ -82,14 +115,14 @@ jobs:
           conan upload "viam-cpp-sdk/*" -r viamconan -c
 
       - name: Upload lockfile artifact
-        if: inputs.lockfile_release_update
+        if: needs.params.outputs.lockfile_release_update == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: conan-lockfile-macos-latest
           path: conan.lock
 
       - name: Upload additional deps
-        if: inputs.upload_deps
+        if: needs.params.outputs.upload_deps == 'true'
         run: |
           conan upload "boost/*" -r viamconan -c
           conan upload "abseil/*" -r viamconan -c
@@ -100,6 +133,7 @@ jobs:
 
 
   build_linux:
+    needs: params
     strategy:
       fail-fast: false
       matrix:
@@ -116,7 +150,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: releases/v${{ inputs.ref }}
+        ref: releases/v${{ needs.params.outputs.version }}
 
     - name: Show platform info
       run: |
@@ -148,23 +182,23 @@ jobs:
     # first upload wins for all. Only the lowest-glibc leg may upload it, and it goes
     # first so no later blanket upload can slip a foreign b2 in ahead of it.
     - name: Upload b2 (focal)
-      if: inputs.upload_deps && contains(matrix.image, 'focal')
+      if: needs.params.outputs.upload_deps == 'true' && contains(matrix.image, 'focal')
       run: |
         conan upload "b2/*" -r viamconan -c
 
     - name: Set lockfile update arguments
-      if: inputs.lockfile_release_update
+      if: needs.params.outputs.lockfile_release_update == 'true'
       run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.lock --lockfile-clean" >> $GITHUB_ENV
 
     - name: Create and upload package
       run: |
-        conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
+        conan lock add --requires=viam-cpp-sdk/${{ needs.params.outputs.version }}
 
         conan create . --build=missing -pr:a default \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
         # No lockfile-out: must not rewrite the release lock.
-        if [ "${{ inputs.upload_relwithdebinfo }}" = "true" ]; then
+        if [ "${{ needs.params.outputs.upload_relwithdebinfo }}" = "true" ]; then
           conan create . --build=missing -pr:a default \
             --lockfile etc/conan/conan.lock \
             -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
@@ -174,21 +208,21 @@ jobs:
         conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Sanitize image name for artifact
-      if: inputs.lockfile_release_update
+      if: needs.params.outputs.lockfile_release_update == 'true'
       env:
         IMAGE_NAME: "${{ matrix.image }}"
       run: |
         echo "IMAGE_NAME=$(echo "$IMAGE_NAME" | tr ':/' '--')" >> "$GITHUB_ENV"
 
     - name: Upload lockfile artifact
-      if: inputs.lockfile_release_update
+      if: needs.params.outputs.lockfile_release_update == 'true'
       uses: actions/upload-artifact@v4
       with:
         name: conan-lockfile-${{ matrix.runner }}-${{ env.IMAGE_NAME }}
         path: conan.lock
 
     - name: Upload additional deps
-      if: inputs.upload_deps
+      if: needs.params.outputs.upload_deps == 'true'
       run: |
         conan upload "boost/*" -r viamconan -c
         conan upload "abseil/*" -r viamconan -c
@@ -203,13 +237,14 @@ jobs:
         conan upload "bzip2/*" -r viamconan -c
 
   build_windows:
+    needs: params
     runs-on: windows-2022
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: releases/v${{ inputs.ref }}
+        ref: releases/v${{ needs.params.outputs.version }}
 
     - name: Install dependencies
       run: choco install -y conan git
@@ -241,7 +276,7 @@ jobs:
 
         conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
 
-        if ('${{ inputs.upload_relwithdebinfo }}' -eq 'true') {
+        if ('${{ needs.params.outputs.upload_relwithdebinfo }}' -eq 'true') {
           conan create . --build=missing -s:a compiler.cppstd=17 `
             --lockfile etc/conan/conan.lock --lockfile-partial `
             -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
@@ -254,7 +289,7 @@ jobs:
         CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
     - name: Upload additional deps
-      if: inputs.upload_deps
+      if: needs.params.outputs.upload_deps == 'true'
       shell: powershell
       run: |
         $ErrorActionPreference = "Stop"
@@ -272,15 +307,17 @@ jobs:
         CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
   merge_lockfiles:
-    needs: [build_macos, build_linux]
-    if: inputs.lockfile_release_update
+    needs: [params, build_macos, build_linux]
+    if: needs.params.outputs.lockfile_release_update == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: releases/v${{ inputs.ref }}
+          ref: releases/v${{ needs.params.outputs.version }}
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
       - name: Download lockfile artifacts
@@ -307,7 +344,7 @@ jobs:
       - name: Upload merged lockfile to release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: releases/v${{ inputs.ref }}
+          tag_name: releases/v${{ needs.params.outputs.version }}
           files: lockfiles/conan.lock
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
