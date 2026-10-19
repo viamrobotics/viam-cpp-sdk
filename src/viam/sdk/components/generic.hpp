@@ -41,6 +41,8 @@ class GenericComponent : public Component {
 
    protected:
     explicit GenericComponent(std::string name);
+
+    explicit GenericComponent(const ResourceConfig& cfg);
 };
 
 template <>

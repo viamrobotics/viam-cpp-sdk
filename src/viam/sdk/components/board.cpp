@@ -18,6 +18,8 @@ API API::traits<Board>::api() {
 
 Board::Board(std::string name) : Component(std::move(name)) {}
 
+Board::Board(const ResourceConfig& cfg) : Component(cfg) {}
+
 bool operator==(const Board::status& lhs, const Board::status& rhs) {
     return (lhs.analog_reader_values == rhs.analog_reader_values &&
             lhs.digital_interrupt_values == rhs.digital_interrupt_values);

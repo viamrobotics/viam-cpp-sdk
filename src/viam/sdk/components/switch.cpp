@@ -15,5 +15,7 @@ API API::traits<Switch>::api() {
 
 Switch::Switch(std::string name) : Component(std::move(name)) {}
 
+Switch::Switch(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

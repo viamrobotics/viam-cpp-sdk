@@ -61,7 +61,7 @@ class ResourceConfig {
 
     ResourceConfig(std::string type);
 
-    Name resource_name();
+    Name resource_name() const;
 
     const API& api() const;
 

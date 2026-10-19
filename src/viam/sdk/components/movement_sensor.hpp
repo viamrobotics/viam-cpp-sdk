@@ -124,6 +124,8 @@ class MovementSensor : public Component {
 
    protected:
     explicit MovementSensor(std::string name) : Component(std::move(name)) {}
+
+    explicit MovementSensor(const ResourceConfig& cfg) : Component(cfg) {}
 };
 
 template <>

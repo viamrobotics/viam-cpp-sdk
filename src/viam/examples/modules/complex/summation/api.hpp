@@ -28,6 +28,8 @@ class Summation : public Service {
 
    protected:
     explicit Summation(std::string name);
+
+    explicit Summation(const ResourceConfig& cfg);
 };
 
 namespace viam {

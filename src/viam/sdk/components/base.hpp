@@ -134,6 +134,8 @@ class Base : public Component, public Stoppable {
 
    protected:
     explicit Base(std::string name);
+
+    explicit Base(const ResourceConfig& cfg);
 };
 
 template <>

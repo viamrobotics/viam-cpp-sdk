@@ -18,5 +18,7 @@ API API::traits<GenericService>::api() {
 
 GenericService::GenericService(std::string name) : Service(std::move(name)) {}
 
+GenericService::GenericService(const ResourceConfig& cfg) : Service(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

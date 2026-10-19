@@ -40,10 +40,11 @@ using namespace viam::sdk;
 // see exactly what ModuleService handed to the model constructor.
 class DepsSensor : public Sensor {
    public:
-    DepsSensor(Dependencies deps, const ResourceConfig& cfg) : Sensor(cfg.name()) {
+    DepsSensor(Dependencies deps, const ResourceConfig& cfg) : Sensor(cfg) {
         const std::lock_guard<std::mutex> lock(lock_());
         constructed_().push_back(std::move(deps));
         live_().push_back(this);
+        ctor_log_channels_().push_back(log_detail::logger_access::logger(*this).channel());
     }
 
     ~DepsSensor() override {
@@ -55,6 +56,12 @@ class DepsSensor : public Sensor {
     static std::vector<Dependencies> constructed() {
         const std::lock_guard<std::mutex> lock(lock_());
         return constructed_();
+    }
+
+    // Log channel as seen from inside each constructor, in construction order.
+    static std::vector<std::string> ctor_log_channels() {
+        const std::lock_guard<std::mutex> lock(lock_());
+        return ctor_log_channels_();
     }
 
     // Log channels of every instance still alive, so a test can see what ModuleService named them.
@@ -92,6 +99,10 @@ class DepsSensor : public Sensor {
     static std::vector<DepsSensor*>& live_() {
         static std::vector<DepsSensor*> live;
         return live;
+    }
+    static std::vector<std::string>& ctor_log_channels_() {
+        static std::vector<std::string> channels;
+        return channels;
     }
 };
 
@@ -245,10 +256,17 @@ BOOST_AUTO_TEST_CASE(test_resource_log_channel) {
             const std::string expected =
                 std::string(default_module_name()) + ".rdk:component:sensor/sensor-1";
 
-            auto check_channel = [&] {
-                const auto channels = DepsSensor::live_log_channels();
-                BOOST_REQUIRE_EQUAL(channels.size(), 1);
-                BOOST_CHECK_EQUAL(channels.front(), expected);
+            // Sensor(cfg) names the channel before the derived ctor body runs, and the name
+            // survives ModuleService's own post-construction naming.
+            const std::size_t already_built = DepsSensor::ctor_log_channels().size();
+            auto check_channel = [&](std::size_t constructed) {
+                const auto in_ctor = DepsSensor::ctor_log_channels();
+                BOOST_REQUIRE_EQUAL(in_ctor.size(), already_built + constructed);
+                BOOST_CHECK_EQUAL(in_ctor.back(), expected);
+
+                const auto live = DepsSensor::live_log_channels();
+                BOOST_REQUIRE_EQUAL(live.size(), 1);
+                BOOST_CHECK_EQUAL(live.front(), expected);
             };
 
             {
@@ -259,7 +277,7 @@ BOOST_AUTO_TEST_CASE(test_resource_log_channel) {
                 const auto status = stub.AddResource(&ctx, request, &response);
                 BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
             }
-            check_channel();
+            check_channel(1);
 
             {
                 grpc::ClientContext ctx;
@@ -269,7 +287,7 @@ BOOST_AUTO_TEST_CASE(test_resource_log_channel) {
                 const auto status = stub.ReconfigureResource(&ctx, request, &response);
                 BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
             }
-            check_channel();
+            check_channel(2);
         });
 }
 

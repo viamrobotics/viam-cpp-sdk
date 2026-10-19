@@ -159,5 +159,7 @@ MLModelService::tensor_info::data_types MLModelService::tensor_info::tensor_view
 
 MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
+MLModelService::MLModelService(const ResourceConfig& cfg) : Service(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

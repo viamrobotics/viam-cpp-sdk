@@ -22,6 +22,8 @@ API API::traits<Arm>::api() {
 
 Arm::Arm(std::string name) : Component(std::move(name)) {}
 
+Arm::Arm(const ResourceConfig& cfg) : Component(cfg) {}
+
 bool operator==(const Arm::properties& lhs, const Arm::properties& rhs) {
     return (lhs.support_manual_mode == rhs.support_manual_mode &&
             lhs.support_cartesian_commands == rhs.support_cartesian_commands);

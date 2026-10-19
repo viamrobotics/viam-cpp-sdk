@@ -18,6 +18,8 @@ API API::traits<Motor>::api() {
 
 Motor::Motor(std::string name) : Component(std::move(name)) {}
 
+Motor::Motor(const ResourceConfig& cfg) : Component(cfg) {}
+
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs) {
     return (lhs.is_on == rhs.is_on && lhs.power_pct == rhs.power_pct);
 }

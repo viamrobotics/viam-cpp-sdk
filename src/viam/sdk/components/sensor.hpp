@@ -56,6 +56,8 @@ class Sensor : public Component {
 
    protected:
     explicit Sensor(std::string name) : Component(std::move(name)) {}
+
+    explicit Sensor(const ResourceConfig& cfg) : Component(cfg) {}
 };
 
 template <>

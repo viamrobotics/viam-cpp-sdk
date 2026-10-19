@@ -94,6 +94,8 @@ class PowerSensor : public Component {
 
    protected:
     explicit PowerSensor(std::string name) : Component(std::move(name)) {}
+
+    explicit PowerSensor(const ResourceConfig& cfg) : Component(cfg) {}
 };
 
 template <>
