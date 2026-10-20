@@ -1,7 +1,9 @@
 name: Sync Release to Jira
 
-# Manual trigger - run from GitHub Actions UI after publishing a release
+# Runs when a release is published; dispatch manually to re-run.
 on:
+  release:
+    types: [published]
   workflow_dispatch:
     inputs:
       version:
@@ -36,6 +38,6 @@ jobs:
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           # Pass version via env var to prevent shell injection
-          RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_VERSION: ${{ inputs.version || github.event.release.tag_name }}
         run: |
-          python etc/sync_jira_release.py "$RELEASE_VERSION"
+          python etc/sync_jira_release.py "${RELEASE_VERSION#releases/}"
