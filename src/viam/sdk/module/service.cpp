@@ -61,8 +61,7 @@ std::string get_protocol(int argc, char** argv) {
     return "unix:";
 }
 
-// Resource's ctor only receives the short name and cannot call the virtual api() to build the
-// full Name, so the <module>.<rdk:type:subtype/name> channel is applied here after construction.
+// Fallback for resources built with the name-only ctor; no-op for Resource(const ResourceConfig&).
 void set_resource_log_channel(Resource& res, const Name& name) {
     log_detail::logger_access::logger(res).channel(LogManager::get().module_logger().channel() +
                                                    "." + name.to_string());
