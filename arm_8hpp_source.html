@@ -300,68 +300,70 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>   <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>(std::string <a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>);</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>};</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>(<span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>&amp; cfg);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>};</div>
 </div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00330" data-start="{" data-end="};">
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1API_1_1traits_3_01Arm_01_4.html">  330</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1API_1_1traits.html">API::traits</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>&gt; {</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> api();</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>};</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00332" data-start="{" data-end="};">
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1API_1_1traits_3_01Arm_01_4.html">  332</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1API_1_1traits.html">API::traits</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>&gt; {</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> api();</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>};</div>
 </div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a>&amp; rhs);</div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="keyword">namespace </span>proto_convert_details {</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a>&amp; rhs);</div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00339" data-start="{" data-end="};">
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1trajectory__point_01_4.html">  339</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>::trajectory_point&gt; {</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">Arm::trajectory_point</a>&amp;, viam::component::arm::v1::TrajectoryPoint*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>};</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="keyword">namespace </span>proto_convert_details {</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00341" data-start="{" data-end="};">
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1trajectory__point_01_4.html">  341</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>::trajectory_point&gt; {</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">Arm::trajectory_point</a>&amp;, viam::component::arm::v1::TrajectoryPoint*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>};</div>
 </div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00344" data-start="{" data-end="};">
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1_1v1_1_1TrajectoryPoint_01_4.html">  344</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;viam::component::arm::v1::TrajectoryPoint&gt; {</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">Arm::trajectory_point</a> operator()(<span class="keyword">const</span> viam::component::arm::v1::TrajectoryPoint*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>};</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00346" data-start="{" data-end="};">
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1_1v1_1_1TrajectoryPoint_01_4.html">  346</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;viam::component::arm::v1::TrajectoryPoint&gt; {</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__point.html">Arm::trajectory_point</a> operator()(<span class="keyword">const</span> viam::component::arm::v1::TrajectoryPoint*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>};</div>
 </div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00349" data-start="{" data-end="};">
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1trajectory__update_01_4.html">  349</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>::trajectory_update&gt; {</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">Arm::trajectory_update</a>&amp;,</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                    viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>};</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00351" data-start="{" data-end="};">
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1trajectory__update_01_4.html">  351</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>::trajectory_update&gt; {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">Arm::trajectory_update</a>&amp;,</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                    viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>};</div>
 </div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00355" data-start="{" data-end="};">
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1ac9a1863e95aa6b031a992167c9dc1dc.html">  355</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse&gt; {</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">Arm::trajectory_update</a> operator()(</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        <span class="keyword">const</span> viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>};</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00357" data-start="{" data-end="};">
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_1ac9a1863e95aa6b031a992167c9dc1dc.html">  357</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse&gt; {</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1trajectory__update.html">Arm::trajectory_update</a> operator()(</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>        <span class="keyword">const</span> viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>};</div>
 </div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00361" data-start="{" data-end="};">
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1properties_01_4.html">  361</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>::properties&gt; {</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a>&amp;, viam::component::arm::v1::GetPropertiesResponse*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>};</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00363" data-start="{" data-end="};">
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01Arm_1_1properties_01_4.html">  363</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1Arm.html">Arm</a>::properties&gt; {</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a>&amp;, viam::component::arm::v1::GetPropertiesResponse*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>};</div>
 </div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00366" data-start="{" data-end="};">
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_18cca537bf7130461561e0bc55956d6ba.html">  366</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;viam::component::arm::v1::GetPropertiesResponse&gt; {</div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a> operator()(<span class="keyword">const</span> viam::component::arm::v1::GetPropertiesResponse*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>};</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00368" data-start="{" data-end="};">
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01viam_1_1component_1_1arm_18cca537bf7130461561e0bc55956d6ba.html">  368</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;viam::component::arm::v1::GetPropertiesResponse&gt; {</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Arm_1_1properties.html">Arm::properties</a> operator()(<span class="keyword">const</span> viam::component::arm::v1::GetPropertiesResponse*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>};</div>
 </div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}  <span class="comment">// namespace proto_convert_details</span></div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}  <span class="comment">// namespace proto_convert_details</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1API_html"><div class="ttname"><a href="classviam_1_1sdk_1_1API.html">viam::sdk::API</a></div><div class="ttdef"><b>Definition</b> resource_api.hpp:21</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Arm_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Arm.html">viam::sdk::Arm</a></div><div class="ttdoc">An Arm represents a physical robot arm that exists in three-dimensional space.</div><div class="ttdef"><b>Definition</b> arm.hpp:47</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Arm_html_a03e67125cfd7e762a3ead084aa488b07"><div class="ttname"><a href="classviam_1_1sdk_1_1Arm.html#a03e67125cfd7e762a3ead084aa488b07">viam::sdk::Arm::is_moving</a></div><div class="ttdeci">virtual bool is_moving()=0</div><div class="ttdoc">Reports if the arm is in motion.</div></div>
@@ -398,6 +400,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassviam_1_1sdk_1_1Arm_html_afd2ecaaf6572ef29d81b92d2dbd4e1dd"><div class="ttname"><a href="classviam_1_1sdk_1_1Arm.html#afd2ecaaf6572ef29d81b92d2dbd4e1dd">viam::sdk::Arm::api</a></div><div class="ttdeci">API api() const override</div><div class="ttdoc">Returns the API associated with a particular resource.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Arm_html_affb60ffb1930ffc76114b9a328cdfa4a"><div class="ttname"><a href="classviam_1_1sdk_1_1Arm.html#affb60ffb1930ffc76114b9a328cdfa4a">viam::sdk::Arm::set_manual_mode</a></div><div class="ttdeci">void set_manual_mode(bool manual_mode, std::chrono::seconds enabled_for)</div><div class="ttdoc">Enter or exit manual mode.</div><div class="ttdef"><b>Definition</b> arm.hpp:299</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Component_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></div><div class="ttdef"><b>Definition</b> component.hpp:10</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceConfig.html">viam::sdk::ResourceConfig</a></div><div class="ttdef"><b>Definition</b> resource.hpp:43</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Resource_html_a52ea612e31f5c09785b500bd2610d97d"><div class="ttname"><a href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">viam::sdk::Resource::name</a></div><div class="ttdeci">virtual std::string name() const</div><div class="ttdoc">Return the resource's name.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Stoppable_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></div><div class="ttdef"><b>Definition</b> stoppable.hpp:8</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1API_1_1traits_html"><div class="ttname"><a href="structviam_1_1sdk_1_1API_1_1traits.html">viam::sdk::API::traits</a></div><div class="ttdef"><b>Definition</b> resource_api.hpp:46</div></div>
