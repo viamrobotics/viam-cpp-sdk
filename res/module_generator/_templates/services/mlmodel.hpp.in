@@ -9,11 +9,19 @@
 namespace {{ .ModuleSnake }} {
 
 
-class {{ .ModelPascal }} : public viam::sdk::Mlmodel {
+class {{ .ModelPascal }} : public viam::sdk::MLModelService {
 public:
     {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
 
     static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    std::shared_ptr<viam::sdk::MLModelService::named_tensor_views> infer(
+        const viam::sdk::MLModelService::named_tensor_views & inputs,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    struct viam::sdk::MLModelService::metadata metadata(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::ProtoStruct get_status() override;
 
 };
 
