@@ -7,7 +7,12 @@ namespace sdktests {
 namespace gantry {
 
 std::vector<double> fake_lengths();
+sdk::KinematicModel fake_kinematic_model();
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 sdk::KinematicsData fake_kinematics();
+#pragma GCC diagnostic pop
 
 class MockGantry : public sdk::Gantry {
    public:
@@ -25,9 +30,15 @@ class MockGantry : public sdk::Gantry {
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     sdk::ProtoStruct get_status() override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
+    sdk::KinematicModel get_kinematic_model(const sdk::kinematics_options& options,
+                                            const sdk::ProtoStruct& extra) override;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     sdk::KinematicsData get_kinematics(const sdk::ProtoStruct& extra) override;
+#pragma GCC diagnostic pop
 
     std::vector<double> peek_positions;
+    sdk::kinematics_options peek_kinematics_options;
     bool peek_stop_called{false};
     bool peek_home_called{false};
     sdk::ProtoStruct peek_command;

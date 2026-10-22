@@ -34,7 +34,6 @@ target_sources(viamsdk_test
     mocks/mock_motion.cpp
     mocks/mock_movement_sensor.cpp
     mocks/mock_discovery.cpp
-    mocks/mock_navigation.cpp
     mocks/mock_pose_tracker.cpp
     mocks/mock_power_sensor.cpp
     mocks/mock_sensor.cpp
@@ -85,7 +84,6 @@ endif()
 viamcppsdk_add_boost_test(test_motor.cpp)
 viamcppsdk_add_boost_test(test_motion.cpp)
 viamcppsdk_add_boost_test(test_movement_sensor.cpp)
-viamcppsdk_add_boost_test(test_navigation.cpp)
 viamcppsdk_add_boost_test(test_pose_tracker.cpp)
 viamcppsdk_add_boost_test(test_power_sensor.cpp)
 viamcppsdk_add_boost_test(test_proto_value.cpp)

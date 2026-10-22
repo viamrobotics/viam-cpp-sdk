@@ -40,7 +40,13 @@ class ArmClient : public Arm {
     ProtoStruct get_status() override;
     void stop(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
-    ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;
+    KinematicModel get_kinematic_model(const kinematics_options& options,
+                                       const ProtoStruct& extra) override;
+// Overriding the deprecated raw-bytes accessor keeps older servers readable.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    KinematicsData get_kinematics(const ProtoStruct& extra) override;
+#pragma GCC diagnostic pop
     std::map<std::string, mesh> get_3d_models(const ProtoStruct& extra) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
     Arm::properties get_properties(const ProtoStruct& extra) override;
@@ -55,7 +61,7 @@ class ArmClient : public Arm {
     using Arm::get_end_position;
     using Arm::get_geometries;
     using Arm::get_joint_positions;
-    using Arm::get_kinematics;
+    using Arm::get_kinematic_model;
     using Arm::get_manual_mode;
     using Arm::get_properties;
     using Arm::move_through_joint_positions;

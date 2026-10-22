@@ -17,8 +17,78 @@ std::map<std::string, sdk::mesh> fake_3d_models() {
     return {{"model1", sdk::mesh{"model1", {1, 2, 3, 4}}}};
 }
 
+// One link or joint of each kind, with every optional field populated somewhere, so the
+// round trip covers the whole model. The empty name is filled in by the server.
+sdk::KinematicModel fake_kinematic_model() {
+    using namespace sdk;
+    KinematicModel model;
+
+    KinematicLink base;
+    base.id = "base";
+    base.collision = {GeometryConfig(pose{}, mesh{"stl", {1, 2, 3}}, "base_mesh")};
+
+    KinematicJoint j1;
+    j1.id = "j1";
+    j1.parent = "base";
+    j1.axis = Vector3{0, 0, 1};
+    j1.spec = RevoluteJoint{-180.0, 180.0, 90.0, boost::none};
+
+    KinematicLink link1;
+    link1.id = "link1";
+    link1.parent = "j1";
+    link1.pose.translation = Vector3{0, 0, 100};
+    link1.pose.orientation = quaternion{0, 0, 0, 1};
+    link1.visual = {GeometryConfig(pose{}, box{1, 2, 3}, "link1_box")};
+
+    KinematicJoint j2;
+    j2.id = "j2";
+    j2.parent = "link1";
+    j2.axis = Vector3{1, 0, 0};
+    j2.spec = PrismaticJoint{
+        0.0, 500.0, boost::none, 10.0, GeometryConfig(pose{}, capsule{1, 2}, "rail")};
+    j2.mimic = MimicJoint{"j1", 2.0, 1.0};
+
+    KinematicLink link2;
+    link2.id = "link2";
+    link2.parent = "j2";
+    link2.pose.translation = Vector3{10, 20, 30};
+    link2.pose.orientation = euler_angles{90, 0, 0};
+
+    KinematicJoint j3;
+    j3.id = "j3";
+    j3.parent = "link2";
+    j3.axis = Vector3{0, 1, 0};
+    j3.spec = ContinuousJoint{};
+
+    KinematicLink tool;
+    tool.id = "tool";
+    tool.parent = "j3";
+    tool.pose.orientation = axis_angles{0, 0, 1, 45};
+
+    model.links = {base, link1, link2, tool};
+    model.joints = {j1, j2, j3};
+    model.output_frames = {"tool"};
+    model.properties = KinematicProperties{30.0, boost::none};
+    return model;
+}
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 sdk::KinematicsData fake_kinematics() {
     return sdk::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
+}
+
+sdk::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
+    return fake_kinematics();
+}
+
+#pragma GCC diagnostic pop
+
+sdk::KinematicModel MockArm::get_kinematic_model(const sdk::kinematics_options& options,
+                                                 const sdk::ProtoStruct&) {
+    peek_kinematics_options = options;
+    return fake_kinematic_model();
 }
 
 sdk::pose MockArm::get_end_position(const sdk::ProtoStruct& extra) {
@@ -92,10 +162,6 @@ sdk::ProtoStruct MockArm::get_status() {
 
 sdk::ProtoStruct MockArm::do_command(const sdk::ProtoStruct& command) {
     return (peek_command = command);
-}
-
-sdk::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
-    return fake_kinematics();
 }
 
 std::vector<sdk::GeometryConfig> MockArm::get_geometries(const sdk::ProtoStruct&) {
