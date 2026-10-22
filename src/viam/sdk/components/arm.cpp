@@ -7,6 +7,7 @@
 
 #include <viam/api/component/arm/v1/arm.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 
 namespace viam {
@@ -23,6 +24,20 @@ API API::traits<Arm>::api() {
 Arm::Arm(std::string name) : Component(std::move(name)) {}
 
 Arm::Arm(const ResourceConfig& cfg) : Component(cfg) {}
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+KinematicsData Arm::get_kinematics(const ProtoStruct&) {
+    throw Exception(ErrorCondition::k_not_supported,
+                    "arm '" + name() + "' does not provide raw kinematics data");
+}
+
+KinematicsData Arm::get_kinematics() {
+    return get_kinematics({});
+}
+
+#pragma GCC diagnostic pop
 
 bool operator==(const Arm::properties& lhs, const Arm::properties& rhs) {
     return (lhs.support_manual_mode == rhs.support_manual_mode &&

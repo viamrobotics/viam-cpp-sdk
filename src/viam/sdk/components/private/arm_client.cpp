@@ -250,11 +250,33 @@ ProtoStruct ArmClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-::viam::sdk::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
+KinematicModel ArmClient::get_kinematic_model(const kinematics_options& options,
+                                              const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetKinematics)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_include_collision_meshes(options.include_collision_meshes);
+                  request.set_include_visual_meshes(options.include_visual_meshes);
+              })
+        .invoke([](auto& response) {
+            if (!response.has_model()) {
+                throw Exception(ErrorCondition::k_not_supported,
+                                "server did not return a kinematic model");
+            }
+            return from_proto(response.model());
+        });
+}
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
 }
+
+#pragma GCC diagnostic pop
 
 std::map<std::string, mesh> ArmClient::get_3d_models(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Get3DModels)
