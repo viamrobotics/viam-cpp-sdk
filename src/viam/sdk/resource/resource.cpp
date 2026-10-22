@@ -16,8 +16,7 @@ Resource::Resource(std::string name)
 
 Resource::Resource(const ResourceConfig& cfg)
     : name_(cfg.name()),
-      logger_(boost::log::keywords::channel = LogManager::get().module_logger().channel() + "." +
-                                              cfg.resource_name().to_string()) {}
+      logger_(boost::log::keywords::channel = LogManager::get().module_channel_for(cfg)) {}
 
 std::string Resource::name() const {
     return name_;

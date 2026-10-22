@@ -12,6 +12,7 @@
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/private/instance.hpp>
+#include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/log/private/log_backend.hpp>
 
 namespace viam {
@@ -133,6 +134,10 @@ void LogManager::set_module_log_level(log_level lvl) {
 
 LogSource& LogManager::module_logger() {
     return module_logger_;
+}
+
+std::string LogManager::module_channel_for(const ResourceConfig& cfg) {
+    return module_logger_.channel() + "." + cfg.resource_name().to_string();
 }
 
 void LogManager::set_resource_log_level(const std::string& resource, log_level lvl) {

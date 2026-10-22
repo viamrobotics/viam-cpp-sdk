@@ -62,9 +62,8 @@ std::string get_protocol(int argc, char** argv) {
 }
 
 // Fallback for resources built with the name-only ctor; no-op for Resource(const ResourceConfig&).
-void set_resource_log_channel(Resource& res, const Name& name) {
-    log_detail::logger_access::logger(res).channel(LogManager::get().module_logger().channel() +
-                                                   "." + name.to_string());
+void set_resource_log_channel(Resource& res, const ResourceConfig& cfg) {
+    log_detail::logger_access::logger(res).channel(LogManager::get().module_channel_for(cfg));
 }
 }  // namespace
 
@@ -90,7 +89,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         if (reg) {
             try {
                 res = reg->construct_resource(deps, cfg);
-                set_resource_log_channel(*res, cfg.resource_name());
+                set_resource_log_channel(*res, cfg);
                 res->set_log_level(cfg.get_log_level());
             } catch (const std::exception& exc) {
                 return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
@@ -152,7 +151,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         try {
             manager->replace_one(cfg.resource_name(), [&reg, &deps, &cfg]() {
                 auto res = reg->construct_resource(deps, cfg);
-                set_resource_log_channel(*res, cfg.resource_name());
+                set_resource_log_channel(*res, cfg);
                 return res;
             });
         } catch (const std::exception& exc) {
