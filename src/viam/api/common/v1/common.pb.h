@@ -60,6 +60,9 @@ extern ActuatorStatusDefaultTypeInternal _ActuatorStatus_default_instance_;
 class AudioInfo;
 struct AudioInfoDefaultTypeInternal;
 extern AudioInfoDefaultTypeInternal _AudioInfo_default_instance_;
+class AxisAngles;
+struct AxisAnglesDefaultTypeInternal;
+extern AxisAnglesDefaultTypeInternal _AxisAngles_default_instance_;
 class Capsule;
 struct CapsuleDefaultTypeInternal;
 extern CapsuleDefaultTypeInternal _Capsule_default_instance_;
@@ -69,12 +72,18 @@ extern DoCommandRequestDefaultTypeInternal _DoCommandRequest_default_instance_;
 class DoCommandResponse;
 struct DoCommandResponseDefaultTypeInternal;
 extern DoCommandResponseDefaultTypeInternal _DoCommandResponse_default_instance_;
+class EulerAngles;
+struct EulerAnglesDefaultTypeInternal;
+extern EulerAnglesDefaultTypeInternal _EulerAngles_default_instance_;
 class GeoGeometry;
 struct GeoGeometryDefaultTypeInternal;
 extern GeoGeometryDefaultTypeInternal _GeoGeometry_default_instance_;
 class GeoPoint;
 struct GeoPointDefaultTypeInternal;
 extern GeoPointDefaultTypeInternal _GeoPoint_default_instance_;
+class GeoPose;
+struct GeoPoseDefaultTypeInternal;
+extern GeoPoseDefaultTypeInternal _GeoPose_default_instance_;
 class GeometriesInFrame;
 struct GeometriesInFrameDefaultTypeInternal;
 extern GeometriesInFrameDefaultTypeInternal _GeometriesInFrame_default_instance_;
@@ -129,12 +138,33 @@ extern GetStatusResponseDefaultTypeInternal _GetStatusResponse_default_instance_
 class GetWorldPoseResponse;
 struct GetWorldPoseResponseDefaultTypeInternal;
 extern GetWorldPoseResponseDefaultTypeInternal _GetWorldPoseResponse_default_instance_;
+class JointLimits;
+struct JointLimitsDefaultTypeInternal;
+extern JointLimitsDefaultTypeInternal _JointLimits_default_instance_;
+class KinematicJoint;
+struct KinematicJointDefaultTypeInternal;
+extern KinematicJointDefaultTypeInternal _KinematicJoint_default_instance_;
+class KinematicLink;
+struct KinematicLinkDefaultTypeInternal;
+extern KinematicLinkDefaultTypeInternal _KinematicLink_default_instance_;
+class KinematicModel;
+struct KinematicModelDefaultTypeInternal;
+extern KinematicModelDefaultTypeInternal _KinematicModel_default_instance_;
+class KinematicProperties;
+struct KinematicPropertiesDefaultTypeInternal;
+extern KinematicPropertiesDefaultTypeInternal _KinematicProperties_default_instance_;
+class LinkPose;
+struct LinkPoseDefaultTypeInternal;
+extern LinkPoseDefaultTypeInternal _LinkPose_default_instance_;
 class LogEntry;
 struct LogEntryDefaultTypeInternal;
 extern LogEntryDefaultTypeInternal _LogEntry_default_instance_;
 class Mesh;
 struct MeshDefaultTypeInternal;
 extern MeshDefaultTypeInternal _Mesh_default_instance_;
+class MimicJoint;
+struct MimicJointDefaultTypeInternal;
+extern MimicJointDefaultTypeInternal _MimicJoint_default_instance_;
 class Orientation;
 struct OrientationDefaultTypeInternal;
 extern OrientationDefaultTypeInternal _Orientation_default_instance_;
@@ -153,6 +183,9 @@ extern PoseCloudDefaultTypeInternal _PoseCloud_default_instance_;
 class PoseInFrame;
 struct PoseInFrameDefaultTypeInternal;
 extern PoseInFrameDefaultTypeInternal _PoseInFrame_default_instance_;
+class Quaternion;
+struct QuaternionDefaultTypeInternal;
+extern QuaternionDefaultTypeInternal _Quaternion_default_instance_;
 class RectangularPrism;
 struct RectangularPrismDefaultTypeInternal;
 extern RectangularPrismDefaultTypeInternal _RectangularPrism_default_instance_;
@@ -180,11 +213,14 @@ extern WorldStateDefaultTypeInternal _WorldState_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::common::v1::ActuatorStatus* Arena::CreateMaybeMessage<::viam::common::v1::ActuatorStatus>(Arena*);
 template<> ::viam::common::v1::AudioInfo* Arena::CreateMaybeMessage<::viam::common::v1::AudioInfo>(Arena*);
+template<> ::viam::common::v1::AxisAngles* Arena::CreateMaybeMessage<::viam::common::v1::AxisAngles>(Arena*);
 template<> ::viam::common::v1::Capsule* Arena::CreateMaybeMessage<::viam::common::v1::Capsule>(Arena*);
 template<> ::viam::common::v1::DoCommandRequest* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandRequest>(Arena*);
 template<> ::viam::common::v1::DoCommandResponse* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandResponse>(Arena*);
+template<> ::viam::common::v1::EulerAngles* Arena::CreateMaybeMessage<::viam::common::v1::EulerAngles>(Arena*);
 template<> ::viam::common::v1::GeoGeometry* Arena::CreateMaybeMessage<::viam::common::v1::GeoGeometry>(Arena*);
 template<> ::viam::common::v1::GeoPoint* Arena::CreateMaybeMessage<::viam::common::v1::GeoPoint>(Arena*);
+template<> ::viam::common::v1::GeoPose* Arena::CreateMaybeMessage<::viam::common::v1::GeoPose>(Arena*);
 template<> ::viam::common::v1::GeometriesInFrame* Arena::CreateMaybeMessage<::viam::common::v1::GeometriesInFrame>(Arena*);
 template<> ::viam::common::v1::Geometry* Arena::CreateMaybeMessage<::viam::common::v1::Geometry>(Arena*);
 template<> ::viam::common::v1::Get3DModelsRequest* Arena::CreateMaybeMessage<::viam::common::v1::Get3DModelsRequest>(Arena*);
@@ -203,14 +239,22 @@ template<> ::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse* Arena
 template<> ::viam::common::v1::GetStatusRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetStatusRequest>(Arena*);
 template<> ::viam::common::v1::GetStatusResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetStatusResponse>(Arena*);
 template<> ::viam::common::v1::GetWorldPoseResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetWorldPoseResponse>(Arena*);
+template<> ::viam::common::v1::JointLimits* Arena::CreateMaybeMessage<::viam::common::v1::JointLimits>(Arena*);
+template<> ::viam::common::v1::KinematicJoint* Arena::CreateMaybeMessage<::viam::common::v1::KinematicJoint>(Arena*);
+template<> ::viam::common::v1::KinematicLink* Arena::CreateMaybeMessage<::viam::common::v1::KinematicLink>(Arena*);
+template<> ::viam::common::v1::KinematicModel* Arena::CreateMaybeMessage<::viam::common::v1::KinematicModel>(Arena*);
+template<> ::viam::common::v1::KinematicProperties* Arena::CreateMaybeMessage<::viam::common::v1::KinematicProperties>(Arena*);
+template<> ::viam::common::v1::LinkPose* Arena::CreateMaybeMessage<::viam::common::v1::LinkPose>(Arena*);
 template<> ::viam::common::v1::LogEntry* Arena::CreateMaybeMessage<::viam::common::v1::LogEntry>(Arena*);
 template<> ::viam::common::v1::Mesh* Arena::CreateMaybeMessage<::viam::common::v1::Mesh>(Arena*);
+template<> ::viam::common::v1::MimicJoint* Arena::CreateMaybeMessage<::viam::common::v1::MimicJoint>(Arena*);
 template<> ::viam::common::v1::Orientation* Arena::CreateMaybeMessage<::viam::common::v1::Orientation>(Arena*);
 template<> ::viam::common::v1::PointCloud* Arena::CreateMaybeMessage<::viam::common::v1::PointCloud>(Arena*);
 template<> ::viam::common::v1::PointCloudObject* Arena::CreateMaybeMessage<::viam::common::v1::PointCloudObject>(Arena*);
 template<> ::viam::common::v1::Pose* Arena::CreateMaybeMessage<::viam::common::v1::Pose>(Arena*);
 template<> ::viam::common::v1::PoseCloud* Arena::CreateMaybeMessage<::viam::common::v1::PoseCloud>(Arena*);
 template<> ::viam::common::v1::PoseInFrame* Arena::CreateMaybeMessage<::viam::common::v1::PoseInFrame>(Arena*);
+template<> ::viam::common::v1::Quaternion* Arena::CreateMaybeMessage<::viam::common::v1::Quaternion>(Arena*);
 template<> ::viam::common::v1::RectangularPrism* Arena::CreateMaybeMessage<::viam::common::v1::RectangularPrism>(Arena*);
 template<> ::viam::common::v1::ResourceName* Arena::CreateMaybeMessage<::viam::common::v1::ResourceName>(Arena*);
 template<> ::viam::common::v1::ResponseMetadata* Arena::CreateMaybeMessage<::viam::common::v1::ResponseMetadata>(Arena*);
@@ -248,6 +292,33 @@ inline bool KinematicsFileFormat_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, KinematicsFileFormat* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<KinematicsFileFormat>(
     KinematicsFileFormat_descriptor(), name, value);
+}
+enum JointType : int {
+  JOINT_TYPE_UNSPECIFIED = 0,
+  JOINT_TYPE_REVOLUTE = 1,
+  JOINT_TYPE_PRISMATIC = 2,
+  JOINT_TYPE_CONTINUOUS = 3,
+  JointType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  JointType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool JointType_IsValid(int value);
+constexpr JointType JointType_MIN = JOINT_TYPE_UNSPECIFIED;
+constexpr JointType JointType_MAX = JOINT_TYPE_CONTINUOUS;
+constexpr int JointType_ARRAYSIZE = JointType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* JointType_descriptor();
+template<typename T>
+inline const std::string& JointType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, JointType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function JointType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    JointType_descriptor(), enum_t_value);
+}
+inline bool JointType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, JointType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<JointType>(
+    JointType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -1965,6 +2036,7 @@ class Mesh final :
   enum : int {
     kContentTypeFieldNumber = 1,
     kMeshFieldNumber = 2,
+    kOriginalFileSourcePathDiagnosticFieldNumber = 3,
   };
   // string content_type = 1 [json_name = "contentType"];
   void clear_content_type();
@@ -1994,6 +2066,24 @@ class Mesh final :
   std::string* _internal_mutable_mesh();
   public:
 
+  // optional string original_file_source_path_diagnostic = 3 [json_name = "originalFileSourcePathDiagnostic"];
+  bool has_original_file_source_path_diagnostic() const;
+  private:
+  bool _internal_has_original_file_source_path_diagnostic() const;
+  public:
+  void clear_original_file_source_path_diagnostic();
+  const std::string& original_file_source_path_diagnostic() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_original_file_source_path_diagnostic(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_original_file_source_path_diagnostic();
+  PROTOBUF_NODISCARD std::string* release_original_file_source_path_diagnostic();
+  void set_allocated_original_file_source_path_diagnostic(std::string* original_file_source_path_diagnostic);
+  private:
+  const std::string& _internal_original_file_source_path_diagnostic() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_original_file_source_path_diagnostic(const std::string& value);
+  std::string* _internal_mutable_original_file_source_path_diagnostic();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.Mesh)
  private:
   class _Internal;
@@ -2001,9 +2091,11 @@ class Mesh final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mesh_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr original_file_source_path_diagnostic_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2939,6 +3031,228 @@ class GeoPoint final :
 };
 // -------------------------------------------------------------------
 
+class GeoPose final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GeoPose) */ {
+ public:
+  inline GeoPose() : GeoPose(nullptr) {}
+  ~GeoPose() override;
+  explicit PROTOBUF_CONSTEXPR GeoPose(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GeoPose(const GeoPose& from);
+  GeoPose(GeoPose&& from) noexcept
+    : GeoPose() {
+    *this = ::std::move(from);
+  }
+
+  inline GeoPose& operator=(const GeoPose& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GeoPose& operator=(GeoPose&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GeoPose& default_instance() {
+    return *internal_default_instance();
+  }
+  enum OrientationCase {
+    kHeading = 2,
+    kOrientationVector = 4,
+    ORIENTATION_NOT_SET = 0,
+  };
+
+  static inline const GeoPose* internal_default_instance() {
+    return reinterpret_cast<const GeoPose*>(
+               &_GeoPose_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(GeoPose& a, GeoPose& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GeoPose* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GeoPose* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GeoPose* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GeoPose>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GeoPose& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GeoPose& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GeoPose* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GeoPose";
+  }
+  protected:
+  explicit GeoPose(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationFieldNumber = 1,
+    kAltitudeFieldNumber = 3,
+    kHeadingFieldNumber = 2,
+    kOrientationVectorFieldNumber = 4,
+  };
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  bool has_location() const;
+  private:
+  bool _internal_has_location() const;
+  public:
+  void clear_location();
+  const ::viam::common::v1::GeoPoint& location() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::GeoPoint* release_location();
+  ::viam::common::v1::GeoPoint* mutable_location();
+  void set_allocated_location(::viam::common::v1::GeoPoint* location);
+  private:
+  const ::viam::common::v1::GeoPoint& _internal_location() const;
+  ::viam::common::v1::GeoPoint* _internal_mutable_location();
+  public:
+  void unsafe_arena_set_allocated_location(
+      ::viam::common::v1::GeoPoint* location);
+  ::viam::common::v1::GeoPoint* unsafe_arena_release_location();
+
+  // optional double altitude = 3 [json_name = "altitude"];
+  bool has_altitude() const;
+  private:
+  bool _internal_has_altitude() const;
+  public:
+  void clear_altitude();
+  double altitude() const;
+  void set_altitude(double value);
+  private:
+  double _internal_altitude() const;
+  void _internal_set_altitude(double value);
+  public:
+
+  // double heading = 2 [json_name = "heading"];
+  bool has_heading() const;
+  private:
+  bool _internal_has_heading() const;
+  public:
+  void clear_heading();
+  double heading() const;
+  void set_heading(double value);
+  private:
+  double _internal_heading() const;
+  void _internal_set_heading(double value);
+  public:
+
+  // .viam.common.v1.Orientation orientation_vector = 4 [json_name = "orientationVector"];
+  bool has_orientation_vector() const;
+  private:
+  bool _internal_has_orientation_vector() const;
+  public:
+  void clear_orientation_vector();
+  const ::viam::common::v1::Orientation& orientation_vector() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Orientation* release_orientation_vector();
+  ::viam::common::v1::Orientation* mutable_orientation_vector();
+  void set_allocated_orientation_vector(::viam::common::v1::Orientation* orientation_vector);
+  private:
+  const ::viam::common::v1::Orientation& _internal_orientation_vector() const;
+  ::viam::common::v1::Orientation* _internal_mutable_orientation_vector();
+  public:
+  void unsafe_arena_set_allocated_orientation_vector(
+      ::viam::common::v1::Orientation* orientation_vector);
+  ::viam::common::v1::Orientation* unsafe_arena_release_orientation_vector();
+
+  void clear_orientation();
+  OrientationCase orientation_case() const;
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GeoPose)
+ private:
+  class _Internal;
+  void set_has_heading();
+  void set_has_orientation_vector();
+
+  inline bool has_orientation() const;
+  inline void clear_has_orientation();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::viam::common::v1::GeoPoint* location_;
+  double altitude_;
+  union OrientationUnion {
+    constexpr OrientationUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+    double heading_;
+    ::viam::common::v1::Orientation* orientation_vector_;
+  } orientation_;
+  uint32_t _oneof_case_[1];
+
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GeoGeometry final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GeoGeometry) */ {
  public:
@@ -2987,7 +3301,7 @@ class GeoGeometry final :
                &_GeoGeometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(GeoGeometry& a, GeoGeometry& b) {
     a.Swap(&b);
@@ -3159,7 +3473,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -3384,7 +3698,7 @@ class WorldState final :
                &_WorldState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(WorldState& a, WorldState& b) {
     a.Swap(&b);
@@ -3556,7 +3870,7 @@ class ActuatorStatus final :
                &_ActuatorStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(ActuatorStatus& a, ActuatorStatus& b) {
     a.Swap(&b);
@@ -3699,7 +4013,7 @@ class ResponseMetadata final :
                &_ResponseMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(ResponseMetadata& a, ResponseMetadata& b) {
     a.Swap(&b);
@@ -3852,7 +4166,7 @@ class DoCommandRequest final :
                &_DoCommandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(DoCommandRequest& a, DoCommandRequest& b) {
     a.Swap(&b);
@@ -4020,7 +4334,7 @@ class DoCommandResponse final :
                &_DoCommandResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(DoCommandResponse& a, DoCommandResponse& b) {
     a.Swap(&b);
@@ -4172,7 +4486,7 @@ class GetStatusRequest final :
                &_GetStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
     a.Swap(&b);
@@ -4320,7 +4634,7 @@ class GetStatusResponse final :
                &_GetStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
     a.Swap(&b);
@@ -4472,7 +4786,7 @@ class GetKinematicsRequest final :
                &_GetKinematicsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
     a.Swap(&b);
@@ -4545,6 +4859,8 @@ class GetKinematicsRequest final :
   enum : int {
     kNameFieldNumber = 1,
     kExtraFieldNumber = 99,
+    kIncludeCollisionMeshesFieldNumber = 2,
+    kIncludeVisualMeshesFieldNumber = 3,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -4578,6 +4894,24 @@ class GetKinematicsRequest final :
       ::PROTOBUF_NAMESPACE_ID::Struct* extra);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
 
+  // bool include_collision_meshes = 2 [json_name = "includeCollisionMeshes"];
+  void clear_include_collision_meshes();
+  bool include_collision_meshes() const;
+  void set_include_collision_meshes(bool value);
+  private:
+  bool _internal_include_collision_meshes() const;
+  void _internal_set_include_collision_meshes(bool value);
+  public:
+
+  // bool include_visual_meshes = 3 [json_name = "includeVisualMeshes"];
+  void clear_include_visual_meshes();
+  bool include_visual_meshes() const;
+  void set_include_visual_meshes(bool value);
+  private:
+  bool _internal_include_visual_meshes() const;
+  void _internal_set_include_visual_meshes(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.GetKinematicsRequest)
  private:
   class _Internal;
@@ -4587,6 +4921,8 @@ class GetKinematicsRequest final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  bool include_collision_meshes_;
+  bool include_visual_meshes_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
@@ -4666,7 +5002,7 @@ class GetKinematicsResponse final :
                &_GetKinematicsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
     a.Swap(&b);
@@ -4742,43 +5078,62 @@ class GetKinematicsResponse final :
   enum : int {
     kMeshesByUrdfFilepathFieldNumber = 3,
     kKinematicsDataFieldNumber = 2,
+    kModelFieldNumber = 4,
     kFormatFieldNumber = 1,
   };
-  // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath"];
-  int meshes_by_urdf_filepath_size() const;
+  // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath", deprecated = true];
+  PROTOBUF_DEPRECATED int meshes_by_urdf_filepath_size() const;
   private:
   int _internal_meshes_by_urdf_filepath_size() const;
   public:
-  void clear_meshes_by_urdf_filepath();
+  PROTOBUF_DEPRECATED void clear_meshes_by_urdf_filepath();
   private:
   const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >&
       _internal_meshes_by_urdf_filepath() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
       _internal_mutable_meshes_by_urdf_filepath();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >&
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >&
       meshes_by_urdf_filepath() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
       mutable_meshes_by_urdf_filepath();
 
-  // bytes kinematics_data = 2 [json_name = "kinematicsData"];
-  void clear_kinematics_data();
-  const std::string& kinematics_data() const;
+  // bytes kinematics_data = 2 [json_name = "kinematicsData", deprecated = true];
+  PROTOBUF_DEPRECATED void clear_kinematics_data();
+  PROTOBUF_DEPRECATED const std::string& kinematics_data() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_kinematics_data(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_kinematics_data();
-  PROTOBUF_NODISCARD std::string* release_kinematics_data();
-  void set_allocated_kinematics_data(std::string* kinematics_data);
+  PROTOBUF_DEPRECATED void set_kinematics_data(ArgT0&& arg0, ArgT... args);
+  PROTOBUF_DEPRECATED std::string* mutable_kinematics_data();
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED std::string* release_kinematics_data();
+  PROTOBUF_DEPRECATED void set_allocated_kinematics_data(std::string* kinematics_data);
   private:
   const std::string& _internal_kinematics_data() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_kinematics_data(const std::string& value);
   std::string* _internal_mutable_kinematics_data();
   public:
 
-  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
-  void clear_format();
-  ::viam::common::v1::KinematicsFileFormat format() const;
-  void set_format(::viam::common::v1::KinematicsFileFormat value);
+  // .viam.common.v1.KinematicModel model = 4 [json_name = "model"];
+  bool has_model() const;
+  private:
+  bool _internal_has_model() const;
+  public:
+  void clear_model();
+  const ::viam::common::v1::KinematicModel& model() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::KinematicModel* release_model();
+  ::viam::common::v1::KinematicModel* mutable_model();
+  void set_allocated_model(::viam::common::v1::KinematicModel* model);
+  private:
+  const ::viam::common::v1::KinematicModel& _internal_model() const;
+  ::viam::common::v1::KinematicModel* _internal_mutable_model();
+  public:
+  void unsafe_arena_set_allocated_model(
+      ::viam::common::v1::KinematicModel* model);
+  ::viam::common::v1::KinematicModel* unsafe_arena_release_model();
+
+  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format", deprecated = true];
+  PROTOBUF_DEPRECATED void clear_format();
+  PROTOBUF_DEPRECATED ::viam::common::v1::KinematicsFileFormat format() const;
+  PROTOBUF_DEPRECATED void set_format(::viam::common::v1::KinematicsFileFormat value);
   private:
   ::viam::common::v1::KinematicsFileFormat _internal_format() const;
   void _internal_set_format(::viam::common::v1::KinematicsFileFormat value);
@@ -4797,8 +5152,2020 @@ class GetKinematicsResponse final :
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> meshes_by_urdf_filepath_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr kinematics_data_;
+  ::viam::common::v1::KinematicModel* model_;
   int format_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class KinematicModel final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.KinematicModel) */ {
+ public:
+  inline KinematicModel() : KinematicModel(nullptr) {}
+  ~KinematicModel() override;
+  explicit PROTOBUF_CONSTEXPR KinematicModel(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  KinematicModel(const KinematicModel& from);
+  KinematicModel(KinematicModel&& from) noexcept
+    : KinematicModel() {
+    *this = ::std::move(from);
+  }
+
+  inline KinematicModel& operator=(const KinematicModel& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KinematicModel& operator=(KinematicModel&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KinematicModel& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KinematicModel* internal_default_instance() {
+    return reinterpret_cast<const KinematicModel*>(
+               &_KinematicModel_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  friend void swap(KinematicModel& a, KinematicModel& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(KinematicModel* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KinematicModel* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  KinematicModel* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<KinematicModel>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const KinematicModel& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const KinematicModel& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(KinematicModel* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.KinematicModel";
+  }
+  protected:
+  explicit KinematicModel(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLinksFieldNumber = 2,
+    kJointsFieldNumber = 3,
+    kOutputFramesFieldNumber = 4,
+    kNameFieldNumber = 1,
+    kPropertiesFieldNumber = 5,
+  };
+  // repeated .viam.common.v1.KinematicLink links = 2 [json_name = "links"];
+  int links_size() const;
+  private:
+  int _internal_links_size() const;
+  public:
+  void clear_links();
+  ::viam::common::v1::KinematicLink* mutable_links(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicLink >*
+      mutable_links();
+  private:
+  const ::viam::common::v1::KinematicLink& _internal_links(int index) const;
+  ::viam::common::v1::KinematicLink* _internal_add_links();
+  public:
+  const ::viam::common::v1::KinematicLink& links(int index) const;
+  ::viam::common::v1::KinematicLink* add_links();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicLink >&
+      links() const;
+
+  // repeated .viam.common.v1.KinematicJoint joints = 3 [json_name = "joints"];
+  int joints_size() const;
+  private:
+  int _internal_joints_size() const;
+  public:
+  void clear_joints();
+  ::viam::common::v1::KinematicJoint* mutable_joints(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicJoint >*
+      mutable_joints();
+  private:
+  const ::viam::common::v1::KinematicJoint& _internal_joints(int index) const;
+  ::viam::common::v1::KinematicJoint* _internal_add_joints();
+  public:
+  const ::viam::common::v1::KinematicJoint& joints(int index) const;
+  ::viam::common::v1::KinematicJoint* add_joints();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicJoint >&
+      joints() const;
+
+  // repeated string output_frames = 4 [json_name = "outputFrames"];
+  int output_frames_size() const;
+  private:
+  int _internal_output_frames_size() const;
+  public:
+  void clear_output_frames();
+  const std::string& output_frames(int index) const;
+  std::string* mutable_output_frames(int index);
+  void set_output_frames(int index, const std::string& value);
+  void set_output_frames(int index, std::string&& value);
+  void set_output_frames(int index, const char* value);
+  void set_output_frames(int index, const char* value, size_t size);
+  std::string* add_output_frames();
+  void add_output_frames(const std::string& value);
+  void add_output_frames(std::string&& value);
+  void add_output_frames(const char* value);
+  void add_output_frames(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& output_frames() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_output_frames();
+  private:
+  const std::string& _internal_output_frames(int index) const;
+  std::string* _internal_add_output_frames();
+  public:
+
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .viam.common.v1.KinematicProperties properties = 5 [json_name = "properties"];
+  bool has_properties() const;
+  private:
+  bool _internal_has_properties() const;
+  public:
+  void clear_properties();
+  const ::viam::common::v1::KinematicProperties& properties() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::KinematicProperties* release_properties();
+  ::viam::common::v1::KinematicProperties* mutable_properties();
+  void set_allocated_properties(::viam::common::v1::KinematicProperties* properties);
+  private:
+  const ::viam::common::v1::KinematicProperties& _internal_properties() const;
+  ::viam::common::v1::KinematicProperties* _internal_mutable_properties();
+  public:
+  void unsafe_arena_set_allocated_properties(
+      ::viam::common::v1::KinematicProperties* properties);
+  ::viam::common::v1::KinematicProperties* unsafe_arena_release_properties();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.KinematicModel)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicLink > links_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicJoint > joints_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> output_frames_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::viam::common::v1::KinematicProperties* properties_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class KinematicLink final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.KinematicLink) */ {
+ public:
+  inline KinematicLink() : KinematicLink(nullptr) {}
+  ~KinematicLink() override;
+  explicit PROTOBUF_CONSTEXPR KinematicLink(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  KinematicLink(const KinematicLink& from);
+  KinematicLink(KinematicLink&& from) noexcept
+    : KinematicLink() {
+    *this = ::std::move(from);
+  }
+
+  inline KinematicLink& operator=(const KinematicLink& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KinematicLink& operator=(KinematicLink&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KinematicLink& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KinematicLink* internal_default_instance() {
+    return reinterpret_cast<const KinematicLink*>(
+               &_KinematicLink_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(KinematicLink& a, KinematicLink& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(KinematicLink* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KinematicLink* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  KinematicLink* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<KinematicLink>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const KinematicLink& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const KinematicLink& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(KinematicLink* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.KinematicLink";
+  }
+  protected:
+  explicit KinematicLink(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCollisionFieldNumber = 4,
+    kVisualFieldNumber = 5,
+    kIdFieldNumber = 1,
+    kParentFieldNumber = 2,
+    kPoseFieldNumber = 3,
+  };
+  // repeated .viam.common.v1.Geometry collision = 4 [json_name = "collision"];
+  int collision_size() const;
+  private:
+  int _internal_collision_size() const;
+  public:
+  void clear_collision();
+  ::viam::common::v1::Geometry* mutable_collision(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+      mutable_collision();
+  private:
+  const ::viam::common::v1::Geometry& _internal_collision(int index) const;
+  ::viam::common::v1::Geometry* _internal_add_collision();
+  public:
+  const ::viam::common::v1::Geometry& collision(int index) const;
+  ::viam::common::v1::Geometry* add_collision();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+      collision() const;
+
+  // repeated .viam.common.v1.Geometry visual = 5 [json_name = "visual"];
+  int visual_size() const;
+  private:
+  int _internal_visual_size() const;
+  public:
+  void clear_visual();
+  ::viam::common::v1::Geometry* mutable_visual(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+      mutable_visual();
+  private:
+  const ::viam::common::v1::Geometry& _internal_visual(int index) const;
+  ::viam::common::v1::Geometry* _internal_add_visual();
+  public:
+  const ::viam::common::v1::Geometry& visual(int index) const;
+  ::viam::common::v1::Geometry* add_visual();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+      visual() const;
+
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string parent = 2 [json_name = "parent"];
+  void clear_parent();
+  const std::string& parent() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_parent(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_parent();
+  PROTOBUF_NODISCARD std::string* release_parent();
+  void set_allocated_parent(std::string* parent);
+  private:
+  const std::string& _internal_parent() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_parent(const std::string& value);
+  std::string* _internal_mutable_parent();
+  public:
+
+  // .viam.common.v1.LinkPose pose = 3 [json_name = "pose"];
+  bool has_pose() const;
+  private:
+  bool _internal_has_pose() const;
+  public:
+  void clear_pose();
+  const ::viam::common::v1::LinkPose& pose() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::LinkPose* release_pose();
+  ::viam::common::v1::LinkPose* mutable_pose();
+  void set_allocated_pose(::viam::common::v1::LinkPose* pose);
+  private:
+  const ::viam::common::v1::LinkPose& _internal_pose() const;
+  ::viam::common::v1::LinkPose* _internal_mutable_pose();
+  public:
+  void unsafe_arena_set_allocated_pose(
+      ::viam::common::v1::LinkPose* pose);
+  ::viam::common::v1::LinkPose* unsafe_arena_release_pose();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.KinematicLink)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry > collision_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry > visual_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_;
+  ::viam::common::v1::LinkPose* pose_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class LinkPose final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.LinkPose) */ {
+ public:
+  inline LinkPose() : LinkPose(nullptr) {}
+  ~LinkPose() override;
+  explicit PROTOBUF_CONSTEXPR LinkPose(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LinkPose(const LinkPose& from);
+  LinkPose(LinkPose&& from) noexcept
+    : LinkPose() {
+    *this = ::std::move(from);
+  }
+
+  inline LinkPose& operator=(const LinkPose& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LinkPose& operator=(LinkPose&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LinkPose& default_instance() {
+    return *internal_default_instance();
+  }
+  enum OrientationCase {
+    kQuaternion = 2,
+    kOrientationVector = 3,
+    kEulerAngles = 4,
+    kAxisAngles = 5,
+    ORIENTATION_NOT_SET = 0,
+  };
+
+  static inline const LinkPose* internal_default_instance() {
+    return reinterpret_cast<const LinkPose*>(
+               &_LinkPose_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  friend void swap(LinkPose& a, LinkPose& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LinkPose* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LinkPose* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LinkPose* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LinkPose>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const LinkPose& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const LinkPose& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LinkPose* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.LinkPose";
+  }
+  protected:
+  explicit LinkPose(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTranslationFieldNumber = 1,
+    kQuaternionFieldNumber = 2,
+    kOrientationVectorFieldNumber = 3,
+    kEulerAnglesFieldNumber = 4,
+    kAxisAnglesFieldNumber = 5,
+  };
+  // .viam.common.v1.Vector3 translation = 1 [json_name = "translation"];
+  bool has_translation() const;
+  private:
+  bool _internal_has_translation() const;
+  public:
+  void clear_translation();
+  const ::viam::common::v1::Vector3& translation() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Vector3* release_translation();
+  ::viam::common::v1::Vector3* mutable_translation();
+  void set_allocated_translation(::viam::common::v1::Vector3* translation);
+  private:
+  const ::viam::common::v1::Vector3& _internal_translation() const;
+  ::viam::common::v1::Vector3* _internal_mutable_translation();
+  public:
+  void unsafe_arena_set_allocated_translation(
+      ::viam::common::v1::Vector3* translation);
+  ::viam::common::v1::Vector3* unsafe_arena_release_translation();
+
+  // .viam.common.v1.Quaternion quaternion = 2 [json_name = "quaternion"];
+  bool has_quaternion() const;
+  private:
+  bool _internal_has_quaternion() const;
+  public:
+  void clear_quaternion();
+  const ::viam::common::v1::Quaternion& quaternion() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Quaternion* release_quaternion();
+  ::viam::common::v1::Quaternion* mutable_quaternion();
+  void set_allocated_quaternion(::viam::common::v1::Quaternion* quaternion);
+  private:
+  const ::viam::common::v1::Quaternion& _internal_quaternion() const;
+  ::viam::common::v1::Quaternion* _internal_mutable_quaternion();
+  public:
+  void unsafe_arena_set_allocated_quaternion(
+      ::viam::common::v1::Quaternion* quaternion);
+  ::viam::common::v1::Quaternion* unsafe_arena_release_quaternion();
+
+  // .viam.common.v1.Orientation orientation_vector = 3 [json_name = "orientationVector"];
+  bool has_orientation_vector() const;
+  private:
+  bool _internal_has_orientation_vector() const;
+  public:
+  void clear_orientation_vector();
+  const ::viam::common::v1::Orientation& orientation_vector() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Orientation* release_orientation_vector();
+  ::viam::common::v1::Orientation* mutable_orientation_vector();
+  void set_allocated_orientation_vector(::viam::common::v1::Orientation* orientation_vector);
+  private:
+  const ::viam::common::v1::Orientation& _internal_orientation_vector() const;
+  ::viam::common::v1::Orientation* _internal_mutable_orientation_vector();
+  public:
+  void unsafe_arena_set_allocated_orientation_vector(
+      ::viam::common::v1::Orientation* orientation_vector);
+  ::viam::common::v1::Orientation* unsafe_arena_release_orientation_vector();
+
+  // .viam.common.v1.EulerAngles euler_angles = 4 [json_name = "eulerAngles"];
+  bool has_euler_angles() const;
+  private:
+  bool _internal_has_euler_angles() const;
+  public:
+  void clear_euler_angles();
+  const ::viam::common::v1::EulerAngles& euler_angles() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::EulerAngles* release_euler_angles();
+  ::viam::common::v1::EulerAngles* mutable_euler_angles();
+  void set_allocated_euler_angles(::viam::common::v1::EulerAngles* euler_angles);
+  private:
+  const ::viam::common::v1::EulerAngles& _internal_euler_angles() const;
+  ::viam::common::v1::EulerAngles* _internal_mutable_euler_angles();
+  public:
+  void unsafe_arena_set_allocated_euler_angles(
+      ::viam::common::v1::EulerAngles* euler_angles);
+  ::viam::common::v1::EulerAngles* unsafe_arena_release_euler_angles();
+
+  // .viam.common.v1.AxisAngles axis_angles = 5 [json_name = "axisAngles"];
+  bool has_axis_angles() const;
+  private:
+  bool _internal_has_axis_angles() const;
+  public:
+  void clear_axis_angles();
+  const ::viam::common::v1::AxisAngles& axis_angles() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::AxisAngles* release_axis_angles();
+  ::viam::common::v1::AxisAngles* mutable_axis_angles();
+  void set_allocated_axis_angles(::viam::common::v1::AxisAngles* axis_angles);
+  private:
+  const ::viam::common::v1::AxisAngles& _internal_axis_angles() const;
+  ::viam::common::v1::AxisAngles* _internal_mutable_axis_angles();
+  public:
+  void unsafe_arena_set_allocated_axis_angles(
+      ::viam::common::v1::AxisAngles* axis_angles);
+  ::viam::common::v1::AxisAngles* unsafe_arena_release_axis_angles();
+
+  void clear_orientation();
+  OrientationCase orientation_case() const;
+  // @@protoc_insertion_point(class_scope:viam.common.v1.LinkPose)
+ private:
+  class _Internal;
+  void set_has_quaternion();
+  void set_has_orientation_vector();
+  void set_has_euler_angles();
+  void set_has_axis_angles();
+
+  inline bool has_orientation() const;
+  inline void clear_has_orientation();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::common::v1::Vector3* translation_;
+  union OrientationUnion {
+    constexpr OrientationUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+    ::viam::common::v1::Quaternion* quaternion_;
+    ::viam::common::v1::Orientation* orientation_vector_;
+    ::viam::common::v1::EulerAngles* euler_angles_;
+    ::viam::common::v1::AxisAngles* axis_angles_;
+  } orientation_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  uint32_t _oneof_case_[1];
+
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Quaternion final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.Quaternion) */ {
+ public:
+  inline Quaternion() : Quaternion(nullptr) {}
+  ~Quaternion() override;
+  explicit PROTOBUF_CONSTEXPR Quaternion(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Quaternion(const Quaternion& from);
+  Quaternion(Quaternion&& from) noexcept
+    : Quaternion() {
+    *this = ::std::move(from);
+  }
+
+  inline Quaternion& operator=(const Quaternion& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Quaternion& operator=(Quaternion&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Quaternion& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Quaternion* internal_default_instance() {
+    return reinterpret_cast<const Quaternion*>(
+               &_Quaternion_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  friend void swap(Quaternion& a, Quaternion& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Quaternion* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Quaternion* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Quaternion* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Quaternion>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Quaternion& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Quaternion& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Quaternion* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.Quaternion";
+  }
+  protected:
+  explicit Quaternion(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kWFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+    kZFieldNumber = 4,
+  };
+  // double w = 1 [json_name = "w"];
+  void clear_w();
+  double w() const;
+  void set_w(double value);
+  private:
+  double _internal_w() const;
+  void _internal_set_w(double value);
+  public:
+
+  // double x = 2 [json_name = "x"];
+  void clear_x();
+  double x() const;
+  void set_x(double value);
+  private:
+  double _internal_x() const;
+  void _internal_set_x(double value);
+  public:
+
+  // double y = 3 [json_name = "y"];
+  void clear_y();
+  double y() const;
+  void set_y(double value);
+  private:
+  double _internal_y() const;
+  void _internal_set_y(double value);
+  public:
+
+  // double z = 4 [json_name = "z"];
+  void clear_z();
+  double z() const;
+  void set_z(double value);
+  private:
+  double _internal_z() const;
+  void _internal_set_z(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.Quaternion)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double w_;
+  double x_;
+  double y_;
+  double z_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class EulerAngles final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.EulerAngles) */ {
+ public:
+  inline EulerAngles() : EulerAngles(nullptr) {}
+  ~EulerAngles() override;
+  explicit PROTOBUF_CONSTEXPR EulerAngles(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  EulerAngles(const EulerAngles& from);
+  EulerAngles(EulerAngles&& from) noexcept
+    : EulerAngles() {
+    *this = ::std::move(from);
+  }
+
+  inline EulerAngles& operator=(const EulerAngles& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EulerAngles& operator=(EulerAngles&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EulerAngles& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const EulerAngles* internal_default_instance() {
+    return reinterpret_cast<const EulerAngles*>(
+               &_EulerAngles_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    32;
+
+  friend void swap(EulerAngles& a, EulerAngles& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(EulerAngles* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EulerAngles* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EulerAngles* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EulerAngles>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const EulerAngles& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const EulerAngles& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(EulerAngles* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.EulerAngles";
+  }
+  protected:
+  explicit EulerAngles(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRollFieldNumber = 1,
+    kPitchFieldNumber = 2,
+    kYawFieldNumber = 3,
+  };
+  // double roll = 1 [json_name = "roll"];
+  void clear_roll();
+  double roll() const;
+  void set_roll(double value);
+  private:
+  double _internal_roll() const;
+  void _internal_set_roll(double value);
+  public:
+
+  // double pitch = 2 [json_name = "pitch"];
+  void clear_pitch();
+  double pitch() const;
+  void set_pitch(double value);
+  private:
+  double _internal_pitch() const;
+  void _internal_set_pitch(double value);
+  public:
+
+  // double yaw = 3 [json_name = "yaw"];
+  void clear_yaw();
+  double yaw() const;
+  void set_yaw(double value);
+  private:
+  double _internal_yaw() const;
+  void _internal_set_yaw(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.EulerAngles)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double roll_;
+  double pitch_;
+  double yaw_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AxisAngles final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.AxisAngles) */ {
+ public:
+  inline AxisAngles() : AxisAngles(nullptr) {}
+  ~AxisAngles() override;
+  explicit PROTOBUF_CONSTEXPR AxisAngles(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AxisAngles(const AxisAngles& from);
+  AxisAngles(AxisAngles&& from) noexcept
+    : AxisAngles() {
+    *this = ::std::move(from);
+  }
+
+  inline AxisAngles& operator=(const AxisAngles& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AxisAngles& operator=(AxisAngles&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AxisAngles& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AxisAngles* internal_default_instance() {
+    return reinterpret_cast<const AxisAngles*>(
+               &_AxisAngles_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  friend void swap(AxisAngles& a, AxisAngles& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AxisAngles* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AxisAngles* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AxisAngles* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AxisAngles>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AxisAngles& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AxisAngles& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AxisAngles* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.AxisAngles";
+  }
+  protected:
+  explicit AxisAngles(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRxFieldNumber = 1,
+    kRyFieldNumber = 2,
+    kRzFieldNumber = 3,
+    kThetaFieldNumber = 4,
+  };
+  // double rx = 1 [json_name = "rx"];
+  void clear_rx();
+  double rx() const;
+  void set_rx(double value);
+  private:
+  double _internal_rx() const;
+  void _internal_set_rx(double value);
+  public:
+
+  // double ry = 2 [json_name = "ry"];
+  void clear_ry();
+  double ry() const;
+  void set_ry(double value);
+  private:
+  double _internal_ry() const;
+  void _internal_set_ry(double value);
+  public:
+
+  // double rz = 3 [json_name = "rz"];
+  void clear_rz();
+  double rz() const;
+  void set_rz(double value);
+  private:
+  double _internal_rz() const;
+  void _internal_set_rz(double value);
+  public:
+
+  // double theta = 4 [json_name = "theta"];
+  void clear_theta();
+  double theta() const;
+  void set_theta(double value);
+  private:
+  double _internal_theta() const;
+  void _internal_set_theta(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.AxisAngles)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double rx_;
+  double ry_;
+  double rz_;
+  double theta_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class KinematicJoint final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.KinematicJoint) */ {
+ public:
+  inline KinematicJoint() : KinematicJoint(nullptr) {}
+  ~KinematicJoint() override;
+  explicit PROTOBUF_CONSTEXPR KinematicJoint(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  KinematicJoint(const KinematicJoint& from);
+  KinematicJoint(KinematicJoint&& from) noexcept
+    : KinematicJoint() {
+    *this = ::std::move(from);
+  }
+
+  inline KinematicJoint& operator=(const KinematicJoint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KinematicJoint& operator=(KinematicJoint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KinematicJoint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KinematicJoint* internal_default_instance() {
+    return reinterpret_cast<const KinematicJoint*>(
+               &_KinematicJoint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  friend void swap(KinematicJoint& a, KinematicJoint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(KinematicJoint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KinematicJoint* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  KinematicJoint* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<KinematicJoint>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const KinematicJoint& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const KinematicJoint& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(KinematicJoint* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.KinematicJoint";
+  }
+  protected:
+  explicit KinematicJoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kParentFieldNumber = 2,
+    kAxisFieldNumber = 4,
+    kLimitsFieldNumber = 5,
+    kMimicFieldNumber = 6,
+    kGeometryFieldNumber = 7,
+    kTypeFieldNumber = 3,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string parent = 2 [json_name = "parent"];
+  void clear_parent();
+  const std::string& parent() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_parent(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_parent();
+  PROTOBUF_NODISCARD std::string* release_parent();
+  void set_allocated_parent(std::string* parent);
+  private:
+  const std::string& _internal_parent() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_parent(const std::string& value);
+  std::string* _internal_mutable_parent();
+  public:
+
+  // .viam.common.v1.Vector3 axis = 4 [json_name = "axis"];
+  bool has_axis() const;
+  private:
+  bool _internal_has_axis() const;
+  public:
+  void clear_axis();
+  const ::viam::common::v1::Vector3& axis() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Vector3* release_axis();
+  ::viam::common::v1::Vector3* mutable_axis();
+  void set_allocated_axis(::viam::common::v1::Vector3* axis);
+  private:
+  const ::viam::common::v1::Vector3& _internal_axis() const;
+  ::viam::common::v1::Vector3* _internal_mutable_axis();
+  public:
+  void unsafe_arena_set_allocated_axis(
+      ::viam::common::v1::Vector3* axis);
+  ::viam::common::v1::Vector3* unsafe_arena_release_axis();
+
+  // .viam.common.v1.JointLimits limits = 5 [json_name = "limits"];
+  bool has_limits() const;
+  private:
+  bool _internal_has_limits() const;
+  public:
+  void clear_limits();
+  const ::viam::common::v1::JointLimits& limits() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::JointLimits* release_limits();
+  ::viam::common::v1::JointLimits* mutable_limits();
+  void set_allocated_limits(::viam::common::v1::JointLimits* limits);
+  private:
+  const ::viam::common::v1::JointLimits& _internal_limits() const;
+  ::viam::common::v1::JointLimits* _internal_mutable_limits();
+  public:
+  void unsafe_arena_set_allocated_limits(
+      ::viam::common::v1::JointLimits* limits);
+  ::viam::common::v1::JointLimits* unsafe_arena_release_limits();
+
+  // .viam.common.v1.MimicJoint mimic = 6 [json_name = "mimic"];
+  bool has_mimic() const;
+  private:
+  bool _internal_has_mimic() const;
+  public:
+  void clear_mimic();
+  const ::viam::common::v1::MimicJoint& mimic() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::MimicJoint* release_mimic();
+  ::viam::common::v1::MimicJoint* mutable_mimic();
+  void set_allocated_mimic(::viam::common::v1::MimicJoint* mimic);
+  private:
+  const ::viam::common::v1::MimicJoint& _internal_mimic() const;
+  ::viam::common::v1::MimicJoint* _internal_mutable_mimic();
+  public:
+  void unsafe_arena_set_allocated_mimic(
+      ::viam::common::v1::MimicJoint* mimic);
+  ::viam::common::v1::MimicJoint* unsafe_arena_release_mimic();
+
+  // .viam.common.v1.Geometry geometry = 7 [json_name = "geometry"];
+  bool has_geometry() const;
+  private:
+  bool _internal_has_geometry() const;
+  public:
+  void clear_geometry();
+  const ::viam::common::v1::Geometry& geometry() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Geometry* release_geometry();
+  ::viam::common::v1::Geometry* mutable_geometry();
+  void set_allocated_geometry(::viam::common::v1::Geometry* geometry);
+  private:
+  const ::viam::common::v1::Geometry& _internal_geometry() const;
+  ::viam::common::v1::Geometry* _internal_mutable_geometry();
+  public:
+  void unsafe_arena_set_allocated_geometry(
+      ::viam::common::v1::Geometry* geometry);
+  ::viam::common::v1::Geometry* unsafe_arena_release_geometry();
+
+  // .viam.common.v1.JointType type = 3 [json_name = "type"];
+  void clear_type();
+  ::viam::common::v1::JointType type() const;
+  void set_type(::viam::common::v1::JointType value);
+  private:
+  ::viam::common::v1::JointType _internal_type() const;
+  void _internal_set_type(::viam::common::v1::JointType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.KinematicJoint)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_;
+  ::viam::common::v1::Vector3* axis_;
+  ::viam::common::v1::JointLimits* limits_;
+  ::viam::common::v1::MimicJoint* mimic_;
+  ::viam::common::v1::Geometry* geometry_;
+  int type_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class JointLimits final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.JointLimits) */ {
+ public:
+  inline JointLimits() : JointLimits(nullptr) {}
+  ~JointLimits() override;
+  explicit PROTOBUF_CONSTEXPR JointLimits(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  JointLimits(const JointLimits& from);
+  JointLimits(JointLimits&& from) noexcept
+    : JointLimits() {
+    *this = ::std::move(from);
+  }
+
+  inline JointLimits& operator=(const JointLimits& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JointLimits& operator=(JointLimits&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JointLimits& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JointLimits* internal_default_instance() {
+    return reinterpret_cast<const JointLimits*>(
+               &_JointLimits_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  friend void swap(JointLimits& a, JointLimits& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JointLimits* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JointLimits* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JointLimits* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<JointLimits>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const JointLimits& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const JointLimits& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JointLimits* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.JointLimits";
+  }
+  protected:
+  explicit JointLimits(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMinFieldNumber = 1,
+    kMaxFieldNumber = 2,
+    kMaxVelocityFieldNumber = 3,
+    kMaxAccelerationFieldNumber = 4,
+  };
+  // optional double min = 1 [json_name = "min"];
+  bool has_min() const;
+  private:
+  bool _internal_has_min() const;
+  public:
+  void clear_min();
+  double min() const;
+  void set_min(double value);
+  private:
+  double _internal_min() const;
+  void _internal_set_min(double value);
+  public:
+
+  // optional double max = 2 [json_name = "max"];
+  bool has_max() const;
+  private:
+  bool _internal_has_max() const;
+  public:
+  void clear_max();
+  double max() const;
+  void set_max(double value);
+  private:
+  double _internal_max() const;
+  void _internal_set_max(double value);
+  public:
+
+  // optional double max_velocity = 3 [json_name = "maxVelocity"];
+  bool has_max_velocity() const;
+  private:
+  bool _internal_has_max_velocity() const;
+  public:
+  void clear_max_velocity();
+  double max_velocity() const;
+  void set_max_velocity(double value);
+  private:
+  double _internal_max_velocity() const;
+  void _internal_set_max_velocity(double value);
+  public:
+
+  // optional double max_acceleration = 4 [json_name = "maxAcceleration"];
+  bool has_max_acceleration() const;
+  private:
+  bool _internal_has_max_acceleration() const;
+  public:
+  void clear_max_acceleration();
+  double max_acceleration() const;
+  void set_max_acceleration(double value);
+  private:
+  double _internal_max_acceleration() const;
+  void _internal_set_max_acceleration(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.JointLimits)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  double min_;
+  double max_;
+  double max_velocity_;
+  double max_acceleration_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MimicJoint final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.MimicJoint) */ {
+ public:
+  inline MimicJoint() : MimicJoint(nullptr) {}
+  ~MimicJoint() override;
+  explicit PROTOBUF_CONSTEXPR MimicJoint(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MimicJoint(const MimicJoint& from);
+  MimicJoint(MimicJoint&& from) noexcept
+    : MimicJoint() {
+    *this = ::std::move(from);
+  }
+
+  inline MimicJoint& operator=(const MimicJoint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MimicJoint& operator=(MimicJoint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MimicJoint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MimicJoint* internal_default_instance() {
+    return reinterpret_cast<const MimicJoint*>(
+               &_MimicJoint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    36;
+
+  friend void swap(MimicJoint& a, MimicJoint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MimicJoint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MimicJoint* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MimicJoint* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MimicJoint>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MimicJoint& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MimicJoint& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MimicJoint* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.MimicJoint";
+  }
+  protected:
+  explicit MimicJoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJointFieldNumber = 1,
+    kMultiplierFieldNumber = 2,
+    kOffsetFieldNumber = 3,
+  };
+  // string joint = 1 [json_name = "joint"];
+  void clear_joint();
+  const std::string& joint() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_joint(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_joint();
+  PROTOBUF_NODISCARD std::string* release_joint();
+  void set_allocated_joint(std::string* joint);
+  private:
+  const std::string& _internal_joint() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_joint(const std::string& value);
+  std::string* _internal_mutable_joint();
+  public:
+
+  // double multiplier = 2 [json_name = "multiplier"];
+  void clear_multiplier();
+  double multiplier() const;
+  void set_multiplier(double value);
+  private:
+  double _internal_multiplier() const;
+  void _internal_set_multiplier(double value);
+  public:
+
+  // double offset = 3 [json_name = "offset"];
+  void clear_offset();
+  double offset() const;
+  void set_offset(double value);
+  private:
+  double _internal_offset() const;
+  void _internal_set_offset(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.MimicJoint)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr joint_;
+  double multiplier_;
+  double offset_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class KinematicProperties final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.KinematicProperties) */ {
+ public:
+  inline KinematicProperties() : KinematicProperties(nullptr) {}
+  ~KinematicProperties() override;
+  explicit PROTOBUF_CONSTEXPR KinematicProperties(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  KinematicProperties(const KinematicProperties& from);
+  KinematicProperties(KinematicProperties&& from) noexcept
+    : KinematicProperties() {
+    *this = ::std::move(from);
+  }
+
+  inline KinematicProperties& operator=(const KinematicProperties& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KinematicProperties& operator=(KinematicProperties&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KinematicProperties& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KinematicProperties* internal_default_instance() {
+    return reinterpret_cast<const KinematicProperties*>(
+               &_KinematicProperties_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    37;
+
+  friend void swap(KinematicProperties& a, KinematicProperties& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(KinematicProperties* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KinematicProperties* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  KinematicProperties* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<KinematicProperties>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const KinematicProperties& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const KinematicProperties& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(KinematicProperties* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.KinematicProperties";
+  }
+  protected:
+  explicit KinematicProperties(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOperatingFreqHzFieldNumber = 1,
+    kMaxLinearTcpSpeedMmPerSecFieldNumber = 2,
+  };
+  // optional double operating_freq_hz = 1 [json_name = "operatingFreqHz"];
+  bool has_operating_freq_hz() const;
+  private:
+  bool _internal_has_operating_freq_hz() const;
+  public:
+  void clear_operating_freq_hz();
+  double operating_freq_hz() const;
+  void set_operating_freq_hz(double value);
+  private:
+  double _internal_operating_freq_hz() const;
+  void _internal_set_operating_freq_hz(double value);
+  public:
+
+  // optional double max_linear_tcp_speed_mm_per_sec = 2 [json_name = "maxLinearTcpSpeedMmPerSec"];
+  bool has_max_linear_tcp_speed_mm_per_sec() const;
+  private:
+  bool _internal_has_max_linear_tcp_speed_mm_per_sec() const;
+  public:
+  void clear_max_linear_tcp_speed_mm_per_sec();
+  double max_linear_tcp_speed_mm_per_sec() const;
+  void set_max_linear_tcp_speed_mm_per_sec(double value);
+  private:
+  double _internal_max_linear_tcp_speed_mm_per_sec() const;
+  void _internal_set_max_linear_tcp_speed_mm_per_sec(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.KinematicProperties)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  double operating_freq_hz_;
+  double max_linear_tcp_speed_mm_per_sec_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
 // -------------------------------------------------------------------
@@ -4851,7 +7218,7 @@ class GetGeometriesRequest final :
                &_GetGeometriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    38;
 
   friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
     a.Swap(&b);
@@ -5019,7 +7386,7 @@ class GetGeometriesResponse final :
                &_GetGeometriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    39;
 
   friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
     a.Swap(&b);
@@ -5171,7 +7538,7 @@ class Get3DModelsRequest final :
                &_Get3DModelsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    40;
 
   friend void swap(Get3DModelsRequest& a, Get3DModelsRequest& b) {
     a.Swap(&b);
@@ -5365,7 +7732,7 @@ class Get3DModelsResponse final :
                &_Get3DModelsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    42;
 
   friend void swap(Get3DModelsResponse& a, Get3DModelsResponse& b) {
     a.Swap(&b);
@@ -5523,7 +7890,7 @@ class GetWorldPoseResponse final :
                &_GetWorldPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    43;
 
   friend void swap(GetWorldPoseResponse& a, GetWorldPoseResponse& b) {
     a.Swap(&b);
@@ -5675,7 +8042,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    44;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -5869,7 +8236,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    46;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -6027,7 +8394,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    47;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -6299,7 +8666,7 @@ class AudioInfo final :
                &_AudioInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    48;
 
   friend void swap(AudioInfo& a, AudioInfo& b) {
     a.Swap(&b);
@@ -6469,7 +8836,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    49;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -6637,7 +9004,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    50;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -7918,6 +10285,74 @@ inline void Mesh::set_allocated_mesh(std::string* mesh) {
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Mesh.mesh)
 }
 
+// optional string original_file_source_path_diagnostic = 3 [json_name = "originalFileSourcePathDiagnostic"];
+inline bool Mesh::_internal_has_original_file_source_path_diagnostic() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Mesh::has_original_file_source_path_diagnostic() const {
+  return _internal_has_original_file_source_path_diagnostic();
+}
+inline void Mesh::clear_original_file_source_path_diagnostic() {
+  original_file_source_path_diagnostic_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& Mesh::original_file_source_path_diagnostic() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Mesh.original_file_source_path_diagnostic)
+  return _internal_original_file_source_path_diagnostic();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Mesh::set_original_file_source_path_diagnostic(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ original_file_source_path_diagnostic_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.Mesh.original_file_source_path_diagnostic)
+}
+inline std::string* Mesh::mutable_original_file_source_path_diagnostic() {
+  std::string* _s = _internal_mutable_original_file_source_path_diagnostic();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Mesh.original_file_source_path_diagnostic)
+  return _s;
+}
+inline const std::string& Mesh::_internal_original_file_source_path_diagnostic() const {
+  return original_file_source_path_diagnostic_.Get();
+}
+inline void Mesh::_internal_set_original_file_source_path_diagnostic(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  original_file_source_path_diagnostic_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Mesh::_internal_mutable_original_file_source_path_diagnostic() {
+  _has_bits_[0] |= 0x00000001u;
+  return original_file_source_path_diagnostic_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Mesh::release_original_file_source_path_diagnostic() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Mesh.original_file_source_path_diagnostic)
+  if (!_internal_has_original_file_source_path_diagnostic()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = original_file_source_path_diagnostic_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (original_file_source_path_diagnostic_.IsDefault()) {
+    original_file_source_path_diagnostic_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void Mesh::set_allocated_original_file_source_path_diagnostic(std::string* original_file_source_path_diagnostic) {
+  if (original_file_source_path_diagnostic != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  original_file_source_path_diagnostic_.SetAllocated(original_file_source_path_diagnostic, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (original_file_source_path_diagnostic_.IsDefault()) {
+    original_file_source_path_diagnostic_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Mesh.original_file_source_path_diagnostic)
+}
+
 // -------------------------------------------------------------------
 
 // PointCloud
@@ -8777,6 +11212,249 @@ inline void GeoPoint::set_longitude(double value) {
   // @@protoc_insertion_point(field_set:viam.common.v1.GeoPoint.longitude)
 }
 
+// -------------------------------------------------------------------
+
+// GeoPose
+
+// .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+inline bool GeoPose::_internal_has_location() const {
+  return this != internal_default_instance() && location_ != nullptr;
+}
+inline bool GeoPose::has_location() const {
+  return _internal_has_location();
+}
+inline void GeoPose::clear_location() {
+  if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+}
+inline const ::viam::common::v1::GeoPoint& GeoPose::_internal_location() const {
+  const ::viam::common::v1::GeoPoint* p = location_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::GeoPoint&>(
+      ::viam::common::v1::_GeoPoint_default_instance_);
+}
+inline const ::viam::common::v1::GeoPoint& GeoPose::location() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoPose.location)
+  return _internal_location();
+}
+inline void GeoPose::unsafe_arena_set_allocated_location(
+    ::viam::common::v1::GeoPoint* location) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(location_);
+  }
+  location_ = location;
+  if (location) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GeoPose.location)
+}
+inline ::viam::common::v1::GeoPoint* GeoPose::release_location() {
+  
+  ::viam::common::v1::GeoPoint* temp = location_;
+  location_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* GeoPose::unsafe_arena_release_location() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GeoPose.location)
+  
+  ::viam::common::v1::GeoPoint* temp = location_;
+  location_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* GeoPose::_internal_mutable_location() {
+  
+  if (location_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::GeoPoint>(GetArenaForAllocation());
+    location_ = p;
+  }
+  return location_;
+}
+inline ::viam::common::v1::GeoPoint* GeoPose::mutable_location() {
+  ::viam::common::v1::GeoPoint* _msg = _internal_mutable_location();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoPose.location)
+  return _msg;
+}
+inline void GeoPose::set_allocated_location(::viam::common::v1::GeoPoint* location) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete location_;
+  }
+  if (location) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(location);
+    if (message_arena != submessage_arena) {
+      location = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, location, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  location_ = location;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GeoPose.location)
+}
+
+// optional double altitude = 3 [json_name = "altitude"];
+inline bool GeoPose::_internal_has_altitude() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GeoPose::has_altitude() const {
+  return _internal_has_altitude();
+}
+inline void GeoPose::clear_altitude() {
+  altitude_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline double GeoPose::_internal_altitude() const {
+  return altitude_;
+}
+inline double GeoPose::altitude() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoPose.altitude)
+  return _internal_altitude();
+}
+inline void GeoPose::_internal_set_altitude(double value) {
+  _has_bits_[0] |= 0x00000001u;
+  altitude_ = value;
+}
+inline void GeoPose::set_altitude(double value) {
+  _internal_set_altitude(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GeoPose.altitude)
+}
+
+// double heading = 2 [json_name = "heading"];
+inline bool GeoPose::_internal_has_heading() const {
+  return orientation_case() == kHeading;
+}
+inline bool GeoPose::has_heading() const {
+  return _internal_has_heading();
+}
+inline void GeoPose::set_has_heading() {
+  _oneof_case_[0] = kHeading;
+}
+inline void GeoPose::clear_heading() {
+  if (_internal_has_heading()) {
+    orientation_.heading_ = 0;
+    clear_has_orientation();
+  }
+}
+inline double GeoPose::_internal_heading() const {
+  if (_internal_has_heading()) {
+    return orientation_.heading_;
+  }
+  return 0;
+}
+inline void GeoPose::_internal_set_heading(double value) {
+  if (!_internal_has_heading()) {
+    clear_orientation();
+    set_has_heading();
+  }
+  orientation_.heading_ = value;
+}
+inline double GeoPose::heading() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoPose.heading)
+  return _internal_heading();
+}
+inline void GeoPose::set_heading(double value) {
+  _internal_set_heading(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GeoPose.heading)
+}
+
+// .viam.common.v1.Orientation orientation_vector = 4 [json_name = "orientationVector"];
+inline bool GeoPose::_internal_has_orientation_vector() const {
+  return orientation_case() == kOrientationVector;
+}
+inline bool GeoPose::has_orientation_vector() const {
+  return _internal_has_orientation_vector();
+}
+inline void GeoPose::set_has_orientation_vector() {
+  _oneof_case_[0] = kOrientationVector;
+}
+inline void GeoPose::clear_orientation_vector() {
+  if (_internal_has_orientation_vector()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete orientation_.orientation_vector_;
+    }
+    clear_has_orientation();
+  }
+}
+inline ::viam::common::v1::Orientation* GeoPose::release_orientation_vector() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GeoPose.orientation_vector)
+  if (_internal_has_orientation_vector()) {
+    clear_has_orientation();
+    ::viam::common::v1::Orientation* temp = orientation_.orientation_vector_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    orientation_.orientation_vector_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::Orientation& GeoPose::_internal_orientation_vector() const {
+  return _internal_has_orientation_vector()
+      ? *orientation_.orientation_vector_
+      : reinterpret_cast< ::viam::common::v1::Orientation&>(::viam::common::v1::_Orientation_default_instance_);
+}
+inline const ::viam::common::v1::Orientation& GeoPose::orientation_vector() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoPose.orientation_vector)
+  return _internal_orientation_vector();
+}
+inline ::viam::common::v1::Orientation* GeoPose::unsafe_arena_release_orientation_vector() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.GeoPose.orientation_vector)
+  if (_internal_has_orientation_vector()) {
+    clear_has_orientation();
+    ::viam::common::v1::Orientation* temp = orientation_.orientation_vector_;
+    orientation_.orientation_vector_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void GeoPose::unsafe_arena_set_allocated_orientation_vector(::viam::common::v1::Orientation* orientation_vector) {
+  clear_orientation();
+  if (orientation_vector) {
+    set_has_orientation_vector();
+    orientation_.orientation_vector_ = orientation_vector;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GeoPose.orientation_vector)
+}
+inline ::viam::common::v1::Orientation* GeoPose::_internal_mutable_orientation_vector() {
+  if (!_internal_has_orientation_vector()) {
+    clear_orientation();
+    set_has_orientation_vector();
+    orientation_.orientation_vector_ = CreateMaybeMessage< ::viam::common::v1::Orientation >(GetArenaForAllocation());
+  }
+  return orientation_.orientation_vector_;
+}
+inline ::viam::common::v1::Orientation* GeoPose::mutable_orientation_vector() {
+  ::viam::common::v1::Orientation* _msg = _internal_mutable_orientation_vector();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoPose.orientation_vector)
+  return _msg;
+}
+
+inline bool GeoPose::has_orientation() const {
+  return orientation_case() != ORIENTATION_NOT_SET;
+}
+inline void GeoPose::clear_has_orientation() {
+  _oneof_case_[0] = ORIENTATION_NOT_SET;
+}
+inline GeoPose::OrientationCase GeoPose::orientation_case() const {
+  return GeoPose::OrientationCase(_oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // GeoGeometry
@@ -9906,6 +12584,46 @@ inline void GetKinematicsRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetKinematicsRequest.name)
 }
 
+// bool include_collision_meshes = 2 [json_name = "includeCollisionMeshes"];
+inline void GetKinematicsRequest::clear_include_collision_meshes() {
+  include_collision_meshes_ = false;
+}
+inline bool GetKinematicsRequest::_internal_include_collision_meshes() const {
+  return include_collision_meshes_;
+}
+inline bool GetKinematicsRequest::include_collision_meshes() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetKinematicsRequest.include_collision_meshes)
+  return _internal_include_collision_meshes();
+}
+inline void GetKinematicsRequest::_internal_set_include_collision_meshes(bool value) {
+  
+  include_collision_meshes_ = value;
+}
+inline void GetKinematicsRequest::set_include_collision_meshes(bool value) {
+  _internal_set_include_collision_meshes(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetKinematicsRequest.include_collision_meshes)
+}
+
+// bool include_visual_meshes = 3 [json_name = "includeVisualMeshes"];
+inline void GetKinematicsRequest::clear_include_visual_meshes() {
+  include_visual_meshes_ = false;
+}
+inline bool GetKinematicsRequest::_internal_include_visual_meshes() const {
+  return include_visual_meshes_;
+}
+inline bool GetKinematicsRequest::include_visual_meshes() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetKinematicsRequest.include_visual_meshes)
+  return _internal_include_visual_meshes();
+}
+inline void GetKinematicsRequest::_internal_set_include_visual_meshes(bool value) {
+  
+  include_visual_meshes_ = value;
+}
+inline void GetKinematicsRequest::set_include_visual_meshes(bool value) {
+  _internal_set_include_visual_meshes(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetKinematicsRequest.include_visual_meshes)
+}
+
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
 inline bool GetKinematicsRequest::_internal_has_extra() const {
   return this != internal_default_instance() && extra_ != nullptr;
@@ -9997,7 +12715,7 @@ inline void GetKinematicsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::S
 
 // GetKinematicsResponse
 
-// .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+// .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format", deprecated = true];
 inline void GetKinematicsResponse::clear_format() {
   format_ = 0;
 }
@@ -10017,7 +12735,7 @@ inline void GetKinematicsResponse::set_format(::viam::common::v1::KinematicsFile
   // @@protoc_insertion_point(field_set:viam.common.v1.GetKinematicsResponse.format)
 }
 
-// bytes kinematics_data = 2 [json_name = "kinematicsData"];
+// bytes kinematics_data = 2 [json_name = "kinematicsData", deprecated = true];
 inline void GetKinematicsResponse::clear_kinematics_data() {
   kinematics_data_.ClearToEmpty();
 }
@@ -10067,7 +12785,7 @@ inline void GetKinematicsResponse::set_allocated_kinematics_data(std::string* ki
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetKinematicsResponse.kinematics_data)
 }
 
-// map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath"];
+// map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath", deprecated = true];
 inline int GetKinematicsResponse::_internal_meshes_by_urdf_filepath_size() const {
   return meshes_by_urdf_filepath_.size();
 }
@@ -10094,6 +12812,2054 @@ inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
 GetKinematicsResponse::mutable_meshes_by_urdf_filepath() {
   // @@protoc_insertion_point(field_mutable_map:viam.common.v1.GetKinematicsResponse.meshes_by_urdf_filepath)
   return _internal_mutable_meshes_by_urdf_filepath();
+}
+
+// .viam.common.v1.KinematicModel model = 4 [json_name = "model"];
+inline bool GetKinematicsResponse::_internal_has_model() const {
+  return this != internal_default_instance() && model_ != nullptr;
+}
+inline bool GetKinematicsResponse::has_model() const {
+  return _internal_has_model();
+}
+inline void GetKinematicsResponse::clear_model() {
+  if (GetArenaForAllocation() == nullptr && model_ != nullptr) {
+    delete model_;
+  }
+  model_ = nullptr;
+}
+inline const ::viam::common::v1::KinematicModel& GetKinematicsResponse::_internal_model() const {
+  const ::viam::common::v1::KinematicModel* p = model_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::KinematicModel&>(
+      ::viam::common::v1::_KinematicModel_default_instance_);
+}
+inline const ::viam::common::v1::KinematicModel& GetKinematicsResponse::model() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetKinematicsResponse.model)
+  return _internal_model();
+}
+inline void GetKinematicsResponse::unsafe_arena_set_allocated_model(
+    ::viam::common::v1::KinematicModel* model) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(model_);
+  }
+  model_ = model;
+  if (model) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GetKinematicsResponse.model)
+}
+inline ::viam::common::v1::KinematicModel* GetKinematicsResponse::release_model() {
+  
+  ::viam::common::v1::KinematicModel* temp = model_;
+  model_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::KinematicModel* GetKinematicsResponse::unsafe_arena_release_model() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetKinematicsResponse.model)
+  
+  ::viam::common::v1::KinematicModel* temp = model_;
+  model_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::KinematicModel* GetKinematicsResponse::_internal_mutable_model() {
+  
+  if (model_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::KinematicModel>(GetArenaForAllocation());
+    model_ = p;
+  }
+  return model_;
+}
+inline ::viam::common::v1::KinematicModel* GetKinematicsResponse::mutable_model() {
+  ::viam::common::v1::KinematicModel* _msg = _internal_mutable_model();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetKinematicsResponse.model)
+  return _msg;
+}
+inline void GetKinematicsResponse::set_allocated_model(::viam::common::v1::KinematicModel* model) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete model_;
+  }
+  if (model) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(model);
+    if (message_arena != submessage_arena) {
+      model = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, model, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  model_ = model;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetKinematicsResponse.model)
+}
+
+// -------------------------------------------------------------------
+
+// KinematicModel
+
+// string name = 1 [json_name = "name"];
+inline void KinematicModel::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& KinematicModel::name() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicModel.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void KinematicModel::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicModel.name)
+}
+inline std::string* KinematicModel::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicModel.name)
+  return _s;
+}
+inline const std::string& KinematicModel::_internal_name() const {
+  return name_.Get();
+}
+inline void KinematicModel::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* KinematicModel::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* KinematicModel::release_name() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicModel.name)
+  return name_.Release();
+}
+inline void KinematicModel::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicModel.name)
+}
+
+// repeated .viam.common.v1.KinematicLink links = 2 [json_name = "links"];
+inline int KinematicModel::_internal_links_size() const {
+  return links_.size();
+}
+inline int KinematicModel::links_size() const {
+  return _internal_links_size();
+}
+inline void KinematicModel::clear_links() {
+  links_.Clear();
+}
+inline ::viam::common::v1::KinematicLink* KinematicModel::mutable_links(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicModel.links)
+  return links_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicLink >*
+KinematicModel::mutable_links() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.KinematicModel.links)
+  return &links_;
+}
+inline const ::viam::common::v1::KinematicLink& KinematicModel::_internal_links(int index) const {
+  return links_.Get(index);
+}
+inline const ::viam::common::v1::KinematicLink& KinematicModel::links(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicModel.links)
+  return _internal_links(index);
+}
+inline ::viam::common::v1::KinematicLink* KinematicModel::_internal_add_links() {
+  return links_.Add();
+}
+inline ::viam::common::v1::KinematicLink* KinematicModel::add_links() {
+  ::viam::common::v1::KinematicLink* _add = _internal_add_links();
+  // @@protoc_insertion_point(field_add:viam.common.v1.KinematicModel.links)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicLink >&
+KinematicModel::links() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.KinematicModel.links)
+  return links_;
+}
+
+// repeated .viam.common.v1.KinematicJoint joints = 3 [json_name = "joints"];
+inline int KinematicModel::_internal_joints_size() const {
+  return joints_.size();
+}
+inline int KinematicModel::joints_size() const {
+  return _internal_joints_size();
+}
+inline void KinematicModel::clear_joints() {
+  joints_.Clear();
+}
+inline ::viam::common::v1::KinematicJoint* KinematicModel::mutable_joints(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicModel.joints)
+  return joints_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicJoint >*
+KinematicModel::mutable_joints() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.KinematicModel.joints)
+  return &joints_;
+}
+inline const ::viam::common::v1::KinematicJoint& KinematicModel::_internal_joints(int index) const {
+  return joints_.Get(index);
+}
+inline const ::viam::common::v1::KinematicJoint& KinematicModel::joints(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicModel.joints)
+  return _internal_joints(index);
+}
+inline ::viam::common::v1::KinematicJoint* KinematicModel::_internal_add_joints() {
+  return joints_.Add();
+}
+inline ::viam::common::v1::KinematicJoint* KinematicModel::add_joints() {
+  ::viam::common::v1::KinematicJoint* _add = _internal_add_joints();
+  // @@protoc_insertion_point(field_add:viam.common.v1.KinematicModel.joints)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::KinematicJoint >&
+KinematicModel::joints() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.KinematicModel.joints)
+  return joints_;
+}
+
+// repeated string output_frames = 4 [json_name = "outputFrames"];
+inline int KinematicModel::_internal_output_frames_size() const {
+  return output_frames_.size();
+}
+inline int KinematicModel::output_frames_size() const {
+  return _internal_output_frames_size();
+}
+inline void KinematicModel::clear_output_frames() {
+  output_frames_.Clear();
+}
+inline std::string* KinematicModel::add_output_frames() {
+  std::string* _s = _internal_add_output_frames();
+  // @@protoc_insertion_point(field_add_mutable:viam.common.v1.KinematicModel.output_frames)
+  return _s;
+}
+inline const std::string& KinematicModel::_internal_output_frames(int index) const {
+  return output_frames_.Get(index);
+}
+inline const std::string& KinematicModel::output_frames(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicModel.output_frames)
+  return _internal_output_frames(index);
+}
+inline std::string* KinematicModel::mutable_output_frames(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicModel.output_frames)
+  return output_frames_.Mutable(index);
+}
+inline void KinematicModel::set_output_frames(int index, const std::string& value) {
+  output_frames_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicModel.output_frames)
+}
+inline void KinematicModel::set_output_frames(int index, std::string&& value) {
+  output_frames_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicModel.output_frames)
+}
+inline void KinematicModel::set_output_frames(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  output_frames_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.common.v1.KinematicModel.output_frames)
+}
+inline void KinematicModel::set_output_frames(int index, const char* value, size_t size) {
+  output_frames_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.common.v1.KinematicModel.output_frames)
+}
+inline std::string* KinematicModel::_internal_add_output_frames() {
+  return output_frames_.Add();
+}
+inline void KinematicModel::add_output_frames(const std::string& value) {
+  output_frames_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.common.v1.KinematicModel.output_frames)
+}
+inline void KinematicModel::add_output_frames(std::string&& value) {
+  output_frames_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.common.v1.KinematicModel.output_frames)
+}
+inline void KinematicModel::add_output_frames(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  output_frames_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.common.v1.KinematicModel.output_frames)
+}
+inline void KinematicModel::add_output_frames(const char* value, size_t size) {
+  output_frames_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.common.v1.KinematicModel.output_frames)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+KinematicModel::output_frames() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.KinematicModel.output_frames)
+  return output_frames_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+KinematicModel::mutable_output_frames() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.KinematicModel.output_frames)
+  return &output_frames_;
+}
+
+// .viam.common.v1.KinematicProperties properties = 5 [json_name = "properties"];
+inline bool KinematicModel::_internal_has_properties() const {
+  return this != internal_default_instance() && properties_ != nullptr;
+}
+inline bool KinematicModel::has_properties() const {
+  return _internal_has_properties();
+}
+inline void KinematicModel::clear_properties() {
+  if (GetArenaForAllocation() == nullptr && properties_ != nullptr) {
+    delete properties_;
+  }
+  properties_ = nullptr;
+}
+inline const ::viam::common::v1::KinematicProperties& KinematicModel::_internal_properties() const {
+  const ::viam::common::v1::KinematicProperties* p = properties_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::KinematicProperties&>(
+      ::viam::common::v1::_KinematicProperties_default_instance_);
+}
+inline const ::viam::common::v1::KinematicProperties& KinematicModel::properties() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicModel.properties)
+  return _internal_properties();
+}
+inline void KinematicModel::unsafe_arena_set_allocated_properties(
+    ::viam::common::v1::KinematicProperties* properties) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(properties_);
+  }
+  properties_ = properties;
+  if (properties) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.KinematicModel.properties)
+}
+inline ::viam::common::v1::KinematicProperties* KinematicModel::release_properties() {
+  
+  ::viam::common::v1::KinematicProperties* temp = properties_;
+  properties_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::KinematicProperties* KinematicModel::unsafe_arena_release_properties() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicModel.properties)
+  
+  ::viam::common::v1::KinematicProperties* temp = properties_;
+  properties_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::KinematicProperties* KinematicModel::_internal_mutable_properties() {
+  
+  if (properties_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::KinematicProperties>(GetArenaForAllocation());
+    properties_ = p;
+  }
+  return properties_;
+}
+inline ::viam::common::v1::KinematicProperties* KinematicModel::mutable_properties() {
+  ::viam::common::v1::KinematicProperties* _msg = _internal_mutable_properties();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicModel.properties)
+  return _msg;
+}
+inline void KinematicModel::set_allocated_properties(::viam::common::v1::KinematicProperties* properties) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete properties_;
+  }
+  if (properties) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(properties);
+    if (message_arena != submessage_arena) {
+      properties = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, properties, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  properties_ = properties;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicModel.properties)
+}
+
+// -------------------------------------------------------------------
+
+// KinematicLink
+
+// string id = 1 [json_name = "id"];
+inline void KinematicLink::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& KinematicLink::id() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicLink.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void KinematicLink::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicLink.id)
+}
+inline std::string* KinematicLink::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicLink.id)
+  return _s;
+}
+inline const std::string& KinematicLink::_internal_id() const {
+  return id_.Get();
+}
+inline void KinematicLink::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* KinematicLink::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* KinematicLink::release_id() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicLink.id)
+  return id_.Release();
+}
+inline void KinematicLink::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicLink.id)
+}
+
+// string parent = 2 [json_name = "parent"];
+inline void KinematicLink::clear_parent() {
+  parent_.ClearToEmpty();
+}
+inline const std::string& KinematicLink::parent() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicLink.parent)
+  return _internal_parent();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void KinematicLink::set_parent(ArgT0&& arg0, ArgT... args) {
+ 
+ parent_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicLink.parent)
+}
+inline std::string* KinematicLink::mutable_parent() {
+  std::string* _s = _internal_mutable_parent();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicLink.parent)
+  return _s;
+}
+inline const std::string& KinematicLink::_internal_parent() const {
+  return parent_.Get();
+}
+inline void KinematicLink::_internal_set_parent(const std::string& value) {
+  
+  parent_.Set(value, GetArenaForAllocation());
+}
+inline std::string* KinematicLink::_internal_mutable_parent() {
+  
+  return parent_.Mutable(GetArenaForAllocation());
+}
+inline std::string* KinematicLink::release_parent() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicLink.parent)
+  return parent_.Release();
+}
+inline void KinematicLink::set_allocated_parent(std::string* parent) {
+  if (parent != nullptr) {
+    
+  } else {
+    
+  }
+  parent_.SetAllocated(parent, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (parent_.IsDefault()) {
+    parent_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicLink.parent)
+}
+
+// .viam.common.v1.LinkPose pose = 3 [json_name = "pose"];
+inline bool KinematicLink::_internal_has_pose() const {
+  return this != internal_default_instance() && pose_ != nullptr;
+}
+inline bool KinematicLink::has_pose() const {
+  return _internal_has_pose();
+}
+inline void KinematicLink::clear_pose() {
+  if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
+    delete pose_;
+  }
+  pose_ = nullptr;
+}
+inline const ::viam::common::v1::LinkPose& KinematicLink::_internal_pose() const {
+  const ::viam::common::v1::LinkPose* p = pose_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::LinkPose&>(
+      ::viam::common::v1::_LinkPose_default_instance_);
+}
+inline const ::viam::common::v1::LinkPose& KinematicLink::pose() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicLink.pose)
+  return _internal_pose();
+}
+inline void KinematicLink::unsafe_arena_set_allocated_pose(
+    ::viam::common::v1::LinkPose* pose) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_);
+  }
+  pose_ = pose;
+  if (pose) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.KinematicLink.pose)
+}
+inline ::viam::common::v1::LinkPose* KinematicLink::release_pose() {
+  
+  ::viam::common::v1::LinkPose* temp = pose_;
+  pose_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::LinkPose* KinematicLink::unsafe_arena_release_pose() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicLink.pose)
+  
+  ::viam::common::v1::LinkPose* temp = pose_;
+  pose_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::LinkPose* KinematicLink::_internal_mutable_pose() {
+  
+  if (pose_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::LinkPose>(GetArenaForAllocation());
+    pose_ = p;
+  }
+  return pose_;
+}
+inline ::viam::common::v1::LinkPose* KinematicLink::mutable_pose() {
+  ::viam::common::v1::LinkPose* _msg = _internal_mutable_pose();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicLink.pose)
+  return _msg;
+}
+inline void KinematicLink::set_allocated_pose(::viam::common::v1::LinkPose* pose) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pose_;
+  }
+  if (pose) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(pose);
+    if (message_arena != submessage_arena) {
+      pose = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pose, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pose_ = pose;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicLink.pose)
+}
+
+// repeated .viam.common.v1.Geometry collision = 4 [json_name = "collision"];
+inline int KinematicLink::_internal_collision_size() const {
+  return collision_.size();
+}
+inline int KinematicLink::collision_size() const {
+  return _internal_collision_size();
+}
+inline void KinematicLink::clear_collision() {
+  collision_.Clear();
+}
+inline ::viam::common::v1::Geometry* KinematicLink::mutable_collision(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicLink.collision)
+  return collision_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+KinematicLink::mutable_collision() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.KinematicLink.collision)
+  return &collision_;
+}
+inline const ::viam::common::v1::Geometry& KinematicLink::_internal_collision(int index) const {
+  return collision_.Get(index);
+}
+inline const ::viam::common::v1::Geometry& KinematicLink::collision(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicLink.collision)
+  return _internal_collision(index);
+}
+inline ::viam::common::v1::Geometry* KinematicLink::_internal_add_collision() {
+  return collision_.Add();
+}
+inline ::viam::common::v1::Geometry* KinematicLink::add_collision() {
+  ::viam::common::v1::Geometry* _add = _internal_add_collision();
+  // @@protoc_insertion_point(field_add:viam.common.v1.KinematicLink.collision)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+KinematicLink::collision() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.KinematicLink.collision)
+  return collision_;
+}
+
+// repeated .viam.common.v1.Geometry visual = 5 [json_name = "visual"];
+inline int KinematicLink::_internal_visual_size() const {
+  return visual_.size();
+}
+inline int KinematicLink::visual_size() const {
+  return _internal_visual_size();
+}
+inline void KinematicLink::clear_visual() {
+  visual_.Clear();
+}
+inline ::viam::common::v1::Geometry* KinematicLink::mutable_visual(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicLink.visual)
+  return visual_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+KinematicLink::mutable_visual() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.KinematicLink.visual)
+  return &visual_;
+}
+inline const ::viam::common::v1::Geometry& KinematicLink::_internal_visual(int index) const {
+  return visual_.Get(index);
+}
+inline const ::viam::common::v1::Geometry& KinematicLink::visual(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicLink.visual)
+  return _internal_visual(index);
+}
+inline ::viam::common::v1::Geometry* KinematicLink::_internal_add_visual() {
+  return visual_.Add();
+}
+inline ::viam::common::v1::Geometry* KinematicLink::add_visual() {
+  ::viam::common::v1::Geometry* _add = _internal_add_visual();
+  // @@protoc_insertion_point(field_add:viam.common.v1.KinematicLink.visual)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+KinematicLink::visual() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.KinematicLink.visual)
+  return visual_;
+}
+
+// -------------------------------------------------------------------
+
+// LinkPose
+
+// .viam.common.v1.Vector3 translation = 1 [json_name = "translation"];
+inline bool LinkPose::_internal_has_translation() const {
+  return this != internal_default_instance() && translation_ != nullptr;
+}
+inline bool LinkPose::has_translation() const {
+  return _internal_has_translation();
+}
+inline void LinkPose::clear_translation() {
+  if (GetArenaForAllocation() == nullptr && translation_ != nullptr) {
+    delete translation_;
+  }
+  translation_ = nullptr;
+}
+inline const ::viam::common::v1::Vector3& LinkPose::_internal_translation() const {
+  const ::viam::common::v1::Vector3* p = translation_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Vector3&>(
+      ::viam::common::v1::_Vector3_default_instance_);
+}
+inline const ::viam::common::v1::Vector3& LinkPose::translation() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.LinkPose.translation)
+  return _internal_translation();
+}
+inline void LinkPose::unsafe_arena_set_allocated_translation(
+    ::viam::common::v1::Vector3* translation) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(translation_);
+  }
+  translation_ = translation;
+  if (translation) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.LinkPose.translation)
+}
+inline ::viam::common::v1::Vector3* LinkPose::release_translation() {
+  
+  ::viam::common::v1::Vector3* temp = translation_;
+  translation_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Vector3* LinkPose::unsafe_arena_release_translation() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.LinkPose.translation)
+  
+  ::viam::common::v1::Vector3* temp = translation_;
+  translation_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Vector3* LinkPose::_internal_mutable_translation() {
+  
+  if (translation_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Vector3>(GetArenaForAllocation());
+    translation_ = p;
+  }
+  return translation_;
+}
+inline ::viam::common::v1::Vector3* LinkPose::mutable_translation() {
+  ::viam::common::v1::Vector3* _msg = _internal_mutable_translation();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.LinkPose.translation)
+  return _msg;
+}
+inline void LinkPose::set_allocated_translation(::viam::common::v1::Vector3* translation) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete translation_;
+  }
+  if (translation) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(translation);
+    if (message_arena != submessage_arena) {
+      translation = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, translation, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  translation_ = translation;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.LinkPose.translation)
+}
+
+// .viam.common.v1.Quaternion quaternion = 2 [json_name = "quaternion"];
+inline bool LinkPose::_internal_has_quaternion() const {
+  return orientation_case() == kQuaternion;
+}
+inline bool LinkPose::has_quaternion() const {
+  return _internal_has_quaternion();
+}
+inline void LinkPose::set_has_quaternion() {
+  _oneof_case_[0] = kQuaternion;
+}
+inline void LinkPose::clear_quaternion() {
+  if (_internal_has_quaternion()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete orientation_.quaternion_;
+    }
+    clear_has_orientation();
+  }
+}
+inline ::viam::common::v1::Quaternion* LinkPose::release_quaternion() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.LinkPose.quaternion)
+  if (_internal_has_quaternion()) {
+    clear_has_orientation();
+    ::viam::common::v1::Quaternion* temp = orientation_.quaternion_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    orientation_.quaternion_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::Quaternion& LinkPose::_internal_quaternion() const {
+  return _internal_has_quaternion()
+      ? *orientation_.quaternion_
+      : reinterpret_cast< ::viam::common::v1::Quaternion&>(::viam::common::v1::_Quaternion_default_instance_);
+}
+inline const ::viam::common::v1::Quaternion& LinkPose::quaternion() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.LinkPose.quaternion)
+  return _internal_quaternion();
+}
+inline ::viam::common::v1::Quaternion* LinkPose::unsafe_arena_release_quaternion() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.LinkPose.quaternion)
+  if (_internal_has_quaternion()) {
+    clear_has_orientation();
+    ::viam::common::v1::Quaternion* temp = orientation_.quaternion_;
+    orientation_.quaternion_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void LinkPose::unsafe_arena_set_allocated_quaternion(::viam::common::v1::Quaternion* quaternion) {
+  clear_orientation();
+  if (quaternion) {
+    set_has_quaternion();
+    orientation_.quaternion_ = quaternion;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.LinkPose.quaternion)
+}
+inline ::viam::common::v1::Quaternion* LinkPose::_internal_mutable_quaternion() {
+  if (!_internal_has_quaternion()) {
+    clear_orientation();
+    set_has_quaternion();
+    orientation_.quaternion_ = CreateMaybeMessage< ::viam::common::v1::Quaternion >(GetArenaForAllocation());
+  }
+  return orientation_.quaternion_;
+}
+inline ::viam::common::v1::Quaternion* LinkPose::mutable_quaternion() {
+  ::viam::common::v1::Quaternion* _msg = _internal_mutable_quaternion();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.LinkPose.quaternion)
+  return _msg;
+}
+
+// .viam.common.v1.Orientation orientation_vector = 3 [json_name = "orientationVector"];
+inline bool LinkPose::_internal_has_orientation_vector() const {
+  return orientation_case() == kOrientationVector;
+}
+inline bool LinkPose::has_orientation_vector() const {
+  return _internal_has_orientation_vector();
+}
+inline void LinkPose::set_has_orientation_vector() {
+  _oneof_case_[0] = kOrientationVector;
+}
+inline void LinkPose::clear_orientation_vector() {
+  if (_internal_has_orientation_vector()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete orientation_.orientation_vector_;
+    }
+    clear_has_orientation();
+  }
+}
+inline ::viam::common::v1::Orientation* LinkPose::release_orientation_vector() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.LinkPose.orientation_vector)
+  if (_internal_has_orientation_vector()) {
+    clear_has_orientation();
+    ::viam::common::v1::Orientation* temp = orientation_.orientation_vector_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    orientation_.orientation_vector_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::Orientation& LinkPose::_internal_orientation_vector() const {
+  return _internal_has_orientation_vector()
+      ? *orientation_.orientation_vector_
+      : reinterpret_cast< ::viam::common::v1::Orientation&>(::viam::common::v1::_Orientation_default_instance_);
+}
+inline const ::viam::common::v1::Orientation& LinkPose::orientation_vector() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.LinkPose.orientation_vector)
+  return _internal_orientation_vector();
+}
+inline ::viam::common::v1::Orientation* LinkPose::unsafe_arena_release_orientation_vector() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.LinkPose.orientation_vector)
+  if (_internal_has_orientation_vector()) {
+    clear_has_orientation();
+    ::viam::common::v1::Orientation* temp = orientation_.orientation_vector_;
+    orientation_.orientation_vector_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void LinkPose::unsafe_arena_set_allocated_orientation_vector(::viam::common::v1::Orientation* orientation_vector) {
+  clear_orientation();
+  if (orientation_vector) {
+    set_has_orientation_vector();
+    orientation_.orientation_vector_ = orientation_vector;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.LinkPose.orientation_vector)
+}
+inline ::viam::common::v1::Orientation* LinkPose::_internal_mutable_orientation_vector() {
+  if (!_internal_has_orientation_vector()) {
+    clear_orientation();
+    set_has_orientation_vector();
+    orientation_.orientation_vector_ = CreateMaybeMessage< ::viam::common::v1::Orientation >(GetArenaForAllocation());
+  }
+  return orientation_.orientation_vector_;
+}
+inline ::viam::common::v1::Orientation* LinkPose::mutable_orientation_vector() {
+  ::viam::common::v1::Orientation* _msg = _internal_mutable_orientation_vector();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.LinkPose.orientation_vector)
+  return _msg;
+}
+
+// .viam.common.v1.EulerAngles euler_angles = 4 [json_name = "eulerAngles"];
+inline bool LinkPose::_internal_has_euler_angles() const {
+  return orientation_case() == kEulerAngles;
+}
+inline bool LinkPose::has_euler_angles() const {
+  return _internal_has_euler_angles();
+}
+inline void LinkPose::set_has_euler_angles() {
+  _oneof_case_[0] = kEulerAngles;
+}
+inline void LinkPose::clear_euler_angles() {
+  if (_internal_has_euler_angles()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete orientation_.euler_angles_;
+    }
+    clear_has_orientation();
+  }
+}
+inline ::viam::common::v1::EulerAngles* LinkPose::release_euler_angles() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.LinkPose.euler_angles)
+  if (_internal_has_euler_angles()) {
+    clear_has_orientation();
+    ::viam::common::v1::EulerAngles* temp = orientation_.euler_angles_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    orientation_.euler_angles_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::EulerAngles& LinkPose::_internal_euler_angles() const {
+  return _internal_has_euler_angles()
+      ? *orientation_.euler_angles_
+      : reinterpret_cast< ::viam::common::v1::EulerAngles&>(::viam::common::v1::_EulerAngles_default_instance_);
+}
+inline const ::viam::common::v1::EulerAngles& LinkPose::euler_angles() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.LinkPose.euler_angles)
+  return _internal_euler_angles();
+}
+inline ::viam::common::v1::EulerAngles* LinkPose::unsafe_arena_release_euler_angles() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.LinkPose.euler_angles)
+  if (_internal_has_euler_angles()) {
+    clear_has_orientation();
+    ::viam::common::v1::EulerAngles* temp = orientation_.euler_angles_;
+    orientation_.euler_angles_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void LinkPose::unsafe_arena_set_allocated_euler_angles(::viam::common::v1::EulerAngles* euler_angles) {
+  clear_orientation();
+  if (euler_angles) {
+    set_has_euler_angles();
+    orientation_.euler_angles_ = euler_angles;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.LinkPose.euler_angles)
+}
+inline ::viam::common::v1::EulerAngles* LinkPose::_internal_mutable_euler_angles() {
+  if (!_internal_has_euler_angles()) {
+    clear_orientation();
+    set_has_euler_angles();
+    orientation_.euler_angles_ = CreateMaybeMessage< ::viam::common::v1::EulerAngles >(GetArenaForAllocation());
+  }
+  return orientation_.euler_angles_;
+}
+inline ::viam::common::v1::EulerAngles* LinkPose::mutable_euler_angles() {
+  ::viam::common::v1::EulerAngles* _msg = _internal_mutable_euler_angles();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.LinkPose.euler_angles)
+  return _msg;
+}
+
+// .viam.common.v1.AxisAngles axis_angles = 5 [json_name = "axisAngles"];
+inline bool LinkPose::_internal_has_axis_angles() const {
+  return orientation_case() == kAxisAngles;
+}
+inline bool LinkPose::has_axis_angles() const {
+  return _internal_has_axis_angles();
+}
+inline void LinkPose::set_has_axis_angles() {
+  _oneof_case_[0] = kAxisAngles;
+}
+inline void LinkPose::clear_axis_angles() {
+  if (_internal_has_axis_angles()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete orientation_.axis_angles_;
+    }
+    clear_has_orientation();
+  }
+}
+inline ::viam::common::v1::AxisAngles* LinkPose::release_axis_angles() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.LinkPose.axis_angles)
+  if (_internal_has_axis_angles()) {
+    clear_has_orientation();
+    ::viam::common::v1::AxisAngles* temp = orientation_.axis_angles_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    orientation_.axis_angles_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::AxisAngles& LinkPose::_internal_axis_angles() const {
+  return _internal_has_axis_angles()
+      ? *orientation_.axis_angles_
+      : reinterpret_cast< ::viam::common::v1::AxisAngles&>(::viam::common::v1::_AxisAngles_default_instance_);
+}
+inline const ::viam::common::v1::AxisAngles& LinkPose::axis_angles() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.LinkPose.axis_angles)
+  return _internal_axis_angles();
+}
+inline ::viam::common::v1::AxisAngles* LinkPose::unsafe_arena_release_axis_angles() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.LinkPose.axis_angles)
+  if (_internal_has_axis_angles()) {
+    clear_has_orientation();
+    ::viam::common::v1::AxisAngles* temp = orientation_.axis_angles_;
+    orientation_.axis_angles_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void LinkPose::unsafe_arena_set_allocated_axis_angles(::viam::common::v1::AxisAngles* axis_angles) {
+  clear_orientation();
+  if (axis_angles) {
+    set_has_axis_angles();
+    orientation_.axis_angles_ = axis_angles;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.LinkPose.axis_angles)
+}
+inline ::viam::common::v1::AxisAngles* LinkPose::_internal_mutable_axis_angles() {
+  if (!_internal_has_axis_angles()) {
+    clear_orientation();
+    set_has_axis_angles();
+    orientation_.axis_angles_ = CreateMaybeMessage< ::viam::common::v1::AxisAngles >(GetArenaForAllocation());
+  }
+  return orientation_.axis_angles_;
+}
+inline ::viam::common::v1::AxisAngles* LinkPose::mutable_axis_angles() {
+  ::viam::common::v1::AxisAngles* _msg = _internal_mutable_axis_angles();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.LinkPose.axis_angles)
+  return _msg;
+}
+
+inline bool LinkPose::has_orientation() const {
+  return orientation_case() != ORIENTATION_NOT_SET;
+}
+inline void LinkPose::clear_has_orientation() {
+  _oneof_case_[0] = ORIENTATION_NOT_SET;
+}
+inline LinkPose::OrientationCase LinkPose::orientation_case() const {
+  return LinkPose::OrientationCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// Quaternion
+
+// double w = 1 [json_name = "w"];
+inline void Quaternion::clear_w() {
+  w_ = 0;
+}
+inline double Quaternion::_internal_w() const {
+  return w_;
+}
+inline double Quaternion::w() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Quaternion.w)
+  return _internal_w();
+}
+inline void Quaternion::_internal_set_w(double value) {
+  
+  w_ = value;
+}
+inline void Quaternion::set_w(double value) {
+  _internal_set_w(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Quaternion.w)
+}
+
+// double x = 2 [json_name = "x"];
+inline void Quaternion::clear_x() {
+  x_ = 0;
+}
+inline double Quaternion::_internal_x() const {
+  return x_;
+}
+inline double Quaternion::x() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Quaternion.x)
+  return _internal_x();
+}
+inline void Quaternion::_internal_set_x(double value) {
+  
+  x_ = value;
+}
+inline void Quaternion::set_x(double value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Quaternion.x)
+}
+
+// double y = 3 [json_name = "y"];
+inline void Quaternion::clear_y() {
+  y_ = 0;
+}
+inline double Quaternion::_internal_y() const {
+  return y_;
+}
+inline double Quaternion::y() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Quaternion.y)
+  return _internal_y();
+}
+inline void Quaternion::_internal_set_y(double value) {
+  
+  y_ = value;
+}
+inline void Quaternion::set_y(double value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Quaternion.y)
+}
+
+// double z = 4 [json_name = "z"];
+inline void Quaternion::clear_z() {
+  z_ = 0;
+}
+inline double Quaternion::_internal_z() const {
+  return z_;
+}
+inline double Quaternion::z() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Quaternion.z)
+  return _internal_z();
+}
+inline void Quaternion::_internal_set_z(double value) {
+  
+  z_ = value;
+}
+inline void Quaternion::set_z(double value) {
+  _internal_set_z(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Quaternion.z)
+}
+
+// -------------------------------------------------------------------
+
+// EulerAngles
+
+// double roll = 1 [json_name = "roll"];
+inline void EulerAngles::clear_roll() {
+  roll_ = 0;
+}
+inline double EulerAngles::_internal_roll() const {
+  return roll_;
+}
+inline double EulerAngles::roll() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.EulerAngles.roll)
+  return _internal_roll();
+}
+inline void EulerAngles::_internal_set_roll(double value) {
+  
+  roll_ = value;
+}
+inline void EulerAngles::set_roll(double value) {
+  _internal_set_roll(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.EulerAngles.roll)
+}
+
+// double pitch = 2 [json_name = "pitch"];
+inline void EulerAngles::clear_pitch() {
+  pitch_ = 0;
+}
+inline double EulerAngles::_internal_pitch() const {
+  return pitch_;
+}
+inline double EulerAngles::pitch() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.EulerAngles.pitch)
+  return _internal_pitch();
+}
+inline void EulerAngles::_internal_set_pitch(double value) {
+  
+  pitch_ = value;
+}
+inline void EulerAngles::set_pitch(double value) {
+  _internal_set_pitch(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.EulerAngles.pitch)
+}
+
+// double yaw = 3 [json_name = "yaw"];
+inline void EulerAngles::clear_yaw() {
+  yaw_ = 0;
+}
+inline double EulerAngles::_internal_yaw() const {
+  return yaw_;
+}
+inline double EulerAngles::yaw() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.EulerAngles.yaw)
+  return _internal_yaw();
+}
+inline void EulerAngles::_internal_set_yaw(double value) {
+  
+  yaw_ = value;
+}
+inline void EulerAngles::set_yaw(double value) {
+  _internal_set_yaw(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.EulerAngles.yaw)
+}
+
+// -------------------------------------------------------------------
+
+// AxisAngles
+
+// double rx = 1 [json_name = "rx"];
+inline void AxisAngles::clear_rx() {
+  rx_ = 0;
+}
+inline double AxisAngles::_internal_rx() const {
+  return rx_;
+}
+inline double AxisAngles::rx() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.AxisAngles.rx)
+  return _internal_rx();
+}
+inline void AxisAngles::_internal_set_rx(double value) {
+  
+  rx_ = value;
+}
+inline void AxisAngles::set_rx(double value) {
+  _internal_set_rx(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.AxisAngles.rx)
+}
+
+// double ry = 2 [json_name = "ry"];
+inline void AxisAngles::clear_ry() {
+  ry_ = 0;
+}
+inline double AxisAngles::_internal_ry() const {
+  return ry_;
+}
+inline double AxisAngles::ry() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.AxisAngles.ry)
+  return _internal_ry();
+}
+inline void AxisAngles::_internal_set_ry(double value) {
+  
+  ry_ = value;
+}
+inline void AxisAngles::set_ry(double value) {
+  _internal_set_ry(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.AxisAngles.ry)
+}
+
+// double rz = 3 [json_name = "rz"];
+inline void AxisAngles::clear_rz() {
+  rz_ = 0;
+}
+inline double AxisAngles::_internal_rz() const {
+  return rz_;
+}
+inline double AxisAngles::rz() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.AxisAngles.rz)
+  return _internal_rz();
+}
+inline void AxisAngles::_internal_set_rz(double value) {
+  
+  rz_ = value;
+}
+inline void AxisAngles::set_rz(double value) {
+  _internal_set_rz(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.AxisAngles.rz)
+}
+
+// double theta = 4 [json_name = "theta"];
+inline void AxisAngles::clear_theta() {
+  theta_ = 0;
+}
+inline double AxisAngles::_internal_theta() const {
+  return theta_;
+}
+inline double AxisAngles::theta() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.AxisAngles.theta)
+  return _internal_theta();
+}
+inline void AxisAngles::_internal_set_theta(double value) {
+  
+  theta_ = value;
+}
+inline void AxisAngles::set_theta(double value) {
+  _internal_set_theta(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.AxisAngles.theta)
+}
+
+// -------------------------------------------------------------------
+
+// KinematicJoint
+
+// string id = 1 [json_name = "id"];
+inline void KinematicJoint::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& KinematicJoint::id() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicJoint.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void KinematicJoint::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicJoint.id)
+}
+inline std::string* KinematicJoint::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicJoint.id)
+  return _s;
+}
+inline const std::string& KinematicJoint::_internal_id() const {
+  return id_.Get();
+}
+inline void KinematicJoint::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* KinematicJoint::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* KinematicJoint::release_id() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicJoint.id)
+  return id_.Release();
+}
+inline void KinematicJoint::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicJoint.id)
+}
+
+// string parent = 2 [json_name = "parent"];
+inline void KinematicJoint::clear_parent() {
+  parent_.ClearToEmpty();
+}
+inline const std::string& KinematicJoint::parent() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicJoint.parent)
+  return _internal_parent();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void KinematicJoint::set_parent(ArgT0&& arg0, ArgT... args) {
+ 
+ parent_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicJoint.parent)
+}
+inline std::string* KinematicJoint::mutable_parent() {
+  std::string* _s = _internal_mutable_parent();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicJoint.parent)
+  return _s;
+}
+inline const std::string& KinematicJoint::_internal_parent() const {
+  return parent_.Get();
+}
+inline void KinematicJoint::_internal_set_parent(const std::string& value) {
+  
+  parent_.Set(value, GetArenaForAllocation());
+}
+inline std::string* KinematicJoint::_internal_mutable_parent() {
+  
+  return parent_.Mutable(GetArenaForAllocation());
+}
+inline std::string* KinematicJoint::release_parent() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicJoint.parent)
+  return parent_.Release();
+}
+inline void KinematicJoint::set_allocated_parent(std::string* parent) {
+  if (parent != nullptr) {
+    
+  } else {
+    
+  }
+  parent_.SetAllocated(parent, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (parent_.IsDefault()) {
+    parent_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicJoint.parent)
+}
+
+// .viam.common.v1.JointType type = 3 [json_name = "type"];
+inline void KinematicJoint::clear_type() {
+  type_ = 0;
+}
+inline ::viam::common::v1::JointType KinematicJoint::_internal_type() const {
+  return static_cast< ::viam::common::v1::JointType >(type_);
+}
+inline ::viam::common::v1::JointType KinematicJoint::type() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicJoint.type)
+  return _internal_type();
+}
+inline void KinematicJoint::_internal_set_type(::viam::common::v1::JointType value) {
+  
+  type_ = value;
+}
+inline void KinematicJoint::set_type(::viam::common::v1::JointType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicJoint.type)
+}
+
+// .viam.common.v1.Vector3 axis = 4 [json_name = "axis"];
+inline bool KinematicJoint::_internal_has_axis() const {
+  return this != internal_default_instance() && axis_ != nullptr;
+}
+inline bool KinematicJoint::has_axis() const {
+  return _internal_has_axis();
+}
+inline void KinematicJoint::clear_axis() {
+  if (GetArenaForAllocation() == nullptr && axis_ != nullptr) {
+    delete axis_;
+  }
+  axis_ = nullptr;
+}
+inline const ::viam::common::v1::Vector3& KinematicJoint::_internal_axis() const {
+  const ::viam::common::v1::Vector3* p = axis_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Vector3&>(
+      ::viam::common::v1::_Vector3_default_instance_);
+}
+inline const ::viam::common::v1::Vector3& KinematicJoint::axis() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicJoint.axis)
+  return _internal_axis();
+}
+inline void KinematicJoint::unsafe_arena_set_allocated_axis(
+    ::viam::common::v1::Vector3* axis) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(axis_);
+  }
+  axis_ = axis;
+  if (axis) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.KinematicJoint.axis)
+}
+inline ::viam::common::v1::Vector3* KinematicJoint::release_axis() {
+  
+  ::viam::common::v1::Vector3* temp = axis_;
+  axis_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Vector3* KinematicJoint::unsafe_arena_release_axis() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicJoint.axis)
+  
+  ::viam::common::v1::Vector3* temp = axis_;
+  axis_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Vector3* KinematicJoint::_internal_mutable_axis() {
+  
+  if (axis_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Vector3>(GetArenaForAllocation());
+    axis_ = p;
+  }
+  return axis_;
+}
+inline ::viam::common::v1::Vector3* KinematicJoint::mutable_axis() {
+  ::viam::common::v1::Vector3* _msg = _internal_mutable_axis();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicJoint.axis)
+  return _msg;
+}
+inline void KinematicJoint::set_allocated_axis(::viam::common::v1::Vector3* axis) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete axis_;
+  }
+  if (axis) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(axis);
+    if (message_arena != submessage_arena) {
+      axis = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, axis, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  axis_ = axis;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicJoint.axis)
+}
+
+// .viam.common.v1.JointLimits limits = 5 [json_name = "limits"];
+inline bool KinematicJoint::_internal_has_limits() const {
+  return this != internal_default_instance() && limits_ != nullptr;
+}
+inline bool KinematicJoint::has_limits() const {
+  return _internal_has_limits();
+}
+inline void KinematicJoint::clear_limits() {
+  if (GetArenaForAllocation() == nullptr && limits_ != nullptr) {
+    delete limits_;
+  }
+  limits_ = nullptr;
+}
+inline const ::viam::common::v1::JointLimits& KinematicJoint::_internal_limits() const {
+  const ::viam::common::v1::JointLimits* p = limits_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::JointLimits&>(
+      ::viam::common::v1::_JointLimits_default_instance_);
+}
+inline const ::viam::common::v1::JointLimits& KinematicJoint::limits() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicJoint.limits)
+  return _internal_limits();
+}
+inline void KinematicJoint::unsafe_arena_set_allocated_limits(
+    ::viam::common::v1::JointLimits* limits) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(limits_);
+  }
+  limits_ = limits;
+  if (limits) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.KinematicJoint.limits)
+}
+inline ::viam::common::v1::JointLimits* KinematicJoint::release_limits() {
+  
+  ::viam::common::v1::JointLimits* temp = limits_;
+  limits_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::JointLimits* KinematicJoint::unsafe_arena_release_limits() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicJoint.limits)
+  
+  ::viam::common::v1::JointLimits* temp = limits_;
+  limits_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::JointLimits* KinematicJoint::_internal_mutable_limits() {
+  
+  if (limits_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::JointLimits>(GetArenaForAllocation());
+    limits_ = p;
+  }
+  return limits_;
+}
+inline ::viam::common::v1::JointLimits* KinematicJoint::mutable_limits() {
+  ::viam::common::v1::JointLimits* _msg = _internal_mutable_limits();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicJoint.limits)
+  return _msg;
+}
+inline void KinematicJoint::set_allocated_limits(::viam::common::v1::JointLimits* limits) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete limits_;
+  }
+  if (limits) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(limits);
+    if (message_arena != submessage_arena) {
+      limits = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, limits, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  limits_ = limits;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicJoint.limits)
+}
+
+// .viam.common.v1.MimicJoint mimic = 6 [json_name = "mimic"];
+inline bool KinematicJoint::_internal_has_mimic() const {
+  return this != internal_default_instance() && mimic_ != nullptr;
+}
+inline bool KinematicJoint::has_mimic() const {
+  return _internal_has_mimic();
+}
+inline void KinematicJoint::clear_mimic() {
+  if (GetArenaForAllocation() == nullptr && mimic_ != nullptr) {
+    delete mimic_;
+  }
+  mimic_ = nullptr;
+}
+inline const ::viam::common::v1::MimicJoint& KinematicJoint::_internal_mimic() const {
+  const ::viam::common::v1::MimicJoint* p = mimic_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::MimicJoint&>(
+      ::viam::common::v1::_MimicJoint_default_instance_);
+}
+inline const ::viam::common::v1::MimicJoint& KinematicJoint::mimic() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicJoint.mimic)
+  return _internal_mimic();
+}
+inline void KinematicJoint::unsafe_arena_set_allocated_mimic(
+    ::viam::common::v1::MimicJoint* mimic) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(mimic_);
+  }
+  mimic_ = mimic;
+  if (mimic) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.KinematicJoint.mimic)
+}
+inline ::viam::common::v1::MimicJoint* KinematicJoint::release_mimic() {
+  
+  ::viam::common::v1::MimicJoint* temp = mimic_;
+  mimic_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::MimicJoint* KinematicJoint::unsafe_arena_release_mimic() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicJoint.mimic)
+  
+  ::viam::common::v1::MimicJoint* temp = mimic_;
+  mimic_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::MimicJoint* KinematicJoint::_internal_mutable_mimic() {
+  
+  if (mimic_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::MimicJoint>(GetArenaForAllocation());
+    mimic_ = p;
+  }
+  return mimic_;
+}
+inline ::viam::common::v1::MimicJoint* KinematicJoint::mutable_mimic() {
+  ::viam::common::v1::MimicJoint* _msg = _internal_mutable_mimic();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicJoint.mimic)
+  return _msg;
+}
+inline void KinematicJoint::set_allocated_mimic(::viam::common::v1::MimicJoint* mimic) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete mimic_;
+  }
+  if (mimic) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(mimic);
+    if (message_arena != submessage_arena) {
+      mimic = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, mimic, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  mimic_ = mimic;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicJoint.mimic)
+}
+
+// .viam.common.v1.Geometry geometry = 7 [json_name = "geometry"];
+inline bool KinematicJoint::_internal_has_geometry() const {
+  return this != internal_default_instance() && geometry_ != nullptr;
+}
+inline bool KinematicJoint::has_geometry() const {
+  return _internal_has_geometry();
+}
+inline void KinematicJoint::clear_geometry() {
+  if (GetArenaForAllocation() == nullptr && geometry_ != nullptr) {
+    delete geometry_;
+  }
+  geometry_ = nullptr;
+}
+inline const ::viam::common::v1::Geometry& KinematicJoint::_internal_geometry() const {
+  const ::viam::common::v1::Geometry* p = geometry_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Geometry&>(
+      ::viam::common::v1::_Geometry_default_instance_);
+}
+inline const ::viam::common::v1::Geometry& KinematicJoint::geometry() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicJoint.geometry)
+  return _internal_geometry();
+}
+inline void KinematicJoint::unsafe_arena_set_allocated_geometry(
+    ::viam::common::v1::Geometry* geometry) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(geometry_);
+  }
+  geometry_ = geometry;
+  if (geometry) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.KinematicJoint.geometry)
+}
+inline ::viam::common::v1::Geometry* KinematicJoint::release_geometry() {
+  
+  ::viam::common::v1::Geometry* temp = geometry_;
+  geometry_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Geometry* KinematicJoint::unsafe_arena_release_geometry() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.KinematicJoint.geometry)
+  
+  ::viam::common::v1::Geometry* temp = geometry_;
+  geometry_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Geometry* KinematicJoint::_internal_mutable_geometry() {
+  
+  if (geometry_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Geometry>(GetArenaForAllocation());
+    geometry_ = p;
+  }
+  return geometry_;
+}
+inline ::viam::common::v1::Geometry* KinematicJoint::mutable_geometry() {
+  ::viam::common::v1::Geometry* _msg = _internal_mutable_geometry();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.KinematicJoint.geometry)
+  return _msg;
+}
+inline void KinematicJoint::set_allocated_geometry(::viam::common::v1::Geometry* geometry) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete geometry_;
+  }
+  if (geometry) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(geometry);
+    if (message_arena != submessage_arena) {
+      geometry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, geometry, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  geometry_ = geometry;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.KinematicJoint.geometry)
+}
+
+// -------------------------------------------------------------------
+
+// JointLimits
+
+// optional double min = 1 [json_name = "min"];
+inline bool JointLimits::_internal_has_min() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool JointLimits::has_min() const {
+  return _internal_has_min();
+}
+inline void JointLimits::clear_min() {
+  min_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline double JointLimits::_internal_min() const {
+  return min_;
+}
+inline double JointLimits::min() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.JointLimits.min)
+  return _internal_min();
+}
+inline void JointLimits::_internal_set_min(double value) {
+  _has_bits_[0] |= 0x00000001u;
+  min_ = value;
+}
+inline void JointLimits::set_min(double value) {
+  _internal_set_min(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.JointLimits.min)
+}
+
+// optional double max = 2 [json_name = "max"];
+inline bool JointLimits::_internal_has_max() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool JointLimits::has_max() const {
+  return _internal_has_max();
+}
+inline void JointLimits::clear_max() {
+  max_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline double JointLimits::_internal_max() const {
+  return max_;
+}
+inline double JointLimits::max() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.JointLimits.max)
+  return _internal_max();
+}
+inline void JointLimits::_internal_set_max(double value) {
+  _has_bits_[0] |= 0x00000002u;
+  max_ = value;
+}
+inline void JointLimits::set_max(double value) {
+  _internal_set_max(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.JointLimits.max)
+}
+
+// optional double max_velocity = 3 [json_name = "maxVelocity"];
+inline bool JointLimits::_internal_has_max_velocity() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool JointLimits::has_max_velocity() const {
+  return _internal_has_max_velocity();
+}
+inline void JointLimits::clear_max_velocity() {
+  max_velocity_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline double JointLimits::_internal_max_velocity() const {
+  return max_velocity_;
+}
+inline double JointLimits::max_velocity() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.JointLimits.max_velocity)
+  return _internal_max_velocity();
+}
+inline void JointLimits::_internal_set_max_velocity(double value) {
+  _has_bits_[0] |= 0x00000004u;
+  max_velocity_ = value;
+}
+inline void JointLimits::set_max_velocity(double value) {
+  _internal_set_max_velocity(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.JointLimits.max_velocity)
+}
+
+// optional double max_acceleration = 4 [json_name = "maxAcceleration"];
+inline bool JointLimits::_internal_has_max_acceleration() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool JointLimits::has_max_acceleration() const {
+  return _internal_has_max_acceleration();
+}
+inline void JointLimits::clear_max_acceleration() {
+  max_acceleration_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline double JointLimits::_internal_max_acceleration() const {
+  return max_acceleration_;
+}
+inline double JointLimits::max_acceleration() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.JointLimits.max_acceleration)
+  return _internal_max_acceleration();
+}
+inline void JointLimits::_internal_set_max_acceleration(double value) {
+  _has_bits_[0] |= 0x00000008u;
+  max_acceleration_ = value;
+}
+inline void JointLimits::set_max_acceleration(double value) {
+  _internal_set_max_acceleration(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.JointLimits.max_acceleration)
+}
+
+// -------------------------------------------------------------------
+
+// MimicJoint
+
+// string joint = 1 [json_name = "joint"];
+inline void MimicJoint::clear_joint() {
+  joint_.ClearToEmpty();
+}
+inline const std::string& MimicJoint::joint() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.MimicJoint.joint)
+  return _internal_joint();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MimicJoint::set_joint(ArgT0&& arg0, ArgT... args) {
+ 
+ joint_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.MimicJoint.joint)
+}
+inline std::string* MimicJoint::mutable_joint() {
+  std::string* _s = _internal_mutable_joint();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.MimicJoint.joint)
+  return _s;
+}
+inline const std::string& MimicJoint::_internal_joint() const {
+  return joint_.Get();
+}
+inline void MimicJoint::_internal_set_joint(const std::string& value) {
+  
+  joint_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MimicJoint::_internal_mutable_joint() {
+  
+  return joint_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MimicJoint::release_joint() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.MimicJoint.joint)
+  return joint_.Release();
+}
+inline void MimicJoint::set_allocated_joint(std::string* joint) {
+  if (joint != nullptr) {
+    
+  } else {
+    
+  }
+  joint_.SetAllocated(joint, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (joint_.IsDefault()) {
+    joint_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.MimicJoint.joint)
+}
+
+// double multiplier = 2 [json_name = "multiplier"];
+inline void MimicJoint::clear_multiplier() {
+  multiplier_ = 0;
+}
+inline double MimicJoint::_internal_multiplier() const {
+  return multiplier_;
+}
+inline double MimicJoint::multiplier() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.MimicJoint.multiplier)
+  return _internal_multiplier();
+}
+inline void MimicJoint::_internal_set_multiplier(double value) {
+  
+  multiplier_ = value;
+}
+inline void MimicJoint::set_multiplier(double value) {
+  _internal_set_multiplier(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.MimicJoint.multiplier)
+}
+
+// double offset = 3 [json_name = "offset"];
+inline void MimicJoint::clear_offset() {
+  offset_ = 0;
+}
+inline double MimicJoint::_internal_offset() const {
+  return offset_;
+}
+inline double MimicJoint::offset() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.MimicJoint.offset)
+  return _internal_offset();
+}
+inline void MimicJoint::_internal_set_offset(double value) {
+  
+  offset_ = value;
+}
+inline void MimicJoint::set_offset(double value) {
+  _internal_set_offset(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.MimicJoint.offset)
+}
+
+// -------------------------------------------------------------------
+
+// KinematicProperties
+
+// optional double operating_freq_hz = 1 [json_name = "operatingFreqHz"];
+inline bool KinematicProperties::_internal_has_operating_freq_hz() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool KinematicProperties::has_operating_freq_hz() const {
+  return _internal_has_operating_freq_hz();
+}
+inline void KinematicProperties::clear_operating_freq_hz() {
+  operating_freq_hz_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline double KinematicProperties::_internal_operating_freq_hz() const {
+  return operating_freq_hz_;
+}
+inline double KinematicProperties::operating_freq_hz() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicProperties.operating_freq_hz)
+  return _internal_operating_freq_hz();
+}
+inline void KinematicProperties::_internal_set_operating_freq_hz(double value) {
+  _has_bits_[0] |= 0x00000001u;
+  operating_freq_hz_ = value;
+}
+inline void KinematicProperties::set_operating_freq_hz(double value) {
+  _internal_set_operating_freq_hz(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicProperties.operating_freq_hz)
+}
+
+// optional double max_linear_tcp_speed_mm_per_sec = 2 [json_name = "maxLinearTcpSpeedMmPerSec"];
+inline bool KinematicProperties::_internal_has_max_linear_tcp_speed_mm_per_sec() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool KinematicProperties::has_max_linear_tcp_speed_mm_per_sec() const {
+  return _internal_has_max_linear_tcp_speed_mm_per_sec();
+}
+inline void KinematicProperties::clear_max_linear_tcp_speed_mm_per_sec() {
+  max_linear_tcp_speed_mm_per_sec_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline double KinematicProperties::_internal_max_linear_tcp_speed_mm_per_sec() const {
+  return max_linear_tcp_speed_mm_per_sec_;
+}
+inline double KinematicProperties::max_linear_tcp_speed_mm_per_sec() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.KinematicProperties.max_linear_tcp_speed_mm_per_sec)
+  return _internal_max_linear_tcp_speed_mm_per_sec();
+}
+inline void KinematicProperties::_internal_set_max_linear_tcp_speed_mm_per_sec(double value) {
+  _has_bits_[0] |= 0x00000002u;
+  max_linear_tcp_speed_mm_per_sec_ = value;
+}
+inline void KinematicProperties::set_max_linear_tcp_speed_mm_per_sec(double value) {
+  _internal_set_max_linear_tcp_speed_mm_per_sec(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.KinematicProperties.max_linear_tcp_speed_mm_per_sec)
 }
 
 // -------------------------------------------------------------------
@@ -11612,6 +16378,28 @@ inline void GetPropertiesResponse::set_num_channels(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -11625,6 +16413,11 @@ template <> struct is_proto_enum< ::viam::common::v1::KinematicsFileFormat> : ::
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::common::v1::KinematicsFileFormat>() {
   return ::viam::common::v1::KinematicsFileFormat_descriptor();
+}
+template <> struct is_proto_enum< ::viam::common::v1::JointType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::common::v1::JointType>() {
+  return ::viam::common::v1::JointType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
