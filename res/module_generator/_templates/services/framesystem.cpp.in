@@ -1,0 +1,55 @@
+
+#include "{{ .ModelSnake }}.hpp"
+
+#include <stdexcept>
+
+namespace {{ .ModuleSnake }} {
+
+
+{{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
+    : FrameSystem(cfg) {
+    // TODO: initialize your resource here.
+    // `deps` provides access to other resources this component depends on.
+    // `cfg` contains the resource configuration from the robot config.
+}
+
+
+// validate is called by the Viam SDK before constructing the resource.
+// Return the names of any resources that must exist before this resource can be built.
+// Throw an exception if cfg contains invalid configuration.
+std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
+    return {};
+}
+
+std::vector<viam::sdk::FrameSystem::frame_system_config> {{ .ModelPascal }}::get_frame_system_config(const std::vector<viam::sdk::WorldState::transform> & additional_transforms)
+{
+    throw std::logic_error("\"get_frame_system_config\" not implemented");
+}
+
+viam::sdk::pose_in_frame {{ .ModelPascal }}::get_pose(
+        const std::string & component_name,
+        const std::string & destination_frame,
+        const std::vector<viam::sdk::WorldState::transform> & supplemental_transforms,
+        const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"get_pose\" not implemented");
+}
+
+viam::sdk::pose_in_frame {{ .ModelPascal }}::transform_pose(
+        const viam::sdk::pose_in_frame & query,
+        const std::string & destination,
+        const std::vector<viam::sdk::WorldState::transform> & additional_transforms)
+{
+    throw std::logic_error("\"transform_pose\" not implemented");
+}
+
+std::vector<unsigned char> {{ .ModelPascal }}::transform_pcd(
+        const std::vector<unsigned char> & pcd,
+        const std::string & source,
+        const std::string & destination)
+{
+    throw std::logic_error("\"transform_pcd\" not implemented");
+}
+
+} // namespace {{ .ModuleSnake }}
+
