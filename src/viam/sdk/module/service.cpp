@@ -61,7 +61,8 @@ std::string get_protocol(int argc, char** argv) {
     return "unix:";
 }
 
-// Fallback for resources built with the name-only ctor; no-op for Resource(const ResourceConfig&).
+// Fallback for modules still using the std::string signature of Resource::Resource.
+// No-op for the const ResourceConfig& constructor
 void set_resource_log_channel(Resource& res, const ResourceConfig& cfg) {
     log_detail::logger_access::logger(res).channel(LogManager::get().module_channel_for(cfg));
 }
