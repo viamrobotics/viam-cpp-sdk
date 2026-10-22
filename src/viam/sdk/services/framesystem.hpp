@@ -122,6 +122,8 @@ class FrameSystem : public Service {
 
    protected:
     explicit FrameSystem(std::string name);
+
+    explicit FrameSystem(const ResourceConfig& cfg);
 };
 
 template <>

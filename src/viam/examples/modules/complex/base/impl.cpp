@@ -35,7 +35,7 @@ std::string find_motor(ResourceConfig cfg, std::string motor_name) {
     throw std::invalid_argument(buffer.str());
 }
 
-MyBase::MyBase(const Dependencies& deps, const ResourceConfig& cfg) : Base(cfg.name()) {
+MyBase::MyBase(const Dependencies& deps, const ResourceConfig& cfg) : Base(cfg) {
     // Downcast `left` and `right` dependencies to motors.
     auto left = find_motor(cfg, "left");
     auto right = find_motor(cfg, "right");

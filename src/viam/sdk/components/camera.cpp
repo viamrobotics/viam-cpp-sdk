@@ -146,6 +146,8 @@ std::string Camera::normalize_mime_type(const std::string& str) {
 
 Camera::Camera(std::string name) : Component(std::move(name)) {}
 
+Camera::Camera(const ResourceConfig& cfg) : Component(cfg) {}
+
 bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs) {
     return lhs.mime_type == rhs.mime_type && lhs.pc == rhs.pc;
 }

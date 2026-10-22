@@ -52,6 +52,8 @@ class Discovery : public Service {
 
    protected:
     explicit Discovery(std::string name);
+
+    explicit Discovery(const ResourceConfig& cfg);
 };
 
 template <>

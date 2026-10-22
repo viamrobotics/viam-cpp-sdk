@@ -17,5 +17,7 @@ API API::traits<AudioIn>::api() {
 
 AudioIn::AudioIn(std::string name) : Component(std::move(name)) {}
 
+AudioIn::AudioIn(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

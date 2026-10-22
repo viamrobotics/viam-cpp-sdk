@@ -44,6 +44,8 @@ class Button : public Component {
 
    protected:
     explicit Button(std::string name);
+
+    explicit Button(const ResourceConfig& cfg);
 };
 
 template <>

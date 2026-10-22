@@ -324,6 +324,8 @@ class Arm : public Component, public Stoppable {
 
    protected:
     explicit Arm(std::string name);
+
+    explicit Arm(const ResourceConfig& cfg);
 };
 
 template <>

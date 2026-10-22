@@ -65,19 +65,21 @@ ResourceConfig::ResourceConfig(std::string type,
 
 ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)) {}
 
-Name ResourceConfig::resource_name() {
-    this->fix_api();
+Name ResourceConfig::resource_name() const {
+    // Normalize a copy: the type-only ctor leaves api_ unfixed and api() must keep reporting that.
+    ResourceConfig fixed(*this);
+    fixed.fix_api();
     std::vector<std::string> remotes;
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
-    boost::split(remotes, this->name_, boost::is_any_of(":"));
+    boost::split(remotes, fixed.name_, boost::is_any_of(":"));
     if (remotes.size() > 1) {
         const std::string str_name(remotes.back());
         remotes.pop_back();
         const std::string remote =
             std::accumulate(remotes.begin(), remotes.end(), std::string(":"));
-        return Name(this->api_, remote, str_name);
+        return Name(fixed.api_, remote, str_name);
     }
-    return Name(this->api_, "", remotes.at(0));
+    return Name(fixed.api_, "", remotes.at(0));
 }
 
 const API& ResourceConfig::api() const {

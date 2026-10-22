@@ -28,6 +28,8 @@ class Gizmo : public Component {
 
    protected:
     explicit Gizmo(std::string name);
+
+    explicit Gizmo(const ResourceConfig& cfg);
 };
 
 namespace viam {

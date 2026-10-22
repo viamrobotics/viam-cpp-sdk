@@ -60,6 +60,12 @@ std::string get_protocol(int argc, char** argv) {
     }
     return "unix:";
 }
+
+// Fallback for modules still using the std::string signature of Resource::Resource.
+// No-op for the const ResourceConfig& constructor
+void set_resource_log_channel(Resource& res, const ResourceConfig& cfg) {
+    log_detail::logger_access::logger(res).channel(LogManager::get().module_channel_for(cfg));
+}
 }  // namespace
 
 struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
@@ -84,6 +90,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         if (reg) {
             try {
                 res = reg->construct_resource(deps, cfg);
+                set_resource_log_channel(*res, cfg);
                 res->set_log_level(cfg.get_log_level());
             } catch (const std::exception& exc) {
                 return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
@@ -144,7 +151,9 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 
         try {
             manager->replace_one(cfg.resource_name(), [&reg, &deps, &cfg]() {
-                return reg->construct_resource(deps, cfg);
+                auto res = reg->construct_resource(deps, cfg);
+                set_resource_log_channel(*res, cfg);
+                return res;
             });
         } catch (const std::exception& exc) {
             return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
@@ -159,7 +168,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         impl::ServerSpanGuard span_guard{ctx, "ValidateConfig"};
 
         const viam::app::v1::ComponentConfig& proto = request->config();
-        ResourceConfig cfg = from_proto(proto);
+        const ResourceConfig cfg = from_proto(proto);
 
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::get().lookup_model(cfg.api(), cfg.model());

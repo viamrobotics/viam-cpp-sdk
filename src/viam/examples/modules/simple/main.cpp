@@ -18,7 +18,7 @@ using namespace viam::sdk;
 // "multiplier" value which is then returned as the only sensor reading.
 class MySensor : public Sensor {
    public:
-    MySensor(const ResourceConfig& cfg) : Sensor(cfg.name()) {
+    MySensor(const ResourceConfig& cfg) : Sensor(cfg) {
         auto itr = cfg.attributes().find("multiplier");
         if (itr != cfg.attributes().end()) {
             const double* multiplier = itr->second.get<double>();

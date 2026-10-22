@@ -164,6 +164,8 @@ class Navigation : public Service {
 
    protected:
     explicit Navigation(std::string name);
+
+    explicit Navigation(const ResourceConfig& cfg);
 };
 
 template <>

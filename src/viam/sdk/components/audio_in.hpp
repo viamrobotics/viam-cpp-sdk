@@ -104,6 +104,8 @@ class AudioIn : public Component {
 
    protected:
     explicit AudioIn(std::string name);
+
+    explicit AudioIn(const ResourceConfig& cfg);
 };
 
 template <>

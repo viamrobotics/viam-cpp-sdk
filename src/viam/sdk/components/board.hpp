@@ -254,6 +254,8 @@ class Board : public Component {
 
    protected:
     explicit Board(std::string name);
+
+    explicit Board(const ResourceConfig& cfg);
 };
 
 template <>

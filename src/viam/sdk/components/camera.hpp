@@ -222,6 +222,8 @@ class Camera : public Component {
 
    protected:
     explicit Camera(std::string name);
+
+    explicit Camera(const ResourceConfig& cfg);
 };
 
 template <>

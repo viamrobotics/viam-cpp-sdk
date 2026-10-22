@@ -62,7 +62,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable
    public:
     explicit MLModelServiceTFLite(vsdk::Dependencies dependencies,
                                   vsdk::ResourceConfig configuration)
-        : MLModelService(configuration.name()),
+        : MLModelService(configuration),
           state_(reconfigure_(std::move(dependencies), std::move(configuration))) {}
 
     ~MLModelServiceTFLite() final {

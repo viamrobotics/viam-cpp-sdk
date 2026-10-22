@@ -16,6 +16,8 @@ Name FrameSystem::public_name() {
 
 FrameSystem::FrameSystem(std::string name) : Service(std::move(name)) {}
 
+FrameSystem::FrameSystem(const ResourceConfig& cfg) : Service(cfg) {}
+
 API FrameSystem::api() const {
     return API::get<FrameSystem>();
 }
