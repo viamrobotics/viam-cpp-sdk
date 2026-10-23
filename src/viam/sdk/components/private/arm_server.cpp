@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/components/private/arm_trajectory_validation.hpp>
@@ -286,7 +287,25 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     ::viam::common::v1::GetKinematicsResponse* response) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::GetKinematics", this, context, request)([&](auto& helper, auto& arm) {
-        *response = to_proto(arm->get_kinematics(helper.getExtra()));
+        const ProtoStruct extra = helper.getExtra();
+        // The deprecated raw-bytes fields are served best-effort for older clients.
+        try {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            *response = to_proto(arm->get_kinematics(extra));
+#pragma GCC diagnostic pop
+        } catch (const Exception& xcp) {
+            if (xcp.condition() != ErrorCondition::k_not_supported) {
+                throw;
+            }
+        }
+        const kinematics_options options{request->include_collision_meshes(),
+                                         request->include_visual_meshes()};
+        KinematicModel model = arm->get_kinematic_model(options, extra);
+        if (model.name.empty()) {
+            model.name = arm->name();
+        }
+        *response->mutable_model() = to_proto(model);
     });
 }
 

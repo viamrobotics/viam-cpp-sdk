@@ -8,8 +8,13 @@ namespace viam {
 namespace sdktests {
 namespace arm {
 
-sdk::KinematicsData fake_kinematics();
+sdk::KinematicModel fake_kinematic_model();
 std::map<std::string, sdk::mesh> fake_3d_models();
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+sdk::KinematicsData fake_kinematics();
+#pragma GCC diagnostic pop
 
 class MockArm : public sdk::Arm {
    public:
@@ -35,7 +40,12 @@ class MockArm : public sdk::Arm {
     bool is_moving() override;
     sdk::ProtoStruct get_status() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::KinematicModel get_kinematic_model(const sdk::kinematics_options& options,
+                                            const sdk::ProtoStruct&) override;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     sdk::KinematicsData get_kinematics(const sdk::ProtoStruct&) override;
+#pragma GCC diagnostic pop
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct&) override;
     std::map<std::string, sdk::mesh> get_3d_models(const sdk::ProtoStruct&) override;
     sdk::Arm::properties get_properties(const sdk::ProtoStruct&) override;
@@ -47,6 +57,7 @@ class MockArm : public sdk::Arm {
     std::vector<double> joint_positions;
     std::vector<std::vector<double>> move_thru_positions;
     sdk::Arm::MoveOptions move_opts;
+    sdk::kinematics_options peek_kinematics_options;
     bool peek_stop_called;
     sdk::ProtoStruct peek_command;
     std::vector<std::string> viam_client_metadata;
