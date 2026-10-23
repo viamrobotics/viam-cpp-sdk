@@ -48,10 +48,6 @@ Vector3 parse_triple(const std::string& s) {
 using JointRow = ModelTable::JointRow;
 using JointType = ModelTable::JointType;
 
-// The URDF pipeline consumes the deprecated raw-bytes kinematics format.
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
     namespace pt = boost::property_tree;
     pt::ptree tree;
@@ -209,8 +205,6 @@ ModelTable ModelTable::from(const KinematicsDataURDF& urdf) {
     }
     return ModelTable(std::move(rows));
 }
-
-#pragma GCC diagnostic pop
 
 xt::xarray<double> ModelTable::to_tensor() const {
     if (rows_.empty()) {

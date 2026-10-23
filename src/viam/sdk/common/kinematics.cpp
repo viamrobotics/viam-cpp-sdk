@@ -353,8 +353,8 @@ KinematicModel from_proto_impl<common::v1::KinematicModel>::operator()(
     return result;
 }
 
-// The raw-bytes response fields and the SDK types that mirror them are deprecated, but remain
-// the format older viam-server and SDK versions exchange.
+// The raw-bytes response fields and the KinematicsData variant are deprecated, but remain the
+// format older viam-server and SDK versions exchange.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
@@ -409,14 +409,14 @@ KinematicsData from_proto_impl<common::v1::GetKinematicsResponse>::operator()(
     }
 }
 
+#pragma GCC diagnostic pop
+
 }  // namespace proto_convert_details
 
 bool operator==(const KinematicsDataURDF& lhs, const KinematicsDataURDF& rhs) {
     return std::tie(lhs.bytes, lhs.meshes_by_urdf_filepath) ==
            std::tie(rhs.bytes, rhs.meshes_by_urdf_filepath);
 }
-
-#pragma GCC diagnostic pop
 
 }  // namespace sdk
 }  // namespace viam

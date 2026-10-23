@@ -187,20 +187,16 @@ struct EqCompare {
 };
 
 /// @brief Kinematics data with unspecified format
-struct [[deprecated("raw-bytes kinematics are deprecated, use KinematicModel")]]
-KinematicsDataUnspecified : raw_bytes<KinematicsDataUnspecified>,
-                            EqCompare<KinematicsDataUnspecified> {};
+struct KinematicsDataUnspecified : raw_bytes<KinematicsDataUnspecified>,
+                                   EqCompare<KinematicsDataUnspecified> {};
 
 /// @brief Kinematics data in Viam's Spatial Vector Algebra (SVA) format
-struct [[deprecated("raw-bytes kinematics are deprecated, use KinematicModel")]] KinematicsDataSVA
-    : raw_bytes<KinematicsDataSVA>,
-      EqCompare<KinematicsDataSVA> {
+struct KinematicsDataSVA : raw_bytes<KinematicsDataSVA>, EqCompare<KinematicsDataSVA> {
     using raw_bytes<KinematicsDataSVA>::raw_bytes;
 };
 
 /// @brief Kinematics data in URDF format with optional meshes by URDF filepath
-struct [[deprecated("raw-bytes kinematics are deprecated, use KinematicModel")]] KinematicsDataURDF
-    : raw_bytes<KinematicsDataURDF> {
+struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF> {
     using raw_bytes<KinematicsDataURDF>::raw_bytes;
     std::map<std::string, mesh> meshes_by_urdf_filepath;
 
@@ -209,6 +205,8 @@ struct [[deprecated("raw-bytes kinematics are deprecated, use KinematicModel")]]
 
 /// @brief The kinematics of a component as a raw file.
 /// @returns The data in Viam's Spatial Vector Algebra (SVA) format, or URDF.
+/// @deprecated Raw-bytes kinematics are deprecated; use `KinematicModel`, served by
+/// `get_kinematic_model`.
 using KinematicsData [[deprecated("use KinematicModel, served by get_kinematic_model")]] =
     boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
 
@@ -274,8 +272,8 @@ struct from_proto_impl<common::v1::KinematicModel> {
     KinematicModel operator()(const common::v1::KinematicModel*) const;
 };
 
-// The converters for the deprecated raw-bytes data stay available for callers that still speak
-// that format; naming the type here is the only use that is not itself deprecated.
+// The converters for the deprecated raw-bytes variant stay available for callers that still
+// speak that format.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 

@@ -13,10 +13,6 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-// The URDF pipeline consumes the deprecated raw-bytes kinematics format.
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 // @brief Per-joint parse result, pre-validation.
 struct ParsedJoint {
     std::string name;
@@ -38,8 +34,6 @@ std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints)
 // @brief Convert one validated ParsedJoint to a ModelTable::JointRow.
 // @throws viam::sdk::Exception on unsupported type or zero non-fixed axis.
 ModelTable::JointRow to_row(const ParsedJoint& parsed);
-
-#pragma GCC diagnostic pop
 
 }  // namespace impl
 }  // namespace sdk

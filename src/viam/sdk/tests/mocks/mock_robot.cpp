@@ -241,10 +241,6 @@ KinematicModel fake_frame_model() {
     return model;
 }
 
-// The deprecated raw-bytes kinematics field is still what older viam-servers publish.
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 std::vector<FrameSystem::frame_system_config> mock_config_response() {
     FrameSystem::frame_system_config config;
     WorldState::transform t;
@@ -268,6 +264,10 @@ std::vector<FrameSystem::frame_system_config> mock_config_response() {
     response.push_back(config1);
     return response;
 }
+
+// The proto kinematics field is deprecated but still what older viam-servers publish.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 std::vector<FrameSystemConfig> mock_proto_config_response() {
     FrameSystemConfig config;

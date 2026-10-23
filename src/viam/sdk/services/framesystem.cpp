@@ -26,10 +26,6 @@ API API::traits<FrameSystem>::api() {
     return {kRDKInternal, kService, "frame_system"};
 }
 
-// The raw-bytes kinematics field is deprecated but still what older viam-servers publish.
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 bool operator==(const FrameSystem::frame_system_config& lhs,
                 const FrameSystem::frame_system_config& rhs) {
     return lhs.frame == rhs.frame && lhs.model == rhs.model &&
@@ -43,9 +39,13 @@ FrameSystem::frame_system_config from_proto_impl<robot::v1::FrameSystemConfig>::
     const robot::v1::FrameSystemConfig* proto) const {
     FrameSystem::frame_system_config fsconfig;
     fsconfig.frame = from_proto(proto->frame());
+    // The proto field is deprecated but still what older viam-servers publish.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     if (proto->has_kinematics()) {
         fsconfig.kinematics = from_proto(proto->kinematics());
     }
+#pragma GCC diagnostic pop
     if (proto->has_model()) {
         fsconfig.model = from_proto(proto->model());
     }
@@ -53,8 +53,6 @@ FrameSystem::frame_system_config from_proto_impl<robot::v1::FrameSystemConfig>::
 }
 
 }  // namespace proto_convert_details
-
-#pragma GCC diagnostic pop
 
 }  // namespace sdk
 }  // namespace viam
