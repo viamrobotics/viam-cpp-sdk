@@ -54,8 +54,11 @@ class Arm : public Component, public Stoppable {
         ::viam::sdk::KinematicsDataSVA;
     using KinematicsDataURDF [[deprecated("Use ::viam::sdk::KinematicsDataURDF instead")]] =
         ::viam::sdk::KinematicsDataURDF;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     using KinematicsData [[deprecated("Use ::viam::sdk::KinematicsData instead")]] =
         ::viam::sdk::KinematicsData;
+#pragma GCC diagnostic pop
 
     /// @brief A movement limit: either a single scalar applied uniformly, or per-joint values.
     using MoveLimit = boost::variant<double, std::vector<double>>;

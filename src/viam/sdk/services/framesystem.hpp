@@ -48,7 +48,8 @@ class FrameSystem : public Service {
         WorldState::transform frame;
 
         /// @brief The resource's kinematics as a raw file, when served by an older viam-server.
-        [[deprecated("use model")]] ProtoStruct kinematics;
+        /// @deprecated Use `model`.
+        ProtoStruct kinematics;
 
         /// @brief The resource's kinematic model, absent for resources without kinematics.
         boost::optional<KinematicModel> model;
