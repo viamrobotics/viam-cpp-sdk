@@ -7,7 +7,7 @@ namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Mlmodel(cfg.name()) {
+    : MLModelService(cfg) {
     // TODO: initialize your resource here.
     // `deps` provides access to other resources this component depends on.
     // `cfg` contains the resource configuration from the robot config.
@@ -19,6 +19,23 @@ namespace {{ .ModuleSnake }} {
 // Throw an exception if cfg contains invalid configuration.
 std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
     return {};
+}
+
+std::shared_ptr<viam::sdk::MLModelService::named_tensor_views> {{ .ModelPascal }}::infer(
+        const viam::sdk::MLModelService::named_tensor_views & inputs,
+        const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"infer\" not implemented");
+}
+
+struct viam::sdk::MLModelService::metadata {{ .ModelPascal }}::metadata(const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"metadata\" not implemented");
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
 }
 
 } // namespace {{ .ModuleSnake }}
