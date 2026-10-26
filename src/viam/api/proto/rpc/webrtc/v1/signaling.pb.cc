@@ -54,7 +54,8 @@ struct CallRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CallRequestDefaultTypeInternal _CallRequest_default_instance_;
 PROTOBUF_CONSTEXPR CallResponseInitStage::CallResponseInitStage(
     ::_pbi::ConstantInitialized)
-  : sdp_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  : sdp_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , must_auth_against_answerer_(false){}
 struct CallResponseInitStageDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CallResponseInitStageDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -157,7 +158,8 @@ PROTOBUF_CONSTEXPR AnswerRequestInitStage::AnswerRequestInitStage(
   , sdp_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , caller_auth_entity_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , optional_config_(nullptr)
-  , deadline_(nullptr){}
+  , deadline_(nullptr)
+  , must_auth_caller_(false){}
 struct AnswerRequestInitStageDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AnswerRequestInitStageDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -228,7 +230,8 @@ struct AnswerRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnswerRequestDefaultTypeInternal _AnswerRequest_default_instance_;
 PROTOBUF_CONSTEXPR AnswerResponseInitStage::AnswerResponseInitStage(
     ::_pbi::ConstantInitialized)
-  : sdp_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  : sdp_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , can_auth_callers_(false){}
 struct AnswerResponseInitStageDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AnswerResponseInitStageDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -391,6 +394,7 @@ const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offset
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::CallResponseInitStage, sdp_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::CallResponseInitStage, must_auth_against_answerer_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::CallResponseUpdateStage, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -463,9 +467,11 @@ const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offset
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, deadline_),
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, caller_auth_entity_),
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, caller_auth_metadata_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, must_auth_caller_),
   ~0u,
   ~0u,
   0,
+  ~0u,
   ~0u,
   ~0u,
   ~0u,  // no _has_bits_
@@ -514,6 +520,7 @@ const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offset
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerResponseInitStage, sdp_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerResponseInitStage, can_auth_callers_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerResponseUpdateStage, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -590,29 +597,29 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, 10, -1, sizeof(::proto::rpc::webrtc::v1::ICECandidate)},
   { 14, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallRequest)},
   { 22, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallResponseInitStage)},
-  { 29, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallResponseUpdateStage)},
-  { 36, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallResponse)},
-  { 46, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallUpdateRequest)},
-  { 57, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallUpdateResponse)},
-  { 63, -1, -1, sizeof(::proto::rpc::webrtc::v1::ICEServer)},
-  { 72, -1, -1, sizeof(::proto::rpc::webrtc::v1::WebRTCConfig)},
-  { 80, 88, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse)},
-  { 90, 101, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestInitStage)},
-  { 106, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestUpdateStage)},
-  { 113, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestDoneStage)},
-  { 119, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestErrorStage)},
-  { 126, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage)},
-  { 132, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequest)},
-  { 145, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseInitStage)},
-  { 152, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseUpdateStage)},
-  { 159, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseDoneStage)},
-  { 165, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseErrorStage)},
-  { 172, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponse)},
-  { 184, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest)},
-  { 190, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse)},
-  { 197, -1, -1, sizeof(::proto::rpc::webrtc::v1::ConnectionCandidate)},
-  { 205, -1, -1, sizeof(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest)},
-  { 217, -1, -1, sizeof(::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse)},
+  { 30, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallResponseUpdateStage)},
+  { 37, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallResponse)},
+  { 47, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallUpdateRequest)},
+  { 58, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallUpdateResponse)},
+  { 64, -1, -1, sizeof(::proto::rpc::webrtc::v1::ICEServer)},
+  { 73, -1, -1, sizeof(::proto::rpc::webrtc::v1::WebRTCConfig)},
+  { 81, 89, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestInitStage_CallerAuthMetadataEntry_DoNotUse)},
+  { 91, 103, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestInitStage)},
+  { 109, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestUpdateStage)},
+  { 116, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestDoneStage)},
+  { 122, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestErrorStage)},
+  { 129, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage)},
+  { 135, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequest)},
+  { 148, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseInitStage)},
+  { 156, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseUpdateStage)},
+  { 163, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseDoneStage)},
+  { 169, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseErrorStage)},
+  { 176, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponse)},
+  { 188, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest)},
+  { 194, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse)},
+  { 201, -1, -1, sizeof(::proto::rpc::webrtc::v1::ConnectionCandidate)},
+  { 209, -1, -1, sizeof(::proto::rpc::webrtc::v1::ReportConnectionMetadataRequest)},
+  { 221, -1, -1, sizeof(::proto::rpc::webrtc::v1::ReportConnectionMetadataResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -656,117 +663,120 @@ const char descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2epro
   "\n\010_sdp_midB\022\n\020_sdpm_line_indexB\024\n\022_usern"
   "ame_fragment\"H\n\013CallRequest\022\020\n\003sdp\030\001 \001(\t"
   "R\003sdp\022\'\n\017disable_trickle\030\002 \001(\010R\016disableT"
-  "rickle\")\n\025CallResponseInitStage\022\020\n\003sdp\030\001"
-  " \001(\tR\003sdp\"Z\n\027CallResponseUpdateStage\022\?\n\t"
-  "candidate\030\001 \001(\0132!.proto.rpc.webrtc.v1.IC"
-  "ECandidateR\tcandidate\"\265\001\n\014CallResponse\022\022"
-  "\n\004uuid\030\001 \001(\tR\004uuid\022@\n\004init\030\002 \001(\0132*.proto"
-  ".rpc.webrtc.v1.CallResponseInitStageH\000R\004"
-  "init\022F\n\006update\030\003 \001(\0132,.proto.rpc.webrtc."
-  "v1.CallResponseUpdateStageH\000R\006updateB\007\n\005"
-  "stage\"\266\001\n\021CallUpdateRequest\022\022\n\004uuid\030\001 \001("
-  "\tR\004uuid\022A\n\tcandidate\030\002 \001(\0132!.proto.rpc.w"
-  "ebrtc.v1.ICECandidateH\000R\tcandidate\022\024\n\004do"
-  "ne\030\003 \001(\010H\000R\004done\022*\n\005error\030\004 \001(\0132\022.google"
-  ".rpc.StatusH\000R\005errorB\010\n\006update\"\024\n\022CallUp"
-  "dateResponse\"[\n\tICEServer\022\022\n\004urls\030\001 \003(\tR"
-  "\004urls\022\032\n\010username\030\002 \001(\tR\010username\022\036\n\ncre"
-  "dential\030\003 \001(\tR\ncredential\"\215\001\n\014WebRTCConf"
-  "ig\022T\n\026additional_ice_servers\030\001 \003(\0132\036.pro"
-  "to.rpc.webrtc.v1.ICEServerR\024additionalIc"
-  "eServers\022\'\n\017disable_trickle\030\002 \001(\010R\016disab"
-  "leTrickle\"\254\003\n\026AnswerRequestInitStage\022\020\n\003"
-  "sdp\030\001 \001(\tR\003sdp\022J\n\017optional_config\030\002 \001(\0132"
-  "!.proto.rpc.webrtc.v1.WebRTCConfigR\016opti"
-  "onalConfig\022;\n\010deadline\030\003 \001(\0132\032.google.pr"
-  "otobuf.TimestampH\000R\010deadline\210\001\001\022,\n\022calle"
-  "r_auth_entity\030\004 \001(\tR\020callerAuthEntity\022u\n"
-  "\024caller_auth_metadata\030\005 \003(\0132C.proto.rpc."
-  "webrtc.v1.AnswerRequestInitStage.CallerA"
-  "uthMetadataEntryR\022callerAuthMetadata\032E\n\027"
-  "CallerAuthMetadataEntry\022\020\n\003key\030\001 \001(\tR\003ke"
-  "y\022\024\n\005value\030\002 \001(\tR\005value:\0028\001B\013\n\t_deadline"
-  "\"[\n\030AnswerRequestUpdateStage\022\?\n\tcandidat"
-  "e\030\001 \001(\0132!.proto.rpc.webrtc.v1.ICECandida"
-  "teR\tcandidate\"\030\n\026AnswerRequestDoneStage\""
-  "E\n\027AnswerRequestErrorStage\022*\n\006status\030\001 \001"
-  "(\0132\022.google.rpc.StatusR\006status\"\035\n\033Answer"
-  "RequestHeartbeatStage\"\223\003\n\rAnswerRequest\022"
-  "\022\n\004uuid\030\001 \001(\tR\004uuid\022A\n\004init\030\002 \001(\0132+.prot"
-  "o.rpc.webrtc.v1.AnswerRequestInitStageH\000"
-  "R\004init\022G\n\006update\030\003 \001(\0132-.proto.rpc.webrt"
-  "c.v1.AnswerRequestUpdateStageH\000R\006update\022"
-  "A\n\004done\030\004 \001(\0132+.proto.rpc.webrtc.v1.Answ"
-  "erRequestDoneStageH\000R\004done\022D\n\005error\030\005 \001("
-  "\0132,.proto.rpc.webrtc.v1.AnswerRequestErr"
-  "orStageH\000R\005error\022P\n\theartbeat\030\006 \001(\01320.pr"
-  "oto.rpc.webrtc.v1.AnswerRequestHeartbeat"
-  "StageH\000R\theartbeatB\007\n\005stage\"+\n\027AnswerRes"
-  "ponseInitStage\022\020\n\003sdp\030\001 \001(\tR\003sdp\"\\\n\031Answ"
-  "erResponseUpdateStage\022\?\n\tcandidate\030\001 \001(\013"
-  "2!.proto.rpc.webrtc.v1.ICECandidateR\tcan"
-  "didate\"\031\n\027AnswerResponseDoneStage\"F\n\030Ans"
-  "werResponseErrorStage\022*\n\006status\030\001 \001(\0132\022."
-  "google.rpc.StatusR\006status\"\306\002\n\016AnswerResp"
-  "onse\022\022\n\004uuid\030\001 \001(\tR\004uuid\022B\n\004init\030\002 \001(\0132,"
-  ".proto.rpc.webrtc.v1.AnswerResponseInitS"
-  "tageH\000R\004init\022H\n\006update\030\003 \001(\0132..proto.rpc"
-  ".webrtc.v1.AnswerResponseUpdateStageH\000R\006"
-  "update\022B\n\004done\030\004 \001(\0132,.proto.rpc.webrtc."
-  "v1.AnswerResponseDoneStageH\000R\004done\022E\n\005er"
-  "ror\030\005 \001(\0132-.proto.rpc.webrtc.v1.AnswerRe"
-  "sponseErrorStageH\000R\005errorB\007\n\005stage\"\035\n\033Op"
-  "tionalWebRTCConfigRequest\"Y\n\034OptionalWeb"
-  "RTCConfigResponse\0229\n\006config\030\001 \001(\0132!.prot"
-  "o.rpc.webrtc.v1.WebRTCConfigR\006config\"u\n\023"
-  "ConnectionCandidate\0229\n\004type\030\001 \001(\0162%.prot"
-  "o.rpc.webrtc.v1.ICECandidateTypeR\004type\022#"
-  "\n\rrelay_address\030\002 \001(\tR\014relayAddress\"\201\003\n\037"
-  "ReportConnectionMetadataRequest\022>\n\005local"
-  "\030\001 \001(\0132(.proto.rpc.webrtc.v1.ConnectionC"
-  "andidateR\005local\022@\n\006remote\030\002 \001(\0132(.proto."
-  "rpc.webrtc.v1.ConnectionCandidateR\006remot"
-  "e\022C\n\rreached_stage\030\003 \001(\0162\036.proto.rpc.web"
-  "rtc.v1.DialStageR\014reachedStage\022\037\n\013durati"
-  "on_ms\030\004 \001(\rR\ndurationMs\022S\n\016signaling_pat"
-  "h\030\005 \001(\0162,.proto.rpc.webrtc.v1.Connection"
-  "SignalingPathR\rsignalingPath\022!\n\014failure_"
-  "code\030\006 \001(\005R\013failureCode\"\"\n ReportConnect"
-  "ionMetadataResponse*\216\001\n\020ICECandidateType"
-  "\022\"\n\036ICE_CANDIDATE_TYPE_UNSPECIFIED\020\000\022\033\n\027"
-  "ICE_CANDIDATE_TYPE_HOST\020\001\022\033\n\027ICE_CANDIDA"
-  "TE_TYPE_STUN\020\002\022\034\n\030ICE_CANDIDATE_TYPE_REL"
-  "AY\020\003*\370\001\n\tDialStage\022\032\n\026DIAL_STAGE_UNSPECI"
-  "FIED\020\000\022\"\n\036DIAL_STAGE_SIGNALING_CONNECTED"
-  "\020\001\022\035\n\031DIAL_STAGE_CONFIG_FETCHED\020\002\022\031\n\025DIA"
-  "L_STAGE_OFFER_SENT\020\003\022\036\n\032DIAL_STAGE_ANSWE"
-  "R_RECEIVED\020\004\022\034\n\030DIAL_STAGE_ICE_CONNECTED"
-  "\020\005\022\035\n\031DIAL_STAGE_DTLS_CONNECTED\020\006\022\024\n\020DIA"
-  "L_STAGE_READY\020\007*\301\001\n\027ConnectionSignalingP"
-  "ath\022)\n%CONNECTION_SIGNALING_PATH_UNSPECI"
-  "FIED\020\000\022,\n(CONNECTION_SIGNALING_PATH_CLOU"
-  "D_SIGNALED\020\001\022(\n$CONNECTION_SIGNALING_PAT"
-  "H_MDNS_LOCAL\020\002\022#\n\037CONNECTION_SIGNALING_P"
-  "ATH_LOCAL\020\0032\303\005\n\020SignalingService\022j\n\004Call"
-  "\022 .proto.rpc.webrtc.v1.CallRequest\032!.pro"
-  "to.rpc.webrtc.v1.CallResponse\"\033\202\323\344\223\002\025\"\023/"
-  "rpc/webrtc/v1/call0\001\022\201\001\n\nCallUpdate\022&.pr"
-  "oto.rpc.webrtc.v1.CallUpdateRequest\032\'.pr"
-  "oto.rpc.webrtc.v1.CallUpdateResponse\"\"\202\323"
-  "\344\223\002\034\032\032/rpc/webrtc/v1/call_update\022U\n\006Answ"
-  "er\022#.proto.rpc.webrtc.v1.AnswerResponse\032"
-  "\".proto.rpc.webrtc.v1.AnswerRequest(\0010\001\022"
-  "\252\001\n\024OptionalWebRTCConfig\0220.proto.rpc.web"
-  "rtc.v1.OptionalWebRTCConfigRequest\0321.pro"
-  "to.rpc.webrtc.v1.OptionalWebRTCConfigRes"
-  "ponse\"-\202\323\344\223\002\'\022%/rpc/webrtc/v1/optional_w"
-  "ebrtc_config\022\272\001\n\030ReportConnectionMetadat"
-  "a\0224.proto.rpc.webrtc.v1.ReportConnection"
-  "MetadataRequest\0325.proto.rpc.webrtc.v1.Re"
-  "portConnectionMetadataResponse\"1\202\323\344\223\002+\")"
-  "/rpc/webrtc/v1/report_connection_metadat"
-  "aB\'Z%go.viam.com/utils/proto/rpc/webrtc/"
-  "v1b\006proto3"
+  "rickle\"f\n\025CallResponseInitStage\022\020\n\003sdp\030\001"
+  " \001(\tR\003sdp\022;\n\032must_auth_against_answerer\030"
+  "\002 \001(\010R\027mustAuthAgainstAnswerer\"Z\n\027CallRe"
+  "sponseUpdateStage\022\?\n\tcandidate\030\001 \001(\0132!.p"
+  "roto.rpc.webrtc.v1.ICECandidateR\tcandida"
+  "te\"\265\001\n\014CallResponse\022\022\n\004uuid\030\001 \001(\tR\004uuid\022"
+  "@\n\004init\030\002 \001(\0132*.proto.rpc.webrtc.v1.Call"
+  "ResponseInitStageH\000R\004init\022F\n\006update\030\003 \001("
+  "\0132,.proto.rpc.webrtc.v1.CallResponseUpda"
+  "teStageH\000R\006updateB\007\n\005stage\"\266\001\n\021CallUpdat"
+  "eRequest\022\022\n\004uuid\030\001 \001(\tR\004uuid\022A\n\tcandidat"
+  "e\030\002 \001(\0132!.proto.rpc.webrtc.v1.ICECandida"
+  "teH\000R\tcandidate\022\024\n\004done\030\003 \001(\010H\000R\004done\022*\n"
+  "\005error\030\004 \001(\0132\022.google.rpc.StatusH\000R\005erro"
+  "rB\010\n\006update\"\024\n\022CallUpdateResponse\"[\n\tICE"
+  "Server\022\022\n\004urls\030\001 \003(\tR\004urls\022\032\n\010username\030\002"
+  " \001(\tR\010username\022\036\n\ncredential\030\003 \001(\tR\ncred"
+  "ential\"\215\001\n\014WebRTCConfig\022T\n\026additional_ic"
+  "e_servers\030\001 \003(\0132\036.proto.rpc.webrtc.v1.IC"
+  "EServerR\024additionalIceServers\022\'\n\017disable"
+  "_trickle\030\002 \001(\010R\016disableTrickle\"\326\003\n\026Answe"
+  "rRequestInitStage\022\020\n\003sdp\030\001 \001(\tR\003sdp\022J\n\017o"
+  "ptional_config\030\002 \001(\0132!.proto.rpc.webrtc."
+  "v1.WebRTCConfigR\016optionalConfig\022;\n\010deadl"
+  "ine\030\003 \001(\0132\032.google.protobuf.TimestampH\000R"
+  "\010deadline\210\001\001\022,\n\022caller_auth_entity\030\004 \001(\t"
+  "R\020callerAuthEntity\022u\n\024caller_auth_metada"
+  "ta\030\005 \003(\0132C.proto.rpc.webrtc.v1.AnswerReq"
+  "uestInitStage.CallerAuthMetadataEntryR\022c"
+  "allerAuthMetadata\022(\n\020must_auth_caller\030\006 "
+  "\001(\010R\016mustAuthCaller\032E\n\027CallerAuthMetadat"
+  "aEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR"
+  "\005value:\0028\001B\013\n\t_deadline\"[\n\030AnswerRequest"
+  "UpdateStage\022\?\n\tcandidate\030\001 \001(\0132!.proto.r"
+  "pc.webrtc.v1.ICECandidateR\tcandidate\"\030\n\026"
+  "AnswerRequestDoneStage\"E\n\027AnswerRequestE"
+  "rrorStage\022*\n\006status\030\001 \001(\0132\022.google.rpc.S"
+  "tatusR\006status\"\035\n\033AnswerRequestHeartbeatS"
+  "tage\"\223\003\n\rAnswerRequest\022\022\n\004uuid\030\001 \001(\tR\004uu"
+  "id\022A\n\004init\030\002 \001(\0132+.proto.rpc.webrtc.v1.A"
+  "nswerRequestInitStageH\000R\004init\022G\n\006update\030"
+  "\003 \001(\0132-.proto.rpc.webrtc.v1.AnswerReques"
+  "tUpdateStageH\000R\006update\022A\n\004done\030\004 \001(\0132+.p"
+  "roto.rpc.webrtc.v1.AnswerRequestDoneStag"
+  "eH\000R\004done\022D\n\005error\030\005 \001(\0132,.proto.rpc.web"
+  "rtc.v1.AnswerRequestErrorStageH\000R\005error\022"
+  "P\n\theartbeat\030\006 \001(\01320.proto.rpc.webrtc.v1"
+  ".AnswerRequestHeartbeatStageH\000R\theartbea"
+  "tB\007\n\005stage\"U\n\027AnswerResponseInitStage\022\020\n"
+  "\003sdp\030\001 \001(\tR\003sdp\022(\n\020can_auth_callers\030\002 \001("
+  "\010R\016canAuthCallers\"\\\n\031AnswerResponseUpdat"
+  "eStage\022\?\n\tcandidate\030\001 \001(\0132!.proto.rpc.we"
+  "brtc.v1.ICECandidateR\tcandidate\"\031\n\027Answe"
+  "rResponseDoneStage\"F\n\030AnswerResponseErro"
+  "rStage\022*\n\006status\030\001 \001(\0132\022.google.rpc.Stat"
+  "usR\006status\"\306\002\n\016AnswerResponse\022\022\n\004uuid\030\001 "
+  "\001(\tR\004uuid\022B\n\004init\030\002 \001(\0132,.proto.rpc.webr"
+  "tc.v1.AnswerResponseInitStageH\000R\004init\022H\n"
+  "\006update\030\003 \001(\0132..proto.rpc.webrtc.v1.Answ"
+  "erResponseUpdateStageH\000R\006update\022B\n\004done\030"
+  "\004 \001(\0132,.proto.rpc.webrtc.v1.AnswerRespon"
+  "seDoneStageH\000R\004done\022E\n\005error\030\005 \001(\0132-.pro"
+  "to.rpc.webrtc.v1.AnswerResponseErrorStag"
+  "eH\000R\005errorB\007\n\005stage\"\035\n\033OptionalWebRTCCon"
+  "figRequest\"Y\n\034OptionalWebRTCConfigRespon"
+  "se\0229\n\006config\030\001 \001(\0132!.proto.rpc.webrtc.v1"
+  ".WebRTCConfigR\006config\"u\n\023ConnectionCandi"
+  "date\0229\n\004type\030\001 \001(\0162%.proto.rpc.webrtc.v1"
+  ".ICECandidateTypeR\004type\022#\n\rrelay_address"
+  "\030\002 \001(\tR\014relayAddress\"\201\003\n\037ReportConnectio"
+  "nMetadataRequest\022>\n\005local\030\001 \001(\0132(.proto."
+  "rpc.webrtc.v1.ConnectionCandidateR\005local"
+  "\022@\n\006remote\030\002 \001(\0132(.proto.rpc.webrtc.v1.C"
+  "onnectionCandidateR\006remote\022C\n\rreached_st"
+  "age\030\003 \001(\0162\036.proto.rpc.webrtc.v1.DialStag"
+  "eR\014reachedStage\022\037\n\013duration_ms\030\004 \001(\rR\ndu"
+  "rationMs\022S\n\016signaling_path\030\005 \001(\0162,.proto"
+  ".rpc.webrtc.v1.ConnectionSignalingPathR\r"
+  "signalingPath\022!\n\014failure_code\030\006 \001(\005R\013fai"
+  "lureCode\"\"\n ReportConnectionMetadataResp"
+  "onse*\216\001\n\020ICECandidateType\022\"\n\036ICE_CANDIDA"
+  "TE_TYPE_UNSPECIFIED\020\000\022\033\n\027ICE_CANDIDATE_T"
+  "YPE_HOST\020\001\022\033\n\027ICE_CANDIDATE_TYPE_STUN\020\002\022"
+  "\034\n\030ICE_CANDIDATE_TYPE_RELAY\020\003*\370\001\n\tDialSt"
+  "age\022\032\n\026DIAL_STAGE_UNSPECIFIED\020\000\022\"\n\036DIAL_"
+  "STAGE_SIGNALING_CONNECTED\020\001\022\035\n\031DIAL_STAG"
+  "E_CONFIG_FETCHED\020\002\022\031\n\025DIAL_STAGE_OFFER_S"
+  "ENT\020\003\022\036\n\032DIAL_STAGE_ANSWER_RECEIVED\020\004\022\034\n"
+  "\030DIAL_STAGE_ICE_CONNECTED\020\005\022\035\n\031DIAL_STAG"
+  "E_DTLS_CONNECTED\020\006\022\024\n\020DIAL_STAGE_READY\020\007"
+  "*\301\001\n\027ConnectionSignalingPath\022)\n%CONNECTI"
+  "ON_SIGNALING_PATH_UNSPECIFIED\020\000\022,\n(CONNE"
+  "CTION_SIGNALING_PATH_CLOUD_SIGNALED\020\001\022(\n"
+  "$CONNECTION_SIGNALING_PATH_MDNS_LOCAL\020\002\022"
+  "#\n\037CONNECTION_SIGNALING_PATH_LOCAL\020\0032\303\005\n"
+  "\020SignalingService\022j\n\004Call\022 .proto.rpc.we"
+  "brtc.v1.CallRequest\032!.proto.rpc.webrtc.v"
+  "1.CallResponse\"\033\202\323\344\223\002\025\"\023/rpc/webrtc/v1/c"
+  "all0\001\022\201\001\n\nCallUpdate\022&.proto.rpc.webrtc."
+  "v1.CallUpdateRequest\032\'.proto.rpc.webrtc."
+  "v1.CallUpdateResponse\"\"\202\323\344\223\002\034\032\032/rpc/webr"
+  "tc/v1/call_update\022U\n\006Answer\022#.proto.rpc."
+  "webrtc.v1.AnswerResponse\032\".proto.rpc.web"
+  "rtc.v1.AnswerRequest(\0010\001\022\252\001\n\024OptionalWeb"
+  "RTCConfig\0220.proto.rpc.webrtc.v1.Optional"
+  "WebRTCConfigRequest\0321.proto.rpc.webrtc.v"
+  "1.OptionalWebRTCConfigResponse\"-\202\323\344\223\002\'\022%"
+  "/rpc/webrtc/v1/optional_webrtc_config\022\272\001"
+  "\n\030ReportConnectionMetadata\0224.proto.rpc.w"
+  "ebrtc.v1.ReportConnectionMetadataRequest"
+  "\0325.proto.rpc.webrtc.v1.ReportConnectionM"
+  "etadataResponse\"1\202\323\344\223\002+\")/rpc/webrtc/v1/"
+  "report_connection_metadataB\'Z%go.viam.co"
+  "m/utils/proto/rpc/webrtc/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
@@ -775,7 +785,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrt
 };
 static ::_pbi::once_flag descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto = {
-    false, false, 4850, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
+    false, false, 4995, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
     "proto/rpc/webrtc/v1/signaling.proto",
     &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once, descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps, 3, 26,
     schemas, file_default_instances, TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offsets,
@@ -1436,6 +1446,7 @@ CallResponseInitStage::CallResponseInitStage(const CallResponseInitStage& from)
     sdp_.Set(from._internal_sdp(), 
       GetArenaForAllocation());
   }
+  must_auth_against_answerer_ = from.must_auth_against_answerer_;
   // @@protoc_insertion_point(copy_constructor:proto.rpc.webrtc.v1.CallResponseInitStage)
 }
 
@@ -1444,6 +1455,7 @@ sdp_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   sdp_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+must_auth_against_answerer_ = false;
 }
 
 CallResponseInitStage::~CallResponseInitStage() {
@@ -1471,6 +1483,7 @@ void CallResponseInitStage::Clear() {
   (void) cached_has_bits;
 
   sdp_.ClearToEmpty();
+  must_auth_against_answerer_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1487,6 +1500,14 @@ const char* CallResponseInitStage::_InternalParse(const char* ptr, ::_pbi::Parse
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.webrtc.v1.CallResponseInitStage.sdp"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool must_auth_against_answerer = 2 [json_name = "mustAuthAgainstAnswerer"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          must_auth_against_answerer_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -1529,6 +1550,12 @@ uint8_t* CallResponseInitStage::_InternalSerialize(
         1, this->_internal_sdp(), target);
   }
 
+  // bool must_auth_against_answerer = 2 [json_name = "mustAuthAgainstAnswerer"];
+  if (this->_internal_must_auth_against_answerer() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_must_auth_against_answerer(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1550,6 +1577,11 @@ size_t CallResponseInitStage::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_sdp());
+  }
+
+  // bool must_auth_against_answerer = 2 [json_name = "mustAuthAgainstAnswerer"];
+  if (this->_internal_must_auth_against_answerer() != 0) {
+    total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -1577,6 +1609,9 @@ void CallResponseInitStage::MergeFrom(const CallResponseInitStage& from) {
   if (!from._internal_sdp().empty()) {
     _internal_set_sdp(from._internal_sdp());
   }
+  if (from._internal_must_auth_against_answerer() != 0) {
+    _internal_set_must_auth_against_answerer(from._internal_must_auth_against_answerer());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1600,6 +1635,7 @@ void CallResponseInitStage::InternalSwap(CallResponseInitStage* other) {
       &sdp_, lhs_arena,
       &other->sdp_, rhs_arena
   );
+  swap(must_auth_against_answerer_, other->must_auth_against_answerer_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CallResponseInitStage::GetMetadata() const {
@@ -3120,6 +3156,7 @@ AnswerRequestInitStage::AnswerRequestInitStage(const AnswerRequestInitStage& fro
   } else {
     deadline_ = nullptr;
   }
+  must_auth_caller_ = from.must_auth_caller_;
   // @@protoc_insertion_point(copy_constructor:proto.rpc.webrtc.v1.AnswerRequestInitStage)
 }
 
@@ -3134,8 +3171,8 @@ caller_auth_entity_.InitDefault();
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&optional_config_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&deadline_) -
-    reinterpret_cast<char*>(&optional_config_)) + sizeof(deadline_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&must_auth_caller_) -
+    reinterpret_cast<char*>(&optional_config_)) + sizeof(must_auth_caller_));
 }
 
 AnswerRequestInitStage::~AnswerRequestInitStage() {
@@ -3183,6 +3220,7 @@ void AnswerRequestInitStage::Clear() {
     GOOGLE_DCHECK(deadline_ != nullptr);
     deadline_->Clear();
   }
+  must_auth_caller_ = false;
   _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -3240,6 +3278,14 @@ const char* AnswerRequestInitStage::_InternalParse(const char* ptr, ::_pbi::Pars
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool must_auth_caller = 6 [json_name = "mustAuthCaller"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          must_auth_caller_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -3337,6 +3383,12 @@ uint8_t* AnswerRequestInitStage::_InternalSerialize(
     }
   }
 
+  // bool must_auth_caller = 6 [json_name = "mustAuthCaller"];
+  if (this->_internal_must_auth_caller() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(6, this->_internal_must_auth_caller(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3391,6 +3443,11 @@ size_t AnswerRequestInitStage::ByteSizeLong() const {
         *deadline_);
   }
 
+  // bool must_auth_caller = 6 [json_name = "mustAuthCaller"];
+  if (this->_internal_must_auth_caller() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -3426,6 +3483,9 @@ void AnswerRequestInitStage::MergeFrom(const AnswerRequestInitStage& from) {
   if (from._internal_has_deadline()) {
     _internal_mutable_deadline()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_deadline());
   }
+  if (from._internal_must_auth_caller() != 0) {
+    _internal_set_must_auth_caller(from._internal_must_auth_caller());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3456,8 +3516,8 @@ void AnswerRequestInitStage::InternalSwap(AnswerRequestInitStage* other) {
       &other->caller_auth_entity_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AnswerRequestInitStage, deadline_)
-      + sizeof(AnswerRequestInitStage::deadline_)
+      PROTOBUF_FIELD_OFFSET(AnswerRequestInitStage, must_auth_caller_)
+      + sizeof(AnswerRequestInitStage::must_auth_caller_)
       - PROTOBUF_FIELD_OFFSET(AnswerRequestInitStage, optional_config_)>(
           reinterpret_cast<char*>(&optional_config_),
           reinterpret_cast<char*>(&other->optional_config_));
@@ -4459,6 +4519,7 @@ AnswerResponseInitStage::AnswerResponseInitStage(const AnswerResponseInitStage& 
     sdp_.Set(from._internal_sdp(), 
       GetArenaForAllocation());
   }
+  can_auth_callers_ = from.can_auth_callers_;
   // @@protoc_insertion_point(copy_constructor:proto.rpc.webrtc.v1.AnswerResponseInitStage)
 }
 
@@ -4467,6 +4528,7 @@ sdp_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   sdp_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+can_auth_callers_ = false;
 }
 
 AnswerResponseInitStage::~AnswerResponseInitStage() {
@@ -4494,6 +4556,7 @@ void AnswerResponseInitStage::Clear() {
   (void) cached_has_bits;
 
   sdp_.ClearToEmpty();
+  can_auth_callers_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4510,6 +4573,14 @@ const char* AnswerResponseInitStage::_InternalParse(const char* ptr, ::_pbi::Par
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.webrtc.v1.AnswerResponseInitStage.sdp"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool can_auth_callers = 2 [json_name = "canAuthCallers"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          can_auth_callers_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -4552,6 +4623,12 @@ uint8_t* AnswerResponseInitStage::_InternalSerialize(
         1, this->_internal_sdp(), target);
   }
 
+  // bool can_auth_callers = 2 [json_name = "canAuthCallers"];
+  if (this->_internal_can_auth_callers() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_can_auth_callers(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4573,6 +4650,11 @@ size_t AnswerResponseInitStage::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_sdp());
+  }
+
+  // bool can_auth_callers = 2 [json_name = "canAuthCallers"];
+  if (this->_internal_can_auth_callers() != 0) {
+    total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -4600,6 +4682,9 @@ void AnswerResponseInitStage::MergeFrom(const AnswerResponseInitStage& from) {
   if (!from._internal_sdp().empty()) {
     _internal_set_sdp(from._internal_sdp());
   }
+  if (from._internal_can_auth_callers() != 0) {
+    _internal_set_can_auth_callers(from._internal_can_auth_callers());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -4623,6 +4708,7 @@ void AnswerResponseInitStage::InternalSwap(AnswerResponseInitStage* other) {
       &sdp_, lhs_arena,
       &other->sdp_, rhs_arena
   );
+  swap(can_auth_callers_, other->can_auth_callers_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AnswerResponseInitStage::GetMetadata() const {

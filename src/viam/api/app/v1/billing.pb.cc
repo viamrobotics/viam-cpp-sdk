@@ -888,7 +888,7 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "Id*}\n\021PaymentMethodType\022#\n\037PAYMENT_METHO"
   "D_TYPE_UNSPECIFIED\020\000\022\034\n\030PAYMENT_METHOD_T"
   "YPE_CARD\020\001\022%\n!PAYMENT_METHOD_TYPE_USBANK"
-  "ACCOUNT\020\002*\250\t\n\rUsageCostType\022\037\n\033USAGE_COS"
+  "ACCOUNT\020\002*\320\t\n\rUsageCostType\022\037\n\033USAGE_COS"
   "T_TYPE_UNSPECIFIED\020\000\022#\n\033USAGE_COST_TYPE_"
   "DATA_UPLOAD\020\001\032\002\010\001\022#\n\033USAGE_COST_TYPE_DAT"
   "A_EGRESS\020\002\032\002\010\001\022\"\n\036USAGE_COST_TYPE_REMOTE"
@@ -918,7 +918,8 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STOR"
   "AGE\020\031\022)\n%USAGE_COST_TYPE_PIPELINE_SINK_C"
   "OMPUTE\020\032\022\"\n\036USAGE_COST_TYPE_PREMIUM_MODU"
-  "LE\020\033*X\n\nSourceType\022\033\n\027SOURCE_TYPE_UNSPEC"
+  "LE\020\033\022&\n\"USAGE_COST_TYPE_SIMULATION_COMPU"
+  "TE\020\034*X\n\nSourceType\022\033\n\027SOURCE_TYPE_UNSPEC"
   "IFIED\020\000\022\023\n\017SOURCE_TYPE_ORG\020\001\022\030\n\024SOURCE_T"
   "YPE_FRAGMENT\020\0022\317\n\n\016BillingService\022k\n\024Get"
   "CurrentMonthUsage\022(.viam.app.v1.GetCurre"
@@ -962,7 +963,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 7570, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 7610, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 29,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -1027,6 +1028,7 @@ bool UsageCostType_IsValid(int value) {
     case 25:
     case 26:
     case 27:
+    case 28:
       return true;
     default:
       return false;

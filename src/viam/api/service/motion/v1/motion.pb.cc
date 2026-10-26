@@ -493,7 +493,8 @@ struct TempStreamArmJointPositionsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TempStreamArmJointPositionsRequestDefaultTypeInternal _TempStreamArmJointPositionsRequest_default_instance_;
 PROTOBUF_CONSTEXPR TempStreamArmJointPositionsResponse::TempStreamArmJointPositionsResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized)
+  : motion_side_current_runway_ms_(0){}
 struct TempStreamArmJointPositionsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TempStreamArmJointPositionsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -875,12 +876,14 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::TempStreamArmJointPositionsRequest, message_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::TempStreamArmJointPositionsResponse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::TempStreamArmJointPositionsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::TempStreamArmJointPositionsResponse, motion_side_current_runway_ms_),
+  0,
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 13, -1, sizeof(::viam::service::motion::v1::MoveRequest)},
@@ -916,7 +919,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 334, 343, -1, sizeof(::viam::service::motion::v1::TempStreamArmJointPositionsRequest_Init)},
   { 346, -1, -1, sizeof(::viam::service::motion::v1::TempStreamArmJointPositionsRequest_Targets)},
   { 353, -1, -1, sizeof(::viam::service::motion::v1::TempStreamArmJointPositionsRequest)},
-  { 363, -1, -1, sizeof(::viam::service::motion::v1::TempStreamArmJointPositionsResponse)},
+  { 363, 370, -1, sizeof(::viam::service::motion::v1::TempStreamArmJointPositionsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1147,51 +1150,54 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "e.protobuf.StructR\005extraB\n\n\010_options\032N\n\007"
   "Targets\022C\n\tpositions\030\001 \003(\0132%.viam.compon"
   "ent.arm.v1.JointPositionsR\tpositionsB\t\n\007"
-  "message\"%\n#TempStreamArmJointPositionsRe"
-  "sponse*\214\001\n\tPlanState\022\032\n\026PLAN_STATE_UNSPE"
-  "CIFIED\020\000\022\032\n\026PLAN_STATE_IN_PROGRESS\020\001\022\026\n\022"
-  "PLAN_STATE_STOPPED\020\002\022\030\n\024PLAN_STATE_SUCCE"
-  "EDED\020\003\022\025\n\021PLAN_STATE_FAILED\020\0042\363\013\n\rMotion"
-  "Service\022\202\001\n\004Move\022#.viam.service.motion.v"
-  "1.MoveRequest\032$.viam.service.motion.v1.M"
-  "oveResponse\"/\202\323\344\223\002)\"\'/viam/api/v1/servic"
-  "e/motion/{name}/move\022\230\001\n\tMoveOnMap\022(.via"
-  "m.service.motion.v1.MoveOnMapRequest\032).v"
-  "iam.service.motion.v1.MoveOnMapResponse\""
-  "6\202\323\344\223\0020\"./viam/api/v1/service/motion/{na"
-  "me}/move_on_map\022\240\001\n\013MoveOnGlobe\022*.viam.s"
-  "ervice.motion.v1.MoveOnGlobeRequest\032+.vi"
-  "am.service.motion.v1.MoveOnGlobeResponse"
-  "\"8\202\323\344\223\0022\"0/viam/api/v1/service/motion/{n"
-  "ame}/move_on_globe\022\216\001\n\007GetPose\022&.viam.se"
-  "rvice.motion.v1.GetPoseRequest\032\'.viam.se"
-  "rvice.motion.v1.GetPoseResponse\"2\210\002\001\202\323\344\223"
-  "\002)\022\'/viam/api/v1/service/motion/{name}/p"
-  "ose\022\223\001\n\010StopPlan\022\'.viam.service.motion.v"
-  "1.StopPlanRequest\032(.viam.service.motion."
-  "v1.StopPlanResponse\"4\202\323\344\223\002.\032,/viam/api/v"
-  "1/service/motion/{name}/stop_plan\022\264\001\n\020Li"
-  "stPlanStatuses\022/.viam.service.motion.v1."
-  "ListPlanStatusesRequest\0320.viam.service.m"
-  "otion.v1.ListPlanStatusesResponse\"=\202\323\344\223\002"
-  "7\0225/viam/api/v1/service/motion/{name}/li"
-  "st_plan_statuses\022\217\001\n\007GetPlan\022&.viam.serv"
-  "ice.motion.v1.GetPlanRequest\032\'.viam.serv"
-  "ice.motion.v1.GetPlanResponse\"3\202\323\344\223\002-\022+/"
-  "viam/api/v1/service/motion/{name}/get_pl"
-  "an\022\232\001\n\033TempStreamArmJointPositions\022:.via"
-  "m.service.motion.v1.TempStreamArmJointPo"
-  "sitionsRequest\032;.viam.service.motion.v1."
-  "TempStreamArmJointPositionsResponse(\0010\001\022"
-  "\207\001\n\tDoCommand\022 .viam.common.v1.DoCommand"
-  "Request\032!.viam.common.v1.DoCommandRespon"
-  "se\"5\202\323\344\223\002/\"-/viam/api/v1/service/motion/"
-  "{name}/do_command\022\207\001\n\tGetStatus\022 .viam.c"
-  "ommon.v1.GetStatusRequest\032!.viam.common."
-  "v1.GetStatusResponse\"5\202\323\344\223\002/\022-/viam/api/"
-  "v1/service/motion/{name}/get_statusB\?\n\032c"
-  "om.viam.service.motion.v1Z!go.viam.com/a"
-  "pi/service/motion/v1b\006proto3"
+  "message\"\216\001\n#TempStreamArmJointPositionsR"
+  "esponse\022E\n\035motion_side_current_runway_ms"
+  "\030\001 \001(\005H\000R\031motionSideCurrentRunwayMs\210\001\001B "
+  "\n\036_motion_side_current_runway_ms*\214\001\n\tPla"
+  "nState\022\032\n\026PLAN_STATE_UNSPECIFIED\020\000\022\032\n\026PL"
+  "AN_STATE_IN_PROGRESS\020\001\022\026\n\022PLAN_STATE_STO"
+  "PPED\020\002\022\030\n\024PLAN_STATE_SUCCEEDED\020\003\022\025\n\021PLAN"
+  "_STATE_FAILED\020\0042\363\013\n\rMotionService\022\202\001\n\004Mo"
+  "ve\022#.viam.service.motion.v1.MoveRequest\032"
+  "$.viam.service.motion.v1.MoveResponse\"/\202"
+  "\323\344\223\002)\"\'/viam/api/v1/service/motion/{name"
+  "}/move\022\230\001\n\tMoveOnMap\022(.viam.service.moti"
+  "on.v1.MoveOnMapRequest\032).viam.service.mo"
+  "tion.v1.MoveOnMapResponse\"6\202\323\344\223\0020\"./viam"
+  "/api/v1/service/motion/{name}/move_on_ma"
+  "p\022\240\001\n\013MoveOnGlobe\022*.viam.service.motion."
+  "v1.MoveOnGlobeRequest\032+.viam.service.mot"
+  "ion.v1.MoveOnGlobeResponse\"8\202\323\344\223\0022\"0/via"
+  "m/api/v1/service/motion/{name}/move_on_g"
+  "lobe\022\216\001\n\007GetPose\022&.viam.service.motion.v"
+  "1.GetPoseRequest\032\'.viam.service.motion.v"
+  "1.GetPoseResponse\"2\210\002\001\202\323\344\223\002)\022\'/viam/api/"
+  "v1/service/motion/{name}/pose\022\223\001\n\010StopPl"
+  "an\022\'.viam.service.motion.v1.StopPlanRequ"
+  "est\032(.viam.service.motion.v1.StopPlanRes"
+  "ponse\"4\202\323\344\223\002.\032,/viam/api/v1/service/moti"
+  "on/{name}/stop_plan\022\264\001\n\020ListPlanStatuses"
+  "\022/.viam.service.motion.v1.ListPlanStatus"
+  "esRequest\0320.viam.service.motion.v1.ListP"
+  "lanStatusesResponse\"=\202\323\344\223\0027\0225/viam/api/v"
+  "1/service/motion/{name}/list_plan_status"
+  "es\022\217\001\n\007GetPlan\022&.viam.service.motion.v1."
+  "GetPlanRequest\032\'.viam.service.motion.v1."
+  "GetPlanResponse\"3\202\323\344\223\002-\022+/viam/api/v1/se"
+  "rvice/motion/{name}/get_plan\022\232\001\n\033TempStr"
+  "eamArmJointPositions\022:.viam.service.moti"
+  "on.v1.TempStreamArmJointPositionsRequest"
+  "\032;.viam.service.motion.v1.TempStreamArmJ"
+  "ointPositionsResponse(\0010\001\022\207\001\n\tDoCommand\022"
+  " .viam.common.v1.DoCommandRequest\032!.viam"
+  ".common.v1.DoCommandResponse\"5\202\323\344\223\002/\"-/v"
+  "iam/api/v1/service/motion/{name}/do_comm"
+  "and\022\207\001\n\tGetStatus\022 .viam.common.v1.GetSt"
+  "atusRequest\032!.viam.common.v1.GetStatusRe"
+  "sponse\"5\202\323\344\223\002/\022-/viam/api/v1/service/mot"
+  "ion/{name}/get_statusB\?\n\032com.viam.servic"
+  "e.motion.v1Z!go.viam.com/api/service/mot"
+  "ion/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps[5] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -1202,7 +1208,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto = {
-    false, false, 9388, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
+    false, false, 9494, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
     "service/motion/v1/motion.proto",
     &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 5, 34,
     schemas, file_default_instances, TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets,
@@ -10543,34 +10549,177 @@ void TempStreamArmJointPositionsRequest::InternalSwap(TempStreamArmJointPosition
 
 class TempStreamArmJointPositionsResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<TempStreamArmJointPositionsResponse>()._has_bits_);
+  static void set_has_motion_side_current_runway_ms(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 TempStreamArmJointPositionsResponse::TempStreamArmJointPositionsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
 }
 TempStreamArmJointPositionsResponse::TempStreamArmJointPositionsResponse(const TempStreamArmJointPositionsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  motion_side_current_runway_ms_ = from.motion_side_current_runway_ms_;
   // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
 }
 
+inline void TempStreamArmJointPositionsResponse::SharedCtor() {
+motion_side_current_runway_ms_ = 0;
+}
 
+TempStreamArmJointPositionsResponse::~TempStreamArmJointPositionsResponse() {
+  // @@protoc_insertion_point(destructor:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
 
+inline void TempStreamArmJointPositionsResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
 
+void TempStreamArmJointPositionsResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TempStreamArmJointPositionsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  motion_side_current_runway_ms_ = 0;
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TempStreamArmJointPositionsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional int32 motion_side_current_runway_ms = 1 [json_name = "motionSideCurrentRunwayMs"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _Internal::set_has_motion_side_current_runway_ms(&has_bits);
+          motion_side_current_runway_ms_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* TempStreamArmJointPositionsResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional int32 motion_side_current_runway_ms = 1 [json_name = "motionSideCurrentRunwayMs"];
+  if (_internal_has_motion_side_current_runway_ms()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_motion_side_current_runway_ms(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
+  return target;
+}
+
+size_t TempStreamArmJointPositionsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional int32 motion_side_current_runway_ms = 1 [json_name = "motionSideCurrentRunwayMs"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_motion_side_current_runway_ms());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TempStreamArmJointPositionsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TempStreamArmJointPositionsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TempStreamArmJointPositionsResponse::GetClassData() const { return &_class_data_; }
 
+void TempStreamArmJointPositionsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TempStreamArmJointPositionsResponse *>(to)->MergeFrom(
+      static_cast<const TempStreamArmJointPositionsResponse &>(from));
+}
 
 
+void TempStreamArmJointPositionsResponse::MergeFrom(const TempStreamArmJointPositionsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
+  if (from._internal_has_motion_side_current_runway_ms()) {
+    _internal_set_motion_side_current_runway_ms(from._internal_motion_side_current_runway_ms());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
 
+void TempStreamArmJointPositionsResponse::CopyFrom(const TempStreamArmJointPositionsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
+bool TempStreamArmJointPositionsResponse::IsInitialized() const {
+  return true;
+}
+
+void TempStreamArmJointPositionsResponse::InternalSwap(TempStreamArmJointPositionsResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(motion_side_current_runway_ms_, other->motion_side_current_runway_ms_);
+}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TempStreamArmJointPositionsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
