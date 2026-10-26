@@ -139,6 +139,7 @@ jobs:
       matrix:
         runner: [ubuntu-large, github-linux-arm64-8core]
         image:
+          - ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:noble
           - ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:jammy
           - ghcr.io/viamrobotics/cpp-sdk-conan-debian:bookworm
           - ghcr.io/viamrobotics/cpp-sdk-conan-ubuntu:focal
