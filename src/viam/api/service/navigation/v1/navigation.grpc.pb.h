@@ -30,7 +30,10 @@ namespace service {
 namespace navigation {
 namespace v1 {
 
-// A NavigationService declares the gRPC contract for a Navigation service
+// A NavigationService declares the gRPC contract for a Navigation service.
+// Each service instance is bound to exactly one controllable base and one map
+// type (local SLAM or GPS). Apps save named locations, routes, and zones, then
+// navigate with plan-then-drive or direct go-to motion.
 class NavigationService final {
  public:
   static constexpr char const* service_full_name() {
@@ -39,20 +42,17 @@ class NavigationService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::viam::service::navigation::v1::GetModeResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>> AsyncGetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>>(AsyncGetModeRaw(context, request, cq));
+    // AddLocation saves a named position on the active map. If position is
+    // omitted, the robot's current position from GetPosition is saved.
+    virtual ::grpc::Status AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::viam::service::navigation::v1::AddLocationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddLocationResponse>> AsyncAddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddLocationResponse>>(AsyncAddLocationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>> PrepareAsyncGetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>>(PrepareAsyncGetModeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddLocationResponse>> PrepareAsyncAddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddLocationResponse>>(PrepareAsyncAddLocationRaw(context, request, cq));
     }
-    virtual ::grpc::Status SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::viam::service::navigation::v1::SetModeResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SetModeResponse>> AsyncSetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SetModeResponse>>(AsyncSetModeRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SetModeResponse>> PrepareAsyncSetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SetModeResponse>>(PrepareAsyncSetModeRaw(context, request, cq));
-    }
+    // GetLocation returns a saved location by name. This does not return the
+    // robot's current position; use GetPosition for that.
     virtual ::grpc::Status GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::viam::service::navigation::v1::GetLocationResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetLocationResponse>> AsyncGetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetLocationResponse>>(AsyncGetLocationRaw(context, request, cq));
@@ -60,49 +60,259 @@ class NavigationService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetLocationResponse>> PrepareAsyncGetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetLocationResponse>>(PrepareAsyncGetLocationRaw(context, request, cq));
     }
-    virtual ::grpc::Status GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::viam::service::navigation::v1::GetWaypointsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetWaypointsResponse>> AsyncGetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetWaypointsResponse>>(AsyncGetWaypointsRaw(context, request, cq));
+    // ListLocations lists all saved locations on the active map.
+    virtual ::grpc::Status ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::viam::service::navigation::v1::ListLocationsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListLocationsResponse>> AsyncListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListLocationsResponse>>(AsyncListLocationsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetWaypointsResponse>> PrepareAsyncGetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetWaypointsResponse>>(PrepareAsyncGetWaypointsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListLocationsResponse>> PrepareAsyncListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListLocationsResponse>>(PrepareAsyncListLocationsRaw(context, request, cq));
     }
-    virtual ::grpc::Status AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::viam::service::navigation::v1::AddWaypointResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddWaypointResponse>> AsyncAddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddWaypointResponse>>(AsyncAddWaypointRaw(context, request, cq));
+    // UpdateLocation changes a saved location's position or name. Renaming a
+    // location updates every route waypoint that references it.
+    virtual ::grpc::Status UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::viam::service::navigation::v1::UpdateLocationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateLocationResponse>> AsyncUpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateLocationResponse>>(AsyncUpdateLocationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddWaypointResponse>> PrepareAsyncAddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddWaypointResponse>>(PrepareAsyncAddWaypointRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateLocationResponse>> PrepareAsyncUpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateLocationResponse>>(PrepareAsyncUpdateLocationRaw(context, request, cq));
     }
-    virtual ::grpc::Status RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::viam::service::navigation::v1::RemoveWaypointResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::RemoveWaypointResponse>> AsyncRemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::RemoveWaypointResponse>>(AsyncRemoveWaypointRaw(context, request, cq));
+    // DeleteLocation deletes a saved location. The location is also removed from
+    // every route that references it.
+    virtual ::grpc::Status DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::viam::service::navigation::v1::DeleteLocationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteLocationResponse>> AsyncDeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteLocationResponse>>(AsyncDeleteLocationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::RemoveWaypointResponse>> PrepareAsyncRemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::RemoveWaypointResponse>>(PrepareAsyncRemoveWaypointRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteLocationResponse>> PrepareAsyncDeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteLocationResponse>>(PrepareAsyncDeleteLocationRaw(context, request, cq));
     }
-    virtual ::grpc::Status GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::viam::service::navigation::v1::GetObstaclesResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetObstaclesResponse>> AsyncGetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetObstaclesResponse>>(AsyncGetObstaclesRaw(context, request, cq));
+    // AddRoute creates a named route from an ordered list of waypoints. Every
+    // referenced location must already exist.
+    virtual ::grpc::Status AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::viam::service::navigation::v1::AddRouteResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddRouteResponse>> AsyncAddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddRouteResponse>>(AsyncAddRouteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetObstaclesResponse>> PrepareAsyncGetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetObstaclesResponse>>(PrepareAsyncGetObstaclesRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddRouteResponse>> PrepareAsyncAddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddRouteResponse>>(PrepareAsyncAddRouteRaw(context, request, cq));
     }
-    virtual ::grpc::Status GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::viam::service::navigation::v1::GetPathsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>> AsyncGetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>>(AsyncGetPathsRaw(context, request, cq));
+    // GetRoute returns a route by name.
+    virtual ::grpc::Status GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::viam::service::navigation::v1::GetRouteResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetRouteResponse>> AsyncGetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetRouteResponse>>(AsyncGetRouteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>> PrepareAsyncGetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>>(PrepareAsyncGetPathsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetRouteResponse>> PrepareAsyncGetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetRouteResponse>>(PrepareAsyncGetRouteRaw(context, request, cq));
     }
-    // GetProperties returns properties of the current navigation service, including the
-    // map_type being operated on.
+    // ListRoutes lists all routes on the active map.
+    virtual ::grpc::Status ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::viam::service::navigation::v1::ListRoutesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListRoutesResponse>> AsyncListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListRoutesResponse>>(AsyncListRoutesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListRoutesResponse>> PrepareAsyncListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListRoutesResponse>>(PrepareAsyncListRoutesRaw(context, request, cq));
+    }
+    // UpdateRoute renames a route and/or replaces its waypoints. An unset
+    // waypoints list leaves the waypoints unchanged. A set list, including an
+    // empty one, replaces them.
+    virtual ::grpc::Status UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::viam::service::navigation::v1::UpdateRouteResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateRouteResponse>> AsyncUpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateRouteResponse>>(AsyncUpdateRouteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateRouteResponse>> PrepareAsyncUpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateRouteResponse>>(PrepareAsyncUpdateRouteRaw(context, request, cq));
+    }
+    // DeleteRoute deletes a route. The locations it references are not affected.
+    virtual ::grpc::Status DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::viam::service::navigation::v1::DeleteRouteResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteRouteResponse>> AsyncDeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteRouteResponse>>(AsyncDeleteRouteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteRouteResponse>> PrepareAsyncDeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteRouteResponse>>(PrepareAsyncDeleteRouteRaw(context, request, cq));
+    }
+    // AddZone creates a keep-out or speed-limit zone on the active map. The
+    // planner avoids keep-out zones and caps speed inside speed-limit zones.
+    virtual ::grpc::Status AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::viam::service::navigation::v1::AddZoneResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddZoneResponse>> AsyncAddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddZoneResponse>>(AsyncAddZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddZoneResponse>> PrepareAsyncAddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddZoneResponse>>(PrepareAsyncAddZoneRaw(context, request, cq));
+    }
+    // GetZone returns a zone by name.
+    virtual ::grpc::Status GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::viam::service::navigation::v1::GetZoneResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetZoneResponse>> AsyncGetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetZoneResponse>>(AsyncGetZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetZoneResponse>> PrepareAsyncGetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetZoneResponse>>(PrepareAsyncGetZoneRaw(context, request, cq));
+    }
+    // ListZones lists zones on the active map, optionally filtered by type.
+    virtual ::grpc::Status ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::viam::service::navigation::v1::ListZonesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListZonesResponse>> AsyncListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListZonesResponse>>(AsyncListZonesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListZonesResponse>> PrepareAsyncListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListZonesResponse>>(PrepareAsyncListZonesRaw(context, request, cq));
+    }
+    // UpdateZone changes a zone's type, geometry, speed limit, or name.
+    virtual ::grpc::Status UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::viam::service::navigation::v1::UpdateZoneResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateZoneResponse>> AsyncUpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateZoneResponse>>(AsyncUpdateZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateZoneResponse>> PrepareAsyncUpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateZoneResponse>>(PrepareAsyncUpdateZoneRaw(context, request, cq));
+    }
+    // DeleteZone deletes a zone.
+    virtual ::grpc::Status DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::viam::service::navigation::v1::DeleteZoneResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteZoneResponse>> AsyncDeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteZoneResponse>>(AsyncDeleteZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteZoneResponse>> PrepareAsyncDeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteZoneResponse>>(PrepareAsyncDeleteZoneRaw(context, request, cq));
+    }
+    // NavigateToLocation plans an obstacle-aware path to a saved location and
+    // starts driving it. Returns once the goal is accepted; track progress with
+    // GetNavigationStatus.
+    virtual ::grpc::Status NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::viam::service::navigation::v1::NavigateToLocationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToLocationResponse>> AsyncNavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToLocationResponse>>(AsyncNavigateToLocationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToLocationResponse>> PrepareAsyncNavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToLocationResponse>>(PrepareAsyncNavigateToLocationRaw(context, request, cq));
+    }
+    // NavigateToPoint plans an obstacle-aware path to a Position and starts
+    // driving it. Returns once the goal is accepted; track progress with
+    // GetNavigationStatus. On a Pose, theta defaults to 0 if omitted.
+    virtual ::grpc::Status NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::viam::service::navigation::v1::NavigateToPointResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToPointResponse>> AsyncNavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToPointResponse>>(AsyncNavigateToPointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToPointResponse>> PrepareAsyncNavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToPointResponse>>(PrepareAsyncNavigateToPointRaw(context, request, cq));
+    }
+    // NavigateRoute drives a route one waypoint at a time using the
+    // obstacle-aware planner. Provide either route_name (a saved route) or
+    // waypoints (an inline list).
+    virtual ::grpc::Status NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::viam::service::navigation::v1::NavigateRouteResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateRouteResponse>> AsyncNavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateRouteResponse>>(AsyncNavigateRouteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateRouteResponse>> PrepareAsyncNavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateRouteResponse>>(PrepareAsyncNavigateRouteRaw(context, request, cq));
+    }
+    // PlanToPoint computes a path from the robot (or a given start) to a
+    // Position without moving. Pass a feasible result to ExecutePlan to drive it.
+    // Raises an error if no path exists.
+    virtual ::grpc::Status PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::viam::service::navigation::v1::PlanToPointResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToPointResponse>> AsyncPlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToPointResponse>>(AsyncPlanToPointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToPointResponse>> PrepareAsyncPlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToPointResponse>>(PrepareAsyncPlanToPointRaw(context, request, cq));
+    }
+    // PlanToLocation computes a path to a saved location without moving. Accepts
+    // the same optional start as PlanToPoint. Raises an error if no path exists.
+    virtual ::grpc::Status PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::viam::service::navigation::v1::PlanToLocationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToLocationResponse>> AsyncPlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToLocationResponse>>(AsyncPlanToLocationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToLocationResponse>> PrepareAsyncPlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToLocationResponse>>(PrepareAsyncPlanToLocationRaw(context, request, cq));
+    }
+    // ExecutePlan drives a Plan (typically from PlanToPoint or PlanToLocation).
+    // While navigating, the active path is available on GetNavigationStatus. Rejected if
+    // the path is empty.
+    virtual ::grpc::Status ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::viam::service::navigation::v1::ExecutePlanResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ExecutePlanResponse>> AsyncExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ExecutePlanResponse>>(AsyncExecutePlanRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ExecutePlanResponse>> PrepareAsyncExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ExecutePlanResponse>>(PrepareAsyncExecutePlanRaw(context, request, cq));
+    }
+    // GoToLocation drives directly to a saved location with a closed-loop
+    // controller, without full path planning. Intended for short hops and
+    // docking. With wait false, returns immediately while navigating.
+    virtual ::grpc::Status GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::viam::service::navigation::v1::GoToLocationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToLocationResponse>> AsyncGoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToLocationResponse>>(AsyncGoToLocationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToLocationResponse>> PrepareAsyncGoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToLocationResponse>>(PrepareAsyncGoToLocationRaw(context, request, cq));
+    }
+    // GoToPoint drives directly to a Position with a closed-loop controller,
+    // without full path planning. Intended for short hops and docking. With wait
+    // false, returns immediately while navigating.
+    virtual ::grpc::Status GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::viam::service::navigation::v1::GoToPointResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToPointResponse>> AsyncGoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToPointResponse>>(AsyncGoToPointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToPointResponse>> PrepareAsyncGoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToPointResponse>>(PrepareAsyncGoToPointRaw(context, request, cq));
+    }
+    // Suspend stops motion but remembers the current goal, including the current
+    // waypoint and loop setting for routes. A suspended goal must be canceled
+    // before a new one starts.
+    virtual ::grpc::Status Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::viam::service::navigation::v1::SuspendResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SuspendResponse>> AsyncSuspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SuspendResponse>>(AsyncSuspendRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SuspendResponse>> PrepareAsyncSuspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SuspendResponse>>(PrepareAsyncSuspendRaw(context, request, cq));
+    }
+    // Resume resumes the suspended goal the same way it was started: planned
+    // navigation, simple go-to, or a route from its current waypoint.
+    virtual ::grpc::Status Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::viam::service::navigation::v1::ResumeResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ResumeResponse>> AsyncResume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ResumeResponse>>(AsyncResumeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ResumeResponse>> PrepareAsyncResume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ResumeResponse>>(PrepareAsyncResumeRaw(context, request, cq));
+    }
+    // Cancel stops all motion and discards both the active goal and any
+    // suspended goal.
+    virtual ::grpc::Status Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::viam::service::navigation::v1::CancelResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::CancelResponse>> AsyncCancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::CancelResponse>>(AsyncCancelRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::CancelResponse>> PrepareAsyncCancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::CancelResponse>>(PrepareAsyncCancelRaw(context, request, cq));
+    }
+    // GetPosition returns the robot's current position on the active map. Use
+    // this for frequent position polling; GetNavigationStatus reports the same position
+    // alongside the rest of the navigation state.
+    virtual ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::viam::service::navigation::v1::GetPositionResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
+    }
+    // GetNavigationStatus returns the full navigation state, including the robot's
+    // current position and the latest goal.
+    virtual ::grpc::Status GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetNavigationStatusResponse>> AsyncGetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetNavigationStatusResponse>>(AsyncGetNavigationStatusRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetNavigationStatusResponse>> PrepareAsyncGetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetNavigationStatusResponse>>(PrepareAsyncGetNavigationStatusRaw(context, request, cq));
+    }
+    // GetProperties returns the map type the service operates on and robot
+    // properties. These values do not change while the service is running.
     virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::viam::service::navigation::v1::GetPropertiesResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
+    // GetCostmap returns the local or global costmap as a downsampled grid, for
+    // display in UIs.
+    virtual ::grpc::Status GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::viam::service::navigation::v1::GetCostmapResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetCostmapResponse>> AsyncGetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetCostmapResponse>>(AsyncGetCostmapRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetCostmapResponse>> PrepareAsyncGetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetCostmapResponse>>(PrepareAsyncGetCostmapRaw(context, request, cq));
     }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
@@ -123,26 +333,128 @@ class NavigationService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // AddLocation saves a named position on the active map. If position is
+      // omitted, the robot's current position from GetPosition is saved.
+      virtual void AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetLocation returns a saved location by name. This does not return the
+      // robot's current position; use GetPosition for that.
       virtual void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetProperties returns properties of the current navigation service, including the
-      // map_type being operated on.
+      // ListLocations lists all saved locations on the active map.
+      virtual void ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // UpdateLocation changes a saved location's position or name. Renaming a
+      // location updates every route waypoint that references it.
+      virtual void UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // DeleteLocation deletes a saved location. The location is also removed from
+      // every route that references it.
+      virtual void DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // AddRoute creates a named route from an ordered list of waypoints. Every
+      // referenced location must already exist.
+      virtual void AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetRoute returns a route by name.
+      virtual void GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ListRoutes lists all routes on the active map.
+      virtual void ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // UpdateRoute renames a route and/or replaces its waypoints. An unset
+      // waypoints list leaves the waypoints unchanged. A set list, including an
+      // empty one, replaces them.
+      virtual void UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // DeleteRoute deletes a route. The locations it references are not affected.
+      virtual void DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // AddZone creates a keep-out or speed-limit zone on the active map. The
+      // planner avoids keep-out zones and caps speed inside speed-limit zones.
+      virtual void AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetZone returns a zone by name.
+      virtual void GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ListZones lists zones on the active map, optionally filtered by type.
+      virtual void ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // UpdateZone changes a zone's type, geometry, speed limit, or name.
+      virtual void UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // DeleteZone deletes a zone.
+      virtual void DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // NavigateToLocation plans an obstacle-aware path to a saved location and
+      // starts driving it. Returns once the goal is accepted; track progress with
+      // GetNavigationStatus.
+      virtual void NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // NavigateToPoint plans an obstacle-aware path to a Position and starts
+      // driving it. Returns once the goal is accepted; track progress with
+      // GetNavigationStatus. On a Pose, theta defaults to 0 if omitted.
+      virtual void NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // NavigateRoute drives a route one waypoint at a time using the
+      // obstacle-aware planner. Provide either route_name (a saved route) or
+      // waypoints (an inline list).
+      virtual void NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // PlanToPoint computes a path from the robot (or a given start) to a
+      // Position without moving. Pass a feasible result to ExecutePlan to drive it.
+      // Raises an error if no path exists.
+      virtual void PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // PlanToLocation computes a path to a saved location without moving. Accepts
+      // the same optional start as PlanToPoint. Raises an error if no path exists.
+      virtual void PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ExecutePlan drives a Plan (typically from PlanToPoint or PlanToLocation).
+      // While navigating, the active path is available on GetNavigationStatus. Rejected if
+      // the path is empty.
+      virtual void ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GoToLocation drives directly to a saved location with a closed-loop
+      // controller, without full path planning. Intended for short hops and
+      // docking. With wait false, returns immediately while navigating.
+      virtual void GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GoToPoint drives directly to a Position with a closed-loop controller,
+      // without full path planning. Intended for short hops and docking. With wait
+      // false, returns immediately while navigating.
+      virtual void GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Suspend stops motion but remembers the current goal, including the current
+      // waypoint and loop setting for routes. A suspended goal must be canceled
+      // before a new one starts.
+      virtual void Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Resume resumes the suspended goal the same way it was started: planned
+      // navigation, simple go-to, or a route from its current waypoint.
+      virtual void Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Cancel stops all motion and discards both the active goal and any
+      // suspended goal.
+      virtual void Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetPosition returns the robot's current position on the active map. Use
+      // this for frequent position polling; GetNavigationStatus reports the same position
+      // alongside the rest of the navigation state.
+      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetNavigationStatus returns the full navigation state, including the robot's
+      // current position and the latest goal.
+      virtual void GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetProperties returns the map type the service operates on and robot
+      // properties. These values do not change while the service is running.
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetCostmap returns the local or global costmap as a downsampled grid, for
+      // display in UIs.
+      virtual void GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -154,24 +466,66 @@ class NavigationService final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>* AsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>* PrepareAsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SetModeResponse>* AsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SetModeResponse>* PrepareAsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddLocationResponse>* AsyncAddLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddLocationResponse>* PrepareAsyncAddLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetLocationResponse>* AsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetLocationResponse>* PrepareAsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetWaypointsResponse>* AsyncGetWaypointsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetWaypointsResponse>* PrepareAsyncGetWaypointsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddWaypointResponse>* AsyncAddWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddWaypointResponse>* PrepareAsyncAddWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::RemoveWaypointResponse>* AsyncRemoveWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::RemoveWaypointResponse>* PrepareAsyncRemoveWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetObstaclesResponse>* AsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetObstaclesResponse>* PrepareAsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>* AsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>* PrepareAsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListLocationsResponse>* AsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListLocationsResponse>* PrepareAsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateLocationResponse>* AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateLocationResponse>* PrepareAsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteLocationResponse>* AsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteLocationResponse>* PrepareAsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddRouteResponse>* AsyncAddRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddRouteResponse>* PrepareAsyncAddRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetRouteResponse>* AsyncGetRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetRouteResponse>* PrepareAsyncGetRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListRoutesResponse>* AsyncListRoutesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListRoutesResponse>* PrepareAsyncListRoutesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateRouteResponse>* AsyncUpdateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateRouteResponse>* PrepareAsyncUpdateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteRouteResponse>* AsyncDeleteRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteRouteResponse>* PrepareAsyncDeleteRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddZoneResponse>* AsyncAddZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::AddZoneResponse>* PrepareAsyncAddZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetZoneResponse>* AsyncGetZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetZoneResponse>* PrepareAsyncGetZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListZonesResponse>* AsyncListZonesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ListZonesResponse>* PrepareAsyncListZonesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateZoneResponse>* AsyncUpdateZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::UpdateZoneResponse>* PrepareAsyncUpdateZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteZoneResponse>* AsyncDeleteZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::DeleteZoneResponse>* PrepareAsyncDeleteZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToLocationResponse>* AsyncNavigateToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToLocationResponse>* PrepareAsyncNavigateToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToPointResponse>* AsyncNavigateToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateToPointResponse>* PrepareAsyncNavigateToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateRouteResponse>* AsyncNavigateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::NavigateRouteResponse>* PrepareAsyncNavigateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToPointResponse>* AsyncPlanToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToPointResponse>* PrepareAsyncPlanToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToLocationResponse>* AsyncPlanToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::PlanToLocationResponse>* PrepareAsyncPlanToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ExecutePlanResponse>* AsyncExecutePlanRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ExecutePlanResponse>* PrepareAsyncExecutePlanRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToLocationResponse>* AsyncGoToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToLocationResponse>* PrepareAsyncGoToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToPointResponse>* AsyncGoToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GoToPointResponse>* PrepareAsyncGoToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SuspendResponse>* AsyncSuspendRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SuspendResponse>* PrepareAsyncSuspendRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ResumeResponse>* AsyncResumeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::ResumeResponse>* PrepareAsyncResumeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::CancelResponse>* AsyncCancelRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::CancelResponse>* PrepareAsyncCancelRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetNavigationStatusResponse>* AsyncGetNavigationStatusRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetNavigationStatusResponse>* PrepareAsyncGetNavigationStatusRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetCostmapResponse>* AsyncGetCostmapRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetCostmapResponse>* PrepareAsyncGetCostmapRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetStatusResponse>* AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -180,19 +534,12 @@ class NavigationService final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::viam::service::navigation::v1::GetModeResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>> AsyncGetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>>(AsyncGetModeRaw(context, request, cq));
+    ::grpc::Status AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::viam::service::navigation::v1::AddLocationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>> AsyncAddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>>(AsyncAddLocationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>> PrepareAsyncGetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>>(PrepareAsyncGetModeRaw(context, request, cq));
-    }
-    ::grpc::Status SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::viam::service::navigation::v1::SetModeResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>> AsyncSetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>>(AsyncSetModeRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>> PrepareAsyncSetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>>(PrepareAsyncSetModeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>> PrepareAsyncAddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>>(PrepareAsyncAddLocationRaw(context, request, cq));
     }
     ::grpc::Status GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::viam::service::navigation::v1::GetLocationResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetLocationResponse>> AsyncGetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) {
@@ -201,40 +548,187 @@ class NavigationService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetLocationResponse>> PrepareAsyncGetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetLocationResponse>>(PrepareAsyncGetLocationRaw(context, request, cq));
     }
-    ::grpc::Status GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::viam::service::navigation::v1::GetWaypointsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>> AsyncGetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>>(AsyncGetWaypointsRaw(context, request, cq));
+    ::grpc::Status ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::viam::service::navigation::v1::ListLocationsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>> AsyncListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>>(AsyncListLocationsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>> PrepareAsyncGetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>>(PrepareAsyncGetWaypointsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>> PrepareAsyncListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>>(PrepareAsyncListLocationsRaw(context, request, cq));
     }
-    ::grpc::Status AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::viam::service::navigation::v1::AddWaypointResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>> AsyncAddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>>(AsyncAddWaypointRaw(context, request, cq));
+    ::grpc::Status UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::viam::service::navigation::v1::UpdateLocationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>> AsyncUpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>>(AsyncUpdateLocationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>> PrepareAsyncAddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>>(PrepareAsyncAddWaypointRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>> PrepareAsyncUpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>>(PrepareAsyncUpdateLocationRaw(context, request, cq));
     }
-    ::grpc::Status RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::viam::service::navigation::v1::RemoveWaypointResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>> AsyncRemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>>(AsyncRemoveWaypointRaw(context, request, cq));
+    ::grpc::Status DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::viam::service::navigation::v1::DeleteLocationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>> AsyncDeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>>(AsyncDeleteLocationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>> PrepareAsyncRemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>>(PrepareAsyncRemoveWaypointRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>> PrepareAsyncDeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>>(PrepareAsyncDeleteLocationRaw(context, request, cq));
     }
-    ::grpc::Status GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::viam::service::navigation::v1::GetObstaclesResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>> AsyncGetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>>(AsyncGetObstaclesRaw(context, request, cq));
+    ::grpc::Status AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::viam::service::navigation::v1::AddRouteResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>> AsyncAddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>>(AsyncAddRouteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>> PrepareAsyncGetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>>(PrepareAsyncGetObstaclesRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>> PrepareAsyncAddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>>(PrepareAsyncAddRouteRaw(context, request, cq));
     }
-    ::grpc::Status GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::viam::service::navigation::v1::GetPathsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>> AsyncGetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>>(AsyncGetPathsRaw(context, request, cq));
+    ::grpc::Status GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::viam::service::navigation::v1::GetRouteResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>> AsyncGetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>>(AsyncGetRouteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>> PrepareAsyncGetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>>(PrepareAsyncGetPathsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>> PrepareAsyncGetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>>(PrepareAsyncGetRouteRaw(context, request, cq));
+    }
+    ::grpc::Status ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::viam::service::navigation::v1::ListRoutesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>> AsyncListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>>(AsyncListRoutesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>> PrepareAsyncListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>>(PrepareAsyncListRoutesRaw(context, request, cq));
+    }
+    ::grpc::Status UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::viam::service::navigation::v1::UpdateRouteResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>> AsyncUpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>>(AsyncUpdateRouteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>> PrepareAsyncUpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>>(PrepareAsyncUpdateRouteRaw(context, request, cq));
+    }
+    ::grpc::Status DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::viam::service::navigation::v1::DeleteRouteResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>> AsyncDeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>>(AsyncDeleteRouteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>> PrepareAsyncDeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>>(PrepareAsyncDeleteRouteRaw(context, request, cq));
+    }
+    ::grpc::Status AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::viam::service::navigation::v1::AddZoneResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>> AsyncAddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>>(AsyncAddZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>> PrepareAsyncAddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>>(PrepareAsyncAddZoneRaw(context, request, cq));
+    }
+    ::grpc::Status GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::viam::service::navigation::v1::GetZoneResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>> AsyncGetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>>(AsyncGetZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>> PrepareAsyncGetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>>(PrepareAsyncGetZoneRaw(context, request, cq));
+    }
+    ::grpc::Status ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::viam::service::navigation::v1::ListZonesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>> AsyncListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>>(AsyncListZonesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>> PrepareAsyncListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>>(PrepareAsyncListZonesRaw(context, request, cq));
+    }
+    ::grpc::Status UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::viam::service::navigation::v1::UpdateZoneResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>> AsyncUpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>>(AsyncUpdateZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>> PrepareAsyncUpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>>(PrepareAsyncUpdateZoneRaw(context, request, cq));
+    }
+    ::grpc::Status DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::viam::service::navigation::v1::DeleteZoneResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>> AsyncDeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>>(AsyncDeleteZoneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>> PrepareAsyncDeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>>(PrepareAsyncDeleteZoneRaw(context, request, cq));
+    }
+    ::grpc::Status NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::viam::service::navigation::v1::NavigateToLocationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>> AsyncNavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>>(AsyncNavigateToLocationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>> PrepareAsyncNavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>>(PrepareAsyncNavigateToLocationRaw(context, request, cq));
+    }
+    ::grpc::Status NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::viam::service::navigation::v1::NavigateToPointResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>> AsyncNavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>>(AsyncNavigateToPointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>> PrepareAsyncNavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>>(PrepareAsyncNavigateToPointRaw(context, request, cq));
+    }
+    ::grpc::Status NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::viam::service::navigation::v1::NavigateRouteResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>> AsyncNavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>>(AsyncNavigateRouteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>> PrepareAsyncNavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>>(PrepareAsyncNavigateRouteRaw(context, request, cq));
+    }
+    ::grpc::Status PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::viam::service::navigation::v1::PlanToPointResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>> AsyncPlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>>(AsyncPlanToPointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>> PrepareAsyncPlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>>(PrepareAsyncPlanToPointRaw(context, request, cq));
+    }
+    ::grpc::Status PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::viam::service::navigation::v1::PlanToLocationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>> AsyncPlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>>(AsyncPlanToLocationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>> PrepareAsyncPlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>>(PrepareAsyncPlanToLocationRaw(context, request, cq));
+    }
+    ::grpc::Status ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::viam::service::navigation::v1::ExecutePlanResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>> AsyncExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>>(AsyncExecutePlanRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>> PrepareAsyncExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>>(PrepareAsyncExecutePlanRaw(context, request, cq));
+    }
+    ::grpc::Status GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::viam::service::navigation::v1::GoToLocationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>> AsyncGoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>>(AsyncGoToLocationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>> PrepareAsyncGoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>>(PrepareAsyncGoToLocationRaw(context, request, cq));
+    }
+    ::grpc::Status GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::viam::service::navigation::v1::GoToPointResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>> AsyncGoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>>(AsyncGoToPointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>> PrepareAsyncGoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>>(PrepareAsyncGoToPointRaw(context, request, cq));
+    }
+    ::grpc::Status Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::viam::service::navigation::v1::SuspendResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>> AsyncSuspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>>(AsyncSuspendRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>> PrepareAsyncSuspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>>(PrepareAsyncSuspendRaw(context, request, cq));
+    }
+    ::grpc::Status Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::viam::service::navigation::v1::ResumeResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>> AsyncResume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>>(AsyncResumeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>> PrepareAsyncResume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>>(PrepareAsyncResumeRaw(context, request, cq));
+    }
+    ::grpc::Status Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::viam::service::navigation::v1::CancelResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>> AsyncCancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>>(AsyncCancelRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>> PrepareAsyncCancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>>(PrepareAsyncCancelRaw(context, request, cq));
+    }
+    ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::viam::service::navigation::v1::GetPositionResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
+    }
+    ::grpc::Status GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>> AsyncGetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>>(AsyncGetNavigationStatusRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>> PrepareAsyncGetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>>(PrepareAsyncGetNavigationStatusRaw(context, request, cq));
     }
     ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::viam::service::navigation::v1::GetPropertiesResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
@@ -242,6 +736,13 @@ class NavigationService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
+    ::grpc::Status GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::viam::service::navigation::v1::GetCostmapResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>> AsyncGetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>>(AsyncGetCostmapRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>> PrepareAsyncGetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>>(PrepareAsyncGetCostmapRaw(context, request, cq));
     }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -260,24 +761,66 @@ class NavigationService final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, std::function<void(::grpc::Status)>) override;
-      void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response, std::function<void(::grpc::Status)>) override;
+      void AddLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, std::function<void(::grpc::Status)>) override;
       void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, std::function<void(::grpc::Status)>) override;
-      void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, std::function<void(::grpc::Status)>) override;
-      void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListLocations(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response, std::function<void(::grpc::Status)>) override;
+      void AddRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListRoutes(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response, std::function<void(::grpc::Status)>) override;
+      void AddZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListZones(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteZone(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response, std::function<void(::grpc::Status)>) override;
+      void NavigateToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response, std::function<void(::grpc::Status)>) override;
+      void NavigateToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response, std::function<void(::grpc::Status)>) override;
+      void NavigateRoute(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response, std::function<void(::grpc::Status)>) override;
+      void PlanToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response, std::function<void(::grpc::Status)>) override;
+      void PlanToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response, std::function<void(::grpc::Status)>) override;
+      void ExecutePlan(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response, std::function<void(::grpc::Status)>) override;
+      void GoToLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response, std::function<void(::grpc::Status)>) override;
+      void GoToPoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response, std::function<void(::grpc::Status)>) override;
+      void Suspend(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response, std::function<void(::grpc::Status)>) override;
+      void Resume(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response, std::function<void(::grpc::Status)>) override;
+      void Cancel(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPosition(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetNavigationStatus(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetCostmap(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)>) override;
@@ -293,37 +836,100 @@ class NavigationService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>* AsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>* PrepareAsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>* AsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>* PrepareAsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>* AsyncAddLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddLocationResponse>* PrepareAsyncAddLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddLocationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetLocationResponse>* AsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetLocationResponse>* PrepareAsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>* AsyncGetWaypointsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetWaypointsResponse>* PrepareAsyncGetWaypointsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>* AsyncAddWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddWaypointResponse>* PrepareAsyncAddWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>* AsyncRemoveWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::RemoveWaypointResponse>* PrepareAsyncRemoveWaypointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>* AsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>* PrepareAsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* AsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* PrepareAsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>* AsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListLocationsResponse>* PrepareAsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>* AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateLocationResponse>* PrepareAsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>* AsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteLocationResponse>* PrepareAsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>* AsyncAddRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddRouteResponse>* PrepareAsyncAddRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>* AsyncGetRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetRouteResponse>* PrepareAsyncGetRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>* AsyncListRoutesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListRoutesResponse>* PrepareAsyncListRoutesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListRoutesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>* AsyncUpdateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateRouteResponse>* PrepareAsyncUpdateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>* AsyncDeleteRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteRouteResponse>* PrepareAsyncDeleteRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>* AsyncAddZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::AddZoneResponse>* PrepareAsyncAddZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>* AsyncGetZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetZoneResponse>* PrepareAsyncGetZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>* AsyncListZonesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ListZonesResponse>* PrepareAsyncListZonesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ListZonesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>* AsyncUpdateZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::UpdateZoneResponse>* PrepareAsyncUpdateZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>* AsyncDeleteZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::DeleteZoneResponse>* PrepareAsyncDeleteZoneRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>* AsyncNavigateToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToLocationResponse>* PrepareAsyncNavigateToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>* AsyncNavigateToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateToPointResponse>* PrepareAsyncNavigateToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>* AsyncNavigateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::NavigateRouteResponse>* PrepareAsyncNavigateRouteRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>* AsyncPlanToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToPointResponse>* PrepareAsyncPlanToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToPointRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>* AsyncPlanToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::PlanToLocationResponse>* PrepareAsyncPlanToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>* AsyncExecutePlanRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ExecutePlanResponse>* PrepareAsyncExecutePlanRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>* AsyncGoToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToLocationResponse>* PrepareAsyncGoToLocationRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>* AsyncGoToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GoToPointResponse>* PrepareAsyncGoToPointRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GoToPointRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>* AsyncSuspendRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SuspendResponse>* PrepareAsyncSuspendRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SuspendRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>* AsyncResumeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::ResumeResponse>* PrepareAsyncResumeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::ResumeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>* AsyncCancelRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::CancelResponse>* PrepareAsyncCancelRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::CancelRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>* AsyncGetNavigationStatusRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetNavigationStatusResponse>* PrepareAsyncGetNavigationStatusRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>* AsyncGetCostmapRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetCostmapResponse>* PrepareAsyncGetCostmapRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetCostmapRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_GetMode_;
-    const ::grpc::internal::RpcMethod rpcmethod_SetMode_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddLocation_;
     const ::grpc::internal::RpcMethod rpcmethod_GetLocation_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetWaypoints_;
-    const ::grpc::internal::RpcMethod rpcmethod_AddWaypoint_;
-    const ::grpc::internal::RpcMethod rpcmethod_RemoveWaypoint_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetObstacles_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetPaths_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListLocations_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateLocation_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteLocation_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddRoute_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetRoute_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListRoutes_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateRoute_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteRoute_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddZone_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetZone_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListZones_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateZone_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteZone_;
+    const ::grpc::internal::RpcMethod rpcmethod_NavigateToLocation_;
+    const ::grpc::internal::RpcMethod rpcmethod_NavigateToPoint_;
+    const ::grpc::internal::RpcMethod rpcmethod_NavigateRoute_;
+    const ::grpc::internal::RpcMethod rpcmethod_PlanToPoint_;
+    const ::grpc::internal::RpcMethod rpcmethod_PlanToLocation_;
+    const ::grpc::internal::RpcMethod rpcmethod_ExecutePlan_;
+    const ::grpc::internal::RpcMethod rpcmethod_GoToLocation_;
+    const ::grpc::internal::RpcMethod rpcmethod_GoToPoint_;
+    const ::grpc::internal::RpcMethod rpcmethod_Suspend_;
+    const ::grpc::internal::RpcMethod rpcmethod_Resume_;
+    const ::grpc::internal::RpcMethod rpcmethod_Cancel_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetPosition_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetNavigationStatus_;
     const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetCostmap_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_GetStatus_;
   };
@@ -333,60 +939,121 @@ class NavigationService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetMode(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response);
-    virtual ::grpc::Status SetMode(::grpc::ServerContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response);
+    // AddLocation saves a named position on the active map. If position is
+    // omitted, the robot's current position from GetPosition is saved.
+    virtual ::grpc::Status AddLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response);
+    // GetLocation returns a saved location by name. This does not return the
+    // robot's current position; use GetPosition for that.
     virtual ::grpc::Status GetLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response);
-    virtual ::grpc::Status GetWaypoints(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response);
-    virtual ::grpc::Status AddWaypoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response);
-    virtual ::grpc::Status RemoveWaypoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response);
-    virtual ::grpc::Status GetObstacles(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response);
-    virtual ::grpc::Status GetPaths(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response);
-    // GetProperties returns properties of the current navigation service, including the
-    // map_type being operated on.
+    // ListLocations lists all saved locations on the active map.
+    virtual ::grpc::Status ListLocations(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response);
+    // UpdateLocation changes a saved location's position or name. Renaming a
+    // location updates every route waypoint that references it.
+    virtual ::grpc::Status UpdateLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response);
+    // DeleteLocation deletes a saved location. The location is also removed from
+    // every route that references it.
+    virtual ::grpc::Status DeleteLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response);
+    // AddRoute creates a named route from an ordered list of waypoints. Every
+    // referenced location must already exist.
+    virtual ::grpc::Status AddRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response);
+    // GetRoute returns a route by name.
+    virtual ::grpc::Status GetRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response);
+    // ListRoutes lists all routes on the active map.
+    virtual ::grpc::Status ListRoutes(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response);
+    // UpdateRoute renames a route and/or replaces its waypoints. An unset
+    // waypoints list leaves the waypoints unchanged. A set list, including an
+    // empty one, replaces them.
+    virtual ::grpc::Status UpdateRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response);
+    // DeleteRoute deletes a route. The locations it references are not affected.
+    virtual ::grpc::Status DeleteRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response);
+    // AddZone creates a keep-out or speed-limit zone on the active map. The
+    // planner avoids keep-out zones and caps speed inside speed-limit zones.
+    virtual ::grpc::Status AddZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response);
+    // GetZone returns a zone by name.
+    virtual ::grpc::Status GetZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response);
+    // ListZones lists zones on the active map, optionally filtered by type.
+    virtual ::grpc::Status ListZones(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response);
+    // UpdateZone changes a zone's type, geometry, speed limit, or name.
+    virtual ::grpc::Status UpdateZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response);
+    // DeleteZone deletes a zone.
+    virtual ::grpc::Status DeleteZone(::grpc::ServerContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response);
+    // NavigateToLocation plans an obstacle-aware path to a saved location and
+    // starts driving it. Returns once the goal is accepted; track progress with
+    // GetNavigationStatus.
+    virtual ::grpc::Status NavigateToLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response);
+    // NavigateToPoint plans an obstacle-aware path to a Position and starts
+    // driving it. Returns once the goal is accepted; track progress with
+    // GetNavigationStatus. On a Pose, theta defaults to 0 if omitted.
+    virtual ::grpc::Status NavigateToPoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response);
+    // NavigateRoute drives a route one waypoint at a time using the
+    // obstacle-aware planner. Provide either route_name (a saved route) or
+    // waypoints (an inline list).
+    virtual ::grpc::Status NavigateRoute(::grpc::ServerContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response);
+    // PlanToPoint computes a path from the robot (or a given start) to a
+    // Position without moving. Pass a feasible result to ExecutePlan to drive it.
+    // Raises an error if no path exists.
+    virtual ::grpc::Status PlanToPoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response);
+    // PlanToLocation computes a path to a saved location without moving. Accepts
+    // the same optional start as PlanToPoint. Raises an error if no path exists.
+    virtual ::grpc::Status PlanToLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response);
+    // ExecutePlan drives a Plan (typically from PlanToPoint or PlanToLocation).
+    // While navigating, the active path is available on GetNavigationStatus. Rejected if
+    // the path is empty.
+    virtual ::grpc::Status ExecutePlan(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response);
+    // GoToLocation drives directly to a saved location with a closed-loop
+    // controller, without full path planning. Intended for short hops and
+    // docking. With wait false, returns immediately while navigating.
+    virtual ::grpc::Status GoToLocation(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response);
+    // GoToPoint drives directly to a Position with a closed-loop controller,
+    // without full path planning. Intended for short hops and docking. With wait
+    // false, returns immediately while navigating.
+    virtual ::grpc::Status GoToPoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response);
+    // Suspend stops motion but remembers the current goal, including the current
+    // waypoint and loop setting for routes. A suspended goal must be canceled
+    // before a new one starts.
+    virtual ::grpc::Status Suspend(::grpc::ServerContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response);
+    // Resume resumes the suspended goal the same way it was started: planned
+    // navigation, simple go-to, or a route from its current waypoint.
+    virtual ::grpc::Status Resume(::grpc::ServerContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response);
+    // Cancel stops all motion and discards both the active goal and any
+    // suspended goal.
+    virtual ::grpc::Status Cancel(::grpc::ServerContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response);
+    // GetPosition returns the robot's current position on the active map. Use
+    // this for frequent position polling; GetNavigationStatus reports the same position
+    // alongside the rest of the navigation state.
+    virtual ::grpc::Status GetPosition(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response);
+    // GetNavigationStatus returns the full navigation state, including the robot's
+    // current position and the latest goal.
+    virtual ::grpc::Status GetNavigationStatus(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response);
+    // GetProperties returns the map type the service operates on and robot
+    // properties. These values do not change while the service is running.
     virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response);
+    // GetCostmap returns the local or global costmap as a downsampled grid, for
+    // display in UIs.
+    virtual ::grpc::Status GetCostmap(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
     // GetStatus returns the status of the resource
     virtual ::grpc::Status GetStatus(::grpc::ServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetMode : public BaseClass {
+  class WithAsyncMethod_AddLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetMode() {
+    WithAsyncMethod_AddLocation() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_GetMode() override {
+    ~WithAsyncMethod_AddLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/) override {
+    ::grpc::Status AddLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddLocationRequest* /*request*/, ::viam::service::navigation::v1::AddLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetMode(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetModeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestAddLocation(::grpc::ServerContext* context, ::viam::service::navigation::v1::AddLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::AddLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_SetMode : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_SetMode() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_SetMode() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetMode(::grpc::ServerContext* context, ::viam::service::navigation::v1::SetModeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::SetModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -395,7 +1062,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetLocation() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -406,107 +1073,527 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLocation(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListLocations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListLocations() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_ListLocations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLocations(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListLocationsRequest* /*request*/, ::viam::service::navigation::v1::ListLocationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListLocations(::grpc::ServerContext* context, ::viam::service::navigation::v1::ListLocationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::ListLocationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetWaypoints : public BaseClass {
+  class WithAsyncMethod_UpdateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetWaypoints() {
+    WithAsyncMethod_UpdateLocation() {
       ::grpc::Service::MarkMethodAsync(3);
     }
-    ~WithAsyncMethod_GetWaypoints() override {
+    ~WithAsyncMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetWaypoints(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/) override {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateLocationRequest* /*request*/, ::viam::service::navigation::v1::UpdateLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetWaypoints(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetWaypointsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetWaypointsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdateLocation(::grpc::ServerContext* context, ::viam::service::navigation::v1::UpdateLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::UpdateLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_AddWaypoint : public BaseClass {
+  class WithAsyncMethod_DeleteLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_AddWaypoint() {
+    WithAsyncMethod_DeleteLocation() {
       ::grpc::Service::MarkMethodAsync(4);
     }
-    ~WithAsyncMethod_AddWaypoint() override {
+    ~WithAsyncMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AddWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/) override {
+    ::grpc::Status DeleteLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteLocationRequest* /*request*/, ::viam::service::navigation::v1::DeleteLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestAddWaypoint(::grpc::ServerContext* context, ::viam::service::navigation::v1::AddWaypointRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::AddWaypointResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDeleteLocation(::grpc::ServerContext* context, ::viam::service::navigation::v1::DeleteLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::DeleteLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_RemoveWaypoint : public BaseClass {
+  class WithAsyncMethod_AddRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_RemoveWaypoint() {
+    WithAsyncMethod_AddRoute() {
       ::grpc::Service::MarkMethodAsync(5);
     }
-    ~WithAsyncMethod_RemoveWaypoint() override {
+    ~WithAsyncMethod_AddRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RemoveWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/) override {
+    ::grpc::Status AddRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddRouteRequest* /*request*/, ::viam::service::navigation::v1::AddRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestRemoveWaypoint(::grpc::ServerContext* context, ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::RemoveWaypointResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestAddRoute(::grpc::ServerContext* context, ::viam::service::navigation::v1::AddRouteRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::AddRouteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetObstacles : public BaseClass {
+  class WithAsyncMethod_GetRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetObstacles() {
+    WithAsyncMethod_GetRoute() {
       ::grpc::Service::MarkMethodAsync(6);
     }
-    ~WithAsyncMethod_GetObstacles() override {
+    ~WithAsyncMethod_GetRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetObstacles(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/) override {
+    ::grpc::Status GetRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetRouteRequest* /*request*/, ::viam::service::navigation::v1::GetRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetObstacles(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetObstaclesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetObstaclesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetRoute(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetRouteRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetRouteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetPaths : public BaseClass {
+  class WithAsyncMethod_ListRoutes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetPaths() {
+    WithAsyncMethod_ListRoutes() {
       ::grpc::Service::MarkMethodAsync(7);
     }
-    ~WithAsyncMethod_GetPaths() override {
+    ~WithAsyncMethod_ListRoutes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPaths(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/) override {
+    ::grpc::Status ListRoutes(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListRoutesRequest* /*request*/, ::viam::service::navigation::v1::ListRoutesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetPaths(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetPathsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetPathsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestListRoutes(::grpc::ServerContext* context, ::viam::service::navigation::v1::ListRoutesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::ListRoutesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateRoute() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_UpdateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateRouteRequest* /*request*/, ::viam::service::navigation::v1::UpdateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateRoute(::grpc::ServerContext* context, ::viam::service::navigation::v1::UpdateRouteRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::UpdateRouteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DeleteRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DeleteRoute() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_DeleteRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteRouteRequest* /*request*/, ::viam::service::navigation::v1::DeleteRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteRoute(::grpc::ServerContext* context, ::viam::service::navigation::v1::DeleteRouteRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::DeleteRouteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_AddZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AddZone() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_AddZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddZoneRequest* /*request*/, ::viam::service::navigation::v1::AddZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddZone(::grpc::ServerContext* context, ::viam::service::navigation::v1::AddZoneRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::AddZoneResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetZone() {
+      ::grpc::Service::MarkMethodAsync(11);
+    }
+    ~WithAsyncMethod_GetZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetZoneRequest* /*request*/, ::viam::service::navigation::v1::GetZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetZone(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetZoneRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetZoneResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListZones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListZones() {
+      ::grpc::Service::MarkMethodAsync(12);
+    }
+    ~WithAsyncMethod_ListZones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListZones(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListZonesRequest* /*request*/, ::viam::service::navigation::v1::ListZonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListZones(::grpc::ServerContext* context, ::viam::service::navigation::v1::ListZonesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::ListZonesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateZone() {
+      ::grpc::Service::MarkMethodAsync(13);
+    }
+    ~WithAsyncMethod_UpdateZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateZoneRequest* /*request*/, ::viam::service::navigation::v1::UpdateZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateZone(::grpc::ServerContext* context, ::viam::service::navigation::v1::UpdateZoneRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::UpdateZoneResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DeleteZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DeleteZone() {
+      ::grpc::Service::MarkMethodAsync(14);
+    }
+    ~WithAsyncMethod_DeleteZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteZoneRequest* /*request*/, ::viam::service::navigation::v1::DeleteZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteZone(::grpc::ServerContext* context, ::viam::service::navigation::v1::DeleteZoneRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::DeleteZoneResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_NavigateToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_NavigateToLocation() {
+      ::grpc::Service::MarkMethodAsync(15);
+    }
+    ~WithAsyncMethod_NavigateToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToLocationRequest* /*request*/, ::viam::service::navigation::v1::NavigateToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNavigateToLocation(::grpc::ServerContext* context, ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::NavigateToLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_NavigateToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_NavigateToPoint() {
+      ::grpc::Service::MarkMethodAsync(16);
+    }
+    ~WithAsyncMethod_NavigateToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToPointRequest* /*request*/, ::viam::service::navigation::v1::NavigateToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNavigateToPoint(::grpc::ServerContext* context, ::viam::service::navigation::v1::NavigateToPointRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::NavigateToPointResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_NavigateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_NavigateRoute() {
+      ::grpc::Service::MarkMethodAsync(17);
+    }
+    ~WithAsyncMethod_NavigateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateRouteRequest* /*request*/, ::viam::service::navigation::v1::NavigateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNavigateRoute(::grpc::ServerContext* context, ::viam::service::navigation::v1::NavigateRouteRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::NavigateRouteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PlanToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PlanToPoint() {
+      ::grpc::Service::MarkMethodAsync(18);
+    }
+    ~WithAsyncMethod_PlanToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToPointRequest* /*request*/, ::viam::service::navigation::v1::PlanToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPlanToPoint(::grpc::ServerContext* context, ::viam::service::navigation::v1::PlanToPointRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::PlanToPointResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PlanToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PlanToLocation() {
+      ::grpc::Service::MarkMethodAsync(19);
+    }
+    ~WithAsyncMethod_PlanToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToLocationRequest* /*request*/, ::viam::service::navigation::v1::PlanToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPlanToLocation(::grpc::ServerContext* context, ::viam::service::navigation::v1::PlanToLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::PlanToLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ExecutePlan : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ExecutePlan() {
+      ::grpc::Service::MarkMethodAsync(20);
+    }
+    ~WithAsyncMethod_ExecutePlan() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExecutePlan(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ExecutePlanRequest* /*request*/, ::viam::service::navigation::v1::ExecutePlanResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestExecutePlan(::grpc::ServerContext* context, ::viam::service::navigation::v1::ExecutePlanRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::ExecutePlanResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GoToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GoToLocation() {
+      ::grpc::Service::MarkMethodAsync(21);
+    }
+    ~WithAsyncMethod_GoToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToLocationRequest* /*request*/, ::viam::service::navigation::v1::GoToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGoToLocation(::grpc::ServerContext* context, ::viam::service::navigation::v1::GoToLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GoToLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GoToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GoToPoint() {
+      ::grpc::Service::MarkMethodAsync(22);
+    }
+    ~WithAsyncMethod_GoToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToPointRequest* /*request*/, ::viam::service::navigation::v1::GoToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGoToPoint(::grpc::ServerContext* context, ::viam::service::navigation::v1::GoToPointRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GoToPointResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Suspend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Suspend() {
+      ::grpc::Service::MarkMethodAsync(23);
+    }
+    ~WithAsyncMethod_Suspend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Suspend(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SuspendRequest* /*request*/, ::viam::service::navigation::v1::SuspendResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSuspend(::grpc::ServerContext* context, ::viam::service::navigation::v1::SuspendRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::SuspendResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Resume : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Resume() {
+      ::grpc::Service::MarkMethodAsync(24);
+    }
+    ~WithAsyncMethod_Resume() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Resume(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ResumeRequest* /*request*/, ::viam::service::navigation::v1::ResumeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestResume(::grpc::ServerContext* context, ::viam::service::navigation::v1::ResumeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::ResumeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Cancel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Cancel() {
+      ::grpc::Service::MarkMethodAsync(25);
+    }
+    ~WithAsyncMethod_Cancel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Cancel(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::CancelRequest* /*request*/, ::viam::service::navigation::v1::CancelResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCancel(::grpc::ServerContext* context, ::viam::service::navigation::v1::CancelRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::CancelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetPosition : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetPosition() {
+      ::grpc::Service::MarkMethodAsync(26);
+    }
+    ~WithAsyncMethod_GetPosition() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPositionRequest* /*request*/, ::viam::service::navigation::v1::GetPositionResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetPosition(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetPositionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetPositionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetNavigationStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetNavigationStatus() {
+      ::grpc::Service::MarkMethodAsync(27);
+    }
+    ~WithAsyncMethod_GetNavigationStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNavigationStatus(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetNavigationStatusRequest* /*request*/, ::viam::service::navigation::v1::GetNavigationStatusResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetNavigationStatus(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetNavigationStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -515,7 +1602,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetProperties() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(28);
     }
     ~WithAsyncMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -526,7 +1613,27 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProperties(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetCostmap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetCostmap() {
+      ::grpc::Service::MarkMethodAsync(29);
+    }
+    ~WithAsyncMethod_GetCostmap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCostmap(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetCostmapRequest* /*request*/, ::viam::service::navigation::v1::GetCostmapResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetCostmap(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetCostmapRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetCostmapResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -535,7 +1642,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(30);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -546,7 +1653,7 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -555,7 +1662,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStatus() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(31);
     }
     ~WithAsyncMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -566,63 +1673,36 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::viam::common::v1::GetStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetMode<WithAsyncMethod_SetMode<WithAsyncMethod_GetLocation<WithAsyncMethod_GetWaypoints<WithAsyncMethod_AddWaypoint<WithAsyncMethod_RemoveWaypoint<WithAsyncMethod_GetObstacles<WithAsyncMethod_GetPaths<WithAsyncMethod_GetProperties<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<Service > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_AddLocation<WithAsyncMethod_GetLocation<WithAsyncMethod_ListLocations<WithAsyncMethod_UpdateLocation<WithAsyncMethod_DeleteLocation<WithAsyncMethod_AddRoute<WithAsyncMethod_GetRoute<WithAsyncMethod_ListRoutes<WithAsyncMethod_UpdateRoute<WithAsyncMethod_DeleteRoute<WithAsyncMethod_AddZone<WithAsyncMethod_GetZone<WithAsyncMethod_ListZones<WithAsyncMethod_UpdateZone<WithAsyncMethod_DeleteZone<WithAsyncMethod_NavigateToLocation<WithAsyncMethod_NavigateToPoint<WithAsyncMethod_NavigateRoute<WithAsyncMethod_PlanToPoint<WithAsyncMethod_PlanToLocation<WithAsyncMethod_ExecutePlan<WithAsyncMethod_GoToLocation<WithAsyncMethod_GoToPoint<WithAsyncMethod_Suspend<WithAsyncMethod_Resume<WithAsyncMethod_Cancel<WithAsyncMethod_GetPosition<WithAsyncMethod_GetNavigationStatus<WithAsyncMethod_GetProperties<WithAsyncMethod_GetCostmap<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetMode : public BaseClass {
+  class WithCallbackMethod_AddLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetMode() {
+    WithCallbackMethod_AddLocation() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response) { return this->GetMode(context, request, response); }));}
-    void SetMessageAllocatorFor_GetMode(
-        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::AddLocationRequest* request, ::viam::service::navigation::v1::AddLocationResponse* response) { return this->AddLocation(context, request, response); }));}
+    void SetMessageAllocatorFor_AddLocation(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetMode() override {
+    ~WithCallbackMethod_AddLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/) override {
+    ::grpc::Status AddLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddLocationRequest* /*request*/, ::viam::service::navigation::v1::AddLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_SetMode : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_SetMode() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response) { return this->SetMode(context, request, response); }));}
-    void SetMessageAllocatorFor_SetMode(
-        ::grpc::MessageAllocator< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_SetMode() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* AddLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::AddLocationRequest* /*request*/, ::viam::service::navigation::v1::AddLocationResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetLocation : public BaseClass {
@@ -630,13 +1710,13 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetLocation() {
-      ::grpc::Service::MarkMethodCallback(2,
+      ::grpc::Service::MarkMethodCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response) { return this->GetLocation(context, request, response); }));}
     void SetMessageAllocatorFor_GetLocation(
         ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -652,139 +1732,706 @@ class NavigationService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetLocationRequest* /*request*/, ::viam::service::navigation::v1::GetLocationResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetWaypoints : public BaseClass {
+  class WithCallbackMethod_ListLocations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetWaypoints() {
+    WithCallbackMethod_ListLocations() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::ListLocationsRequest* request, ::viam::service::navigation::v1::ListLocationsResponse* response) { return this->ListLocations(context, request, response); }));}
+    void SetMessageAllocatorFor_ListLocations(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ListLocations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLocations(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListLocationsRequest* /*request*/, ::viam::service::navigation::v1::ListLocationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListLocations(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::ListLocationsRequest* /*request*/, ::viam::service::navigation::v1::ListLocationsResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateLocation() {
       ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response) { return this->GetWaypoints(context, request, response); }));}
-    void SetMessageAllocatorFor_GetWaypoints(
-        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::UpdateLocationRequest* request, ::viam::service::navigation::v1::UpdateLocationResponse* response) { return this->UpdateLocation(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateLocation(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetWaypoints() override {
+    ~WithCallbackMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetWaypoints(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/) override {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateLocationRequest* /*request*/, ::viam::service::navigation::v1::UpdateLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetWaypoints(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* UpdateLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateLocationRequest* /*request*/, ::viam::service::navigation::v1::UpdateLocationResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_AddWaypoint : public BaseClass {
+  class WithCallbackMethod_DeleteLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_AddWaypoint() {
+    WithCallbackMethod_DeleteLocation() {
       ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response) { return this->AddWaypoint(context, request, response); }));}
-    void SetMessageAllocatorFor_AddWaypoint(
-        ::grpc::MessageAllocator< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::DeleteLocationRequest* request, ::viam::service::navigation::v1::DeleteLocationResponse* response) { return this->DeleteLocation(context, request, response); }));}
+    void SetMessageAllocatorFor_DeleteLocation(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_AddWaypoint() override {
+    ~WithCallbackMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AddWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/) override {
+    ::grpc::Status DeleteLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteLocationRequest* /*request*/, ::viam::service::navigation::v1::DeleteLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* AddWaypoint(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* DeleteLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteLocationRequest* /*request*/, ::viam::service::navigation::v1::DeleteLocationResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RemoveWaypoint : public BaseClass {
+  class WithCallbackMethod_AddRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RemoveWaypoint() {
+    WithCallbackMethod_AddRoute() {
       ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response) { return this->RemoveWaypoint(context, request, response); }));}
-    void SetMessageAllocatorFor_RemoveWaypoint(
-        ::grpc::MessageAllocator< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::AddRouteRequest* request, ::viam::service::navigation::v1::AddRouteResponse* response) { return this->AddRoute(context, request, response); }));}
+    void SetMessageAllocatorFor_AddRoute(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_RemoveWaypoint() override {
+    ~WithCallbackMethod_AddRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RemoveWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/) override {
+    ::grpc::Status AddRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddRouteRequest* /*request*/, ::viam::service::navigation::v1::AddRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* RemoveWaypoint(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* AddRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::AddRouteRequest* /*request*/, ::viam::service::navigation::v1::AddRouteResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetObstacles : public BaseClass {
+  class WithCallbackMethod_GetRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetObstacles() {
+    WithCallbackMethod_GetRoute() {
       ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response) { return this->GetObstacles(context, request, response); }));}
-    void SetMessageAllocatorFor_GetObstacles(
-        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetRouteRequest* request, ::viam::service::navigation::v1::GetRouteResponse* response) { return this->GetRoute(context, request, response); }));}
+    void SetMessageAllocatorFor_GetRoute(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetObstacles() override {
+    ~WithCallbackMethod_GetRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetObstacles(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/) override {
+    ::grpc::Status GetRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetRouteRequest* /*request*/, ::viam::service::navigation::v1::GetRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetObstacles(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* GetRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetRouteRequest* /*request*/, ::viam::service::navigation::v1::GetRouteResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetPaths : public BaseClass {
+  class WithCallbackMethod_ListRoutes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetPaths() {
+    WithCallbackMethod_ListRoutes() {
       ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response) { return this->GetPaths(context, request, response); }));}
-    void SetMessageAllocatorFor_GetPaths(
-        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::ListRoutesRequest* request, ::viam::service::navigation::v1::ListRoutesResponse* response) { return this->ListRoutes(context, request, response); }));}
+    void SetMessageAllocatorFor_ListRoutes(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetPaths() override {
+    ~WithCallbackMethod_ListRoutes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPaths(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/) override {
+    ::grpc::Status ListRoutes(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListRoutesRequest* /*request*/, ::viam::service::navigation::v1::ListRoutesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetPaths(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* ListRoutes(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::ListRoutesRequest* /*request*/, ::viam::service::navigation::v1::ListRoutesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateRoute() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::UpdateRouteRequest* request, ::viam::service::navigation::v1::UpdateRouteResponse* response) { return this->UpdateRoute(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateRoute(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UpdateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateRouteRequest* /*request*/, ::viam::service::navigation::v1::UpdateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateRouteRequest* /*request*/, ::viam::service::navigation::v1::UpdateRouteResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DeleteRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DeleteRoute() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::DeleteRouteRequest* request, ::viam::service::navigation::v1::DeleteRouteResponse* response) { return this->DeleteRoute(context, request, response); }));}
+    void SetMessageAllocatorFor_DeleteRoute(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DeleteRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteRouteRequest* /*request*/, ::viam::service::navigation::v1::DeleteRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteRouteRequest* /*request*/, ::viam::service::navigation::v1::DeleteRouteResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_AddZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_AddZone() {
+      ::grpc::Service::MarkMethodCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::AddZoneRequest* request, ::viam::service::navigation::v1::AddZoneResponse* response) { return this->AddZone(context, request, response); }));}
+    void SetMessageAllocatorFor_AddZone(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_AddZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddZoneRequest* /*request*/, ::viam::service::navigation::v1::AddZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::AddZoneRequest* /*request*/, ::viam::service::navigation::v1::AddZoneResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetZone() {
+      ::grpc::Service::MarkMethodCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetZoneRequest* request, ::viam::service::navigation::v1::GetZoneResponse* response) { return this->GetZone(context, request, response); }));}
+    void SetMessageAllocatorFor_GetZone(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetZoneRequest* /*request*/, ::viam::service::navigation::v1::GetZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetZoneRequest* /*request*/, ::viam::service::navigation::v1::GetZoneResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ListZones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ListZones() {
+      ::grpc::Service::MarkMethodCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::ListZonesRequest* request, ::viam::service::navigation::v1::ListZonesResponse* response) { return this->ListZones(context, request, response); }));}
+    void SetMessageAllocatorFor_ListZones(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ListZones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListZones(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListZonesRequest* /*request*/, ::viam::service::navigation::v1::ListZonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListZones(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::ListZonesRequest* /*request*/, ::viam::service::navigation::v1::ListZonesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateZone() {
+      ::grpc::Service::MarkMethodCallback(13,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::UpdateZoneRequest* request, ::viam::service::navigation::v1::UpdateZoneResponse* response) { return this->UpdateZone(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateZone(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UpdateZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateZoneRequest* /*request*/, ::viam::service::navigation::v1::UpdateZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateZoneRequest* /*request*/, ::viam::service::navigation::v1::UpdateZoneResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DeleteZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DeleteZone() {
+      ::grpc::Service::MarkMethodCallback(14,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::DeleteZoneRequest* request, ::viam::service::navigation::v1::DeleteZoneResponse* response) { return this->DeleteZone(context, request, response); }));}
+    void SetMessageAllocatorFor_DeleteZone(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DeleteZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteZoneRequest* /*request*/, ::viam::service::navigation::v1::DeleteZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteZoneRequest* /*request*/, ::viam::service::navigation::v1::DeleteZoneResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_NavigateToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_NavigateToLocation() {
+      ::grpc::Service::MarkMethodCallback(15,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::NavigateToLocationRequest* request, ::viam::service::navigation::v1::NavigateToLocationResponse* response) { return this->NavigateToLocation(context, request, response); }));}
+    void SetMessageAllocatorFor_NavigateToLocation(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_NavigateToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToLocationRequest* /*request*/, ::viam::service::navigation::v1::NavigateToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NavigateToLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToLocationRequest* /*request*/, ::viam::service::navigation::v1::NavigateToLocationResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_NavigateToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_NavigateToPoint() {
+      ::grpc::Service::MarkMethodCallback(16,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::NavigateToPointRequest* request, ::viam::service::navigation::v1::NavigateToPointResponse* response) { return this->NavigateToPoint(context, request, response); }));}
+    void SetMessageAllocatorFor_NavigateToPoint(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_NavigateToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToPointRequest* /*request*/, ::viam::service::navigation::v1::NavigateToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NavigateToPoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToPointRequest* /*request*/, ::viam::service::navigation::v1::NavigateToPointResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_NavigateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_NavigateRoute() {
+      ::grpc::Service::MarkMethodCallback(17,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::NavigateRouteRequest* request, ::viam::service::navigation::v1::NavigateRouteResponse* response) { return this->NavigateRoute(context, request, response); }));}
+    void SetMessageAllocatorFor_NavigateRoute(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_NavigateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateRouteRequest* /*request*/, ::viam::service::navigation::v1::NavigateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NavigateRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateRouteRequest* /*request*/, ::viam::service::navigation::v1::NavigateRouteResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_PlanToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_PlanToPoint() {
+      ::grpc::Service::MarkMethodCallback(18,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::PlanToPointRequest* request, ::viam::service::navigation::v1::PlanToPointResponse* response) { return this->PlanToPoint(context, request, response); }));}
+    void SetMessageAllocatorFor_PlanToPoint(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(18);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_PlanToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToPointRequest* /*request*/, ::viam::service::navigation::v1::PlanToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* PlanToPoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToPointRequest* /*request*/, ::viam::service::navigation::v1::PlanToPointResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_PlanToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_PlanToLocation() {
+      ::grpc::Service::MarkMethodCallback(19,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::PlanToLocationRequest* request, ::viam::service::navigation::v1::PlanToLocationResponse* response) { return this->PlanToLocation(context, request, response); }));}
+    void SetMessageAllocatorFor_PlanToLocation(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(19);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_PlanToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToLocationRequest* /*request*/, ::viam::service::navigation::v1::PlanToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* PlanToLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToLocationRequest* /*request*/, ::viam::service::navigation::v1::PlanToLocationResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ExecutePlan : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ExecutePlan() {
+      ::grpc::Service::MarkMethodCallback(20,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::ExecutePlanRequest* request, ::viam::service::navigation::v1::ExecutePlanResponse* response) { return this->ExecutePlan(context, request, response); }));}
+    void SetMessageAllocatorFor_ExecutePlan(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ExecutePlan() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExecutePlan(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ExecutePlanRequest* /*request*/, ::viam::service::navigation::v1::ExecutePlanResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ExecutePlan(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::ExecutePlanRequest* /*request*/, ::viam::service::navigation::v1::ExecutePlanResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GoToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GoToLocation() {
+      ::grpc::Service::MarkMethodCallback(21,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GoToLocationRequest* request, ::viam::service::navigation::v1::GoToLocationResponse* response) { return this->GoToLocation(context, request, response); }));}
+    void SetMessageAllocatorFor_GoToLocation(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(21);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GoToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToLocationRequest* /*request*/, ::viam::service::navigation::v1::GoToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GoToLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GoToLocationRequest* /*request*/, ::viam::service::navigation::v1::GoToLocationResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GoToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GoToPoint() {
+      ::grpc::Service::MarkMethodCallback(22,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GoToPointRequest* request, ::viam::service::navigation::v1::GoToPointResponse* response) { return this->GoToPoint(context, request, response); }));}
+    void SetMessageAllocatorFor_GoToPoint(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GoToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToPointRequest* /*request*/, ::viam::service::navigation::v1::GoToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GoToPoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GoToPointRequest* /*request*/, ::viam::service::navigation::v1::GoToPointResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Suspend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Suspend() {
+      ::grpc::Service::MarkMethodCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::SuspendRequest* request, ::viam::service::navigation::v1::SuspendResponse* response) { return this->Suspend(context, request, response); }));}
+    void SetMessageAllocatorFor_Suspend(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Suspend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Suspend(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SuspendRequest* /*request*/, ::viam::service::navigation::v1::SuspendResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Suspend(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::SuspendRequest* /*request*/, ::viam::service::navigation::v1::SuspendResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Resume : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Resume() {
+      ::grpc::Service::MarkMethodCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::ResumeRequest* request, ::viam::service::navigation::v1::ResumeResponse* response) { return this->Resume(context, request, response); }));}
+    void SetMessageAllocatorFor_Resume(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Resume() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Resume(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ResumeRequest* /*request*/, ::viam::service::navigation::v1::ResumeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Resume(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::ResumeRequest* /*request*/, ::viam::service::navigation::v1::ResumeResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Cancel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Cancel() {
+      ::grpc::Service::MarkMethodCallback(25,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::CancelRequest* request, ::viam::service::navigation::v1::CancelResponse* response) { return this->Cancel(context, request, response); }));}
+    void SetMessageAllocatorFor_Cancel(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(25);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Cancel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Cancel(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::CancelRequest* /*request*/, ::viam::service::navigation::v1::CancelResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Cancel(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::CancelRequest* /*request*/, ::viam::service::navigation::v1::CancelResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetPosition : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetPosition() {
+      ::grpc::Service::MarkMethodCallback(26,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetPositionRequest* request, ::viam::service::navigation::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
+    void SetMessageAllocatorFor_GetPosition(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(26);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetPosition() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPositionRequest* /*request*/, ::viam::service::navigation::v1::GetPositionResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetPosition(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPositionRequest* /*request*/, ::viam::service::navigation::v1::GetPositionResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetNavigationStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetNavigationStatus() {
+      ::grpc::Service::MarkMethodCallback(27,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetNavigationStatusRequest* request, ::viam::service::navigation::v1::GetNavigationStatusResponse* response) { return this->GetNavigationStatus(context, request, response); }));}
+    void SetMessageAllocatorFor_GetNavigationStatus(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(27);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetNavigationStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNavigationStatus(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetNavigationStatusRequest* /*request*/, ::viam::service::navigation::v1::GetNavigationStatusResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetNavigationStatus(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetNavigationStatusRequest* /*request*/, ::viam::service::navigation::v1::GetNavigationStatusResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetProperties : public BaseClass {
@@ -792,13 +2439,13 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(28,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
     void SetMessageAllocatorFor_GetProperties(
         ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(28);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -814,18 +2461,45 @@ class NavigationService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetCostmap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetCostmap() {
+      ::grpc::Service::MarkMethodCallback(29,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetCostmapRequest* request, ::viam::service::navigation::v1::GetCostmapResponse* response) { return this->GetCostmap(context, request, response); }));}
+    void SetMessageAllocatorFor_GetCostmap(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetCostmap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCostmap(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetCostmapRequest* /*request*/, ::viam::service::navigation::v1::GetCostmapResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetCostmap(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetCostmapRequest* /*request*/, ::viam::service::navigation::v1::GetCostmapResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -846,13 +2520,13 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) { return this->GetStatus(context, request, response); }));}
     void SetMessageAllocatorFor_GetStatus(
         ::grpc::MessageAllocator< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -867,38 +2541,21 @@ class NavigationService final {
     virtual ::grpc::ServerUnaryReactor* GetStatus(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetStatusRequest* /*request*/, ::viam::common::v1::GetStatusResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetMode<WithCallbackMethod_SetMode<WithCallbackMethod_GetLocation<WithCallbackMethod_GetWaypoints<WithCallbackMethod_AddWaypoint<WithCallbackMethod_RemoveWaypoint<WithCallbackMethod_GetObstacles<WithCallbackMethod_GetPaths<WithCallbackMethod_GetProperties<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<Service > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_AddLocation<WithCallbackMethod_GetLocation<WithCallbackMethod_ListLocations<WithCallbackMethod_UpdateLocation<WithCallbackMethod_DeleteLocation<WithCallbackMethod_AddRoute<WithCallbackMethod_GetRoute<WithCallbackMethod_ListRoutes<WithCallbackMethod_UpdateRoute<WithCallbackMethod_DeleteRoute<WithCallbackMethod_AddZone<WithCallbackMethod_GetZone<WithCallbackMethod_ListZones<WithCallbackMethod_UpdateZone<WithCallbackMethod_DeleteZone<WithCallbackMethod_NavigateToLocation<WithCallbackMethod_NavigateToPoint<WithCallbackMethod_NavigateRoute<WithCallbackMethod_PlanToPoint<WithCallbackMethod_PlanToLocation<WithCallbackMethod_ExecutePlan<WithCallbackMethod_GoToLocation<WithCallbackMethod_GoToPoint<WithCallbackMethod_Suspend<WithCallbackMethod_Resume<WithCallbackMethod_Cancel<WithCallbackMethod_GetPosition<WithCallbackMethod_GetNavigationStatus<WithCallbackMethod_GetProperties<WithCallbackMethod_GetCostmap<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_GetMode : public BaseClass {
+  class WithGenericMethod_AddLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetMode() {
+    WithGenericMethod_AddLocation() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_GetMode() override {
+    ~WithGenericMethod_AddLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_SetMode : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_SetMode() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_SetMode() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/) override {
+    ::grpc::Status AddLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddLocationRequest* /*request*/, ::viam::service::navigation::v1::AddLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -909,7 +2566,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetLocation() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -921,86 +2578,443 @@ class NavigationService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetWaypoints : public BaseClass {
+  class WithGenericMethod_ListLocations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetWaypoints() {
+    WithGenericMethod_ListLocations() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_ListLocations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLocations(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListLocationsRequest* /*request*/, ::viam::service::navigation::v1::ListLocationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateLocation() {
       ::grpc::Service::MarkMethodGeneric(3);
     }
-    ~WithGenericMethod_GetWaypoints() override {
+    ~WithGenericMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetWaypoints(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/) override {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateLocationRequest* /*request*/, ::viam::service::navigation::v1::UpdateLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_AddWaypoint : public BaseClass {
+  class WithGenericMethod_DeleteLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_AddWaypoint() {
+    WithGenericMethod_DeleteLocation() {
       ::grpc::Service::MarkMethodGeneric(4);
     }
-    ~WithGenericMethod_AddWaypoint() override {
+    ~WithGenericMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AddWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/) override {
+    ::grpc::Status DeleteLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteLocationRequest* /*request*/, ::viam::service::navigation::v1::DeleteLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_RemoveWaypoint : public BaseClass {
+  class WithGenericMethod_AddRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_RemoveWaypoint() {
+    WithGenericMethod_AddRoute() {
       ::grpc::Service::MarkMethodGeneric(5);
     }
-    ~WithGenericMethod_RemoveWaypoint() override {
+    ~WithGenericMethod_AddRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RemoveWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/) override {
+    ::grpc::Status AddRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddRouteRequest* /*request*/, ::viam::service::navigation::v1::AddRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetObstacles : public BaseClass {
+  class WithGenericMethod_GetRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetObstacles() {
+    WithGenericMethod_GetRoute() {
       ::grpc::Service::MarkMethodGeneric(6);
     }
-    ~WithGenericMethod_GetObstacles() override {
+    ~WithGenericMethod_GetRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetObstacles(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/) override {
+    ::grpc::Status GetRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetRouteRequest* /*request*/, ::viam::service::navigation::v1::GetRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetPaths : public BaseClass {
+  class WithGenericMethod_ListRoutes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetPaths() {
+    WithGenericMethod_ListRoutes() {
       ::grpc::Service::MarkMethodGeneric(7);
     }
-    ~WithGenericMethod_GetPaths() override {
+    ~WithGenericMethod_ListRoutes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPaths(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/) override {
+    ::grpc::Status ListRoutes(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListRoutesRequest* /*request*/, ::viam::service::navigation::v1::ListRoutesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateRoute() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_UpdateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateRouteRequest* /*request*/, ::viam::service::navigation::v1::UpdateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DeleteRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DeleteRoute() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_DeleteRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteRouteRequest* /*request*/, ::viam::service::navigation::v1::DeleteRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AddZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AddZone() {
+      ::grpc::Service::MarkMethodGeneric(10);
+    }
+    ~WithGenericMethod_AddZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddZoneRequest* /*request*/, ::viam::service::navigation::v1::AddZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetZone() {
+      ::grpc::Service::MarkMethodGeneric(11);
+    }
+    ~WithGenericMethod_GetZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetZoneRequest* /*request*/, ::viam::service::navigation::v1::GetZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListZones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListZones() {
+      ::grpc::Service::MarkMethodGeneric(12);
+    }
+    ~WithGenericMethod_ListZones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListZones(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListZonesRequest* /*request*/, ::viam::service::navigation::v1::ListZonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateZone() {
+      ::grpc::Service::MarkMethodGeneric(13);
+    }
+    ~WithGenericMethod_UpdateZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateZoneRequest* /*request*/, ::viam::service::navigation::v1::UpdateZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DeleteZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DeleteZone() {
+      ::grpc::Service::MarkMethodGeneric(14);
+    }
+    ~WithGenericMethod_DeleteZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteZoneRequest* /*request*/, ::viam::service::navigation::v1::DeleteZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_NavigateToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_NavigateToLocation() {
+      ::grpc::Service::MarkMethodGeneric(15);
+    }
+    ~WithGenericMethod_NavigateToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToLocationRequest* /*request*/, ::viam::service::navigation::v1::NavigateToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_NavigateToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_NavigateToPoint() {
+      ::grpc::Service::MarkMethodGeneric(16);
+    }
+    ~WithGenericMethod_NavigateToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToPointRequest* /*request*/, ::viam::service::navigation::v1::NavigateToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_NavigateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_NavigateRoute() {
+      ::grpc::Service::MarkMethodGeneric(17);
+    }
+    ~WithGenericMethod_NavigateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateRouteRequest* /*request*/, ::viam::service::navigation::v1::NavigateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PlanToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PlanToPoint() {
+      ::grpc::Service::MarkMethodGeneric(18);
+    }
+    ~WithGenericMethod_PlanToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToPointRequest* /*request*/, ::viam::service::navigation::v1::PlanToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PlanToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PlanToLocation() {
+      ::grpc::Service::MarkMethodGeneric(19);
+    }
+    ~WithGenericMethod_PlanToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToLocationRequest* /*request*/, ::viam::service::navigation::v1::PlanToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ExecutePlan : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ExecutePlan() {
+      ::grpc::Service::MarkMethodGeneric(20);
+    }
+    ~WithGenericMethod_ExecutePlan() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExecutePlan(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ExecutePlanRequest* /*request*/, ::viam::service::navigation::v1::ExecutePlanResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GoToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GoToLocation() {
+      ::grpc::Service::MarkMethodGeneric(21);
+    }
+    ~WithGenericMethod_GoToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToLocationRequest* /*request*/, ::viam::service::navigation::v1::GoToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GoToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GoToPoint() {
+      ::grpc::Service::MarkMethodGeneric(22);
+    }
+    ~WithGenericMethod_GoToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToPointRequest* /*request*/, ::viam::service::navigation::v1::GoToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Suspend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Suspend() {
+      ::grpc::Service::MarkMethodGeneric(23);
+    }
+    ~WithGenericMethod_Suspend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Suspend(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SuspendRequest* /*request*/, ::viam::service::navigation::v1::SuspendResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Resume : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Resume() {
+      ::grpc::Service::MarkMethodGeneric(24);
+    }
+    ~WithGenericMethod_Resume() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Resume(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ResumeRequest* /*request*/, ::viam::service::navigation::v1::ResumeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Cancel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Cancel() {
+      ::grpc::Service::MarkMethodGeneric(25);
+    }
+    ~WithGenericMethod_Cancel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Cancel(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::CancelRequest* /*request*/, ::viam::service::navigation::v1::CancelResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetPosition : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetPosition() {
+      ::grpc::Service::MarkMethodGeneric(26);
+    }
+    ~WithGenericMethod_GetPosition() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPositionRequest* /*request*/, ::viam::service::navigation::v1::GetPositionResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetNavigationStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetNavigationStatus() {
+      ::grpc::Service::MarkMethodGeneric(27);
+    }
+    ~WithGenericMethod_GetNavigationStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNavigationStatus(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetNavigationStatusRequest* /*request*/, ::viam::service::navigation::v1::GetNavigationStatusResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1011,7 +3025,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetProperties() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(28);
     }
     ~WithGenericMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1023,12 +3037,29 @@ class NavigationService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetCostmap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetCostmap() {
+      ::grpc::Service::MarkMethodGeneric(29);
+    }
+    ~WithGenericMethod_GetCostmap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCostmap(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetCostmapRequest* /*request*/, ::viam::service::navigation::v1::GetCostmapResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(30);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1045,7 +3076,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStatus() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(31);
     }
     ~WithGenericMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1057,43 +3088,23 @@ class NavigationService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetMode : public BaseClass {
+  class WithRawMethod_AddLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetMode() {
+    WithRawMethod_AddLocation() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_GetMode() override {
+    ~WithRawMethod_AddLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/) override {
+    ::grpc::Status AddLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddLocationRequest* /*request*/, ::viam::service::navigation::v1::AddLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestAddLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_SetMode : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_SetMode() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_SetMode() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1102,7 +3113,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetLocation() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1113,107 +3124,527 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListLocations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListLocations() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_ListLocations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLocations(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListLocationsRequest* /*request*/, ::viam::service::navigation::v1::ListLocationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListLocations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetWaypoints : public BaseClass {
+  class WithRawMethod_UpdateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetWaypoints() {
+    WithRawMethod_UpdateLocation() {
       ::grpc::Service::MarkMethodRaw(3);
     }
-    ~WithRawMethod_GetWaypoints() override {
+    ~WithRawMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetWaypoints(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/) override {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateLocationRequest* /*request*/, ::viam::service::navigation::v1::UpdateLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetWaypoints(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdateLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_AddWaypoint : public BaseClass {
+  class WithRawMethod_DeleteLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_AddWaypoint() {
+    WithRawMethod_DeleteLocation() {
       ::grpc::Service::MarkMethodRaw(4);
     }
-    ~WithRawMethod_AddWaypoint() override {
+    ~WithRawMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AddWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/) override {
+    ::grpc::Status DeleteLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteLocationRequest* /*request*/, ::viam::service::navigation::v1::DeleteLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestAddWaypoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDeleteLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_RemoveWaypoint : public BaseClass {
+  class WithRawMethod_AddRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_RemoveWaypoint() {
+    WithRawMethod_AddRoute() {
       ::grpc::Service::MarkMethodRaw(5);
     }
-    ~WithRawMethod_RemoveWaypoint() override {
+    ~WithRawMethod_AddRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RemoveWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/) override {
+    ::grpc::Status AddRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddRouteRequest* /*request*/, ::viam::service::navigation::v1::AddRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestRemoveWaypoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestAddRoute(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetObstacles : public BaseClass {
+  class WithRawMethod_GetRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetObstacles() {
+    WithRawMethod_GetRoute() {
       ::grpc::Service::MarkMethodRaw(6);
     }
-    ~WithRawMethod_GetObstacles() override {
+    ~WithRawMethod_GetRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetObstacles(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/) override {
+    ::grpc::Status GetRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetRouteRequest* /*request*/, ::viam::service::navigation::v1::GetRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetObstacles(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetRoute(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetPaths : public BaseClass {
+  class WithRawMethod_ListRoutes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetPaths() {
+    WithRawMethod_ListRoutes() {
       ::grpc::Service::MarkMethodRaw(7);
     }
-    ~WithRawMethod_GetPaths() override {
+    ~WithRawMethod_ListRoutes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPaths(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/) override {
+    ::grpc::Status ListRoutes(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListRoutesRequest* /*request*/, ::viam::service::navigation::v1::ListRoutesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetPaths(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestListRoutes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateRoute() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_UpdateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateRouteRequest* /*request*/, ::viam::service::navigation::v1::UpdateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateRoute(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DeleteRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DeleteRoute() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_DeleteRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteRouteRequest* /*request*/, ::viam::service::navigation::v1::DeleteRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteRoute(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AddZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AddZone() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_AddZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddZoneRequest* /*request*/, ::viam::service::navigation::v1::AddZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddZone(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetZone() {
+      ::grpc::Service::MarkMethodRaw(11);
+    }
+    ~WithRawMethod_GetZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetZoneRequest* /*request*/, ::viam::service::navigation::v1::GetZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetZone(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListZones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListZones() {
+      ::grpc::Service::MarkMethodRaw(12);
+    }
+    ~WithRawMethod_ListZones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListZones(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListZonesRequest* /*request*/, ::viam::service::navigation::v1::ListZonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListZones(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateZone() {
+      ::grpc::Service::MarkMethodRaw(13);
+    }
+    ~WithRawMethod_UpdateZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateZoneRequest* /*request*/, ::viam::service::navigation::v1::UpdateZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateZone(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DeleteZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DeleteZone() {
+      ::grpc::Service::MarkMethodRaw(14);
+    }
+    ~WithRawMethod_DeleteZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteZoneRequest* /*request*/, ::viam::service::navigation::v1::DeleteZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteZone(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_NavigateToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_NavigateToLocation() {
+      ::grpc::Service::MarkMethodRaw(15);
+    }
+    ~WithRawMethod_NavigateToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToLocationRequest* /*request*/, ::viam::service::navigation::v1::NavigateToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNavigateToLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_NavigateToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_NavigateToPoint() {
+      ::grpc::Service::MarkMethodRaw(16);
+    }
+    ~WithRawMethod_NavigateToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToPointRequest* /*request*/, ::viam::service::navigation::v1::NavigateToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNavigateToPoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_NavigateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_NavigateRoute() {
+      ::grpc::Service::MarkMethodRaw(17);
+    }
+    ~WithRawMethod_NavigateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateRouteRequest* /*request*/, ::viam::service::navigation::v1::NavigateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNavigateRoute(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PlanToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PlanToPoint() {
+      ::grpc::Service::MarkMethodRaw(18);
+    }
+    ~WithRawMethod_PlanToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToPointRequest* /*request*/, ::viam::service::navigation::v1::PlanToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPlanToPoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PlanToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PlanToLocation() {
+      ::grpc::Service::MarkMethodRaw(19);
+    }
+    ~WithRawMethod_PlanToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToLocationRequest* /*request*/, ::viam::service::navigation::v1::PlanToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPlanToLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ExecutePlan : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ExecutePlan() {
+      ::grpc::Service::MarkMethodRaw(20);
+    }
+    ~WithRawMethod_ExecutePlan() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExecutePlan(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ExecutePlanRequest* /*request*/, ::viam::service::navigation::v1::ExecutePlanResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestExecutePlan(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GoToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GoToLocation() {
+      ::grpc::Service::MarkMethodRaw(21);
+    }
+    ~WithRawMethod_GoToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToLocationRequest* /*request*/, ::viam::service::navigation::v1::GoToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGoToLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GoToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GoToPoint() {
+      ::grpc::Service::MarkMethodRaw(22);
+    }
+    ~WithRawMethod_GoToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToPointRequest* /*request*/, ::viam::service::navigation::v1::GoToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGoToPoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Suspend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Suspend() {
+      ::grpc::Service::MarkMethodRaw(23);
+    }
+    ~WithRawMethod_Suspend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Suspend(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SuspendRequest* /*request*/, ::viam::service::navigation::v1::SuspendResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSuspend(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Resume : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Resume() {
+      ::grpc::Service::MarkMethodRaw(24);
+    }
+    ~WithRawMethod_Resume() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Resume(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ResumeRequest* /*request*/, ::viam::service::navigation::v1::ResumeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestResume(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Cancel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Cancel() {
+      ::grpc::Service::MarkMethodRaw(25);
+    }
+    ~WithRawMethod_Cancel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Cancel(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::CancelRequest* /*request*/, ::viam::service::navigation::v1::CancelResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCancel(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetPosition : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetPosition() {
+      ::grpc::Service::MarkMethodRaw(26);
+    }
+    ~WithRawMethod_GetPosition() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPositionRequest* /*request*/, ::viam::service::navigation::v1::GetPositionResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetPosition(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetNavigationStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetNavigationStatus() {
+      ::grpc::Service::MarkMethodRaw(27);
+    }
+    ~WithRawMethod_GetNavigationStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNavigationStatus(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetNavigationStatusRequest* /*request*/, ::viam::service::navigation::v1::GetNavigationStatusResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetNavigationStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1222,7 +3653,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(28);
     }
     ~WithRawMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1233,7 +3664,27 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetCostmap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetCostmap() {
+      ::grpc::Service::MarkMethodRaw(29);
+    }
+    ~WithRawMethod_GetCostmap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCostmap(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetCostmapRequest* /*request*/, ::viam::service::navigation::v1::GetCostmapResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetCostmap(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1242,7 +3693,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(30);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1253,7 +3704,7 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1262,7 +3713,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(31);
     }
     ~WithRawMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1273,51 +3724,29 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetMode : public BaseClass {
+  class WithRawCallbackMethod_AddLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetMode() {
+    WithRawCallbackMethod_AddLocation() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMode(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddLocation(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetMode() override {
+    ~WithRawCallbackMethod_AddLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/) override {
+    ::grpc::Status AddLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddLocationRequest* /*request*/, ::viam::service::navigation::v1::AddLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_SetMode : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_SetMode() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetMode(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_SetMode() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetMode(
+    virtual ::grpc::ServerUnaryReactor* AddLocation(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1326,7 +3755,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetLocation() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+      ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLocation(context, request, response); }));
@@ -1343,113 +3772,575 @@ class NavigationService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetWaypoints : public BaseClass {
+  class WithRawCallbackMethod_ListLocations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetWaypoints() {
+    WithRawCallbackMethod_ListLocations() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListLocations(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ListLocations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLocations(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListLocationsRequest* /*request*/, ::viam::service::navigation::v1::ListLocationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListLocations(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateLocation() {
       ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetWaypoints(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateLocation(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetWaypoints() override {
+    ~WithRawCallbackMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetWaypoints(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/) override {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateLocationRequest* /*request*/, ::viam::service::navigation::v1::UpdateLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetWaypoints(
+    virtual ::grpc::ServerUnaryReactor* UpdateLocation(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_AddWaypoint : public BaseClass {
+  class WithRawCallbackMethod_DeleteLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_AddWaypoint() {
+    WithRawCallbackMethod_DeleteLocation() {
       ::grpc::Service::MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddWaypoint(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteLocation(context, request, response); }));
     }
-    ~WithRawCallbackMethod_AddWaypoint() override {
+    ~WithRawCallbackMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AddWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/) override {
+    ::grpc::Status DeleteLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteLocationRequest* /*request*/, ::viam::service::navigation::v1::DeleteLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* AddWaypoint(
+    virtual ::grpc::ServerUnaryReactor* DeleteLocation(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RemoveWaypoint : public BaseClass {
+  class WithRawCallbackMethod_AddRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RemoveWaypoint() {
+    WithRawCallbackMethod_AddRoute() {
       ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveWaypoint(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddRoute(context, request, response); }));
     }
-    ~WithRawCallbackMethod_RemoveWaypoint() override {
+    ~WithRawCallbackMethod_AddRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RemoveWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/) override {
+    ::grpc::Status AddRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddRouteRequest* /*request*/, ::viam::service::navigation::v1::AddRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* RemoveWaypoint(
+    virtual ::grpc::ServerUnaryReactor* AddRoute(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetObstacles : public BaseClass {
+  class WithRawCallbackMethod_GetRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetObstacles() {
+    WithRawCallbackMethod_GetRoute() {
       ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetObstacles(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRoute(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetObstacles() override {
+    ~WithRawCallbackMethod_GetRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetObstacles(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/) override {
+    ::grpc::Status GetRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetRouteRequest* /*request*/, ::viam::service::navigation::v1::GetRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetObstacles(
+    virtual ::grpc::ServerUnaryReactor* GetRoute(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetPaths : public BaseClass {
+  class WithRawCallbackMethod_ListRoutes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetPaths() {
+    WithRawCallbackMethod_ListRoutes() {
       ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPaths(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListRoutes(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetPaths() override {
+    ~WithRawCallbackMethod_ListRoutes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPaths(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/) override {
+    ::grpc::Status ListRoutes(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListRoutesRequest* /*request*/, ::viam::service::navigation::v1::ListRoutesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetPaths(
+    virtual ::grpc::ServerUnaryReactor* ListRoutes(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateRoute() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateRoute(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UpdateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateRouteRequest* /*request*/, ::viam::service::navigation::v1::UpdateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DeleteRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DeleteRoute() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteRoute(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DeleteRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteRouteRequest* /*request*/, ::viam::service::navigation::v1::DeleteRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_AddZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_AddZone() {
+      ::grpc::Service::MarkMethodRawCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddZone(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_AddZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddZoneRequest* /*request*/, ::viam::service::navigation::v1::AddZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetZone() {
+      ::grpc::Service::MarkMethodRawCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetZone(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetZoneRequest* /*request*/, ::viam::service::navigation::v1::GetZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ListZones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ListZones() {
+      ::grpc::Service::MarkMethodRawCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListZones(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ListZones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListZones(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListZonesRequest* /*request*/, ::viam::service::navigation::v1::ListZonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListZones(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateZone() {
+      ::grpc::Service::MarkMethodRawCallback(13,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateZone(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UpdateZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateZoneRequest* /*request*/, ::viam::service::navigation::v1::UpdateZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DeleteZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DeleteZone() {
+      ::grpc::Service::MarkMethodRawCallback(14,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteZone(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DeleteZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteZoneRequest* /*request*/, ::viam::service::navigation::v1::DeleteZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteZone(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_NavigateToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_NavigateToLocation() {
+      ::grpc::Service::MarkMethodRawCallback(15,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->NavigateToLocation(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_NavigateToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToLocationRequest* /*request*/, ::viam::service::navigation::v1::NavigateToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NavigateToLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_NavigateToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_NavigateToPoint() {
+      ::grpc::Service::MarkMethodRawCallback(16,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->NavigateToPoint(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_NavigateToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToPointRequest* /*request*/, ::viam::service::navigation::v1::NavigateToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NavigateToPoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_NavigateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_NavigateRoute() {
+      ::grpc::Service::MarkMethodRawCallback(17,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->NavigateRoute(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_NavigateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NavigateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateRouteRequest* /*request*/, ::viam::service::navigation::v1::NavigateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NavigateRoute(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_PlanToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_PlanToPoint() {
+      ::grpc::Service::MarkMethodRawCallback(18,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PlanToPoint(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_PlanToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToPointRequest* /*request*/, ::viam::service::navigation::v1::PlanToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* PlanToPoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_PlanToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_PlanToLocation() {
+      ::grpc::Service::MarkMethodRawCallback(19,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PlanToLocation(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_PlanToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PlanToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToLocationRequest* /*request*/, ::viam::service::navigation::v1::PlanToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* PlanToLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ExecutePlan : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ExecutePlan() {
+      ::grpc::Service::MarkMethodRawCallback(20,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ExecutePlan(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ExecutePlan() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExecutePlan(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ExecutePlanRequest* /*request*/, ::viam::service::navigation::v1::ExecutePlanResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ExecutePlan(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GoToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GoToLocation() {
+      ::grpc::Service::MarkMethodRawCallback(21,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GoToLocation(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GoToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToLocationRequest* /*request*/, ::viam::service::navigation::v1::GoToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GoToLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GoToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GoToPoint() {
+      ::grpc::Service::MarkMethodRawCallback(22,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GoToPoint(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GoToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToPointRequest* /*request*/, ::viam::service::navigation::v1::GoToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GoToPoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Suspend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Suspend() {
+      ::grpc::Service::MarkMethodRawCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Suspend(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Suspend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Suspend(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SuspendRequest* /*request*/, ::viam::service::navigation::v1::SuspendResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Suspend(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Resume : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Resume() {
+      ::grpc::Service::MarkMethodRawCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Resume(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Resume() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Resume(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ResumeRequest* /*request*/, ::viam::service::navigation::v1::ResumeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Resume(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Cancel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Cancel() {
+      ::grpc::Service::MarkMethodRawCallback(25,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Cancel(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Cancel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Cancel(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::CancelRequest* /*request*/, ::viam::service::navigation::v1::CancelResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Cancel(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetPosition : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetPosition() {
+      ::grpc::Service::MarkMethodRawCallback(26,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPosition(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetPosition() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPositionRequest* /*request*/, ::viam::service::navigation::v1::GetPositionResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetPosition(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetNavigationStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetNavigationStatus() {
+      ::grpc::Service::MarkMethodRawCallback(27,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetNavigationStatus(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetNavigationStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNavigationStatus(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetNavigationStatusRequest* /*request*/, ::viam::service::navigation::v1::GetNavigationStatusResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetNavigationStatus(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1458,7 +4349,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(28,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
@@ -1475,12 +4366,34 @@ class NavigationService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetCostmap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetCostmap() {
+      ::grpc::Service::MarkMethodRawCallback(29,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCostmap(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetCostmap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCostmap(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetCostmapRequest* /*request*/, ::viam::service::navigation::v1::GetCostmapResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetCostmap(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1502,7 +4415,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStatus(context, request, response); }));
@@ -1519,58 +4432,31 @@ class NavigationService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetMode : public BaseClass {
+  class WithStreamedUnaryMethod_AddLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetMode() {
+    WithStreamedUnaryMethod_AddLocation() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>(
+          ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>* streamer) {
-                       return this->StreamedGetMode(context,
+                     ::viam::service::navigation::v1::AddLocationRequest, ::viam::service::navigation::v1::AddLocationResponse>* streamer) {
+                       return this->StreamedAddLocation(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetMode() override {
+    ~WithStreamedUnaryMethod_AddLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/) override {
+    ::grpc::Status AddLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddLocationRequest* /*request*/, ::viam::service::navigation::v1::AddLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetModeRequest,::viam::service::navigation::v1::GetModeResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_SetMode : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_SetMode() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>* streamer) {
-                       return this->StreamedSetMode(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_SetMode() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status SetMode(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::SetModeRequest,::viam::service::navigation::v1::SetModeResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedAddLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::AddLocationRequest,::viam::service::navigation::v1::AddLocationResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetLocation : public BaseClass {
@@ -1578,7 +4464,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetLocation() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -1600,139 +4486,706 @@ class NavigationService final {
     virtual ::grpc::Status StreamedGetLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetLocationRequest,::viam::service::navigation::v1::GetLocationResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetWaypoints : public BaseClass {
+  class WithStreamedUnaryMethod_ListLocations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetWaypoints() {
+    WithStreamedUnaryMethod_ListLocations() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::ListLocationsRequest, ::viam::service::navigation::v1::ListLocationsResponse>* streamer) {
+                       return this->StreamedListLocations(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListLocations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListLocations(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListLocationsRequest* /*request*/, ::viam::service::navigation::v1::ListLocationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListLocations(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::ListLocationsRequest,::viam::service::navigation::v1::ListLocationsResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateLocation() {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>(
+          ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>* streamer) {
-                       return this->StreamedGetWaypoints(context,
+                     ::viam::service::navigation::v1::UpdateLocationRequest, ::viam::service::navigation::v1::UpdateLocationResponse>* streamer) {
+                       return this->StreamedUpdateLocation(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetWaypoints() override {
+    ~WithStreamedUnaryMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetWaypoints(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/) override {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateLocationRequest* /*request*/, ::viam::service::navigation::v1::UpdateLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetWaypoints(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetWaypointsRequest,::viam::service::navigation::v1::GetWaypointsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpdateLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::UpdateLocationRequest,::viam::service::navigation::v1::UpdateLocationResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_AddWaypoint : public BaseClass {
+  class WithStreamedUnaryMethod_DeleteLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_AddWaypoint() {
+    WithStreamedUnaryMethod_DeleteLocation() {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>(
+          ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>* streamer) {
-                       return this->StreamedAddWaypoint(context,
+                     ::viam::service::navigation::v1::DeleteLocationRequest, ::viam::service::navigation::v1::DeleteLocationResponse>* streamer) {
+                       return this->StreamedDeleteLocation(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_AddWaypoint() override {
+    ~WithStreamedUnaryMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status AddWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/) override {
+    ::grpc::Status DeleteLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteLocationRequest* /*request*/, ::viam::service::navigation::v1::DeleteLocationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedAddWaypoint(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::AddWaypointRequest,::viam::service::navigation::v1::AddWaypointResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedDeleteLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::DeleteLocationRequest,::viam::service::navigation::v1::DeleteLocationResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_RemoveWaypoint : public BaseClass {
+  class WithStreamedUnaryMethod_AddRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_RemoveWaypoint() {
+    WithStreamedUnaryMethod_AddRoute() {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>(
+          ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>* streamer) {
-                       return this->StreamedRemoveWaypoint(context,
+                     ::viam::service::navigation::v1::AddRouteRequest, ::viam::service::navigation::v1::AddRouteResponse>* streamer) {
+                       return this->StreamedAddRoute(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_RemoveWaypoint() override {
+    ~WithStreamedUnaryMethod_AddRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status RemoveWaypoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/) override {
+    ::grpc::Status AddRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddRouteRequest* /*request*/, ::viam::service::navigation::v1::AddRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedRemoveWaypoint(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::RemoveWaypointRequest,::viam::service::navigation::v1::RemoveWaypointResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedAddRoute(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::AddRouteRequest,::viam::service::navigation::v1::AddRouteResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetObstacles : public BaseClass {
+  class WithStreamedUnaryMethod_GetRoute : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetObstacles() {
+    WithStreamedUnaryMethod_GetRoute() {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>(
+          ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>* streamer) {
-                       return this->StreamedGetObstacles(context,
+                     ::viam::service::navigation::v1::GetRouteRequest, ::viam::service::navigation::v1::GetRouteResponse>* streamer) {
+                       return this->StreamedGetRoute(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetObstacles() override {
+    ~WithStreamedUnaryMethod_GetRoute() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetObstacles(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/) override {
+    ::grpc::Status GetRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetRouteRequest* /*request*/, ::viam::service::navigation::v1::GetRouteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetObstacles(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetObstaclesRequest,::viam::service::navigation::v1::GetObstaclesResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetRoute(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetRouteRequest,::viam::service::navigation::v1::GetRouteResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetPaths : public BaseClass {
+  class WithStreamedUnaryMethod_ListRoutes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetPaths() {
+    WithStreamedUnaryMethod_ListRoutes() {
       ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>(
+          ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>* streamer) {
-                       return this->StreamedGetPaths(context,
+                     ::viam::service::navigation::v1::ListRoutesRequest, ::viam::service::navigation::v1::ListRoutesResponse>* streamer) {
+                       return this->StreamedListRoutes(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetPaths() override {
+    ~WithStreamedUnaryMethod_ListRoutes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetPaths(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/) override {
+    ::grpc::Status ListRoutes(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListRoutesRequest* /*request*/, ::viam::service::navigation::v1::ListRoutesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetPaths(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetPathsRequest,::viam::service::navigation::v1::GetPathsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedListRoutes(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::ListRoutesRequest,::viam::service::navigation::v1::ListRoutesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateRoute() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::UpdateRouteRequest, ::viam::service::navigation::v1::UpdateRouteResponse>* streamer) {
+                       return this->StreamedUpdateRoute(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UpdateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateRouteRequest* /*request*/, ::viam::service::navigation::v1::UpdateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateRoute(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::UpdateRouteRequest,::viam::service::navigation::v1::UpdateRouteResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DeleteRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DeleteRoute() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::DeleteRouteRequest, ::viam::service::navigation::v1::DeleteRouteResponse>* streamer) {
+                       return this->StreamedDeleteRoute(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DeleteRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DeleteRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteRouteRequest* /*request*/, ::viam::service::navigation::v1::DeleteRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDeleteRoute(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::DeleteRouteRequest,::viam::service::navigation::v1::DeleteRouteResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_AddZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AddZone() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::AddZoneRequest, ::viam::service::navigation::v1::AddZoneResponse>* streamer) {
+                       return this->StreamedAddZone(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AddZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AddZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::AddZoneRequest* /*request*/, ::viam::service::navigation::v1::AddZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAddZone(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::AddZoneRequest,::viam::service::navigation::v1::AddZoneResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetZone() {
+      ::grpc::Service::MarkMethodStreamed(11,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::GetZoneRequest, ::viam::service::navigation::v1::GetZoneResponse>* streamer) {
+                       return this->StreamedGetZone(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetZoneRequest* /*request*/, ::viam::service::navigation::v1::GetZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetZone(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetZoneRequest,::viam::service::navigation::v1::GetZoneResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListZones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListZones() {
+      ::grpc::Service::MarkMethodStreamed(12,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::ListZonesRequest, ::viam::service::navigation::v1::ListZonesResponse>* streamer) {
+                       return this->StreamedListZones(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListZones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListZones(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ListZonesRequest* /*request*/, ::viam::service::navigation::v1::ListZonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListZones(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::ListZonesRequest,::viam::service::navigation::v1::ListZonesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateZone() {
+      ::grpc::Service::MarkMethodStreamed(13,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::UpdateZoneRequest, ::viam::service::navigation::v1::UpdateZoneResponse>* streamer) {
+                       return this->StreamedUpdateZone(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UpdateZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::UpdateZoneRequest* /*request*/, ::viam::service::navigation::v1::UpdateZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateZone(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::UpdateZoneRequest,::viam::service::navigation::v1::UpdateZoneResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DeleteZone : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DeleteZone() {
+      ::grpc::Service::MarkMethodStreamed(14,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::DeleteZoneRequest, ::viam::service::navigation::v1::DeleteZoneResponse>* streamer) {
+                       return this->StreamedDeleteZone(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DeleteZone() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DeleteZone(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::DeleteZoneRequest* /*request*/, ::viam::service::navigation::v1::DeleteZoneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDeleteZone(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::DeleteZoneRequest,::viam::service::navigation::v1::DeleteZoneResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_NavigateToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_NavigateToLocation() {
+      ::grpc::Service::MarkMethodStreamed(15,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::NavigateToLocationRequest, ::viam::service::navigation::v1::NavigateToLocationResponse>* streamer) {
+                       return this->StreamedNavigateToLocation(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_NavigateToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status NavigateToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToLocationRequest* /*request*/, ::viam::service::navigation::v1::NavigateToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedNavigateToLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::NavigateToLocationRequest,::viam::service::navigation::v1::NavigateToLocationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_NavigateToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_NavigateToPoint() {
+      ::grpc::Service::MarkMethodStreamed(16,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::NavigateToPointRequest, ::viam::service::navigation::v1::NavigateToPointResponse>* streamer) {
+                       return this->StreamedNavigateToPoint(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_NavigateToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status NavigateToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateToPointRequest* /*request*/, ::viam::service::navigation::v1::NavigateToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedNavigateToPoint(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::NavigateToPointRequest,::viam::service::navigation::v1::NavigateToPointResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_NavigateRoute : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_NavigateRoute() {
+      ::grpc::Service::MarkMethodStreamed(17,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::NavigateRouteRequest, ::viam::service::navigation::v1::NavigateRouteResponse>* streamer) {
+                       return this->StreamedNavigateRoute(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_NavigateRoute() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status NavigateRoute(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::NavigateRouteRequest* /*request*/, ::viam::service::navigation::v1::NavigateRouteResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedNavigateRoute(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::NavigateRouteRequest,::viam::service::navigation::v1::NavigateRouteResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PlanToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PlanToPoint() {
+      ::grpc::Service::MarkMethodStreamed(18,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::PlanToPointRequest, ::viam::service::navigation::v1::PlanToPointResponse>* streamer) {
+                       return this->StreamedPlanToPoint(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_PlanToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PlanToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToPointRequest* /*request*/, ::viam::service::navigation::v1::PlanToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPlanToPoint(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::PlanToPointRequest,::viam::service::navigation::v1::PlanToPointResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PlanToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PlanToLocation() {
+      ::grpc::Service::MarkMethodStreamed(19,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::PlanToLocationRequest, ::viam::service::navigation::v1::PlanToLocationResponse>* streamer) {
+                       return this->StreamedPlanToLocation(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_PlanToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PlanToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::PlanToLocationRequest* /*request*/, ::viam::service::navigation::v1::PlanToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPlanToLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::PlanToLocationRequest,::viam::service::navigation::v1::PlanToLocationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ExecutePlan : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ExecutePlan() {
+      ::grpc::Service::MarkMethodStreamed(20,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::ExecutePlanRequest, ::viam::service::navigation::v1::ExecutePlanResponse>* streamer) {
+                       return this->StreamedExecutePlan(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ExecutePlan() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ExecutePlan(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ExecutePlanRequest* /*request*/, ::viam::service::navigation::v1::ExecutePlanResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedExecutePlan(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::ExecutePlanRequest,::viam::service::navigation::v1::ExecutePlanResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GoToLocation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GoToLocation() {
+      ::grpc::Service::MarkMethodStreamed(21,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::GoToLocationRequest, ::viam::service::navigation::v1::GoToLocationResponse>* streamer) {
+                       return this->StreamedGoToLocation(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GoToLocation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GoToLocation(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToLocationRequest* /*request*/, ::viam::service::navigation::v1::GoToLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGoToLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GoToLocationRequest,::viam::service::navigation::v1::GoToLocationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GoToPoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GoToPoint() {
+      ::grpc::Service::MarkMethodStreamed(22,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::GoToPointRequest, ::viam::service::navigation::v1::GoToPointResponse>* streamer) {
+                       return this->StreamedGoToPoint(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GoToPoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GoToPoint(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GoToPointRequest* /*request*/, ::viam::service::navigation::v1::GoToPointResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGoToPoint(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GoToPointRequest,::viam::service::navigation::v1::GoToPointResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Suspend : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Suspend() {
+      ::grpc::Service::MarkMethodStreamed(23,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::SuspendRequest, ::viam::service::navigation::v1::SuspendResponse>* streamer) {
+                       return this->StreamedSuspend(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Suspend() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Suspend(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::SuspendRequest* /*request*/, ::viam::service::navigation::v1::SuspendResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSuspend(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::SuspendRequest,::viam::service::navigation::v1::SuspendResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Resume : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Resume() {
+      ::grpc::Service::MarkMethodStreamed(24,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::ResumeRequest, ::viam::service::navigation::v1::ResumeResponse>* streamer) {
+                       return this->StreamedResume(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Resume() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Resume(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::ResumeRequest* /*request*/, ::viam::service::navigation::v1::ResumeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedResume(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::ResumeRequest,::viam::service::navigation::v1::ResumeResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Cancel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Cancel() {
+      ::grpc::Service::MarkMethodStreamed(25,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::CancelRequest, ::viam::service::navigation::v1::CancelResponse>* streamer) {
+                       return this->StreamedCancel(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Cancel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Cancel(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::CancelRequest* /*request*/, ::viam::service::navigation::v1::CancelResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCancel(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::CancelRequest,::viam::service::navigation::v1::CancelResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetPosition : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetPosition() {
+      ::grpc::Service::MarkMethodStreamed(26,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::GetPositionRequest, ::viam::service::navigation::v1::GetPositionResponse>* streamer) {
+                       return this->StreamedGetPosition(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetPosition() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPositionRequest* /*request*/, ::viam::service::navigation::v1::GetPositionResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetPositionRequest,::viam::service::navigation::v1::GetPositionResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetNavigationStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetNavigationStatus() {
+      ::grpc::Service::MarkMethodStreamed(27,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::GetNavigationStatusRequest, ::viam::service::navigation::v1::GetNavigationStatusResponse>* streamer) {
+                       return this->StreamedGetNavigationStatus(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetNavigationStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetNavigationStatus(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetNavigationStatusRequest* /*request*/, ::viam::service::navigation::v1::GetNavigationStatusResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetNavigationStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetNavigationStatusRequest,::viam::service::navigation::v1::GetNavigationStatusResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetProperties : public BaseClass {
@@ -1740,7 +5193,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetProperties() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(28,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1762,12 +5215,39 @@ class NavigationService final {
     virtual ::grpc::Status StreamedGetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetPropertiesRequest,::viam::service::navigation::v1::GetPropertiesResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetCostmap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetCostmap() {
+      ::grpc::Service::MarkMethodStreamed(29,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::GetCostmapRequest, ::viam::service::navigation::v1::GetCostmapResponse>* streamer) {
+                       return this->StreamedGetCostmap(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetCostmap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetCostmap(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetCostmapRequest* /*request*/, ::viam::service::navigation::v1::GetCostmapResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetCostmap(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetCostmapRequest,::viam::service::navigation::v1::GetCostmapResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(30,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1794,7 +5274,7 @@ class NavigationService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStatus() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(31,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](::grpc::ServerContext* context,
@@ -1815,9 +5295,9 @@ class NavigationService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetStatusRequest,::viam::common::v1::GetStatusResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetMode<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_GetWaypoints<WithStreamedUnaryMethod_AddWaypoint<WithStreamedUnaryMethod_RemoveWaypoint<WithStreamedUnaryMethod_GetObstacles<WithStreamedUnaryMethod_GetPaths<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_AddLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_AddRoute<WithStreamedUnaryMethod_GetRoute<WithStreamedUnaryMethod_ListRoutes<WithStreamedUnaryMethod_UpdateRoute<WithStreamedUnaryMethod_DeleteRoute<WithStreamedUnaryMethod_AddZone<WithStreamedUnaryMethod_GetZone<WithStreamedUnaryMethod_ListZones<WithStreamedUnaryMethod_UpdateZone<WithStreamedUnaryMethod_DeleteZone<WithStreamedUnaryMethod_NavigateToLocation<WithStreamedUnaryMethod_NavigateToPoint<WithStreamedUnaryMethod_NavigateRoute<WithStreamedUnaryMethod_PlanToPoint<WithStreamedUnaryMethod_PlanToLocation<WithStreamedUnaryMethod_ExecutePlan<WithStreamedUnaryMethod_GoToLocation<WithStreamedUnaryMethod_GoToPoint<WithStreamedUnaryMethod_Suspend<WithStreamedUnaryMethod_Resume<WithStreamedUnaryMethod_Cancel<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetNavigationStatus<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetCostmap<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetMode<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_GetWaypoints<WithStreamedUnaryMethod_AddWaypoint<WithStreamedUnaryMethod_RemoveWaypoint<WithStreamedUnaryMethod_GetObstacles<WithStreamedUnaryMethod_GetPaths<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_AddLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_AddRoute<WithStreamedUnaryMethod_GetRoute<WithStreamedUnaryMethod_ListRoutes<WithStreamedUnaryMethod_UpdateRoute<WithStreamedUnaryMethod_DeleteRoute<WithStreamedUnaryMethod_AddZone<WithStreamedUnaryMethod_GetZone<WithStreamedUnaryMethod_ListZones<WithStreamedUnaryMethod_UpdateZone<WithStreamedUnaryMethod_DeleteZone<WithStreamedUnaryMethod_NavigateToLocation<WithStreamedUnaryMethod_NavigateToPoint<WithStreamedUnaryMethod_NavigateRoute<WithStreamedUnaryMethod_PlanToPoint<WithStreamedUnaryMethod_PlanToLocation<WithStreamedUnaryMethod_ExecutePlan<WithStreamedUnaryMethod_GoToLocation<WithStreamedUnaryMethod_GoToPoint<WithStreamedUnaryMethod_Suspend<WithStreamedUnaryMethod_Resume<WithStreamedUnaryMethod_Cancel<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetNavigationStatus<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetCostmap<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
