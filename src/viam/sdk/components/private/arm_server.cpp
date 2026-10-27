@@ -288,7 +288,9 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Arm>(
         "ArmServer::GetKinematics", this, context, request)([&](auto& helper, auto& arm) {
         const ProtoStruct extra = helper.getExtra();
-        // The deprecated raw-bytes fields are served best-effort for older clients.
+        // Base get_kinematics throws k_not_supported since it is deprecated. For implementations
+        // that still override it, raw byte fields go over the wire to serve older viam-server or
+        // older clients that predate `model`.
         try {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
