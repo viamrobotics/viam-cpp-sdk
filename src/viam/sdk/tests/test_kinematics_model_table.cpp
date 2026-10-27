@@ -16,9 +16,6 @@ using namespace viam::sdk::impl;
 using JointRow = ModelTable::JointRow;
 using JointType = ModelTable::JointType;
 
-// This whole module exercises the deprecated URDF raw-bytes pipeline.
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 namespace {
 KinematicsDataURDF urdf_from_string(const std::string& xml) {
     std::vector<unsigned char> bytes(xml.begin(), xml.end());

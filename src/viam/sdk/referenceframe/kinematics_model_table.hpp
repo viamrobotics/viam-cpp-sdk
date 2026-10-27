@@ -49,8 +49,7 @@ class ModelTable {
     /// @brief Parse a kinematics description into a model table in chain order.
     /// @throws viam::sdk::Exception on parse error, branching / multi-root /
     ///         disconnected topology, unsupported joint types, or zero axis.
-    [[deprecated("use from(const KinematicModel&)")]] static ModelTable from(
-        const KinematicsDataURDF& urdf);
+    static ModelTable from(const KinematicsDataURDF& urdf);
 
     /// @brief Inverse of `to_tensor`: rehydrate an (n, 10) double tensor into a
     /// model table. Reconstructed rows have empty `name` (names are not carried
