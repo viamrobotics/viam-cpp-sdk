@@ -3998,6 +3998,7 @@ class UserPermission final :
 
   enum : int {
     kPermissionsFieldNumber = 2,
+    kUsersFieldNumber = 3,
     kUserFieldNumber = 1,
   };
   // repeated .viam.app.v1.Permission permissions = 2 [json_name = "permissions"];
@@ -4017,6 +4018,24 @@ class UserPermission final :
   ::viam::app::v1::Permission* add_permissions();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Permission >&
       permissions() const;
+
+  // repeated .viam.app.v1.User users = 3 [json_name = "users"];
+  int users_size() const;
+  private:
+  int _internal_users_size() const;
+  public:
+  void clear_users();
+  ::viam::app::v1::User* mutable_users(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::User >*
+      mutable_users();
+  private:
+  const ::viam::app::v1::User& _internal_users(int index) const;
+  ::viam::app::v1::User* _internal_add_users();
+  public:
+  const ::viam::app::v1::User& users(int index) const;
+  ::viam::app::v1::User* add_users();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::User >&
+      users() const;
 
   // .viam.app.v1.User user = 1 [json_name = "user"];
   bool has_user() const;
@@ -4044,6 +4063,7 @@ class UserPermission final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Permission > permissions_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::User > users_;
   ::viam::app::v1::User* user_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
@@ -14400,6 +14420,86 @@ AuthConfig::user_permissions() const {
 
 // UserPermission
 
+// repeated .viam.app.v1.User users = 3 [json_name = "users"];
+inline int UserPermission::_internal_users_size() const {
+  return users_.size();
+}
+inline int UserPermission::users_size() const {
+  return _internal_users_size();
+}
+inline void UserPermission::clear_users() {
+  users_.Clear();
+}
+inline ::viam::app::v1::User* UserPermission::mutable_users(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UserPermission.users)
+  return users_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::User >*
+UserPermission::mutable_users() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.UserPermission.users)
+  return &users_;
+}
+inline const ::viam::app::v1::User& UserPermission::_internal_users(int index) const {
+  return users_.Get(index);
+}
+inline const ::viam::app::v1::User& UserPermission::users(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UserPermission.users)
+  return _internal_users(index);
+}
+inline ::viam::app::v1::User* UserPermission::_internal_add_users() {
+  return users_.Add();
+}
+inline ::viam::app::v1::User* UserPermission::add_users() {
+  ::viam::app::v1::User* _add = _internal_add_users();
+  // @@protoc_insertion_point(field_add:viam.app.v1.UserPermission.users)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::User >&
+UserPermission::users() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.UserPermission.users)
+  return users_;
+}
+
+// repeated .viam.app.v1.Permission permissions = 2 [json_name = "permissions"];
+inline int UserPermission::_internal_permissions_size() const {
+  return permissions_.size();
+}
+inline int UserPermission::permissions_size() const {
+  return _internal_permissions_size();
+}
+inline void UserPermission::clear_permissions() {
+  permissions_.Clear();
+}
+inline ::viam::app::v1::Permission* UserPermission::mutable_permissions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UserPermission.permissions)
+  return permissions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Permission >*
+UserPermission::mutable_permissions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.UserPermission.permissions)
+  return &permissions_;
+}
+inline const ::viam::app::v1::Permission& UserPermission::_internal_permissions(int index) const {
+  return permissions_.Get(index);
+}
+inline const ::viam::app::v1::Permission& UserPermission::permissions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UserPermission.permissions)
+  return _internal_permissions(index);
+}
+inline ::viam::app::v1::Permission* UserPermission::_internal_add_permissions() {
+  return permissions_.Add();
+}
+inline ::viam::app::v1::Permission* UserPermission::add_permissions() {
+  ::viam::app::v1::Permission* _add = _internal_add_permissions();
+  // @@protoc_insertion_point(field_add:viam.app.v1.UserPermission.permissions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Permission >&
+UserPermission::permissions() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.UserPermission.permissions)
+  return permissions_;
+}
+
 // .viam.app.v1.User user = 1 [json_name = "user"];
 inline bool UserPermission::_internal_has_user() const {
   return this != internal_default_instance() && user_ != nullptr;
@@ -14488,46 +14588,6 @@ inline void UserPermission::set_allocated_user(::viam::app::v1::User* user) {
   }
   user_ = user;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UserPermission.user)
-}
-
-// repeated .viam.app.v1.Permission permissions = 2 [json_name = "permissions"];
-inline int UserPermission::_internal_permissions_size() const {
-  return permissions_.size();
-}
-inline int UserPermission::permissions_size() const {
-  return _internal_permissions_size();
-}
-inline void UserPermission::clear_permissions() {
-  permissions_.Clear();
-}
-inline ::viam::app::v1::Permission* UserPermission::mutable_permissions(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.UserPermission.permissions)
-  return permissions_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Permission >*
-UserPermission::mutable_permissions() {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.UserPermission.permissions)
-  return &permissions_;
-}
-inline const ::viam::app::v1::Permission& UserPermission::_internal_permissions(int index) const {
-  return permissions_.Get(index);
-}
-inline const ::viam::app::v1::Permission& UserPermission::permissions(int index) const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.UserPermission.permissions)
-  return _internal_permissions(index);
-}
-inline ::viam::app::v1::Permission* UserPermission::_internal_add_permissions() {
-  return permissions_.Add();
-}
-inline ::viam::app::v1::Permission* UserPermission::add_permissions() {
-  ::viam::app::v1::Permission* _add = _internal_add_permissions();
-  // @@protoc_insertion_point(field_add:viam.app.v1.UserPermission.permissions)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Permission >&
-UserPermission::permissions() const {
-  // @@protoc_insertion_point(field_list:viam.app.v1.UserPermission.permissions)
-  return permissions_;
 }
 
 // -------------------------------------------------------------------

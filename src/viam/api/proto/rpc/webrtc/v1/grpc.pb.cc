@@ -209,6 +209,7 @@ const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto::offsets[] P
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::Request, type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::RequestHeaders, _internal_metadata_),
@@ -290,15 +291,15 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, -1, -1, sizeof(::proto::rpc::webrtc::v1::PacketMessage)},
   { 8, -1, -1, sizeof(::proto::rpc::webrtc::v1::Stream)},
   { 15, -1, -1, sizeof(::proto::rpc::webrtc::v1::Request)},
-  { 26, -1, -1, sizeof(::proto::rpc::webrtc::v1::RequestHeaders)},
-  { 35, -1, -1, sizeof(::proto::rpc::webrtc::v1::RequestMessage)},
-  { 44, -1, -1, sizeof(::proto::rpc::webrtc::v1::Response)},
-  { 55, -1, -1, sizeof(::proto::rpc::webrtc::v1::ResponseHeaders)},
-  { 62, -1, -1, sizeof(::proto::rpc::webrtc::v1::ResponseMessage)},
-  { 69, -1, -1, sizeof(::proto::rpc::webrtc::v1::ResponseTrailers)},
-  { 77, -1, -1, sizeof(::proto::rpc::webrtc::v1::Strings)},
-  { 84, 92, -1, sizeof(::proto::rpc::webrtc::v1::Metadata_MdEntry_DoNotUse)},
-  { 94, -1, -1, sizeof(::proto::rpc::webrtc::v1::Metadata)},
+  { 27, -1, -1, sizeof(::proto::rpc::webrtc::v1::RequestHeaders)},
+  { 36, -1, -1, sizeof(::proto::rpc::webrtc::v1::RequestMessage)},
+  { 45, -1, -1, sizeof(::proto::rpc::webrtc::v1::Response)},
+  { 56, -1, -1, sizeof(::proto::rpc::webrtc::v1::ResponseHeaders)},
+  { 63, -1, -1, sizeof(::proto::rpc::webrtc::v1::ResponseMessage)},
+  { 70, -1, -1, sizeof(::proto::rpc::webrtc::v1::ResponseTrailers)},
+  { 78, -1, -1, sizeof(::proto::rpc::webrtc::v1::Strings)},
+  { 85, 93, -1, sizeof(::proto::rpc::webrtc::v1::Metadata_MdEntry_DoNotUse)},
+  { 95, -1, -1, sizeof(::proto::rpc::webrtc::v1::Metadata)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -321,41 +322,42 @@ const char descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto[] 
   "rpc.webrtc.v1\032\036google/protobuf/duration."
   "proto\032\027google/rpc/status.proto\"5\n\rPacket"
   "Message\022\022\n\004data\030\001 \001(\014R\004data\022\020\n\003eom\030\002 \001(\010"
-  "R\003eom\"\030\n\006Stream\022\016\n\002id\030\001 \001(\004R\002id\"\351\001\n\007Requ"
+  "R\003eom\"\030\n\006Stream\022\016\n\002id\030\001 \001(\004R\002id\"\210\002\n\007Requ"
   "est\0223\n\006stream\030\001 \001(\0132\033.proto.rpc.webrtc.v"
   "1.StreamR\006stream\022\?\n\007headers\030\002 \001(\0132#.prot"
   "o.rpc.webrtc.v1.RequestHeadersH\000R\007header"
   "s\022\?\n\007message\030\003 \001(\0132#.proto.rpc.webrtc.v1"
   ".RequestMessageH\000R\007message\022\037\n\nrst_stream"
-  "\030\004 \001(\010H\000R\trstStreamB\006\n\004type\"\230\001\n\016RequestH"
-  "eaders\022\026\n\006method\030\001 \001(\tR\006method\0229\n\010metada"
-  "ta\030\002 \001(\0132\035.proto.rpc.webrtc.v1.MetadataR"
-  "\010metadata\0223\n\007timeout\030\003 \001(\0132\031.google.prot"
-  "obuf.DurationR\007timeout\"\216\001\n\016RequestMessag"
-  "e\022\037\n\013has_message\030\001 \001(\010R\nhasMessage\022I\n\016pa"
-  "cket_message\030\002 \001(\0132\".proto.rpc.webrtc.v1"
-  ".PacketMessageR\rpacketMessage\022\020\n\003eos\030\003 \001"
-  "(\010R\003eos\"\220\002\n\010Response\0223\n\006stream\030\001 \001(\0132\033.p"
-  "roto.rpc.webrtc.v1.StreamR\006stream\022@\n\007hea"
-  "ders\030\002 \001(\0132$.proto.rpc.webrtc.v1.Respons"
-  "eHeadersH\000R\007headers\022@\n\007message\030\003 \001(\0132$.p"
-  "roto.rpc.webrtc.v1.ResponseMessageH\000R\007me"
-  "ssage\022C\n\010trailers\030\004 \001(\0132%.proto.rpc.webr"
-  "tc.v1.ResponseTrailersH\000R\010trailersB\006\n\004ty"
-  "pe\"L\n\017ResponseHeaders\0229\n\010metadata\030\001 \001(\0132"
+  "\030\004 \001(\010H\000R\trstStream\022\035\n\tapi_token\030\005 \001(\tH\000"
+  "R\010apiTokenB\006\n\004type\"\230\001\n\016RequestHeaders\022\026\n"
+  "\006method\030\001 \001(\tR\006method\0229\n\010metadata\030\002 \001(\0132"
   "\035.proto.rpc.webrtc.v1.MetadataR\010metadata"
-  "\"\\\n\017ResponseMessage\022I\n\016packet_message\030\001 "
-  "\001(\0132\".proto.rpc.webrtc.v1.PacketMessageR"
-  "\rpacketMessage\"y\n\020ResponseTrailers\022*\n\006st"
-  "atus\030\001 \001(\0132\022.google.rpc.StatusR\006status\0229"
-  "\n\010metadata\030\002 \001(\0132\035.proto.rpc.webrtc.v1.M"
-  "etadataR\010metadata\"!\n\007Strings\022\026\n\006values\030\001"
-  " \003(\tR\006values\"\226\001\n\010Metadata\0225\n\002md\030\001 \003(\0132%."
-  "proto.rpc.webrtc.v1.Metadata.MdEntryR\002md"
-  "\032S\n\007MdEntry\022\020\n\003key\030\001 \001(\tR\003key\0222\n\005value\030\002"
-  " \001(\0132\034.proto.rpc.webrtc.v1.StringsR\005valu"
-  "e:\0028\001B\'Z%go.viam.com/utils/proto/rpc/web"
-  "rtc/v1b\006proto3"
+  "\0223\n\007timeout\030\003 \001(\0132\031.google.protobuf.Dura"
+  "tionR\007timeout\"\216\001\n\016RequestMessage\022\037\n\013has_"
+  "message\030\001 \001(\010R\nhasMessage\022I\n\016packet_mess"
+  "age\030\002 \001(\0132\".proto.rpc.webrtc.v1.PacketMe"
+  "ssageR\rpacketMessage\022\020\n\003eos\030\003 \001(\010R\003eos\"\220"
+  "\002\n\010Response\0223\n\006stream\030\001 \001(\0132\033.proto.rpc."
+  "webrtc.v1.StreamR\006stream\022@\n\007headers\030\002 \001("
+  "\0132$.proto.rpc.webrtc.v1.ResponseHeadersH"
+  "\000R\007headers\022@\n\007message\030\003 \001(\0132$.proto.rpc."
+  "webrtc.v1.ResponseMessageH\000R\007message\022C\n\010"
+  "trailers\030\004 \001(\0132%.proto.rpc.webrtc.v1.Res"
+  "ponseTrailersH\000R\010trailersB\006\n\004type\"L\n\017Res"
+  "ponseHeaders\0229\n\010metadata\030\001 \001(\0132\035.proto.r"
+  "pc.webrtc.v1.MetadataR\010metadata\"\\\n\017Respo"
+  "nseMessage\022I\n\016packet_message\030\001 \001(\0132\".pro"
+  "to.rpc.webrtc.v1.PacketMessageR\rpacketMe"
+  "ssage\"y\n\020ResponseTrailers\022*\n\006status\030\001 \001("
+  "\0132\022.google.rpc.StatusR\006status\0229\n\010metadat"
+  "a\030\002 \001(\0132\035.proto.rpc.webrtc.v1.MetadataR\010"
+  "metadata\"!\n\007Strings\022\026\n\006values\030\001 \003(\tR\006val"
+  "ues\"\226\001\n\010Metadata\0225\n\002md\030\001 \003(\0132%.proto.rpc"
+  ".webrtc.v1.Metadata.MdEntryR\002md\032S\n\007MdEnt"
+  "ry\022\020\n\003key\030\001 \001(\tR\003key\0222\n\005value\030\002 \001(\0132\034.pr"
+  "oto.rpc.webrtc.v1.StringsR\005value:\0028\001B\'Z%"
+  "go.viam.com/utils/proto/rpc/webrtc/v1b\006p"
+  "roto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -363,7 +365,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrt
 };
 static ::_pbi::once_flag descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto = {
-    false, false, 1534, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto,
+    false, false, 1565, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto,
     "proto/rpc/webrtc/v1/grpc.proto",
     &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto_once, descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto_deps, 2, 12,
     schemas, file_default_instances, TableStruct_proto_2frpc_2fwebrtc_2fv1_2fgrpc_2eproto::offsets,
@@ -847,6 +849,10 @@ Request::Request(const Request& from)
       _internal_set_rst_stream(from._internal_rst_stream());
       break;
     }
+    case kApiToken: {
+      _internal_set_api_token(from._internal_api_token());
+      break;
+    }
     case TYPE_NOT_SET: {
       break;
     }
@@ -897,6 +903,10 @@ void Request::clear_type() {
     }
     case kRstStream: {
       // No need to clear
+      break;
+    }
+    case kApiToken: {
+      type_.api_token_.Destroy();
       break;
     }
     case TYPE_NOT_SET: {
@@ -959,6 +969,16 @@ const char* Request::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
+      // string api_token = 5 [json_name = "apiToken"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_api_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.webrtc.v1.Request.api_token"));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -1015,6 +1035,16 @@ uint8_t* Request::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_rst_stream(), target);
   }
 
+  // string api_token = 5 [json_name = "apiToken"];
+  if (_internal_has_api_token()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_api_token().data(), static_cast<int>(this->_internal_api_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.webrtc.v1.Request.api_token");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_api_token(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1058,6 +1088,13 @@ size_t Request::ByteSizeLong() const {
       total_size += 1 + 1;
       break;
     }
+    // string api_token = 5 [json_name = "apiToken"];
+    case kApiToken: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_api_token());
+      break;
+    }
     case TYPE_NOT_SET: {
       break;
     }
@@ -1098,6 +1135,10 @@ void Request::MergeFrom(const Request& from) {
     }
     case kRstStream: {
       _internal_set_rst_stream(from._internal_rst_stream());
+      break;
+    }
+    case kApiToken: {
+      _internal_set_api_token(from._internal_api_token());
       break;
     }
     case TYPE_NOT_SET: {

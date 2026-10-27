@@ -192,12 +192,13 @@ enum ModelType : int {
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION = 1,
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2,
   MODEL_TYPE_OBJECT_DETECTION = 3,
+  MODEL_TYPE_ROBOT_POLICY = 4,
   ModelType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ModelType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ModelType_IsValid(int value);
 constexpr ModelType ModelType_MIN = MODEL_TYPE_UNSPECIFIED;
-constexpr ModelType ModelType_MAX = MODEL_TYPE_OBJECT_DETECTION;
+constexpr ModelType ModelType_MAX = MODEL_TYPE_ROBOT_POLICY;
 constexpr int ModelType_ARRAYSIZE = ModelType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModelType_descriptor();
@@ -220,12 +221,13 @@ enum ModelFramework : int {
   MODEL_FRAMEWORK_TENSORFLOW = 2,
   MODEL_FRAMEWORK_PYTORCH = 3,
   MODEL_FRAMEWORK_ONNX = 4,
+  MODEL_FRAMEWORK_REGISTRY = 5,
   ModelFramework_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ModelFramework_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ModelFramework_IsValid(int value);
 constexpr ModelFramework ModelFramework_MIN = MODEL_FRAMEWORK_UNSPECIFIED;
-constexpr ModelFramework ModelFramework_MAX = MODEL_FRAMEWORK_ONNX;
+constexpr ModelFramework ModelFramework_MAX = MODEL_FRAMEWORK_REGISTRY;
 constexpr int ModelFramework_ARRAYSIZE = ModelFramework_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModelFramework_descriptor();
@@ -1917,6 +1919,7 @@ class TrainingJobMetadata final :
   enum : int {
     kTagsFieldNumber = 16,
     kArgumentsFieldNumber = 21,
+    kDeploymentModularResourcesFieldNumber = 24,
     kSyncedModelIdFieldNumber = 5,
     kIdFieldNumber = 7,
     kDatasetIdFieldNumber = 11,
@@ -1977,6 +1980,30 @@ class TrainingJobMetadata final :
       arguments() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
       mutable_arguments();
+
+  // repeated string deployment_modular_resources = 24 [json_name = "deploymentModularResources", (.tagger.v1.tags) = "bson:\"deployment_modular_resources\" json:\"deployment_modular_resources\""];
+  int deployment_modular_resources_size() const;
+  private:
+  int _internal_deployment_modular_resources_size() const;
+  public:
+  void clear_deployment_modular_resources();
+  const std::string& deployment_modular_resources(int index) const;
+  std::string* mutable_deployment_modular_resources(int index);
+  void set_deployment_modular_resources(int index, const std::string& value);
+  void set_deployment_modular_resources(int index, std::string&& value);
+  void set_deployment_modular_resources(int index, const char* value);
+  void set_deployment_modular_resources(int index, const char* value, size_t size);
+  std::string* add_deployment_modular_resources();
+  void add_deployment_modular_resources(const std::string& value);
+  void add_deployment_modular_resources(std::string&& value);
+  void add_deployment_modular_resources(const char* value);
+  void add_deployment_modular_resources(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& deployment_modular_resources() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_deployment_modular_resources();
+  private:
+  const std::string& _internal_deployment_modular_resources(int index) const;
+  std::string* _internal_add_deployment_modular_resources();
+  public:
 
   // string synced_model_id = 5 [json_name = "syncedModelId", (.tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   void clear_synced_model_id();
@@ -2257,6 +2284,7 @@ class TrainingJobMetadata final :
       std::string, std::string,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> arguments_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> deployment_modular_resources_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr synced_model_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dataset_id_;
@@ -7347,6 +7375,81 @@ inline void TrainingJobMetadata::set_allocated_container_id(std::string* contain
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.container_id)
+}
+
+// repeated string deployment_modular_resources = 24 [json_name = "deploymentModularResources", (.tagger.v1.tags) = "bson:\"deployment_modular_resources\" json:\"deployment_modular_resources\""];
+inline int TrainingJobMetadata::_internal_deployment_modular_resources_size() const {
+  return deployment_modular_resources_.size();
+}
+inline int TrainingJobMetadata::deployment_modular_resources_size() const {
+  return _internal_deployment_modular_resources_size();
+}
+inline void TrainingJobMetadata::clear_deployment_modular_resources() {
+  deployment_modular_resources_.Clear();
+}
+inline std::string* TrainingJobMetadata::add_deployment_modular_resources() {
+  std::string* _s = _internal_add_deployment_modular_resources();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+  return _s;
+}
+inline const std::string& TrainingJobMetadata::_internal_deployment_modular_resources(int index) const {
+  return deployment_modular_resources_.Get(index);
+}
+inline const std::string& TrainingJobMetadata::deployment_modular_resources(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+  return _internal_deployment_modular_resources(index);
+}
+inline std::string* TrainingJobMetadata::mutable_deployment_modular_resources(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+  return deployment_modular_resources_.Mutable(index);
+}
+inline void TrainingJobMetadata::set_deployment_modular_resources(int index, const std::string& value) {
+  deployment_modular_resources_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline void TrainingJobMetadata::set_deployment_modular_resources(int index, std::string&& value) {
+  deployment_modular_resources_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline void TrainingJobMetadata::set_deployment_modular_resources(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  deployment_modular_resources_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline void TrainingJobMetadata::set_deployment_modular_resources(int index, const char* value, size_t size) {
+  deployment_modular_resources_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline std::string* TrainingJobMetadata::_internal_add_deployment_modular_resources() {
+  return deployment_modular_resources_.Add();
+}
+inline void TrainingJobMetadata::add_deployment_modular_resources(const std::string& value) {
+  deployment_modular_resources_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline void TrainingJobMetadata::add_deployment_modular_resources(std::string&& value) {
+  deployment_modular_resources_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline void TrainingJobMetadata::add_deployment_modular_resources(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  deployment_modular_resources_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline void TrainingJobMetadata::add_deployment_modular_resources(const char* value, size_t size) {
+  deployment_modular_resources_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+TrainingJobMetadata::deployment_modular_resources() const {
+  // @@protoc_insertion_point(field_list:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+  return deployment_modular_resources_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+TrainingJobMetadata::mutable_deployment_modular_resources() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources)
+  return &deployment_modular_resources_;
 }
 
 // -------------------------------------------------------------------

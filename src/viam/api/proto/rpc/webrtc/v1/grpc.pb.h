@@ -463,6 +463,7 @@ class Request final :
     kHeaders = 2,
     kMessage = 3,
     kRstStream = 4,
+    kApiToken = 5,
     TYPE_NOT_SET = 0,
   };
 
@@ -546,6 +547,7 @@ class Request final :
     kHeadersFieldNumber = 2,
     kMessageFieldNumber = 3,
     kRstStreamFieldNumber = 4,
+    kApiTokenFieldNumber = 5,
   };
   // .proto.rpc.webrtc.v1.Stream stream = 1 [json_name = "stream"];
   bool has_stream() const;
@@ -614,6 +616,24 @@ class Request final :
   void _internal_set_rst_stream(bool value);
   public:
 
+  // string api_token = 5 [json_name = "apiToken"];
+  bool has_api_token() const;
+  private:
+  bool _internal_has_api_token() const;
+  public:
+  void clear_api_token();
+  const std::string& api_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_api_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_api_token();
+  PROTOBUF_NODISCARD std::string* release_api_token();
+  void set_allocated_api_token(std::string* api_token);
+  private:
+  const std::string& _internal_api_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_api_token(const std::string& value);
+  std::string* _internal_mutable_api_token();
+  public:
+
   void clear_type();
   TypeCase type_case() const;
   // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.Request)
@@ -622,6 +642,7 @@ class Request final :
   void set_has_headers();
   void set_has_message();
   void set_has_rst_stream();
+  void set_has_api_token();
 
   inline bool has_type() const;
   inline void clear_has_type();
@@ -636,6 +657,7 @@ class Request final :
     ::proto::rpc::webrtc::v1::RequestHeaders* headers_;
     ::proto::rpc::webrtc::v1::RequestMessage* message_;
     bool rst_stream_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_token_;
   } type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -2438,6 +2460,83 @@ inline bool Request::rst_stream() const {
 inline void Request::set_rst_stream(bool value) {
   _internal_set_rst_stream(value);
   // @@protoc_insertion_point(field_set:proto.rpc.webrtc.v1.Request.rst_stream)
+}
+
+// string api_token = 5 [json_name = "apiToken"];
+inline bool Request::_internal_has_api_token() const {
+  return type_case() == kApiToken;
+}
+inline bool Request::has_api_token() const {
+  return _internal_has_api_token();
+}
+inline void Request::set_has_api_token() {
+  _oneof_case_[0] = kApiToken;
+}
+inline void Request::clear_api_token() {
+  if (_internal_has_api_token()) {
+    type_.api_token_.Destroy();
+    clear_has_type();
+  }
+}
+inline const std::string& Request::api_token() const {
+  // @@protoc_insertion_point(field_get:proto.rpc.webrtc.v1.Request.api_token)
+  return _internal_api_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline void Request::set_api_token(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_api_token()) {
+    clear_type();
+    set_has_api_token();
+    type_.api_token_.InitDefault();
+  }
+  type_.api_token_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:proto.rpc.webrtc.v1.Request.api_token)
+}
+inline std::string* Request::mutable_api_token() {
+  std::string* _s = _internal_mutable_api_token();
+  // @@protoc_insertion_point(field_mutable:proto.rpc.webrtc.v1.Request.api_token)
+  return _s;
+}
+inline const std::string& Request::_internal_api_token() const {
+  if (_internal_has_api_token()) {
+    return type_.api_token_.Get();
+  }
+  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+}
+inline void Request::_internal_set_api_token(const std::string& value) {
+  if (!_internal_has_api_token()) {
+    clear_type();
+    set_has_api_token();
+    type_.api_token_.InitDefault();
+  }
+  type_.api_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Request::_internal_mutable_api_token() {
+  if (!_internal_has_api_token()) {
+    clear_type();
+    set_has_api_token();
+    type_.api_token_.InitDefault();
+  }
+  return type_.api_token_.Mutable(      GetArenaForAllocation());
+}
+inline std::string* Request::release_api_token() {
+  // @@protoc_insertion_point(field_release:proto.rpc.webrtc.v1.Request.api_token)
+  if (_internal_has_api_token()) {
+    clear_has_type();
+    return type_.api_token_.Release();
+  } else {
+    return nullptr;
+  }
+}
+inline void Request::set_allocated_api_token(std::string* api_token) {
+  if (has_type()) {
+    clear_type();
+  }
+  if (api_token != nullptr) {
+    set_has_api_token();
+    type_.api_token_.InitAllocated(api_token, GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(field_set_allocated:proto.rpc.webrtc.v1.Request.api_token)
 }
 
 inline bool Request::has_type() const {
