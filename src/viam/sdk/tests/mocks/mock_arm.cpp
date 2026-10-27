@@ -25,7 +25,8 @@ sdk::KinematicModel fake_kinematic_model() {
 
     KinematicLink base;
     base.id = "base";
-    base.collision = {GeometryConfig(pose{}, mesh{"stl", {1, 2, 3}}, "base_mesh")};
+    base.collision = {GeometryConfig(
+        pose{}, mesh{"stl", {1, 2, 3}, std::string("meshes/base.stl")}, "base_mesh")};
 
     KinematicJoint j1;
     j1.id = "j1";
