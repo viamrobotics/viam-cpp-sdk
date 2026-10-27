@@ -157,7 +157,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR Mesh::Mesh(
     ::_pbi::ConstantInitialized)
   : content_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , mesh_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , mesh_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , original_file_source_path_diagnostic_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct MeshDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MeshDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -232,6 +233,20 @@ struct GeoPointDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GeoPointDefaultTypeInternal _GeoPoint_default_instance_;
+PROTOBUF_CONSTEXPR GeoPose::GeoPose(
+    ::_pbi::ConstantInitialized)
+  : location_(nullptr)
+  , altitude_(0)
+  , _oneof_case_{}{}
+struct GeoPoseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GeoPoseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GeoPoseDefaultTypeInternal() {}
+  union {
+    GeoPose _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GeoPoseDefaultTypeInternal _GeoPose_default_instance_;
 PROTOBUF_CONSTEXPR GeoGeometry::GeoGeometry(
     ::_pbi::ConstantInitialized)
   : geometries_()
@@ -350,7 +365,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR GetKinematicsRequest::GetKinematicsRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+  , extra_(nullptr)
+  , include_collision_meshes_(false)
+  , include_visual_meshes_(false){}
 struct GetKinematicsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetKinematicsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -375,6 +392,7 @@ PROTOBUF_CONSTEXPR GetKinematicsResponse::GetKinematicsResponse(
     ::_pbi::ConstantInitialized)
   : meshes_by_urdf_filepath_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
   , kinematics_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , model_(nullptr)
   , format_(0)
 {}
 struct GetKinematicsResponseDefaultTypeInternal {
@@ -386,6 +404,156 @@ struct GetKinematicsResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetKinematicsResponseDefaultTypeInternal _GetKinematicsResponse_default_instance_;
+PROTOBUF_CONSTEXPR KinematicModel::KinematicModel(
+    ::_pbi::ConstantInitialized)
+  : links_()
+  , joints_()
+  , output_frames_()
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , properties_(nullptr){}
+struct KinematicModelDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR KinematicModelDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~KinematicModelDefaultTypeInternal() {}
+  union {
+    KinematicModel _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KinematicModelDefaultTypeInternal _KinematicModel_default_instance_;
+PROTOBUF_CONSTEXPR KinematicLink::KinematicLink(
+    ::_pbi::ConstantInitialized)
+  : collision_()
+  , visual_()
+  , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , parent_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , pose_(nullptr){}
+struct KinematicLinkDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR KinematicLinkDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~KinematicLinkDefaultTypeInternal() {}
+  union {
+    KinematicLink _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KinematicLinkDefaultTypeInternal _KinematicLink_default_instance_;
+PROTOBUF_CONSTEXPR LinkPose::LinkPose(
+    ::_pbi::ConstantInitialized)
+  : translation_(nullptr)
+  , _oneof_case_{}{}
+struct LinkPoseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LinkPoseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LinkPoseDefaultTypeInternal() {}
+  union {
+    LinkPose _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LinkPoseDefaultTypeInternal _LinkPose_default_instance_;
+PROTOBUF_CONSTEXPR Quaternion::Quaternion(
+    ::_pbi::ConstantInitialized)
+  : w_(0)
+  , x_(0)
+  , y_(0)
+  , z_(0){}
+struct QuaternionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QuaternionDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QuaternionDefaultTypeInternal() {}
+  union {
+    Quaternion _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QuaternionDefaultTypeInternal _Quaternion_default_instance_;
+PROTOBUF_CONSTEXPR EulerAngles::EulerAngles(
+    ::_pbi::ConstantInitialized)
+  : roll_(0)
+  , pitch_(0)
+  , yaw_(0){}
+struct EulerAnglesDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EulerAnglesDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EulerAnglesDefaultTypeInternal() {}
+  union {
+    EulerAngles _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EulerAnglesDefaultTypeInternal _EulerAngles_default_instance_;
+PROTOBUF_CONSTEXPR AxisAngles::AxisAngles(
+    ::_pbi::ConstantInitialized)
+  : rx_(0)
+  , ry_(0)
+  , rz_(0)
+  , theta_(0){}
+struct AxisAnglesDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AxisAnglesDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AxisAnglesDefaultTypeInternal() {}
+  union {
+    AxisAngles _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AxisAnglesDefaultTypeInternal _AxisAngles_default_instance_;
+PROTOBUF_CONSTEXPR KinematicJoint::KinematicJoint(
+    ::_pbi::ConstantInitialized)
+  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , parent_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , axis_(nullptr)
+  , limits_(nullptr)
+  , mimic_(nullptr)
+  , geometry_(nullptr)
+  , type_(0)
+{}
+struct KinematicJointDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR KinematicJointDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~KinematicJointDefaultTypeInternal() {}
+  union {
+    KinematicJoint _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KinematicJointDefaultTypeInternal _KinematicJoint_default_instance_;
+PROTOBUF_CONSTEXPR JointLimits::JointLimits(
+    ::_pbi::ConstantInitialized)
+  : min_(0)
+  , max_(0)
+  , max_velocity_(0)
+  , max_acceleration_(0){}
+struct JointLimitsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JointLimitsDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JointLimitsDefaultTypeInternal() {}
+  union {
+    JointLimits _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JointLimitsDefaultTypeInternal _JointLimits_default_instance_;
+PROTOBUF_CONSTEXPR MimicJoint::MimicJoint(
+    ::_pbi::ConstantInitialized)
+  : joint_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , multiplier_(0)
+  , offset_(0){}
+struct MimicJointDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MimicJointDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MimicJointDefaultTypeInternal() {}
+  union {
+    MimicJoint _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MimicJointDefaultTypeInternal _MimicJoint_default_instance_;
+PROTOBUF_CONSTEXPR KinematicProperties::KinematicProperties(
+    ::_pbi::ConstantInitialized)
+  : operating_freq_hz_(0)
+  , max_linear_tcp_speed_mm_per_sec_(0){}
+struct KinematicPropertiesDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR KinematicPropertiesDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~KinematicPropertiesDefaultTypeInternal() {}
+  union {
+    KinematicProperties _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KinematicPropertiesDefaultTypeInternal _KinematicProperties_default_instance_;
 PROTOBUF_CONSTEXPR GetGeometriesRequest::GetGeometriesRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -558,8 +726,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[40];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[1];
+static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[51];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
 const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -652,7 +820,7 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::RectangularPrism, dims_mm_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Mesh, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Mesh, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -660,6 +828,10 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Mesh, content_type_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Mesh, mesh_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Mesh, original_file_source_path_diagnostic_),
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::PointCloud, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -705,6 +877,21 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, latitude_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, longitude_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPose, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPose, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPose, _oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPose, location_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPose, altitude_),
+  ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPose, orientation_),
+  ~0u,
+  0,
+  ~0u,
+  ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoGeometry, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -788,6 +975,8 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, include_collision_meshes_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, include_visual_meshes_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, extra_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse, _internal_metadata_),
@@ -808,6 +997,116 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, format_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, kinematics_data_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, meshes_by_urdf_filepath_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, model_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicModel, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicModel, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicModel, links_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicModel, joints_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicModel, output_frames_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicModel, properties_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicLink, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicLink, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicLink, parent_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicLink, pose_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicLink, collision_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicLink, visual_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LinkPose, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LinkPose, _oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LinkPose, translation_),
+  ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LinkPose, orientation_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Quaternion, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Quaternion, w_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Quaternion, x_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Quaternion, y_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Quaternion, z_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::EulerAngles, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::EulerAngles, roll_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::EulerAngles, pitch_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::EulerAngles, yaw_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::AxisAngles, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::AxisAngles, rx_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::AxisAngles, ry_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::AxisAngles, rz_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::AxisAngles, theta_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, parent_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, type_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, axis_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, limits_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, mimic_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicJoint, geometry_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::JointLimits, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::JointLimits, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::JointLimits, min_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::JointLimits, max_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::JointLimits, max_velocity_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::JointLimits, max_acceleration_),
+  0,
+  1,
+  2,
+  3,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::MimicJoint, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::MimicJoint, joint_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::MimicJoint, multiplier_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::MimicJoint, offset_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicProperties, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicProperties, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicProperties, operating_freq_hz_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::KinematicProperties, max_linear_tcp_speed_mm_per_sec_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -931,37 +1230,48 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 67, -1, -1, sizeof(::viam::common::v1::Sphere)},
   { 74, -1, -1, sizeof(::viam::common::v1::Capsule)},
   { 82, -1, -1, sizeof(::viam::common::v1::RectangularPrism)},
-  { 89, -1, -1, sizeof(::viam::common::v1::Mesh)},
-  { 97, -1, -1, sizeof(::viam::common::v1::PointCloud)},
-  { 104, -1, -1, sizeof(::viam::common::v1::Geometry)},
-  { 118, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
-  { 126, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
-  { 134, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
-  { 142, -1, -1, sizeof(::viam::common::v1::GeoGeometry)},
-  { 150, 161, -1, sizeof(::viam::common::v1::Transform)},
-  { 166, -1, -1, sizeof(::viam::common::v1::WorldState)},
-  { 174, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
-  { 181, 188, -1, sizeof(::viam::common::v1::ResponseMetadata)},
-  { 189, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
-  { 197, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
-  { 204, -1, -1, sizeof(::viam::common::v1::GetStatusRequest)},
-  { 211, -1, -1, sizeof(::viam::common::v1::GetStatusResponse)},
-  { 218, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
-  { 226, 234, -1, sizeof(::viam::common::v1::GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse)},
-  { 236, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
-  { 245, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
-  { 253, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
-  { 260, -1, -1, sizeof(::viam::common::v1::Get3DModelsRequest)},
-  { 268, 276, -1, sizeof(::viam::common::v1::Get3DModelsResponse_ModelsEntry_DoNotUse)},
-  { 278, -1, -1, sizeof(::viam::common::v1::Get3DModelsResponse)},
-  { 285, -1, -1, sizeof(::viam::common::v1::GetWorldPoseResponse)},
-  { 292, -1, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
-  { 300, 308, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
-  { 310, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
-  { 317, -1, -1, sizeof(::viam::common::v1::LogEntry)},
-  { 331, -1, -1, sizeof(::viam::common::v1::AudioInfo)},
-  { 340, -1, -1, sizeof(::viam::common::v1::GetPropertiesRequest)},
-  { 348, -1, -1, sizeof(::viam::common::v1::GetPropertiesResponse)},
+  { 89, 98, -1, sizeof(::viam::common::v1::Mesh)},
+  { 101, -1, -1, sizeof(::viam::common::v1::PointCloud)},
+  { 108, -1, -1, sizeof(::viam::common::v1::Geometry)},
+  { 122, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
+  { 130, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
+  { 138, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
+  { 146, 157, -1, sizeof(::viam::common::v1::GeoPose)},
+  { 161, -1, -1, sizeof(::viam::common::v1::GeoGeometry)},
+  { 169, 180, -1, sizeof(::viam::common::v1::Transform)},
+  { 185, -1, -1, sizeof(::viam::common::v1::WorldState)},
+  { 193, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 200, 207, -1, sizeof(::viam::common::v1::ResponseMetadata)},
+  { 208, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+  { 216, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+  { 223, -1, -1, sizeof(::viam::common::v1::GetStatusRequest)},
+  { 230, -1, -1, sizeof(::viam::common::v1::GetStatusResponse)},
+  { 237, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
+  { 247, 255, -1, sizeof(::viam::common::v1::GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse)},
+  { 257, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
+  { 267, -1, -1, sizeof(::viam::common::v1::KinematicModel)},
+  { 278, -1, -1, sizeof(::viam::common::v1::KinematicLink)},
+  { 289, -1, -1, sizeof(::viam::common::v1::LinkPose)},
+  { 301, -1, -1, sizeof(::viam::common::v1::Quaternion)},
+  { 311, -1, -1, sizeof(::viam::common::v1::EulerAngles)},
+  { 320, -1, -1, sizeof(::viam::common::v1::AxisAngles)},
+  { 330, -1, -1, sizeof(::viam::common::v1::KinematicJoint)},
+  { 343, 353, -1, sizeof(::viam::common::v1::JointLimits)},
+  { 357, -1, -1, sizeof(::viam::common::v1::MimicJoint)},
+  { 366, 374, -1, sizeof(::viam::common::v1::KinematicProperties)},
+  { 376, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
+  { 384, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
+  { 391, -1, -1, sizeof(::viam::common::v1::Get3DModelsRequest)},
+  { 399, 407, -1, sizeof(::viam::common::v1::Get3DModelsResponse_ModelsEntry_DoNotUse)},
+  { 409, -1, -1, sizeof(::viam::common::v1::Get3DModelsResponse)},
+  { 416, -1, -1, sizeof(::viam::common::v1::GetWorldPoseResponse)},
+  { 423, -1, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
+  { 431, 439, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
+  { 441, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
+  { 448, -1, -1, sizeof(::viam::common::v1::LogEntry)},
+  { 462, -1, -1, sizeof(::viam::common::v1::AudioInfo)},
+  { 471, -1, -1, sizeof(::viam::common::v1::GetPropertiesRequest)},
+  { 479, -1, -1, sizeof(::viam::common::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -980,6 +1290,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_GeometriesInFrame_default_instance_._instance,
   &::viam::common::v1::_PointCloudObject_default_instance_._instance,
   &::viam::common::v1::_GeoPoint_default_instance_._instance,
+  &::viam::common::v1::_GeoPose_default_instance_._instance,
   &::viam::common::v1::_GeoGeometry_default_instance_._instance,
   &::viam::common::v1::_Transform_default_instance_._instance,
   &::viam::common::v1::_WorldState_default_instance_._instance,
@@ -992,6 +1303,16 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_GetKinematicsRequest_default_instance_._instance,
   &::viam::common::v1::_GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse_default_instance_._instance,
   &::viam::common::v1::_GetKinematicsResponse_default_instance_._instance,
+  &::viam::common::v1::_KinematicModel_default_instance_._instance,
+  &::viam::common::v1::_KinematicLink_default_instance_._instance,
+  &::viam::common::v1::_LinkPose_default_instance_._instance,
+  &::viam::common::v1::_Quaternion_default_instance_._instance,
+  &::viam::common::v1::_EulerAngles_default_instance_._instance,
+  &::viam::common::v1::_AxisAngles_default_instance_._instance,
+  &::viam::common::v1::_KinematicJoint_default_instance_._instance,
+  &::viam::common::v1::_JointLimits_default_instance_._instance,
+  &::viam::common::v1::_MimicJoint_default_instance_._instance,
+  &::viam::common::v1::_KinematicProperties_default_instance_._instance,
   &::viam::common::v1::_GetGeometriesRequest_default_instance_._instance,
   &::viam::common::v1::_GetGeometriesResponse_default_instance_._instance,
   &::viam::common::v1::_Get3DModelsRequest_default_instance_._instance,
@@ -1032,27 +1353,36 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "m\030\001 \001(\001R\010radiusMm\"C\n\007Capsule\022\033\n\tradius_m"
   "m\030\001 \001(\001R\010radiusMm\022\033\n\tlength_mm\030\002 \001(\001R\010le"
   "ngthMm\"D\n\020RectangularPrism\0220\n\007dims_mm\030\001 "
-  "\001(\0132\027.viam.common.v1.Vector3R\006dimsMm\"=\n\004"
-  "Mesh\022!\n\014content_type\030\001 \001(\tR\013contentType\022"
-  "\022\n\004mesh\030\002 \001(\014R\004mesh\"-\n\nPointCloud\022\037\n\013poi"
-  "nt_cloud\030\001 \001(\014R\npointCloud\"\346\002\n\010Geometry\022"
-  ",\n\006center\030\001 \001(\0132\024.viam.common.v1.PoseR\006c"
-  "enter\0220\n\006sphere\030\002 \001(\0132\026.viam.common.v1.S"
-  "phereH\000R\006sphere\0224\n\003box\030\003 \001(\0132 .viam.comm"
-  "on.v1.RectangularPrismH\000R\003box\0223\n\007capsule"
-  "\030\005 \001(\0132\027.viam.common.v1.CapsuleH\000R\007capsu"
-  "le\022*\n\004mesh\030\006 \001(\0132\024.viam.common.v1.MeshH\000"
-  "R\004mesh\022<\n\npointcloud\030\007 \001(\0132\032.viam.common"
-  ".v1.PointCloudH\000R\npointcloud\022\024\n\005label\030\004 "
-  "\001(\tR\005labelB\017\n\rgeometry_type\"v\n\021Geometrie"
-  "sInFrame\022\'\n\017reference_frame\030\001 \001(\tR\016refer"
-  "enceFrame\0228\n\ngeometries\030\002 \003(\0132\030.viam.com"
-  "mon.v1.GeometryR\ngeometries\"v\n\020PointClou"
-  "dObject\022\037\n\013point_cloud\030\001 \001(\014R\npointCloud"
-  "\022A\n\ngeometries\030\002 \001(\0132!.viam.common.v1.Ge"
-  "ometriesInFrameR\ngeometries\"D\n\010GeoPoint\022"
-  "\032\n\010latitude\030\001 \001(\001R\010latitude\022\034\n\tlongitude"
-  "\030\002 \001(\001R\tlongitude\"}\n\013GeoGeometry\0224\n\010loca"
+  "\001(\0132\027.viam.common.v1.Vector3R\006dimsMm\"\273\001\n"
+  "\004Mesh\022!\n\014content_type\030\001 \001(\tR\013contentType"
+  "\022\022\n\004mesh\030\002 \001(\014R\004mesh\022S\n$original_file_so"
+  "urce_path_diagnostic\030\003 \001(\tH\000R originalFi"
+  "leSourcePathDiagnostic\210\001\001B\'\n%_original_f"
+  "ile_source_path_diagnostic\"-\n\nPointCloud"
+  "\022\037\n\013point_cloud\030\001 \001(\014R\npointCloud\"\346\002\n\010Ge"
+  "ometry\022,\n\006center\030\001 \001(\0132\024.viam.common.v1."
+  "PoseR\006center\0220\n\006sphere\030\002 \001(\0132\026.viam.comm"
+  "on.v1.SphereH\000R\006sphere\0224\n\003box\030\003 \001(\0132 .vi"
+  "am.common.v1.RectangularPrismH\000R\003box\0223\n\007"
+  "capsule\030\005 \001(\0132\027.viam.common.v1.CapsuleH\000"
+  "R\007capsule\022*\n\004mesh\030\006 \001(\0132\024.viam.common.v1"
+  ".MeshH\000R\004mesh\022<\n\npointcloud\030\007 \001(\0132\032.viam"
+  ".common.v1.PointCloudH\000R\npointcloud\022\024\n\005l"
+  "abel\030\004 \001(\tR\005labelB\017\n\rgeometry_type\"v\n\021Ge"
+  "ometriesInFrame\022\'\n\017reference_frame\030\001 \001(\t"
+  "R\016referenceFrame\0228\n\ngeometries\030\002 \003(\0132\030.v"
+  "iam.common.v1.GeometryR\ngeometries\"v\n\020Po"
+  "intCloudObject\022\037\n\013point_cloud\030\001 \001(\014R\npoi"
+  "ntCloud\022A\n\ngeometries\030\002 \001(\0132!.viam.commo"
+  "n.v1.GeometriesInFrameR\ngeometries\"D\n\010Ge"
+  "oPoint\022\032\n\010latitude\030\001 \001(\001R\010latitude\022\034\n\tlo"
+  "ngitude\030\002 \001(\001R\tlongitude\"\346\001\n\007GeoPose\0224\n\010"
+  "location\030\001 \001(\0132\030.viam.common.v1.GeoPoint"
+  "R\010location\022\037\n\010altitude\030\003 \001(\001H\001R\010altitude"
+  "\210\001\001\022\032\n\007heading\030\002 \001(\001H\000R\007heading\022L\n\022orien"
+  "tation_vector\030\004 \001(\0132\033.viam.common.v1.Ori"
+  "entationH\000R\021orientationVectorB\r\n\013orienta"
+  "tionB\013\n\t_altitude\"}\n\013GeoGeometry\0224\n\010loca"
   "tion\030\001 \001(\0132\030.viam.common.v1.GeoPointR\010lo"
   "cation\0228\n\ngeometries\030\002 \003(\0132\030.viam.common"
   ".v1.GeometryR\ngeometries\"\275\002\n\tTransform\022\'"
@@ -1077,60 +1407,114 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "2\027.google.protobuf.StructR\006result\"&\n\020Get"
   "StatusRequest\022\022\n\004name\030\001 \001(\tR\004name\"D\n\021Get"
   "StatusResponse\022/\n\006result\030\001 \001(\0132\027.google."
-  "protobuf.StructR\006result\"Y\n\024GetKinematics"
-  "Request\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001"
-  "(\0132\027.google.protobuf.StructR\005extra\"\325\002\n\025G"
-  "etKinematicsResponse\022<\n\006format\030\001 \001(\0162$.v"
-  "iam.common.v1.KinematicsFileFormatR\006form"
-  "at\022\'\n\017kinematics_data\030\002 \001(\014R\016kinematicsD"
-  "ata\022v\n\027meshes_by_urdf_filepath\030\003 \003(\0132\?.v"
-  "iam.common.v1.GetKinematicsResponse.Mesh"
-  "esByUrdfFilepathEntryR\024meshesByUrdfFilep"
-  "ath\032]\n\031MeshesByUrdfFilepathEntry\022\020\n\003key\030"
-  "\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.viam.common."
-  "v1.MeshR\005value:\0028\001\"Y\n\024GetGeometriesReque"
-  "st\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027."
-  "google.protobuf.StructR\005extra\"Q\n\025GetGeom"
-  "etriesResponse\0228\n\ngeometries\030\001 \003(\0132\030.via"
-  "m.common.v1.GeometryR\ngeometries\"W\n\022Get3"
-  "DModelsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005ex"
-  "tra\030c \001(\0132\027.google.protobuf.StructR\005extr"
-  "a\"\257\001\n\023Get3DModelsResponse\022G\n\006models\030\001 \003("
-  "\0132/.viam.common.v1.Get3DModelsResponse.M"
-  "odelsEntryR\006models\032O\n\013ModelsEntry\022\020\n\003key"
-  "\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.viam.common"
-  ".v1.MeshR\005value:\0028\001\"@\n\024GetWorldPoseRespo"
-  "nse\022(\n\004pose\030\001 \001(\0132\024.viam.common.v1.PoseR"
-  "\004pose\"W\n\022GetReadingsRequest\022\022\n\004name\030\001 \001("
-  "\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf"
-  ".StructR\005extra\"\271\001\n\023GetReadingsResponse\022M"
-  "\n\010readings\030\001 \003(\01321.viam.common.v1.GetRea"
-  "dingsResponse.ReadingsEntryR\010readings\032S\n"
-  "\rReadingsEntry\022\020\n\003key\030\001 \001(\tR\003key\022,\n\005valu"
-  "e\030\002 \001(\0132\026.google.protobuf.ValueR\005value:\002"
-  "8\001\"\227\002\n\010LogEntry\022\022\n\004host\030\001 \001(\tR\004host\022\024\n\005l"
-  "evel\030\002 \001(\tR\005level\022.\n\004time\030\003 \001(\0132\032.google"
-  ".protobuf.TimestampR\004time\022\037\n\013logger_name"
-  "\030\004 \001(\tR\nloggerName\022\030\n\007message\030\005 \001(\tR\007mes"
-  "sage\022/\n\006caller\030\006 \001(\0132\027.google.protobuf.S"
-  "tructR\006caller\022\024\n\005stack\030\007 \001(\tR\005stack\022/\n\006f"
-  "ields\030\010 \003(\0132\027.google.protobuf.StructR\006fi"
-  "elds\"j\n\tAudioInfo\022\024\n\005codec\030\001 \001(\tR\005codec\022"
-  "$\n\016sample_rate_hz\030\002 \001(\005R\014sampleRateHz\022!\n"
-  "\014num_channels\030\003 \001(\005R\013numChannels\"Y\n\024GetP"
-  "ropertiesRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005"
-  "extra\030c \001(\0132\027.google.protobuf.StructR\005ex"
-  "tra\"\213\001\n\025GetPropertiesResponse\022)\n\020support"
-  "ed_codecs\030\001 \003(\tR\017supportedCodecs\022$\n\016samp"
-  "le_rate_hz\030\002 \001(\005R\014sampleRateHz\022!\n\014num_ch"
-  "annels\030\003 \001(\005R\013numChannels*\177\n\024KinematicsF"
-  "ileFormat\022&\n\"KINEMATICS_FILE_FORMAT_UNSP"
-  "ECIFIED\020\000\022\036\n\032KINEMATICS_FILE_FORMAT_SVA\020"
-  "\001\022\037\n\033KINEMATICS_FILE_FORMAT_URDF\020\002:a\n\032sa"
-  "fety_heartbeat_monitored\022\036.google.protob"
-  "uf.MethodOptions\030\244\222\005 \001(\010R\030safetyHeartbea"
-  "tMonitored\210\001\001B/\n\022com.viam.common.v1Z\031go."
-  "viam.com/api/common/v1b\006proto3"
+  "protobuf.StructR\006result\"\307\001\n\024GetKinematic"
+  "sRequest\022\022\n\004name\030\001 \001(\tR\004name\0228\n\030include_"
+  "collision_meshes\030\002 \001(\010R\026includeCollision"
+  "Meshes\0222\n\025include_visual_meshes\030\003 \001(\010R\023i"
+  "ncludeVisualMeshes\022-\n\005extra\030c \001(\0132\027.goog"
+  "le.protobuf.StructR\005extra\"\227\003\n\025GetKinemat"
+  "icsResponse\022@\n\006format\030\001 \001(\0162$.viam.commo"
+  "n.v1.KinematicsFileFormatB\002\030\001R\006format\022+\n"
+  "\017kinematics_data\030\002 \001(\014B\002\030\001R\016kinematicsDa"
+  "ta\022z\n\027meshes_by_urdf_filepath\030\003 \003(\0132\?.vi"
+  "am.common.v1.GetKinematicsResponse.Meshe"
+  "sByUrdfFilepathEntryB\002\030\001R\024meshesByUrdfFi"
+  "lepath\0224\n\005model\030\004 \001(\0132\036.viam.common.v1.K"
+  "inematicModelR\005model\032]\n\031MeshesByUrdfFile"
+  "pathEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001"
+  "(\0132\024.viam.common.v1.MeshR\005value:\0028\001\"\373\001\n\016"
+  "KinematicModel\022\022\n\004name\030\001 \001(\tR\004name\0223\n\005li"
+  "nks\030\002 \003(\0132\035.viam.common.v1.KinematicLink"
+  "R\005links\0226\n\006joints\030\003 \003(\0132\036.viam.common.v1"
+  ".KinematicJointR\006joints\022#\n\routput_frames"
+  "\030\004 \003(\tR\014outputFrames\022C\n\nproperties\030\005 \001(\013"
+  "2#.viam.common.v1.KinematicPropertiesR\np"
+  "roperties\"\317\001\n\rKinematicLink\022\016\n\002id\030\001 \001(\tR"
+  "\002id\022\026\n\006parent\030\002 \001(\tR\006parent\022,\n\004pose\030\003 \001("
+  "\0132\030.viam.common.v1.LinkPoseR\004pose\0226\n\tcol"
+  "lision\030\004 \003(\0132\030.viam.common.v1.GeometryR\t"
+  "collision\0220\n\006visual\030\005 \003(\0132\030.viam.common."
+  "v1.GeometryR\006visual\"\341\002\n\010LinkPose\0229\n\013tran"
+  "slation\030\001 \001(\0132\027.viam.common.v1.Vector3R\013"
+  "translation\022<\n\nquaternion\030\002 \001(\0132\032.viam.c"
+  "ommon.v1.QuaternionH\000R\nquaternion\022L\n\022ori"
+  "entation_vector\030\003 \001(\0132\033.viam.common.v1.O"
+  "rientationH\000R\021orientationVector\022@\n\014euler"
+  "_angles\030\004 \001(\0132\033.viam.common.v1.EulerAngl"
+  "esH\000R\013eulerAngles\022=\n\013axis_angles\030\005 \001(\0132\032"
+  ".viam.common.v1.AxisAnglesH\000R\naxisAngles"
+  "B\r\n\013orientation\"D\n\nQuaternion\022\014\n\001w\030\001 \001(\001"
+  "R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001"
+  "(\001R\001z\"I\n\013EulerAngles\022\022\n\004roll\030\001 \001(\001R\004roll"
+  "\022\024\n\005pitch\030\002 \001(\001R\005pitch\022\020\n\003yaw\030\003 \001(\001R\003yaw"
+  "\"R\n\nAxisAngles\022\016\n\002rx\030\001 \001(\001R\002rx\022\016\n\002ry\030\002 \001"
+  "(\001R\002ry\022\016\n\002rz\030\003 \001(\001R\002rz\022\024\n\005theta\030\004 \001(\001R\005t"
+  "heta\"\261\002\n\016KinematicJoint\022\016\n\002id\030\001 \001(\tR\002id\022"
+  "\026\n\006parent\030\002 \001(\tR\006parent\022-\n\004type\030\003 \001(\0162\031."
+  "viam.common.v1.JointTypeR\004type\022+\n\004axis\030\004"
+  " \001(\0132\027.viam.common.v1.Vector3R\004axis\0223\n\006l"
+  "imits\030\005 \001(\0132\033.viam.common.v1.JointLimits"
+  "R\006limits\0220\n\005mimic\030\006 \001(\0132\032.viam.common.v1"
+  ".MimicJointR\005mimic\0224\n\010geometry\030\007 \001(\0132\030.v"
+  "iam.common.v1.GeometryR\010geometry\"\311\001\n\013Joi"
+  "ntLimits\022\025\n\003min\030\001 \001(\001H\000R\003min\210\001\001\022\025\n\003max\030\002"
+  " \001(\001H\001R\003max\210\001\001\022&\n\014max_velocity\030\003 \001(\001H\002R\013"
+  "maxVelocity\210\001\001\022.\n\020max_acceleration\030\004 \001(\001"
+  "H\003R\017maxAcceleration\210\001\001B\006\n\004_minB\006\n\004_maxB\017"
+  "\n\r_max_velocityB\023\n\021_max_acceleration\"Z\n\n"
+  "MimicJoint\022\024\n\005joint\030\001 \001(\tR\005joint\022\036\n\nmult"
+  "iplier\030\002 \001(\001R\nmultiplier\022\026\n\006offset\030\003 \001(\001"
+  "R\006offset\"\311\001\n\023KinematicProperties\022/\n\021oper"
+  "ating_freq_hz\030\001 \001(\001H\000R\017operatingFreqHz\210\001"
+  "\001\022G\n\037max_linear_tcp_speed_mm_per_sec\030\002 \001"
+  "(\001H\001R\031maxLinearTcpSpeedMmPerSec\210\001\001B\024\n\022_o"
+  "perating_freq_hzB\"\n _max_linear_tcp_spee"
+  "d_mm_per_sec\"Y\n\024GetGeometriesRequest\022\022\n\004"
+  "name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google"
+  ".protobuf.StructR\005extra\"Q\n\025GetGeometries"
+  "Response\0228\n\ngeometries\030\001 \003(\0132\030.viam.comm"
+  "on.v1.GeometryR\ngeometries\"W\n\022Get3DModel"
+  "sRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c "
+  "\001(\0132\027.google.protobuf.StructR\005extra\"\257\001\n\023"
+  "Get3DModelsResponse\022G\n\006models\030\001 \003(\0132/.vi"
+  "am.common.v1.Get3DModelsResponse.ModelsE"
+  "ntryR\006models\032O\n\013ModelsEntry\022\020\n\003key\030\001 \001(\t"
+  "R\003key\022*\n\005value\030\002 \001(\0132\024.viam.common.v1.Me"
+  "shR\005value:\0028\001\"@\n\024GetWorldPoseResponse\022(\n"
+  "\004pose\030\001 \001(\0132\024.viam.common.v1.PoseR\004pose\""
+  "W\n\022GetReadingsRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struc"
+  "tR\005extra\"\271\001\n\023GetReadingsResponse\022M\n\010read"
+  "ings\030\001 \003(\01321.viam.common.v1.GetReadingsR"
+  "esponse.ReadingsEntryR\010readings\032S\n\rReadi"
+  "ngsEntry\022\020\n\003key\030\001 \001(\tR\003key\022,\n\005value\030\002 \001("
+  "\0132\026.google.protobuf.ValueR\005value:\0028\001\"\227\002\n"
+  "\010LogEntry\022\022\n\004host\030\001 \001(\tR\004host\022\024\n\005level\030\002"
+  " \001(\tR\005level\022.\n\004time\030\003 \001(\0132\032.google.proto"
+  "buf.TimestampR\004time\022\037\n\013logger_name\030\004 \001(\t"
+  "R\nloggerName\022\030\n\007message\030\005 \001(\tR\007message\022/"
+  "\n\006caller\030\006 \001(\0132\027.google.protobuf.StructR"
+  "\006caller\022\024\n\005stack\030\007 \001(\tR\005stack\022/\n\006fields\030"
+  "\010 \003(\0132\027.google.protobuf.StructR\006fields\"j"
+  "\n\tAudioInfo\022\024\n\005codec\030\001 \001(\tR\005codec\022$\n\016sam"
+  "ple_rate_hz\030\002 \001(\005R\014sampleRateHz\022!\n\014num_c"
+  "hannels\030\003 \001(\005R\013numChannels\"Y\n\024GetPropert"
+  "iesRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030"
+  "c \001(\0132\027.google.protobuf.StructR\005extra\"\213\001"
+  "\n\025GetPropertiesResponse\022)\n\020supported_cod"
+  "ecs\030\001 \003(\tR\017supportedCodecs\022$\n\016sample_rat"
+  "e_hz\030\002 \001(\005R\014sampleRateHz\022!\n\014num_channels"
+  "\030\003 \001(\005R\013numChannels*\177\n\024KinematicsFileFor"
+  "mat\022&\n\"KINEMATICS_FILE_FORMAT_UNSPECIFIE"
+  "D\020\000\022\036\n\032KINEMATICS_FILE_FORMAT_SVA\020\001\022\037\n\033K"
+  "INEMATICS_FILE_FORMAT_URDF\020\002*u\n\tJointTyp"
+  "e\022\032\n\026JOINT_TYPE_UNSPECIFIED\020\000\022\027\n\023JOINT_T"
+  "YPE_REVOLUTE\020\001\022\030\n\024JOINT_TYPE_PRISMATIC\020\002"
+  "\022\031\n\025JOINT_TYPE_CONTINUOUS\020\003:a\n\032safety_he"
+  "artbeat_monitored\022\036.google.protobuf.Meth"
+  "odOptions\030\244\222\005 \001(\010R\030safetyHeartbeatMonito"
+  "red\210\001\001B/\n\022com.viam.common.v1Z\031go.viam.co"
+  "m/api/common/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
@@ -1139,9 +1523,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommo
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 4910, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 7423, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 40,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 51,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -1164,6 +1548,22 @@ bool KinematicsFileFormat_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* JointType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_common_2fv1_2fcommon_2eproto);
+  return file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[1];
+}
+bool JointType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
       return true;
     default:
       return false;
@@ -3767,6 +4167,10 @@ void RectangularPrism::InternalSwap(RectangularPrism* other) {
 
 class Mesh::_Internal {
  public:
+  using HasBits = decltype(std::declval<Mesh>()._has_bits_);
+  static void set_has_original_file_source_path_diagnostic(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 Mesh::Mesh(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -3776,7 +4180,8 @@ Mesh::Mesh(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   // @@protoc_insertion_point(arena_constructor:viam.common.v1.Mesh)
 }
 Mesh::Mesh(const Mesh& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   content_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -3794,6 +4199,14 @@ Mesh::Mesh(const Mesh& from)
     mesh_.Set(from._internal_mesh(), 
       GetArenaForAllocation());
   }
+  original_file_source_path_diagnostic_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    original_file_source_path_diagnostic_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_original_file_source_path_diagnostic()) {
+    original_file_source_path_diagnostic_.Set(from._internal_original_file_source_path_diagnostic(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.Mesh)
 }
 
@@ -3805,6 +4218,10 @@ content_type_.InitDefault();
 mesh_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   mesh_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+original_file_source_path_diagnostic_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  original_file_source_path_diagnostic_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -3821,6 +4238,7 @@ inline void Mesh::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   content_type_.Destroy();
   mesh_.Destroy();
+  original_file_source_path_diagnostic_.Destroy();
 }
 
 void Mesh::SetCachedSize(int size) const {
@@ -3835,11 +4253,17 @@ void Mesh::Clear() {
 
   content_type_.ClearToEmpty();
   mesh_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    original_file_source_path_diagnostic_.ClearNonDefaultToEmpty();
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Mesh::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -3863,6 +4287,16 @@ const char* Mesh::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
+      // optional string original_file_source_path_diagnostic = 3 [json_name = "originalFileSourcePathDiagnostic"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_original_file_source_path_diagnostic();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.Mesh.original_file_source_path_diagnostic"));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -3879,6 +4313,7 @@ const char* Mesh::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -3906,6 +4341,16 @@ uint8_t* Mesh::_InternalSerialize(
   if (!this->_internal_mesh().empty()) {
     target = stream->WriteBytesMaybeAliased(
         2, this->_internal_mesh(), target);
+  }
+
+  // optional string original_file_source_path_diagnostic = 3 [json_name = "originalFileSourcePathDiagnostic"];
+  if (_internal_has_original_file_source_path_diagnostic()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_original_file_source_path_diagnostic().data(), static_cast<int>(this->_internal_original_file_source_path_diagnostic().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.Mesh.original_file_source_path_diagnostic");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_original_file_source_path_diagnostic(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3938,6 +4383,14 @@ size_t Mesh::ByteSizeLong() const {
         this->_internal_mesh());
   }
 
+  // optional string original_file_source_path_diagnostic = 3 [json_name = "originalFileSourcePathDiagnostic"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_original_file_source_path_diagnostic());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -3966,6 +4419,9 @@ void Mesh::MergeFrom(const Mesh& from) {
   if (!from._internal_mesh().empty()) {
     _internal_set_mesh(from._internal_mesh());
   }
+  if (from._internal_has_original_file_source_path_diagnostic()) {
+    _internal_set_original_file_source_path_diagnostic(from._internal_original_file_source_path_diagnostic());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3985,6 +4441,7 @@ void Mesh::InternalSwap(Mesh* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &content_type_, lhs_arena,
       &other->content_type_, rhs_arena
@@ -3992,6 +4449,10 @@ void Mesh::InternalSwap(Mesh* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &mesh_, lhs_arena,
       &other->mesh_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &original_file_source_path_diagnostic_, lhs_arena,
+      &other->original_file_source_path_diagnostic_, rhs_arena
   );
 }
 
@@ -5433,6 +5894,357 @@ void GeoPoint::InternalSwap(GeoPoint* other) {
 
 // ===================================================================
 
+class GeoPose::_Internal {
+ public:
+  using HasBits = decltype(std::declval<GeoPose>()._has_bits_);
+  static const ::viam::common::v1::GeoPoint& location(const GeoPose* msg);
+  static void set_has_altitude(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::viam::common::v1::Orientation& orientation_vector(const GeoPose* msg);
+};
+
+const ::viam::common::v1::GeoPoint&
+GeoPose::_Internal::location(const GeoPose* msg) {
+  return *msg->location_;
+}
+const ::viam::common::v1::Orientation&
+GeoPose::_Internal::orientation_vector(const GeoPose* msg) {
+  return *msg->orientation_.orientation_vector_;
+}
+void GeoPose::set_allocated_orientation_vector(::viam::common::v1::Orientation* orientation_vector) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_orientation();
+  if (orientation_vector) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(orientation_vector);
+    if (message_arena != submessage_arena) {
+      orientation_vector = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, orientation_vector, submessage_arena);
+    }
+    set_has_orientation_vector();
+    orientation_.orientation_vector_ = orientation_vector;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GeoPose.orientation_vector)
+}
+GeoPose::GeoPose(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.GeoPose)
+}
+GeoPose::GeoPose(const GeoPose& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_location()) {
+    location_ = new ::viam::common::v1::GeoPoint(*from.location_);
+  } else {
+    location_ = nullptr;
+  }
+  altitude_ = from.altitude_;
+  clear_has_orientation();
+  switch (from.orientation_case()) {
+    case kHeading: {
+      _internal_set_heading(from._internal_heading());
+      break;
+    }
+    case kOrientationVector: {
+      _internal_mutable_orientation_vector()->::viam::common::v1::Orientation::MergeFrom(from._internal_orientation_vector());
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.GeoPose)
+}
+
+inline void GeoPose::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&location_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&altitude_) -
+    reinterpret_cast<char*>(&location_)) + sizeof(altitude_));
+clear_has_orientation();
+}
+
+GeoPose::~GeoPose() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.GeoPose)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GeoPose::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete location_;
+  if (has_orientation()) {
+    clear_orientation();
+  }
+}
+
+void GeoPose::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GeoPose::clear_orientation() {
+// @@protoc_insertion_point(one_of_clear_start:viam.common.v1.GeoPose)
+  switch (orientation_case()) {
+    case kHeading: {
+      // No need to clear
+      break;
+    }
+    case kOrientationVector: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete orientation_.orientation_vector_;
+      }
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = ORIENTATION_NOT_SET;
+}
+
+
+void GeoPose::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.GeoPose)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+  altitude_ = 0;
+  clear_orientation();
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GeoPose::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_location(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // double heading = 2 [json_name = "heading"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          _internal_set_heading(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double altitude = 3 [json_name = "altitude"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          _Internal::set_has_altitude(&has_bits);
+          altitude_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.Orientation orientation_vector = 4 [json_name = "orientationVector"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_orientation_vector(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GeoPose::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.GeoPose)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  if (this->_internal_has_location()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::location(this),
+        _Internal::location(this).GetCachedSize(), target, stream);
+  }
+
+  // double heading = 2 [json_name = "heading"];
+  if (_internal_has_heading()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_heading(), target);
+  }
+
+  // optional double altitude = 3 [json_name = "altitude"];
+  if (_internal_has_altitude()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_altitude(), target);
+  }
+
+  // .viam.common.v1.Orientation orientation_vector = 4 [json_name = "orientationVector"];
+  if (_internal_has_orientation_vector()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, _Internal::orientation_vector(this),
+        _Internal::orientation_vector(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.GeoPose)
+  return target;
+}
+
+size_t GeoPose::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.GeoPose)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  if (this->_internal_has_location()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *location_);
+  }
+
+  // optional double altitude = 3 [json_name = "altitude"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + 8;
+  }
+
+  switch (orientation_case()) {
+    // double heading = 2 [json_name = "heading"];
+    case kHeading: {
+      total_size += 1 + 8;
+      break;
+    }
+    // .viam.common.v1.Orientation orientation_vector = 4 [json_name = "orientationVector"];
+    case kOrientationVector: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *orientation_.orientation_vector_);
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GeoPose::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GeoPose::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GeoPose::GetClassData() const { return &_class_data_; }
+
+void GeoPose::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GeoPose *>(to)->MergeFrom(
+      static_cast<const GeoPose &>(from));
+}
+
+
+void GeoPose::MergeFrom(const GeoPose& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.GeoPose)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_location()) {
+    _internal_mutable_location()->::viam::common::v1::GeoPoint::MergeFrom(from._internal_location());
+  }
+  if (from._internal_has_altitude()) {
+    _internal_set_altitude(from._internal_altitude());
+  }
+  switch (from.orientation_case()) {
+    case kHeading: {
+      _internal_set_heading(from._internal_heading());
+      break;
+    }
+    case kOrientationVector: {
+      _internal_mutable_orientation_vector()->::viam::common::v1::Orientation::MergeFrom(from._internal_orientation_vector());
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GeoPose::CopyFrom(const GeoPose& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.GeoPose)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GeoPose::IsInitialized() const {
+  return true;
+}
+
+void GeoPose::InternalSwap(GeoPose* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GeoPose, altitude_)
+      + sizeof(GeoPose::altitude_)
+      - PROTOBUF_FIELD_OFFSET(GeoPose, location_)>(
+          reinterpret_cast<char*>(&location_),
+          reinterpret_cast<char*>(&other->location_));
+  swap(orientation_, other->orientation_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GeoPose::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[15]);
+}
+
+// ===================================================================
+
 class GeoGeometry::_Internal {
  public:
   static const ::viam::common::v1::GeoPoint& location(const GeoGeometry* msg);
@@ -5648,7 +6460,7 @@ void GeoGeometry::InternalSwap(GeoGeometry* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GeoGeometry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[15]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[16]);
 }
 
 // ===================================================================
@@ -6041,7 +6853,7 @@ void Transform::InternalSwap(Transform* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Transform::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[16]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
 }
 
 // ===================================================================
@@ -6252,7 +7064,7 @@ void WorldState::InternalSwap(WorldState* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata WorldState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
 }
 
 // ===================================================================
@@ -6423,7 +7235,7 @@ void ActuatorStatus::InternalSwap(ActuatorStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ActuatorStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
 }
 
 // ===================================================================
@@ -6625,7 +7437,7 @@ void ResponseMetadata::InternalSwap(ResponseMetadata* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResponseMetadata::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
 }
 
 // ===================================================================
@@ -6868,7 +7680,7 @@ void DoCommandRequest::InternalSwap(DoCommandRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
 }
 
 // ===================================================================
@@ -7061,7 +7873,7 @@ void DoCommandResponse::InternalSwap(DoCommandResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
 }
 
 // ===================================================================
@@ -7256,7 +8068,7 @@ void GetStatusRequest::InternalSwap(GetStatusRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetStatusRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[23]);
 }
 
 // ===================================================================
@@ -7449,7 +8261,7 @@ void GetStatusResponse::InternalSwap(GetStatusResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetStatusResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[23]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[24]);
 }
 
 // ===================================================================
@@ -7491,6 +8303,9 @@ GetKinematicsRequest::GetKinematicsRequest(const GetKinematicsRequest& from)
   } else {
     extra_ = nullptr;
   }
+  ::memcpy(&include_collision_meshes_, &from.include_collision_meshes_,
+    static_cast<size_t>(reinterpret_cast<char*>(&include_visual_meshes_) -
+    reinterpret_cast<char*>(&include_collision_meshes_)) + sizeof(include_visual_meshes_));
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetKinematicsRequest)
 }
 
@@ -7499,7 +8314,10 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&include_visual_meshes_) -
+    reinterpret_cast<char*>(&extra_)) + sizeof(include_visual_meshes_));
 }
 
 GetKinematicsRequest::~GetKinematicsRequest() {
@@ -7532,6 +8350,9 @@ void GetKinematicsRequest::Clear() {
     delete extra_;
   }
   extra_ = nullptr;
+  ::memset(&include_collision_meshes_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&include_visual_meshes_) -
+      reinterpret_cast<char*>(&include_collision_meshes_)) + sizeof(include_visual_meshes_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -7548,6 +8369,22 @@ const char* GetKinematicsRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.GetKinematicsRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool include_collision_meshes = 2 [json_name = "includeCollisionMeshes"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          include_collision_meshes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool include_visual_meshes = 3 [json_name = "includeVisualMeshes"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          include_visual_meshes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -7598,6 +8435,18 @@ uint8_t* GetKinematicsRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // bool include_collision_meshes = 2 [json_name = "includeCollisionMeshes"];
+  if (this->_internal_include_collision_meshes() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_include_collision_meshes(), target);
+  }
+
+  // bool include_visual_meshes = 3 [json_name = "includeVisualMeshes"];
+  if (this->_internal_include_visual_meshes() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_include_visual_meshes(), target);
+  }
+
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -7635,6 +8484,16 @@ size_t GetKinematicsRequest::ByteSizeLong() const {
         *extra_);
   }
 
+  // bool include_collision_meshes = 2 [json_name = "includeCollisionMeshes"];
+  if (this->_internal_include_collision_meshes() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool include_visual_meshes = 3 [json_name = "includeVisualMeshes"];
+  if (this->_internal_include_visual_meshes() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -7663,6 +8522,12 @@ void GetKinematicsRequest::MergeFrom(const GetKinematicsRequest& from) {
   if (from._internal_has_extra()) {
     _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
+  if (from._internal_include_collision_meshes() != 0) {
+    _internal_set_include_collision_meshes(from._internal_include_collision_meshes());
+  }
+  if (from._internal_include_visual_meshes() != 0) {
+    _internal_set_include_visual_meshes(from._internal_include_visual_meshes());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -7686,13 +8551,18 @@ void GetKinematicsRequest::InternalSwap(GetKinematicsRequest* other) {
       &name_, lhs_arena,
       &other->name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetKinematicsRequest, include_visual_meshes_)
+      + sizeof(GetKinematicsRequest::include_visual_meshes_)
+      - PROTOBUF_FIELD_OFFSET(GetKinematicsRequest, extra_)>(
+          reinterpret_cast<char*>(&extra_),
+          reinterpret_cast<char*>(&other->extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[24]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[25]);
 }
 
 // ===================================================================
@@ -7706,15 +8576,20 @@ void GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse::MergeFrom(const G
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[25]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[26]);
 }
 
 // ===================================================================
 
 class GetKinematicsResponse::_Internal {
  public:
+  static const ::viam::common::v1::KinematicModel& model(const GetKinematicsResponse* msg);
 };
 
+const ::viam::common::v1::KinematicModel&
+GetKinematicsResponse::_Internal::model(const GetKinematicsResponse* msg) {
+  return *msg->model_;
+}
 GetKinematicsResponse::GetKinematicsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
@@ -7737,6 +8612,11 @@ GetKinematicsResponse::GetKinematicsResponse(const GetKinematicsResponse& from)
     kinematics_data_.Set(from._internal_kinematics_data(), 
       GetArenaForAllocation());
   }
+  if (from._internal_has_model()) {
+    model_ = new ::viam::common::v1::KinematicModel(*from.model_);
+  } else {
+    model_ = nullptr;
+  }
   format_ = from.format_;
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetKinematicsResponse)
 }
@@ -7746,7 +8626,10 @@ kinematics_data_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   kinematics_data_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-format_ = 0;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&model_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&format_) -
+    reinterpret_cast<char*>(&model_)) + sizeof(format_));
 }
 
 GetKinematicsResponse::~GetKinematicsResponse() {
@@ -7763,6 +8646,7 @@ inline void GetKinematicsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   meshes_by_urdf_filepath_.Destruct();
   kinematics_data_.Destroy();
+  if (this != internal_default_instance()) delete model_;
 }
 
 void GetKinematicsResponse::ArenaDtor(void* object) {
@@ -7781,6 +8665,10 @@ void GetKinematicsResponse::Clear() {
 
   meshes_by_urdf_filepath_.Clear();
   kinematics_data_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && model_ != nullptr) {
+    delete model_;
+  }
+  model_ = nullptr;
   format_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -7791,7 +8679,7 @@ const char* GetKinematicsResponse::_InternalParse(const char* ptr, ::_pbi::Parse
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+      // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
@@ -7800,7 +8688,7 @@ const char* GetKinematicsResponse::_InternalParse(const char* ptr, ::_pbi::Parse
         } else
           goto handle_unusual;
         continue;
-      // bytes kinematics_data = 2 [json_name = "kinematicsData"];
+      // bytes kinematics_data = 2 [json_name = "kinematicsData", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_kinematics_data();
@@ -7809,7 +8697,7 @@ const char* GetKinematicsResponse::_InternalParse(const char* ptr, ::_pbi::Parse
         } else
           goto handle_unusual;
         continue;
-      // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath"];
+      // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath", deprecated = true];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr -= 1;
@@ -7819,6 +8707,14 @@ const char* GetKinematicsResponse::_InternalParse(const char* ptr, ::_pbi::Parse
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.KinematicModel model = 4 [json_name = "model"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_model(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -7851,20 +8747,20 @@ uint8_t* GetKinematicsResponse::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format", deprecated = true];
   if (this->_internal_format() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
       1, this->_internal_format(), target);
   }
 
-  // bytes kinematics_data = 2 [json_name = "kinematicsData"];
+  // bytes kinematics_data = 2 [json_name = "kinematicsData", deprecated = true];
   if (!this->_internal_kinematics_data().empty()) {
     target = stream->WriteBytesMaybeAliased(
         2, this->_internal_kinematics_data(), target);
   }
 
-  // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath"];
+  // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath", deprecated = true];
   if (!this->_internal_meshes_by_urdf_filepath().empty()) {
     using MapType = ::_pb::Map<std::string, ::viam::common::v1::Mesh>;
     using WireHelper = GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse::Funcs;
@@ -7890,6 +8786,13 @@ uint8_t* GetKinematicsResponse::_InternalSerialize(
     }
   }
 
+  // .viam.common.v1.KinematicModel model = 4 [json_name = "model"];
+  if (this->_internal_has_model()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, _Internal::model(this),
+        _Internal::model(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -7906,7 +8809,7 @@ size_t GetKinematicsResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath"];
+  // map<string, .viam.common.v1.Mesh> meshes_by_urdf_filepath = 3 [json_name = "meshesByUrdfFilepath", deprecated = true];
   total_size += 1 *
       ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_meshes_by_urdf_filepath_size());
   for (::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >::const_iterator
@@ -7915,14 +8818,21 @@ size_t GetKinematicsResponse::ByteSizeLong() const {
     total_size += GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
-  // bytes kinematics_data = 2 [json_name = "kinematicsData"];
+  // bytes kinematics_data = 2 [json_name = "kinematicsData", deprecated = true];
   if (!this->_internal_kinematics_data().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_kinematics_data());
   }
 
-  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+  // .viam.common.v1.KinematicModel model = 4 [json_name = "model"];
+  if (this->_internal_has_model()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *model_);
+  }
+
+  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format", deprecated = true];
   if (this->_internal_format() != 0) {
     total_size += 1 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
@@ -7954,6 +8864,9 @@ void GetKinematicsResponse::MergeFrom(const GetKinematicsResponse& from) {
   if (!from._internal_kinematics_data().empty()) {
     _internal_set_kinematics_data(from._internal_kinematics_data());
   }
+  if (from._internal_has_model()) {
+    _internal_mutable_model()->::viam::common::v1::KinematicModel::MergeFrom(from._internal_model());
+  }
   if (from._internal_format() != 0) {
     _internal_set_format(from._internal_format());
   }
@@ -7981,13 +8894,3241 @@ void GetKinematicsResponse::InternalSwap(GetKinematicsResponse* other) {
       &kinematics_data_, lhs_arena,
       &other->kinematics_data_, rhs_arena
   );
-  swap(format_, other->format_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetKinematicsResponse, format_)
+      + sizeof(GetKinematicsResponse::format_)
+      - PROTOBUF_FIELD_OFFSET(GetKinematicsResponse, model_)>(
+          reinterpret_cast<char*>(&model_),
+          reinterpret_cast<char*>(&other->model_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[26]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[27]);
+}
+
+// ===================================================================
+
+class KinematicModel::_Internal {
+ public:
+  static const ::viam::common::v1::KinematicProperties& properties(const KinematicModel* msg);
+};
+
+const ::viam::common::v1::KinematicProperties&
+KinematicModel::_Internal::properties(const KinematicModel* msg) {
+  return *msg->properties_;
+}
+KinematicModel::KinematicModel(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  links_(arena),
+  joints_(arena),
+  output_frames_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.KinematicModel)
+}
+KinematicModel::KinematicModel(const KinematicModel& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      links_(from.links_),
+      joints_(from.joints_),
+      output_frames_(from.output_frames_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_properties()) {
+    properties_ = new ::viam::common::v1::KinematicProperties(*from.properties_);
+  } else {
+    properties_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.KinematicModel)
+}
+
+inline void KinematicModel::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+properties_ = nullptr;
+}
+
+KinematicModel::~KinematicModel() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.KinematicModel)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void KinematicModel::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete properties_;
+}
+
+void KinematicModel::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void KinematicModel::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.KinematicModel)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  links_.Clear();
+  joints_.Clear();
+  output_frames_.Clear();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && properties_ != nullptr) {
+    delete properties_;
+  }
+  properties_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* KinematicModel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.KinematicModel.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.common.v1.KinematicLink links = 2 [json_name = "links"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_links(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.common.v1.KinematicJoint joints = 3 [json_name = "joints"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_joints(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string output_frames = 4 [json_name = "outputFrames"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_output_frames();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.KinematicModel.output_frames"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.KinematicProperties properties = 5 [json_name = "properties"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_properties(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* KinematicModel::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.KinematicModel)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.KinematicModel.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // repeated .viam.common.v1.KinematicLink links = 2 [json_name = "links"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_links_size()); i < n; i++) {
+    const auto& repfield = this->_internal_links(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated .viam.common.v1.KinematicJoint joints = 3 [json_name = "joints"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_joints_size()); i < n; i++) {
+    const auto& repfield = this->_internal_joints(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated string output_frames = 4 [json_name = "outputFrames"];
+  for (int i = 0, n = this->_internal_output_frames_size(); i < n; i++) {
+    const auto& s = this->_internal_output_frames(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.KinematicModel.output_frames");
+    target = stream->WriteString(4, s, target);
+  }
+
+  // .viam.common.v1.KinematicProperties properties = 5 [json_name = "properties"];
+  if (this->_internal_has_properties()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::properties(this),
+        _Internal::properties(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.KinematicModel)
+  return target;
+}
+
+size_t KinematicModel::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.KinematicModel)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.KinematicLink links = 2 [json_name = "links"];
+  total_size += 1UL * this->_internal_links_size();
+  for (const auto& msg : this->links_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .viam.common.v1.KinematicJoint joints = 3 [json_name = "joints"];
+  total_size += 1UL * this->_internal_joints_size();
+  for (const auto& msg : this->joints_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated string output_frames = 4 [json_name = "outputFrames"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(output_frames_.size());
+  for (int i = 0, n = output_frames_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      output_frames_.Get(i));
+  }
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .viam.common.v1.KinematicProperties properties = 5 [json_name = "properties"];
+  if (this->_internal_has_properties()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *properties_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KinematicModel::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    KinematicModel::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KinematicModel::GetClassData() const { return &_class_data_; }
+
+void KinematicModel::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<KinematicModel *>(to)->MergeFrom(
+      static_cast<const KinematicModel &>(from));
+}
+
+
+void KinematicModel::MergeFrom(const KinematicModel& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.KinematicModel)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  links_.MergeFrom(from.links_);
+  joints_.MergeFrom(from.joints_);
+  output_frames_.MergeFrom(from.output_frames_);
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_properties()) {
+    _internal_mutable_properties()->::viam::common::v1::KinematicProperties::MergeFrom(from._internal_properties());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void KinematicModel::CopyFrom(const KinematicModel& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.KinematicModel)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool KinematicModel::IsInitialized() const {
+  return true;
+}
+
+void KinematicModel::InternalSwap(KinematicModel* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  links_.InternalSwap(&other->links_);
+  joints_.InternalSwap(&other->joints_);
+  output_frames_.InternalSwap(&other->output_frames_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(properties_, other->properties_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata KinematicModel::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[28]);
+}
+
+// ===================================================================
+
+class KinematicLink::_Internal {
+ public:
+  static const ::viam::common::v1::LinkPose& pose(const KinematicLink* msg);
+};
+
+const ::viam::common::v1::LinkPose&
+KinematicLink::_Internal::pose(const KinematicLink* msg) {
+  return *msg->pose_;
+}
+KinematicLink::KinematicLink(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  collision_(arena),
+  visual_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.KinematicLink)
+}
+KinematicLink::KinematicLink(const KinematicLink& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      collision_(from.collision_),
+      visual_(from.visual_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  parent_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    parent_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_parent().empty()) {
+    parent_.Set(from._internal_parent(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_pose()) {
+    pose_ = new ::viam::common::v1::LinkPose(*from.pose_);
+  } else {
+    pose_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.KinematicLink)
+}
+
+inline void KinematicLink::SharedCtor() {
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+parent_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  parent_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+pose_ = nullptr;
+}
+
+KinematicLink::~KinematicLink() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.KinematicLink)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void KinematicLink::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.Destroy();
+  parent_.Destroy();
+  if (this != internal_default_instance()) delete pose_;
+}
+
+void KinematicLink::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void KinematicLink::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.KinematicLink)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  collision_.Clear();
+  visual_.Clear();
+  id_.ClearToEmpty();
+  parent_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
+    delete pose_;
+  }
+  pose_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* KinematicLink::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1 [json_name = "id"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.KinematicLink.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string parent = 2 [json_name = "parent"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_parent();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.KinematicLink.parent"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.LinkPose pose = 3 [json_name = "pose"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_pose(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.common.v1.Geometry collision = 4 [json_name = "collision"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_collision(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.common.v1.Geometry visual = 5 [json_name = "visual"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_visual(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* KinematicLink::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.KinematicLink)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.KinematicLink.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string parent = 2 [json_name = "parent"];
+  if (!this->_internal_parent().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_parent().data(), static_cast<int>(this->_internal_parent().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.KinematicLink.parent");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_parent(), target);
+  }
+
+  // .viam.common.v1.LinkPose pose = 3 [json_name = "pose"];
+  if (this->_internal_has_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::pose(this),
+        _Internal::pose(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .viam.common.v1.Geometry collision = 4 [json_name = "collision"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_collision_size()); i < n; i++) {
+    const auto& repfield = this->_internal_collision(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated .viam.common.v1.Geometry visual = 5 [json_name = "visual"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_visual_size()); i < n; i++) {
+    const auto& repfield = this->_internal_visual(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.KinematicLink)
+  return target;
+}
+
+size_t KinematicLink::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.KinematicLink)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.Geometry collision = 4 [json_name = "collision"];
+  total_size += 1UL * this->_internal_collision_size();
+  for (const auto& msg : this->collision_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .viam.common.v1.Geometry visual = 5 [json_name = "visual"];
+  total_size += 1UL * this->_internal_visual_size();
+  for (const auto& msg : this->visual_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string parent = 2 [json_name = "parent"];
+  if (!this->_internal_parent().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_parent());
+  }
+
+  // .viam.common.v1.LinkPose pose = 3 [json_name = "pose"];
+  if (this->_internal_has_pose()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *pose_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KinematicLink::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    KinematicLink::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KinematicLink::GetClassData() const { return &_class_data_; }
+
+void KinematicLink::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<KinematicLink *>(to)->MergeFrom(
+      static_cast<const KinematicLink &>(from));
+}
+
+
+void KinematicLink::MergeFrom(const KinematicLink& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.KinematicLink)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  collision_.MergeFrom(from.collision_);
+  visual_.MergeFrom(from.visual_);
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from._internal_parent().empty()) {
+    _internal_set_parent(from._internal_parent());
+  }
+  if (from._internal_has_pose()) {
+    _internal_mutable_pose()->::viam::common::v1::LinkPose::MergeFrom(from._internal_pose());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void KinematicLink::CopyFrom(const KinematicLink& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.KinematicLink)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool KinematicLink::IsInitialized() const {
+  return true;
+}
+
+void KinematicLink::InternalSwap(KinematicLink* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  collision_.InternalSwap(&other->collision_);
+  visual_.InternalSwap(&other->visual_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &parent_, lhs_arena,
+      &other->parent_, rhs_arena
+  );
+  swap(pose_, other->pose_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata KinematicLink::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[29]);
+}
+
+// ===================================================================
+
+class LinkPose::_Internal {
+ public:
+  static const ::viam::common::v1::Vector3& translation(const LinkPose* msg);
+  static const ::viam::common::v1::Quaternion& quaternion(const LinkPose* msg);
+  static const ::viam::common::v1::Orientation& orientation_vector(const LinkPose* msg);
+  static const ::viam::common::v1::EulerAngles& euler_angles(const LinkPose* msg);
+  static const ::viam::common::v1::AxisAngles& axis_angles(const LinkPose* msg);
+};
+
+const ::viam::common::v1::Vector3&
+LinkPose::_Internal::translation(const LinkPose* msg) {
+  return *msg->translation_;
+}
+const ::viam::common::v1::Quaternion&
+LinkPose::_Internal::quaternion(const LinkPose* msg) {
+  return *msg->orientation_.quaternion_;
+}
+const ::viam::common::v1::Orientation&
+LinkPose::_Internal::orientation_vector(const LinkPose* msg) {
+  return *msg->orientation_.orientation_vector_;
+}
+const ::viam::common::v1::EulerAngles&
+LinkPose::_Internal::euler_angles(const LinkPose* msg) {
+  return *msg->orientation_.euler_angles_;
+}
+const ::viam::common::v1::AxisAngles&
+LinkPose::_Internal::axis_angles(const LinkPose* msg) {
+  return *msg->orientation_.axis_angles_;
+}
+void LinkPose::set_allocated_quaternion(::viam::common::v1::Quaternion* quaternion) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_orientation();
+  if (quaternion) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(quaternion);
+    if (message_arena != submessage_arena) {
+      quaternion = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, quaternion, submessage_arena);
+    }
+    set_has_quaternion();
+    orientation_.quaternion_ = quaternion;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.LinkPose.quaternion)
+}
+void LinkPose::set_allocated_orientation_vector(::viam::common::v1::Orientation* orientation_vector) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_orientation();
+  if (orientation_vector) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(orientation_vector);
+    if (message_arena != submessage_arena) {
+      orientation_vector = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, orientation_vector, submessage_arena);
+    }
+    set_has_orientation_vector();
+    orientation_.orientation_vector_ = orientation_vector;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.LinkPose.orientation_vector)
+}
+void LinkPose::set_allocated_euler_angles(::viam::common::v1::EulerAngles* euler_angles) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_orientation();
+  if (euler_angles) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(euler_angles);
+    if (message_arena != submessage_arena) {
+      euler_angles = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, euler_angles, submessage_arena);
+    }
+    set_has_euler_angles();
+    orientation_.euler_angles_ = euler_angles;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.LinkPose.euler_angles)
+}
+void LinkPose::set_allocated_axis_angles(::viam::common::v1::AxisAngles* axis_angles) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_orientation();
+  if (axis_angles) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(axis_angles);
+    if (message_arena != submessage_arena) {
+      axis_angles = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, axis_angles, submessage_arena);
+    }
+    set_has_axis_angles();
+    orientation_.axis_angles_ = axis_angles;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.LinkPose.axis_angles)
+}
+LinkPose::LinkPose(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.LinkPose)
+}
+LinkPose::LinkPose(const LinkPose& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_translation()) {
+    translation_ = new ::viam::common::v1::Vector3(*from.translation_);
+  } else {
+    translation_ = nullptr;
+  }
+  clear_has_orientation();
+  switch (from.orientation_case()) {
+    case kQuaternion: {
+      _internal_mutable_quaternion()->::viam::common::v1::Quaternion::MergeFrom(from._internal_quaternion());
+      break;
+    }
+    case kOrientationVector: {
+      _internal_mutable_orientation_vector()->::viam::common::v1::Orientation::MergeFrom(from._internal_orientation_vector());
+      break;
+    }
+    case kEulerAngles: {
+      _internal_mutable_euler_angles()->::viam::common::v1::EulerAngles::MergeFrom(from._internal_euler_angles());
+      break;
+    }
+    case kAxisAngles: {
+      _internal_mutable_axis_angles()->::viam::common::v1::AxisAngles::MergeFrom(from._internal_axis_angles());
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.LinkPose)
+}
+
+inline void LinkPose::SharedCtor() {
+translation_ = nullptr;
+clear_has_orientation();
+}
+
+LinkPose::~LinkPose() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.LinkPose)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LinkPose::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete translation_;
+  if (has_orientation()) {
+    clear_orientation();
+  }
+}
+
+void LinkPose::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void LinkPose::clear_orientation() {
+// @@protoc_insertion_point(one_of_clear_start:viam.common.v1.LinkPose)
+  switch (orientation_case()) {
+    case kQuaternion: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete orientation_.quaternion_;
+      }
+      break;
+    }
+    case kOrientationVector: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete orientation_.orientation_vector_;
+      }
+      break;
+    }
+    case kEulerAngles: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete orientation_.euler_angles_;
+      }
+      break;
+    }
+    case kAxisAngles: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete orientation_.axis_angles_;
+      }
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = ORIENTATION_NOT_SET;
+}
+
+
+void LinkPose::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.LinkPose)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && translation_ != nullptr) {
+    delete translation_;
+  }
+  translation_ = nullptr;
+  clear_orientation();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LinkPose::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.common.v1.Vector3 translation = 1 [json_name = "translation"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_translation(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.Quaternion quaternion = 2 [json_name = "quaternion"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_quaternion(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.Orientation orientation_vector = 3 [json_name = "orientationVector"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_orientation_vector(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.EulerAngles euler_angles = 4 [json_name = "eulerAngles"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_euler_angles(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.AxisAngles axis_angles = 5 [json_name = "axisAngles"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_axis_angles(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LinkPose::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.LinkPose)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.common.v1.Vector3 translation = 1 [json_name = "translation"];
+  if (this->_internal_has_translation()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::translation(this),
+        _Internal::translation(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.common.v1.Quaternion quaternion = 2 [json_name = "quaternion"];
+  if (_internal_has_quaternion()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::quaternion(this),
+        _Internal::quaternion(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.common.v1.Orientation orientation_vector = 3 [json_name = "orientationVector"];
+  if (_internal_has_orientation_vector()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::orientation_vector(this),
+        _Internal::orientation_vector(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.common.v1.EulerAngles euler_angles = 4 [json_name = "eulerAngles"];
+  if (_internal_has_euler_angles()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, _Internal::euler_angles(this),
+        _Internal::euler_angles(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.common.v1.AxisAngles axis_angles = 5 [json_name = "axisAngles"];
+  if (_internal_has_axis_angles()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::axis_angles(this),
+        _Internal::axis_angles(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.LinkPose)
+  return target;
+}
+
+size_t LinkPose::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.LinkPose)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .viam.common.v1.Vector3 translation = 1 [json_name = "translation"];
+  if (this->_internal_has_translation()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *translation_);
+  }
+
+  switch (orientation_case()) {
+    // .viam.common.v1.Quaternion quaternion = 2 [json_name = "quaternion"];
+    case kQuaternion: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *orientation_.quaternion_);
+      break;
+    }
+    // .viam.common.v1.Orientation orientation_vector = 3 [json_name = "orientationVector"];
+    case kOrientationVector: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *orientation_.orientation_vector_);
+      break;
+    }
+    // .viam.common.v1.EulerAngles euler_angles = 4 [json_name = "eulerAngles"];
+    case kEulerAngles: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *orientation_.euler_angles_);
+      break;
+    }
+    // .viam.common.v1.AxisAngles axis_angles = 5 [json_name = "axisAngles"];
+    case kAxisAngles: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *orientation_.axis_angles_);
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LinkPose::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    LinkPose::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LinkPose::GetClassData() const { return &_class_data_; }
+
+void LinkPose::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<LinkPose *>(to)->MergeFrom(
+      static_cast<const LinkPose &>(from));
+}
+
+
+void LinkPose::MergeFrom(const LinkPose& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.LinkPose)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_translation()) {
+    _internal_mutable_translation()->::viam::common::v1::Vector3::MergeFrom(from._internal_translation());
+  }
+  switch (from.orientation_case()) {
+    case kQuaternion: {
+      _internal_mutable_quaternion()->::viam::common::v1::Quaternion::MergeFrom(from._internal_quaternion());
+      break;
+    }
+    case kOrientationVector: {
+      _internal_mutable_orientation_vector()->::viam::common::v1::Orientation::MergeFrom(from._internal_orientation_vector());
+      break;
+    }
+    case kEulerAngles: {
+      _internal_mutable_euler_angles()->::viam::common::v1::EulerAngles::MergeFrom(from._internal_euler_angles());
+      break;
+    }
+    case kAxisAngles: {
+      _internal_mutable_axis_angles()->::viam::common::v1::AxisAngles::MergeFrom(from._internal_axis_angles());
+      break;
+    }
+    case ORIENTATION_NOT_SET: {
+      break;
+    }
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LinkPose::CopyFrom(const LinkPose& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.LinkPose)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LinkPose::IsInitialized() const {
+  return true;
+}
+
+void LinkPose::InternalSwap(LinkPose* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(translation_, other->translation_);
+  swap(orientation_, other->orientation_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LinkPose::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[30]);
+}
+
+// ===================================================================
+
+class Quaternion::_Internal {
+ public:
+};
+
+Quaternion::Quaternion(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.Quaternion)
+}
+Quaternion::Quaternion(const Quaternion& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&w_, &from.w_,
+    static_cast<size_t>(reinterpret_cast<char*>(&z_) -
+    reinterpret_cast<char*>(&w_)) + sizeof(z_));
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.Quaternion)
+}
+
+inline void Quaternion::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&w_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&z_) -
+    reinterpret_cast<char*>(&w_)) + sizeof(z_));
+}
+
+Quaternion::~Quaternion() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.Quaternion)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Quaternion::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void Quaternion::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Quaternion::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.Quaternion)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&w_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&w_)) + sizeof(z_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Quaternion::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // double w = 1 [json_name = "w"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double x = 2 [json_name = "x"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double y = 3 [json_name = "y"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double z = 4 [json_name = "z"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
+          z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Quaternion::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.Quaternion)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double w = 1 [json_name = "w"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_w = this->_internal_w();
+  uint64_t raw_w;
+  memcpy(&raw_w, &tmp_w, sizeof(tmp_w));
+  if (raw_w != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_w(), target);
+  }
+
+  // double x = 2 [json_name = "x"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_x = this->_internal_x();
+  uint64_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_x(), target);
+  }
+
+  // double y = 3 [json_name = "y"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_y = this->_internal_y();
+  uint64_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_y(), target);
+  }
+
+  // double z = 4 [json_name = "z"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_z = this->_internal_z();
+  uint64_t raw_z;
+  memcpy(&raw_z, &tmp_z, sizeof(tmp_z));
+  if (raw_z != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(4, this->_internal_z(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.Quaternion)
+  return target;
+}
+
+size_t Quaternion::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.Quaternion)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // double w = 1 [json_name = "w"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_w = this->_internal_w();
+  uint64_t raw_w;
+  memcpy(&raw_w, &tmp_w, sizeof(tmp_w));
+  if (raw_w != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double x = 2 [json_name = "x"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_x = this->_internal_x();
+  uint64_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double y = 3 [json_name = "y"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_y = this->_internal_y();
+  uint64_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double z = 4 [json_name = "z"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_z = this->_internal_z();
+  uint64_t raw_z;
+  memcpy(&raw_z, &tmp_z, sizeof(tmp_z));
+  if (raw_z != 0) {
+    total_size += 1 + 8;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Quaternion::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Quaternion::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Quaternion::GetClassData() const { return &_class_data_; }
+
+void Quaternion::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Quaternion *>(to)->MergeFrom(
+      static_cast<const Quaternion &>(from));
+}
+
+
+void Quaternion::MergeFrom(const Quaternion& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.Quaternion)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_w = from._internal_w();
+  uint64_t raw_w;
+  memcpy(&raw_w, &tmp_w, sizeof(tmp_w));
+  if (raw_w != 0) {
+    _internal_set_w(from._internal_w());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_x = from._internal_x();
+  uint64_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    _internal_set_x(from._internal_x());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_y = from._internal_y();
+  uint64_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    _internal_set_y(from._internal_y());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_z = from._internal_z();
+  uint64_t raw_z;
+  memcpy(&raw_z, &tmp_z, sizeof(tmp_z));
+  if (raw_z != 0) {
+    _internal_set_z(from._internal_z());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Quaternion::CopyFrom(const Quaternion& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.Quaternion)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Quaternion::IsInitialized() const {
+  return true;
+}
+
+void Quaternion::InternalSwap(Quaternion* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Quaternion, z_)
+      + sizeof(Quaternion::z_)
+      - PROTOBUF_FIELD_OFFSET(Quaternion, w_)>(
+          reinterpret_cast<char*>(&w_),
+          reinterpret_cast<char*>(&other->w_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Quaternion::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[31]);
+}
+
+// ===================================================================
+
+class EulerAngles::_Internal {
+ public:
+};
+
+EulerAngles::EulerAngles(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.EulerAngles)
+}
+EulerAngles::EulerAngles(const EulerAngles& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&roll_, &from.roll_,
+    static_cast<size_t>(reinterpret_cast<char*>(&yaw_) -
+    reinterpret_cast<char*>(&roll_)) + sizeof(yaw_));
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.EulerAngles)
+}
+
+inline void EulerAngles::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&roll_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&yaw_) -
+    reinterpret_cast<char*>(&roll_)) + sizeof(yaw_));
+}
+
+EulerAngles::~EulerAngles() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.EulerAngles)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void EulerAngles::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void EulerAngles::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void EulerAngles::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.EulerAngles)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&roll_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&yaw_) -
+      reinterpret_cast<char*>(&roll_)) + sizeof(yaw_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* EulerAngles::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // double roll = 1 [json_name = "roll"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          roll_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double pitch = 2 [json_name = "pitch"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          pitch_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double yaw = 3 [json_name = "yaw"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          yaw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* EulerAngles::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.EulerAngles)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double roll = 1 [json_name = "roll"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_roll = this->_internal_roll();
+  uint64_t raw_roll;
+  memcpy(&raw_roll, &tmp_roll, sizeof(tmp_roll));
+  if (raw_roll != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_roll(), target);
+  }
+
+  // double pitch = 2 [json_name = "pitch"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_pitch = this->_internal_pitch();
+  uint64_t raw_pitch;
+  memcpy(&raw_pitch, &tmp_pitch, sizeof(tmp_pitch));
+  if (raw_pitch != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_pitch(), target);
+  }
+
+  // double yaw = 3 [json_name = "yaw"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_yaw = this->_internal_yaw();
+  uint64_t raw_yaw;
+  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
+  if (raw_yaw != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_yaw(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.EulerAngles)
+  return target;
+}
+
+size_t EulerAngles::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.EulerAngles)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // double roll = 1 [json_name = "roll"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_roll = this->_internal_roll();
+  uint64_t raw_roll;
+  memcpy(&raw_roll, &tmp_roll, sizeof(tmp_roll));
+  if (raw_roll != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double pitch = 2 [json_name = "pitch"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_pitch = this->_internal_pitch();
+  uint64_t raw_pitch;
+  memcpy(&raw_pitch, &tmp_pitch, sizeof(tmp_pitch));
+  if (raw_pitch != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double yaw = 3 [json_name = "yaw"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_yaw = this->_internal_yaw();
+  uint64_t raw_yaw;
+  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
+  if (raw_yaw != 0) {
+    total_size += 1 + 8;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EulerAngles::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    EulerAngles::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EulerAngles::GetClassData() const { return &_class_data_; }
+
+void EulerAngles::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EulerAngles *>(to)->MergeFrom(
+      static_cast<const EulerAngles &>(from));
+}
+
+
+void EulerAngles::MergeFrom(const EulerAngles& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.EulerAngles)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_roll = from._internal_roll();
+  uint64_t raw_roll;
+  memcpy(&raw_roll, &tmp_roll, sizeof(tmp_roll));
+  if (raw_roll != 0) {
+    _internal_set_roll(from._internal_roll());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_pitch = from._internal_pitch();
+  uint64_t raw_pitch;
+  memcpy(&raw_pitch, &tmp_pitch, sizeof(tmp_pitch));
+  if (raw_pitch != 0) {
+    _internal_set_pitch(from._internal_pitch());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_yaw = from._internal_yaw();
+  uint64_t raw_yaw;
+  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
+  if (raw_yaw != 0) {
+    _internal_set_yaw(from._internal_yaw());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EulerAngles::CopyFrom(const EulerAngles& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.EulerAngles)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EulerAngles::IsInitialized() const {
+  return true;
+}
+
+void EulerAngles::InternalSwap(EulerAngles* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(EulerAngles, yaw_)
+      + sizeof(EulerAngles::yaw_)
+      - PROTOBUF_FIELD_OFFSET(EulerAngles, roll_)>(
+          reinterpret_cast<char*>(&roll_),
+          reinterpret_cast<char*>(&other->roll_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata EulerAngles::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[32]);
+}
+
+// ===================================================================
+
+class AxisAngles::_Internal {
+ public:
+};
+
+AxisAngles::AxisAngles(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.AxisAngles)
+}
+AxisAngles::AxisAngles(const AxisAngles& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&rx_, &from.rx_,
+    static_cast<size_t>(reinterpret_cast<char*>(&theta_) -
+    reinterpret_cast<char*>(&rx_)) + sizeof(theta_));
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.AxisAngles)
+}
+
+inline void AxisAngles::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&rx_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&theta_) -
+    reinterpret_cast<char*>(&rx_)) + sizeof(theta_));
+}
+
+AxisAngles::~AxisAngles() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.AxisAngles)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AxisAngles::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void AxisAngles::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AxisAngles::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.AxisAngles)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&rx_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&theta_) -
+      reinterpret_cast<char*>(&rx_)) + sizeof(theta_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AxisAngles::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // double rx = 1 [json_name = "rx"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          rx_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double ry = 2 [json_name = "ry"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          ry_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double rz = 3 [json_name = "rz"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          rz_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double theta = 4 [json_name = "theta"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
+          theta_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AxisAngles::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.AxisAngles)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double rx = 1 [json_name = "rx"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rx = this->_internal_rx();
+  uint64_t raw_rx;
+  memcpy(&raw_rx, &tmp_rx, sizeof(tmp_rx));
+  if (raw_rx != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_rx(), target);
+  }
+
+  // double ry = 2 [json_name = "ry"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_ry = this->_internal_ry();
+  uint64_t raw_ry;
+  memcpy(&raw_ry, &tmp_ry, sizeof(tmp_ry));
+  if (raw_ry != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_ry(), target);
+  }
+
+  // double rz = 3 [json_name = "rz"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rz = this->_internal_rz();
+  uint64_t raw_rz;
+  memcpy(&raw_rz, &tmp_rz, sizeof(tmp_rz));
+  if (raw_rz != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_rz(), target);
+  }
+
+  // double theta = 4 [json_name = "theta"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_theta = this->_internal_theta();
+  uint64_t raw_theta;
+  memcpy(&raw_theta, &tmp_theta, sizeof(tmp_theta));
+  if (raw_theta != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(4, this->_internal_theta(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.AxisAngles)
+  return target;
+}
+
+size_t AxisAngles::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.AxisAngles)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // double rx = 1 [json_name = "rx"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rx = this->_internal_rx();
+  uint64_t raw_rx;
+  memcpy(&raw_rx, &tmp_rx, sizeof(tmp_rx));
+  if (raw_rx != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double ry = 2 [json_name = "ry"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_ry = this->_internal_ry();
+  uint64_t raw_ry;
+  memcpy(&raw_ry, &tmp_ry, sizeof(tmp_ry));
+  if (raw_ry != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double rz = 3 [json_name = "rz"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rz = this->_internal_rz();
+  uint64_t raw_rz;
+  memcpy(&raw_rz, &tmp_rz, sizeof(tmp_rz));
+  if (raw_rz != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double theta = 4 [json_name = "theta"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_theta = this->_internal_theta();
+  uint64_t raw_theta;
+  memcpy(&raw_theta, &tmp_theta, sizeof(tmp_theta));
+  if (raw_theta != 0) {
+    total_size += 1 + 8;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AxisAngles::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AxisAngles::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AxisAngles::GetClassData() const { return &_class_data_; }
+
+void AxisAngles::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AxisAngles *>(to)->MergeFrom(
+      static_cast<const AxisAngles &>(from));
+}
+
+
+void AxisAngles::MergeFrom(const AxisAngles& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.AxisAngles)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rx = from._internal_rx();
+  uint64_t raw_rx;
+  memcpy(&raw_rx, &tmp_rx, sizeof(tmp_rx));
+  if (raw_rx != 0) {
+    _internal_set_rx(from._internal_rx());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_ry = from._internal_ry();
+  uint64_t raw_ry;
+  memcpy(&raw_ry, &tmp_ry, sizeof(tmp_ry));
+  if (raw_ry != 0) {
+    _internal_set_ry(from._internal_ry());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rz = from._internal_rz();
+  uint64_t raw_rz;
+  memcpy(&raw_rz, &tmp_rz, sizeof(tmp_rz));
+  if (raw_rz != 0) {
+    _internal_set_rz(from._internal_rz());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_theta = from._internal_theta();
+  uint64_t raw_theta;
+  memcpy(&raw_theta, &tmp_theta, sizeof(tmp_theta));
+  if (raw_theta != 0) {
+    _internal_set_theta(from._internal_theta());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AxisAngles::CopyFrom(const AxisAngles& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.AxisAngles)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AxisAngles::IsInitialized() const {
+  return true;
+}
+
+void AxisAngles::InternalSwap(AxisAngles* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AxisAngles, theta_)
+      + sizeof(AxisAngles::theta_)
+      - PROTOBUF_FIELD_OFFSET(AxisAngles, rx_)>(
+          reinterpret_cast<char*>(&rx_),
+          reinterpret_cast<char*>(&other->rx_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AxisAngles::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[33]);
+}
+
+// ===================================================================
+
+class KinematicJoint::_Internal {
+ public:
+  static const ::viam::common::v1::Vector3& axis(const KinematicJoint* msg);
+  static const ::viam::common::v1::JointLimits& limits(const KinematicJoint* msg);
+  static const ::viam::common::v1::MimicJoint& mimic(const KinematicJoint* msg);
+  static const ::viam::common::v1::Geometry& geometry(const KinematicJoint* msg);
+};
+
+const ::viam::common::v1::Vector3&
+KinematicJoint::_Internal::axis(const KinematicJoint* msg) {
+  return *msg->axis_;
+}
+const ::viam::common::v1::JointLimits&
+KinematicJoint::_Internal::limits(const KinematicJoint* msg) {
+  return *msg->limits_;
+}
+const ::viam::common::v1::MimicJoint&
+KinematicJoint::_Internal::mimic(const KinematicJoint* msg) {
+  return *msg->mimic_;
+}
+const ::viam::common::v1::Geometry&
+KinematicJoint::_Internal::geometry(const KinematicJoint* msg) {
+  return *msg->geometry_;
+}
+KinematicJoint::KinematicJoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.KinematicJoint)
+}
+KinematicJoint::KinematicJoint(const KinematicJoint& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  parent_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    parent_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_parent().empty()) {
+    parent_.Set(from._internal_parent(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_axis()) {
+    axis_ = new ::viam::common::v1::Vector3(*from.axis_);
+  } else {
+    axis_ = nullptr;
+  }
+  if (from._internal_has_limits()) {
+    limits_ = new ::viam::common::v1::JointLimits(*from.limits_);
+  } else {
+    limits_ = nullptr;
+  }
+  if (from._internal_has_mimic()) {
+    mimic_ = new ::viam::common::v1::MimicJoint(*from.mimic_);
+  } else {
+    mimic_ = nullptr;
+  }
+  if (from._internal_has_geometry()) {
+    geometry_ = new ::viam::common::v1::Geometry(*from.geometry_);
+  } else {
+    geometry_ = nullptr;
+  }
+  type_ = from.type_;
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.KinematicJoint)
+}
+
+inline void KinematicJoint::SharedCtor() {
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+parent_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  parent_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&axis_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&axis_)) + sizeof(type_));
+}
+
+KinematicJoint::~KinematicJoint() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.KinematicJoint)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void KinematicJoint::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.Destroy();
+  parent_.Destroy();
+  if (this != internal_default_instance()) delete axis_;
+  if (this != internal_default_instance()) delete limits_;
+  if (this != internal_default_instance()) delete mimic_;
+  if (this != internal_default_instance()) delete geometry_;
+}
+
+void KinematicJoint::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void KinematicJoint::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.KinematicJoint)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  parent_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && axis_ != nullptr) {
+    delete axis_;
+  }
+  axis_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && limits_ != nullptr) {
+    delete limits_;
+  }
+  limits_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && mimic_ != nullptr) {
+    delete mimic_;
+  }
+  mimic_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && geometry_ != nullptr) {
+    delete geometry_;
+  }
+  geometry_ = nullptr;
+  type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* KinematicJoint::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1 [json_name = "id"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.KinematicJoint.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string parent = 2 [json_name = "parent"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_parent();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.KinematicJoint.parent"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.JointType type = 3 [json_name = "type"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::viam::common::v1::JointType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.Vector3 axis = 4 [json_name = "axis"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_axis(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.JointLimits limits = 5 [json_name = "limits"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_limits(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.MimicJoint mimic = 6 [json_name = "mimic"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_mimic(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.Geometry geometry = 7 [json_name = "geometry"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_geometry(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* KinematicJoint::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.KinematicJoint)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.KinematicJoint.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string parent = 2 [json_name = "parent"];
+  if (!this->_internal_parent().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_parent().data(), static_cast<int>(this->_internal_parent().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.KinematicJoint.parent");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_parent(), target);
+  }
+
+  // .viam.common.v1.JointType type = 3 [json_name = "type"];
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_type(), target);
+  }
+
+  // .viam.common.v1.Vector3 axis = 4 [json_name = "axis"];
+  if (this->_internal_has_axis()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, _Internal::axis(this),
+        _Internal::axis(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.common.v1.JointLimits limits = 5 [json_name = "limits"];
+  if (this->_internal_has_limits()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::limits(this),
+        _Internal::limits(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.common.v1.MimicJoint mimic = 6 [json_name = "mimic"];
+  if (this->_internal_has_mimic()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::mimic(this),
+        _Internal::mimic(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.common.v1.Geometry geometry = 7 [json_name = "geometry"];
+  if (this->_internal_has_geometry()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::geometry(this),
+        _Internal::geometry(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.KinematicJoint)
+  return target;
+}
+
+size_t KinematicJoint::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.KinematicJoint)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string parent = 2 [json_name = "parent"];
+  if (!this->_internal_parent().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_parent());
+  }
+
+  // .viam.common.v1.Vector3 axis = 4 [json_name = "axis"];
+  if (this->_internal_has_axis()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *axis_);
+  }
+
+  // .viam.common.v1.JointLimits limits = 5 [json_name = "limits"];
+  if (this->_internal_has_limits()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *limits_);
+  }
+
+  // .viam.common.v1.MimicJoint mimic = 6 [json_name = "mimic"];
+  if (this->_internal_has_mimic()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *mimic_);
+  }
+
+  // .viam.common.v1.Geometry geometry = 7 [json_name = "geometry"];
+  if (this->_internal_has_geometry()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *geometry_);
+  }
+
+  // .viam.common.v1.JointType type = 3 [json_name = "type"];
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KinematicJoint::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    KinematicJoint::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KinematicJoint::GetClassData() const { return &_class_data_; }
+
+void KinematicJoint::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<KinematicJoint *>(to)->MergeFrom(
+      static_cast<const KinematicJoint &>(from));
+}
+
+
+void KinematicJoint::MergeFrom(const KinematicJoint& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.KinematicJoint)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from._internal_parent().empty()) {
+    _internal_set_parent(from._internal_parent());
+  }
+  if (from._internal_has_axis()) {
+    _internal_mutable_axis()->::viam::common::v1::Vector3::MergeFrom(from._internal_axis());
+  }
+  if (from._internal_has_limits()) {
+    _internal_mutable_limits()->::viam::common::v1::JointLimits::MergeFrom(from._internal_limits());
+  }
+  if (from._internal_has_mimic()) {
+    _internal_mutable_mimic()->::viam::common::v1::MimicJoint::MergeFrom(from._internal_mimic());
+  }
+  if (from._internal_has_geometry()) {
+    _internal_mutable_geometry()->::viam::common::v1::Geometry::MergeFrom(from._internal_geometry());
+  }
+  if (from._internal_type() != 0) {
+    _internal_set_type(from._internal_type());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void KinematicJoint::CopyFrom(const KinematicJoint& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.KinematicJoint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool KinematicJoint::IsInitialized() const {
+  return true;
+}
+
+void KinematicJoint::InternalSwap(KinematicJoint* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &parent_, lhs_arena,
+      &other->parent_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(KinematicJoint, type_)
+      + sizeof(KinematicJoint::type_)
+      - PROTOBUF_FIELD_OFFSET(KinematicJoint, axis_)>(
+          reinterpret_cast<char*>(&axis_),
+          reinterpret_cast<char*>(&other->axis_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata KinematicJoint::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[34]);
+}
+
+// ===================================================================
+
+class JointLimits::_Internal {
+ public:
+  using HasBits = decltype(std::declval<JointLimits>()._has_bits_);
+  static void set_has_min(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_max(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_max_velocity(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_max_acceleration(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+};
+
+JointLimits::JointLimits(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.JointLimits)
+}
+JointLimits::JointLimits(const JointLimits& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&min_, &from.min_,
+    static_cast<size_t>(reinterpret_cast<char*>(&max_acceleration_) -
+    reinterpret_cast<char*>(&min_)) + sizeof(max_acceleration_));
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.JointLimits)
+}
+
+inline void JointLimits::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&min_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&max_acceleration_) -
+    reinterpret_cast<char*>(&min_)) + sizeof(max_acceleration_));
+}
+
+JointLimits::~JointLimits() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.JointLimits)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void JointLimits::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void JointLimits::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void JointLimits::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.JointLimits)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000000fu) {
+    ::memset(&min_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&max_acceleration_) -
+        reinterpret_cast<char*>(&min_)) + sizeof(max_acceleration_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* JointLimits::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional double min = 1 [json_name = "min"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          _Internal::set_has_min(&has_bits);
+          min_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double max = 2 [json_name = "max"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          _Internal::set_has_max(&has_bits);
+          max_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double max_velocity = 3 [json_name = "maxVelocity"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          _Internal::set_has_max_velocity(&has_bits);
+          max_velocity_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double max_acceleration = 4 [json_name = "maxAcceleration"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
+          _Internal::set_has_max_acceleration(&has_bits);
+          max_acceleration_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* JointLimits::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.JointLimits)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional double min = 1 [json_name = "min"];
+  if (_internal_has_min()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_min(), target);
+  }
+
+  // optional double max = 2 [json_name = "max"];
+  if (_internal_has_max()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_max(), target);
+  }
+
+  // optional double max_velocity = 3 [json_name = "maxVelocity"];
+  if (_internal_has_max_velocity()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_max_velocity(), target);
+  }
+
+  // optional double max_acceleration = 4 [json_name = "maxAcceleration"];
+  if (_internal_has_max_acceleration()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(4, this->_internal_max_acceleration(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.JointLimits)
+  return target;
+}
+
+size_t JointLimits::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.JointLimits)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000000fu) {
+    // optional double min = 1 [json_name = "min"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double max = 2 [json_name = "max"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double max_velocity = 3 [json_name = "maxVelocity"];
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double max_acceleration = 4 [json_name = "maxAcceleration"];
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 + 8;
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData JointLimits::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    JointLimits::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*JointLimits::GetClassData() const { return &_class_data_; }
+
+void JointLimits::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<JointLimits *>(to)->MergeFrom(
+      static_cast<const JointLimits &>(from));
+}
+
+
+void JointLimits::MergeFrom(const JointLimits& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.JointLimits)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x0000000fu) {
+    if (cached_has_bits & 0x00000001u) {
+      min_ = from.min_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      max_ = from.max_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      max_velocity_ = from.max_velocity_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      max_acceleration_ = from.max_acceleration_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JointLimits::CopyFrom(const JointLimits& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.JointLimits)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool JointLimits::IsInitialized() const {
+  return true;
+}
+
+void JointLimits::InternalSwap(JointLimits* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(JointLimits, max_acceleration_)
+      + sizeof(JointLimits::max_acceleration_)
+      - PROTOBUF_FIELD_OFFSET(JointLimits, min_)>(
+          reinterpret_cast<char*>(&min_),
+          reinterpret_cast<char*>(&other->min_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata JointLimits::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[35]);
+}
+
+// ===================================================================
+
+class MimicJoint::_Internal {
+ public:
+};
+
+MimicJoint::MimicJoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.MimicJoint)
+}
+MimicJoint::MimicJoint(const MimicJoint& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  joint_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    joint_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_joint().empty()) {
+    joint_.Set(from._internal_joint(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&multiplier_, &from.multiplier_,
+    static_cast<size_t>(reinterpret_cast<char*>(&offset_) -
+    reinterpret_cast<char*>(&multiplier_)) + sizeof(offset_));
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.MimicJoint)
+}
+
+inline void MimicJoint::SharedCtor() {
+joint_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  joint_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&multiplier_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&offset_) -
+    reinterpret_cast<char*>(&multiplier_)) + sizeof(offset_));
+}
+
+MimicJoint::~MimicJoint() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.MimicJoint)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MimicJoint::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  joint_.Destroy();
+}
+
+void MimicJoint::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MimicJoint::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.MimicJoint)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  joint_.ClearToEmpty();
+  ::memset(&multiplier_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&offset_) -
+      reinterpret_cast<char*>(&multiplier_)) + sizeof(offset_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MimicJoint::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string joint = 1 [json_name = "joint"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_joint();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.MimicJoint.joint"));
+        } else
+          goto handle_unusual;
+        continue;
+      // double multiplier = 2 [json_name = "multiplier"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          multiplier_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double offset = 3 [json_name = "offset"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MimicJoint::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.MimicJoint)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string joint = 1 [json_name = "joint"];
+  if (!this->_internal_joint().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_joint().data(), static_cast<int>(this->_internal_joint().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.MimicJoint.joint");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_joint(), target);
+  }
+
+  // double multiplier = 2 [json_name = "multiplier"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_multiplier = this->_internal_multiplier();
+  uint64_t raw_multiplier;
+  memcpy(&raw_multiplier, &tmp_multiplier, sizeof(tmp_multiplier));
+  if (raw_multiplier != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_multiplier(), target);
+  }
+
+  // double offset = 3 [json_name = "offset"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_offset = this->_internal_offset();
+  uint64_t raw_offset;
+  memcpy(&raw_offset, &tmp_offset, sizeof(tmp_offset));
+  if (raw_offset != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_offset(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.MimicJoint)
+  return target;
+}
+
+size_t MimicJoint::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.MimicJoint)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string joint = 1 [json_name = "joint"];
+  if (!this->_internal_joint().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_joint());
+  }
+
+  // double multiplier = 2 [json_name = "multiplier"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_multiplier = this->_internal_multiplier();
+  uint64_t raw_multiplier;
+  memcpy(&raw_multiplier, &tmp_multiplier, sizeof(tmp_multiplier));
+  if (raw_multiplier != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double offset = 3 [json_name = "offset"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_offset = this->_internal_offset();
+  uint64_t raw_offset;
+  memcpy(&raw_offset, &tmp_offset, sizeof(tmp_offset));
+  if (raw_offset != 0) {
+    total_size += 1 + 8;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MimicJoint::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MimicJoint::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MimicJoint::GetClassData() const { return &_class_data_; }
+
+void MimicJoint::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MimicJoint *>(to)->MergeFrom(
+      static_cast<const MimicJoint &>(from));
+}
+
+
+void MimicJoint::MergeFrom(const MimicJoint& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.MimicJoint)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_joint().empty()) {
+    _internal_set_joint(from._internal_joint());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_multiplier = from._internal_multiplier();
+  uint64_t raw_multiplier;
+  memcpy(&raw_multiplier, &tmp_multiplier, sizeof(tmp_multiplier));
+  if (raw_multiplier != 0) {
+    _internal_set_multiplier(from._internal_multiplier());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_offset = from._internal_offset();
+  uint64_t raw_offset;
+  memcpy(&raw_offset, &tmp_offset, sizeof(tmp_offset));
+  if (raw_offset != 0) {
+    _internal_set_offset(from._internal_offset());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MimicJoint::CopyFrom(const MimicJoint& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.MimicJoint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MimicJoint::IsInitialized() const {
+  return true;
+}
+
+void MimicJoint::InternalSwap(MimicJoint* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &joint_, lhs_arena,
+      &other->joint_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MimicJoint, offset_)
+      + sizeof(MimicJoint::offset_)
+      - PROTOBUF_FIELD_OFFSET(MimicJoint, multiplier_)>(
+          reinterpret_cast<char*>(&multiplier_),
+          reinterpret_cast<char*>(&other->multiplier_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MimicJoint::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[36]);
+}
+
+// ===================================================================
+
+class KinematicProperties::_Internal {
+ public:
+  using HasBits = decltype(std::declval<KinematicProperties>()._has_bits_);
+  static void set_has_operating_freq_hz(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_max_linear_tcp_speed_mm_per_sec(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+KinematicProperties::KinematicProperties(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.KinematicProperties)
+}
+KinematicProperties::KinematicProperties(const KinematicProperties& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&operating_freq_hz_, &from.operating_freq_hz_,
+    static_cast<size_t>(reinterpret_cast<char*>(&max_linear_tcp_speed_mm_per_sec_) -
+    reinterpret_cast<char*>(&operating_freq_hz_)) + sizeof(max_linear_tcp_speed_mm_per_sec_));
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.KinematicProperties)
+}
+
+inline void KinematicProperties::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&operating_freq_hz_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&max_linear_tcp_speed_mm_per_sec_) -
+    reinterpret_cast<char*>(&operating_freq_hz_)) + sizeof(max_linear_tcp_speed_mm_per_sec_));
+}
+
+KinematicProperties::~KinematicProperties() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.KinematicProperties)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void KinematicProperties::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void KinematicProperties::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void KinematicProperties::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.KinematicProperties)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    ::memset(&operating_freq_hz_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&max_linear_tcp_speed_mm_per_sec_) -
+        reinterpret_cast<char*>(&operating_freq_hz_)) + sizeof(max_linear_tcp_speed_mm_per_sec_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* KinematicProperties::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional double operating_freq_hz = 1 [json_name = "operatingFreqHz"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          _Internal::set_has_operating_freq_hz(&has_bits);
+          operating_freq_hz_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double max_linear_tcp_speed_mm_per_sec = 2 [json_name = "maxLinearTcpSpeedMmPerSec"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          _Internal::set_has_max_linear_tcp_speed_mm_per_sec(&has_bits);
+          max_linear_tcp_speed_mm_per_sec_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* KinematicProperties::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.KinematicProperties)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional double operating_freq_hz = 1 [json_name = "operatingFreqHz"];
+  if (_internal_has_operating_freq_hz()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_operating_freq_hz(), target);
+  }
+
+  // optional double max_linear_tcp_speed_mm_per_sec = 2 [json_name = "maxLinearTcpSpeedMmPerSec"];
+  if (_internal_has_max_linear_tcp_speed_mm_per_sec()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_max_linear_tcp_speed_mm_per_sec(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.KinematicProperties)
+  return target;
+}
+
+size_t KinematicProperties::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.KinematicProperties)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional double operating_freq_hz = 1 [json_name = "operatingFreqHz"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double max_linear_tcp_speed_mm_per_sec = 2 [json_name = "maxLinearTcpSpeedMmPerSec"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 + 8;
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KinematicProperties::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    KinematicProperties::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KinematicProperties::GetClassData() const { return &_class_data_; }
+
+void KinematicProperties::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<KinematicProperties *>(to)->MergeFrom(
+      static_cast<const KinematicProperties &>(from));
+}
+
+
+void KinematicProperties::MergeFrom(const KinematicProperties& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.KinematicProperties)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      operating_freq_hz_ = from.operating_freq_hz_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      max_linear_tcp_speed_mm_per_sec_ = from.max_linear_tcp_speed_mm_per_sec_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void KinematicProperties::CopyFrom(const KinematicProperties& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.KinematicProperties)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool KinematicProperties::IsInitialized() const {
+  return true;
+}
+
+void KinematicProperties::InternalSwap(KinematicProperties* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(KinematicProperties, max_linear_tcp_speed_mm_per_sec_)
+      + sizeof(KinematicProperties::max_linear_tcp_speed_mm_per_sec_)
+      - PROTOBUF_FIELD_OFFSET(KinematicProperties, operating_freq_hz_)>(
+          reinterpret_cast<char*>(&operating_freq_hz_),
+          reinterpret_cast<char*>(&other->operating_freq_hz_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata KinematicProperties::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[37]);
 }
 
 // ===================================================================
@@ -8230,7 +12371,7 @@ void GetGeometriesRequest::InternalSwap(GetGeometriesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[27]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[38]);
 }
 
 // ===================================================================
@@ -8408,7 +12549,7 @@ void GetGeometriesResponse::InternalSwap(GetGeometriesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[28]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[39]);
 }
 
 // ===================================================================
@@ -8651,7 +12792,7 @@ void Get3DModelsRequest::InternalSwap(Get3DModelsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Get3DModelsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[29]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[40]);
 }
 
 // ===================================================================
@@ -8665,7 +12806,7 @@ void Get3DModelsResponse_ModelsEntry_DoNotUse::MergeFrom(const Get3DModelsRespon
 ::PROTOBUF_NAMESPACE_ID::Metadata Get3DModelsResponse_ModelsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[30]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[41]);
 }
 
 // ===================================================================
@@ -8872,7 +13013,7 @@ void Get3DModelsResponse::InternalSwap(Get3DModelsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Get3DModelsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[31]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[42]);
 }
 
 // ===================================================================
@@ -9059,7 +13200,7 @@ void GetWorldPoseResponse::InternalSwap(GetWorldPoseResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetWorldPoseResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[32]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[43]);
 }
 
 // ===================================================================
@@ -9302,7 +13443,7 @@ void GetReadingsRequest::InternalSwap(GetReadingsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[33]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[44]);
 }
 
 // ===================================================================
@@ -9316,7 +13457,7 @@ void GetReadingsResponse_ReadingsEntry_DoNotUse::MergeFrom(const GetReadingsResp
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsResponse_ReadingsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[34]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[45]);
 }
 
 // ===================================================================
@@ -9526,7 +13667,7 @@ void GetReadingsResponse::InternalSwap(GetReadingsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[35]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[46]);
 }
 
 // ===================================================================
@@ -10051,7 +14192,7 @@ void LogEntry::InternalSwap(LogEntry* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LogEntry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[36]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[47]);
 }
 
 // ===================================================================
@@ -10306,7 +14447,7 @@ void AudioInfo::InternalSwap(AudioInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AudioInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[37]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[48]);
 }
 
 // ===================================================================
@@ -10549,7 +14690,7 @@ void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[38]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[49]);
 }
 
 // ===================================================================
@@ -10792,7 +14933,7 @@ void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[39]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[50]);
 }
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
@@ -10863,6 +15004,10 @@ template<> PROTOBUF_NOINLINE ::viam::common::v1::GeoPoint*
 Arena::CreateMaybeMessage< ::viam::common::v1::GeoPoint >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::GeoPoint >(arena);
 }
+template<> PROTOBUF_NOINLINE ::viam::common::v1::GeoPose*
+Arena::CreateMaybeMessage< ::viam::common::v1::GeoPose >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::GeoPose >(arena);
+}
 template<> PROTOBUF_NOINLINE ::viam::common::v1::GeoGeometry*
 Arena::CreateMaybeMessage< ::viam::common::v1::GeoGeometry >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::GeoGeometry >(arena);
@@ -10910,6 +15055,46 @@ Arena::CreateMaybeMessage< ::viam::common::v1::GetKinematicsResponse_MeshesByUrd
 template<> PROTOBUF_NOINLINE ::viam::common::v1::GetKinematicsResponse*
 Arena::CreateMaybeMessage< ::viam::common::v1::GetKinematicsResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::GetKinematicsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::KinematicModel*
+Arena::CreateMaybeMessage< ::viam::common::v1::KinematicModel >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::KinematicModel >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::KinematicLink*
+Arena::CreateMaybeMessage< ::viam::common::v1::KinematicLink >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::KinematicLink >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::LinkPose*
+Arena::CreateMaybeMessage< ::viam::common::v1::LinkPose >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::LinkPose >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::Quaternion*
+Arena::CreateMaybeMessage< ::viam::common::v1::Quaternion >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::Quaternion >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::EulerAngles*
+Arena::CreateMaybeMessage< ::viam::common::v1::EulerAngles >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::EulerAngles >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::AxisAngles*
+Arena::CreateMaybeMessage< ::viam::common::v1::AxisAngles >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::AxisAngles >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::KinematicJoint*
+Arena::CreateMaybeMessage< ::viam::common::v1::KinematicJoint >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::KinematicJoint >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::JointLimits*
+Arena::CreateMaybeMessage< ::viam::common::v1::JointLimits >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::JointLimits >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::MimicJoint*
+Arena::CreateMaybeMessage< ::viam::common::v1::MimicJoint >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::MimicJoint >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::KinematicProperties*
+Arena::CreateMaybeMessage< ::viam::common::v1::KinematicProperties >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::KinematicProperties >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::common::v1::GetGeometriesRequest*
 Arena::CreateMaybeMessage< ::viam::common::v1::GetGeometriesRequest >(Arena* arena) {

@@ -100,16 +100,30 @@ class Gantry : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
-    /// @brief Get the kinematics data associated with the gantry.
+    /// @brief Get the kinematic model of the gantry.
+    /// @param options Which mesh payloads to include in the response.
+    /// @param extra Any additional arguments to the method.
+    /// @return The gantry's links, joints and output frames.
+    virtual KinematicModel get_kinematic_model(const kinematics_options& options,
+                                               const ProtoStruct& extra) = 0;
+
+    /// @brief Get the kinematic model of the gantry.
+    /// @param options Which mesh payloads to include in the response.
+    /// @return The gantry's links, joints and output frames.
+    inline KinematicModel get_kinematic_model(const kinematics_options& options = {}) {
+        return get_kinematic_model(options, {});
+    }
+
+    /// @brief Get the kinematics data associated with the gantry as a raw file.
     /// @param extra Any additional arguments to the method.
     /// @return A variant of kinematics data; URDF variants may include meshes by filepath.
-    virtual ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
+    /// @throws Exception with `ErrorCondition::k_not_supported` unless overridden.
+    [[deprecated("use get_kinematic_model")]] virtual KinematicsData get_kinematics(
+        const ProtoStruct& extra);
 
-    /// @brief Get the kinematics data associated with the gantry.
+    /// @brief Get the kinematics data associated with the gantry as a raw file.
     /// @return A variant of kinematics data, with the type indicating the format of the data.
-    inline ::viam::sdk::KinematicsData get_kinematics() {
-        return get_kinematics({});
-    }
+    [[deprecated("use get_kinematic_model")]] KinematicsData get_kinematics();
 
     API api() const override;
 

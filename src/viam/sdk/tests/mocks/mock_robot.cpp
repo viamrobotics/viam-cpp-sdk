@@ -221,6 +221,26 @@ std::vector<ResourceName> mock_proto_resource_names_response() {
     return vec;
 }
 
+KinematicModel fake_frame_model() {
+    KinematicModel model;
+    model.name = "fake-frame-model";
+    KinematicLink base;
+    base.id = "base";
+    KinematicJoint joint;
+    joint.id = "j";
+    joint.parent = "base";
+    joint.axis = Vector3{0, 0, 1};
+    joint.spec = RevoluteJoint{-90.0, 90.0, boost::none, boost::none};
+    KinematicLink tip;
+    tip.id = "tip";
+    tip.parent = "j";
+    tip.pose.translation = Vector3{0, 0, 10};
+    model.links = {base, tip};
+    model.joints = {joint};
+    model.output_frames = {"tip"};
+    return model;
+}
+
 std::vector<FrameSystem::frame_system_config> mock_config_response() {
     FrameSystem::frame_system_config config;
     WorldState::transform t;
@@ -229,6 +249,7 @@ std::vector<FrameSystem::frame_system_config> mock_config_response() {
     t.pose_in_observer_frame = pif;
     config.frame = t;
     config.kinematics = {{"fake-key", 1.0}};
+    config.model = fake_frame_model();
 
     FrameSystem::frame_system_config config1;
     WorldState::transform t1;
@@ -243,6 +264,10 @@ std::vector<FrameSystem::frame_system_config> mock_config_response() {
     response.push_back(config1);
     return response;
 }
+
+// The proto kinematics field is deprecated but still what older viam-servers publish.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 std::vector<FrameSystemConfig> mock_proto_config_response() {
     FrameSystemConfig config;
@@ -260,6 +285,7 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
     google::protobuf::MapPair<std::string, google::protobuf::Value> pair("fake-key", v);
     s.mutable_fields()->insert(pair);
     *config.mutable_kinematics() = s;
+    *config.mutable_model() = to_proto(fake_frame_model());
 
     FrameSystemConfig config1;
     common::v1::Transform t1;
@@ -282,6 +308,8 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
     response.push_back(config1);
     return response;
 }
+
+#pragma GCC diagnostic pop
 
 MockRobotService::MockRobotService(const std::shared_ptr<ResourceManager>& manager, Server& server)
     : ResourceServer(manager) {

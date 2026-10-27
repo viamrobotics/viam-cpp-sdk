@@ -28,8 +28,9 @@ API API::traits<FrameSystem>::api() {
 
 bool operator==(const FrameSystem::frame_system_config& lhs,
                 const FrameSystem::frame_system_config& rhs) {
-    return lhs.frame == rhs.frame && to_proto(lhs.kinematics).SerializeAsString() ==
-                                         to_proto(rhs.kinematics).SerializeAsString();
+    return lhs.frame == rhs.frame && lhs.model == rhs.model &&
+           to_proto(lhs.kinematics).SerializeAsString() ==
+               to_proto(rhs.kinematics).SerializeAsString();
 }
 
 namespace proto_convert_details {
@@ -38,8 +39,15 @@ FrameSystem::frame_system_config from_proto_impl<robot::v1::FrameSystemConfig>::
     const robot::v1::FrameSystemConfig* proto) const {
     FrameSystem::frame_system_config fsconfig;
     fsconfig.frame = from_proto(proto->frame());
+    // The proto field is deprecated but still what older viam-servers publish.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     if (proto->has_kinematics()) {
         fsconfig.kinematics = from_proto(proto->kinematics());
+    }
+#pragma GCC diagnostic pop
+    if (proto->has_model()) {
+        fsconfig.model = from_proto(proto->model());
     }
     return fsconfig;
 }
