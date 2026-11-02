@@ -4,10 +4,11 @@
 # Reads the cell surface straight out of docker-bake.hcl via `bake --print`
 # (the documented contract) and emits one JSON object per published cell target
 # (system-* and conan-*):
-#   { target, tag, image }
-# `tag` is the published multi-arch reference the merge job creates; `image`
-# is that tag with the version stripped (the per-cell repo digests are pushed
-# under it).
+#   { target, tags, image }
+# `tags` are the published multi-arch references the merge job creates (the
+# floating codename tag, plus the `<codename>-<version>` tag when IMAGE_VERSION
+# is set in the environment); `image` is the repository without a tag (the
+# per-cell arch digests are pushed under it).
 #
 # Writes `cells=<json>` to $GITHUB_OUTPUT when set, and always echoes the
 # pretty-printed matrix to stdout for the run log.
@@ -22,7 +23,7 @@ cells=$(docker buildx bake -f "$bake_file" --print \
       .target
       | to_entries[]
       | select(.key | test("^(system|conan)-"))
-      | { target: .key, tag: (.value.tags[0]), image: (.value.tags[0] | split(":")[0]) }
+      | { target: .key, tags: .value.tags, image: (.value.tags[0] | split(":")[0]) }
     ]')
 
 if [ -n "${GITHUB_OUTPUT:-}" ]; then

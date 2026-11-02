@@ -127,7 +127,7 @@ jobs:
           if-no-files-found: error
 
   # ---------------------------------------------------------------------------
-  # Per cell, join the arch digests into one manifest list under the cell tag.
+  # Per cell, join the arch digests into one manifest list under the cell tags.
   # ---------------------------------------------------------------------------
   merge:
     needs: [matrix, build]
@@ -161,11 +161,14 @@ jobs:
           merge-multiple: true
 
       - name: Create and push the multi-arch manifest
+        env:
+          TAGS: ${{ toJson(matrix.cell.tags) }}
         run: |
           # Each filename is a bare (sha256-stripped) digest; re-prefix and stitch
-          # them into one manifest list under the cell tag.
-          docker buildx imagetools create -t "${{ matrix.cell.tag }}" \
+          # them into one manifest list under every cell tag.
+          mapfile -t tag_args < <(jq -r '.[] | "-t", .' <<< "$TAGS")
+          docker buildx imagetools create "${tag_args[@]}" \
             $(for d in "$RUNNER_TEMP"/digests/*; do printf '%s@sha256:%s ' "${{ matrix.cell.image }}" "$(basename "$d")"; done)
 
       - name: Inspect
-        run: docker buildx imagetools inspect "${{ matrix.cell.tag }}"
+        run: docker buildx imagetools inspect "${{ matrix.cell.tags[0] }}"
