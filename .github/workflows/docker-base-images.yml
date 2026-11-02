@@ -4,11 +4,21 @@
 # amd64 AND arm64 (no QEMU), pushed by digest, then the two arch digests are
 # merged into one multi-arch manifest list per cell.
 #
+# Each published cell gets two tags: the floating `:<codename>` and the
+# immutable `:<codename>-<image version>` (YYYY-MM.NN, see image-version.sh).
+# Consumers pin the latter.
+#
 # The cell surface is owned entirely by docker-bake.hcl. Adding a distro/version
 # or arch is a change to that file (and the `arch` list below for a new arch);
 # the job graph here is generic and stays untouched.
 
 name: Docker base images
+
+# Serialize runs: the image version is derived from tags already in ghcr, so
+# two concurrent publishes could compute the same one.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
 on:
   workflow_dispatch:
@@ -37,16 +47,31 @@ jobs:
   # ---------------------------------------------------------------------------
   matrix:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     outputs:
       cells: ${{ steps.gen.outputs.cells }}
+      image_version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
 
       - uses: docker/setup-buildx-action@v3
 
+      # Dry runs publish nothing, so they get no version and no versioned tag.
+      - id: version
+        name: Compute image version
+        if: env.PUSH == 'true'
+        working-directory: etc/docker
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ../../.github/workflows/image-version.sh docker-bake.hcl
+
       - id: gen
         name: Derive cell matrix from bake --print
         working-directory: etc/docker
+        env:
+          IMAGE_VERSION: ${{ steps.version.outputs.version }}
         run: ../../.github/workflows/derive-cells.sh docker-bake.hcl
 
   # ---------------------------------------------------------------------------
@@ -91,6 +116,11 @@ jobs:
       # argument to docker buildx bake
       - name: Build ${{ matrix.cell.target }} (${{ matrix.arch }})
         working-directory: etc/docker
+        # Bake reads these as variables; they only feed the OCI labels here since
+        # tags are stripped below.
+        env:
+          IMAGE_VERSION: ${{ needs.matrix.outputs.image_version }}
+          REVISION: ${{ github.sha }}
         run: |
           # Slice the bake matrix to this runner's native arch (no QEMU); the
           # bake file defaults to the full amd64+arm64 matrix.
@@ -159,6 +189,18 @@ jobs:
           pattern: digest-${{ matrix.cell.target }}-*
           # Flatten every arch's artifact into `path` rather than separate subdirs.
           merge-multiple: true
+
+      - name: Refuse to overwrite a versioned tag
+        env:
+          TAGS: ${{ toJson(matrix.cell.tags) }}
+        run: |
+          # Backstop for the workflow-level concurrency group: the versioned tag
+          # is immutable, so its existence means the version was computed wrong.
+          for t in $(jq -r '.[]' <<< "$TAGS" | grep -E -- '-[0-9]{4}-[0-9]{2}\.[0-9]{2}$'); do
+            if docker buildx imagetools inspect "$t" >/dev/null 2>&1; then
+              echo "::error::$t already exists"; exit 1
+            fi
+          done
 
       - name: Create and push the multi-arch manifest
         env:
