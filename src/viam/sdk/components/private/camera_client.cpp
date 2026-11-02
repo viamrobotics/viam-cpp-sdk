@@ -91,7 +91,8 @@ Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesRe
             from_proto(proto.extrinsic_parameters()),
             from_proto(proto.distortion_parameters()),
             {proto.mime_types().begin(), proto.mime_types().end()},
-            (proto.frame_rate())};
+            (proto.frame_rate()),
+            proto.default_reference_frame()};
 }
 
 CameraClient::CameraClient(std::string name, const ViamChannel& channel)

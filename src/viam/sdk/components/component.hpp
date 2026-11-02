@@ -14,6 +14,8 @@ class Component : public Resource {
 
    protected:
     explicit Component(std::string name);
+
+    explicit Component(const ResourceConfig& cfg);
 };
 
 }  // namespace sdk

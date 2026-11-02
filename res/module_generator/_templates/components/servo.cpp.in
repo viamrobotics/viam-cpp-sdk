@@ -7,7 +7,7 @@ namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Servo(cfg.name()) {
+    : Servo(cfg) {
     // TODO: initialize your resource here.
     // `deps` provides access to other resources this component depends on.
     // `cfg` contains the resource configuration from the robot config.

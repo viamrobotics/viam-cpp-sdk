@@ -20,5 +20,7 @@ std::ostream& operator<<(std::ostream& os, const Base::properties& v) {
 
 Base::Base(std::string name) : Component(std::move(name)) {}
 
+Base::Base(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

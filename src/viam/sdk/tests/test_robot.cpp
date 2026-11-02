@@ -13,6 +13,7 @@
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
@@ -188,6 +189,48 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
         });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_pose) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            // the short overload asks for the world frame with nothing else attached
+            auto pose = client->get_pose("mock_motor");
+            BOOST_CHECK_EQUAL(pose, mock_get_pose_response("world"));
+
+            auto request = service.last_get_pose_request();
+            BOOST_CHECK_EQUAL(request.component_name(), "mock_motor");
+            BOOST_CHECK_EQUAL(request.destination_frame(), "world");
+            BOOST_CHECK_EQUAL(request.supplemental_transforms_size(), 0);
+            BOOST_CHECK_EQUAL(request.extra().fields_size(), 0);
+
+            WorldState::transform extra_frame;
+            extra_frame.reference_frame = "extra-frame";
+            extra_frame.pose_in_observer_frame = pose_in_frame("world", default_pose());
+            pose = client->get_pose("mock_motor", "mock_camera", {extra_frame}, fake_map());
+            BOOST_CHECK_EQUAL(pose, mock_get_pose_response("mock_camera"));
+
+            request = service.last_get_pose_request();
+            BOOST_CHECK_EQUAL(request.component_name(), "mock_motor");
+            BOOST_CHECK_EQUAL(request.destination_frame(), "mock_camera");
+            BOOST_REQUIRE_EQUAL(request.supplemental_transforms_size(), 1);
+            BOOST_CHECK_EQUAL(request.supplemental_transforms(0).reference_frame(), "extra-frame");
+            BOOST_CHECK(from_proto(request.extra()) == fake_map());
+        });
+}
+
+BOOST_AUTO_TEST_CASE(test_transform_pcd) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            const std::vector<unsigned char> pcd = {'i', 'n', 'p', 'u', 't', 0x00, 0xff};
+            auto transformed = client->transform_pcd(pcd, "mock_camera", "world");
+            BOOST_CHECK(transformed == mock_transform_pcd_response());
+
+            auto request = service.last_transform_pcd_request();
+            BOOST_CHECK_EQUAL(request.point_cloud_pcd(), bytes_to_string(pcd));
+            BOOST_CHECK_EQUAL(request.source(), "mock_camera");
+            BOOST_CHECK_EQUAL(request.destination(), "world");
+        });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_machine_status) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
@@ -224,6 +267,28 @@ BOOST_AUTO_TEST_CASE(test_get_resource) {
             // appropriately registered such that we can actually use it.
             BOOST_CHECK(!mock_motor->is_moving());
         });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_frame_system) {
+    robot_client_to_mocks_pipeline([](std::shared_ptr<RobotClient> client,
+                                      MockRobotService& service) -> void {
+        // the frame system is never in resource_names, yet resource_by_name hands it out
+        auto names = client->resource_names();
+        BOOST_CHECK(std::find(names.begin(), names.end(), FrameSystem::public_name()) ==
+                    names.end());
+
+        auto frame_system = client->resource_by_name<FrameSystem>(FrameSystem::kPublicName);
+        BOOST_REQUIRE(frame_system);
+        BOOST_CHECK(frame_system->get_resource_name() == FrameSystem::public_name());
+
+        auto untyped = client->resource_by_name(FrameSystem::public_name());
+        BOOST_CHECK(std::dynamic_pointer_cast<FrameSystem>(untyped));
+
+        // and it goes over the same connection as the robot client itself
+        BOOST_CHECK_EQUAL(frame_system->get_pose("mock_motor"), mock_get_pose_response("world"));
+        BOOST_TEST(frame_system->get_frame_system_config() == mock_config_response(),
+                   boost::test_tools::per_element());
+    });
 }
 
 BOOST_AUTO_TEST_SUITE_END()

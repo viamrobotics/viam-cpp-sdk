@@ -91,6 +91,7 @@ jobs:
         run: |
           changed_files=$(git diff --name-only  ${{ github.event.before }} ${{ github.event.after }} | \
             grep -E '^src/viam/sdk/(components|services)/[a-z_]+\.hpp' | \
+            grep -vE '/(component|service)\.hpp$' | \
             sort -u )
           echo "Changed files:"
           echo "$changed_files"

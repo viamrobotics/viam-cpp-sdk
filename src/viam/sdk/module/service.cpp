@@ -42,6 +42,7 @@
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/services/framesystem.hpp>
 #include <viam/sdk/tracing/private/span_guard.hpp>
 #include <viam/sdk/tracing/private/tracer.hpp>
 
@@ -56,6 +57,12 @@ std::string get_protocol(int argc, char** argv) {
         }
     }
     return "unix:";
+}
+
+// Fallback for modules still using the std::string signature of Resource::Resource.
+// No-op for the const ResourceConfig& constructor
+void set_resource_log_channel(Resource& res, const ResourceConfig& cfg) {
+    log_detail::logger_access::logger(res).channel(LogManager::get().module_channel_for(cfg));
 }
 }  // namespace
 
@@ -81,6 +88,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         if (reg) {
             try {
                 res = reg->construct_resource(deps, cfg);
+                set_resource_log_channel(*res, cfg);
                 res->set_log_level(cfg.get_log_level());
             } catch (const std::exception& exc) {
                 return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
@@ -141,7 +149,9 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 
         try {
             manager->replace_one(cfg.resource_name(), [&reg, &deps, &cfg]() {
-                return reg->construct_resource(deps, cfg);
+                auto res = reg->construct_resource(deps, cfg);
+                set_resource_log_channel(*res, cfg);
+                return res;
             });
         } catch (const std::exception& exc) {
             return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
@@ -156,7 +166,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         impl::ServerSpanGuard span_guard{ctx, "ValidateConfig"};
 
         const viam::app::v1::ComponentConfig& proto = request->config();
-        ResourceConfig cfg = from_proto(proto);
+        const ResourceConfig cfg = from_proto(proto);
 
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::get().lookup_model(cfg.api(), cfg.model());
@@ -242,6 +252,17 @@ Dependencies ModuleService::get_dependencies_(
     google::protobuf::RepeatedPtrField<std::string> const* proto,
     std::string const& resource_name) {
     Dependencies deps;
+
+    // viam-server strips $framesystem from the dependency list it sends, so we seed it ourselves,
+    // the same way the Go module does. Every modular resource then gets a client to the machine's
+    // frame system without being handed the whole parent RobotClient. Both AddResource and
+    // ReconfigureResource come through here, so a reconfigured resource keeps it too. With no
+    // parent address there is no viam-server to reach (VIAM_NO_MODULE_PARENT), and nothing to seed.
+    if (!parent_addr_.empty()) {
+        const Name frame_system_name = FrameSystem::public_name();
+        deps.emplace(frame_system_name, get_parent_resource_(frame_system_name));
+    }
+
     for (const auto& dep : *proto) {
         auto dep_name = Name::from_string(dep);
         const std::shared_ptr<Resource> dep_resource = get_parent_resource_(dep_name);

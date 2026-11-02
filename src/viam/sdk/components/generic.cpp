@@ -13,5 +13,7 @@ API API::traits<GenericComponent>::api() {
 
 GenericComponent::GenericComponent(std::string name) : Component(std::move(name)) {}
 
+GenericComponent::GenericComponent(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

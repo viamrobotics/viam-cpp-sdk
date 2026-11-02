@@ -34,6 +34,8 @@ class GenericService : public Service {
 
    protected:
     explicit GenericService(std::string name);
+
+    explicit GenericService(const ResourceConfig& cfg);
 };
 
 template <>

@@ -18,5 +18,7 @@ API API::traits<Motor>::api() {
 
 Motor::Motor(std::string name) : Component(std::move(name)) {}
 
+Motor::Motor(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

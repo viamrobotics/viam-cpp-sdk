@@ -98,6 +98,8 @@ class AudioOut : public Component {
 
    protected:
     explicit AudioOut(std::string name);
+
+    explicit AudioOut(const ResourceConfig& cfg);
 };
 
 template <>

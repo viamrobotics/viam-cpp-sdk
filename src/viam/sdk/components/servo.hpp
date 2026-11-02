@@ -73,6 +73,8 @@ class Servo : public Component, public Stoppable {
 
    protected:
     explicit Servo(std::string name) : Component(std::move(name)) {}
+
+    explicit Servo(const ResourceConfig& cfg) : Component(cfg) {}
 };
 
 template <>

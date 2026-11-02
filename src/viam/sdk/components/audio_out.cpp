@@ -18,5 +18,7 @@ API API::traits<AudioOut>::api() {
 
 AudioOut::AudioOut(std::string name) : Component(std::move(name)) {}
 
+AudioOut::AudioOut(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

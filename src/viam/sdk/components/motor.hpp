@@ -182,6 +182,8 @@ class Motor : public Component, public Stoppable {
 
    protected:
     explicit Motor(std::string name);
+
+    explicit Motor(const ResourceConfig& cfg);
 };
 
 template <>

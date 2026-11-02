@@ -77,6 +77,8 @@ class Switch : public Component {
 
    protected:
     explicit Switch(std::string name);
+
+    explicit Switch(const ResourceConfig& cfg);
 };
 
 template <>

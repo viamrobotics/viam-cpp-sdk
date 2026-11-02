@@ -17,5 +17,7 @@ API API::traits<Encoder>::api() {
 
 Encoder::Encoder(std::string name) : Component(std::move(name)) {}
 
+Encoder::Encoder(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

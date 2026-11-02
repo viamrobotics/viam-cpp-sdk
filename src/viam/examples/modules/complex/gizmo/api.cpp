@@ -26,6 +26,8 @@ API API::traits<Gizmo>::api() {
 
 Gizmo::Gizmo(std::string name) : Component(std::move(name)) {}
 
+Gizmo::Gizmo(const ResourceConfig& cfg) : Component(cfg) {}
+
 /* Gizmo server methods */
 
 GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager)

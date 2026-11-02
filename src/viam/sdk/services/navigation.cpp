@@ -7,6 +7,8 @@ namespace sdk {
 
 Navigation::Navigation(std::string name) : Service(std::move(name)) {}
 
+Navigation::Navigation(const ResourceConfig& cfg) : Service(cfg) {}
+
 API Navigation::api() const {
     return API::get<Navigation>();
 }

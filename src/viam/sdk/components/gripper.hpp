@@ -84,6 +84,8 @@ class Gripper : public Component, public Stoppable {
 
    protected:
     explicit Gripper(std::string name);
+
+    explicit Gripper(const ResourceConfig& cfg);
 };
 
 template <>

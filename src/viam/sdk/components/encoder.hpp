@@ -106,6 +106,8 @@ class Encoder : public Component {
 
    protected:
     explicit Encoder(std::string name);
+
+    explicit Encoder(const ResourceConfig& cfg);
 };
 
 template <>

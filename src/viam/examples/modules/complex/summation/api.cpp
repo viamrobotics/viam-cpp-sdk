@@ -26,6 +26,8 @@ API API::traits<Summation>::api() {
 
 Summation::Summation(std::string name) : Service(std::move(name)) {}
 
+Summation::Summation(const ResourceConfig& cfg) : Service(cfg) {}
+
 /* Summation server methods */
 
 SummationServer::SummationServer(std::shared_ptr<ResourceManager> manager)

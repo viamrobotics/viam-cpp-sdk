@@ -117,6 +117,7 @@ Camera::properties fake_properties() {
     properties.distortion_parameters = fake_distortion_parameters();
     properties.mime_types = fake_mime_types();
     properties.frame_rate = 10.0;
+    properties.default_reference_frame = "fake_frame";
     return properties;
 }
 

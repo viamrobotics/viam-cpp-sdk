@@ -10,6 +10,8 @@ namespace sdk {
 
 Motion::Motion(std::string name) : Service(std::move(name)) {}
 
+Motion::Motion(const ResourceConfig& cfg) : Service(cfg) {}
+
 API Motion::api() const {
     return API::get<Motion>();
 }

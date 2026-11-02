@@ -120,6 +120,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         *response->mutable_extrinsic_parameters() = to_proto(properties.extrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
         response->set_frame_rate(properties.frame_rate);
+        response->set_default_reference_frame(properties.default_reference_frame);
         for (const auto& mt : properties.mime_types) {
             response->add_mime_types(mt);
         }

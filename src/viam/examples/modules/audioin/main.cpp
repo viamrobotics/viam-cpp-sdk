@@ -23,7 +23,7 @@ using namespace viam::sdk;
 // Implements an AudioIn component that generates a sine wave for testing
 class SineWaveAudioIn : public AudioIn {
    public:
-    SineWaveAudioIn(const ResourceConfig& cfg) : AudioIn(cfg.name()) {
+    SineWaveAudioIn(const ResourceConfig& cfg) : AudioIn(cfg) {
         auto itr = cfg.attributes().find("frequency");
         if (itr != cfg.attributes().end()) {
             const double* freq = itr->second.get<double>();

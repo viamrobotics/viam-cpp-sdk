@@ -176,6 +176,8 @@ class MLModelService : public Service {
 
    protected:
     explicit MLModelService(std::string name);
+
+    explicit MLModelService(const ResourceConfig& cfg);
 };
 
 template <>

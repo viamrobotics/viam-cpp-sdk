@@ -14,6 +14,8 @@ class Service : public Resource {
 
    protected:
     explicit Service(std::string name) : Resource(std::move(name)) {}
+
+    explicit Service(const ResourceConfig& cfg) : Resource(cfg) {}
 };
 
 }  // namespace sdk

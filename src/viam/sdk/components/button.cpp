@@ -15,5 +15,7 @@ API API::traits<Button>::api() {
 
 Button::Button(std::string name) : Component(std::move(name)) {}
 
+Button::Button(const ResourceConfig& cfg) : Component(cfg) {}
+
 }  // namespace sdk
 }  // namespace viam

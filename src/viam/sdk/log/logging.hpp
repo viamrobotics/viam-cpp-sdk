@@ -58,6 +58,8 @@ const char* global_resource_name();
 /// @ingroup Log
 const char* default_module_name();
 
+class ResourceConfig;
+
 /// @class LogManager logging.hpp "log/logging.hpp"
 /// @brief Manages the logging infrastructure in the SDDK.
 /// @ingroup Log
@@ -118,6 +120,10 @@ class LogManager {
     ///
     /// Users should prefer to log messages using the logging macros below.
     LogSource& module_logger();
+
+    /// @brief Return the log channel name for a modular resource: the module channel joined with
+    /// the resource's fully qualified name.
+    std::string module_channel_for(const ResourceConfig& cfg);
 
    private:
     friend class RobotClient;

@@ -22,7 +22,7 @@ bool find_subtract(ResourceConfig cfg) {
 }
 
 MySummation::MySummation(const Dependencies& deps, const ResourceConfig& cfg)
-    : Summation(cfg.name()), subtract_(find_subtract(cfg)) {}
+    : Summation(cfg), subtract_(find_subtract(cfg)) {}
 
 double MySummation::sum(std::vector<double> numbers) {
     if (numbers.empty()) {

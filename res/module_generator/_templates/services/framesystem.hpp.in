@@ -1,0 +1,39 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+#include <viam/sdk/services/framesystem.hpp>
+
+namespace {{ .ModuleSnake }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::FrameSystem {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    std::vector<viam::sdk::FrameSystem::frame_system_config> get_frame_system_config(const std::vector<viam::sdk::WorldState::transform> & additional_transforms) override;
+
+    viam::sdk::pose_in_frame get_pose(
+        const std::string & component_name,
+        const std::string & destination_frame,
+        const std::vector<viam::sdk::WorldState::transform> & supplemental_transforms,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::pose_in_frame transform_pose(
+        const viam::sdk::pose_in_frame & query,
+        const std::string & destination,
+        const std::vector<viam::sdk::WorldState::transform> & additional_transforms) override;
+
+    std::vector<unsigned char> transform_pcd(
+        const std::vector<unsigned char> & pcd,
+        const std::string & source,
+        const std::string & destination) override;
+
+};
+
+} // namespace {{ .ModuleSnake }}
+

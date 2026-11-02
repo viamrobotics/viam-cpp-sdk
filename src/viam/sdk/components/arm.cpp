@@ -22,6 +22,8 @@ API API::traits<Arm>::api() {
 
 Arm::Arm(std::string name) : Component(std::move(name)) {}
 
+Arm::Arm(const ResourceConfig& cfg) : Component(cfg) {}
+
 namespace proto_convert_details {
 
 void to_proto_impl<Arm::trajectory_point>::operator()(

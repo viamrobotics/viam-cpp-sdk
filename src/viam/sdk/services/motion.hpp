@@ -467,6 +467,8 @@ class Motion : public Service {
 
    protected:
     explicit Motion(std::string name);
+
+    explicit Motion(const ResourceConfig& cfg);
 };
 
 template <>

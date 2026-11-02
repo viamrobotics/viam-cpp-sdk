@@ -70,11 +70,18 @@ viamcppsdk_add_boost_test(test_common.cpp)
 viamcppsdk_add_boost_test(test_data_consumer.cpp)
 viamcppsdk_add_boost_test(test_discovery.cpp)
 viamcppsdk_add_boost_test(test_encoder.cpp)
+viamcppsdk_add_boost_test(test_framesystem.cpp)
 viamcppsdk_add_boost_test(test_gantry.cpp)
 viamcppsdk_add_boost_test(test_gripper.cpp)
 viamcppsdk_add_boost_test(test_generics.cpp)
 viamcppsdk_add_boost_test(test_log.cpp)
 viamcppsdk_add_boost_test(test_mlmodel.cpp)
+# test_module runs a real ModuleService on unix sockets and stops it by sending SIGTERM to the
+# serving thread with pthread_kill. Neither exists on Windows, where the module is stopped through
+# console control events instead.
+if(NOT WIN32)
+  viamcppsdk_add_boost_test(test_module.cpp)
+endif()
 viamcppsdk_add_boost_test(test_motor.cpp)
 viamcppsdk_add_boost_test(test_motion.cpp)
 viamcppsdk_add_boost_test(test_movement_sensor.cpp)

@@ -23,7 +23,12 @@ struct logger_access;
 class Resource {
    public:
     virtual ~Resource();
+
     explicit Resource(std::string name);
+
+    /// @brief Construct from a resource config. Use this overload to ensure Viam App log
+    /// filtering works immediately during object construction.
+    explicit Resource(const ResourceConfig& cfg);
 
     /// @brief Returns the `API` associated with a particular resource.
     virtual API api() const = 0;

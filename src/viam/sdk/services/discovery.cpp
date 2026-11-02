@@ -7,6 +7,8 @@ namespace sdk {
 
 Discovery::Discovery(std::string name) : Service(std::move(name)) {}
 
+Discovery::Discovery(const ResourceConfig& cfg) : Service(cfg) {}
+
 API Discovery::api() const {
     return API::get<Discovery>();
 }
