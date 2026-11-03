@@ -157,7 +157,6 @@ target_sources(viamsdk
     services/generic.cpp
     services/mlmodel.cpp
     services/motion.cpp
-    services/navigation.cpp
     services/private/discovery_client.cpp
     services/private/discovery_server.cpp
     services/private/framesystem_client.cpp
@@ -168,8 +167,6 @@ target_sources(viamsdk
     services/private/mlmodel_server.cpp
     services/private/motion_client.cpp
     services/private/motion_server.cpp
-    services/private/navigation_client.cpp
-    services/private/navigation_server.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation.cpp
@@ -240,7 +237,6 @@ target_sources(viamsdk
       ../../viam/sdk/services/generic.hpp
       ../../viam/sdk/services/mlmodel.hpp
       ../../viam/sdk/services/motion.hpp
-      ../../viam/sdk/services/navigation.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/tracing/span.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
