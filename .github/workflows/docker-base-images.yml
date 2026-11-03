@@ -6,7 +6,7 @@
 #
 # Each published cell gets two tags: the floating `:<codename>` and the
 # immutable `:<codename>-<image version>` (YYYY-MM.NN, see image-version.sh).
-# Consumers pin the latter.
+# Consumers can pin the latter if needed, but should prefer the floating version.
 #
 # The cell surface is owned entirely by docker-bake.hcl. Adding a distro/version
 # or arch is a change to that file (and the `arch` list below for a new arch);
