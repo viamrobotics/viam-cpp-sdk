@@ -192,12 +192,13 @@ enum ModelType : int {
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION = 1,
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2,
   MODEL_TYPE_OBJECT_DETECTION = 3,
+  MODEL_TYPE_ROBOT_POLICY = 4,
   ModelType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ModelType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ModelType_IsValid(int value);
 constexpr ModelType ModelType_MIN = MODEL_TYPE_UNSPECIFIED;
-constexpr ModelType ModelType_MAX = MODEL_TYPE_OBJECT_DETECTION;
+constexpr ModelType ModelType_MAX = MODEL_TYPE_ROBOT_POLICY;
 constexpr int ModelType_ARRAYSIZE = ModelType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModelType_descriptor();
