@@ -164,6 +164,7 @@ PROTOBUF_CONSTEXPR TrainingJobMetadata::TrainingJobMetadata(
     ::_pbi::ConstantInitialized)
   : tags_()
   , arguments_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , deployment_modular_resources_()
   , synced_model_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , dataset_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -560,6 +561,7 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, arguments_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, container_version_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, container_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, deployment_modular_resources_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::CancelTrainingJobRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -721,25 +723,25 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 74, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsResponse)},
   { 81, 89, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata_ArgumentsEntry_DoNotUse)},
   { 91, -1, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata)},
-  { 118, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
-  { 125, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
-  { 131, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
-  { 138, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
-  { 144, -1, -1, sizeof(::viam::app::mltraining::v1::TrainingJobLogEntry)},
-  { 153, 161, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsRequest)},
-  { 163, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsResponse)},
-  { 171, -1, -1, sizeof(::viam::app::mltraining::v1::ListSupportedContainersRequest)},
-  { 177, 185, -1, sizeof(::viam::app::mltraining::v1::ListSupportedContainersResponse_ContainerMapEntry_DoNotUse)},
-  { 187, -1, -1, sizeof(::viam::app::mltraining::v1::ListSupportedContainersResponse)},
-  { 194, -1, -1, sizeof(::viam::app::mltraining::v1::ListContainersRequest)},
-  { 201, -1, -1, sizeof(::viam::app::mltraining::v1::ListContainersResponse)},
-  { 208, -1, -1, sizeof(::viam::app::mltraining::v1::GetContainerRequest)},
-  { 215, -1, -1, sizeof(::viam::app::mltraining::v1::GetContainerResponse)},
-  { 222, -1, -1, sizeof(::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest)},
-  { 231, -1, -1, sizeof(::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse)},
-  { 238, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest)},
-  { 245, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse)},
-  { 251, -1, -1, sizeof(::viam::app::mltraining::v1::Container)},
+  { 119, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
+  { 126, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
+  { 132, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
+  { 139, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
+  { 145, -1, -1, sizeof(::viam::app::mltraining::v1::TrainingJobLogEntry)},
+  { 154, 162, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsRequest)},
+  { 164, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsResponse)},
+  { 172, -1, -1, sizeof(::viam::app::mltraining::v1::ListSupportedContainersRequest)},
+  { 178, 186, -1, sizeof(::viam::app::mltraining::v1::ListSupportedContainersResponse_ContainerMapEntry_DoNotUse)},
+  { 188, -1, -1, sizeof(::viam::app::mltraining::v1::ListSupportedContainersResponse)},
+  { 195, -1, -1, sizeof(::viam::app::mltraining::v1::ListContainersRequest)},
+  { 202, -1, -1, sizeof(::viam::app::mltraining::v1::ListContainersResponse)},
+  { 209, -1, -1, sizeof(::viam::app::mltraining::v1::GetContainerRequest)},
+  { 216, -1, -1, sizeof(::viam::app::mltraining::v1::GetContainerResponse)},
+  { 223, -1, -1, sizeof(::viam::app::mltraining::v1::RegisterCustomTrainingContainerRequest)},
+  { 232, -1, -1, sizeof(::viam::app::mltraining::v1::RegisterCustomTrainingContainerResponse)},
+  { 239, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCustomTrainingContainerRequest)},
+  { 246, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCustomTrainingContainerResponse)},
+  { 252, -1, -1, sizeof(::viam::app::mltraining::v1::Container)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -827,8 +829,8 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
   "d\022>\n\006status\030\002 \001(\0162&.viam.app.mltraining."
   "v1.TrainingStatusR\006status\"[\n\030ListTrainin"
   "gJobsResponse\022\?\n\004jobs\030\001 \003(\0132+.viam.app.m"
-  "ltraining.v1.TrainingJobMetadataR\004jobs\"\335"
-  "\020\n\023TrainingJobMetadata\0223\n\002id\030\007 \001(\tB#\232\204\236\003"
+  "ltraining.v1.TrainingJobMetadataR\004jobs\"\356"
+  "\021\n\023TrainingJobMetadata\0223\n\002id\030\007 \001(\tB#\232\204\236\003"
   "\036bson:\"_id\" json:\"id,omitempty\"R\002id\022G\n\nd"
   "ataset_id\030\013 \001(\tB(\232\204\236\003#bson:\"dataset_id\" "
   "json:\"dataset_id\"R\tdatasetId\022[\n\017organiza"
@@ -879,110 +881,114 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
   "on\" json:\"container_version\"R\020containerV"
   "ersion\022O\n\014container_id\030\027 \001(\tB,\232\204\236\003\'bson:"
   "\"container_id\" json:\"container_id\"R\013cont"
-  "ainerId\032<\n\016ArgumentsEntry\022\020\n\003key\030\001 \001(\tR\003"
-  "key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001J\004\010\001\020\002J\004\010\006\020"
-  "\007R\007requestR\nuser_email\"*\n\030CancelTraining"
-  "JobRequest\022\016\n\002id\030\001 \001(\tR\002id\"\033\n\031CancelTrai"
-  "ningJobResponse\"3\n!DeleteCompletedTraini"
-  "ngJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"$\n\"DeleteCo"
-  "mpletedTrainingJobResponse\"u\n\023TrainingJo"
-  "bLogEntry\022\024\n\005level\030\001 \001(\tR\005level\022.\n\004time\030"
-  "\002 \001(\0132\032.google.protobuf.TimestampR\004time\022"
-  "\030\n\007message\030\003 \001(\tR\007message\"^\n\031GetTraining"
-  "JobLogsRequest\022\016\n\002id\030\001 \001(\tR\002id\022\"\n\npage_t"
-  "oken\030\002 \001(\tH\000R\tpageToken\210\001\001B\r\n\013_page_toke"
-  "n\"\205\001\n\032GetTrainingJobLogsResponse\022\?\n\004logs"
-  "\030\001 \003(\0132+.viam.app.mltraining.v1.Training"
-  "JobLogEntryR\004logs\022&\n\017next_page_token\030\002 \001"
-  "(\tR\rnextPageToken\"&\n\036ListSupportedContai"
-  "nersRequestJ\004\010\001\020\002\"\365\001\n\037ListSupportedConta"
-  "inersResponse\022n\n\rcontainer_map\030\001 \003(\0132I.v"
-  "iam.app.mltraining.v1.ListSupportedConta"
-  "inersResponse.ContainerMapEntryR\014contain"
-  "erMap\032b\n\021ContainerMapEntry\022\020\n\003key\030\001 \001(\tR"
-  "\003key\0227\n\005value\030\002 \001(\0132!.viam.app.mltrainin"
-  "g.v1.ContainerR\005value:\0028\001\"@\n\025ListContain"
-  "ersRequest\022\'\n\017organization_id\030\001 \001(\tR\016org"
-  "anizationId\"[\n\026ListContainersResponse\022A\n"
-  "\ncontainers\030\001 \003(\0132!.viam.app.mltraining."
-  "v1.ContainerR\ncontainers\"%\n\023GetContainer"
-  "Request\022\016\n\002id\030\001 \001(\tR\002id\"W\n\024GetContainerR"
-  "esponse\022\?\n\tcontainer\030\001 \001(\0132!.viam.app.ml"
-  "training.v1.ContainerR\tcontainer\"\220\001\n&Reg"
-  "isterCustomTrainingContainerRequest\022\'\n\017o"
-  "rganization_id\030\001 \001(\tR\016organizationId\022\033\n\t"
-  "image_uri\030\002 \001(\tR\010imageUri\022 \n\013description"
-  "\030\003 \001(\tR\013description\"9\n\'RegisterCustomTra"
-  "iningContainerResponse\022\016\n\002id\030\001 \001(\tR\002id\"6"
-  "\n$DeleteCustomTrainingContainerRequest\022\016"
-  "\n\002id\030\001 \001(\tR\002id\"\'\n%DeleteCustomTrainingCo"
-  "ntainerResponse\"\325\002\n\tContainer\022\020\n\003key\030\001 \001"
-  "(\tR\003key\022\020\n\003uri\030\002 \001(\tR\003uri\022\034\n\tframework\030\003"
-  " \001(\tR\tframework\022 \n\013description\030\004 \001(\tR\013de"
-  "scription\022,\n\003eol\030\005 \001(\0132\032.google.protobuf"
-  ".TimestampR\003eol\022\'\n\017organization_id\030\006 \001(\t"
-  "R\016organizationId\0229\n\ncreated_on\030\007 \001(\0132\032.g"
-  "oogle.protobuf.TimestampR\tcreatedOn\022\016\n\002i"
-  "d\030\010 \001(\tR\002id\022B\n\nvisibility\030\t \001(\0162\".viam.a"
-  "pp.mltraining.v1.VisibilityR\nvisibility*"
-  "\237\001\n\tModelType\022\032\n\026MODEL_TYPE_UNSPECIFIED\020"
-  "\000\022*\n&MODEL_TYPE_SINGLE_LABEL_CLASSIFICAT"
-  "ION\020\001\022)\n%MODEL_TYPE_MULTI_LABEL_CLASSIFI"
-  "CATION\020\002\022\037\n\033MODEL_TYPE_OBJECT_DETECTION\020"
-  "\003*\244\001\n\016ModelFramework\022\037\n\033MODEL_FRAMEWORK_"
-  "UNSPECIFIED\020\000\022\032\n\026MODEL_FRAMEWORK_TFLITE\020"
-  "\001\022\036\n\032MODEL_FRAMEWORK_TENSORFLOW\020\002\022\033\n\027MOD"
-  "EL_FRAMEWORK_PYTORCH\020\003\022\030\n\024MODEL_FRAMEWOR"
-  "K_ONNX\020\004*\347\001\n\016TrainingStatus\022\037\n\033TRAINING_"
-  "STATUS_UNSPECIFIED\020\000\022\033\n\027TRAINING_STATUS_"
-  "PENDING\020\001\022\037\n\033TRAINING_STATUS_IN_PROGRESS"
-  "\020\002\022\035\n\031TRAINING_STATUS_COMPLETED\020\003\022\032\n\026TRA"
-  "INING_STATUS_FAILED\020\004\022\034\n\030TRAINING_STATUS"
-  "_CANCELED\020\005\022\035\n\031TRAINING_STATUS_CANCELING"
-  "\020\006*W\n\nVisibility\022\032\n\026VISIBILITY_UNSPECIFI"
-  "ED\020\000\022\026\n\022VISIBILITY_PRIVATE\020\001\022\025\n\021VISIBILI"
-  "TY_PUBLIC\020\0022\274\014\n\021MLTrainingService\022x\n\021Sub"
-  "mitTrainingJob\0220.viam.app.mltraining.v1."
-  "SubmitTrainingJobRequest\0321.viam.app.mltr"
-  "aining.v1.SubmitTrainingJobResponse\022\212\001\n\027"
-  "SubmitCustomTrainingJob\0226.viam.app.mltra"
-  "ining.v1.SubmitCustomTrainingJobRequest\032"
-  "7.viam.app.mltraining.v1.SubmitCustomTra"
-  "iningJobResponse\022o\n\016GetTrainingJob\022-.via"
-  "m.app.mltraining.v1.GetTrainingJobReques"
-  "t\032..viam.app.mltraining.v1.GetTrainingJo"
-  "bResponse\022u\n\020ListTrainingJobs\022/.viam.app"
-  ".mltraining.v1.ListTrainingJobsRequest\0320"
-  ".viam.app.mltraining.v1.ListTrainingJobs"
-  "Response\022x\n\021CancelTrainingJob\0220.viam.app"
-  ".mltraining.v1.CancelTrainingJobRequest\032"
-  "1.viam.app.mltraining.v1.CancelTrainingJ"
-  "obResponse\022\223\001\n\032DeleteCompletedTrainingJo"
-  "b\0229.viam.app.mltraining.v1.DeleteComplet"
-  "edTrainingJobRequest\032:.viam.app.mltraini"
-  "ng.v1.DeleteCompletedTrainingJobResponse"
-  "\022{\n\022GetTrainingJobLogs\0221.viam.app.mltrai"
-  "ning.v1.GetTrainingJobLogsRequest\0322.viam"
-  ".app.mltraining.v1.GetTrainingJobLogsRes"
-  "ponse\022\212\001\n\027ListSupportedContainers\0226.viam"
-  ".app.mltraining.v1.ListSupportedContaine"
-  "rsRequest\0327.viam.app.mltraining.v1.ListS"
-  "upportedContainersResponse\022o\n\016ListContai"
-  "ners\022-.viam.app.mltraining.v1.ListContai"
-  "nersRequest\032..viam.app.mltraining.v1.Lis"
-  "tContainersResponse\022i\n\014GetContainer\022+.vi"
-  "am.app.mltraining.v1.GetContainerRequest"
-  "\032,.viam.app.mltraining.v1.GetContainerRe"
-  "sponse\022\242\001\n\037RegisterCustomTrainingContain"
-  "er\022>.viam.app.mltraining.v1.RegisterCust"
-  "omTrainingContainerRequest\032\?.viam.app.ml"
-  "training.v1.RegisterCustomTrainingContai"
-  "nerResponse\022\234\001\n\035DeleteCustomTrainingCont"
-  "ainer\022<.viam.app.mltraining.v1.DeleteCus"
-  "tomTrainingContainerRequest\032=.viam.app.m"
-  "ltraining.v1.DeleteCustomTrainingContain"
-  "erResponseB#Z!go.viam.com/api/app/mltrai"
-  "ning/v1b\006proto3"
+  "ainerId\022\216\001\n\034deployment_modular_resources"
+  "\030\030 \003(\tBL\232\204\236\003Gbson:\"deployment_modular_re"
+  "sources\" json:\"deployment_modular_resour"
+  "ces\"R\032deploymentModularResources\032<\n\016Argu"
+  "mentsEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 "
+  "\001(\tR\005value:\0028\001J\004\010\001\020\002J\004\010\006\020\007R\007requestR\nuse"
+  "r_email\"*\n\030CancelTrainingJobRequest\022\016\n\002i"
+  "d\030\001 \001(\tR\002id\"\033\n\031CancelTrainingJobResponse"
+  "\"3\n!DeleteCompletedTrainingJobRequest\022\016\n"
+  "\002id\030\001 \001(\tR\002id\"$\n\"DeleteCompletedTraining"
+  "JobResponse\"u\n\023TrainingJobLogEntry\022\024\n\005le"
+  "vel\030\001 \001(\tR\005level\022.\n\004time\030\002 \001(\0132\032.google."
+  "protobuf.TimestampR\004time\022\030\n\007message\030\003 \001("
+  "\tR\007message\"^\n\031GetTrainingJobLogsRequest\022"
+  "\016\n\002id\030\001 \001(\tR\002id\022\"\n\npage_token\030\002 \001(\tH\000R\tp"
+  "ageToken\210\001\001B\r\n\013_page_token\"\205\001\n\032GetTraini"
+  "ngJobLogsResponse\022\?\n\004logs\030\001 \003(\0132+.viam.a"
+  "pp.mltraining.v1.TrainingJobLogEntryR\004lo"
+  "gs\022&\n\017next_page_token\030\002 \001(\tR\rnextPageTok"
+  "en\"&\n\036ListSupportedContainersRequestJ\004\010\001"
+  "\020\002\"\365\001\n\037ListSupportedContainersResponse\022n"
+  "\n\rcontainer_map\030\001 \003(\0132I.viam.app.mltrain"
+  "ing.v1.ListSupportedContainersResponse.C"
+  "ontainerMapEntryR\014containerMap\032b\n\021Contai"
+  "nerMapEntry\022\020\n\003key\030\001 \001(\tR\003key\0227\n\005value\030\002"
+  " \001(\0132!.viam.app.mltraining.v1.ContainerR"
+  "\005value:\0028\001\"@\n\025ListContainersRequest\022\'\n\017o"
+  "rganization_id\030\001 \001(\tR\016organizationId\"[\n\026"
+  "ListContainersResponse\022A\n\ncontainers\030\001 \003"
+  "(\0132!.viam.app.mltraining.v1.ContainerR\nc"
+  "ontainers\"%\n\023GetContainerRequest\022\016\n\002id\030\001"
+  " \001(\tR\002id\"W\n\024GetContainerResponse\022\?\n\tcont"
+  "ainer\030\001 \001(\0132!.viam.app.mltraining.v1.Con"
+  "tainerR\tcontainer\"\220\001\n&RegisterCustomTrai"
+  "ningContainerRequest\022\'\n\017organization_id\030"
+  "\001 \001(\tR\016organizationId\022\033\n\timage_uri\030\002 \001(\t"
+  "R\010imageUri\022 \n\013description\030\003 \001(\tR\013descrip"
+  "tion\"9\n\'RegisterCustomTrainingContainerR"
+  "esponse\022\016\n\002id\030\001 \001(\tR\002id\"6\n$DeleteCustomT"
+  "rainingContainerRequest\022\016\n\002id\030\001 \001(\tR\002id\""
+  "\'\n%DeleteCustomTrainingContainerResponse"
+  "\"\325\002\n\tContainer\022\020\n\003key\030\001 \001(\tR\003key\022\020\n\003uri\030"
+  "\002 \001(\tR\003uri\022\034\n\tframework\030\003 \001(\tR\tframework"
+  "\022 \n\013description\030\004 \001(\tR\013description\022,\n\003eo"
+  "l\030\005 \001(\0132\032.google.protobuf.TimestampR\003eol"
+  "\022\'\n\017organization_id\030\006 \001(\tR\016organizationI"
+  "d\0229\n\ncreated_on\030\007 \001(\0132\032.google.protobuf."
+  "TimestampR\tcreatedOn\022\016\n\002id\030\010 \001(\tR\002id\022B\n\n"
+  "visibility\030\t \001(\0162\".viam.app.mltraining.v"
+  "1.VisibilityR\nvisibility*\237\001\n\tModelType\022\032"
+  "\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_TYPE"
+  "_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%MODEL_"
+  "TYPE_MULTI_LABEL_CLASSIFICATION\020\002\022\037\n\033MOD"
+  "EL_TYPE_OBJECT_DETECTION\020\003*\302\001\n\016ModelFram"
+  "ework\022\037\n\033MODEL_FRAMEWORK_UNSPECIFIED\020\000\022\032"
+  "\n\026MODEL_FRAMEWORK_TFLITE\020\001\022\036\n\032MODEL_FRAM"
+  "EWORK_TENSORFLOW\020\002\022\033\n\027MODEL_FRAMEWORK_PY"
+  "TORCH\020\003\022\030\n\024MODEL_FRAMEWORK_ONNX\020\004\022\034\n\030MOD"
+  "EL_FRAMEWORK_REGISTRY\020\005*\347\001\n\016TrainingStat"
+  "us\022\037\n\033TRAINING_STATUS_UNSPECIFIED\020\000\022\033\n\027T"
+  "RAINING_STATUS_PENDING\020\001\022\037\n\033TRAINING_STA"
+  "TUS_IN_PROGRESS\020\002\022\035\n\031TRAINING_STATUS_COM"
+  "PLETED\020\003\022\032\n\026TRAINING_STATUS_FAILED\020\004\022\034\n\030"
+  "TRAINING_STATUS_CANCELED\020\005\022\035\n\031TRAINING_S"
+  "TATUS_CANCELING\020\006*W\n\nVisibility\022\032\n\026VISIB"
+  "ILITY_UNSPECIFIED\020\000\022\026\n\022VISIBILITY_PRIVAT"
+  "E\020\001\022\025\n\021VISIBILITY_PUBLIC\020\0022\274\014\n\021MLTrainin"
+  "gService\022x\n\021SubmitTrainingJob\0220.viam.app"
+  ".mltraining.v1.SubmitTrainingJobRequest\032"
+  "1.viam.app.mltraining.v1.SubmitTrainingJ"
+  "obResponse\022\212\001\n\027SubmitCustomTrainingJob\0226"
+  ".viam.app.mltraining.v1.SubmitCustomTrai"
+  "ningJobRequest\0327.viam.app.mltraining.v1."
+  "SubmitCustomTrainingJobResponse\022o\n\016GetTr"
+  "ainingJob\022-.viam.app.mltraining.v1.GetTr"
+  "ainingJobRequest\032..viam.app.mltraining.v"
+  "1.GetTrainingJobResponse\022u\n\020ListTraining"
+  "Jobs\022/.viam.app.mltraining.v1.ListTraini"
+  "ngJobsRequest\0320.viam.app.mltraining.v1.L"
+  "istTrainingJobsResponse\022x\n\021CancelTrainin"
+  "gJob\0220.viam.app.mltraining.v1.CancelTrai"
+  "ningJobRequest\0321.viam.app.mltraining.v1."
+  "CancelTrainingJobResponse\022\223\001\n\032DeleteComp"
+  "letedTrainingJob\0229.viam.app.mltraining.v"
+  "1.DeleteCompletedTrainingJobRequest\032:.vi"
+  "am.app.mltraining.v1.DeleteCompletedTrai"
+  "ningJobResponse\022{\n\022GetTrainingJobLogs\0221."
+  "viam.app.mltraining.v1.GetTrainingJobLog"
+  "sRequest\0322.viam.app.mltraining.v1.GetTra"
+  "iningJobLogsResponse\022\212\001\n\027ListSupportedCo"
+  "ntainers\0226.viam.app.mltraining.v1.ListSu"
+  "pportedContainersRequest\0327.viam.app.mltr"
+  "aining.v1.ListSupportedContainersRespons"
+  "e\022o\n\016ListContainers\022-.viam.app.mltrainin"
+  "g.v1.ListContainersRequest\032..viam.app.ml"
+  "training.v1.ListContainersResponse\022i\n\014Ge"
+  "tContainer\022+.viam.app.mltraining.v1.GetC"
+  "ontainerRequest\032,.viam.app.mltraining.v1"
+  ".GetContainerResponse\022\242\001\n\037RegisterCustom"
+  "TrainingContainer\022>.viam.app.mltraining."
+  "v1.RegisterCustomTrainingContainerReques"
+  "t\032\?.viam.app.mltraining.v1.RegisterCusto"
+  "mTrainingContainerResponse\022\234\001\n\035DeleteCus"
+  "tomTrainingContainer\022<.viam.app.mltraini"
+  "ng.v1.DeleteCustomTrainingContainerReque"
+  "st\032=.viam.app.mltraining.v1.DeleteCustom"
+  "TrainingContainerResponseB#Z!go.viam.com"
+  "/api/app/mltraining/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
@@ -991,7 +997,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2f
 };
 static ::_pbi::once_flag descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = {
-    false, false, 8255, descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
+    false, false, 8430, descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
     "app/mltraining/v1/ml_training.proto",
     &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once, descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps, 3, 30,
     schemas, file_default_instances, TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offsets,
@@ -1035,6 +1041,7 @@ bool ModelFramework_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
       return true;
     default:
       return false;
@@ -3383,7 +3390,8 @@ TrainingJobMetadata::TrainingJobMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
   tags_(arena),
-  arguments_(arena) {
+  arguments_(arena),
+  deployment_modular_resources_(arena) {
   SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &TrainingJobMetadata::ArenaDtor);
@@ -3392,7 +3400,8 @@ TrainingJobMetadata::TrainingJobMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 TrainingJobMetadata::TrainingJobMetadata(const TrainingJobMetadata& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      tags_(from.tags_) {
+      tags_(from.tags_),
+      deployment_modular_resources_(from.deployment_modular_resources_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   arguments_.MergeFrom(from.arguments_);
   synced_model_id_.InitDefault();
@@ -3599,6 +3608,7 @@ void TrainingJobMetadata::Clear() {
 
   tags_.Clear();
   arguments_.Clear();
+  deployment_modular_resources_.Clear();
   synced_model_id_.ClearToEmpty();
   id_.ClearToEmpty();
   dataset_id_.ClearToEmpty();
@@ -3844,6 +3854,21 @@ const char* TrainingJobMetadata::_InternalParse(const char* ptr, ::_pbi::ParseCo
         } else
           goto handle_unusual;
         continue;
+      // repeated string deployment_modular_resources = 24 [json_name = "deploymentModularResources", (.tagger.v1.tags) = "bson:\"deployment_modular_resources\" json:\"deployment_modular_resources\""];
+      case 24:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 194)) {
+          ptr -= 2;
+          do {
+            ptr += 2;
+            auto str = _internal_add_deployment_modular_resources();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<194>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -4075,6 +4100,16 @@ uint8_t* TrainingJobMetadata::_InternalSerialize(
         23, this->_internal_container_id(), target);
   }
 
+  // repeated string deployment_modular_resources = 24 [json_name = "deploymentModularResources", (.tagger.v1.tags) = "bson:\"deployment_modular_resources\" json:\"deployment_modular_resources\""];
+  for (int i = 0, n = this->_internal_deployment_modular_resources_size(); i < n; i++) {
+    const auto& s = this->_internal_deployment_modular_resources(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.mltraining.v1.TrainingJobMetadata.deployment_modular_resources");
+    target = stream->WriteString(24, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4106,6 +4141,14 @@ size_t TrainingJobMetadata::ByteSizeLong() const {
       it = this->_internal_arguments().begin();
       it != this->_internal_arguments().end(); ++it) {
     total_size += TrainingJobMetadata_ArgumentsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  // repeated string deployment_modular_resources = 24 [json_name = "deploymentModularResources", (.tagger.v1.tags) = "bson:\"deployment_modular_resources\" json:\"deployment_modular_resources\""];
+  total_size += 2 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(deployment_modular_resources_.size());
+  for (int i = 0, n = deployment_modular_resources_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      deployment_modular_resources_.Get(i));
   }
 
   // string synced_model_id = 5 [json_name = "syncedModelId", (.tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
@@ -4260,6 +4303,7 @@ void TrainingJobMetadata::MergeFrom(const TrainingJobMetadata& from) {
 
   tags_.MergeFrom(from.tags_);
   arguments_.MergeFrom(from.arguments_);
+  deployment_modular_resources_.MergeFrom(from.deployment_modular_resources_);
   if (!from._internal_synced_model_id().empty()) {
     _internal_set_synced_model_id(from._internal_synced_model_id());
   }
@@ -4338,6 +4382,7 @@ void TrainingJobMetadata::InternalSwap(TrainingJobMetadata* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   tags_.InternalSwap(&other->tags_);
   arguments_.InternalSwap(&other->arguments_);
+  deployment_modular_resources_.InternalSwap(&other->deployment_modular_resources_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &synced_model_id_, lhs_arena,
       &other->synced_model_id_, rhs_arena

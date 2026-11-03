@@ -385,6 +385,34 @@ inline bool ResourceStatus_State_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ResourceStatus_State>(
     ResourceStatus_State_descriptor(), name, value);
 }
+enum ResourceStatus_Reachability : int {
+  ResourceStatus_Reachability_REACHABILITY_UNSPECIFIED = 0,
+  ResourceStatus_Reachability_REACHABILITY_REACHABLE = 1,
+  ResourceStatus_Reachability_REACHABILITY_REMOTE_DISCONNECTED = 2,
+  ResourceStatus_Reachability_REACHABILITY_SHADOWED_BY_LOCAL = 3,
+  ResourceStatus_Reachability_REACHABILITY_AMBIGUOUS_REMOTE = 4,
+  ResourceStatus_Reachability_ResourceStatus_Reachability_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ResourceStatus_Reachability_ResourceStatus_Reachability_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ResourceStatus_Reachability_IsValid(int value);
+constexpr ResourceStatus_Reachability ResourceStatus_Reachability_Reachability_MIN = ResourceStatus_Reachability_REACHABILITY_UNSPECIFIED;
+constexpr ResourceStatus_Reachability ResourceStatus_Reachability_Reachability_MAX = ResourceStatus_Reachability_REACHABILITY_AMBIGUOUS_REMOTE;
+constexpr int ResourceStatus_Reachability_Reachability_ARRAYSIZE = ResourceStatus_Reachability_Reachability_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ResourceStatus_Reachability_descriptor();
+template<typename T>
+inline const std::string& ResourceStatus_Reachability_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ResourceStatus_Reachability>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ResourceStatus_Reachability_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ResourceStatus_Reachability_descriptor(), enum_t_value);
+}
+inline bool ResourceStatus_Reachability_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ResourceStatus_Reachability* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ResourceStatus_Reachability>(
+    ResourceStatus_Reachability_descriptor(), name, value);
+}
 enum ModuleStatus_State : int {
   ModuleStatus_State_STATE_UNSPECIFIED = 0,
   ModuleStatus_State_STATE_PENDING = 1,
@@ -1989,6 +2017,7 @@ class FrameSystemConfig final :
   enum : int {
     kFrameFieldNumber = 1,
     kKinematicsFieldNumber = 2,
+    kModelFieldNumber = 3,
   };
   // .viam.common.v1.Transform frame = 1 [json_name = "frame"];
   bool has_frame() const;
@@ -2008,23 +2037,41 @@ class FrameSystemConfig final :
       ::viam::common::v1::Transform* frame);
   ::viam::common::v1::Transform* unsafe_arena_release_frame();
 
-  // .google.protobuf.Struct kinematics = 2 [json_name = "kinematics"];
-  bool has_kinematics() const;
+  // .google.protobuf.Struct kinematics = 2 [json_name = "kinematics", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_kinematics() const;
   private:
   bool _internal_has_kinematics() const;
   public:
-  void clear_kinematics();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& kinematics() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_kinematics();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_kinematics();
-  void set_allocated_kinematics(::PROTOBUF_NAMESPACE_ID::Struct* kinematics);
+  PROTOBUF_DEPRECATED void clear_kinematics();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::Struct& kinematics() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* release_kinematics();
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* mutable_kinematics();
+  PROTOBUF_DEPRECATED void set_allocated_kinematics(::PROTOBUF_NAMESPACE_ID::Struct* kinematics);
   private:
   const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_kinematics() const;
   ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_kinematics();
   public:
-  void unsafe_arena_set_allocated_kinematics(
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_kinematics(
       ::PROTOBUF_NAMESPACE_ID::Struct* kinematics);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_kinematics();
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_kinematics();
+
+  // .viam.common.v1.KinematicModel model = 3 [json_name = "model"];
+  bool has_model() const;
+  private:
+  bool _internal_has_model() const;
+  public:
+  void clear_model();
+  const ::viam::common::v1::KinematicModel& model() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::KinematicModel* release_model();
+  ::viam::common::v1::KinematicModel* mutable_model();
+  void set_allocated_model(::viam::common::v1::KinematicModel* model);
+  private:
+  const ::viam::common::v1::KinematicModel& _internal_model() const;
+  ::viam::common::v1::KinematicModel* _internal_mutable_model();
+  public:
+  void unsafe_arena_set_allocated_model(
+      ::viam::common::v1::KinematicModel* model);
+  ::viam::common::v1::KinematicModel* unsafe_arena_release_model();
 
   // @@protoc_insertion_point(class_scope:viam.robot.v1.FrameSystemConfig)
  private:
@@ -2035,6 +2082,7 @@ class FrameSystemConfig final :
   typedef void DestructorSkippable_;
   ::viam::common::v1::Transform* frame_;
   ::PROTOBUF_NAMESPACE_ID::Struct* kinematics_;
+  ::viam::common::v1::KinematicModel* model_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
@@ -9509,15 +9557,53 @@ class ResourceStatus final :
     return ResourceStatus_State_Parse(name, value);
   }
 
+  typedef ResourceStatus_Reachability Reachability;
+  static constexpr Reachability REACHABILITY_UNSPECIFIED =
+    ResourceStatus_Reachability_REACHABILITY_UNSPECIFIED;
+  static constexpr Reachability REACHABILITY_REACHABLE =
+    ResourceStatus_Reachability_REACHABILITY_REACHABLE;
+  static constexpr Reachability REACHABILITY_REMOTE_DISCONNECTED =
+    ResourceStatus_Reachability_REACHABILITY_REMOTE_DISCONNECTED;
+  static constexpr Reachability REACHABILITY_SHADOWED_BY_LOCAL =
+    ResourceStatus_Reachability_REACHABILITY_SHADOWED_BY_LOCAL;
+  static constexpr Reachability REACHABILITY_AMBIGUOUS_REMOTE =
+    ResourceStatus_Reachability_REACHABILITY_AMBIGUOUS_REMOTE;
+  static inline bool Reachability_IsValid(int value) {
+    return ResourceStatus_Reachability_IsValid(value);
+  }
+  static constexpr Reachability Reachability_MIN =
+    ResourceStatus_Reachability_Reachability_MIN;
+  static constexpr Reachability Reachability_MAX =
+    ResourceStatus_Reachability_Reachability_MAX;
+  static constexpr int Reachability_ARRAYSIZE =
+    ResourceStatus_Reachability_Reachability_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  Reachability_descriptor() {
+    return ResourceStatus_Reachability_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& Reachability_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, Reachability>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function Reachability_Name.");
+    return ResourceStatus_Reachability_Name(enum_t_value);
+  }
+  static inline bool Reachability_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      Reachability* value) {
+    return ResourceStatus_Reachability_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
     kRevisionFieldNumber = 4,
     kErrorFieldNumber = 5,
+    kRemoteFieldNumber = 8,
     kNameFieldNumber = 1,
     kLastUpdatedFieldNumber = 3,
     kCloudMetadataFieldNumber = 6,
     kStateFieldNumber = 2,
+    kReachabilityFieldNumber = 7,
   };
   // string revision = 4 [json_name = "revision"];
   void clear_revision();
@@ -9545,6 +9631,24 @@ class ResourceStatus final :
   const std::string& _internal_error() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
   std::string* _internal_mutable_error();
+  public:
+
+  // optional string remote = 8 [json_name = "remote"];
+  bool has_remote() const;
+  private:
+  bool _internal_has_remote() const;
+  public:
+  void clear_remote();
+  const std::string& remote() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_remote(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_remote();
+  PROTOBUF_NODISCARD std::string* release_remote();
+  void set_allocated_remote(std::string* remote);
+  private:
+  const std::string& _internal_remote() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_remote(const std::string& value);
+  std::string* _internal_mutable_remote();
   public:
 
   // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
@@ -9610,6 +9714,15 @@ class ResourceStatus final :
   void _internal_set_state(::viam::robot::v1::ResourceStatus_State value);
   public:
 
+  // .viam.robot.v1.ResourceStatus.Reachability reachability = 7 [json_name = "reachability"];
+  void clear_reachability();
+  ::viam::robot::v1::ResourceStatus_Reachability reachability() const;
+  void set_reachability(::viam::robot::v1::ResourceStatus_Reachability value);
+  private:
+  ::viam::robot::v1::ResourceStatus_Reachability _internal_reachability() const;
+  void _internal_set_reachability(::viam::robot::v1::ResourceStatus_Reachability value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.robot.v1.ResourceStatus)
  private:
   class _Internal;
@@ -9621,10 +9734,12 @@ class ResourceStatus final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr revision_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_;
   ::viam::common::v1::ResourceName* name_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated_;
   ::viam::robot::v1::GetCloudMetadataResponse* cloud_metadata_;
   int state_;
+  int reachability_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -11784,7 +11899,7 @@ inline void FrameSystemConfig::set_allocated_frame(::viam::common::v1::Transform
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.frame)
 }
 
-// .google.protobuf.Struct kinematics = 2 [json_name = "kinematics"];
+// .google.protobuf.Struct kinematics = 2 [json_name = "kinematics", deprecated = true];
 inline bool FrameSystemConfig::_internal_has_kinematics() const {
   return this != internal_default_instance() && kinematics_ != nullptr;
 }
@@ -11867,6 +11982,91 @@ inline void FrameSystemConfig::set_allocated_kinematics(::PROTOBUF_NAMESPACE_ID:
   }
   kinematics_ = kinematics;
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.kinematics)
+}
+
+// .viam.common.v1.KinematicModel model = 3 [json_name = "model"];
+inline bool FrameSystemConfig::_internal_has_model() const {
+  return this != internal_default_instance() && model_ != nullptr;
+}
+inline bool FrameSystemConfig::has_model() const {
+  return _internal_has_model();
+}
+inline const ::viam::common::v1::KinematicModel& FrameSystemConfig::_internal_model() const {
+  const ::viam::common::v1::KinematicModel* p = model_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::KinematicModel&>(
+      ::viam::common::v1::_KinematicModel_default_instance_);
+}
+inline const ::viam::common::v1::KinematicModel& FrameSystemConfig::model() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.FrameSystemConfig.model)
+  return _internal_model();
+}
+inline void FrameSystemConfig::unsafe_arena_set_allocated_model(
+    ::viam::common::v1::KinematicModel* model) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(model_);
+  }
+  model_ = model;
+  if (model) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.FrameSystemConfig.model)
+}
+inline ::viam::common::v1::KinematicModel* FrameSystemConfig::release_model() {
+  
+  ::viam::common::v1::KinematicModel* temp = model_;
+  model_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::KinematicModel* FrameSystemConfig::unsafe_arena_release_model() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.FrameSystemConfig.model)
+  
+  ::viam::common::v1::KinematicModel* temp = model_;
+  model_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::KinematicModel* FrameSystemConfig::_internal_mutable_model() {
+  
+  if (model_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::KinematicModel>(GetArenaForAllocation());
+    model_ = p;
+  }
+  return model_;
+}
+inline ::viam::common::v1::KinematicModel* FrameSystemConfig::mutable_model() {
+  ::viam::common::v1::KinematicModel* _msg = _internal_mutable_model();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.FrameSystemConfig.model)
+  return _msg;
+}
+inline void FrameSystemConfig::set_allocated_model(::viam::common::v1::KinematicModel* model) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(model_);
+  }
+  if (model) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(model));
+    if (message_arena != submessage_arena) {
+      model = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, model, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  model_ = model;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.model)
 }
 
 // -------------------------------------------------------------------
@@ -15860,7 +16060,7 @@ inline void ResourceStatus::set_allocated_error(std::string* error) {
 
 // optional .viam.robot.v1.GetCloudMetadataResponse cloud_metadata = 6 [json_name = "cloudMetadata"];
 inline bool ResourceStatus::_internal_has_cloud_metadata() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || cloud_metadata_ != nullptr);
   return value;
 }
@@ -15869,7 +16069,7 @@ inline bool ResourceStatus::has_cloud_metadata() const {
 }
 inline void ResourceStatus::clear_cloud_metadata() {
   if (cloud_metadata_ != nullptr) cloud_metadata_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline const ::viam::robot::v1::GetCloudMetadataResponse& ResourceStatus::_internal_cloud_metadata() const {
   const ::viam::robot::v1::GetCloudMetadataResponse* p = cloud_metadata_;
@@ -15887,14 +16087,14 @@ inline void ResourceStatus::unsafe_arena_set_allocated_cloud_metadata(
   }
   cloud_metadata_ = cloud_metadata;
   if (cloud_metadata) {
-    _has_bits_[0] |= 0x00000001u;
+    _has_bits_[0] |= 0x00000002u;
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    _has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.ResourceStatus.cloud_metadata)
 }
 inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::release_cloud_metadata() {
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
   ::viam::robot::v1::GetCloudMetadataResponse* temp = cloud_metadata_;
   cloud_metadata_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -15910,13 +16110,13 @@ inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::release_clou
 }
 inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::unsafe_arena_release_cloud_metadata() {
   // @@protoc_insertion_point(field_release:viam.robot.v1.ResourceStatus.cloud_metadata)
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
   ::viam::robot::v1::GetCloudMetadataResponse* temp = cloud_metadata_;
   cloud_metadata_ = nullptr;
   return temp;
 }
 inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::_internal_mutable_cloud_metadata() {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
   if (cloud_metadata_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::robot::v1::GetCloudMetadataResponse>(GetArenaForAllocation());
     cloud_metadata_ = p;
@@ -15940,12 +16140,100 @@ inline void ResourceStatus::set_allocated_cloud_metadata(::viam::robot::v1::GetC
       cloud_metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, cloud_metadata, submessage_arena);
     }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  cloud_metadata_ = cloud_metadata;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.cloud_metadata)
+}
+
+// .viam.robot.v1.ResourceStatus.Reachability reachability = 7 [json_name = "reachability"];
+inline void ResourceStatus::clear_reachability() {
+  reachability_ = 0;
+}
+inline ::viam::robot::v1::ResourceStatus_Reachability ResourceStatus::_internal_reachability() const {
+  return static_cast< ::viam::robot::v1::ResourceStatus_Reachability >(reachability_);
+}
+inline ::viam::robot::v1::ResourceStatus_Reachability ResourceStatus::reachability() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ResourceStatus.reachability)
+  return _internal_reachability();
+}
+inline void ResourceStatus::_internal_set_reachability(::viam::robot::v1::ResourceStatus_Reachability value) {
+  
+  reachability_ = value;
+}
+inline void ResourceStatus::set_reachability(::viam::robot::v1::ResourceStatus_Reachability value) {
+  _internal_set_reachability(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ResourceStatus.reachability)
+}
+
+// optional string remote = 8 [json_name = "remote"];
+inline bool ResourceStatus::_internal_has_remote() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ResourceStatus::has_remote() const {
+  return _internal_has_remote();
+}
+inline void ResourceStatus::clear_remote() {
+  remote_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ResourceStatus::remote() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ResourceStatus.remote)
+  return _internal_remote();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ResourceStatus::set_remote(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ remote_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ResourceStatus.remote)
+}
+inline std::string* ResourceStatus::mutable_remote() {
+  std::string* _s = _internal_mutable_remote();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ResourceStatus.remote)
+  return _s;
+}
+inline const std::string& ResourceStatus::_internal_remote() const {
+  return remote_.Get();
+}
+inline void ResourceStatus::_internal_set_remote(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  remote_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ResourceStatus::_internal_mutable_remote() {
+  _has_bits_[0] |= 0x00000001u;
+  return remote_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ResourceStatus::release_remote() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ResourceStatus.remote)
+  if (!_internal_has_remote()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = remote_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (remote_.IsDefault()) {
+    remote_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void ResourceStatus::set_allocated_remote(std::string* remote) {
+  if (remote != nullptr) {
     _has_bits_[0] |= 0x00000001u;
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  cloud_metadata_ = cloud_metadata;
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.cloud_metadata)
+  remote_.SetAllocated(remote, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (remote_.IsDefault()) {
+    remote_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.remote)
 }
 
 // -------------------------------------------------------------------
@@ -17259,6 +17547,11 @@ template <> struct is_proto_enum< ::viam::robot::v1::ResourceStatus_State> : ::s
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::robot::v1::ResourceStatus_State>() {
   return ::viam::robot::v1::ResourceStatus_State_descriptor();
+}
+template <> struct is_proto_enum< ::viam::robot::v1::ResourceStatus_Reachability> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::robot::v1::ResourceStatus_Reachability>() {
+  return ::viam::robot::v1::ResourceStatus_Reachability_descriptor();
 }
 template <> struct is_proto_enum< ::viam::robot::v1::ModuleStatus_State> : ::std::true_type {};
 template <>

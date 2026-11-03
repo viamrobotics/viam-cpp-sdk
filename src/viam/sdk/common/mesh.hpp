@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include <boost/optional/optional.hpp>
+
 namespace viam {
 namespace common {
 namespace v1 {
@@ -19,8 +21,14 @@ namespace viam {
 namespace sdk {
 
 struct mesh {
+    /// @brief Content type of the mesh, e.g. `stl` or `ply`.
     std::string content_type;
+
+    /// @brief Mesh bytes in the format named by `content_type`.
     std::vector<unsigned char> data;
+
+    /// @brief Path the mesh was loaded from, relative to the kinematics file. Informational only.
+    boost::optional<std::string> original_file_source_path_diagnostic;
 };
 
 bool operator==(const mesh& lhs, const mesh& rhs);

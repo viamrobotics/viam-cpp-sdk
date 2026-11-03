@@ -122,8 +122,14 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto1.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.theta,
                               proto1.frame().pose_in_observer_frame().pose().theta());
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
             BOOST_CHECK_EQUAL(to_proto(config1.kinematics).SerializeAsString(),
                               proto1.kinematics().SerializeAsString());
+#pragma GCC diagnostic pop
+            BOOST_REQUIRE(config1.model);
+            BOOST_REQUIRE(proto1.has_model());
+            BOOST_CHECK(*config1.model == from_proto(proto1.model()));
 
             BOOST_CHECK_EQUAL(config2.frame.reference_frame, proto2.frame().reference_frame());
             BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.coordinates.x,
@@ -132,8 +138,13 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto2.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.theta,
                               proto2.frame().pose_in_observer_frame().pose().theta());
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
             BOOST_CHECK_EQUAL(to_proto(config2.kinematics).SerializeAsString(),
                               proto2.kinematics().SerializeAsString());
+#pragma GCC diagnostic pop
+            BOOST_CHECK(!config2.model);
+            BOOST_CHECK(!proto2.has_model());
         });
 }
 

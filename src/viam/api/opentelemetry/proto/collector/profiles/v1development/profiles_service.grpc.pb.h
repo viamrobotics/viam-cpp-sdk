@@ -48,6 +48,8 @@ namespace v1development {
 
 // Service that can be used to push profiles between one Application instrumented with
 // OpenTelemetry and a collector, or between a collector and a central collector.
+//
+// [Since v1.4.0]
 class ProfilesService final {
  public:
   static constexpr char const* service_full_name() {

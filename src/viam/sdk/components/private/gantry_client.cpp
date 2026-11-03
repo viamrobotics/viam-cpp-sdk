@@ -6,6 +6,7 @@
 #include <viam/api/component/gantry/v1/gantry.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
 
 namespace viam {
@@ -75,11 +76,33 @@ ProtoStruct GantryClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-::viam::sdk::KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
+KinematicModel GantryClient::get_kinematic_model(const kinematics_options& options,
+                                                 const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetKinematics)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_include_collision_meshes(options.include_collision_meshes);
+                  request.set_include_visual_meshes(options.include_visual_meshes);
+              })
+        .invoke([](auto& response) {
+            if (!response.has_model()) {
+                throw Exception(ErrorCondition::k_not_supported,
+                                "server did not return a kinematic model");
+            }
+            return from_proto(response.model());
+        });
+}
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
 }
+
+#pragma GCC diagnostic pop
 
 std::vector<GeometryConfig> GantryClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
