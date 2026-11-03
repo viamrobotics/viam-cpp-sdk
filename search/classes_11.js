@@ -16,6 +16,7 @@ var searchData=
   ['resourceserver_13',['ResourceServer',['../classviam_1_1sdk_1_1ResourceServer.html',1,'viam::sdk']]],
   ['resourceserverregistration_14',['ResourceServerRegistration',['../classviam_1_1sdk_1_1ResourceServerRegistration.html',1,'viam::sdk']]],
   ['response_5fmetadata_15',['response_metadata',['../structviam_1_1sdk_1_1response__metadata.html',1,'viam::sdk']]],
-  ['robotclient_16',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
-  ['rpcsubtype_17',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]]
+  ['revolutejoint_16',['RevoluteJoint',['../structviam_1_1sdk_1_1RevoluteJoint.html',1,'viam::sdk']]],
+  ['robotclient_17',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
+  ['rpcsubtype_18',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]]
 ];

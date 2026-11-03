@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['high_0',['high',['../structviam_1_1sdk_1_1Board_1_1Tick.html#ac50f2e1597a07d9a5d8abdd06451b597',1,'viam::sdk::Board::Tick']]]
+  ['geometry_0',['geometry',['../structviam_1_1sdk_1_1PrismaticJoint.html#a571ccb99d446cf3218ecedcfa1b2e634',1,'viam::sdk::PrismaticJoint']]]
 ];

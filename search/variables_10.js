@@ -1,7 +1,13 @@
 var searchData=
 [
-  ['validate_0',['validate',['../classviam_1_1sdk_1_1ModelRegistration.html#ab67562cb73b96f659378050b60f7b5cb',1,'viam::sdk::ModelRegistration']]],
-  ['value_1',['value',['../structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html#a5c037ef6b176e742a77dbc64d2c43a7c',1,'viam::sdk::MovementSensor::compassheading']]],
-  ['vision_5fservice_2',['vision_service',['../structviam_1_1sdk_1_1obstacle__detector.html#a2244bb582533a6a0489d2066c4048a68',1,'viam::sdk::obstacle_detector']]],
-  ['volts_3',['volts',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html#a14f378a6d53d4514a340efe1526da02e',1,'viam::sdk::PowerSensor::voltage']]]
+  ['spec_0',['spec',['../structviam_1_1sdk_1_1KinematicJoint.html#ac76b44ae94f08d47d98ad83666b612b5',1,'viam::sdk::KinematicJoint']]],
+  ['speed_5fmm_5fper_5fsec_1',['speed_mm_per_sec',['../structviam_1_1sdk_1_1Gantry_1_1movement__coordinate.html#a636c2522576a9f0d9e12eff0f6473f71',1,'viam::sdk::Gantry::movement_coordinate']]],
+  ['src_5ftype_2',['src_type',['../structviam_1_1sdk_1_1DataClient_1_1tabular__data__by__mql__opts.html#a2788bfb2d973431888bf7850a14b6ee5',1,'viam::sdk::DataClient::tabular_data_by_mql_opts']]],
+  ['state_3',['state',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html#a5bb5da1d6316c3673e3490e59ed374db',1,'viam::sdk::Motion::plan_status']]],
+  ['status_4',['status',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a24594dd4ba8f5c1d2ef55fa469c5b4a1',1,'viam::sdk::Motion::plan_status_with_id::status'],['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a276dfc0b121457b4b8bf6ab795870ea2',1,'viam::sdk::Motion::plan_with_status::status']]],
+  ['status_5fhistory_5',['status_history',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#af9e92f1b33c48bb09e153fb107620393',1,'viam::sdk::Motion::plan_with_status']]],
+  ['steps_6',['steps',['../structviam_1_1sdk_1_1Motion_1_1plan.html#ae66ef8ca1f675780c64ebaf8914ca492',1,'viam::sdk::Motion::plan']]],
+  ['support_5fcartesian_5fcommands_7',['support_cartesian_commands',['../structviam_1_1sdk_1_1Arm_1_1properties.html#a6e5cc076dabab4ab6638b9f4876e7ef3',1,'viam::sdk::Arm::properties']]],
+  ['support_5fmanual_5fmode_8',['support_manual_mode',['../structviam_1_1sdk_1_1Arm_1_1properties.html#ae232c55fecbf88614044c86029a89607',1,'viam::sdk::Arm::properties']]],
+  ['supports_5fpcd_9',['supports_pcd',['../structviam_1_1sdk_1_1Camera_1_1properties.html#a348cb6f06fb3b3bbac410e01a808008a',1,'viam::sdk::Camera::properties']]]
 ];

@@ -9,12 +9,15 @@ var searchData=
   ['on_20logging_6',['A note on logging',['../index.html#autotoc_md6',1,'']]],
   ['open_7',['open',['../classviam_1_1sdk_1_1Gripper.html#a337d1e97fa8be14a64e88544739e7f7e',1,'viam::sdk::Gripper::open()'],['../classviam_1_1sdk_1_1Gripper.html#a327120fa56386dcd75aa3caa73001c49',1,'viam::sdk::Gripper::open(const ProtoStruct &amp;extra)=0'],['../classviam_1_1sdk_1_1impl_1_1GripperClient.html#a166570bdcfb1eabd87ac6060ed6cd65c',1,'viam::sdk::impl::GripperClient::open(const ProtoStruct &amp;extra) override'],['../classviam_1_1sdk_1_1impl_1_1GripperClient.html#a337d1e97fa8be14a64e88544739e7f7e',1,'viam::sdk::impl::GripperClient::open()'],['../classviam_1_1sdk_1_1impl_1_1GripperClient.html#a327120fa56386dcd75aa3caa73001c49',1,'viam::sdk::impl::GripperClient::open(const ProtoStruct &amp;extra)=0']]],
   ['open_5fexisting_8',['open_existing',['../classviam_1_1sdk_1_1Instance.html#a8a82a81310c4339011555fbe15689aa8aa200dcd6176417e93be2405188ae7cc9',1,'viam::sdk::Instance']]],
-  ['operation_9',['operation',['../structviam_1_1sdk_1_1RobotClient_1_1operation.html',1,'viam::sdk::RobotClient']]],
-  ['operator_3d_10',['operator=',['../classviam_1_1sdk_1_1ProtoValue.html#a5b6428bbf343bd04c1ad7c55697b4666',1,'viam::sdk::ProtoValue']]],
-  ['operator_3d_3d_11',['operator==',['../classviam_1_1sdk_1_1ProtoValue.html#a743e5f6dc6e0f06f218f019c7fef7142',1,'viam::sdk::ProtoValue']]],
-  ['options_12',['Options',['../classviam_1_1sdk_1_1Options.html',1,'viam::sdk::Options'],['../classviam_1_1sdk_1_1ViamChannel_1_1Options.html',1,'viam::sdk::ViamChannel::Options']]],
-  ['orientation_13',['orientation',['../structviam_1_1sdk_1_1MovementSensor_1_1orientation.html',1,'viam::sdk::MovementSensor']]],
-  ['orientation_5fconstraint_14',['orientation_constraint',['../structviam_1_1sdk_1_1Motion_1_1orientation__constraint.html',1,'viam::sdk::Motion']]],
-  ['orientation_5fvector_15',['orientation_vector',['../structviam_1_1sdk_1_1orientation__vector.html',1,'viam::sdk']]],
-  ['orientation_5fvector_5fdegrees_16',['orientation_vector_degrees',['../structviam_1_1sdk_1_1orientation__vector__degrees.html',1,'viam::sdk']]]
+  ['operating_5ffreq_5fhz_9',['operating_freq_hz',['../structviam_1_1sdk_1_1KinematicProperties.html#a6f830414adc41ec21fc7e48f5192c696',1,'viam::sdk::KinematicProperties']]],
+  ['operation_10',['operation',['../structviam_1_1sdk_1_1RobotClient_1_1operation.html',1,'viam::sdk::RobotClient']]],
+  ['operator_3d_11',['operator=',['../classviam_1_1sdk_1_1ProtoValue.html#a5b6428bbf343bd04c1ad7c55697b4666',1,'viam::sdk::ProtoValue']]],
+  ['operator_3d_3d_12',['operator==',['../classviam_1_1sdk_1_1ProtoValue.html#a743e5f6dc6e0f06f218f019c7fef7142',1,'viam::sdk::ProtoValue']]],
+  ['options_13',['Options',['../classviam_1_1sdk_1_1Options.html',1,'viam::sdk::Options'],['../classviam_1_1sdk_1_1ViamChannel_1_1Options.html',1,'viam::sdk::ViamChannel::Options']]],
+  ['orientation_14',['orientation',['../structviam_1_1sdk_1_1MovementSensor_1_1orientation.html',1,'viam::sdk::MovementSensor::orientation'],['../structviam_1_1sdk_1_1LinkPose.html#ac3d6627fc194dc2eef2a9e55b988a322',1,'viam::sdk::LinkPose::orientation']]],
+  ['orientation_5fconstraint_15',['orientation_constraint',['../structviam_1_1sdk_1_1Motion_1_1orientation__constraint.html',1,'viam::sdk::Motion']]],
+  ['orientation_5fvector_16',['orientation_vector',['../structviam_1_1sdk_1_1orientation__vector.html',1,'viam::sdk']]],
+  ['orientation_5fvector_5fdegrees_17',['orientation_vector_degrees',['../structviam_1_1sdk_1_1orientation__vector__degrees.html',1,'viam::sdk']]],
+  ['original_5ffile_5fsource_5fpath_5fdiagnostic_18',['original_file_source_path_diagnostic',['../structviam_1_1sdk_1_1mesh.html#a8c9d429f8627933eb24d484520e9f1f9',1,'viam::sdk::mesh']]],
+  ['output_5fframes_19',['output_frames',['../structviam_1_1sdk_1_1KinematicModel.html#a441e57d9715cbdad639e91185a42fbc8',1,'viam::sdk::KinematicModel']]]
 ];

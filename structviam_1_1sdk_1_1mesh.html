@@ -86,10 +86,16 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad93145b38b791d4aeeda44b0de65585f" id="r_ad93145b38b791d4aeeda44b0de65585f"><td class="memItemLeft" align="right" valign="top"><a id="ad93145b38b791d4aeeda44b0de65585f" name="ad93145b38b791d4aeeda44b0de65585f"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>content_type</b></td></tr>
+<tr class="memdesc:ad93145b38b791d4aeeda44b0de65585f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Content type of the mesh, e.g. <code>stl</code> or <code>ply</code>. <br /></td></tr>
 <tr class="separator:ad93145b38b791d4aeeda44b0de65585f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4df29b302f01cbce7dbb3163cf16485d" id="r_a4df29b302f01cbce7dbb3163cf16485d"><td class="memItemLeft" align="right" valign="top"><a id="a4df29b302f01cbce7dbb3163cf16485d" name="a4df29b302f01cbce7dbb3163cf16485d"></a>
 std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="memdesc:a4df29b302f01cbce7dbb3163cf16485d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh bytes in the format named by <code>content_type</code>. <br /></td></tr>
 <tr class="separator:a4df29b302f01cbce7dbb3163cf16485d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c9d429f8627933eb24d484520e9f1f9" id="r_a8c9d429f8627933eb24d484520e9f1f9"><td class="memItemLeft" align="right" valign="top"><a id="a8c9d429f8627933eb24d484520e9f1f9" name="a8c9d429f8627933eb24d484520e9f1f9"></a>
+boost::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>original_file_source_path_diagnostic</b></td></tr>
+<tr class="memdesc:a8c9d429f8627933eb24d484520e9f1f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path the mesh was loaded from, relative to the kinematics file. Informational only. <br /></td></tr>
+<tr class="separator:a8c9d429f8627933eb24d484520e9f1f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/viam/sdk/common/<a class="el" href="mesh_8hpp_source.html">mesh.hpp</a></li>

@@ -93,9 +93,13 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a346921743f80a4a266d8046058682146" id="r_a346921743f80a4a266d8046058682146"><td class="memItemLeft" align="right" valign="top"><a id="a346921743f80a4a266d8046058682146" name="a346921743f80a4a266d8046058682146"></a>
 <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a>&#160;</td><td class="memItemRight" valign="bottom"><b>frame</b></td></tr>
 <tr class="separator:a346921743f80a4a266d8046058682146"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a887c9e9da0eb259b0e2dbdf2e182bc79" id="r_a887c9e9da0eb259b0e2dbdf2e182bc79"><td class="memItemLeft" align="right" valign="top"><a id="a887c9e9da0eb259b0e2dbdf2e182bc79" name="a887c9e9da0eb259b0e2dbdf2e182bc79"></a>
-ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><b>kinematics</b></td></tr>
+<tr class="memitem:a887c9e9da0eb259b0e2dbdf2e182bc79" id="r_a887c9e9da0eb259b0e2dbdf2e182bc79"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a887c9e9da0eb259b0e2dbdf2e182bc79">kinematics</a></td></tr>
+<tr class="memdesc:a887c9e9da0eb259b0e2dbdf2e182bc79"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resource's kinematics as a raw file, when served by an older viam-server.  <br /></td></tr>
 <tr class="separator:a887c9e9da0eb259b0e2dbdf2e182bc79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95ac904783d87955fa08ffa1917e6395" id="r_a95ac904783d87955fa08ffa1917e6395"><td class="memItemLeft" align="right" valign="top"><a id="a95ac904783d87955fa08ffa1917e6395" name="a95ac904783d87955fa08ffa1917e6395"></a>
+boost::optional&lt; <a class="el" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>model</b></td></tr>
+<tr class="memdesc:a95ac904783d87955fa08ffa1917e6395"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resource's kinematic model, absent for resources without kinematics. <br /></td></tr>
+<tr class="separator:a95ac904783d87955fa08ffa1917e6395"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -105,7 +109,25 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>One frame of the frame system, with the kinematics of the resource it belongs to. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a887c9e9da0eb259b0e2dbdf2e182bc79" name="a887c9e9da0eb259b0e2dbdf2e182bc79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a887c9e9da0eb259b0e2dbdf2e182bc79">&#9670;&#160;</a></span>kinematics</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::FrameSystem::frame_system_config::kinematics</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The resource's kinematics as a raw file, when served by an older viam-server. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd>Use <code>model</code>. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/viam/sdk/services/<a class="el" href="framesystem_8hpp_source.html">framesystem.hpp</a></li>
 </ul>
 </div><!-- contents -->

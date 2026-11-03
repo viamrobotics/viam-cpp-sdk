@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mime_5ftypes_0',['mime_types',['../structviam_1_1sdk_1_1Camera_1_1properties.html#affdc2cf4e032a426abc02e4fe73df15f',1,'viam::sdk::Camera::properties']]]
+  ['linear_5fm_5fper_5fsec_0',['linear_m_per_sec',['../structviam_1_1sdk_1_1motion__configuration.html#a959e4ef1d77474235c8121f9cb619a67',1,'viam::sdk::motion_configuration']]]
 ];

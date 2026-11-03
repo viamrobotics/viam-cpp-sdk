@@ -1,5 +1,17 @@
 var searchData=
 [
-  ['reason_0',['reason',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html#ad8eb9b5f3f556d0faefbb55c1913e092',1,'viam::sdk::Motion::plan_status']]],
-  ['reference_5fframe_1',['reference_frame',['../structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html#abb0f00f07ccde842adf56cdf2d5d4737',1,'viam::sdk::WorldState::geometries_in_frame::reference_frame'],['../structviam_1_1sdk_1_1WorldState_1_1transform.html#a135d045c3e6a199dea43025133df4d99',1,'viam::sdk::WorldState::transform::reference_frame']]]
+  ['parent_0',['parent',['../structviam_1_1sdk_1_1KinematicLink.html#ad7face6f79b9b07fce60f592516b245e',1,'viam::sdk::KinematicLink::parent'],['../structviam_1_1sdk_1_1KinematicJoint.html#ae2b34ca35428e477cdd5f5847fb5f02b',1,'viam::sdk::KinematicJoint::parent']]],
+  ['physical_5fobject_1',['physical_object',['../structviam_1_1sdk_1_1WorldState_1_1transform.html#ac5f2e0383bdfa0e710b778eccb467527',1,'viam::sdk::WorldState::transform']]],
+  ['pin_5fname_2',['pin_name',['../structviam_1_1sdk_1_1Board_1_1Tick.html#a184710552160686a8e17f997d88f88a1',1,'viam::sdk::Board::Tick']]],
+  ['pipeline_5fid_3',['pipeline_id',['../structviam_1_1sdk_1_1DataClient_1_1tabular__data__by__mql__opts.html#a4b01fad542614891860652237bde9492',1,'viam::sdk::DataClient::tabular_data_by_mql_opts']]],
+  ['plan_4',['plan',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a0a236586ee8d4f758eb50a2ff9ad2a86',1,'viam::sdk::Motion::plan_with_status']]],
+  ['plan_5fdeviation_5fm_5',['plan_deviation_m',['../structviam_1_1sdk_1_1motion__configuration.html#ac8a390fb620697ac9099c9be03dc2fc4',1,'viam::sdk::motion_configuration']]],
+  ['plan_5fid_6',['plan_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#aeaea77521be70919b2a5c94ac1b73e4b',1,'viam::sdk::Motion::plan_status_with_id']]],
+  ['pose_7',['pose',['../structviam_1_1sdk_1_1KinematicLink.html#a8acb65e3144fa1b6078ff98159b42fdb',1,'viam::sdk::KinematicLink']]],
+  ['pose_5fin_5fobserver_5fframe_8',['pose_in_observer_frame',['../structviam_1_1sdk_1_1WorldState_1_1transform.html#a0ab7b0b9110729da5b0a719276e74362',1,'viam::sdk::WorldState::transform']]],
+  ['position_5fmm_9',['position_mm',['../structviam_1_1sdk_1_1Gantry_1_1movement__coordinate.html#ac574c5e8a90122742d528d60d5e7f03e',1,'viam::sdk::Gantry::movement_coordinate']]],
+  ['position_5fpolling_5ffrequency_5fhz_10',['position_polling_frequency_hz',['../structviam_1_1sdk_1_1motion__configuration.html#aba47f2fc7d5d05619681b48efc53dd65',1,'viam::sdk::motion_configuration']]],
+  ['position_5freporting_11',['position_reporting',['../structviam_1_1sdk_1_1Motor_1_1properties.html#a6cfffefae3df6f503ead3e5f8f3b9dd9',1,'viam::sdk::Motor::properties']]],
+  ['positions_12',['positions',['../structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#a870dc182963c9a451606f15ff708ae50',1,'viam::sdk::Arm::trajectory_point']]],
+  ['power_5fpct_13',['power_pct',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a2a0673d493b18e92e14fedd7dab50d1a',1,'viam::sdk::Motor::power_status']]]
 ];

@@ -8,7 +8,12 @@ var searchData=
   ['kind_3c_20std_3a_3anullptr_5ft_20_3e_5',['kind&lt; std::nullptr_t &gt;',['../structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1nullptr__t_01_4.html',1,'viam::sdk::proto_value_details']]],
   ['kind_3c_20std_3a_3astring_20_3e_6',['kind&lt; std::string &gt;',['../structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1string_01_4.html',1,'viam::sdk::proto_value_details']]],
   ['kinematic_5fconstraints_7',['kinematic_constraints',['../structviam_1_1sdk_1_1Arm_1_1trajectory__point_1_1kinematic__constraints.html',1,'viam::sdk::Arm::trajectory_point']]],
-  ['kinematicsdatasva_8',['KinematicsDataSVA',['../structviam_1_1sdk_1_1KinematicsDataSVA.html',1,'viam::sdk']]],
-  ['kinematicsdataunspecified_9',['KinematicsDataUnspecified',['../structviam_1_1sdk_1_1KinematicsDataUnspecified.html',1,'viam::sdk']]],
-  ['kinematicsdataurdf_10',['KinematicsDataURDF',['../structviam_1_1sdk_1_1KinematicsDataURDF.html',1,'viam::sdk']]]
+  ['kinematicjoint_8',['KinematicJoint',['../structviam_1_1sdk_1_1KinematicJoint.html',1,'viam::sdk']]],
+  ['kinematiclink_9',['KinematicLink',['../structviam_1_1sdk_1_1KinematicLink.html',1,'viam::sdk']]],
+  ['kinematicmodel_10',['KinematicModel',['../structviam_1_1sdk_1_1KinematicModel.html',1,'viam::sdk']]],
+  ['kinematicproperties_11',['KinematicProperties',['../structviam_1_1sdk_1_1KinematicProperties.html',1,'viam::sdk']]],
+  ['kinematics_5foptions_12',['kinematics_options',['../structviam_1_1sdk_1_1kinematics__options.html',1,'viam::sdk']]],
+  ['kinematicsdatasva_13',['KinematicsDataSVA',['../structviam_1_1sdk_1_1KinematicsDataSVA.html',1,'viam::sdk']]],
+  ['kinematicsdataunspecified_14',['KinematicsDataUnspecified',['../structviam_1_1sdk_1_1KinematicsDataUnspecified.html',1,'viam::sdk']]],
+  ['kinematicsdataurdf_15',['KinematicsDataURDF',['../structviam_1_1sdk_1_1KinematicsDataURDF.html',1,'viam::sdk']]]
 ];

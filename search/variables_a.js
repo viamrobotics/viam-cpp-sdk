@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['obstacle_5fdetectors_0',['obstacle_detectors',['../structviam_1_1sdk_1_1motion__configuration.html#a8f2d86e53156ed23f62fde7ea8dbf3e6',1,'viam::sdk::motion_configuration']]],
-  ['obstacle_5fpolling_5ffrequency_5fhz_1',['obstacle_polling_frequency_hz',['../structviam_1_1sdk_1_1motion__configuration.html#acc4dee8212a8d898b716b5bae5b24522',1,'viam::sdk::motion_configuration']]]
+  ['max_5flinear_5ftcp_5fspeed_5fmm_5fper_5fsec_0',['max_linear_tcp_speed_mm_per_sec',['../structviam_1_1sdk_1_1KinematicProperties.html#a62ab8e1c6e72413d45c107743f61b7f7',1,'viam::sdk::KinematicProperties']]],
+  ['mime_5ftypes_1',['mime_types',['../structviam_1_1sdk_1_1Camera_1_1properties.html#affdc2cf4e032a426abc02e4fe73df15f',1,'viam::sdk::Camera::properties']]],
+  ['model_2',['model',['../structviam_1_1sdk_1_1FrameSystem_1_1frame__system__config.html#a95ac904783d87955fa08ffa1917e6395',1,'viam::sdk::FrameSystem::frame_system_config']]]
 ];

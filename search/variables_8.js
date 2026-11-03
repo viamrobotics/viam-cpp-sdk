@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['linear_5fm_5fper_5fsec_0',['linear_m_per_sec',['../structviam_1_1sdk_1_1motion__configuration.html#a959e4ef1d77474235c8121f9cb619a67',1,'viam::sdk::motion_configuration']]]
+  ['kinematics_0',['kinematics',['../structviam_1_1sdk_1_1FrameSystem_1_1frame__system__config.html#a887c9e9da0eb259b0e2dbdf2e182bc79',1,'viam::sdk::FrameSystem::frame_system_config']]],
+  ['kpublicname_1',['kPublicName',['../classviam_1_1sdk_1_1FrameSystem.html#adbecf9184ba5e6a2a03b8f4a086be56c',1,'viam::sdk::FrameSystem']]]
 ];

@@ -13,6 +13,7 @@ var searchData=
   ['viamclient_10',['ViamClient',['../classviam_1_1sdk_1_1ViamClient.html',1,'viam::sdk']]],
   ['vision_5fservice_11',['vision_service',['../structviam_1_1sdk_1_1obstacle__detector.html#a2244bb582533a6a0489d2066c4048a68',1,'viam::sdk::obstacle_detector']]],
   ['visit_20api_12',['ProtoValue visit API',['../group__ProtoValueVisit.html',1,'']]],
-  ['voltage_13',['voltage',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html',1,'viam::sdk::PowerSensor']]],
-  ['volts_14',['volts',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html#a14f378a6d53d4514a340efe1526da02e',1,'viam::sdk::PowerSensor::voltage']]]
+  ['visual_13',['visual',['../structviam_1_1sdk_1_1KinematicLink.html#aa08704dd284b2ac81af60ac4c0d16e22',1,'viam::sdk::KinematicLink']]],
+  ['voltage_14',['voltage',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html',1,'viam::sdk::PowerSensor']]],
+  ['volts_15',['volts',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html#a14f378a6d53d4514a340efe1526da02e',1,'viam::sdk::PowerSensor::voltage']]]
 ];

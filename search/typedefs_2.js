@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logsource_0',['LogSource',['../group__Log.html#gaf5591a93c7e183a679724bc5f278f39f',1,'viam::sdk']]]
+  ['joint_5fspec_0',['joint_spec',['../kinematics_8hpp.html#a6f7202aaa4c9d6ddeac556e8ceabe856',1,'viam::sdk']]]
 ];

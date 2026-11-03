@@ -11,7 +11,8 @@ var searchData=
   ['component_8',['Component',['../classviam_1_1sdk_1_1Component.html',1,'viam::sdk']]],
   ['config_5fstatus_9',['config_status',['../structviam_1_1sdk_1_1RobotClient_1_1config__status.html',1,'viam::sdk::RobotClient']]],
   ['constraints_10',['constraints',['../structviam_1_1sdk_1_1Motion_1_1constraints.html',1,'viam::sdk::Motion']]],
-  ['coordinates_11',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
-  ['credentials_12',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]],
-  ['current_13',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor']]]
+  ['continuousjoint_11',['ContinuousJoint',['../structviam_1_1sdk_1_1ContinuousJoint.html',1,'viam::sdk']]],
+  ['coordinates_12',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
+  ['credentials_13',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]],
+  ['current_14',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor']]]
 ];
