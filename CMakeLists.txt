@@ -517,14 +517,14 @@ include(FetchContent)
 FetchContent_Declare(
   xtl
   GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
-  GIT_TAG        ef84e9f27020ad54961c99acd293d80d4b775dd3 # 0.8.0
+  GIT_TAG        c52350e283b98e5d69dbc50726925a1f8e16c57c # 0.8.2
   FIND_PACKAGE_ARGS ${VIAMCPPSDK_XTL_VERSION_MINIMUM} CONFIG
 )
 
 FetchContent_Declare(
   xtensor
   GIT_REPOSITORY https://github.com/xtensor-stack/xtensor
-  GIT_TAG        f31d415a507b84d0097436a38293df3f56906ad1 # 0.26.0
+  GIT_TAG        f115228a7fc277b9be1bef34572831f8fd53ac73 # 0.27.1
   FIND_PACKAGE_ARGS ${VIAMCPPSDK_XTENSOR_VERSION_MINIMUM} CONFIG
 )
 
