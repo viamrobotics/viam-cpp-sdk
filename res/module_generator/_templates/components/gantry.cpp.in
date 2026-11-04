@@ -68,9 +68,11 @@ std::vector<viam::sdk::GeometryConfig> {{ .ModelPascal }}::get_geometries(const 
     throw std::logic_error("\"get_geometries\" not implemented");
 }
 
-viam::sdk::KinematicsData {{ .ModelPascal }}::get_kinematics(const viam::sdk::ProtoStruct & extra)
+viam::sdk::KinematicModel {{ .ModelPascal }}::get_kinematic_model(
+        const viam::sdk::kinematics_options & options,
+        const viam::sdk::ProtoStruct & extra)
 {
-    throw std::logic_error("\"get_kinematics\" not implemented");
+    throw std::logic_error("\"get_kinematic_model\" not implemented");
 }
 
 } // namespace {{ .ModuleSnake }}
