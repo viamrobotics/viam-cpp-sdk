@@ -12,6 +12,42 @@ variable "REGISTRY" {
   default = "ghcr.io/viamrobotics"
 }
 
+// Per-run image version, YYYY-MM.NN (see image-version.sh). Empty for local
+// builds: only the floating `:<codename>` tag is produced.
+variable "IMAGE_VERSION" {
+  default = ""
+}
+
+// Git revision the images were built from.
+variable "REVISION" {
+  default = ""
+}
+
+// Labels shared by every published cell. The OCI version/revision labels let
+// `docker inspect` on a floating tag reveal which build it currently points at.
+function "cell_labels" {
+  params = [cell, strategy]
+  result = merge(
+    {
+      "viam.cellAxis.distro"   = cell.distro
+      "viam.cellAxis.version"  = cell.version
+      "viam.cellAxis.strategy" = strategy
+    },
+    IMAGE_VERSION != "" ? { "org.opencontainers.image.version" = IMAGE_VERSION } : {},
+    REVISION != "" ? { "org.opencontainers.image.revision" = REVISION } : {},
+  )
+}
+
+// Floating codename tag plus, when versioned, the immutable `<codename>-<version>`
+// tag. Both live in the cell's repository ${REGISTRY}/cpp-sdk-<strategy>-<distro>.
+function "cell_tags" {
+  params = [cell, strategy]
+  result = concat(
+    ["${REGISTRY}/cpp-sdk-${strategy}-${cell.distro}:${cell.version}"],
+    IMAGE_VERSION != "" ? ["${REGISTRY}/cpp-sdk-${strategy}-${cell.distro}:${cell.version}-${IMAGE_VERSION}"] : [],
+  )
+}
+
 group "default" {
   targets = ["system", "conan"]
 }
@@ -51,15 +87,8 @@ target "system" {
     VERSION = cell.version
   }
 
-  tags = [
-    "${REGISTRY}/cpp-sdk-system-${cell.distro}:${cell.version}",
-  ]
-
-  labels = {
-    "viam.cellAxis.distro"   = cell.distro
-    "viam.cellAxis.version"  = cell.version
-    "viam.cellAxis.strategy" = "system"
-  }
+  tags   = cell_tags(cell, "system")
+  labels = cell_labels(cell, "system")
 }
 
 target "conan" {
@@ -86,13 +115,6 @@ target "conan" {
     VERSION = cell.version
   }
 
-  tags = [
-    "${REGISTRY}/cpp-sdk-conan-${cell.distro}:${cell.version}",
-  ]
-
-  labels = {
-    "viam.cellAxis.distro"   = cell.distro
-    "viam.cellAxis.version"  = cell.version
-    "viam.cellAxis.strategy" = "conan"
-  }
+  tags   = cell_tags(cell, "conan")
+  labels = cell_labels(cell, "conan")
 }
