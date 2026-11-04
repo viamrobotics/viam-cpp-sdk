@@ -6380,9 +6380,10 @@ class TempStreamArmJointPositionsRequest final :
 // -------------------------------------------------------------------
 
 class TempStreamArmJointPositionsResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.TempStreamArmJointPositionsResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.TempStreamArmJointPositionsResponse) */ {
  public:
   inline TempStreamArmJointPositionsResponse() : TempStreamArmJointPositionsResponse(nullptr) {}
+  ~TempStreamArmJointPositionsResponse() override;
   explicit PROTOBUF_CONSTEXPR TempStreamArmJointPositionsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   TempStreamArmJointPositionsResponse(const TempStreamArmJointPositionsResponse& from);
@@ -6455,15 +6456,27 @@ class TempStreamArmJointPositionsResponse final :
   TempStreamArmJointPositionsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<TempStreamArmJointPositionsResponse>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const TempStreamArmJointPositionsResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const TempStreamArmJointPositionsResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TempStreamArmJointPositionsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TempStreamArmJointPositionsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TempStreamArmJointPositionsResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -6484,6 +6497,22 @@ class TempStreamArmJointPositionsResponse final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kMotionSideCurrentRunwayMsFieldNumber = 1,
+  };
+  // optional int32 motion_side_current_runway_ms = 1 [json_name = "motionSideCurrentRunwayMs"];
+  bool has_motion_side_current_runway_ms() const;
+  private:
+  bool _internal_has_motion_side_current_runway_ms() const;
+  public:
+  void clear_motion_side_current_runway_ms();
+  int32_t motion_side_current_runway_ms() const;
+  void set_motion_side_current_runway_ms(int32_t value);
+  private:
+  int32_t _internal_motion_side_current_runway_ms() const;
+  void _internal_set_motion_side_current_runway_ms(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.service.motion.v1.TempStreamArmJointPositionsResponse)
  private:
   class _Internal;
@@ -6491,6 +6520,9 @@ class TempStreamArmJointPositionsResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  int32_t motion_side_current_runway_ms_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
 // ===================================================================
@@ -12644,6 +12676,34 @@ inline TempStreamArmJointPositionsRequest::MessageCase TempStreamArmJointPositio
 // -------------------------------------------------------------------
 
 // TempStreamArmJointPositionsResponse
+
+// optional int32 motion_side_current_runway_ms = 1 [json_name = "motionSideCurrentRunwayMs"];
+inline bool TempStreamArmJointPositionsResponse::_internal_has_motion_side_current_runway_ms() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool TempStreamArmJointPositionsResponse::has_motion_side_current_runway_ms() const {
+  return _internal_has_motion_side_current_runway_ms();
+}
+inline void TempStreamArmJointPositionsResponse::clear_motion_side_current_runway_ms() {
+  motion_side_current_runway_ms_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline int32_t TempStreamArmJointPositionsResponse::_internal_motion_side_current_runway_ms() const {
+  return motion_side_current_runway_ms_;
+}
+inline int32_t TempStreamArmJointPositionsResponse::motion_side_current_runway_ms() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.TempStreamArmJointPositionsResponse.motion_side_current_runway_ms)
+  return _internal_motion_side_current_runway_ms();
+}
+inline void TempStreamArmJointPositionsResponse::_internal_set_motion_side_current_runway_ms(int32_t value) {
+  _has_bits_[0] |= 0x00000001u;
+  motion_side_current_runway_ms_ = value;
+}
+inline void TempStreamArmJointPositionsResponse::set_motion_side_current_runway_ms(int32_t value) {
+  _internal_set_motion_side_current_runway_ms(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.TempStreamArmJointPositionsResponse.motion_side_current_runway_ms)
+}
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop

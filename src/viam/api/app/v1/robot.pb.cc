@@ -293,6 +293,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR UserPermission::UserPermission(
     ::_pbi::ConstantInitialized)
   : permissions_()
+  , users_()
   , user_(nullptr){}
 struct UserPermissionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UserPermissionDefaultTypeInternal()
@@ -961,8 +962,9 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UserPermission, user_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UserPermission, users_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UserPermission, permissions_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UserPermission, user_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::User, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1274,37 +1276,37 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 192, -1, -1, sizeof(::viam::app::v1::TrafficTunnelEndpoint)},
   { 200, 210, -1, sizeof(::viam::app::v1::AuthConfig)},
   { 214, -1, -1, sizeof(::viam::app::v1::UserPermission)},
-  { 222, -1, -1, sizeof(::viam::app::v1::User)},
-  { 230, -1, -1, sizeof(::viam::app::v1::Permission)},
-  { 238, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
-  { 245, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
-  { 252, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
-  { 260, -1, -1, sizeof(::viam::app::v1::Frame)},
-  { 270, -1, -1, sizeof(::viam::app::v1::LogConfiguration)},
-  { 277, -1, -1, sizeof(::viam::app::v1::Translation)},
-  { 286, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
-  { 292, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
-  { 302, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
-  { 312, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
-  { 321, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
-  { 331, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
-  { 341, -1, -1, sizeof(::viam::app::v1::Orientation)},
-  { 354, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
-  { 371, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
-  { 379, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
-  { 387, 400, -1, sizeof(::viam::app::v1::AgentInfo)},
-  { 407, 415, -1, sizeof(::viam::app::v1::ConfigRequest)},
-  { 417, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
-  { 424, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
-  { 431, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
-  { 440, -1, -1, sizeof(::viam::app::v1::LogRequest)},
-  { 448, -1, -1, sizeof(::viam::app::v1::LogResponse)},
-  { 454, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
-  { 461, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
-  { 470, 478, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
-  { 480, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
-  { 495, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
-  { 506, -1, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
+  { 223, -1, -1, sizeof(::viam::app::v1::User)},
+  { 231, -1, -1, sizeof(::viam::app::v1::Permission)},
+  { 239, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
+  { 246, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
+  { 253, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
+  { 261, -1, -1, sizeof(::viam::app::v1::Frame)},
+  { 271, -1, -1, sizeof(::viam::app::v1::LogConfiguration)},
+  { 278, -1, -1, sizeof(::viam::app::v1::Translation)},
+  { 287, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
+  { 293, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
+  { 303, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
+  { 313, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
+  { 322, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
+  { 332, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
+  { 342, -1, -1, sizeof(::viam::app::v1::Orientation)},
+  { 355, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
+  { 372, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
+  { 380, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
+  { 388, 401, -1, sizeof(::viam::app::v1::AgentInfo)},
+  { 408, 416, -1, sizeof(::viam::app::v1::ConfigRequest)},
+  { 418, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
+  { 425, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
+  { 432, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
+  { 441, -1, -1, sizeof(::viam::app::v1::LogRequest)},
+  { 449, -1, -1, sizeof(::viam::app::v1::LogResponse)},
+  { 455, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
+  { 462, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
+  { 471, 479, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
+  { 481, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
+  { 496, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
+  { 507, -1, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1469,121 +1471,122 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
   "nalAuthConfigH\000R\022externalAuthConfig\210\001\001\022F"
   "\n\020user_permissions\030\004 \003(\0132\033.viam.app.v1.U"
   "serPermissionR\017userPermissionsB\027\n\025_exter"
-  "nal_auth_config\"r\n\016UserPermission\022%\n\004use"
-  "r\030\001 \001(\0132\021.viam.app.v1.UserR\004user\0229\n\013perm"
-  "issions\030\002 \003(\0132\027.viam.app.v1.PermissionR\013"
-  "permissions\"*\n\004User\022\022\n\004type\030\001 \001(\tR\004type\022"
-  "\016\n\002id\030\002 \001(\tR\002id\"S\n\nPermission\022\034\n\tresourc"
-  "es\030\001 \003(\tR\tresources\022\'\n\017allowed_methods\030\002"
-  " \003(\tR\016allowedMethods\"7\n\010JWKSFile\022+\n\004json"
-  "\030\001 \001(\0132\027.google.protobuf.StructR\004json\"\?\n"
-  "\022ExternalAuthConfig\022)\n\004jwks\030\001 \001(\0132\025.viam"
-  ".app.v1.JWKSFileR\004jwks\"v\n\021AuthHandlerCon"
-  "fig\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Credenti"
-  "alsTypeR\004type\022/\n\006config\030\005 \001(\0132\027.google.p"
-  "rotobuf.StructR\006config\"\315\001\n\005Frame\022\026\n\006pare"
-  "nt\030\001 \001(\tR\006parent\022:\n\013translation\030\002 \001(\0132\030."
-  "viam.app.v1.TranslationR\013translation\022:\n\013"
-  "orientation\030\003 \001(\0132\030.viam.app.v1.Orientat"
-  "ionR\013orientation\0224\n\010geometry\030\004 \001(\0132\030.via"
-  "m.common.v1.GeometryR\010geometry\"(\n\020LogCon"
-  "figuration\022\024\n\005level\030\001 \001(\tR\005level\"7\n\013Tran"
-  "slation\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z"
-  "\030\003 \001(\001R\001z\"\320\007\n\013Orientation\022O\n\016no_orientat"
-  "ion\030\001 \001(\0132&.viam.app.v1.Orientation.NoOr"
-  "ientationH\000R\rnoOrientation\022Z\n\016vector_rad"
-  "ians\030\002 \001(\01321.viam.app.v1.Orientation.Ori"
-  "entationVectorRadiansH\000R\rvectorRadians\022Z"
-  "\n\016vector_degrees\030\003 \001(\01321.viam.app.v1.Ori"
-  "entation.OrientationVectorDegreesH\000R\rvec"
-  "torDegrees\022I\n\014euler_angles\030\004 \001(\0132$.viam."
-  "app.v1.Orientation.EulerAnglesH\000R\013eulerA"
-  "ngles\022F\n\013axis_angles\030\005 \001(\0132#.viam.app.v1"
-  ".Orientation.AxisAnglesH\000R\naxisAngles\022E\n"
-  "\nquaternion\030\006 \001(\0132#.viam.app.v1.Orientat"
-  "ion.QuaternionH\000R\nquaternion\032\017\n\rNoOrient"
-  "ation\032j\n\030OrientationVectorRadians\022$\n\005the"
-  "ta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001"
-  "(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j\n\030Ori"
-  "entationVectorDegrees\022$\n\005theta\030\001 \001(\001B\016\232\204"
-  "\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003"
-  " \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032I\n\013EulerAngles\022\022\n\004"
-  "roll\030\001 \001(\001R\004roll\022\024\n\005pitch\030\002 \001(\001R\005pitch\022\020"
-  "\n\003yaw\030\003 \001(\001R\003yaw\032\\\n\nAxisAngles\022$\n\005theta\030"
-  "\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R"
-  "\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQuater"
-  "nion\022\014\n\001w\030\001 \001(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 "
-  "\001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001zB\006\n\004type\"\215\004\n\014RemoteC"
-  "onfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007address\030\002 \001"
-  "(\tR\007address\022(\n\005frame\030\003 \001(\0132\022.viam.app.v1"
-  ".FrameR\005frame\022+\n\004auth\030\004 \001(\0132\027.viam.app.v"
-  "1.RemoteAuthR\004auth\022\035\n\nmanaged_by\030\005 \001(\tR\t"
-  "managedBy\022\032\n\010insecure\030\006 \001(\010R\010insecure\022U\n"
-  "\031connection_check_interval\030\007 \001(\0132\031.googl"
-  "e.protobuf.DurationR\027connectionCheckInte"
-  "rval\022H\n\022reconnect_interval\030\010 \001(\0132\031.googl"
-  "e.protobuf.DurationR\021reconnectInterval\022l"
-  "\n\017service_configs\030\t \003(\0132\'.viam.app.v1.Re"
-  "sourceLevelServiceConfigB\032\232\204\236\003\025json:\"ser"
-  "vice_config\"R\016serviceConfigs\022\026\n\006secret\030\n"
-  " \001(\tR\006secret\022\026\n\006prefix\030\013 \001(\tR\006prefix\"\306\001\n"
-  "\nRemoteAuth\022E\n\013credentials\030\001 \001(\0132#.viam."
-  "app.v1.RemoteAuth.CredentialsR\013credentia"
-  "ls\022\026\n\006entity\030\002 \001(\tR\006entity\032Y\n\013Credential"
-  "s\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Credential"
-  "sTypeR\004type\022\030\n\007payload\030\002 \001(\tR\007payload\"\321\001"
-  "\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004host\022\016\n\002os\030\002 "
-  "\001(\tR\002os\022\020\n\003ips\030\003 \003(\tR\003ips\022\030\n\007version\030\004 \001"
-  "(\tR\007version\022!\n\014git_revision\030\005 \001(\tR\013gitRe"
-  "vision\022\037\n\010platform\030\006 \001(\tH\000R\010platform\210\001\001\022"
-  "#\n\rplatform_tags\030\007 \003(\tR\014platformTagsB\013\n\t"
-  "_platform\"j\n\rConfigRequest\022\016\n\002id\030\001 \001(\tR\002"
-  "id\022:\n\nagent_info\030\002 \001(\0132\026.viam.app.v1.Age"
-  "ntInfoH\000R\tagentInfo\210\001\001B\r\n\013_agent_info\"B\n"
-  "\016ConfigResponse\0220\n\006config\030\001 \001(\0132\030.viam.a"
-  "pp.v1.RobotConfigR\006config\"$\n\022Certificate"
-  "Request\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023CertificateRe"
-  "sponse\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017tls_certificat"
-  "e\030\002 \001(\tR\016tlsCertificate\022&\n\017tls_private_k"
-  "ey\030\003 \001(\tR\rtlsPrivateKey\"J\n\nLogRequest\022\016\n"
-  "\002id\030\001 \001(\tR\002id\022,\n\004logs\030\002 \003(\0132\030.viam.commo"
-  "n.v1.LogEntryR\004logs\"\r\n\013LogResponse\"%\n\023Ne"
-  "edsRestartRequest\022\016\n\002id\030\001 \001(\tR\002id\"\232\001\n\024Ne"
-  "edsRestartResponse\022\016\n\002id\030\001 \001(\tR\002id\022!\n\014mu"
-  "st_restart\030\002 \001(\010R\013mustRestart\022O\n\026restart"
-  "_check_interval\030\003 \001(\0132\031.google.protobuf."
-  "DurationR\024restartCheckInterval\"\216\003\n\014Modul"
-  "eConfig\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004path\030\002 \001("
-  "\tR\004path\022\033\n\tlog_level\030\003 \001(\tR\010logLevel\022\022\n\004"
-  "type\030\004 \001(\tR\004type\022\033\n\tmodule_id\030\005 \001(\tR\010mod"
-  "uleId\0224\n\003env\030\006 \003(\0132\".viam.app.v1.ModuleC"
-  "onfig.EnvEntryR\003env\0228\n\006status\030\007 \001(\0132 .vi"
-  "am.app.v1.AppValidationStatusR\006status\022E\n"
-  "\021first_run_timeout\030\010 \001(\0132\031.google.protob"
-  "uf.DurationR\017firstRunTimeout\022\031\n\010tcp_mode"
-  "\030\t \001(\010R\007tcpMode\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\t"
-  "R\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPack"
-  "ageConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007package"
-  "\030\002 \001(\tR\007package\022\030\n\007version\030\003 \001(\tR\007versio"
-  "n\022\022\n\004type\030\004 \001(\tR\004type\0228\n\006status\030\005 \001(\0132 ."
-  "viam.app.v1.AppValidationStatusR\006status\""
-  "\212\001\n\021MaintenanceConfig\022=\n\013sensor_name\030\001 \001"
-  "(\0132\034.viam.common.v1.ResourceNameR\nsensor"
-  "Name\0226\n\027maintenance_allowed_key\030\002 \001(\tR\025m"
-  "aintenanceAllowedKey*\277\001\n\017CredentialsType"
-  "\022 \n\034CREDENTIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031CR"
-  "EDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CREDENTIALS"
-  "_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS_TYPE_ROBO"
-  "T_SECRET\020\003\022*\n&CREDENTIALS_TYPE_ROBOT_LOC"
-  "ATION_SECRET\020\0042\262\002\n\014RobotService\022A\n\006Confi"
-  "g\022\032.viam.app.v1.ConfigRequest\032\033.viam.app"
-  ".v1.ConfigResponse\022P\n\013Certificate\022\037.viam"
-  ".app.v1.CertificateRequest\032 .viam.app.v1"
-  ".CertificateResponse\0228\n\003Log\022\027.viam.app.v"
-  "1.LogRequest\032\030.viam.app.v1.LogResponse\022S"
-  "\n\014NeedsRestart\022 .viam.app.v1.NeedsRestar"
-  "tRequest\032!.viam.app.v1.NeedsRestartRespo"
-  "nseB\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "nal_auth_config\"\233\001\n\016UserPermission\022\'\n\005us"
+  "ers\030\003 \003(\0132\021.viam.app.v1.UserR\005users\0229\n\013p"
+  "ermissions\030\002 \003(\0132\027.viam.app.v1.Permissio"
+  "nR\013permissions\022%\n\004user\030\001 \001(\0132\021.viam.app."
+  "v1.UserR\004user\"*\n\004User\022\022\n\004type\030\001 \001(\tR\004typ"
+  "e\022\016\n\002id\030\002 \001(\tR\002id\"S\n\nPermission\022\034\n\tresou"
+  "rces\030\001 \003(\tR\tresources\022\'\n\017allowed_methods"
+  "\030\002 \003(\tR\016allowedMethods\"7\n\010JWKSFile\022+\n\004js"
+  "on\030\001 \001(\0132\027.google.protobuf.StructR\004json\""
+  "\?\n\022ExternalAuthConfig\022)\n\004jwks\030\001 \001(\0132\025.vi"
+  "am.app.v1.JWKSFileR\004jwks\"v\n\021AuthHandlerC"
+  "onfig\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Creden"
+  "tialsTypeR\004type\022/\n\006config\030\005 \001(\0132\027.google"
+  ".protobuf.StructR\006config\"\315\001\n\005Frame\022\026\n\006pa"
+  "rent\030\001 \001(\tR\006parent\022:\n\013translation\030\002 \001(\0132"
+  "\030.viam.app.v1.TranslationR\013translation\022:"
+  "\n\013orientation\030\003 \001(\0132\030.viam.app.v1.Orient"
+  "ationR\013orientation\0224\n\010geometry\030\004 \001(\0132\030.v"
+  "iam.common.v1.GeometryR\010geometry\"(\n\020LogC"
+  "onfiguration\022\024\n\005level\030\001 \001(\tR\005level\"7\n\013Tr"
+  "anslation\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n"
+  "\001z\030\003 \001(\001R\001z\"\320\007\n\013Orientation\022O\n\016no_orient"
+  "ation\030\001 \001(\0132&.viam.app.v1.Orientation.No"
+  "OrientationH\000R\rnoOrientation\022Z\n\016vector_r"
+  "adians\030\002 \001(\01321.viam.app.v1.Orientation.O"
+  "rientationVectorRadiansH\000R\rvectorRadians"
+  "\022Z\n\016vector_degrees\030\003 \001(\01321.viam.app.v1.O"
+  "rientation.OrientationVectorDegreesH\000R\rv"
+  "ectorDegrees\022I\n\014euler_angles\030\004 \001(\0132$.via"
+  "m.app.v1.Orientation.EulerAnglesH\000R\013eule"
+  "rAngles\022F\n\013axis_angles\030\005 \001(\0132#.viam.app."
+  "v1.Orientation.AxisAnglesH\000R\naxisAngles\022"
+  "E\n\nquaternion\030\006 \001(\0132#.viam.app.v1.Orient"
+  "ation.QuaternionH\000R\nquaternion\032\017\n\rNoOrie"
+  "ntation\032j\n\030OrientationVectorRadians\022$\n\005t"
+  "heta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002"
+  " \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j\n\030O"
+  "rientationVectorDegrees\022$\n\005theta\030\001 \001(\001B\016"
+  "\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y"
+  "\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032I\n\013EulerAngles\022\022"
+  "\n\004roll\030\001 \001(\001R\004roll\022\024\n\005pitch\030\002 \001(\001R\005pitch"
+  "\022\020\n\003yaw\030\003 \001(\001R\003yaw\032\\\n\nAxisAngles\022$\n\005thet"
+  "a\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001("
+  "\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQuat"
+  "ernion\022\014\n\001w\030\001 \001(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030"
+  "\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001zB\006\n\004type\"\215\004\n\014Remot"
+  "eConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007address\030\002"
+  " \001(\tR\007address\022(\n\005frame\030\003 \001(\0132\022.viam.app."
+  "v1.FrameR\005frame\022+\n\004auth\030\004 \001(\0132\027.viam.app"
+  ".v1.RemoteAuthR\004auth\022\035\n\nmanaged_by\030\005 \001(\t"
+  "R\tmanagedBy\022\032\n\010insecure\030\006 \001(\010R\010insecure\022"
+  "U\n\031connection_check_interval\030\007 \001(\0132\031.goo"
+  "gle.protobuf.DurationR\027connectionCheckIn"
+  "terval\022H\n\022reconnect_interval\030\010 \001(\0132\031.goo"
+  "gle.protobuf.DurationR\021reconnectInterval"
+  "\022l\n\017service_configs\030\t \003(\0132\'.viam.app.v1."
+  "ResourceLevelServiceConfigB\032\232\204\236\003\025json:\"s"
+  "ervice_config\"R\016serviceConfigs\022\026\n\006secret"
+  "\030\n \001(\tR\006secret\022\026\n\006prefix\030\013 \001(\tR\006prefix\"\306"
+  "\001\n\nRemoteAuth\022E\n\013credentials\030\001 \001(\0132#.via"
+  "m.app.v1.RemoteAuth.CredentialsR\013credent"
+  "ials\022\026\n\006entity\030\002 \001(\tR\006entity\032Y\n\013Credenti"
+  "als\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Credenti"
+  "alsTypeR\004type\022\030\n\007payload\030\002 \001(\tR\007payload\""
+  "\321\001\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004host\022\016\n\002os\030"
+  "\002 \001(\tR\002os\022\020\n\003ips\030\003 \003(\tR\003ips\022\030\n\007version\030\004"
+  " \001(\tR\007version\022!\n\014git_revision\030\005 \001(\tR\013git"
+  "Revision\022\037\n\010platform\030\006 \001(\tH\000R\010platform\210\001"
+  "\001\022#\n\rplatform_tags\030\007 \003(\tR\014platformTagsB\013"
+  "\n\t_platform\"j\n\rConfigRequest\022\016\n\002id\030\001 \001(\t"
+  "R\002id\022:\n\nagent_info\030\002 \001(\0132\026.viam.app.v1.A"
+  "gentInfoH\000R\tagentInfo\210\001\001B\r\n\013_agent_info\""
+  "B\n\016ConfigResponse\0220\n\006config\030\001 \001(\0132\030.viam"
+  ".app.v1.RobotConfigR\006config\"$\n\022Certifica"
+  "teRequest\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023Certificate"
+  "Response\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017tls_certific"
+  "ate\030\002 \001(\tR\016tlsCertificate\022&\n\017tls_private"
+  "_key\030\003 \001(\tR\rtlsPrivateKey\"J\n\nLogRequest\022"
+  "\016\n\002id\030\001 \001(\tR\002id\022,\n\004logs\030\002 \003(\0132\030.viam.com"
+  "mon.v1.LogEntryR\004logs\"\r\n\013LogResponse\"%\n\023"
+  "NeedsRestartRequest\022\016\n\002id\030\001 \001(\tR\002id\"\232\001\n\024"
+  "NeedsRestartResponse\022\016\n\002id\030\001 \001(\tR\002id\022!\n\014"
+  "must_restart\030\002 \001(\010R\013mustRestart\022O\n\026resta"
+  "rt_check_interval\030\003 \001(\0132\031.google.protobu"
+  "f.DurationR\024restartCheckInterval\"\216\003\n\014Mod"
+  "uleConfig\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004path\030\002 "
+  "\001(\tR\004path\022\033\n\tlog_level\030\003 \001(\tR\010logLevel\022\022"
+  "\n\004type\030\004 \001(\tR\004type\022\033\n\tmodule_id\030\005 \001(\tR\010m"
+  "oduleId\0224\n\003env\030\006 \003(\0132\".viam.app.v1.Modul"
+  "eConfig.EnvEntryR\003env\0228\n\006status\030\007 \001(\0132 ."
+  "viam.app.v1.AppValidationStatusR\006status\022"
+  "E\n\021first_run_timeout\030\010 \001(\0132\031.google.prot"
+  "obuf.DurationR\017firstRunTimeout\022\031\n\010tcp_mo"
+  "de\030\t \001(\010R\007tcpMode\0326\n\010EnvEntry\022\020\n\003key\030\001 \001"
+  "(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPa"
+  "ckageConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007packa"
+  "ge\030\002 \001(\tR\007package\022\030\n\007version\030\003 \001(\tR\007vers"
+  "ion\022\022\n\004type\030\004 \001(\tR\004type\0228\n\006status\030\005 \001(\0132"
+  " .viam.app.v1.AppValidationStatusR\006statu"
+  "s\"\212\001\n\021MaintenanceConfig\022=\n\013sensor_name\030\001"
+  " \001(\0132\034.viam.common.v1.ResourceNameR\nsens"
+  "orName\0226\n\027maintenance_allowed_key\030\002 \001(\tR"
+  "\025maintenanceAllowedKey*\277\001\n\017CredentialsTy"
+  "pe\022 \n\034CREDENTIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031"
+  "CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CREDENTIA"
+  "LS_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS_TYPE_RO"
+  "BOT_SECRET\020\003\022*\n&CREDENTIALS_TYPE_ROBOT_L"
+  "OCATION_SECRET\020\0042\262\002\n\014RobotService\022A\n\006Con"
+  "fig\022\032.viam.app.v1.ConfigRequest\032\033.viam.a"
+  "pp.v1.ConfigResponse\022P\n\013Certificate\022\037.vi"
+  "am.app.v1.CertificateRequest\032 .viam.app."
+  "v1.CertificateResponse\0228\n\003Log\022\027.viam.app"
+  ".v1.LogRequest\032\030.viam.app.v1.LogResponse"
+  "\022S\n\014NeedsRestart\022 .viam.app.v1.NeedsRest"
+  "artRequest\032!.viam.app.v1.NeedsRestartRes"
+  "ponseB\030Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -1593,7 +1596,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2e
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
-    false, false, 8997, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
+    false, false, 9039, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
     &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 4, 48,
     schemas, file_default_instances, TableStruct_app_2fv1_2frobot_2eproto::offsets,
@@ -7697,13 +7700,15 @@ UserPermission::_Internal::user(const UserPermission* msg) {
 UserPermission::UserPermission(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  permissions_(arena) {
+  permissions_(arena),
+  users_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.UserPermission)
 }
 UserPermission::UserPermission(const UserPermission& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      permissions_(from.permissions_) {
+      permissions_(from.permissions_),
+      users_(from.users_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_user()) {
     user_ = new ::viam::app::v1::User(*from.user_);
@@ -7742,6 +7747,7 @@ void UserPermission::Clear() {
   (void) cached_has_bits;
 
   permissions_.Clear();
+  users_.Clear();
   if (GetArenaForAllocation() == nullptr && user_ != nullptr) {
     delete user_;
   }
@@ -7773,6 +7779,19 @@ const char* UserPermission::_InternalParse(const char* ptr, ::_pbi::ParseContext
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.app.v1.User users = 3 [json_name = "users"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_users(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -7820,6 +7839,14 @@ uint8_t* UserPermission::_InternalSerialize(
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // repeated .viam.app.v1.User users = 3 [json_name = "users"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_users_size()); i < n; i++) {
+    const auto& repfield = this->_internal_users(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -7839,6 +7866,13 @@ size_t UserPermission::ByteSizeLong() const {
   // repeated .viam.app.v1.Permission permissions = 2 [json_name = "permissions"];
   total_size += 1UL * this->_internal_permissions_size();
   for (const auto& msg : this->permissions_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .viam.app.v1.User users = 3 [json_name = "users"];
+  total_size += 1UL * this->_internal_users_size();
+  for (const auto& msg : this->users_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -7873,6 +7907,7 @@ void UserPermission::MergeFrom(const UserPermission& from) {
   (void) cached_has_bits;
 
   permissions_.MergeFrom(from.permissions_);
+  users_.MergeFrom(from.users_);
   if (from._internal_has_user()) {
     _internal_mutable_user()->::viam::app::v1::User::MergeFrom(from._internal_user());
   }
@@ -7894,6 +7929,7 @@ void UserPermission::InternalSwap(UserPermission* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   permissions_.InternalSwap(&other->permissions_);
+  users_.InternalSwap(&other->users_);
   swap(user_, other->user_);
 }
 

@@ -34,10 +34,16 @@ class GantryClient : public Gantry {
     ProtoStruct do_command(const ProtoStruct& command) override;
     ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
-    ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;
+    KinematicModel get_kinematic_model(const kinematics_options& options,
+                                       const ProtoStruct& extra) override;
+// Overriding the deprecated raw-bytes accessor keeps older servers readable.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    KinematicsData get_kinematics(const ProtoStruct& extra) override;
+#pragma GCC diagnostic pop
 
     using Gantry::get_geometries;
-    using Gantry::get_kinematics;
+    using Gantry::get_kinematic_model;
     using Gantry::get_lengths;
     using Gantry::get_position;
     using Gantry::home;

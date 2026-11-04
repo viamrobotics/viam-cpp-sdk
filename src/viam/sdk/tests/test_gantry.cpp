@@ -8,7 +8,10 @@
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<double>)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::KinematicsData)
+#pragma GCC diagnostic pop
 
 namespace viam {
 namespace sdktests {
@@ -72,6 +75,22 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_kinematic_model) {
+    std::shared_ptr<MockGantry> mock = MockGantry::get_mock_gantry();
+    client_to_mock_pipeline<Gantry>(mock, [&](Gantry& client) {
+        BOOST_CHECK(client.get_kinematic_model() == fake_kinematic_model());
+        BOOST_CHECK(!mock->peek_kinematics_options.include_collision_meshes);
+
+        kinematics_options options;
+        options.include_collision_meshes = true;
+        BOOST_CHECK(client.get_kinematic_model(options) == fake_kinematic_model());
+        BOOST_CHECK(mock->peek_kinematics_options.include_collision_meshes);
+        BOOST_CHECK(!mock->peek_kinematics_options.include_visual_meshes);
+    });
+}
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 BOOST_AUTO_TEST_CASE(test_get_kinematics) {
     std::shared_ptr<MockGantry> mock = MockGantry::get_mock_gantry();
     client_to_mock_pipeline<Gantry>(mock, [](Gantry& client) {
@@ -79,6 +98,7 @@ BOOST_AUTO_TEST_CASE(test_get_kinematics) {
         BOOST_CHECK_EQUAL(kinematics, fake_kinematics());
     });
 }
+#pragma GCC diagnostic pop
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockGantry> mock = MockGantry::get_mock_gantry();

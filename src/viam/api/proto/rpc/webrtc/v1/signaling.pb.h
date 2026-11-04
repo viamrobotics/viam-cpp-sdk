@@ -741,6 +741,7 @@ class CallResponseInitStage final :
 
   enum : int {
     kSdpFieldNumber = 1,
+    kMustAuthAgainstAnswererFieldNumber = 2,
   };
   // string sdp = 1 [json_name = "sdp"];
   void clear_sdp();
@@ -756,6 +757,15 @@ class CallResponseInitStage final :
   std::string* _internal_mutable_sdp();
   public:
 
+  // bool must_auth_against_answerer = 2 [json_name = "mustAuthAgainstAnswerer"];
+  void clear_must_auth_against_answerer();
+  bool must_auth_against_answerer() const;
+  void set_must_auth_against_answerer(bool value);
+  private:
+  bool _internal_must_auth_against_answerer() const;
+  void _internal_set_must_auth_against_answerer(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.CallResponseInitStage)
  private:
   class _Internal;
@@ -764,6 +774,7 @@ class CallResponseInitStage final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sdp_;
+  bool must_auth_against_answerer_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto;
 };
@@ -1976,6 +1987,7 @@ class AnswerRequestInitStage final :
     kCallerAuthEntityFieldNumber = 4,
     kOptionalConfigFieldNumber = 2,
     kDeadlineFieldNumber = 3,
+    kMustAuthCallerFieldNumber = 6,
   };
   // map<string, string> caller_auth_metadata = 5 [json_name = "callerAuthMetadata"];
   int caller_auth_metadata_size() const;
@@ -2058,6 +2070,15 @@ class AnswerRequestInitStage final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* deadline);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_deadline();
 
+  // bool must_auth_caller = 6 [json_name = "mustAuthCaller"];
+  void clear_must_auth_caller();
+  bool must_auth_caller() const;
+  void set_must_auth_caller(bool value);
+  private:
+  bool _internal_must_auth_caller() const;
+  void _internal_set_must_auth_caller(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.AnswerRequestInitStage)
  private:
   class _Internal;
@@ -2076,6 +2097,7 @@ class AnswerRequestInitStage final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr caller_auth_entity_;
   ::proto::rpc::webrtc::v1::WebRTCConfig* optional_config_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* deadline_;
+  bool must_auth_caller_;
   friend struct ::TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto;
 };
 // -------------------------------------------------------------------
@@ -3009,6 +3031,7 @@ class AnswerResponseInitStage final :
 
   enum : int {
     kSdpFieldNumber = 1,
+    kCanAuthCallersFieldNumber = 2,
   };
   // string sdp = 1 [json_name = "sdp"];
   void clear_sdp();
@@ -3024,6 +3047,15 @@ class AnswerResponseInitStage final :
   std::string* _internal_mutable_sdp();
   public:
 
+  // bool can_auth_callers = 2 [json_name = "canAuthCallers"];
+  void clear_can_auth_callers();
+  bool can_auth_callers() const;
+  void set_can_auth_callers(bool value);
+  private:
+  bool _internal_can_auth_callers() const;
+  void _internal_set_can_auth_callers(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.AnswerResponseInitStage)
  private:
   class _Internal;
@@ -3032,6 +3064,7 @@ class AnswerResponseInitStage final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sdp_;
+  bool can_auth_callers_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto;
 };
@@ -4818,6 +4851,26 @@ inline void CallResponseInitStage::set_allocated_sdp(std::string* sdp) {
   // @@protoc_insertion_point(field_set_allocated:proto.rpc.webrtc.v1.CallResponseInitStage.sdp)
 }
 
+// bool must_auth_against_answerer = 2 [json_name = "mustAuthAgainstAnswerer"];
+inline void CallResponseInitStage::clear_must_auth_against_answerer() {
+  must_auth_against_answerer_ = false;
+}
+inline bool CallResponseInitStage::_internal_must_auth_against_answerer() const {
+  return must_auth_against_answerer_;
+}
+inline bool CallResponseInitStage::must_auth_against_answerer() const {
+  // @@protoc_insertion_point(field_get:proto.rpc.webrtc.v1.CallResponseInitStage.must_auth_against_answerer)
+  return _internal_must_auth_against_answerer();
+}
+inline void CallResponseInitStage::_internal_set_must_auth_against_answerer(bool value) {
+  
+  must_auth_against_answerer_ = value;
+}
+inline void CallResponseInitStage::set_must_auth_against_answerer(bool value) {
+  _internal_set_must_auth_against_answerer(value);
+  // @@protoc_insertion_point(field_set:proto.rpc.webrtc.v1.CallResponseInitStage.must_auth_against_answerer)
+}
+
 // -------------------------------------------------------------------
 
 // CallResponseUpdateStage
@@ -5923,6 +5976,26 @@ AnswerRequestInitStage::mutable_caller_auth_metadata() {
   return _internal_mutable_caller_auth_metadata();
 }
 
+// bool must_auth_caller = 6 [json_name = "mustAuthCaller"];
+inline void AnswerRequestInitStage::clear_must_auth_caller() {
+  must_auth_caller_ = false;
+}
+inline bool AnswerRequestInitStage::_internal_must_auth_caller() const {
+  return must_auth_caller_;
+}
+inline bool AnswerRequestInitStage::must_auth_caller() const {
+  // @@protoc_insertion_point(field_get:proto.rpc.webrtc.v1.AnswerRequestInitStage.must_auth_caller)
+  return _internal_must_auth_caller();
+}
+inline void AnswerRequestInitStage::_internal_set_must_auth_caller(bool value) {
+  
+  must_auth_caller_ = value;
+}
+inline void AnswerRequestInitStage::set_must_auth_caller(bool value) {
+  _internal_set_must_auth_caller(value);
+  // @@protoc_insertion_point(field_set:proto.rpc.webrtc.v1.AnswerRequestInitStage.must_auth_caller)
+}
+
 // -------------------------------------------------------------------
 
 // AnswerRequestUpdateStage
@@ -6599,6 +6672,26 @@ inline void AnswerResponseInitStage::set_allocated_sdp(std::string* sdp) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:proto.rpc.webrtc.v1.AnswerResponseInitStage.sdp)
+}
+
+// bool can_auth_callers = 2 [json_name = "canAuthCallers"];
+inline void AnswerResponseInitStage::clear_can_auth_callers() {
+  can_auth_callers_ = false;
+}
+inline bool AnswerResponseInitStage::_internal_can_auth_callers() const {
+  return can_auth_callers_;
+}
+inline bool AnswerResponseInitStage::can_auth_callers() const {
+  // @@protoc_insertion_point(field_get:proto.rpc.webrtc.v1.AnswerResponseInitStage.can_auth_callers)
+  return _internal_can_auth_callers();
+}
+inline void AnswerResponseInitStage::_internal_set_can_auth_callers(bool value) {
+  
+  can_auth_callers_ = value;
+}
+inline void AnswerResponseInitStage::set_can_auth_callers(bool value) {
+  _internal_set_can_auth_callers(value);
+  // @@protoc_insertion_point(field_set:proto.rpc.webrtc.v1.AnswerResponseInitStage.can_auth_callers)
 }
 
 // -------------------------------------------------------------------

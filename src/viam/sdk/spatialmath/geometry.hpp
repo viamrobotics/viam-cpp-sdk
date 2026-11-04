@@ -5,6 +5,7 @@
 #include <tuple>
 #include <variant>
 
+#include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
@@ -30,7 +31,7 @@ class GeoGeometry;
 namespace viam {
 namespace sdk {
 
-enum class GeometryType { box, sphere, capsule, point };
+enum class GeometryType { box, sphere, capsule, point, mesh };
 
 struct box {
     double x = 0.0;
@@ -48,7 +49,8 @@ struct capsule {
     friend bool operator==(const capsule&, const capsule&) = default;
 };
 
-using geometry_specifics = std::variant<struct box, struct sphere, struct capsule>;
+/// @brief The shape of a geometry: a primitive, or a `mesh` (stl/ply) for collision models.
+using geometry_specifics = std::variant<struct box, struct sphere, struct capsule, mesh>;
 
 /// @brief The dimensions of a given geometry and the pose of its center.
 class GeometryConfig {

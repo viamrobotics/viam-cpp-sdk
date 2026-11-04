@@ -37,6 +37,9 @@ GeometryType GeometryConfig::get_geometry_type() const {
         auto operator()(const capsule&) const {
             return GeometryType::capsule;
         }
+        auto operator()(const mesh&) const {
+            return GeometryType::mesh;
+        }
     };
 
     return std::visit(Visitor{}, geometry_specifics_);
@@ -120,6 +123,10 @@ void to_proto_impl<GeometryConfig>::operator()(const GeometryConfig& self,
         void operator()(const capsule& c) {
             *geometry.mutable_capsule() = to_proto(c);
         }
+
+        void operator()(const mesh& m) {
+            *geometry.mutable_mesh() = to_proto(m);
+        }
     };
 
     std::visit(Visitor{*proto}, self.get_geometry_specifics());
@@ -138,6 +145,8 @@ GeometryConfig from_proto_impl<common::v1::Geometry>::operator()(
                 return from_proto(proto->sphere());
             case viam::common::v1::Geometry::GeometryTypeCase::kCapsule:
                 return from_proto(proto->capsule());
+            case viam::common::v1::Geometry::GeometryTypeCase::kMesh:
+                return from_proto(proto->mesh());
             case viam::common::v1::Geometry::GeometryTypeCase::
                 GEOMETRY_TYPE_NOT_SET:  // fallthrough
             default:

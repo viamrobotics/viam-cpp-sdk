@@ -3,9 +3,11 @@
 /// @brief Defines the `FrameSystem` service.
 #pragma once
 
+#include <optional>
 #include <string>
 #include <vector>
 
+#include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -43,7 +45,14 @@ class FrameSystem : public Service {
     /// @brief One frame of the frame system, with the kinematics of the resource it belongs to.
     struct frame_system_config {
         WorldState::transform frame;
+
+        /// @brief The resource's kinematics as a raw file, when served by an older viam-server.
+        /// @deprecated Use `model`.
         ProtoStruct kinematics;
+
+        /// @brief The resource's kinematic model, absent for resources without kinematics.
+        std::optional<KinematicModel> model;
+
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
     };
 

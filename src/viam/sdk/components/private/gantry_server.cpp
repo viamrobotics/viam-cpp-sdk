@@ -1,5 +1,6 @@
 #include <viam/sdk/components/private/gantry_server.hpp>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 
@@ -87,7 +88,27 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     ::viam::common::v1::GetKinematicsResponse* response) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::GetKinematics", this, context, request)([&](auto& helper, auto& gantry) {
-        *response = to_proto(gantry->get_kinematics(helper.getExtra()));
+        const ProtoStruct extra = helper.getExtra();
+        // Base get_kinematics throws k_not_supported since it is deprecated. For implementations
+        // that still override it, raw byte fields go over the wire to serve older viam-server or
+        // older clients that predate `model`.
+        try {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            *response = to_proto(gantry->get_kinematics(extra));
+#pragma GCC diagnostic pop
+        } catch (const Exception& xcp) {
+            if (xcp.condition() != ErrorCondition::k_not_supported) {
+                throw;
+            }
+        }
+        const kinematics_options options{request->include_collision_meshes(),
+                                         request->include_visual_meshes()};
+        KinematicModel model = gantry->get_kinematic_model(options, extra);
+        if (model.name.empty()) {
+            model.name = gantry->name();
+        }
+        *response->mutable_model() = to_proto(model);
     });
 }
 
