@@ -191,7 +191,7 @@ int main(int argc, char* argv[]) try {
 
         const bf::path model_path(*opt_model_path);
         if (!bf::is_regular_file(model_path)) {
-            VIAM_SDK_LOG(error) << "The path `" << model_path.c_str()
+            VIAM_SDK_LOG(error) << "The path `" << model_path.string()
                                 << "` provided for `--model-path` is not an existing regular file";
             return EXIT_FAILURE;
         }
@@ -204,7 +204,7 @@ int main(int argc, char* argv[]) try {
         const bf::path tflite_module_path(*opt_tflite_module_path);
         if (!bf::is_regular_file(tflite_module_path)) {
             VIAM_SDK_LOG(error)
-                << "The path `" << tflite_module_path.c_str()
+                << "The path `" << tflite_module_path.string()
                 << "` provided for `--tflite-module-path` is not an existing regular file";
             return EXIT_FAILURE;
         }
@@ -213,8 +213,9 @@ int main(int argc, char* argv[]) try {
         // any summary information or further instructions because it
         // is nice to be able to feed the results directly to `pbcopy`
         // or similar.
-        const auto config = boost::format(kRobotConfigTemplate) % bf::absolute(model_path).c_str() %
-                            bf::absolute(tflite_module_path).c_str();
+        const auto config = boost::format(kRobotConfigTemplate) %
+                            bf::absolute(model_path).string() %
+                            bf::absolute(tflite_module_path).string();
 
         VIAM_SDK_LOG(info) << config << std::endl;
 
@@ -332,16 +333,16 @@ int main(int argc, char* argv[]) try {
             const bf::path model_label_path(*opt_model_label_path);
             if (!bf::is_regular_file(model_label_path)) {
                 VIAM_SDK_LOG(error)
-                    << "The path `" << model_label_path.c_str()
+                    << "The path `" << model_label_path.string()
                     << "` provided for `--model-label-path` is not an existing regular file";
                 return EXIT_FAILURE;
             }
 
             // Open the labels file, or bail.
-            std::ifstream labels_stream(model_label_path.c_str());
+            std::ifstream labels_stream(model_label_path.string());
             if (!labels_stream) {
                 VIAM_SDK_LOG(error)
-                    << "Unable to open label path `" << model_label_path.c_str() << "`";
+                    << "Unable to open label path `" << model_label_path.string() << "`";
                 return EXIT_FAILURE;
             }
 
