@@ -3,10 +3,9 @@
 /// @brief Provides access to gRPC server context information during request processing.
 #pragma once
 
+#include <optional>
 #include <string>
 #include <vector>
-
-#include <boost/optional/optional.hpp>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
 
@@ -33,7 +32,7 @@ class GrpcContextObserver {
     ///          of the gRPC call and only on the thread that received it. Do not store the
     ///          reference or pass it to other threads.
     ///
-    static const boost::optional<const GrpcContextObserver>& current() noexcept;
+    static const std::optional<const GrpcContextObserver>& current() noexcept;
 
     ///
     /// @brief Returns the underlying gRPC server context.

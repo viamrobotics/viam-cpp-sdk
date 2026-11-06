@@ -1,6 +1,6 @@
 {# The cpp-sdk-conan images' toolchain of record, rendered per machine at conan  #}
 {# load time via jinja2. detect_api fills arch and the installed gcc version;    #}
-{# the rest is pinned (gcc / libstdc++11 / C++17).                               #}
+{# the rest is pinned (gcc / libstdc++11 / C++20).                               #}
 {#                                                                               #}
 {# The sibling `default` profile is a one-line include() of this one, so a bare   #}
 {# `conan create .` and an explicit -pr:a viam-system-gcc-release agree.          #}
@@ -11,5 +11,5 @@ arch={{ detect_api.detect_arch() }}
 build_type=Release
 compiler=gcc
 compiler.version={{ detect_api.default_compiler_version(_c[0], _c[1]) }}
-compiler.cppstd=17
+compiler.cppstd=20
 compiler.libcxx=libstdc++11

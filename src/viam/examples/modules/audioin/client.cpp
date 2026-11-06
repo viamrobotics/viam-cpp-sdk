@@ -27,7 +27,7 @@ int main() {
     // Credentials credentials(type, payload);
     // channel_options.set_credentials(credentials);
 
-    boost::optional<ViamChannel::Options> opts(channel_options);
+    std::optional<ViamChannel::Options> opts(channel_options);
     std::string address(uri);
     Options options(1, opts);
 

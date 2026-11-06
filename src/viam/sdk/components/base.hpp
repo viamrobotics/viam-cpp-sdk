@@ -30,9 +30,9 @@ class Base : public Component, public Stoppable {
         double width_meters = 0.0;
         double turning_radius_meters = 0.0;
         double wheel_circumference_meters = 0.0;
+        friend bool operator==(const properties&, const properties&) = default;
     };
     friend std::ostream& operator<<(std::ostream& os, const properties& v);
-    friend bool operator==(const properties& lhs, const properties& rhs);
 
     /// @brief Move a robot's base in a straight line by a given distance. This method blocks
     /// until completed or cancelled

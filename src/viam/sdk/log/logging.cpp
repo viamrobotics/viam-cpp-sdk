@@ -201,13 +201,13 @@ void LogManager::disable_console_logging() {
 
 namespace log_detail {
 
-boost::string_view trim_filename(const char* file) {
-    const boost::string_view result(file);
+std::string_view trim_filename(const char* file) {
+    const std::string_view result(file);
     const std::size_t second_last = result  //
                                         .substr(0, result.find_last_of('/'))
                                         .find_last_of('/');
 
-    if (second_last != boost::string_view::npos) {
+    if (second_last != std::string_view::npos) {
         return result.substr(second_last + 1, result.size() - second_last);
     }
 

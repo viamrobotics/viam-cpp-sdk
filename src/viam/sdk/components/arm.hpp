@@ -6,11 +6,10 @@
 #include <chrono>
 #include <cstdint>
 #include <functional>
+#include <optional>
 #include <string>
+#include <variant>
 #include <vector>
-
-#include <boost/optional/optional.hpp>
-#include <boost/variant/variant.hpp>
 
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/mesh.hpp>
@@ -61,13 +60,13 @@ class Arm : public Component, public Stoppable {
 #pragma GCC diagnostic pop
 
     /// @brief A movement limit: either a single scalar applied uniformly, or per-joint values.
-    using MoveLimit = boost::variant<double, std::vector<double>>;
+    using MoveLimit = std::variant<double, std::vector<double>>;
 
     /// @brief Movement specifications for move_through_joint_positions.
     struct MoveOptions {
-        boost::optional<MoveLimit> max_vel_degs_per_sec;
-        boost::optional<MoveLimit> max_acc_degs_per_sec2;
-        boost::optional<double> max_tcp_speed;
+        std::optional<MoveLimit> max_vel_degs_per_sec;
+        std::optional<MoveLimit> max_acc_degs_per_sec2;
+        std::optional<double> max_tcp_speed;
     };
 
     /// @struct properties
@@ -77,6 +76,7 @@ class Arm : public Component, public Stoppable {
         bool support_manual_mode = false;
         /// True if the arm supports direct cartesian commands (move_to_position is implemented)
         bool support_cartesian_commands = false;
+        friend bool operator==(const properties&, const properties&) = default;
     };
 
     /// @brief Get the current position of the end of the arm.
@@ -149,7 +149,7 @@ class Arm : public Component, public Stoppable {
         /// degrees per second squared.
         struct kinematic_constraints {
             std::vector<double> velocities_degs_per_sec;
-            boost::optional<std::vector<double>> accelerations_degs_per_sec2;
+            std::optional<std::vector<double>> accelerations_degs_per_sec2;
         };
 
         /// @brief Offset of this waypoint from the start of the trajectory.
@@ -164,7 +164,7 @@ class Arm : public Component, public Stoppable {
         std::vector<double> positions;
 
         /// @brief Optional velocity and acceleration constraints at this waypoint.
-        boost::optional<kinematic_constraints> constraints;
+        std::optional<kinematic_constraints> constraints;
     };
 
     /// @brief An update emitted while a streamed trajectory executes.
@@ -184,7 +184,7 @@ class Arm : public Component, public Stoppable {
     /// @param update_handler Handler invoked for each update the implementation emits.
     /// @return How the stream ended.
     inline stream_outcome move_through_joint_positions_streamed(
-        const std::function<boost::optional<std::vector<trajectory_point>>()>& batch_source,
+        const std::function<std::optional<std::vector<trajectory_point>>()>& batch_source,
         const std::function<bool(trajectory_update)>& update_handler) {
         return move_through_joint_positions_streamed(batch_source, update_handler, {});
     }
@@ -213,7 +213,7 @@ class Arm : public Component, public Stoppable {
     /// given callback is never invoked concurrently with itself.
     ///
     /// @param batch_source Pull-source for the trajectory. Call it to obtain the
-    /// next batch of waypoints; it yields `boost::none` once no more points are
+    /// next batch of waypoints; it yields `std::nullopt` once no more points are
     /// coming, after which the implementation should finish executing what it
     /// already has and return. Points arrive grouped into the batches the sender
     /// chose; an implementation that wants per-point handling iterates within
@@ -230,7 +230,7 @@ class Arm : public Component, public Stoppable {
     /// end, or `stream_outcome::k_halted_by_update_handler` if `update_handler`
     /// asked it to stop.
     virtual stream_outcome move_through_joint_positions_streamed(
-        const std::function<boost::optional<std::vector<trajectory_point>>()>& batch_source,
+        const std::function<std::optional<std::vector<trajectory_point>>()>& batch_source,
         const std::function<bool(trajectory_update)>& update_handler,
         const ProtoStruct& extra) = 0;
 
@@ -349,8 +349,6 @@ template <>
 struct API::traits<Arm> {
     static API api();
 };
-
-bool operator==(const Arm::properties& lhs, const Arm::properties& rhs);
 
 namespace proto_convert_details {
 

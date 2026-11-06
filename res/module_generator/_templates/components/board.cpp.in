@@ -99,7 +99,7 @@ void {{ .ModelPascal }}::stream_ticks(
 void {{ .ModelPascal }}::set_power_mode(
         viam::sdk::Board::power_mode power_mode,
         const viam::sdk::ProtoStruct & extra,
-        const boost::optional<std::chrono::microseconds> & duration)
+        const std::optional<std::chrono::microseconds> & duration)
 {
     throw std::logic_error("\"set_power_mode\" not implemented");
 }

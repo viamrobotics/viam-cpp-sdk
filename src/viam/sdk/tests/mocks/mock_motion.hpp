@@ -38,7 +38,7 @@ class MockMotion : public sdk::Motion {
 
     std::string move_on_globe(
         const sdk::geo_point& destination,
-        const boost::optional<double>& heading,
+        const std::optional<double>& heading,
         const std::string& component_name,
         const std::string& movement_sensor_name,
         const std::vector<sdk::geo_geometry>& obstacles,

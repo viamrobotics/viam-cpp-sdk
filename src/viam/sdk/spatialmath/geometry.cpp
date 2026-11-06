@@ -3,8 +3,6 @@
 #include <string>
 #include <tuple>
 
-#include <boost/variant/get.hpp>
-
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
@@ -44,7 +42,7 @@ GeometryType GeometryConfig::get_geometry_type() const {
         }
     };
 
-    return boost::apply_visitor(Visitor{}, geometry_specifics_);
+    return std::visit(Visitor{}, geometry_specifics_);
 }
 
 const pose& GeometryConfig::get_pose() const {
@@ -73,44 +71,11 @@ std::ostream& operator<<(std::ostream& os, const geo_point& v) {
     return os;
 }
 
-bool operator==(const coordinates& lhs, const coordinates& rhs) {
-    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
-}
-
-bool operator==(const pose_orientation& lhs, const pose_orientation& rhs) {
-    return lhs.o_x == rhs.o_x && lhs.o_y == rhs.o_y && lhs.o_z == rhs.o_z;
-}
-
-bool operator==(const pose& lhs, const pose& rhs) {
-    return lhs.coordinates == rhs.coordinates && lhs.orientation == rhs.orientation &&
-           lhs.theta == rhs.theta;
-}
-
-bool operator==(const struct box& lhs, const struct box& rhs) {
-    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
-}
-
-bool operator==(const struct sphere& lhs, const struct sphere& rhs) {
-    return lhs.radius == rhs.radius;
-}
-
-bool operator==(const struct capsule& lhs, const struct capsule& rhs) {
-    return lhs.radius == rhs.radius && lhs.length == rhs.length;
-}
-
 bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {
     return std::tie(
                lhs.pose_.coordinates, lhs.pose_.orientation, lhs.label_, lhs.geometry_specifics_) ==
            std::tie(
                rhs.pose_.coordinates, rhs.pose_.orientation, rhs.label_, rhs.geometry_specifics_);
-}
-
-bool operator==(const geo_point& lhs, const geo_point& rhs) {
-    return std::tie(lhs.latitude, lhs.longitude) == std::tie(rhs.latitude, rhs.longitude);
-}
-
-bool operator==(const geo_geometry& lhs, const geo_geometry& rhs) {
-    return std::tie(lhs.location, lhs.geometries) == std::tie(rhs.location, rhs.geometries);
 }
 
 namespace proto_convert_details {
@@ -164,7 +129,7 @@ void to_proto_impl<GeometryConfig>::operator()(const GeometryConfig& self,
         }
     };
 
-    boost::apply_visitor(Visitor{*proto}, self.get_geometry_specifics());
+    std::visit(Visitor{*proto}, self.get_geometry_specifics());
 
     *(proto->mutable_label()) = self.get_label();
     *(proto->mutable_center()) = to_proto(self.get_pose());

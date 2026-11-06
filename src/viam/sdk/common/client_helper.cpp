@@ -27,7 +27,7 @@ bool isStatusCancelled(int status) noexcept {
 
 void set_name(...) {}  // NOLINT(cert-dcl50-cpp)
 
-boost::optional<std::string> debug_map_value(const ProtoStruct& extra) {
+std::optional<std::string> debug_map_value(const ProtoStruct& extra) {
     auto key = extra.find(impl::debug_map_key);
     if (key != extra.end()) {
         return key->second.get_unchecked<std::string>();
@@ -44,8 +44,8 @@ ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientCon
 }
 
 ClientContext::ClientContext(const ViamChannel& channel) : ClientContext() {
-    if (channel.auth_token().has_value()) {
-        wrapped_context_->AddMetadata("authorization", "Bearer " + *channel.auth_token());
+    if (const auto& token = channel.auth_token()) {
+        wrapped_context_->AddMetadata("authorization", "Bearer " + *token);
     }
     impl::inject_trace_context(wrapped_context_.get());
 }

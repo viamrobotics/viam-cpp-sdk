@@ -235,45 +235,6 @@ RobotClient::machine_status from_proto_impl<GetMachineStatusResponse>::operator(
 
 }  // namespace proto_convert_details
 
-bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
-    return lhs.id == rhs.id && lhs.method == rhs.method && lhs.session_id == rhs.session_id &&
-           lhs.arguments == rhs.arguments && lhs.started == rhs.started;
-}
-
-bool operator==(const RobotClient::resource_status& lhs, const RobotClient::resource_status& rhs) {
-    return lhs.name == rhs.name && lhs.state == rhs.state && lhs.last_updated == rhs.last_updated &&
-           lhs.revision == rhs.revision && lhs.error == rhs.error;
-}
-
-bool operator==(const RobotClient::config_status& lhs, const RobotClient::config_status& rhs) {
-    return lhs.revision == rhs.revision && lhs.last_updated == rhs.last_updated;
-}
-
-bool operator==(const RobotClient::module_status& lhs, const RobotClient::module_status& rhs) {
-    return lhs.module_name == rhs.module_name && lhs.state == rhs.state &&
-           lhs.last_updated == rhs.last_updated && lhs.error == rhs.error &&
-           lhs.consecutive_failures == rhs.consecutive_failures;
-}
-
-bool operator==(const RobotClient::package_status& lhs, const RobotClient::package_status& rhs) {
-    return lhs.name == rhs.name && lhs.type == rhs.type && lhs.state == rhs.state &&
-           lhs.error == rhs.error && lhs.last_updated == rhs.last_updated &&
-           lhs.version == rhs.version && lhs.bytes_downloaded == rhs.bytes_downloaded &&
-           lhs.total_bytes == rhs.total_bytes;
-}
-
-bool operator==(const RobotClient::job_status& lhs, const RobotClient::job_status& rhs) {
-    return lhs.job_name == rhs.job_name &&
-           lhs.recent_successful_runs == rhs.recent_successful_runs &&
-           lhs.recent_failed_runs == rhs.recent_failed_runs;
-}
-
-bool operator==(const RobotClient::machine_status& lhs, const RobotClient::machine_status& rhs) {
-    return lhs.state == rhs.state && lhs.resources == rhs.resources && lhs.config == rhs.config &&
-           lhs.modules == rhs.modules && lhs.packages == rhs.packages &&
-           lhs.job_statuses == rhs.job_statuses;
-}
-
 struct RobotClient::impl {
     impl(std::unique_ptr<RobotService::Stub> stub, ViamChannel& channel)
         : stub(std::move(stub)), channel_(&channel) {}

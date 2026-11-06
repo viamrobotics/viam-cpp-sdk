@@ -8,6 +8,7 @@
 #include <map>
 #include <memory>
 #include <ostream>
+#include <string_view>
 
 #include <boost/log/attributes/clock.hpp>
 #include <boost/log/expressions/keyword.hpp>
@@ -16,7 +17,6 @@
 #include <boost/log/sources/severity_channel_logger.hpp>
 #include <boost/log/utility/manipulators/add_value.hpp>
 #include <boost/preprocessor/facilities/overload.hpp>
-#include <boost/utility/string_view.hpp>
 
 namespace viam {
 namespace sdk {
@@ -157,13 +157,13 @@ namespace log_detail {
 
 // Some of the filenames in the SDK are not unique, eg config/resource.hpp, resource/resource.hpp.
 // This function trims a full filename /path/to/some/file.xpp to some/file.xpp
-boost::string_view trim_filename(const char* file);
+std::string_view trim_filename(const char* file);
 
 }  // namespace log_detail
 
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_channel, "Channel", std::string);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_sev, "Severity", viam::sdk::log_level);
-BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_file, "file", boost::string_view);
+BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_file, "file", std::string_view);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_line, "line", unsigned int);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
                                  "TimeStamp",

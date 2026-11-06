@@ -32,7 +32,7 @@ sdk::KinematicModel fake_kinematic_model() {
     j1.id = "j1";
     j1.parent = "base";
     j1.axis = Vector3{0, 0, 1};
-    j1.spec = RevoluteJoint{-180.0, 180.0, 90.0, boost::none};
+    j1.spec = RevoluteJoint{-180.0, 180.0, 90.0, std::nullopt};
 
     KinematicLink link1;
     link1.id = "link1";
@@ -46,7 +46,7 @@ sdk::KinematicModel fake_kinematic_model() {
     j2.parent = "link1";
     j2.axis = Vector3{1, 0, 0};
     j2.spec = PrismaticJoint{
-        0.0, 500.0, boost::none, 10.0, GeometryConfig(pose{}, capsule{1, 2}, "rail")};
+        0.0, 500.0, std::nullopt, 10.0, GeometryConfig(pose{}, capsule{1, 2}, "rail")};
     j2.mimic = MimicJoint{"j1", 2.0, 1.0};
 
     KinematicLink link2;
@@ -69,7 +69,7 @@ sdk::KinematicModel fake_kinematic_model() {
     model.links = {base, link1, link2, tool};
     model.joints = {j1, j2, j3};
     model.output_frames = {"tool"};
-    model.properties = KinematicProperties{30.0, boost::none};
+    model.properties = KinematicProperties{30.0, std::nullopt};
     return model;
 }
 
@@ -125,7 +125,7 @@ void MockArm::move_through_joint_positions(const std::vector<std::vector<double>
 }
 
 sdk::Arm::stream_outcome MockArm::move_through_joint_positions_streamed(
-    const std::function<boost::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
+    const std::function<std::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
     const std::function<bool(Arm::trajectory_update)>& update_handler,
     const sdk::ProtoStruct&) {
     while (auto batch = batch_source()) {

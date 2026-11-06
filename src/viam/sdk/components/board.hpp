@@ -218,7 +218,7 @@ class Board : public Component {
     /// @param power_mode Requested power mode
     /// @param duration Requested duration to stay in `power_mode` (in microseconds)
     inline void set_power_mode(power_mode power_mode,
-                               const boost::optional<std::chrono::microseconds>& duration = {}) {
+                               const std::optional<std::chrono::microseconds>& duration = {}) {
         return set_power_mode(power_mode, {}, duration);
     }
 
@@ -227,10 +227,9 @@ class Board : public Component {
     /// @param power_mode Requested power mode
     /// @param extra Any additional arguments to the method
     /// @param duration Requested duration to stay in `power_mode` (in microseconds)
-    virtual void set_power_mode(
-        power_mode power_mode,
-        const ProtoStruct& extra,
-        const boost::optional<std::chrono::microseconds>& duration = {}) = 0;
+    virtual void set_power_mode(power_mode power_mode,
+                                const ProtoStruct& extra,
+                                const std::optional<std::chrono::microseconds>& duration = {}) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

@@ -39,11 +39,6 @@ KinematicsData Arm::get_kinematics() {
 
 #pragma GCC diagnostic pop
 
-bool operator==(const Arm::properties& lhs, const Arm::properties& rhs) {
-    return (lhs.support_manual_mode == rhs.support_manual_mode &&
-            lhs.support_cartesian_commands == rhs.support_cartesian_commands);
-}
-
 namespace proto_convert_details {
 
 void to_proto_impl<Arm::trajectory_point>::operator()(

@@ -23,7 +23,7 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
         const std::string& audio_data_str = request->audio_data();
         audio_data.assign(audio_data_str.c_str(), audio_data_str.c_str() + audio_data_str.size());
 
-        boost::optional<audio_info> info;
+        std::optional<audio_info> info;
         if (request->has_audio_info()) {
             info.emplace(audio_info{request->audio_info().codec(),
                                     request->audio_info().sample_rate_hz(),
@@ -70,13 +70,13 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
                                                 "PlayStream: resource not found: " + init.name()));
     }
 
-    // chunk_source pulls the next chunk off the gRPC stream. Returns boost::none on EOF or
+    // chunk_source pulls the next chunk off the gRPC stream. Returns std::nullopt on EOF or
     // cancellation, signaling end-of-stream to the implementation.
-    auto chunk_source = [reader, context]() -> boost::optional<std::vector<uint8_t>> {
+    auto chunk_source = [reader, context]() -> std::optional<std::vector<uint8_t>> {
         ::viam::component::audioout::v1::PlayStreamRequest msg;
         while (reader->Read(&msg)) {
             if (context->IsCancelled()) {
-                return boost::none;
+                return std::nullopt;
             }
             if (msg.payload_case() ==
                 ::viam::component::audioout::v1::PlayStreamRequest::kAudioChunk) {
@@ -84,7 +84,7 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
                 return std::vector<uint8_t>(bytes.begin(), bytes.end());
             }
         }
-        return boost::none;
+        return std::nullopt;
     };
 
     try {

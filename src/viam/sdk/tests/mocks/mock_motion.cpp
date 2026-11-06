@@ -46,7 +46,7 @@ std::string MockMotion::move_on_map(
 
 std::string MockMotion::move_on_globe(
     const geo_point& destination,
-    const boost::optional<double>& heading,
+    const std::optional<double>& heading,
     const std::string& component_name,
     const std::string& movement_sensor_name,
     const std::vector<geo_geometry>& obstacles,
@@ -139,8 +139,7 @@ pose_in_frame fake_pose() {
 }
 
 Motion::plan_status MockMotion::fake_plan_status() {
-    return {
-        Motion::plan_state::k_succeeded, time_pt::max(), boost::optional<std::string>("reason")};
+    return {Motion::plan_state::k_succeeded, time_pt::max(), std::optional<std::string>("reason")};
 }
 
 Motion::plan_status_with_id MockMotion::fake_plan_status_with_id() {

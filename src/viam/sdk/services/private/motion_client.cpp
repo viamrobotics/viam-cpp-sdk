@@ -231,7 +231,7 @@ std::string MotionClient::move_on_map(
 
 std::string MotionClient::move_on_globe(
     const geo_point& destination,
-    const boost::optional<double>& heading,
+    const std::optional<double>& heading,
     const std::string& component_name,
     const std::string& movement_sensor_name,
     const std::vector<geo_geometry>& obstacles,
@@ -284,7 +284,7 @@ void MotionClient::stop_plan(const std::string& name, const ProtoStruct& extra) 
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> MotionClient::get_plan_(
     const std::string& component_name,
-    boost::optional<std::string> execution_id,
+    std::optional<std::string> execution_id,
     bool last_plan_only,
     const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPlan)

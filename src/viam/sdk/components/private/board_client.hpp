@@ -45,7 +45,7 @@ class BoardClient : public Board {
                                          const ProtoStruct& extra) override;
     void set_power_mode(power_mode power_mode,
                         const ProtoStruct& extra,
-                        const boost::optional<std::chrono::microseconds>& duration) override;
+                        const std::optional<std::chrono::microseconds>& duration) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     void stream_ticks(std::vector<std::string> const& digital_interrupt_names,

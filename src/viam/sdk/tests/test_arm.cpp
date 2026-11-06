@@ -3,11 +3,8 @@
 #include <stdexcept>
 #include <thread>
 
-#include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
-#include <boost/variant/apply_visitor.hpp>
-#include <boost/variant/static_visitor.hpp>
 
 #include <grpcpp/support/status.h>
 
@@ -34,7 +31,7 @@ using namespace arm;
 
 using namespace viam::sdk;
 
-struct CheckScalar : boost::static_visitor<> {
+struct CheckScalar {
     double expected;
     explicit CheckScalar(double e) : expected(e) {}
     void operator()(double d) const {
@@ -45,7 +42,7 @@ struct CheckScalar : boost::static_visitor<> {
     }
 };
 
-struct CheckVector : boost::static_visitor<> {
+struct CheckVector {
     std::vector<double> expected;
     explicit CheckVector(std::vector<double> e) : expected(std::move(e)) {}
     void operator()(double) const {
@@ -62,8 +59,8 @@ namespace {
 // accelerations too includes those.
 Arm::trajectory_point make_point(std::int64_t time_us,
                                  std::vector<double> positions,
-                                 boost::optional<std::vector<double>> velocities = boost::none,
-                                 boost::optional<std::vector<double>> accelerations = boost::none) {
+                                 std::optional<std::vector<double>> velocities = std::nullopt,
+                                 std::optional<std::vector<double>> accelerations = std::nullopt) {
     Arm::trajectory_point point;
     point.time = std::chrono::microseconds(time_us);
     point.positions = std::move(positions);
@@ -99,15 +96,15 @@ void check_points_equal(const Arm::trajectory_point& got, const Arm::trajectory_
 }
 
 // A pull-source over a fixed list of batches, suitable as a `batch_source`. Each
-// call yields the next batch, then `boost::none`. The batches are held by shared
+// call yields the next batch, then `std::nullopt`. The batches are held by shared
 // ownership so callers may inspect them after the stream completes.
-std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_pump(
+std::function<std::optional<std::vector<Arm::trajectory_point>>()> batch_pump(
     std::shared_ptr<std::vector<std::vector<Arm::trajectory_point>>> batches) {
     auto index = std::make_shared<std::size_t>(0);
     return [batches = std::move(batches),
-            index]() -> boost::optional<std::vector<Arm::trajectory_point>> {
+            index]() -> std::optional<std::vector<Arm::trajectory_point>> {
         if (*index >= batches->size()) {
-            return boost::none;
+            return std::nullopt;
         }
         return (*batches)[(*index)++];
     };
@@ -205,8 +202,8 @@ BOOST_AUTO_TEST_CASE(thru_joint_positions) {
 
         BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
         BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
-        boost::apply_visitor(CheckScalar(1.0), *mock->move_opts.max_vel_degs_per_sec);
-        boost::apply_visitor(CheckScalar(2.0), *mock->move_opts.max_acc_degs_per_sec2);
+        std::visit(CheckScalar(1.0), *mock->move_opts.max_vel_degs_per_sec);
+        std::visit(CheckScalar(2.0), *mock->move_opts.max_acc_degs_per_sec2);
         BOOST_CHECK_GT(mock->viam_client_metadata.size(), 0);
     });
 }
@@ -223,8 +220,8 @@ BOOST_AUTO_TEST_CASE(thru_joint_positions_both_vector) {
 
         BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
         BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
-        boost::apply_visitor(CheckVector(vel_joints), *mock->move_opts.max_vel_degs_per_sec);
-        boost::apply_visitor(CheckVector(acc_joints), *mock->move_opts.max_acc_degs_per_sec2);
+        std::visit(CheckVector(vel_joints), *mock->move_opts.max_vel_degs_per_sec);
+        std::visit(CheckVector(acc_joints), *mock->move_opts.max_acc_degs_per_sec2);
     });
 }
 
@@ -240,8 +237,8 @@ BOOST_AUTO_TEST_CASE(thru_joint_positions_acc_scalar_vel_vector) {
 
         BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
         BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
-        boost::apply_visitor(CheckVector(vel_joints), *mock->move_opts.max_vel_degs_per_sec);
-        boost::apply_visitor(CheckScalar(acc_scalar), *mock->move_opts.max_acc_degs_per_sec2);
+        std::visit(CheckVector(vel_joints), *mock->move_opts.max_vel_degs_per_sec);
+        std::visit(CheckScalar(acc_scalar), *mock->move_opts.max_acc_degs_per_sec2);
     });
 }
 
@@ -257,8 +254,8 @@ BOOST_AUTO_TEST_CASE(thru_joint_positions_vel_scalar_acc_vector) {
 
         BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
         BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
-        boost::apply_visitor(CheckScalar(vel_scalar), *mock->move_opts.max_vel_degs_per_sec);
-        boost::apply_visitor(CheckVector(acc_joints), *mock->move_opts.max_acc_degs_per_sec2);
+        std::visit(CheckScalar(vel_scalar), *mock->move_opts.max_vel_degs_per_sec);
+        std::visit(CheckVector(acc_joints), *mock->move_opts.max_acc_degs_per_sec2);
     });
 }
 

@@ -34,6 +34,7 @@ apt_install \
     sudo \
     wget
 
+# The SDK needs GCC 10+ (C++20); focal ships 9 by default, so install 10 and make it the default.
 if is_ubuntu && [[ "${DISTRO_CODENAME}" == "focal" ]]; then
     apt_install gcc-10 g++-10
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 \

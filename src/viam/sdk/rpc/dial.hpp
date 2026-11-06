@@ -2,9 +2,8 @@
 
 #include <chrono>
 #include <memory>
+#include <optional>
 #include <string>
-
-#include <boost/optional.hpp>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
 
@@ -30,8 +29,8 @@ class ViamChannel {
        public:
         Options();
 
-        const boost::optional<Credentials>& credentials() const;
-        const boost::optional<std::string>& entity() const;
+        const std::optional<Credentials>& credentials() const;
+        const std::optional<std::string>& entity() const;
         bool allows_insecure_downgrade() const;
         bool webrtc_disabled() const;
         const std::chrono::duration<float>& timeout() const;
@@ -39,10 +38,10 @@ class ViamChannel {
         std::chrono::duration<float> initial_connection_attempt_timeout() const;
 
         /// @brief Set the URL to authenticate against.
-        Options& set_entity(boost::optional<std::string> entity);
+        Options& set_entity(std::optional<std::string> entity);
 
         /// @brief Set Credentials for connecting to the robot.
-        Options& set_credentials(boost::optional<Credentials> creds);
+        Options& set_credentials(std::optional<Credentials> creds);
 
         /// @brief Set whether to allow the RPC connection to be downgraded to an insecure
         /// connection if detected. This is only used when credentials are not present.
@@ -67,9 +66,9 @@ class ViamChannel {
         Options& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
 
        private:
-        boost::optional<std::string> auth_entity_;
+        std::optional<std::string> auth_entity_;
 
-        boost::optional<Credentials> credentials_;
+        std::optional<Credentials> credentials_;
 
         bool allow_insecure_downgrade_ = false;
 
@@ -96,7 +95,7 @@ class ViamChannel {
     /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
     /// preferred method to connect to a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI
-    static ViamChannel dial(const char* uri, const boost::optional<Options>& options);
+    static ViamChannel dial(const char* uri, const std::optional<Options>& options);
 
     /// @brief Dials to a robot at the given URI address, using the provided dial options (or
     /// default options is none are provided).
@@ -106,7 +105,7 @@ class ViamChannel {
     /// a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI within
     /// the given number of initial connection attempts
-    static ViamChannel dial_initial(const char* uri, const boost::optional<Options>& options);
+    static ViamChannel dial_initial(const char* uri, const std::optional<Options>& options);
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
@@ -115,7 +114,7 @@ class ViamChannel {
     /// @remark When dialing with disable_webrtc = true and grpc >= 1.43.0, a bearer token is needed
     /// for all client requests. If you use ClientHelper for client requests this is handled
     /// automatically, otherwise you will have to add this to the client context of a grpc call.
-    const boost::optional<std::string>& auth_token() const;
+    const std::optional<std::string>& auth_token() const;
 
     /// @brief Returns the address of the robot to which this channel is connected.
     const char* get_channel_addr() const;
@@ -145,7 +144,7 @@ using DialOptionsDeprecated = ViamChannel::Options;
 
 class Options {
    public:
-    Options(unsigned int refresh_interval, boost::optional<ViamChannel::Options> channel_options)
+    Options(unsigned int refresh_interval, std::optional<ViamChannel::Options> channel_options)
         : refresh_interval_(std::move(refresh_interval)),
           channel_options_(std::move(channel_options)) {}
 
@@ -170,10 +169,10 @@ class Options {
     Options& set_reconnect_every_interval(std::chrono::seconds interval);
 
     [[deprecated("Please update your function calls to channel_options")]]  //
-    const boost::optional<ViamChannel::Options>&
+    const std::optional<ViamChannel::Options>&
     dial_options() const;
 
-    const boost::optional<ViamChannel::Options>& channel_options() const;
+    const std::optional<ViamChannel::Options>& channel_options() const;
 
    private:
     std::chrono::seconds refresh_interval_{0};
@@ -182,7 +181,7 @@ class Options {
 
     std::chrono::seconds reconnect_every_interval_{0};
 
-    boost::optional<ViamChannel::Options> channel_options_;
+    std::optional<ViamChannel::Options> channel_options_;
 };
 
 }  // namespace sdk
