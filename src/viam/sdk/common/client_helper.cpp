@@ -44,8 +44,8 @@ ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientCon
 }
 
 ClientContext::ClientContext(const ViamChannel& channel) : ClientContext() {
-    if (channel.auth_token().has_value()) {
-        wrapped_context_->AddMetadata("authorization", "Bearer " + *channel.auth_token());
+    if (const auto& token = channel.auth_token()) {
+        wrapped_context_->AddMetadata("authorization", "Bearer " + *token);
     }
     impl::inject_trace_context(wrapped_context_.get());
 }
