@@ -28,11 +28,13 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::gantry::v1::MoveToPositionResponse*) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::MoveToPosition", this, context, request)([&](auto& helper, auto& gantry) {
+        // The RDK gantry client's GoToInputs (used by the motion service) sends no speeds, so a
+        // missing speed is passed as 0 for the implementation to pick its own default.
         std::vector<Gantry::movement_coordinate> coords;
-        for (int i = 0;
-             i < std::min(request->positions_mm_size(), request->speeds_mm_per_sec_size());
-             ++i) {
-            coords.push_back({request->positions_mm(i), request->speeds_mm_per_sec(i)});
+        for (int i = 0; i < request->positions_mm_size(); ++i) {
+            const double speed =
+                i < request->speeds_mm_per_sec_size() ? request->speeds_mm_per_sec(i) : 0.0;
+            coords.push_back({request->positions_mm(i), speed});
         }
 
         gantry->move_to_position(coords, helper.getExtra());

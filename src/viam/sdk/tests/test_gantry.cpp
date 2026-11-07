@@ -2,6 +2,9 @@
 
 #include <boost/test/included/unit_test.hpp>
 
+#include <grpcpp/client_context.h>
+#include <viam/api/component/gantry/v1/gantry.grpc.pb.h>
+
 #include <viam/sdk/components/gantry.hpp>
 #include <viam/sdk/tests/mocks/mock_gantry.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -34,6 +37,27 @@ BOOST_AUTO_TEST_CASE(test_positions) {
     client_to_mock_pipeline<Gantry>(mock, [&](Gantry& client) {
         client.move_to_position({{1.0, 1.0}, {2.0, 2.0}, {3.0, 3.0}, {4.0, 4.0}});
         BOOST_CHECK_EQUAL(client.get_position(), (std::vector<double>({1.0, 2.0, 3.0, 4.0})));
+    });
+}
+
+// The typed client always pairs each position with a speed, so drive the server with a raw stub
+// to send what the RDK Go client sends from GoToInputs: positions and no speeds.
+BOOST_AUTO_TEST_CASE(test_move_to_position_without_speeds) {
+    std::shared_ptr<MockGantry> mock = MockGantry::get_mock_gantry();
+    channel_to_mock_pipeline(mock, [&](std::shared_ptr<grpc::Channel> channel) {
+        auto stub = ::viam::component::gantry::v1::GantryService::NewStub(channel);
+        ::viam::component::gantry::v1::MoveToPositionRequest request;
+        request.set_name(mock->name());
+        request.add_positions_mm(10.0);
+        request.add_positions_mm(20.0);
+        ::viam::component::gantry::v1::MoveToPositionResponse response;
+        grpc::ClientContext ctx;
+
+        const grpc::Status status = stub->MoveToPosition(&ctx, request, &response);
+
+        BOOST_CHECK(status.ok());
+        BOOST_CHECK_EQUAL(mock->peek_positions, (std::vector<double>({10.0, 20.0})));
+        BOOST_CHECK_EQUAL(mock->peek_speeds, (std::vector<double>({0.0, 0.0})));
     });
 }
 
