@@ -54,6 +54,7 @@ void AudioOutClient::play_stream(audio_info info,
     while (auto chunk = chunk_source()) {
         ::viam::component::audioout::v1::PlayStreamRequest msg;
         auto* chunk_msg = msg.mutable_audio_chunk();
+        // NOLINTNEXTLINE(bugprone-unchecked-optional-access)
         chunk_msg->set_audio_data(std::string(chunk->begin(), chunk->end()));
         if (!writer->Write(msg)) {
             // Stream broken on server side; surface the error from Finish().

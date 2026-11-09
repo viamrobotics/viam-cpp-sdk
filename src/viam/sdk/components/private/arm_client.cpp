@@ -180,7 +180,7 @@ Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
             while (auto batch = batch_source()) {
                 ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest msg;
                 auto* trajectory_batch = msg.mutable_batch();
-                for (const auto& point : *batch) {
+                for (const auto& point : *batch) {  // NOLINT(bugprone-unchecked-optional-access)
                     *trajectory_batch->add_points() = to_proto(point);
                 }
                 if (!stream->Write(msg)) {

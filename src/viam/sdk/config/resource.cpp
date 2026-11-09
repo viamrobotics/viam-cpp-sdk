@@ -173,8 +173,8 @@ void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_depends_on() = ::google::protobuf::RepeatedPtrField<std::string>(
         self.depends_on().begin(), self.depends_on().end());
 
-    if (self.frame()) {
-        *proto->mutable_frame() = to_proto(*self.frame());
+    if (const auto& frame = self.frame()) {
+        *proto->mutable_frame() = to_proto(*frame);
     }
 }
 

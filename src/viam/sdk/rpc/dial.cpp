@@ -193,13 +193,13 @@ ViamChannel ViamChannel::dial(const char* uri, const std::optional<ViamChannel::
     const char* entity = nullptr;
     const char* payload = nullptr;
 
-    if (opts.credentials()) {
-        type = opts.credentials()->type().c_str();
-        payload = opts.credentials()->payload().c_str();
+    if (const auto& creds = opts.credentials()) {
+        type = creds->type().c_str();
+        payload = creds->payload().c_str();
     }
 
-    if (opts.entity()) {
-        entity = opts.entity()->c_str();
+    if (const auto& opt_entity = opts.entity()) {
+        entity = opt_entity->c_str();
     }
     char* proxy_path = ::viam_dial(
         uri, entity, type, payload, opts.allows_insecure_downgrade(), timeout.count(), ptr);
@@ -240,9 +240,15 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const ViamChannel::Options
     ClientContext ctx;
     AuthenticateRequest req;
 
-    *req.mutable_entity() = *opts.entity();
-    *req.mutable_credentials()->mutable_payload() = opts.credentials()->payload();
-    *req.mutable_credentials()->mutable_type() = opts.credentials()->type();
+    const auto& entity = opts.entity();
+    const auto& auth = opts.credentials();
+    if (!entity || !auth) {
+        throw Exception(ErrorCondition::k_connection,
+                        "Direct dial requires both an entity and credentials");
+    }
+    *req.mutable_entity() = *entity;
+    *req.mutable_credentials()->mutable_payload() = auth->payload();
+    *req.mutable_credentials()->mutable_type() = auth->type();
 
     AuthenticateResponse resp;
 
