@@ -30,7 +30,7 @@ jobs:
         run: |
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              clang-tidy-15 \
+              clang-tidy-16 \
               curl \
               gettext \
               lsof
