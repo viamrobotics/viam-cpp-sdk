@@ -29,6 +29,7 @@ apt_install \
     git \
     gnupg \
     gpg \
+    jq \
     ninja-build \
     pkg-config \
     sudo \
