@@ -38,6 +38,7 @@ class MockGantry : public sdk::Gantry {
 #pragma GCC diagnostic pop
 
     std::vector<double> peek_positions;
+    std::vector<double> peek_speeds;
     sdk::kinematics_options peek_kinematics_options;
     bool peek_stop_called{false};
     bool peek_home_called{false};
