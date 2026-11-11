@@ -61,6 +61,25 @@ BOOST_AUTO_TEST_CASE(test_move_to_position_without_speeds) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_move_to_position_mismatched_speeds) {
+    std::shared_ptr<MockGantry> mock = MockGantry::get_mock_gantry();
+    channel_to_mock_pipeline(mock, [&](std::shared_ptr<grpc::Channel> channel) {
+        auto stub = ::viam::component::gantry::v1::GantryService::NewStub(channel);
+        ::viam::component::gantry::v1::MoveToPositionRequest request;
+        request.set_name(mock->name());
+        request.add_positions_mm(10.0);
+        request.add_positions_mm(20.0);
+        request.add_speeds_mm_per_sec(5.0);
+        ::viam::component::gantry::v1::MoveToPositionResponse response;
+        grpc::ClientContext ctx;
+
+        const grpc::Status status = stub->MoveToPosition(&ctx, request, &response);
+
+        BOOST_CHECK_EQUAL(status.error_code(), grpc::StatusCode::INVALID_ARGUMENT);
+        BOOST_CHECK(mock->peek_positions.empty());
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_home) {
     std::shared_ptr<MockGantry> mock = MockGantry::get_mock_gantry();
     client_to_mock_pipeline<Gantry>(mock, [&](Gantry& client) {
