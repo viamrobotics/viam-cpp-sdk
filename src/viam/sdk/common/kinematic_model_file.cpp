@@ -31,7 +31,7 @@ using google::protobuf::Message;
 
 const char* const k_world = "world";
 
-std::string quoted(const std::string& s) {
+std::string in_quotes(const std::string& s) {
     return "\"" + s + "\"";
 }
 
@@ -157,15 +157,15 @@ void validate(const common::v1::KinematicModel& model) {
             throw Exception(std::string("a ") + n.kind + " has no id");
         }
         if (n.id == k_world) {
-            throw Exception(std::string("a ") + n.kind + " cannot be named " + quoted(k_world) +
+            throw Exception(std::string("a ") + n.kind + " cannot be named " + in_quotes(k_world) +
                             ", which is a reserved id");
         }
         const auto existing = kinds.find(n.id);
         if (existing != kinds.end()) {
             if (existing->second == n.kind) {
-                throw Exception(std::string(n.kind) + " " + quoted(n.id) + " is defined twice");
+                throw Exception(std::string(n.kind) + " " + in_quotes(n.id) + " is defined twice");
             }
-            throw Exception(quoted(n.id) + " names both a " + existing->second + " and a " +
+            throw Exception(in_quotes(n.id) + " names both a " + existing->second + " and a " +
                             n.kind);
         }
         kinds[n.id] = n.kind;
@@ -177,8 +177,8 @@ void validate(const common::v1::KinematicModel& model) {
             continue;
         }
         if (kinds.find(n.parent) == kinds.end()) {
-            throw Exception(std::string(n.kind) + " " + quoted(n.id) + ": parent " +
-                            quoted(n.parent) + " is not a link or joint in the model");
+            throw Exception(std::string(n.kind) + " " + in_quotes(n.id) + ": parent " +
+                            in_quotes(n.parent) + " is not a link or joint in the model");
         }
     }
 
@@ -186,7 +186,7 @@ void validate(const common::v1::KinematicModel& model) {
         std::set<std::string> seen;
         for (std::string cur = n.id; !cur.empty() && cur != k_world; cur = parents[cur]) {
             if (!seen.insert(cur).second) {
-                throw Exception(kinds[cur] + " " + quoted(cur) + " is its own ancestor");
+                throw Exception(kinds[cur] + " " + in_quotes(cur) + " is its own ancestor");
             }
         }
     }
@@ -197,11 +197,11 @@ void validate(const common::v1::KinematicModel& model) {
         }
         const std::string& source = joint.mimic().joint();
         if (source == joint.id()) {
-            throw Exception("joint " + quoted(joint.id()) + " mimics itself");
+            throw Exception("joint " + in_quotes(joint.id()) + " mimics itself");
         }
         const auto kind = kinds.find(source);
         if (kind == kinds.end() || kind->second != "joint") {
-            throw Exception("joint " + quoted(joint.id()) + " mimics " + quoted(source) +
+            throw Exception("joint " + in_quotes(joint.id()) + " mimics " + in_quotes(source) +
                             ", which is not a joint in the model");
         }
         // a mimic joint follows the joint it mimics, so limits written on it would be dropped
@@ -209,7 +209,7 @@ void validate(const common::v1::KinematicModel& model) {
         const auto& limits = joint.limits();
         if (limits.has_min() || limits.has_max() || limits.has_max_velocity() ||
             limits.has_max_acceleration()) {
-            throw Exception("joint " + quoted(joint.id()) +
+            throw Exception("joint " + in_quotes(joint.id()) +
                             " is a mimic joint and cannot carry limits of its own");
         }
     }
@@ -219,16 +219,17 @@ void validate(const common::v1::KinematicModel& model) {
 // the model file, uses forward slashes and is not a URI.
 void check_mesh_path(const std::string& source) {
     if (source.find("://") != std::string::npos) {
-        throw Exception("mesh path " + quoted(source) +
+        throw Exception("mesh path " + in_quotes(source) +
                         " is a URI, paths are relative to the model file");
     }
     if (source.find('\\') != std::string::npos) {
-        throw Exception("mesh path " + quoted(source) + " uses backslashes, use forward slashes");
+        throw Exception("mesh path " + in_quotes(source) +
+                        " uses backslashes, use forward slashes");
     }
     const bool drive = source.size() > 1 && source[1] == ':' &&
                        std::isalpha(static_cast<unsigned char>(source[0])) != 0;
     if (source[0] == '/' || drive) {
-        throw Exception("mesh path " + quoted(source) +
+        throw Exception("mesh path " + in_quotes(source) +
                         " is absolute, paths are relative to the model file");
     }
 }
@@ -254,12 +255,12 @@ class mesh_loader {
         if (!has_bytes) {
             check_mesh_path(source);
             if (extension.empty()) {
-                throw Exception("mesh path " + quoted(source) +
+                throw Exception("mesh path " + in_quotes(source) +
                                 " has no extension to take the content type from");
             }
             if (!content_type.empty() && content_type != extension) {
-                throw Exception("mesh content type " + quoted(mesh->content_type()) +
-                                " disagrees with the extension of " + quoted(source));
+                throw Exception("mesh content type " + in_quotes(mesh->content_type()) +
+                                " disagrees with the extension of " + in_quotes(source));
             }
             content_type = extension;
         } else if (content_type.empty()) {
@@ -271,7 +272,7 @@ class mesh_loader {
             throw Exception("inline mesh bytes need a content type");
         }
         if (collision && content_type != "stl" && content_type != "ply") {
-            throw Exception("collision mesh content type " + quoted(content_type) +
+            throw Exception("collision mesh content type " + in_quotes(content_type) +
                             " is not stl or ply");
         }
         mesh->set_content_type(content_type);
@@ -285,7 +286,7 @@ class mesh_loader {
             const std::string resolved = dir_.empty() ? source : dir_ + "/" + source;
             std::string data;
             if (!read_file(resolved, &data)) {
-                throw Exception("failed to read mesh " + quoted(source) + " at " + resolved);
+                throw Exception("failed to read mesh " + in_quotes(source) + " at " + resolved);
             }
             cached = cache_.emplace(source, std::move(data)).first;
         }
@@ -313,17 +314,17 @@ void load_meshes(common::v1::KinematicModel* model, const std::string& dir) {
         for (int i = 0; i < link.collision_size(); ++i) {
             load(link.mutable_collision(i),
                  true,
-                 "link " + quoted(link.id()) + " collision geometry " + std::to_string(i));
+                 "link " + in_quotes(link.id()) + " collision geometry " + std::to_string(i));
         }
         for (int i = 0; i < link.visual_size(); ++i) {
             load(link.mutable_visual(i),
                  false,
-                 "link " + quoted(link.id()) + " visual geometry " + std::to_string(i));
+                 "link " + in_quotes(link.id()) + " visual geometry " + std::to_string(i));
         }
     }
     for (auto& joint : *model->mutable_joints()) {
         if (joint.has_geometry()) {
-            load(joint.mutable_geometry(), true, "joint " + quoted(joint.id()) + " geometry");
+            load(joint.mutable_geometry(), true, "joint " + in_quotes(joint.id()) + " geometry");
         }
     }
 }

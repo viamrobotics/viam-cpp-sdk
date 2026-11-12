@@ -81,7 +81,7 @@ bool operator==(const KinematicModel& lhs, const KinematicModel& rhs) {
 
 namespace {
 
-std::string quoted(const std::string& s) {
+std::string in_quotes(const std::string& s) {
     return "\"" + s + "\"";
 }
 
@@ -111,16 +111,16 @@ void check_requested(const std::string& id, const JointLimits& requested) {
     for (const auto& field : fields) {
         // a field is left out to say a joint is unbounded, so infinity is never a value
         if (*field.second && !std::isfinite(**field.second)) {
-            throw Exception("joint " + quoted(id) + ": " + field.first +
+            throw Exception("joint " + in_quotes(id) + ": " + field.first +
                             " must be a finite number, got " + number(**field.second));
         }
     }
     if (requested.max_velocity && *requested.max_velocity < 0) {
-        throw Exception("joint " + quoted(id) + ": max_velocity cannot be negative, got " +
+        throw Exception("joint " + in_quotes(id) + ": max_velocity cannot be negative, got " +
                         number(*requested.max_velocity));
     }
     if (requested.max_acceleration && *requested.max_acceleration < 0) {
-        throw Exception("joint " + quoted(id) + ": max_acceleration cannot be negative, got " +
+        throw Exception("joint " + in_quotes(id) + ": max_acceleration cannot be negative, got " +
                         number(*requested.max_acceleration));
     }
 }
@@ -134,21 +134,21 @@ void narrow(const std::string& id,
             boost::optional<double>& max_velocity,
             boost::optional<double>& max_acceleration) {
     if (requested.min && min && *requested.min < *min) {
-        throw Exception("joint " + quoted(id) + ": min " + number(*requested.min) +
+        throw Exception("joint " + in_quotes(id) + ": min " + number(*requested.min) +
                         " is below the model's min " + number(*min));
     }
     if (requested.max && max && *requested.max > *max) {
-        throw Exception("joint " + quoted(id) + ": max " + number(*requested.max) +
+        throw Exception("joint " + in_quotes(id) + ": max " + number(*requested.max) +
                         " is above the model's max " + number(*max));
     }
     if (requested.max_velocity && max_velocity && *requested.max_velocity > *max_velocity) {
-        throw Exception("joint " + quoted(id) + ": max_velocity " +
+        throw Exception("joint " + in_quotes(id) + ": max_velocity " +
                         number(*requested.max_velocity) + " is above the model's " +
                         number(*max_velocity));
     }
     if (requested.max_acceleration && max_acceleration &&
         *requested.max_acceleration > *max_acceleration) {
-        throw Exception("joint " + quoted(id) + ": max_acceleration " +
+        throw Exception("joint " + in_quotes(id) + ": max_acceleration " +
                         number(*requested.max_acceleration) + " is above the model's " +
                         number(*max_acceleration));
     }
@@ -165,7 +165,7 @@ void narrow(const std::string& id,
         max_acceleration = requested.max_acceleration;
     }
     if (min && max && *min > *max) {
-        throw Exception("joint " + quoted(id) + ": min " + number(*min) + " is above max " +
+        throw Exception("joint " + in_quotes(id) + ": min " + number(*min) + " is above max " +
                         number(*max));
     }
 }
@@ -230,10 +230,10 @@ void narrow_joint_limits(KinematicModel& model, const std::map<std::string, Join
         const auto joint = std::find_if(
             joints.begin(), joints.end(), [&](const KinematicJoint& j) { return j.id == id; });
         if (joint == joints.end()) {
-            throw Exception("no joint " + quoted(id) + " in model " + quoted(model.name));
+            throw Exception("no joint " + in_quotes(id) + " in model " + in_quotes(model.name));
         }
         if (joint->mimic) {
-            throw Exception("joint " + quoted(id) +
+            throw Exception("joint " + in_quotes(id) +
                             " is a mimic joint and cannot carry limits of its own");
         }
         joint->spec = boost::apply_visitor(narrow_visitor{id, requested}, joint->spec);
