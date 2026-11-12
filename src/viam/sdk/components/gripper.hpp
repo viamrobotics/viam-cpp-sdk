@@ -5,6 +5,7 @@
 
 #include <string>
 
+#include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
@@ -79,6 +80,23 @@ class Gripper : public Component, public Stoppable {
     /// @brief Returns `GeometryConfig`s associated with the calling arm
     /// @param extra Any additional arguments to the method
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
+
+    /// @brief Get the kinematic model of the gripper.
+    /// @param options Which mesh payloads to include in the response.
+    /// @param extra Any additional arguments to the method.
+    /// @return The gripper's links, joints and output frames.
+    /// @throws Exception with ErrorCondition::k_not_supported unless overridden, since a
+    /// gripper is not required to have a kinematic model. The server answers that condition as
+    /// unimplemented, so an override should throw it only to say there is no model.
+    virtual KinematicModel get_kinematic_model(const kinematics_options& options,
+                                               const ProtoStruct& extra);
+
+    /// @brief Get the kinematic model of the gripper.
+    /// @param options Which mesh payloads to include in the response.
+    /// @return The gripper's links, joints and output frames.
+    inline KinematicModel get_kinematic_model(const kinematics_options& options = {}) {
+        return get_kinematic_model(options, {});
+    }
 
     API api() const override;
 

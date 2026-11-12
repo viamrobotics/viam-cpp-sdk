@@ -62,6 +62,7 @@ target_sources(viamsdk
     common/client_helper.cpp
     common/exception.cpp
     common/instance.cpp
+    common/kinematic_model_file.cpp
     common/kinematics.cpp
     common/linear_algebra.cpp
     common/mesh.cpp
@@ -192,6 +193,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
+      ../../viam/sdk/common/kinematic_model_file.hpp
       ../../viam/sdk/common/kinematics.hpp
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/audio_in.hpp

@@ -2,6 +2,9 @@
 
 #include <boost/test/included/unit_test.hpp>
 
+#include <grpcpp/support/status.h>
+
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/components/gripper.hpp>
 #include <viam/sdk/tests/mocks/mock_gripper.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -84,6 +87,45 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
     client_to_mock_pipeline<Gripper>(mock, [](Gripper& client) {
         const auto& geometries = client.get_geometries();
         BOOST_CHECK_EQUAL(geometries, fake_geometries());
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_kinematic_model) {
+    std::shared_ptr<MockGripper> mock = MockGripper::get_mock_gripper();
+    client_to_mock_pipeline<Gripper>(mock, [&](Gripper& client) {
+        // the server names the model for the resource, whatever name it came with
+        KinematicModel expected = fake_kinematic_model();
+        expected.name = mock->name();
+        BOOST_CHECK(client.get_kinematic_model() == expected);
+        BOOST_CHECK(!mock->peek_kinematics_options.include_collision_meshes);
+        BOOST_CHECK(!mock->peek_kinematics_options.include_visual_meshes);
+
+        kinematics_options options;
+        options.include_visual_meshes = true;
+        BOOST_CHECK(client.get_kinematic_model(options) == expected);
+        BOOST_CHECK(!mock->peek_kinematics_options.include_collision_meshes);
+        BOOST_CHECK(mock->peek_kinematics_options.include_visual_meshes);
+    });
+}
+
+// a gripper that does not override get_kinematic_model has none to serve, and viam-server only
+// falls back to the gripper's geometries when the rpc comes back unimplemented.
+BOOST_AUTO_TEST_CASE(test_get_kinematic_model_not_provided) {
+    struct NoKinematicsGripper : MockGripper {
+        using MockGripper::MockGripper;
+        KinematicModel get_kinematic_model(const kinematics_options& options,
+                                           const ProtoStruct& extra) override {
+            return Gripper::get_kinematic_model(options, extra);
+        }
+    };
+    auto mock = std::make_shared<NoKinematicsGripper>("mock_gripper");
+    client_to_mock_pipeline<Gripper>(mock, [](Gripper& client) {
+        try {
+            client.get_kinematic_model();
+            BOOST_FAIL("expected get_kinematic_model to throw");
+        } catch (const GRPCException& xcp) {
+            BOOST_CHECK_EQUAL(xcp.status()->error_code(), ::grpc::StatusCode::UNIMPLEMENTED);
+        }
     });
 }
 

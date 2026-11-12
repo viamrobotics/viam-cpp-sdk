@@ -6,6 +6,7 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
+#include <viam/sdk/common/private/kinematics_response.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/components/private/arm_trajectory_validation.hpp>
 #include <viam/sdk/rpc/private/grpc_context_observer.hpp>
@@ -303,11 +304,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         }
         const kinematics_options options{request->include_collision_meshes(),
                                          request->include_visual_meshes()};
-        KinematicModel model = arm->get_kinematic_model(options, extra);
-        if (model.name.empty()) {
-            model.name = arm->name();
-        }
-        *response->mutable_model() = to_proto(model);
+        impl::set_response_model(arm->get_kinematic_model(options, extra), arm->name(), response);
     });
 }
 

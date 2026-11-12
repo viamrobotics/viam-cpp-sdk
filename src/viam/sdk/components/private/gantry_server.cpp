@@ -4,6 +4,7 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
+#include <viam/sdk/common/private/kinematics_response.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 
 namespace viam {
@@ -119,11 +120,8 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
         }
         const kinematics_options options{request->include_collision_meshes(),
                                          request->include_visual_meshes()};
-        KinematicModel model = gantry->get_kinematic_model(options, extra);
-        if (model.name.empty()) {
-            model.name = gantry->name();
-        }
-        *response->mutable_model() = to_proto(model);
+        impl::set_response_model(
+            gantry->get_kinematic_model(options, extra), gantry->name(), response);
     });
 }
 

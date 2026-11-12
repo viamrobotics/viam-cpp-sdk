@@ -6,6 +6,8 @@
 #include <viam/api/component/gripper/v1/gripper.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
@@ -59,6 +61,23 @@ std::vector<GeometryConfig> GripperClient::get_geometries(const ProtoStruct& ext
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
+}
+
+KinematicModel GripperClient::get_kinematic_model(const kinematics_options& options,
+                                                  const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetKinematics)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_include_collision_meshes(options.include_collision_meshes);
+                  request.set_include_visual_meshes(options.include_visual_meshes);
+              })
+        .invoke([](auto& response) {
+            if (!response.has_model()) {
+                throw Exception(ErrorCondition::k_not_supported,
+                                "server did not return a kinematic model");
+            }
+            return from_proto(response.model());
+        });
 }
 
 ProtoStruct GripperClient::get_status() {

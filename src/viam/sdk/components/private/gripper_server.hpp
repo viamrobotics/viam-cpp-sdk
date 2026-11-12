@@ -56,6 +56,11 @@ class GripperServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::common::v1::GetGeometriesRequest* request,
         ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
+
+    ::grpc::Status GetKinematics(
+        ::grpc::ServerContext* context,
+        const ::viam::common::v1::GetKinematicsRequest* request,
+        ::viam::common::v1::GetKinematicsResponse* response) noexcept override;
 };
 
 }  // namespace impl

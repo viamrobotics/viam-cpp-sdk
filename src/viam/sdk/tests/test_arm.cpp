@@ -298,7 +298,7 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
 BOOST_AUTO_TEST_CASE(test_get_kinematic_model) {
     std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
     client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
-        // The server fills in the resource name when the model leaves it empty.
+        // the server names the model for the resource, whatever name it came with
         KinematicModel expected = fake_kinematic_model();
         expected.name = mock->name();
         BOOST_CHECK(client.get_kinematic_model() == expected);
