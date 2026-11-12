@@ -175,7 +175,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable
             }
 
             const auto tflite_status =
-                boost::apply_visitor(write_to_tflite_tensor_visitor_(&kv.first, tensor), kv.second);
+                std::visit(write_to_tflite_tensor_visitor_(&kv.first, tensor), kv.second);
 
             if (tflite_status != TfLiteStatus::kTfLiteOk) {
                 std::ostringstream buffer;
@@ -612,8 +612,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable
     };
 
     // A visitor that can populate a TFLiteTensor given a MLModelService::tensor_view.
-    class write_to_tflite_tensor_visitor_ : public boost::static_visitor<TfLiteStatus> {
-       public:
+    struct write_to_tflite_tensor_visitor_ {
         write_to_tflite_tensor_visitor_(const std::string* name, TfLiteTensor* tflite_tensor)
             : name_(name), tflite_tensor_(tflite_tensor) {}
 

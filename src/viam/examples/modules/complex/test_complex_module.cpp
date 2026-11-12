@@ -24,6 +24,8 @@ using namespace viam::sdktests;
 
 struct RegisterGizmoAndSummationFixture {
     RegisterGizmoAndSummationFixture() {
+        // Boost.Test orders global fixtures by address, so GlobalFixture may not have run yet.
+        (void)Instance::current(Instance::Creation::if_needed);
         auto& registry = Registry::get();
         registry.register_resource<GizmoClient, GizmoServer>();
         registry.register_resource<SummationClient, SummationServer>();

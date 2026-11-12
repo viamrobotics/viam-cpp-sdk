@@ -1,18 +1,11 @@
 #include <viam/sdk/common/mesh.hpp>
 
-#include <tuple>
-
 #include <viam/sdk/common/utils.hpp>
 
 #include <common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {
-
-bool operator==(const mesh& lhs, const mesh& rhs) {
-    return std::tie(lhs.content_type, lhs.data, lhs.original_file_source_path_diagnostic) ==
-           std::tie(rhs.content_type, rhs.data, rhs.original_file_source_path_diagnostic);
-}
 
 namespace proto_convert_details {
 void to_proto_impl<mesh>::operator()(const mesh& self, common::v1::Mesh* proto) const {

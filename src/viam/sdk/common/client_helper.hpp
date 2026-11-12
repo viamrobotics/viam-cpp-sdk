@@ -1,6 +1,6 @@
 #pragma once
 
-#include <boost/optional.hpp>
+#include <optional>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/grpc_fwd.hpp>
@@ -30,7 +30,7 @@ void set_name(RequestType* req, const ClientType* client) {
 // a mutable_name field.
 void set_name(...);
 
-boost::optional<std::string> debug_map_value(const ProtoStruct& extra);
+std::optional<std::string> debug_map_value(const ProtoStruct& extra);
 
 }  // namespace client_helper_details
 

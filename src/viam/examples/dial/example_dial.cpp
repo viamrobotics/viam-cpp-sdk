@@ -2,11 +2,10 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <optional>
 #include <ostream>
 #include <string>
 #include <vector>
-
-#include <boost/optional.hpp>
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/generic.hpp>
@@ -27,7 +26,7 @@ int main() {
     std::string payload = "<your authentication payload>";
     Credentials credentials(type, payload);
     channel_options.set_credentials(credentials);
-    boost::optional<ViamChannel::Options> opts(channel_options);
+    std::optional<ViamChannel::Options> opts(channel_options);
     std::string address(uri);
     Options options(1, opts);
 

@@ -6,7 +6,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-boost::optional<std::string> TrajectoryStreamValidator::check(const Arm::trajectory_point& point) {
+std::optional<std::string> TrajectoryStreamValidator::check(const Arm::trajectory_point& point) {
     if (!seen_first_) {
         if (point.time != std::chrono::microseconds::zero()) {
             return std::string("first trajectory point must have time zero");
@@ -44,7 +44,7 @@ boost::optional<std::string> TrajectoryStreamValidator::check(const Arm::traject
 
     seen_first_ = true;
     last_time_ = point.time;
-    return boost::none;
+    return std::nullopt;
 }
 
 }  // namespace impl

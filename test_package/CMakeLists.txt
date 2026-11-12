@@ -8,8 +8,8 @@ project(viam-cpp-sdk-example-project
 )
 
 
-# Use of the C++ SDK requires C++14.
-set(CMAKE_CXX_STANDARD 14)
+# Use of the C++ SDK requires C++20.
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 

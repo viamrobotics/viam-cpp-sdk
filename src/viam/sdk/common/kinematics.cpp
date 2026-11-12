@@ -1,9 +1,6 @@
 #include <viam/sdk/common/kinematics.hpp>
 
-#include <tuple>
-
 #include <boost/math/constants/constants.hpp>
-#include <boost/variant/apply_visitor.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 
@@ -13,80 +10,23 @@
 namespace viam {
 namespace sdk {
 
-bool operator==(const LinkPose& lhs, const LinkPose& rhs) {
-    return std::tie(lhs.translation, lhs.orientation) == std::tie(rhs.translation, rhs.orientation);
-}
-
-bool operator==(const RevoluteJoint& lhs, const RevoluteJoint& rhs) {
-    return std::tie(lhs.min_deg,
-                    lhs.max_deg,
-                    lhs.max_velocity_deg_per_sec,
-                    lhs.max_acceleration_deg_per_sec2) ==
-           std::tie(rhs.min_deg,
-                    rhs.max_deg,
-                    rhs.max_velocity_deg_per_sec,
-                    rhs.max_acceleration_deg_per_sec2);
-}
-
-bool operator==(const ContinuousJoint& lhs, const ContinuousJoint& rhs) {
-    return std::tie(lhs.max_velocity_deg_per_sec, lhs.max_acceleration_deg_per_sec2) ==
-           std::tie(rhs.max_velocity_deg_per_sec, rhs.max_acceleration_deg_per_sec2);
-}
-
-bool operator==(const PrismaticJoint& lhs, const PrismaticJoint& rhs) {
-    return std::tie(lhs.min_mm,
-                    lhs.max_mm,
-                    lhs.max_velocity_mm_per_sec,
-                    lhs.max_acceleration_mm_per_sec2,
-                    lhs.geometry) == std::tie(rhs.min_mm,
-                                              rhs.max_mm,
-                                              rhs.max_velocity_mm_per_sec,
-                                              rhs.max_acceleration_mm_per_sec2,
-                                              rhs.geometry);
-}
-
-bool operator==(const MimicJoint& lhs, const MimicJoint& rhs) {
-    return std::tie(lhs.joint, lhs.multiplier, lhs.offset) ==
-           std::tie(rhs.joint, rhs.multiplier, rhs.offset);
-}
-
-bool operator==(const KinematicProperties& lhs, const KinematicProperties& rhs) {
-    return std::tie(lhs.operating_freq_hz, lhs.max_linear_tcp_speed_mm_per_sec) ==
-           std::tie(rhs.operating_freq_hz, rhs.max_linear_tcp_speed_mm_per_sec);
-}
-
-bool operator==(const KinematicLink& lhs, const KinematicLink& rhs) {
-    return std::tie(lhs.id, lhs.parent, lhs.pose, lhs.collision, lhs.visual) ==
-           std::tie(rhs.id, rhs.parent, rhs.pose, rhs.collision, rhs.visual);
-}
-
-bool operator==(const KinematicJoint& lhs, const KinematicJoint& rhs) {
-    return std::tie(lhs.id, lhs.parent, lhs.axis, lhs.spec, lhs.mimic) ==
-           std::tie(rhs.id, rhs.parent, rhs.axis, rhs.spec, rhs.mimic);
-}
-
-bool operator==(const KinematicModel& lhs, const KinematicModel& rhs) {
-    return std::tie(lhs.name, lhs.links, lhs.joints, lhs.output_frames, lhs.properties) ==
-           std::tie(rhs.name, rhs.links, rhs.joints, rhs.output_frames, rhs.properties);
-}
-
 namespace proto_convert_details {
 
 namespace {
 
 constexpr double kDegPerRad = 180.0 / boost::math::constants::pi<double>();
 
-boost::optional<double> optional_field(bool has, double value) {
-    return has ? boost::optional<double>(value) : boost::none;
+std::optional<double> optional_field(bool has, double value) {
+    return has ? std::optional<double>(value) : std::nullopt;
 }
 
 // Writes the JointLimits message only when at least one bound is set, so an unbounded joint
 // round-trips as an absent message.
 void set_limits(common::v1::KinematicJoint* proto,
-                const boost::optional<double>& min,
-                const boost::optional<double>& max,
-                const boost::optional<double>& max_velocity,
-                const boost::optional<double>& max_acceleration) {
+                const std::optional<double>& min,
+                const std::optional<double>& max,
+                const std::optional<double>& max_velocity,
+                const std::optional<double>& max_acceleration) {
     if (!min && !max && !max_velocity && !max_acceleration) {
         return;
     }
@@ -149,7 +89,7 @@ void to_proto_impl<LinkPose>::operator()(const LinkPose& self, common::v1::LinkP
         }
     };
 
-    boost::apply_visitor(Visitor{proto}, self.orientation);
+    std::visit(Visitor{proto}, self.orientation);
 }
 
 LinkPose from_proto_impl<common::v1::LinkPose>::operator()(
@@ -263,8 +203,8 @@ void to_proto_impl<KinematicJoint>::operator()(const KinematicJoint& self,
         void operator()(const ContinuousJoint& j) const {
             proto->set_type(common::v1::JointType::JOINT_TYPE_CONTINUOUS);
             set_limits(proto,
-                       boost::none,
-                       boost::none,
+                       std::nullopt,
+                       std::nullopt,
                        j.max_velocity_deg_per_sec,
                        j.max_acceleration_deg_per_sec2);
         }
@@ -282,7 +222,7 @@ void to_proto_impl<KinematicJoint>::operator()(const KinematicJoint& self,
         }
     };
 
-    boost::apply_visitor(Visitor{proto}, self.spec);
+    std::visit(Visitor{proto}, self.spec);
 }
 
 KinematicJoint from_proto_impl<common::v1::KinematicJoint>::operator()(
@@ -312,7 +252,7 @@ KinematicJoint from_proto_impl<common::v1::KinematicJoint>::operator()(
             result.spec = ContinuousJoint{max_velocity, max_acceleration};
             break;
         case common::v1::JointType::JOINT_TYPE_PRISMATIC: {
-            PrismaticJoint prismatic{min, max, max_velocity, max_acceleration, boost::none};
+            PrismaticJoint prismatic{min, max, max_velocity, max_acceleration, std::nullopt};
             if (proto->has_geometry()) {
                 prismatic.geometry = from_proto(proto->geometry());
             }
@@ -386,7 +326,7 @@ void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
         }
     } visitor{proto};
 
-    boost::apply_visitor(visitor, self);
+    std::visit(visitor, self);
 }
 
 KinematicsData from_proto_impl<common::v1::GetKinematicsResponse>::operator()(
@@ -412,11 +352,6 @@ KinematicsData from_proto_impl<common::v1::GetKinematicsResponse>::operator()(
 #pragma GCC diagnostic pop
 
 }  // namespace proto_convert_details
-
-bool operator==(const KinematicsDataURDF& lhs, const KinematicsDataURDF& rhs) {
-    return std::tie(lhs.bytes, lhs.meshes_by_urdf_filepath) ==
-           std::tie(rhs.bytes, rhs.meshes_by_urdf_filepath);
-}
 
 }  // namespace sdk
 }  // namespace viam

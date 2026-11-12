@@ -165,16 +165,16 @@ option(VIAMCPPSDK_BUILD_TESTS "Build the example executables" ${VIAMCPPSDK_STAND
 # Enforce known toolchains and toolchain minima unless asked not to.
 if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.4)
-      message(FATAL_ERROR "Insufficient GCC version: 9.4+ required")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
+      message(FATAL_ERROR "Insufficient GCC version: 10.0+ required")
     endif()
   elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
-      message(FATAL_ERROR "Insufficient clang version: 10.0+ required")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 12.0)
+      message(FATAL_ERROR "Insufficient clang version: 12.0+ required")
     endif()
   elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
-    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
-      message(FATAL_ERROR "Insufficient Apple clang version: XCode 10.0+ required")
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.0)
+      message(FATAL_ERROR "Insufficient Apple clang version: XCode 13.0+ required")
     endif()
   elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.34)
@@ -196,7 +196,7 @@ endif()
 
 # Enforce the C++ standard, and disable extensions
 if (NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 20)
 endif()
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 if(MSVC)
@@ -379,11 +379,11 @@ add_custom_target(
 )
 
 
-set(VIAMCPPSDK_BOOST_VERSION_MINIMUM 1.71)
+set(VIAMCPPSDK_BOOST_VERSION_MINIMUM 1.74)
 set(VIAMCPPSDK_GRPC_VERSION_MINIMUM 1.30.2)
 set(VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM 3.12.4)
-set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.7.7)
-set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.25.0)
+set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.8.0)
+set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.26.0)
 
 # Time to find `BOOST`.
 if (VIAMCPPSDK_BUILD_TESTS)
@@ -517,14 +517,14 @@ include(FetchContent)
 FetchContent_Declare(
   xtl
   GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
-  GIT_TAG        a7c1c5444dfc57f76620391af4c94785ff82c8d6 # 0.7.7
+  GIT_TAG        c52350e283b98e5d69dbc50726925a1f8e16c57c # 0.8.2
   FIND_PACKAGE_ARGS ${VIAMCPPSDK_XTL_VERSION_MINIMUM} CONFIG
 )
 
 FetchContent_Declare(
   xtensor
   GIT_REPOSITORY https://github.com/xtensor-stack/xtensor
-  GIT_TAG        3634f2ded19e0cf38208c8b86cea9e1d7c8e397d # 0.25.0
+  GIT_TAG        f115228a7fc277b9be1bef34572831f8fd53ac73 # 0.27.1
   FIND_PACKAGE_ARGS ${VIAMCPPSDK_XTENSOR_VERSION_MINIMUM} CONFIG
 )
 

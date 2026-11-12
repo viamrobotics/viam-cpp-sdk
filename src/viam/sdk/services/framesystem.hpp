@@ -3,10 +3,9 @@
 /// @brief Defines the `FrameSystem` service.
 #pragma once
 
+#include <optional>
 #include <string>
 #include <vector>
-
-#include <boost/optional/optional.hpp>
 
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/pose.hpp>
@@ -52,7 +51,7 @@ class FrameSystem : public Service {
         ProtoStruct kinematics;
 
         /// @brief The resource's kinematic model, absent for resources without kinematics.
-        boost::optional<KinematicModel> model;
+        std::optional<KinematicModel> model;
 
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
     };

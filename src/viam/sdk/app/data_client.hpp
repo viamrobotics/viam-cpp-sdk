@@ -3,10 +3,9 @@
 #include <cstdint>
 
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
-
-#include <boost/optional.hpp>
 
 #include <viam/sdk/app/viam_client.hpp>
 
@@ -23,10 +22,10 @@ class DataClient {
         TabularDataSourceType src_type = TabularDataSourceType::k_hot_storage;
 
         /// @brief Pipeline ID for requests with pipeline sink source type.
-        boost::optional<std::string> pipeline_id;
+        std::optional<std::string> pipeline_id;
 
         /// @brief Used to specify a saved query to run.
-        boost::optional<std::string> query_prefix;
+        std::optional<std::string> query_prefix;
     };
 
     using BSONBytes = std::vector<uint8_t>;

@@ -195,7 +195,7 @@ jobs:
       run: |
         conan lock add --requires=viam-cpp-sdk/${{ needs.params.outputs.version }}
 
-        conan create . --build=missing -pr:a default \
+        conan create . --build=missing -pr:a default -s:a compiler.cppstd=20 \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
         # No lockfile-out: must not rewrite the release lock.
@@ -275,10 +275,10 @@ jobs:
         Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
         refreshenv
 
-        conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
+        conan create . --build=missing -s:a compiler.cppstd=20 --lockfile etc/conan/conan.lock --lockfile-partial
 
         if ('${{ needs.params.outputs.upload_relwithdebinfo }}' -eq 'true') {
-          conan create . --build=missing -s:a compiler.cppstd=17 `
+          conan create . --build=missing -s:a compiler.cppstd=20 `
             --lockfile etc/conan/conan.lock --lockfile-partial `
             -s:a "viam-cpp-sdk/*:build_type=RelWithDebInfo"
         }

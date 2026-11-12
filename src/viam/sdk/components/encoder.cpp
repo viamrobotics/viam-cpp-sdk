@@ -19,14 +19,5 @@ Encoder::Encoder(std::string name) : Component(std::move(name)) {}
 
 Encoder::Encoder(const ResourceConfig& cfg) : Component(cfg) {}
 
-bool operator==(const Encoder::position& lhs, const Encoder::position& rhs) {
-    return (lhs.value == rhs.value && lhs.type == rhs.type);
-}
-
-bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) {
-    return (lhs.ticks_count_supported == rhs.ticks_count_supported &&
-            lhs.angle_degrees_supported == rhs.angle_degrees_supported);
-}
-
 }  // namespace sdk
 }  // namespace viam

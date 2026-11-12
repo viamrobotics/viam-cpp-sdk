@@ -1,9 +1,8 @@
 #pragma once
 
+#include <optional>
 #include <string>
 #include <unordered_map>
-
-#include <boost/optional.hpp>
 
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -65,7 +64,7 @@ class ResourceConfig {
 
     const API& api() const;
 
-    const boost::optional<LinkConfig>& frame() const;
+    const std::optional<LinkConfig>& frame() const;
 
     const Model& model() const;
 
@@ -86,7 +85,7 @@ class ResourceConfig {
 
     API api_;
 
-    boost::optional<LinkConfig> frame_;
+    std::optional<LinkConfig> frame_;
 
     Model model_;
 

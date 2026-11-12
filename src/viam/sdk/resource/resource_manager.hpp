@@ -9,8 +9,6 @@
 #include <type_traits>
 #include <unordered_map>
 
-#include <boost/optional/optional.hpp>
-
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 

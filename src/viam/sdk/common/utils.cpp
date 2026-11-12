@@ -11,8 +11,6 @@
 #include <grpcpp/client_context.h>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/blank.hpp>
-#include <boost/optional/optional.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 
@@ -22,10 +20,6 @@
 
 namespace viam {
 namespace sdk {
-
-bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
-    return lhs.captured_at == rhs.captured_at;
-}
 
 namespace proto_convert_details {
 
@@ -174,7 +168,7 @@ std::pair<std::string, std::string> long_name_to_remote_and_short(const std::str
     return {std::move(remote_name), std::move(name)};
 }
 
-boost::optional<std::string> get_env(const char* var) {
+std::optional<std::string> get_env(const char* var) {
     if (const char* envp = std::getenv(var)) {  // NOLINT(concurrency-mt-unsafe)
         return std::string{envp};
     }

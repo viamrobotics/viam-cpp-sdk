@@ -10,5 +10,5 @@ arch=armv8
 compiler=apple-clang
 compiler.version=21
 compiler.libcxx=libc++
-compiler.cppstd=17
+compiler.cppstd=20
 build_type=Release

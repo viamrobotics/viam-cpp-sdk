@@ -22,7 +22,7 @@ sdk::KinematicModel fake_kinematic_model() {
     axis.id = "x";
     axis.parent = "base";
     axis.axis = Vector3{1, 0, 0};
-    axis.spec = PrismaticJoint{0.0, 1000.0, 50.0, boost::none, boost::none};
+    axis.spec = PrismaticJoint{0.0, 1000.0, 50.0, std::nullopt, std::nullopt};
 
     KinematicLink carriage;
     carriage.id = "carriage";

@@ -27,7 +27,7 @@ API API::traits<MLModelService>::api() {
     return API(kRDK, kService, "mlmodel");
 }
 
-boost::optional<MLModelService::tensor_info::data_types>
+std::optional<MLModelService::tensor_info::data_types>
 MLModelService::tensor_info::string_to_data_type(const std::string& str) {
     if (str == "int8") {
         return data_types::k_int8;
@@ -112,8 +112,7 @@ std::ostream& operator<<(std::ostream& os, MLModelService::tensor_info::data_typ
 
 MLModelService::tensor_info::data_types MLModelService::tensor_info::tensor_views_to_data_type(
     const tensor_views& view) {
-    class visitor : public boost::static_visitor<data_types> {
-       public:
+    struct visitor {
         data_types operator()(const MLModelService::tensor_view<std::int8_t>&) const {
             return data_types::k_int8;
         }
@@ -154,7 +153,7 @@ MLModelService::tensor_info::data_types MLModelService::tensor_info::tensor_view
             return data_types::k_float64;
         }
     };
-    return boost::apply_visitor(visitor(), view);
+    return std::visit(visitor{}, view);
 }
 
 MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}

@@ -2,8 +2,7 @@
 
 #include <chrono>
 #include <memory>
-
-#include <boost/optional/optional.hpp>
+#include <optional>
 
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -43,9 +42,8 @@ using time_pt = std::chrono::time_point<std::chrono::system_clock, std::chrono::
 
 struct response_metadata {
     time_pt captured_at = {};
+    friend bool operator==(const response_metadata&, const response_metadata&) = default;
 };
-
-bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 
 namespace proto_convert_details {
 
@@ -120,7 +118,7 @@ bool from_dm_from_extra(const ProtoStruct& extra);
 /// @return The value of the environment variable with name @param var, if set.
 /// @remark std::getenv is inherently racy as the environment variable may be modified outside the
 /// program, so we choose to copy the value to a std::string.
-boost::optional<std::string> get_env(const char* var);
+std::optional<std::string> get_env(const char* var);
 
 /// @brief Returns whether the environment variable with name @param var is set, and equal to
 /// "true", "yes", "1", "TRUE", or "YES"

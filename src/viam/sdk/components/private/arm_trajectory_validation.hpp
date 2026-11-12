@@ -6,7 +6,7 @@
 #include <chrono>
 #include <string>
 
-#include <boost/optional.hpp>
+#include <optional>
 
 #include <viam/sdk/components/arm.hpp>
 
@@ -39,8 +39,8 @@ namespace impl {
 class TrajectoryStreamValidator {
    public:
     // Returns a description of the first invariant the point violates, or
-    // `boost::none` if the point is valid in sequence.
-    boost::optional<std::string> check(const Arm::trajectory_point& point);
+    // `std::nullopt` if the point is valid in sequence.
+    std::optional<std::string> check(const Arm::trajectory_point& point);
 
    private:
     bool seen_first_ = false;

@@ -3,10 +3,10 @@
 /// @brief Kinematics data types shared by the components that serve `GetKinematics`.
 #pragma once
 
-#include <boost/optional/optional.hpp>
-#include <boost/variant/variant.hpp>
 #include <map>
+#include <optional>
 #include <string>
+#include <variant>
 #include <vector>
 
 #include <viam/sdk/common/linear_algebra.hpp>
@@ -54,43 +54,43 @@ struct LinkPose {
     /// An `orientation_vector` (radians) is accepted and sent as degrees.
     Orientation orientation = orientation_vector_degrees{0, 0, 1, 0};
 
-    friend bool operator==(const LinkPose& lhs, const LinkPose& rhs);
+    friend bool operator==(const LinkPose&, const LinkPose&) = default;
 };
 
 /// @brief A revolute joint. Limits are in degrees, deg/s and deg/s^2; absent means unbounded.
 struct RevoluteJoint {
-    boost::optional<double> min_deg;
-    boost::optional<double> max_deg;
-    boost::optional<double> max_velocity_deg_per_sec;
-    boost::optional<double> max_acceleration_deg_per_sec2;
+    std::optional<double> min_deg;
+    std::optional<double> max_deg;
+    std::optional<double> max_velocity_deg_per_sec;
+    std::optional<double> max_acceleration_deg_per_sec2;
 
-    friend bool operator==(const RevoluteJoint& lhs, const RevoluteJoint& rhs);
+    friend bool operator==(const RevoluteJoint&, const RevoluteJoint&) = default;
 };
 
 /// @brief A revolute joint with no position bound. Limits are in deg/s and deg/s^2; absent means
 /// unbounded.
 struct ContinuousJoint {
-    boost::optional<double> max_velocity_deg_per_sec;
-    boost::optional<double> max_acceleration_deg_per_sec2;
+    std::optional<double> max_velocity_deg_per_sec;
+    std::optional<double> max_acceleration_deg_per_sec2;
 
-    friend bool operator==(const ContinuousJoint& lhs, const ContinuousJoint& rhs);
+    friend bool operator==(const ContinuousJoint&, const ContinuousJoint&) = default;
 };
 
 /// @brief A prismatic joint. Limits are in mm, mm/s and mm/s^2; absent means unbounded.
 struct PrismaticJoint {
-    boost::optional<double> min_mm;
-    boost::optional<double> max_mm;
-    boost::optional<double> max_velocity_mm_per_sec;
-    boost::optional<double> max_acceleration_mm_per_sec2;
+    std::optional<double> min_mm;
+    std::optional<double> max_mm;
+    std::optional<double> max_velocity_mm_per_sec;
+    std::optional<double> max_acceleration_mm_per_sec2;
 
     /// @brief Geometry swept by the joint.
-    boost::optional<GeometryConfig> geometry;
+    std::optional<GeometryConfig> geometry;
 
-    friend bool operator==(const PrismaticJoint& lhs, const PrismaticJoint& rhs);
+    friend bool operator==(const PrismaticJoint&, const PrismaticJoint&) = default;
 };
 
 /// @brief The kind of a joint together with its kind-specific limits.
-using joint_spec = boost::variant<RevoluteJoint, PrismaticJoint, ContinuousJoint>;
+using joint_spec = std::variant<RevoluteJoint, PrismaticJoint, ContinuousJoint>;
 
 /// @brief A joint whose position is `multiplier * position(joint) + offset`.
 struct MimicJoint {
@@ -98,18 +98,18 @@ struct MimicJoint {
     double multiplier = 0.0;
     double offset = 0.0;
 
-    friend bool operator==(const MimicJoint& lhs, const MimicJoint& rhs);
+    friend bool operator==(const MimicJoint&, const MimicJoint&) = default;
 };
 
 /// @brief Properties of a kinematic component as a whole.
 struct KinematicProperties {
     /// @brief Rate the component expects to be driven at.
-    boost::optional<double> operating_freq_hz;
+    std::optional<double> operating_freq_hz;
 
     /// @brief Maximum linear speed of the tool center point.
-    boost::optional<double> max_linear_tcp_speed_mm_per_sec;
+    std::optional<double> max_linear_tcp_speed_mm_per_sec;
 
-    friend bool operator==(const KinematicProperties& lhs, const KinematicProperties& rhs);
+    friend bool operator==(const KinematicProperties&, const KinematicProperties&) = default;
 };
 
 /// @brief A link of a kinematic model.
@@ -128,7 +128,7 @@ struct KinematicLink {
     /// @brief Display geometries, not used for collision checking.
     std::vector<GeometryConfig> visual;
 
-    friend bool operator==(const KinematicLink& lhs, const KinematicLink& rhs);
+    friend bool operator==(const KinematicLink&, const KinematicLink&) = default;
 };
 
 /// @brief A joint of a kinematic model.
@@ -144,9 +144,9 @@ struct KinematicJoint {
     /// @brief Joint kind and its limits.
     joint_spec spec;
 
-    boost::optional<MimicJoint> mimic;
+    std::optional<MimicJoint> mimic;
 
-    friend bool operator==(const KinematicJoint& lhs, const KinematicJoint& rhs);
+    friend bool operator==(const KinematicJoint&, const KinematicJoint&) = default;
 };
 
 /// @brief A component's kinematics as a tree of links and joints. Its proto JSON encoding is
@@ -161,9 +161,9 @@ struct KinematicModel {
     /// @brief Frames whose poses the model reports.
     std::vector<std::string> output_frames;
 
-    boost::optional<KinematicProperties> properties;
+    std::optional<KinematicProperties> properties;
 
-    friend bool operator==(const KinematicModel& lhs, const KinematicModel& rhs);
+    friend bool operator==(const KinematicModel&, const KinematicModel&) = default;
 };
 
 // Base class for use below in defining kinematics data strong typedefs
@@ -176,6 +176,7 @@ struct raw_bytes {
     raw_bytes(std::vector<unsigned char> b) : bytes(std::move(b)) {}
 
     std::vector<unsigned char> bytes{};
+    friend bool operator==(const raw_bytes&, const raw_bytes&) = default;
 };
 
 // Comparison operator helper for the data types below
@@ -200,7 +201,7 @@ struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF> {
     using raw_bytes<KinematicsDataURDF>::raw_bytes;
     std::map<std::string, mesh> meshes_by_urdf_filepath;
 
-    friend bool operator==(const KinematicsDataURDF& lhs, const KinematicsDataURDF& rhs);
+    friend bool operator==(const KinematicsDataURDF&, const KinematicsDataURDF&) = default;
 };
 
 /// @brief The kinematics of a component as a raw file.
@@ -208,7 +209,7 @@ struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF> {
 /// @deprecated Raw-bytes kinematics are deprecated; use `KinematicModel`, served by
 /// `get_kinematic_model`.
 using KinematicsData [[deprecated("use KinematicModel, served by get_kinematic_model")]] =
-    boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
+    std::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
 
 namespace proto_convert_details {
 

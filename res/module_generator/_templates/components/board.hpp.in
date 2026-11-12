@@ -63,7 +63,7 @@ public:
     void set_power_mode(
         viam::sdk::Board::power_mode power_mode,
         const viam::sdk::ProtoStruct & extra,
-        const boost::optional<std::chrono::microseconds> & duration) override;
+        const std::optional<std::chrono::microseconds> & duration) override;
 
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
 
