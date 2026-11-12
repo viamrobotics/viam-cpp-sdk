@@ -241,42 +241,6 @@ void narrow_joint_limits(KinematicModel& model, const std::map<std::string, Join
     model.joints = std::move(joints);
 }
 
-std::map<std::string, JointLimits> joint_limits_from_attribute(const ProtoStruct& joint_limits) {
-    std::map<std::string, JointLimits> result;
-    for (const auto& entry : joint_limits) {
-        const std::string& id = entry.first;
-        const auto* fields = entry.second.get<ProtoStruct>();
-        if (!fields) {
-            throw Exception("joint_limits for joint " + quoted(id) + " must be a map of limits");
-        }
-        JointLimits limits;
-        for (const auto& field : *fields) {
-            boost::optional<double>* target = nullptr;
-            if (field.first == "min") {
-                target = &limits.min;
-            } else if (field.first == "max") {
-                target = &limits.max;
-            } else if (field.first == "max_velocity") {
-                target = &limits.max_velocity;
-            } else if (field.first == "max_acceleration") {
-                target = &limits.max_acceleration;
-            } else {
-                // a misspelled key would otherwise be a limit the user thinks is in force
-                throw Exception("joint_limits for joint " + quoted(id) + " has unknown key " +
-                                quoted(field.first));
-            }
-            const auto* value = field.second.get<double>();
-            if (!value) {
-                throw Exception("joint_limits for joint " + quoted(id) + ": " + field.first +
-                                " must be a number");
-            }
-            *target = *value;
-        }
-        result.emplace(id, limits);
-    }
-    return result;
-}
-
 namespace {
 
 // a geometry cannot be changed in place, so one that holds a mesh is rebuilt around a copy of

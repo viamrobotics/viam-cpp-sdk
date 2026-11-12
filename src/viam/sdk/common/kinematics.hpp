@@ -191,20 +191,6 @@ struct JointLimits {
 /// ends up above the max.
 void narrow_joint_limits(KinematicModel& model, const std::map<std::string, JointLimits>& limits);
 
-/// @brief Read the limits a module accepts in its resource config, which is an attribute shaped
-/// like
-///
-///     "joint_limits": {
-///       "joint_2": {"min": -31, "max": -29},
-///       "joint_3": {"max_velocity": 30, "max_acceleration": 380}
-///     }
-///
-/// @param joint_limits The value of that attribute, a map from joint id to its limits.
-/// @return The limits in the form narrow_joint_limits takes.
-/// @throws Exception naming the joint, for a joint whose value is not a map, a key that is not
-/// one of the four limits, or a limit that is not a number.
-std::map<std::string, JointLimits> joint_limits_from_attribute(const ProtoStruct& joint_limits);
-
 /// @brief Clear the mesh bytes a GetKinematics request did not ask for, for a component that
 /// holds its model with every mesh loaded, as read_kinematic_model_file returns it.
 ///

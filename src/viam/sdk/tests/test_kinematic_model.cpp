@@ -321,27 +321,6 @@ BOOST_AUTO_TEST_CASE(refusals) {
                   "\"shoulder\"");
 }
 
-BOOST_AUTO_TEST_CASE(from_attribute) {
-    const ProtoStruct attribute = {
-        {"shoulder", ProtoStruct{{"min", -31.0}, {"max", -29}}},
-        {"rail", ProtoStruct{{"max_velocity", 30.0}, {"max_acceleration", 380.0}}},
-    };
-    const auto limits = joint_limits_from_attribute(attribute);
-    BOOST_REQUIRE_EQUAL(limits.size(), 2U);
-    BOOST_CHECK(limits.at("shoulder").min == boost::optional<double>(-31.0));
-    BOOST_CHECK(limits.at("shoulder").max == boost::optional<double>(-29.0));
-    BOOST_CHECK(!limits.at("shoulder").max_velocity);
-    BOOST_CHECK(limits.at("rail").max_velocity == boost::optional<double>(30.0));
-    BOOST_CHECK(limits.at("rail").max_acceleration == boost::optional<double>(380.0));
-    BOOST_CHECK(!limits.at("rail").min);
-
-    BOOST_CHECK_THROW(joint_limits_from_attribute({{"shoulder", 5.0}}), Exception);
-    BOOST_CHECK_THROW(joint_limits_from_attribute({{"shoulder", ProtoStruct{{"maxx", 5.0}}}}),
-                      Exception);
-    BOOST_CHECK_THROW(joint_limits_from_attribute({{"shoulder", ProtoStruct{{"max", "5"}}}}),
-                      Exception);
-}
-
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_kinematics_response)
