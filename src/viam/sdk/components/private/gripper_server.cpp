@@ -1,5 +1,8 @@
 #include <viam/sdk/components/private/gripper_server.hpp>
 
+#include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/kinematics.hpp>
+#include <viam/sdk/common/private/kinematics_response.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 
 namespace viam {
@@ -75,6 +78,31 @@ GripperServer::GripperServer(std::shared_ptr<ResourceManager> manager)
             *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
+}
+
+::grpc::Status GripperServer::GetKinematics(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetKinematicsRequest* request,
+    ::viam::common::v1::GetKinematicsResponse* response) noexcept {
+    return make_service_helper<Gripper>("GripperServer::GetKinematics", this, context, request)(
+        [&](auto& helper, auto& gripper) -> ::grpc::Status {
+            const kinematics_options options{request->include_collision_meshes(),
+                                             request->include_visual_meshes()};
+            KinematicModel model;
+            try {
+                model = gripper->get_kinematic_model(options, helper.getExtra());
+            } catch (const Exception& xcp) {
+                if (xcp.condition() != ErrorCondition::k_not_supported) {
+                    throw;
+                }
+                // a gripper with no model answers the way it did before the sdk served this
+                // method, since viam-server falls back to the gripper's geometries only when it
+                // sees unimplemented.
+                return helper.fail(::grpc::UNIMPLEMENTED, xcp.what());
+            }
+            impl::set_response_model(model, gripper->name(), response);
+            return ::grpc::Status::OK;
+        });
 }
 
 ::grpc::Status GripperServer::GetStatus(::grpc::ServerContext* context,

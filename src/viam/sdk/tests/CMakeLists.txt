@@ -93,9 +93,27 @@ viamcppsdk_add_boost_test(test_sensor.cpp)
 viamcppsdk_add_boost_test(test_servo.cpp)
 viamcppsdk_add_boost_test(test_switch.cpp)
 viamcppsdk_add_boost_test(test_robot.cpp)
+viamcppsdk_add_boost_test(test_kinematic_model.cpp)
 viamcppsdk_add_boost_test(test_kinematics_model_table.cpp)
 
 target_compile_definitions(test_kinematics_model_table
   PRIVATE
     VIAMCPPSDK_TEST_TESTFILES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/testfiles"
+)
+
+# The fixture cases are a copy of rdk's referenceframe/testfiles/kinematic_models. The test gets
+# the list of case directories from here, since C++14 has no portable way to walk a directory.
+file(GLOB VIAMCPPSDK_KINEMATIC_MODEL_CASES
+  LIST_DIRECTORIES true
+  RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/testfiles/kinematic_models"
+  CONFIGURE_DEPENDS
+  "${CMAKE_CURRENT_SOURCE_DIR}/testfiles/kinematic_models/*/model.json"
+)
+list(TRANSFORM VIAMCPPSDK_KINEMATIC_MODEL_CASES REPLACE "/model.json$" "")
+list(JOIN VIAMCPPSDK_KINEMATIC_MODEL_CASES "," VIAMCPPSDK_KINEMATIC_MODEL_CASES_JOINED)
+
+target_compile_definitions(test_kinematic_model
+  PRIVATE
+    VIAMCPPSDK_TEST_KINEMATIC_MODELS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/testfiles/kinematic_models"
+    VIAMCPPSDK_TEST_KINEMATIC_MODEL_CASES="${VIAMCPPSDK_KINEMATIC_MODEL_CASES_JOINED}"
 )

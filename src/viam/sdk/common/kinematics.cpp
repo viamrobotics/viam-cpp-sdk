@@ -1,13 +1,22 @@
 #include <viam/sdk/common/kinematics.hpp>
 
+#include <algorithm>
+#include <cmath>
+#include <limits>
+#include <sstream>
+#include <string>
 #include <tuple>
+#include <utility>
 
 #include <boost/math/constants/constants.hpp>
 #include <boost/variant/apply_visitor.hpp>
+#include <boost/variant/get.hpp>
+#include <boost/variant/static_visitor.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/kinematics_response.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 
 namespace viam {
@@ -69,6 +78,219 @@ bool operator==(const KinematicModel& lhs, const KinematicModel& rhs) {
     return std::tie(lhs.name, lhs.links, lhs.joints, lhs.output_frames, lhs.properties) ==
            std::tie(rhs.name, rhs.links, rhs.joints, rhs.output_frames, rhs.properties);
 }
+
+namespace {
+
+std::string in_quotes(const std::string& s) {
+    return "\"" + s + "\"";
+}
+
+// Prints a value with as few digits as still tell it apart from its neighbours, so a refusal
+// never shows a requested value and the limit it broke as the same number.
+std::string number(double value) {
+    std::string text;
+    for (int digits = 6; digits <= std::numeric_limits<double>::max_digits10; ++digits) {
+        std::ostringstream out;
+        out.precision(digits);
+        out << value;
+        text = out.str();
+        if (!std::isfinite(value) || std::stod(text) == value) {
+            break;
+        }
+    }
+    return text;
+}
+
+void check_requested(const std::string& id, const JointLimits& requested) {
+    const std::pair<const char*, const boost::optional<double>*> fields[] = {
+        {"min", &requested.min},
+        {"max", &requested.max},
+        {"max_velocity", &requested.max_velocity},
+        {"max_acceleration", &requested.max_acceleration},
+    };
+    for (const auto& field : fields) {
+        // a field is left out to say a joint is unbounded, so infinity is never a value
+        if (*field.second && !std::isfinite(**field.second)) {
+            throw Exception("joint " + in_quotes(id) + ": " + field.first +
+                            " must be a finite number, got " + number(**field.second));
+        }
+    }
+    if (requested.max_velocity && *requested.max_velocity < 0) {
+        throw Exception("joint " + in_quotes(id) + ": max_velocity cannot be negative, got " +
+                        number(*requested.max_velocity));
+    }
+    if (requested.max_acceleration && *requested.max_acceleration < 0) {
+        throw Exception("joint " + in_quotes(id) + ": max_acceleration cannot be negative, got " +
+                        number(*requested.max_acceleration));
+    }
+}
+
+// Moves the bounds of one joint to the requested ones, refusing any that would widen what the
+// joint holds. A bound the joint does not have is unbounded, so any request narrows it.
+void narrow(const std::string& id,
+            const JointLimits& requested,
+            boost::optional<double>& min,
+            boost::optional<double>& max,
+            boost::optional<double>& max_velocity,
+            boost::optional<double>& max_acceleration) {
+    if (requested.min && min && *requested.min < *min) {
+        throw Exception("joint " + in_quotes(id) + ": min " + number(*requested.min) +
+                        " is below the model's min " + number(*min));
+    }
+    if (requested.max && max && *requested.max > *max) {
+        throw Exception("joint " + in_quotes(id) + ": max " + number(*requested.max) +
+                        " is above the model's max " + number(*max));
+    }
+    if (requested.max_velocity && max_velocity && *requested.max_velocity > *max_velocity) {
+        throw Exception("joint " + in_quotes(id) + ": max_velocity " +
+                        number(*requested.max_velocity) + " is above the model's " +
+                        number(*max_velocity));
+    }
+    if (requested.max_acceleration && max_acceleration &&
+        *requested.max_acceleration > *max_acceleration) {
+        throw Exception("joint " + in_quotes(id) + ": max_acceleration " +
+                        number(*requested.max_acceleration) + " is above the model's " +
+                        number(*max_acceleration));
+    }
+    if (requested.min) {
+        min = requested.min;
+    }
+    if (requested.max) {
+        max = requested.max;
+    }
+    if (requested.max_velocity) {
+        max_velocity = requested.max_velocity;
+    }
+    if (requested.max_acceleration) {
+        max_acceleration = requested.max_acceleration;
+    }
+    if (min && max && *min > *max) {
+        throw Exception("joint " + in_quotes(id) + ": min " + number(*min) + " is above max " +
+                        number(*max));
+    }
+}
+
+struct narrow_visitor : boost::static_visitor<joint_spec> {
+    const std::string& id;
+    const JointLimits& requested;
+
+    narrow_visitor(const std::string& joint_id, const JointLimits& joint_limits)
+        : id(joint_id), requested(joint_limits) {}
+
+    joint_spec operator()(RevoluteJoint joint) const {
+        narrow(id,
+               requested,
+               joint.min_deg,
+               joint.max_deg,
+               joint.max_velocity_deg_per_sec,
+               joint.max_acceleration_deg_per_sec2);
+        return joint;
+    }
+
+    joint_spec operator()(const ContinuousJoint& joint) const {
+        RevoluteJoint bounded{boost::none,
+                              boost::none,
+                              joint.max_velocity_deg_per_sec,
+                              joint.max_acceleration_deg_per_sec2};
+        narrow(id,
+               requested,
+               bounded.min_deg,
+               bounded.max_deg,
+               bounded.max_velocity_deg_per_sec,
+               bounded.max_acceleration_deg_per_sec2);
+        // the joint stays continuous unless the request gave it a position bound
+        if (bounded.min_deg || bounded.max_deg) {
+            return bounded;
+        }
+        return ContinuousJoint{bounded.max_velocity_deg_per_sec,
+                               bounded.max_acceleration_deg_per_sec2};
+    }
+
+    joint_spec operator()(PrismaticJoint joint) const {
+        narrow(id,
+               requested,
+               joint.min_mm,
+               joint.max_mm,
+               joint.max_velocity_mm_per_sec,
+               joint.max_acceleration_mm_per_sec2);
+        return joint;
+    }
+};
+
+}  // namespace
+
+void narrow_joint_limits(KinematicModel& model, const std::map<std::string, JointLimits>& limits) {
+    // we narrow a copy and move it in at the end, so an error on a later joint leaves the model
+    // as it was. The map is ordered, so the joint an error names does not change between runs.
+    std::vector<KinematicJoint> joints = model.joints;
+    for (const auto& entry : limits) {
+        const std::string& id = entry.first;
+        const JointLimits& requested = entry.second;
+        check_requested(id, requested);
+        const auto joint = std::find_if(
+            joints.begin(), joints.end(), [&](const KinematicJoint& j) { return j.id == id; });
+        if (joint == joints.end()) {
+            throw Exception("no joint " + in_quotes(id) + " in model " + in_quotes(model.name));
+        }
+        if (joint->mimic) {
+            throw Exception("joint " + in_quotes(id) +
+                            " is a mimic joint and cannot carry limits of its own");
+        }
+        joint->spec = boost::apply_visitor(narrow_visitor{id, requested}, joint->spec);
+    }
+    model.joints = std::move(joints);
+}
+
+namespace {
+
+// a geometry cannot be changed in place, so one that holds a mesh is rebuilt around a copy of
+// the mesh without its bytes
+void drop_mesh_bytes(GeometryConfig& geometry) {
+    const mesh* const held = boost::get<mesh>(&geometry.get_geometry_specifics());
+    if (!held || held->data.empty()) {
+        return;
+    }
+    mesh stripped = *held;
+    stripped.data.clear();
+    geometry = GeometryConfig(
+        geometry.get_pose(), std::move(stripped), geometry.get_orientation(), geometry.get_label());
+}
+
+}  // namespace
+
+void drop_unrequested_mesh_bytes(KinematicModel& model, const kinematics_options& options) {
+    if (!options.include_collision_meshes && !options.include_visual_meshes) {
+        return;
+    }
+    for (auto& link : model.links) {
+        if (!options.include_collision_meshes) {
+            std::for_each(link.collision.begin(), link.collision.end(), drop_mesh_bytes);
+        }
+        if (!options.include_visual_meshes) {
+            std::for_each(link.visual.begin(), link.visual.end(), drop_mesh_bytes);
+        }
+    }
+    if (options.include_collision_meshes) {
+        return;
+    }
+    for (auto& joint : model.joints) {
+        auto* const prismatic = boost::get<PrismaticJoint>(&joint.spec);
+        if (prismatic && prismatic->geometry) {
+            drop_mesh_bytes(*prismatic->geometry);
+        }
+    }
+}
+
+namespace impl {
+
+void set_response_model(const KinematicModel& model,
+                        const std::string& resource_name,
+                        common::v1::GetKinematicsResponse* response) {
+    *response->mutable_model() = to_proto(model);
+    response->mutable_model()->set_name(resource_name);
+}
+
+}  // namespace impl
 
 namespace proto_convert_details {
 

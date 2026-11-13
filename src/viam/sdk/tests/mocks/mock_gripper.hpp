@@ -9,6 +9,8 @@ namespace viam {
 namespace sdktests {
 namespace gripper {
 
+sdk::KinematicModel fake_kinematic_model();
+
 class MockGripper : public sdk::Gripper {
    public:
     MockGripper(std::string name) : Gripper(std::move(name)) {}
@@ -24,6 +26,10 @@ class MockGripper : public sdk::Gripper {
     sdk::ProtoStruct get_status() override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
+    sdk::KinematicModel get_kinematic_model(const sdk::kinematics_options& options,
+                                            const sdk::ProtoStruct& extra) override;
+
+    sdk::kinematics_options peek_kinematics_options;
     bool peek_open_called{false};
     bool peek_stop_called{false};
     sdk::ProtoStruct peek_command;

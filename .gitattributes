@@ -1,3 +1,6 @@
 # Windows checkouts must keep LF: conan hashes exported files, so CRLF yields
 # a divergent recipe revision that lacks the mac/linux binaries.
 * text=auto eol=lf
+
+# A pinned copy of the rdk fixtures, collapsed in diffs since nobody reviews it by hand.
+src/viam/sdk/tests/testfiles/kinematic_models/** linguist-generated
