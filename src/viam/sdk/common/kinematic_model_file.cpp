@@ -100,7 +100,8 @@ void check_finite(const Message& message, const std::string& prefix) {
     std::vector<const FieldDescriptor*> fields;
     reflection->ListFields(message, &fields);
     for (const auto* field : fields) {
-        const std::string name = prefix + field->name();
+        // newer protobuf returns a string view here, which does not add to a string
+        const std::string name = prefix + std::string(field->name());
         const auto type = field->cpp_type();
         if (type != FieldDescriptor::CPPTYPE_MESSAGE && type != FieldDescriptor::CPPTYPE_DOUBLE &&
             type != FieldDescriptor::CPPTYPE_FLOAT) {
