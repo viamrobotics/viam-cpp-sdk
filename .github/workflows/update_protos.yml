@@ -69,8 +69,6 @@ jobs:
           delete-branch: true
           title: Automated Protos Update
           body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes
-          assignees: stuqdog
-          reviewers: stuqdog
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
       - name: Notify slack of failure
