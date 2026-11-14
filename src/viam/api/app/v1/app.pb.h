@@ -42303,6 +42303,7 @@ class Model final :
 
   enum : int {
     kSupportedHardwareFieldNumber = 5,
+    kApisFieldNumber = 6,
     kApiFieldNumber = 1,
     kModelFieldNumber = 2,
     kMarkdownDocumentationFieldNumber = 3,
@@ -42330,6 +42331,30 @@ class Model final :
   private:
   const std::string& _internal_supported_hardware(int index) const;
   std::string* _internal_add_supported_hardware();
+  public:
+
+  // repeated string apis = 6 [json_name = "apis"];
+  int apis_size() const;
+  private:
+  int _internal_apis_size() const;
+  public:
+  void clear_apis();
+  const std::string& apis(int index) const;
+  std::string* mutable_apis(int index);
+  void set_apis(int index, const std::string& value);
+  void set_apis(int index, std::string&& value);
+  void set_apis(int index, const char* value);
+  void set_apis(int index, const char* value, size_t size);
+  std::string* add_apis();
+  void add_apis(const std::string& value);
+  void add_apis(std::string&& value);
+  void add_apis(const char* value);
+  void add_apis(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& apis() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_apis();
+  private:
+  const std::string& _internal_apis(int index) const;
+  std::string* _internal_add_apis();
   public:
 
   // string api = 1 [json_name = "api"];
@@ -42406,6 +42431,7 @@ class Model final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> supported_hardware_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> apis_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_documentation_;
@@ -86172,6 +86198,81 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 Model::mutable_supported_hardware() {
   // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Model.supported_hardware)
   return &supported_hardware_;
+}
+
+// repeated string apis = 6 [json_name = "apis"];
+inline int Model::_internal_apis_size() const {
+  return apis_.size();
+}
+inline int Model::apis_size() const {
+  return _internal_apis_size();
+}
+inline void Model::clear_apis() {
+  apis_.Clear();
+}
+inline std::string* Model::add_apis() {
+  std::string* _s = _internal_add_apis();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.Model.apis)
+  return _s;
+}
+inline const std::string& Model::_internal_apis(int index) const {
+  return apis_.Get(index);
+}
+inline const std::string& Model::apis(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Model.apis)
+  return _internal_apis(index);
+}
+inline std::string* Model::mutable_apis(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Model.apis)
+  return apis_.Mutable(index);
+}
+inline void Model::set_apis(int index, const std::string& value) {
+  apis_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Model.apis)
+}
+inline void Model::set_apis(int index, std::string&& value) {
+  apis_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.Model.apis)
+}
+inline void Model::set_apis(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  apis_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.Model.apis)
+}
+inline void Model::set_apis(int index, const char* value, size_t size) {
+  apis_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.Model.apis)
+}
+inline std::string* Model::_internal_add_apis() {
+  return apis_.Add();
+}
+inline void Model::add_apis(const std::string& value) {
+  apis_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.Model.apis)
+}
+inline void Model::add_apis(std::string&& value) {
+  apis_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.Model.apis)
+}
+inline void Model::add_apis(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  apis_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.Model.apis)
+}
+inline void Model::add_apis(const char* value, size_t size) {
+  apis_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.Model.apis)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+Model::apis() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.Model.apis)
+  return apis_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+Model::mutable_apis() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Model.apis)
+  return &apis_;
 }
 
 // -------------------------------------------------------------------
