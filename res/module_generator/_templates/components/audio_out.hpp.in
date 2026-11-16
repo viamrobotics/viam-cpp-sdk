@@ -17,12 +17,12 @@ public:
 
     void play(
         const std::vector<uint8_t> & audio_data,
-        boost::optional<viam::sdk::AudioOut::audio_info> info,
+        std::optional<viam::sdk::AudioOut::audio_info> info,
         const viam::sdk::ProtoStruct & extra) override;
 
     void play_stream(
         viam::sdk::AudioOut::audio_info info,
-        std::function<boost::optional<std::vector<uint8_t>> ()> chunk_source,
+        std::function<std::optional<std::vector<uint8_t>> ()> chunk_source,
         const viam::sdk::ProtoStruct & extra) override;
 
     viam::sdk::audio_properties get_properties(const viam::sdk::ProtoStruct & extra) override;

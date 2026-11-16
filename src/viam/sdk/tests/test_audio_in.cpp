@@ -1,5 +1,4 @@
 #define BOOST_TEST_MODULE test module test_audio_in
-#include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
 #include <viam/sdk/common/audio.hpp>

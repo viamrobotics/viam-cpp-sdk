@@ -28,7 +28,7 @@ section at the bottom to see if your issue (and hopefully a workaround) is cover
 The project depends on [CMake](https://cmake.org/) >= 3.25,
 [Boost](https://www.boost.org/) >= 1.74, [gRPC](https://grpc.io/) >=
 1.30.2, [protobuf](https://protobuf.dev/overview/) >= 3.12.4,
-[xtensor](https://github.com/xtensor-stack/xtensor) >= 0.24.3
+[xtensor](https://github.com/xtensor-stack/xtensor) >= 0.26.0
 and on the transitive dependencies of
 those projects.
 

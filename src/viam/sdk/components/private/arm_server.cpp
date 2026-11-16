@@ -165,22 +165,22 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         // can enforce the stream-wide strictly-increasing-time rule. The server
         // always validates, since it can't trust that the caller did.
         //
-        // A cancelled context and a false `Read` both return `boost::none`, and
+        // A cancelled context and a false `Read` both return `std::nullopt`, and
         // the impl can't tell them apart: either way no more batches are coming,
         // and all it can do is stop pulling and finish what it has. `Read` goes
         // false both on a clean client half-close and on a broken or cancelled
         // stream, and sorting out which is gRPC's problem (via the terminal
         // status), not the impl's.
         auto batch_source = [stream, context, validator = TrajectoryStreamValidator{}]() mutable
-            -> boost::optional<std::vector<Arm::trajectory_point>> {
+            -> std::optional<std::vector<Arm::trajectory_point>> {
             while (true) {
                 if (context->IsCancelled()) {
-                    return boost::none;
+                    return std::nullopt;
                 }
 
                 request_type msg;
                 if (!stream->Read(&msg)) {
-                    return boost::none;
+                    return std::nullopt;
                 }
 
                 const auto mc = msg.message_case();

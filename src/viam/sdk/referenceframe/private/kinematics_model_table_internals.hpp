@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include <boost/optional.hpp>
+#include <optional>
 
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
@@ -21,7 +21,7 @@ struct ParsedJoint {
     std::string child_link;
     Vector3 xyz{};
     Vector3 rpy{};
-    boost::optional<Vector3> axis_opt;
+    std::optional<Vector3> axis_opt;
 };
 
 // @brief Parse all <joint> elements from a URDF, no topology checks.

@@ -230,7 +230,7 @@ KinematicModel fake_frame_model() {
     joint.id = "j";
     joint.parent = "base";
     joint.axis = Vector3{0, 0, 1};
-    joint.spec = RevoluteJoint{-90.0, 90.0, boost::none, boost::none};
+    joint.spec = RevoluteJoint{-90.0, 90.0, std::nullopt, std::nullopt};
     KinematicLink tip;
     tip.id = "tip";
     tip.parent = "j";

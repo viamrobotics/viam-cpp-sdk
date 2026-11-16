@@ -77,7 +77,7 @@ jobs:
         run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
-          conan install . --output-folder=build-conan --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
+          conan install . --output-folder=build-conan --build=missing -s:a compiler.cppstd=20 --lockfile etc/conan/conan.lock --lockfile-partial
           cmake . --preset conan-default
           cmake --build --preset=conan-release --target ALL_BUILD install -j 8
         env:

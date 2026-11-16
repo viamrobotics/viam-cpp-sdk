@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-#include <boost/variant/apply_visitor.hpp>
-
 #include <viam/api/app/v1/robot.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
@@ -36,7 +34,7 @@ OrientationType get_type(const Orientation& o) {
         }
     };
 
-    return boost::apply_visitor(Visitor{}, o);
+    return std::visit(Visitor{}, o);
 }
 
 namespace proto_convert_details {
@@ -91,7 +89,7 @@ void to_proto_impl<Orientation>::operator()(const Orientation& self,
         app::v1::Orientation& orientation;
     };
 
-    boost::apply_visitor(Visitor{*o}, self);
+    std::visit(Visitor{*o}, self);
 }
 
 Orientation from_proto_impl<app::v1::Orientation>::operator()(

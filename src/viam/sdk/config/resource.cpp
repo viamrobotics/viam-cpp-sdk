@@ -28,7 +28,7 @@ ResourceConfig::ResourceConfig(std::string type,
                                Model model,
                                log_level lvl)
     : api_({kRDK, type, ""}),
-      frame_(boost::none),
+      frame_(std::nullopt),
       model_(std::move(model)),
       name_(std::move(name)),
       namespace__(std::move(namespace_)),
@@ -86,7 +86,7 @@ const API& ResourceConfig::api() const {
     return api_;
 }
 
-const boost::optional<LinkConfig>& ResourceConfig::frame() const {
+const std::optional<LinkConfig>& ResourceConfig::frame() const {
     return frame_;
 }
 
@@ -173,8 +173,8 @@ void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_depends_on() = ::google::protobuf::RepeatedPtrField<std::string>(
         self.depends_on().begin(), self.depends_on().end());
 
-    if (self.frame()) {
-        *proto->mutable_frame() = to_proto(self.frame().get());
+    if (const auto& frame = self.frame()) {
+        *proto->mutable_frame() = to_proto(*frame);
     }
 }
 

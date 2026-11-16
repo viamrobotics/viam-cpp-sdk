@@ -81,7 +81,7 @@ void MockBoard::stream_ticks(std::vector<std::string> const& digital_interrupt_n
 
 void MockBoard::set_power_mode(power_mode power_mode,
                                const ProtoStruct&,
-                               const boost::optional<std::chrono::microseconds>& duration) {
+                               const std::optional<std::chrono::microseconds>& duration) {
     this->peek_set_power_mode_power_mode = power_mode;
     this->peek_set_power_mode_duration = duration;
 }
