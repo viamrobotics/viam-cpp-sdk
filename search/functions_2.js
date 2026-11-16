@@ -6,5 +6,5 @@ var searchData=
   ['context_3',['context',['../classviam_1_1sdk_1_1GrpcContextObserver.html#ab59947533087c2501750b7fb54a20a27',1,'viam::sdk::GrpcContextObserver']]],
   ['create_5fresource_5fserver_4',['create_resource_server',['../classviam_1_1sdk_1_1ResourceServerRegistration.html#ac29e547bd2badcc93001233b9bd495cd',1,'viam::sdk::ResourceServerRegistration']]],
   ['create_5frpc_5fclient_5',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#af331ade3a82a27c257031d1395ea390e',1,'viam::sdk::ResourceClientRegistration']]],
-  ['current_6',['current',['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()'],['../classviam_1_1sdk_1_1GrpcContextObserver.html#a4dd8729ae94434729b40194f305e4927',1,'viam::sdk::GrpcContextObserver::current()']]]
+  ['current_6',['current',['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()'],['../classviam_1_1sdk_1_1GrpcContextObserver.html#ac183a2e26d476263f221abfd6e20e3e4',1,'viam::sdk::GrpcContextObserver::current()']]]
 ];

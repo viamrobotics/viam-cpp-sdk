@@ -44,7 +44,7 @@ var searchData=
   ['config_5fstatus_41',['config_status',['../structviam_1_1sdk_1_1RobotClient_1_1config__status.html',1,'viam::sdk::RobotClient']]],
   ['connectivity_20and_20webrtc_20functionality_42',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md5',1,'']]],
   ['constants_43',['MIME type constants.',['../group__MimeTypes.html',1,'']]],
-  ['constraints_44',['constraints',['../structviam_1_1sdk_1_1Motion_1_1constraints.html',1,'viam::sdk::Motion::constraints'],['../structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#ab3b73ffa9071b630f29999463db0e78b',1,'viam::sdk::Arm::trajectory_point::constraints']]],
+  ['constraints_44',['constraints',['../structviam_1_1sdk_1_1Motion_1_1constraints.html',1,'viam::sdk::Motion::constraints'],['../structviam_1_1sdk_1_1Arm_1_1trajectory__point.html#a6e7ab41c9295c8d724bc5011b6f701a5',1,'viam::sdk::Arm::trajectory_point::constraints']]],
   ['construct_5fresource_45',['construct_resource',['../classviam_1_1sdk_1_1ModelRegistration.html#a4089b61b35308baec8f6bf3c116c82aa',1,'viam::sdk::ModelRegistration']]],
   ['content_5ftype_46',['content_type',['../structviam_1_1sdk_1_1mesh.html#ad93145b38b791d4aeeda44b0de65585f',1,'viam::sdk::mesh']]],
   ['context_47',['context',['../classviam_1_1sdk_1_1GrpcContextObserver.html#ab59947533087c2501750b7fb54a20a27',1,'viam::sdk::GrpcContextObserver']]],
@@ -54,5 +54,5 @@ var searchData=
   ['create_5frpc_5fclient_51',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#af331ade3a82a27c257031d1395ea390e',1,'viam::sdk::ResourceClientRegistration']]],
   ['creation_52',['Creation',['../classviam_1_1sdk_1_1Instance.html#a8a82a81310c4339011555fbe15689aa8',1,'viam::sdk::Instance']]],
   ['credentials_53',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]],
-  ['current_54',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor::current'],['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()'],['../classviam_1_1sdk_1_1GrpcContextObserver.html#a4dd8729ae94434729b40194f305e4927',1,'viam::sdk::GrpcContextObserver::current()']]]
+  ['current_54',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor::current'],['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()'],['../classviam_1_1sdk_1_1GrpcContextObserver.html#ac183a2e26d476263f221abfd6e20e3e4',1,'viam::sdk::GrpcContextObserver::current()']]]
 ];

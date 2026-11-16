@@ -84,10 +84,10 @@ $(function() {
 
 <p>Kinematics data types shared by the components that serve <code>GetKinematics</code>.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;boost/optional/optional.hpp&gt;</code><br />
-<code>#include &lt;boost/variant/variant.hpp&gt;</code><br />
-<code>#include &lt;map&gt;</code><br />
+<div class="textblock"><code>#include &lt;map&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;variant&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;viam/sdk/common/linear_algebra.hpp&gt;</code><br />
 <code>#include &lt;viam/sdk/common/mesh.hpp&gt;</code><br />
@@ -174,10 +174,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a6f7202aaa4c9d6ddeac556e8ceabe856" id="r_a6f7202aaa4c9d6ddeac556e8ceabe856"><td class="memItemLeft" align="right" valign="top"><a id="a6f7202aaa4c9d6ddeac556e8ceabe856" name="a6f7202aaa4c9d6ddeac556e8ceabe856"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::joint_spec</b> = boost::variant&lt;<a class="el" href="structviam_1_1sdk_1_1RevoluteJoint.html">RevoluteJoint</a>, <a class="el" href="structviam_1_1sdk_1_1PrismaticJoint.html">PrismaticJoint</a>, <a class="el" href="structviam_1_1sdk_1_1ContinuousJoint.html">ContinuousJoint</a>&gt;</td></tr>
-<tr class="memdesc:a6f7202aaa4c9d6ddeac556e8ceabe856"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kind of a joint together with its kind-specific limits. <br /></td></tr>
-<tr class="separator:a6f7202aaa4c9d6ddeac556e8ceabe856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52576c08acecc03316abab948359dd87" id="r_a52576c08acecc03316abab948359dd87"><td class="memItemLeft" align="right" valign="top"><a id="a52576c08acecc03316abab948359dd87" name="a52576c08acecc03316abab948359dd87"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::joint_spec</b> = std::variant&lt;<a class="el" href="structviam_1_1sdk_1_1RevoluteJoint.html">RevoluteJoint</a>, <a class="el" href="structviam_1_1sdk_1_1PrismaticJoint.html">PrismaticJoint</a>, <a class="el" href="structviam_1_1sdk_1_1ContinuousJoint.html">ContinuousJoint</a>&gt;</td></tr>
+<tr class="memdesc:a52576c08acecc03316abab948359dd87"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kind of a joint together with its kind-specific limits. <br /></td></tr>
+<tr class="separator:a52576c08acecc03316abab948359dd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Kinematics data types shared by the components that serve <code>GetKinematics</code>. </p>

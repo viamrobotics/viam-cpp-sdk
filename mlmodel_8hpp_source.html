@@ -100,11 +100,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;boost/mpl/joint_view.hpp&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;boost/mpl/list.hpp&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;boost/mpl/transform_view.hpp&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;boost/variant/variant.hpp&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;variant&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;boost/mp11/algorithm.hpp&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;boost/mp11/list.hpp&gt;</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#if defined(__has_include) &amp;&amp; (__has_include(&lt;xtensor/containers/xadapt.hpp&gt;))</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;xtensor/containers/xadapt.hpp&gt;</span></div>
@@ -151,24 +151,24 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// we care about, which are the signed and unsigned fixed width</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// integral types and the two floating point types.</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">using </span>signed_integral_base_types =</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        boost::mpl::list&lt;std::int8_t, std::int16_t, std::int32_t, std::int64_t&gt;;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        boost::mp11::mp_list&lt;std::int8_t, std::int16_t, std::int32_t, std::int64_t&gt;;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">using </span>unsigned_integral_base_types =</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        boost::mpl::transform_view&lt;signed_integral_base_types,</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                   std::make_unsigned&lt;boost::mpl::placeholders::_1&gt;&gt;;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">using </span>integral_base_types =</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        boost::mpl::joint_view&lt;signed_integral_base_types, unsigned_integral_base_types&gt;;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">using </span>fp_base_types = boost::mpl::list&lt;float, double&gt;;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">using </span>base_types = boost::mpl::joint_view&lt;integral_base_types, fp_base_types&gt;;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">using </span>tensor_view_types =</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        boost::mpl::transform_view&lt;base_types, make_tensor_view_&lt;boost::mpl::placeholders::_1&gt;&gt;;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// Union the tensor views for the various base types.</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">using </span>tensor_views = boost::make_variant_over&lt;tensor_view_types&gt;::type;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        boost::mp11::mp_transform&lt;std::make_unsigned_t, signed_integral_base_types&gt;;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">using </span>integral_base_types =</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        boost::mp11::mp_append&lt;signed_integral_base_types, unsigned_integral_base_types&gt;;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">using </span>fp_base_types = boost::mp11::mp_list&lt;float, double&gt;;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">using </span>base_types = boost::mp11::mp_append&lt;integral_base_types, fp_base_types&gt;;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">using </span>tensor_view_types =</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        boost::mp11::mp_transform_q&lt;boost::mp11::mp_quote_trait&lt;make_tensor_view_&gt;, base_types&gt;;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// A variant over tensor views for each of the supported primitive types:</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// signed/unsigned fixed-width integers and the two floating-point types.</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">using </span>tensor_views = boost::mp11::mp_rename&lt;tensor_view_types, std::variant&gt;;</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// Our parameters to and from the model come as named tensor_views.</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">using </span>named_tensor_views = std::unordered_map&lt;std::string, tensor_views&gt;;</div>
@@ -217,7 +217,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        ProtoStruct extra;</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keyword">static</span> boost::optional&lt;data_types&gt; string_to_data_type(<span class="keyword">const</span> std::string&amp; str);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keyword">static</span> std::optional&lt;data_types&gt; string_to_data_type(<span class="keyword">const</span> std::string&amp; str);</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* data_type_to_string(data_types data_type);</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keyword">static</span> data_types tensor_views_to_data_type(<span class="keyword">const</span> tensor_views&amp; view);</div>
@@ -269,7 +269,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_a7f47543009c93dd84e5765fdfb06dcef"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#a7f47543009c93dd84e5765fdfb06dcef">viam::sdk::MLModelService::metadata</a></div><div class="ttdeci">struct metadata metadata()</div><div class="ttdoc">Returns metadata describing the inputs and outputs of the model.</div><div class="ttdef"><b>Definition</b> mlmodel.hpp:164</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_ac13dafcfa3012234f858260eaf1ec47c"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#ac13dafcfa3012234f858260eaf1ec47c">viam::sdk::MLModelService::infer</a></div><div class="ttdeci">virtual std::shared_ptr&lt; named_tensor_views &gt; infer(const named_tensor_views &amp;inputs, const ProtoStruct &amp;extra)=0</div><div class="ttdoc">Runs the model against the input tensors and returns inference results as tensors.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_ad7f554438eec67b9c283b95461284979"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#ad7f554438eec67b9c283b95461284979">viam::sdk::MLModelService::get_status</a></div><div class="ttdeci">virtual ProtoStruct get_status()=0</div><div class="ttdoc">Get the status of the mlmodel service.</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceConfig.html">viam::sdk::ResourceConfig</a></div><div class="ttdef"><b>Definition</b> resource.hpp:43</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceConfig.html">viam::sdk::ResourceConfig</a></div><div class="ttdef"><b>Definition</b> resource.hpp:42</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Resource_html_a52ea612e31f5c09785b500bd2610d97d"><div class="ttname"><a href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">viam::sdk::Resource::name</a></div><div class="ttdeci">virtual std::string name() const</div><div class="ttdoc">Return the resource's name.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Service_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Service.html">viam::sdk::Service</a></div><div class="ttdef"><b>Definition</b> service.hpp:10</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1API_1_1traits_html"><div class="ttname"><a href="structviam_1_1sdk_1_1API_1_1traits.html">viam::sdk::API::traits</a></div><div class="ttdef"><b>Definition</b> resource_api.hpp:46</div></div>

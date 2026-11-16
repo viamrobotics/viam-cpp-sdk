@@ -195,12 +195,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aedcca78e9dc42f7c25152acdc36676fe" id="r_aedcca78e9dc42f7c25152acdc36676fe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedcca78e9dc42f7c25152acdc36676fe">stream_ticks</a> (std::vector&lt; std::string &gt; const &amp;digital_interrupt_names, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;tick_handler, const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:aedcca78e9dc42f7c25152acdc36676fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
 <tr class="separator:aedcca78e9dc42f7c25152acdc36676fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28c2afa84769f3f311907c1a41b5675e" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
-<tr class="memdesc:a28c2afa84769f3f311907c1a41b5675e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
-<tr class="separator:a28c2afa84769f3f311907c1a41b5675e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa60b062e7f4ccbb43739b4eef8d3860" id="r_afa60b062e7f4ccbb43739b4eef8d3860"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa60b062e7f4ccbb43739b4eef8d3860">set_power_mode</a> (<a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const ProtoStruct &amp;extra, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})=0</td></tr>
-<tr class="memdesc:afa60b062e7f4ccbb43739b4eef8d3860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
-<tr class="separator:afa60b062e7f4ccbb43739b4eef8d3860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9031108586fb708eb4deff4d34b61275" id="r_a9031108586fb708eb4deff4d34b61275"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9031108586fb708eb4deff4d34b61275">set_power_mode</a> (<a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const std::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
+<tr class="memdesc:a9031108586fb708eb4deff4d34b61275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
+<tr class="separator:a9031108586fb708eb4deff4d34b61275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5afead1962539dd3df6ee5abc149867b" id="r_a5afead1962539dd3df6ee5abc149867b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5afead1962539dd3df6ee5abc149867b">set_power_mode</a> (<a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const ProtoStruct &amp;extra, const std::optional&lt; std::chrono::microseconds &gt; &amp;duration={})=0</td></tr>
+<tr class="memdesc:a5afead1962539dd3df6ee5abc149867b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
+<tr class="separator:a5afead1962539dd3df6ee5abc149867b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ccc84a9137e3ddad3157f3ceb6600e9" id="r_a3ccc84a9137e3ddad3157f3ceb6600e9"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ccc84a9137e3ddad3157f3ceb6600e9">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a3ccc84a9137e3ddad3157f3ceb6600e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a3ccc84a9137e3ddad3157f3ceb6600e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -875,46 +875,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a28c2afa84769f3f311907c1a41b5675e" name="a28c2afa84769f3f311907c1a41b5675e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28c2afa84769f3f311907c1a41b5675e">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void viam::sdk::Board::set_power_mode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a></td>          <td class="paramname"><span class="paramname"><em>power_mode</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the power consumption mode of the board to the requested setting for the given duration. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">power_mode</td><td>Requested power mode </td></tr>
-    <tr><td class="paramname">duration</td><td>Requested duration to stay in <code>power_mode</code> (in microseconds) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="afa60b062e7f4ccbb43739b4eef8d3860" name="afa60b062e7f4ccbb43739b4eef8d3860"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa60b062e7f4ccbb43739b4eef8d3860">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[2/2]</span></h2>
+<a id="a5afead1962539dd3df6ee5abc149867b" name="a5afead1962539dd3df6ee5abc149867b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5afead1962539dd3df6ee5abc149867b">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -935,7 +897,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
+          <td class="paramtype">const std::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -955,7 +917,45 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a7e58bf6ad0b3011d3765f1440231d75c">viam::sdk::impl::BoardClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#afa60b062e7f4ccbb43739b4eef8d3860">viam::sdk::impl::BoardClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a56e3ed0785a416d3a0b37833a98c3f04">viam::sdk::impl::BoardClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a5afead1962539dd3df6ee5abc149867b">viam::sdk::impl::BoardClient</a>.</p>
+
+</div>
+</div>
+<a id="a9031108586fb708eb4deff4d34b61275" name="a9031108586fb708eb4deff4d34b61275"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9031108586fb708eb4deff4d34b61275">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Board::set_power_mode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a></td>          <td class="paramname"><span class="paramname"><em>power_mode</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the power consumption mode of the board to the requested setting for the given duration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power_mode</td><td>Requested power mode </td></tr>
+    <tr><td class="paramname">duration</td><td>Requested duration to stay in <code>power_mode</code> (in microseconds) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

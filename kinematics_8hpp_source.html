@@ -86,10 +86,10 @@ $(function() { codefold.init(0); });
 <a href="kinematics_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;boost/optional/optional.hpp&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;boost/variant/variant.hpp&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;variant&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;viam/sdk/common/linear_algebra.hpp&gt;</span></div>
@@ -132,44 +132,44 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1LinkPose.html#ac3d6627fc194dc2eef2a9e55b988a322">   55</a></span>    Orientation <a class="code hl_variable" href="structviam_1_1sdk_1_1LinkPose.html#ac3d6627fc194dc2eef2a9e55b988a322">orientation</a> = <a class="code hl_struct" href="structviam_1_1sdk_1_1orientation__vector__degrees.html">orientation_vector_degrees</a>{0, 0, 1, 0};</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&amp; rhs);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
 </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1RevoluteJoint.html">   61</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1RevoluteJoint.html">RevoluteJoint</a> {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    boost::optional&lt;double&gt; min_deg;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    boost::optional&lt;double&gt; max_deg;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    boost::optional&lt;double&gt; max_velocity_deg_per_sec;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    boost::optional&lt;double&gt; max_acceleration_deg_per_sec2;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::optional&lt;double&gt; min_deg;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::optional&lt;double&gt; max_deg;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    std::optional&lt;double&gt; max_velocity_deg_per_sec;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    std::optional&lt;double&gt; max_acceleration_deg_per_sec2;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1RevoluteJoint.html">RevoluteJoint</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1RevoluteJoint.html">RevoluteJoint</a>&amp; rhs);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1RevoluteJoint.html">RevoluteJoint</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1RevoluteJoint.html">RevoluteJoint</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
 </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="foldopen" id="foldopen00072" data-start="{" data-end="};">
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1ContinuousJoint.html">   72</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1ContinuousJoint.html">ContinuousJoint</a> {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    boost::optional&lt;double&gt; max_velocity_deg_per_sec;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    boost::optional&lt;double&gt; max_acceleration_deg_per_sec2;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    std::optional&lt;double&gt; max_velocity_deg_per_sec;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    std::optional&lt;double&gt; max_acceleration_deg_per_sec2;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1ContinuousJoint.html">ContinuousJoint</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1ContinuousJoint.html">ContinuousJoint</a>&amp; rhs);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1ContinuousJoint.html">ContinuousJoint</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1ContinuousJoint.html">ContinuousJoint</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
 </div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1PrismaticJoint.html">   80</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1PrismaticJoint.html">PrismaticJoint</a> {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    boost::optional&lt;double&gt; min_mm;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    boost::optional&lt;double&gt; max_mm;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    boost::optional&lt;double&gt; max_velocity_mm_per_sec;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    boost::optional&lt;double&gt; max_acceleration_mm_per_sec2;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    std::optional&lt;double&gt; min_mm;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    std::optional&lt;double&gt; max_mm;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    std::optional&lt;double&gt; max_velocity_mm_per_sec;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::optional&lt;double&gt; max_acceleration_mm_per_sec2;</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1PrismaticJoint.html#a571ccb99d446cf3218ecedcfa1b2e634">   87</a></span>    boost::optional&lt;GeometryConfig&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1PrismaticJoint.html#a571ccb99d446cf3218ecedcfa1b2e634">geometry</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1PrismaticJoint.html#ade4976c44bec0616b5fb4e77b9e8ec75">   87</a></span>    std::optional&lt;GeometryConfig&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1PrismaticJoint.html#ade4976c44bec0616b5fb4e77b9e8ec75">geometry</a>;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1PrismaticJoint.html">PrismaticJoint</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1PrismaticJoint.html">PrismaticJoint</a>&amp; rhs);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1PrismaticJoint.html">PrismaticJoint</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1PrismaticJoint.html">PrismaticJoint</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
 </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="kinematics_8hpp.html#a6f7202aaa4c9d6ddeac556e8ceabe856">   93</a></span><span class="keyword">using </span><a class="code hl_typedef" href="kinematics_8hpp.html#a6f7202aaa4c9d6ddeac556e8ceabe856">joint_spec</a> = boost::variant&lt;RevoluteJoint, PrismaticJoint, ContinuousJoint&gt;;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="kinematics_8hpp.html#a52576c08acecc03316abab948359dd87">   93</a></span><span class="keyword">using </span><a class="code hl_typedef" href="kinematics_8hpp.html#a52576c08acecc03316abab948359dd87">joint_spec</a> = std::variant&lt;RevoluteJoint, PrismaticJoint, ContinuousJoint&gt;;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="foldopen" id="foldopen00096" data-start="{" data-end="};">
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1MimicJoint.html">   96</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a> {</div>
@@ -177,17 +177,17 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">double</span> multiplier = 0.0;</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">double</span> offset = 0.0;</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&amp; rhs);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>};</div>
 </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
 <div class="foldopen" id="foldopen00105" data-start="{" data-end="};">
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicProperties.html">  105</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a> {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicProperties.html#a6f830414adc41ec21fc7e48f5192c696">  107</a></span>    boost::optional&lt;double&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicProperties.html#a6f830414adc41ec21fc7e48f5192c696">operating_freq_hz</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicProperties.html#afac945d2d08af0d63fda6efbe4e7f292">  107</a></span>    std::optional&lt;double&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicProperties.html#afac945d2d08af0d63fda6efbe4e7f292">operating_freq_hz</a>;</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicProperties.html#a62ab8e1c6e72413d45c107743f61b7f7">  110</a></span>    boost::optional&lt;double&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicProperties.html#a62ab8e1c6e72413d45c107743f61b7f7">max_linear_tcp_speed_mm_per_sec</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicProperties.html#a7c9786807da19a7cfcc3b523fb95f7d9">  110</a></span>    std::optional&lt;double&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicProperties.html#a7c9786807da19a7cfcc3b523fb95f7d9">max_linear_tcp_speed_mm_per_sec</a>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&amp; rhs);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>};</div>
 </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
@@ -203,7 +203,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicLink.html#aa08704dd284b2ac81af60ac4c0d16e22">  129</a></span>    std::vector&lt;GeometryConfig&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicLink.html#aa08704dd284b2ac81af60ac4c0d16e22">visual</a>;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&amp; rhs);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>};</div>
 </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
@@ -215,11 +215,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicJoint.html#a34ca38cffd272d008ba35d6dfb6a7be9">  142</a></span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1Vector3.html">Vector3</a> <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicJoint.html#a34ca38cffd272d008ba35d6dfb6a7be9">axis</a>{};</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicJoint.html#ac76b44ae94f08d47d98ad83666b612b5">  145</a></span>    <a class="code hl_typedef" href="kinematics_8hpp.html#a6f7202aaa4c9d6ddeac556e8ceabe856">joint_spec</a> <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicJoint.html#ac76b44ae94f08d47d98ad83666b612b5">spec</a>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicJoint.html#ac76b44ae94f08d47d98ad83666b612b5">  145</a></span>    <a class="code hl_typedef" href="kinematics_8hpp.html#a52576c08acecc03316abab948359dd87">joint_spec</a> <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicJoint.html#ac76b44ae94f08d47d98ad83666b612b5">spec</a>;</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    boost::optional&lt;MimicJoint&gt; mimic;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    std::optional&lt;MimicJoint&gt; mimic;</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&amp; rhs);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>};</div>
 </div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
@@ -232,9 +232,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicModel.html#a441e57d9715cbdad639e91185a42fbc8">  162</a></span>    std::vector&lt;std::string&gt; <a class="code hl_variable" href="structviam_1_1sdk_1_1KinematicModel.html#a441e57d9715cbdad639e91185a42fbc8">output_frames</a>;</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    boost::optional&lt;KinematicProperties&gt; properties;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    std::optional&lt;KinematicProperties&gt; properties;</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&amp; rhs);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>};</div>
 </div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
@@ -249,155 +249,156 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>(std::vector&lt;unsigned char&gt; b) : bytes(std::move(b)) {}</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    std::vector&lt;unsigned char&gt; bytes{};</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>};</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};</div>
 </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">// Comparison operator helper for the data types below</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataType&gt;</div>
-<div class="foldopen" id="foldopen00183" data-start="{" data-end="};">
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1EqCompare.html">  183</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1EqCompare.html">EqCompare</a> {</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keyword">inline</span> <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> DataType&amp; lhs, <span class="keyword">const</span> DataType&amp; rhs) {</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="keywordflow">return</span> lhs.bytes == rhs.bytes;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>};</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment">// Comparison operator helper for the data types below</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataType&gt;</div>
+<div class="foldopen" id="foldopen00184" data-start="{" data-end="};">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1EqCompare.html">  184</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1EqCompare.html">EqCompare</a> {</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">inline</span> <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> DataType&amp; lhs, <span class="keyword">const</span> DataType&amp; rhs) {</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">return</span> lhs.bytes == rhs.bytes;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>};</div>
 </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="foldopen" id="foldopen00190" data-start="{" data-end="};">
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicsDataUnspecified.html">  190</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataUnspecified.html">KinematicsDataUnspecified</a> : <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;KinematicsDataUnspecified&gt;,</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                                   <a class="code hl_struct" href="structviam_1_1sdk_1_1EqCompare.html">EqCompare</a>&lt;KinematicsDataUnspecified&gt; {};</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="foldopen" id="foldopen00191" data-start="{" data-end="};">
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicsDataUnspecified.html">  191</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataUnspecified.html">KinematicsDataUnspecified</a> : <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;KinematicsDataUnspecified&gt;,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                                   <a class="code hl_struct" href="structviam_1_1sdk_1_1EqCompare.html">EqCompare</a>&lt;KinematicsDataUnspecified&gt; {};</div>
 </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="foldopen" id="foldopen00194" data-start="{" data-end="};">
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicsDataSVA.html">  194</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataSVA.html">KinematicsDataSVA</a> : <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;KinematicsDataSVA&gt;, <a class="code hl_struct" href="structviam_1_1sdk_1_1EqCompare.html">EqCompare</a>&lt;KinematicsDataSVA&gt; {</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keyword">using </span><a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataSVA.html">KinematicsDataSVA</a>&gt;::raw_bytes;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>};</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="};">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicsDataSVA.html">  195</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataSVA.html">KinematicsDataSVA</a> : <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;KinematicsDataSVA&gt;, <a class="code hl_struct" href="structviam_1_1sdk_1_1EqCompare.html">EqCompare</a>&lt;KinematicsDataSVA&gt; {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keyword">using </span><a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataSVA.html">KinematicsDataSVA</a>&gt;::raw_bytes;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>};</div>
 </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="foldopen" id="foldopen00199" data-start="{" data-end="};">
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">  199</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a> : <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;KinematicsDataURDF&gt; {</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keyword">using </span><a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a>&gt;::raw_bytes;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    std::map&lt;std::string, mesh&gt; meshes_by_urdf_filepath;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a>&amp; rhs);</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>};</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="foldopen" id="foldopen00200" data-start="{" data-end="};">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">  200</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a> : <a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;KinematicsDataURDF&gt; {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">using </span><a class="code hl_struct" href="structviam_1_1sdk_1_1raw__bytes.html">raw_bytes</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a>&gt;::raw_bytes;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    std::map&lt;std::string, mesh&gt; meshes_by_urdf_filepath;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a>&amp;, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicsDataURDF.html">KinematicsDataURDF</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>};</div>
 </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="keyword">using </span>KinematicsData [[deprecated(<span class="stringliteral">&quot;use KinematicModel, served by get_kinematic_model&quot;</span>)]] =</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    boost::variant&lt;KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF&gt;;</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keyword">namespace </span>proto_convert_details {</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00216" data-start="{" data-end="};">
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01LinkPose_01_4.html">  216</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&gt; {</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&amp;, common::v1::LinkPose*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>};</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="keyword">using </span>KinematicsData [[deprecated(<span class="stringliteral">&quot;use KinematicModel, served by get_kinematic_model&quot;</span>)]] =</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    std::variant&lt;KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF&gt;;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keyword">namespace </span>proto_convert_details {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="};">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01LinkPose_01_4.html">  217</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&gt; {</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a>&amp;, common::v1::LinkPose*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>};</div>
 </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00221" data-start="{" data-end="};">
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1LinkPose_01_4.html">  221</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::LinkPose&gt; {</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a> operator()(<span class="keyword">const</span> common::v1::LinkPose*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>};</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00222" data-start="{" data-end="};">
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1LinkPose_01_4.html">  222</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::LinkPose&gt; {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1LinkPose.html">LinkPose</a> operator()(<span class="keyword">const</span> common::v1::LinkPose*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>};</div>
 </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00226" data-start="{" data-end="};">
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01MimicJoint_01_4.html">  226</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&gt; {</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&amp;, common::v1::MimicJoint*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>};</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00227" data-start="{" data-end="};">
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01MimicJoint_01_4.html">  227</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&gt; {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a>&amp;, common::v1::MimicJoint*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>};</div>
 </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00231" data-start="{" data-end="};">
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1MimicJoint_01_4.html">  231</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::MimicJoint&gt; {</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a> operator()(<span class="keyword">const</span> common::v1::MimicJoint*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>};</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00232" data-start="{" data-end="};">
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1MimicJoint_01_4.html">  232</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::MimicJoint&gt; {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1MimicJoint.html">MimicJoint</a> operator()(<span class="keyword">const</span> common::v1::MimicJoint*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>};</div>
 </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00236" data-start="{" data-end="};">
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicProperties_01_4.html">  236</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&gt; {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&amp;, common::v1::KinematicProperties*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>};</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00237" data-start="{" data-end="};">
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicProperties_01_4.html">  237</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&gt; {</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a>&amp;, common::v1::KinematicProperties*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>};</div>
 </div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00241" data-start="{" data-end="};">
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicProperties_01_4.html">  241</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicProperties&gt; {</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a> operator()(<span class="keyword">const</span> common::v1::KinematicProperties*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>};</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00242" data-start="{" data-end="};">
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicProperties_01_4.html">  242</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicProperties&gt; {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicProperties.html">KinematicProperties</a> operator()(<span class="keyword">const</span> common::v1::KinematicProperties*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>};</div>
 </div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00246" data-start="{" data-end="};">
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicLink_01_4.html">  246</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&gt; {</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&amp;, common::v1::KinematicLink*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>};</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00247" data-start="{" data-end="};">
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicLink_01_4.html">  247</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&gt; {</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a>&amp;, common::v1::KinematicLink*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>};</div>
 </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00251" data-start="{" data-end="};">
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicLink_01_4.html">  251</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicLink&gt; {</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a> operator()(<span class="keyword">const</span> common::v1::KinematicLink*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>};</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00252" data-start="{" data-end="};">
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicLink_01_4.html">  252</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicLink&gt; {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicLink.html">KinematicLink</a> operator()(<span class="keyword">const</span> common::v1::KinematicLink*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>};</div>
 </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00256" data-start="{" data-end="};">
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicJoint_01_4.html">  256</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&gt; {</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&amp;, common::v1::KinematicJoint*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>};</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00257" data-start="{" data-end="};">
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicJoint_01_4.html">  257</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&gt; {</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a>&amp;, common::v1::KinematicJoint*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>};</div>
 </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00261" data-start="{" data-end="};">
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicJoint_01_4.html">  261</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicJoint&gt; {</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a> operator()(<span class="keyword">const</span> common::v1::KinematicJoint*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>};</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00262" data-start="{" data-end="};">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicJoint_01_4.html">  262</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicJoint&gt; {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicJoint.html">KinematicJoint</a> operator()(<span class="keyword">const</span> common::v1::KinematicJoint*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>};</div>
 </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00266" data-start="{" data-end="};">
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicModel_01_4.html">  266</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&gt; {</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&amp;, common::v1::KinematicModel*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>};</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00267" data-start="{" data-end="};">
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicModel_01_4.html">  267</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;<a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&gt; {</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a>&amp;, common::v1::KinematicModel*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>};</div>
 </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00271" data-start="{" data-end="};">
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicModel_01_4.html">  271</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicModel&gt; {</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a> operator()(<span class="keyword">const</span> common::v1::KinematicModel*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>};</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00272" data-start="{" data-end="};">
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1KinematicModel_01_4.html">  272</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::KinematicModel&gt; {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1KinematicModel.html">KinematicModel</a> operator()(<span class="keyword">const</span> common::v1::KinematicModel*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>};</div>
 </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">// The converters for the deprecated raw-bytes variant stay available for callers that still</span></div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">// speak that format.</span></div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="preprocessor">#pragma GCC diagnostic push</span></div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">#pragma GCC diagnostic ignored &quot;-Wdeprecated-declarations&quot;</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00281" data-start="{" data-end="};">
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicsData_01_4.html">  281</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;KinematicsData&gt; {</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> KinematicsData&amp;, common::v1::GetKinematicsResponse*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>};</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">// The converters for the deprecated raw-bytes variant stay available for callers that still</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment">// speak that format.</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">#pragma GCC diagnostic push</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">#pragma GCC diagnostic ignored &quot;-Wdeprecated-declarations&quot;</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00282" data-start="{" data-end="};">
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_3_01KinematicsData_01_4.html">  282</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">to_proto_impl</a>&lt;KinematicsData&gt; {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">void</span> operator()(<span class="keyword">const</span> KinematicsData&amp;, common::v1::GetKinematicsResponse*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>};</div>
 </div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00286" data-start="{" data-end="};">
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1GetKinematicsResponse_01_4.html">  286</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::GetKinematicsResponse&gt; {</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    KinematicsData operator()(<span class="keyword">const</span> common::v1::GetKinematicsResponse*) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>};</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00287" data-start="{" data-end="};">
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl_3_01common_1_1v1_1_1GetKinematicsResponse_01_4.html">  287</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html">from_proto_impl</a>&lt;common::v1::GetKinematicsResponse&gt; {</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    KinematicsData operator()(<span class="keyword">const</span> common::v1::GetKinematicsResponse*) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>};</div>
 </div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="preprocessor">#pragma GCC diagnostic pop</span></div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}  <span class="comment">// namespace proto_convert_details</span></div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>}  <span class="comment">// namespace viam</span></div>
-<div class="ttc" id="akinematics_8hpp_html_a6f7202aaa4c9d6ddeac556e8ceabe856"><div class="ttname"><a href="kinematics_8hpp.html#a6f7202aaa4c9d6ddeac556e8ceabe856">viam::sdk::joint_spec</a></div><div class="ttdeci">boost::variant&lt; RevoluteJoint, PrismaticJoint, ContinuousJoint &gt; joint_spec</div><div class="ttdoc">The kind of a joint together with its kind-specific limits.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:93</div></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">#pragma GCC diagnostic pop</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>}  <span class="comment">// namespace proto_convert_details</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="akinematics_8hpp_html_a52576c08acecc03316abab948359dd87"><div class="ttname"><a href="kinematics_8hpp.html#a52576c08acecc03316abab948359dd87">viam::sdk::joint_spec</a></div><div class="ttdeci">std::variant&lt; RevoluteJoint, PrismaticJoint, ContinuousJoint &gt; joint_spec</div><div class="ttdoc">The kind of a joint together with its kind-specific limits.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:93</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1ContinuousJoint_html"><div class="ttname"><a href="structviam_1_1sdk_1_1ContinuousJoint.html">viam::sdk::ContinuousJoint</a></div><div class="ttdoc">A revolute joint with no position bound. Limits are in deg/s and deg/s^2; absent means unbounded.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:72</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1EqCompare_html"><div class="ttname"><a href="structviam_1_1sdk_1_1EqCompare.html">viam::sdk::EqCompare</a></div><div class="ttdef"><b>Definition</b> kinematics.hpp:183</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1EqCompare_html"><div class="ttname"><a href="structviam_1_1sdk_1_1EqCompare.html">viam::sdk::EqCompare</a></div><div class="ttdef"><b>Definition</b> kinematics.hpp:184</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1KinematicJoint_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicJoint.html">viam::sdk::KinematicJoint</a></div><div class="ttdoc">A joint of a kinematic model.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:135</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1KinematicJoint_html_a34ca38cffd272d008ba35d6dfb6a7be9"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicJoint.html#a34ca38cffd272d008ba35d6dfb6a7be9">viam::sdk::KinematicJoint::axis</a></div><div class="ttdeci">Vector3 axis</div><div class="ttdoc">Axis of rotation or translation, in the parent link frame.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:142</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1KinematicJoint_html_ac76b44ae94f08d47d98ad83666b612b5"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicJoint.html#ac76b44ae94f08d47d98ad83666b612b5">viam::sdk::KinematicJoint::spec</a></div><div class="ttdeci">joint_spec spec</div><div class="ttdoc">Joint kind and its limits.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:145</div></div>
@@ -411,16 +412,16 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="astructviam_1_1sdk_1_1KinematicModel_html_a3bff5cc7dd5890d00538ec0e396e10d3"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicModel.html#a3bff5cc7dd5890d00538ec0e396e10d3">viam::sdk::KinematicModel::name</a></div><div class="ttdeci">std::string name</div><div class="ttdoc">Set to the resource name by the SDK when served.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:156</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1KinematicModel_html_a441e57d9715cbdad639e91185a42fbc8"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicModel.html#a441e57d9715cbdad639e91185a42fbc8">viam::sdk::KinematicModel::output_frames</a></div><div class="ttdeci">std::vector&lt; std::string &gt; output_frames</div><div class="ttdoc">Frames whose poses the model reports.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:162</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1KinematicProperties_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicProperties.html">viam::sdk::KinematicProperties</a></div><div class="ttdoc">Properties of a kinematic component as a whole.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:105</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1KinematicProperties_html_a62ab8e1c6e72413d45c107743f61b7f7"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicProperties.html#a62ab8e1c6e72413d45c107743f61b7f7">viam::sdk::KinematicProperties::max_linear_tcp_speed_mm_per_sec</a></div><div class="ttdeci">boost::optional&lt; double &gt; max_linear_tcp_speed_mm_per_sec</div><div class="ttdoc">Maximum linear speed of the tool center point.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:110</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1KinematicProperties_html_a6f830414adc41ec21fc7e48f5192c696"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicProperties.html#a6f830414adc41ec21fc7e48f5192c696">viam::sdk::KinematicProperties::operating_freq_hz</a></div><div class="ttdeci">boost::optional&lt; double &gt; operating_freq_hz</div><div class="ttdoc">Rate the component expects to be driven at.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:107</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1KinematicsDataSVA_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicsDataSVA.html">viam::sdk::KinematicsDataSVA</a></div><div class="ttdoc">Kinematics data in Viam's Spatial Vector Algebra (SVA) format.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:194</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1KinematicsDataURDF_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicsDataURDF.html">viam::sdk::KinematicsDataURDF</a></div><div class="ttdoc">Kinematics data in URDF format with optional meshes by URDF filepath.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:199</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1KinematicsDataUnspecified_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicsDataUnspecified.html">viam::sdk::KinematicsDataUnspecified</a></div><div class="ttdoc">Kinematics data with unspecified format.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:191</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1KinematicProperties_html_a7c9786807da19a7cfcc3b523fb95f7d9"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicProperties.html#a7c9786807da19a7cfcc3b523fb95f7d9">viam::sdk::KinematicProperties::max_linear_tcp_speed_mm_per_sec</a></div><div class="ttdeci">std::optional&lt; double &gt; max_linear_tcp_speed_mm_per_sec</div><div class="ttdoc">Maximum linear speed of the tool center point.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:110</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1KinematicProperties_html_afac945d2d08af0d63fda6efbe4e7f292"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicProperties.html#afac945d2d08af0d63fda6efbe4e7f292">viam::sdk::KinematicProperties::operating_freq_hz</a></div><div class="ttdeci">std::optional&lt; double &gt; operating_freq_hz</div><div class="ttdoc">Rate the component expects to be driven at.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:107</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1KinematicsDataSVA_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicsDataSVA.html">viam::sdk::KinematicsDataSVA</a></div><div class="ttdoc">Kinematics data in Viam's Spatial Vector Algebra (SVA) format.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:195</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1KinematicsDataURDF_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicsDataURDF.html">viam::sdk::KinematicsDataURDF</a></div><div class="ttdoc">Kinematics data in URDF format with optional meshes by URDF filepath.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:200</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1KinematicsDataUnspecified_html"><div class="ttname"><a href="structviam_1_1sdk_1_1KinematicsDataUnspecified.html">viam::sdk::KinematicsDataUnspecified</a></div><div class="ttdoc">Kinematics data with unspecified format.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:192</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1LinkPose_html"><div class="ttname"><a href="structviam_1_1sdk_1_1LinkPose.html">viam::sdk::LinkPose</a></div><div class="ttdoc">Pose of a link relative to its parent: translation in mm, orientation in degrees. Identity when defau...</div><div class="ttdef"><b>Definition</b> kinematics.hpp:50</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1LinkPose_html_ac3d6627fc194dc2eef2a9e55b988a322"><div class="ttname"><a href="structviam_1_1sdk_1_1LinkPose.html#ac3d6627fc194dc2eef2a9e55b988a322">viam::sdk::LinkPose::orientation</a></div><div class="ttdeci">Orientation orientation</div><div class="ttdoc">One of quaternion, orientation_vector_degrees, euler_angles or axis_angles. An orientation_vector (ra...</div><div class="ttdef"><b>Definition</b> kinematics.hpp:55</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1MimicJoint_html"><div class="ttname"><a href="structviam_1_1sdk_1_1MimicJoint.html">viam::sdk::MimicJoint</a></div><div class="ttdoc">A joint whose position is multiplier * position(joint) + offset.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:96</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1PrismaticJoint_html"><div class="ttname"><a href="structviam_1_1sdk_1_1PrismaticJoint.html">viam::sdk::PrismaticJoint</a></div><div class="ttdoc">A prismatic joint. Limits are in mm, mm/s and mm/s^2; absent means unbounded.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:80</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1PrismaticJoint_html_a571ccb99d446cf3218ecedcfa1b2e634"><div class="ttname"><a href="structviam_1_1sdk_1_1PrismaticJoint.html#a571ccb99d446cf3218ecedcfa1b2e634">viam::sdk::PrismaticJoint::geometry</a></div><div class="ttdeci">boost::optional&lt; GeometryConfig &gt; geometry</div><div class="ttdoc">Geometry swept by the joint.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:87</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1PrismaticJoint_html_ade4976c44bec0616b5fb4e77b9e8ec75"><div class="ttname"><a href="structviam_1_1sdk_1_1PrismaticJoint.html#ade4976c44bec0616b5fb4e77b9e8ec75">viam::sdk::PrismaticJoint::geometry</a></div><div class="ttdeci">std::optional&lt; GeometryConfig &gt; geometry</div><div class="ttdoc">Geometry swept by the joint.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:87</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1RevoluteJoint_html"><div class="ttname"><a href="structviam_1_1sdk_1_1RevoluteJoint.html">viam::sdk::RevoluteJoint</a></div><div class="ttdoc">A revolute joint. Limits are in degrees, deg/s and deg/s^2; absent means unbounded.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:61</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1Vector3_html"><div class="ttname"><a href="structviam_1_1sdk_1_1Vector3.html">viam::sdk::Vector3</a></div><div class="ttdef"><b>Definition</b> linear_algebra.hpp:25</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1kinematics__options_html"><div class="ttname"><a href="structviam_1_1sdk_1_1kinematics__options.html">viam::sdk::kinematics_options</a></div><div class="ttdoc">Options for a GetKinematics request.</div><div class="ttdef"><b>Definition</b> kinematics.hpp:39</div></div>

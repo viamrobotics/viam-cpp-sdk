@@ -162,9 +162,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a3c7bb2dfabb1e9bd2e0ce5a101a35cf4" id="r_a3c7bb2dfabb1e9bd2e0ce5a101a35cf4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c7bb2dfabb1e9bd2e0ce5a101a35cf4">read_digital_interrupt</a> (const std::string &amp;digital_interrupt_name, const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a3c7bb2dfabb1e9bd2e0ce5a101a35cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current value of the interrupt which is based on the type of interrupt. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a3c7bb2dfabb1e9bd2e0ce5a101a35cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e58bf6ad0b3011d3765f1440231d75c" id="r_a7e58bf6ad0b3011d3765f1440231d75c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e58bf6ad0b3011d3765f1440231d75c">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const ProtoStruct &amp;extra, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration) override</td></tr>
-<tr class="memdesc:a7e58bf6ad0b3011d3765f1440231d75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
-<tr class="separator:a7e58bf6ad0b3011d3765f1440231d75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e3ed0785a416d3a0b37833a98c3f04" id="r_a56e3ed0785a416d3a0b37833a98c3f04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56e3ed0785a416d3a0b37833a98c3f04">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const ProtoStruct &amp;extra, const std::optional&lt; std::chrono::microseconds &gt; &amp;duration) override</td></tr>
+<tr class="memdesc:a56e3ed0785a416d3a0b37833a98c3f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
+<tr class="separator:a56e3ed0785a416d3a0b37833a98c3f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6673b082986458e8b68e0b31262e518e" id="r_a6673b082986458e8b68e0b31262e518e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6673b082986458e8b68e0b31262e518e">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a6673b082986458e8b68e0b31262e518e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:a6673b082986458e8b68e0b31262e518e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,12 +213,12 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:af49ccd23ff2cb5fb88a2bc58596f191d" id="r_af49ccd23ff2cb5fb88a2bc58596f191d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af49ccd23ff2cb5fb88a2bc58596f191d">set_gpio</a> (const std::string &amp;pin, bool high, const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:af49ccd23ff2cb5fb88a2bc58596f191d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:af49ccd23ff2cb5fb88a2bc58596f191d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28c2afa84769f3f311907c1a41b5675e" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
-<tr class="memdesc:a28c2afa84769f3f311907c1a41b5675e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
-<tr class="separator:a28c2afa84769f3f311907c1a41b5675e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa60b062e7f4ccbb43739b4eef8d3860" id="r_afa60b062e7f4ccbb43739b4eef8d3860"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa60b062e7f4ccbb43739b4eef8d3860">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const ProtoStruct &amp;extra, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})=0</td></tr>
-<tr class="memdesc:afa60b062e7f4ccbb43739b4eef8d3860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
-<tr class="separator:afa60b062e7f4ccbb43739b4eef8d3860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9031108586fb708eb4deff4d34b61275" id="r_a9031108586fb708eb4deff4d34b61275"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9031108586fb708eb4deff4d34b61275">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const std::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
+<tr class="memdesc:a9031108586fb708eb4deff4d34b61275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
+<tr class="separator:a9031108586fb708eb4deff4d34b61275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5afead1962539dd3df6ee5abc149867b" id="r_a5afead1962539dd3df6ee5abc149867b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5afead1962539dd3df6ee5abc149867b">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const ProtoStruct &amp;extra, const std::optional&lt; std::chrono::microseconds &gt; &amp;duration={})=0</td></tr>
+<tr class="memdesc:a5afead1962539dd3df6ee5abc149867b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
+<tr class="separator:a5afead1962539dd3df6ee5abc149867b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f412d9c182efa8af908e82bfe8d6a3b" id="r_a8f412d9c182efa8af908e82bfe8d6a3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f412d9c182efa8af908e82bfe8d6a3b">set_pwm_duty_cycle</a> (const std::string &amp;pin, double duty_cycle_pct)</td></tr>
 <tr class="memdesc:a8f412d9c182efa8af908e82bfe8d6a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin of a board to the given duty cycle.  <br /></td></tr>
 <tr class="separator:a8f412d9c182efa8af908e82bfe8d6a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -277,9 +277,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:abebf604f13b3020a0bd92a009a53c3d8 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_abebf604f13b3020a0bd92a009a53c3d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#abebf604f13b3020a0bd92a009a53c3d8">stream_ticks</a> (std::vector&lt; std::string &gt; const &amp;digital_interrupt_names, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;tick_handler)</td></tr>
 <tr class="memdesc:abebf604f13b3020a0bd92a009a53c3d8 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
 <tr class="separator:abebf604f13b3020a0bd92a009a53c3d8 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28c2afa84769f3f311907c1a41b5675e inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
-<tr class="memdesc:a28c2afa84769f3f311907c1a41b5675e inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
-<tr class="separator:a28c2afa84769f3f311907c1a41b5675e inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9031108586fb708eb4deff4d34b61275 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a9031108586fb708eb4deff4d34b61275"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a9031108586fb708eb4deff4d34b61275">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const std::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
+<tr class="memdesc:a9031108586fb708eb4deff4d34b61275 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
+<tr class="separator:a9031108586fb708eb4deff4d34b61275 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a2458b6edfd5e668cb79c3221b9ec1177"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a2458b6edfd5e668cb79c3221b9ec1177">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1196,46 +1196,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a28c2afa84769f3f311907c1a41b5675e" name="a28c2afa84769f3f311907c1a41b5675e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28c2afa84769f3f311907c1a41b5675e">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void viam::sdk::Board::set_power_mode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a></td>          <td class="paramname"><span class="paramname"><em>power_mode</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the power consumption mode of the board to the requested setting for the given duration. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">power_mode</td><td>Requested power mode </td></tr>
-    <tr><td class="paramname">duration</td><td>Requested duration to stay in <code>power_mode</code> (in microseconds) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a7e58bf6ad0b3011d3765f1440231d75c" name="a7e58bf6ad0b3011d3765f1440231d75c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e58bf6ad0b3011d3765f1440231d75c">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[2/3]</span></h2>
+<a id="a56e3ed0785a416d3a0b37833a98c3f04" name="a56e3ed0785a416d3a0b37833a98c3f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56e3ed0785a416d3a0b37833a98c3f04">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1256,7 +1218,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em></span>&#160;)</td>
+          <td class="paramtype">const std::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1276,12 +1238,12 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#afa60b062e7f4ccbb43739b4eef8d3860">viam::sdk::Board</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a5afead1962539dd3df6ee5abc149867b">viam::sdk::Board</a>.</p>
 
 </div>
 </div>
-<a id="afa60b062e7f4ccbb43739b4eef8d3860" name="afa60b062e7f4ccbb43739b4eef8d3860"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa60b062e7f4ccbb43739b4eef8d3860">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[3/3]</span></h2>
+<a id="a5afead1962539dd3df6ee5abc149867b" name="a5afead1962539dd3df6ee5abc149867b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5afead1962539dd3df6ee5abc149867b">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1302,7 +1264,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
+          <td class="paramtype">const std::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1322,7 +1284,45 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#afa60b062e7f4ccbb43739b4eef8d3860">viam::sdk::Board</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a5afead1962539dd3df6ee5abc149867b">viam::sdk::Board</a>.</p>
+
+</div>
+</div>
+<a id="a9031108586fb708eb4deff4d34b61275" name="a9031108586fb708eb4deff4d34b61275"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9031108586fb708eb4deff4d34b61275">&#9670;&#160;</a></span>set_power_mode() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Board::set_power_mode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a></td>          <td class="paramname"><span class="paramname"><em>power_mode</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the power consumption mode of the board to the requested setting for the given duration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power_mode</td><td>Requested power mode </td></tr>
+    <tr><td class="paramname">duration</td><td>Requested duration to stay in <code>power_mode</code> (in microseconds) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

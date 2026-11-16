@@ -91,6 +91,7 @@ $(function() {
 <code>#include &lt;map&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;boost/log/attributes/clock.hpp&gt;</code><br />
 <code>#include &lt;boost/log/expressions/keyword.hpp&gt;</code><br />
 <code>#include &lt;boost/log/sinks/sync_frontend.hpp&gt;</code><br />
@@ -98,7 +99,6 @@ $(function() {
 <code>#include &lt;boost/log/sources/severity_channel_logger.hpp&gt;</code><br />
 <code>#include &lt;boost/log/utility/manipulators/add_value.hpp&gt;</code><br />
 <code>#include &lt;boost/preprocessor/facilities/overload.hpp&gt;</code><br />
-<code>#include &lt;boost/utility/string_view.hpp&gt;</code><br />
 </div>
 <p><a href="logging_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -170,18 +170,18 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::gl
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::default_module_name</b> ()</td></tr>
 <tr class="memdesc:gac124a1b113865db116b7009736e58839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the default "channel name" of log messages related to a Viam C++ module. <br /></td></tr>
 <tr class="separator:gac124a1b113865db116b7009736e58839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a536e943ee4c12a36dcc00edeab5e53ac" id="r_a536e943ee4c12a36dcc00edeab5e53ac"><td class="memItemLeft" align="right" valign="top"><a id="a536e943ee4c12a36dcc00edeab5e53ac" name="a536e943ee4c12a36dcc00edeab5e53ac"></a>
-boost::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::log_detail::trim_filename</b> (const char *file)</td></tr>
-<tr class="separator:a536e943ee4c12a36dcc00edeab5e53ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41304d6167d25a8107ff92a7beed2174" id="r_a41304d6167d25a8107ff92a7beed2174"><td class="memItemLeft" align="right" valign="top"><a id="a41304d6167d25a8107ff92a7beed2174" name="a41304d6167d25a8107ff92a7beed2174"></a>
+std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::log_detail::trim_filename</b> (const char *file)</td></tr>
+<tr class="separator:a41304d6167d25a8107ff92a7beed2174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a227c3ee1550a7ee7cee2291cea72cc93" id="r_a227c3ee1550a7ee7cee2291cea72cc93"><td class="memItemLeft" align="right" valign="top"><a id="a227c3ee1550a7ee7cee2291cea72cc93" name="a227c3ee1550a7ee7cee2291cea72cc93"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE</b> (attr_channel, &quot;Channel&quot;, std::string)</td></tr>
 <tr class="separator:a227c3ee1550a7ee7cee2291cea72cc93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a512e8b193b95150a800c4a454bd96795" id="r_a512e8b193b95150a800c4a454bd96795"><td class="memItemLeft" align="right" valign="top"><a id="a512e8b193b95150a800c4a454bd96795" name="a512e8b193b95150a800c4a454bd96795"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE</b> (attr_sev, &quot;Severity&quot;, <a class="el" href="group__Log.html#ga2e95fe370303fb61a95fee5f99288ca7">viam::sdk::log_level</a>)</td></tr>
 <tr class="separator:a512e8b193b95150a800c4a454bd96795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bf718d2b1da18aa054c07fdade63146" id="r_a2bf718d2b1da18aa054c07fdade63146"><td class="memItemLeft" align="right" valign="top"><a id="a2bf718d2b1da18aa054c07fdade63146" name="a2bf718d2b1da18aa054c07fdade63146"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE</b> (attr_file, &quot;file&quot;, boost::string_view)</td></tr>
-<tr class="separator:a2bf718d2b1da18aa054c07fdade63146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa868a92bc76dc295e24859808c7c14df" id="r_aa868a92bc76dc295e24859808c7c14df"><td class="memItemLeft" align="right" valign="top"><a id="aa868a92bc76dc295e24859808c7c14df" name="aa868a92bc76dc295e24859808c7c14df"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE</b> (attr_file, &quot;file&quot;, std::string_view)</td></tr>
+<tr class="separator:aa868a92bc76dc295e24859808c7c14df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d02aefd4c478df598f8fe812d9c5d4b" id="r_a1d02aefd4c478df598f8fe812d9c5d4b"><td class="memItemLeft" align="right" valign="top"><a id="a1d02aefd4c478df598f8fe812d9c5d4b" name="a1d02aefd4c478df598f8fe812d9c5d4b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE</b> (attr_line, &quot;line&quot;, unsigned int)</td></tr>
 <tr class="separator:a1d02aefd4c478df598f8fe812d9c5d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
