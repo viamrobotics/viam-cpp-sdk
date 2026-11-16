@@ -719,6 +719,7 @@ PROTOBUF_CONSTEXPR GetMachineStatusResponse::GetMachineStatusResponse(
   , modules_()
   , packages_()
   , config_(nullptr)
+  , maintenance_status_(nullptr)
   , state_(0)
 {}
 struct GetMachineStatusResponseDefaultTypeInternal {
@@ -730,6 +731,19 @@ struct GetMachineStatusResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetMachineStatusResponseDefaultTypeInternal _GetMachineStatusResponse_default_instance_;
+PROTOBUF_CONSTEXPR MaintenanceStatus::MaintenanceStatus(
+    ::_pbi::ConstantInitialized)
+  : reason_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , allowed_(false){}
+struct MaintenanceStatusDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MaintenanceStatusDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MaintenanceStatusDefaultTypeInternal() {}
+  union {
+    MaintenanceStatus _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MaintenanceStatusDefaultTypeInternal _MaintenanceStatus_default_instance_;
 PROTOBUF_CONSTEXPR JobStatus::JobStatus(
     ::_pbi::ConstantInitialized)
   : recent_successful_runs_()
@@ -871,7 +885,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace robot
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_robot_2fv1_2frobot_2eproto[66];
+static ::_pb::Metadata file_level_metadata_robot_2fv1_2frobot_2eproto[67];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_robot_2fv1_2frobot_2eproto[6];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_robot_2fv1_2frobot_2eproto = nullptr;
 
@@ -1311,6 +1325,15 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, job_statuses_),
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, modules_),
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, packages_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, maintenance_status_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::MaintenanceStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::MaintenanceStatus, allowed_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::MaintenanceStatus, reason_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::JobStatus, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1466,15 +1489,16 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 411, -1, -1, sizeof(::viam::robot::v1::ShutdownResponse)},
   { 417, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusRequest)},
   { 423, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusResponse)},
-  { 435, -1, -1, sizeof(::viam::robot::v1::JobStatus)},
-  { 444, 458, -1, sizeof(::viam::robot::v1::ResourceStatus)},
-  { 466, -1, -1, sizeof(::viam::robot::v1::ModuleStatus)},
-  { 477, -1, -1, sizeof(::viam::robot::v1::PackageStatus)},
-  { 491, -1, -1, sizeof(::viam::robot::v1::ConfigStatus)},
-  { 499, -1, -1, sizeof(::viam::robot::v1::GetVersionRequest)},
-  { 505, -1, -1, sizeof(::viam::robot::v1::GetVersionResponse)},
-  { 514, -1, -1, sizeof(::viam::robot::v1::GetPoseRequest)},
-  { 524, -1, -1, sizeof(::viam::robot::v1::GetPoseResponse)},
+  { 436, -1, -1, sizeof(::viam::robot::v1::MaintenanceStatus)},
+  { 444, -1, -1, sizeof(::viam::robot::v1::JobStatus)},
+  { 453, 467, -1, sizeof(::viam::robot::v1::ResourceStatus)},
+  { 475, -1, -1, sizeof(::viam::robot::v1::ModuleStatus)},
+  { 486, -1, -1, sizeof(::viam::robot::v1::PackageStatus)},
+  { 500, -1, -1, sizeof(::viam::robot::v1::ConfigStatus)},
+  { 508, -1, -1, sizeof(::viam::robot::v1::GetVersionRequest)},
+  { 514, -1, -1, sizeof(::viam::robot::v1::GetVersionResponse)},
+  { 523, -1, -1, sizeof(::viam::robot::v1::GetPoseRequest)},
+  { 533, -1, -1, sizeof(::viam::robot::v1::GetPoseResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1535,6 +1559,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::robot::v1::_ShutdownResponse_default_instance_._instance,
   &::viam::robot::v1::_GetMachineStatusRequest_default_instance_._instance,
   &::viam::robot::v1::_GetMachineStatusResponse_default_instance_._instance,
+  &::viam::robot::v1::_MaintenanceStatus_default_instance_._instance,
   &::viam::robot::v1::_JobStatus_default_instance_._instance,
   &::viam::robot::v1::_ResourceStatus_default_instance_._instance,
   &::viam::robot::v1::_ModuleStatus_default_instance_._instance,
@@ -1672,7 +1697,7 @@ const char descriptor_table_protodef_robot_2fv1_2frobot_2eproto[] PROTOBUF_SECTI
   "\013module_name\030\002 \001(\tH\000R\nmoduleNameB\014\n\nid_o"
   "r_name\"\027\n\025RestartModuleResponse\"\021\n\017Shutd"
   "ownRequest\"\022\n\020ShutdownResponse\"\031\n\027GetMac"
-  "hineStatusRequest\"\312\003\n\030GetMachineStatusRe"
+  "hineStatusRequest\"\233\004\n\030GetMachineStatusRe"
   "sponse\022;\n\tresources\030\001 \003(\0132\035.viam.robot.v"
   "1.ResourceStatusR\tresources\0223\n\006config\030\002 "
   "\001(\0132\033.viam.robot.v1.ConfigStatusR\006config"
@@ -1682,155 +1707,159 @@ const char descriptor_table_protodef_robot_2fv1_2frobot_2eproto[] PROTOBUF_SECTI
   "obStatuses\0225\n\007modules\030\005 \003(\0132\033.viam.robot"
   ".v1.ModuleStatusR\007modules\0228\n\010packages\030\006 "
   "\003(\0132\034.viam.robot.v1.PackageStatusR\010packa"
-  "ges\"I\n\005State\022\025\n\021STATE_UNSPECIFIED\020\000\022\026\n\022S"
-  "TATE_INITIALIZING\020\001\022\021\n\rSTATE_RUNNING\020\002\"\302"
-  "\001\n\tJobStatus\022\031\n\010job_name\030\001 \001(\tR\007jobName\022"
-  "P\n\026recent_successful_runs\030\002 \003(\0132\032.google"
-  ".protobuf.TimestampR\024recentSuccessfulRun"
-  "s\022H\n\022recent_failed_runs\030\003 \003(\0132\032.google.p"
-  "rotobuf.TimestampR\020recentFailedRuns\"\220\006\n\016"
-  "ResourceStatus\0220\n\004name\030\001 \001(\0132\034.viam.comm"
-  "on.v1.ResourceNameR\004name\0229\n\005state\030\002 \001(\0162"
-  "#.viam.robot.v1.ResourceStatus.StateR\005st"
-  "ate\022=\n\014last_updated\030\003 \001(\0132\032.google.proto"
-  "buf.TimestampR\013lastUpdated\022\032\n\010revision\030\004"
-  " \001(\tR\010revision\022\024\n\005error\030\005 \001(\tR\005error\022S\n\016"
-  "cloud_metadata\030\006 \001(\0132\'.viam.robot.v1.Get"
-  "CloudMetadataResponseH\000R\rcloudMetadata\210\001"
-  "\001\022N\n\014reachability\030\007 \001(\0162*.viam.robot.v1."
-  "ResourceStatus.ReachabilityR\014reachabilit"
-  "y\022\033\n\006remote\030\010 \001(\tH\001R\006remote\210\001\001\"\207\001\n\005State"
-  "\022\025\n\021STATE_UNSPECIFIED\020\000\022\026\n\022STATE_UNCONFI"
-  "GURED\020\001\022\025\n\021STATE_CONFIGURING\020\002\022\017\n\013STATE_"
-  "READY\020\003\022\022\n\016STATE_REMOVING\020\004\022\023\n\017STATE_UNH"
-  "EALTHY\020\005\"\265\001\n\014Reachability\022\034\n\030REACHABILIT"
-  "Y_UNSPECIFIED\020\000\022\032\n\026REACHABILITY_REACHABL"
-  "E\020\001\022$\n REACHABILITY_REMOTE_DISCONNECTED\020"
-  "\002\022\"\n\036REACHABILITY_SHADOWED_BY_LOCAL\020\003\022!\n"
-  "\035REACHABILITY_AMBIGUOUS_REMOTE\020\004B\021\n\017_clo"
-  "ud_metadataB\t\n\007_remote\"\360\002\n\014ModuleStatus\022"
-  "\037\n\013module_name\030\001 \001(\tR\nmoduleName\0227\n\005stat"
-  "e\030\002 \001(\0162!.viam.robot.v1.ModuleStatus.Sta"
-  "teR\005state\022=\n\014last_updated\030\003 \001(\0132\032.google"
-  ".protobuf.TimestampR\013lastUpdated\022\024\n\005erro"
-  "r\030\004 \001(\tR\005error\0221\n\024consecutive_failures\030\005"
-  " \001(\rR\023consecutiveFailures\"~\n\005State\022\025\n\021ST"
-  "ATE_UNSPECIFIED\020\000\022\021\n\rSTATE_PENDING\020\001\022\022\n\016"
-  "STATE_STARTING\020\002\022\017\n\013STATE_READY\020\003\022\023\n\017STA"
-  "TE_UNHEALTHY\020\004\022\021\n\rSTATE_CLOSING\020\005\"\322\003\n\rPa"
-  "ckageStatus\022\022\n\004name\030\001 \001(\tR\004name\0225\n\004type\030"
-  "\002 \001(\0162!.viam.app.packages.v1.PackageType"
-  "R\004type\0228\n\005state\030\003 \001(\0162\".viam.robot.v1.Pa"
-  "ckageStatus.StateR\005state\022\024\n\005error\030\004 \001(\tR"
-  "\005error\022=\n\014last_updated\030\005 \001(\0132\032.google.pr"
-  "otobuf.TimestampR\013lastUpdated\022\030\n\007version"
-  "\030\006 \001(\tR\007version\022)\n\020bytes_downloaded\030\007 \001("
-  "\004R\017bytesDownloaded\022\037\n\013total_bytes\030\010 \001(\004R"
-  "\ntotalBytes\"\200\001\n\005State\022\025\n\021STATE_UNSPECIFI"
-  "ED\020\000\022\025\n\021STATE_DOWNLOADING\020\001\022\021\n\rSTATE_LOA"
-  "DING\020\002\022\023\n\017STATE_FIRST_RUN\020\003\022\017\n\013STATE_REA"
-  "DY\020\004\022\020\n\014STATE_FAILED\020\005\"i\n\014ConfigStatus\022\032"
-  "\n\010revision\030\001 \001(\tR\010revision\022=\n\014last_updat"
-  "ed\030\002 \001(\0132\032.google.protobuf.TimestampR\013la"
-  "stUpdated\"\023\n\021GetVersionRequest\"k\n\022GetVer"
-  "sionResponse\022\032\n\010platform\030\001 \001(\tR\010platform"
-  "\022\030\n\007version\030\002 \001(\tR\007version\022\037\n\013api_versio"
-  "n\030\003 \001(\tR\napiVersion\"\347\001\n\016GetPoseRequest\022%"
-  "\n\016component_name\030\001 \001(\tR\rcomponentName\022+\n"
-  "\021destination_frame\030\002 \001(\tR\020destinationFra"
-  "me\022R\n\027supplemental_transforms\030\003 \003(\0132\031.vi"
-  "am.common.v1.TransformR\026supplementalTran"
-  "sforms\022-\n\005extra\030c \001(\0132\027.google.protobuf."
-  "StructR\005extra\"B\n\017GetPoseResponse\022/\n\004pose"
-  "\030\001 \001(\0132\033.viam.common.v1.PoseInFrameR\004pos"
-  "e*z\n\022PeerConnectionType\022$\n PEER_CONNECTI"
-  "ON_TYPE_UNSPECIFIED\020\000\022\035\n\031PEER_CONNECTION"
-  "_TYPE_GRPC\020\001\022\037\n\033PEER_CONNECTION_TYPE_WEB"
-  "RTC\020\0022\210\032\n\014RobotService\022\200\001\n\rGetOperations"
-  "\022#.viam.robot.v1.GetOperationsRequest\032$."
-  "viam.robot.v1.GetOperationsResponse\"$\202\323\344"
-  "\223\002\036\022\034/viam/api/v1/operations/list\022x\n\013Get"
-  "Sessions\022!.viam.robot.v1.GetSessionsRequ"
-  "est\032\".viam.robot.v1.GetSessionsResponse\""
-  "\"\202\323\344\223\002\034\022\032/viam/api/v1/sessions/list\022\177\n\rR"
-  "esourceNames\022#.viam.robot.v1.ResourceNam"
-  "esRequest\032$.viam.robot.v1.ResourceNamesR"
-  "esponse\"#\202\323\344\223\002\035\022\033/viam/api/v1/resources/"
-  "list\022\235\001\n\023ResourceRPCSubtypes\022).viam.robo"
-  "t.v1.ResourceRPCSubtypesRequest\032*.viam.r"
-  "obot.v1.ResourceRPCSubtypesResponse\"/\202\323\344"
-  "\223\002)\022\'/viam/api/v1/resource_rpc_subtypes/"
-  "list\022\210\001\n\017CancelOperation\022%.viam.robot.v1"
-  ".CancelOperationRequest\032&.viam.robot.v1."
-  "CancelOperationResponse\"&\202\323\344\223\002 \"\036/viam/a"
-  "pi/v1/operations/cancel\022\215\001\n\021BlockForOper"
-  "ation\022\'.viam.robot.v1.BlockForOperationR"
-  "equest\032(.viam.robot.v1.BlockForOperation"
-  "Response\"%\202\323\344\223\002\037\"\035/viam/api/v1/operation"
-  "s/block\022\223\001\n\024GetModelsFromModules\022*.viam."
-  "robot.v1.GetModelsFromModulesRequest\032+.v"
-  "iam.robot.v1.GetModelsFromModulesRespons"
-  "e\"\"\202\323\344\223\002\034\022\032/viam/api/v1/module_models\022n\n"
-  "\tGetStatus\022\037.viam.robot.v1.GetStatusRequ"
-  "est\032 .viam.robot.v1.GetStatusResponse\"\036\210"
-  "\002\001\202\323\344\223\002\025\022\023/viam/api/v1/status\022\200\001\n\014Stream"
-  "Status\022\".viam.robot.v1.StreamStatusReque"
-  "st\032#.viam.robot.v1.StreamStatusResponse\""
-  "%\210\002\001\202\323\344\223\002\034\022\032/viam/api/v1/status/stream0\001"
-  "\022g\n\007StopAll\022\035.viam.robot.v1.StopAllReque"
-  "st\032\036.viam.robot.v1.StopAllResponse\"\035\202\323\344\223"
-  "\002\027\022\025/viam/api/v1/stop_all\022v\n\014StartSessio"
-  "n\022\".viam.robot.v1.StartSessionRequest\032#."
-  "viam.robot.v1.StartSessionResponse\"\035\202\323\344\223"
-  "\002\027\"\025/viam/api/v1/sessions\022\235\001\n\024SendSessio"
-  "nHeartbeat\022*.viam.robot.v1.SendSessionHe"
-  "artbeatRequest\032+.viam.robot.v1.SendSessi"
-  "onHeartbeatResponse\",\202\323\344\223\002&\"$/viam/api/v"
-  "1/sessions/{id}/heartbeat\022V\n\003Log\022\031.viam."
-  "robot.v1.LogRequest\032\032.viam.robot.v1.LogR"
-  "esponse\"\030\202\323\344\223\002\022\"\020/viam/api/v1/log\022\210\001\n\020Ge"
-  "tCloudMetadata\022&.viam.robot.v1.GetCloudM"
-  "etadataRequest\032\'.viam.robot.v1.GetCloudM"
-  "etadataResponse\"#\202\323\344\223\002\035\022\033/viam/api/v1/cl"
-  "oud_metadata\022\177\n\rRestartModule\022#.viam.rob"
-  "ot.v1.RestartModuleRequest\032$.viam.robot."
-  "v1.RestartModuleResponse\"#\202\323\344\223\002\035\"\033/viam/"
-  "api/v1/restart_module\022j\n\010Shutdown\022\036.viam"
-  ".robot.v1.ShutdownRequest\032\037.viam.robot.v"
-  "1.ShutdownResponse\"\035\202\323\344\223\002\027\"\025/viam/api/v1"
-  "/shutdown\022\210\001\n\020GetMachineStatus\022&.viam.ro"
-  "bot.v1.GetMachineStatusRequest\032\'.viam.ro"
-  "bot.v1.GetMachineStatusResponse\"#\202\323\344\223\002\035\022"
-  "\033/viam/api/v1/machine_status\022o\n\nGetVersi"
-  "on\022 .viam.robot.v1.GetVersionRequest\032!.v"
-  "iam.robot.v1.GetVersionResponse\"\034\202\323\344\223\002\026\022"
-  "\024/viam/api/v1/version\022I\n\006Tunnel\022\034.viam.r"
-  "obot.v1.TunnelRequest\032\035.viam.robot.v1.Tu"
-  "nnelResponse(\0010\001\022w\n\013ListTunnels\022!.viam.r"
-  "obot.v1.ListTunnelsRequest\032\".viam.robot."
-  "v1.ListTunnelsResponse\"!\202\323\344\223\002\033\022\031/viam/ap"
-  "i/v1/list_tunnels\022\220\001\n\021FrameSystemConfig\022"
-  "\'.viam.robot.v1.FrameSystemConfigRequest"
-  "\032(.viam.robot.v1.FrameSystemConfigRespon"
-  "se\"(\202\323\344\223\002\"\022 /viam/api/v1/frame_system/co"
-  "nfig\022p\n\007GetPose\022\035.viam.robot.v1.GetPoseR"
-  "equest\032\036.viam.robot.v1.GetPoseResponse\"&"
-  "\202\323\344\223\002 \022\036/viam/api/v1/frame_system/pose\022\214"
-  "\001\n\rTransformPose\022#.viam.robot.v1.Transfo"
-  "rmPoseRequest\032$.viam.robot.v1.TransformP"
-  "oseResponse\"0\202\323\344\223\002*\022(/viam/api/v1/frame_"
-  "system/transform_pose\022\210\001\n\014TransformPCD\022\""
-  ".viam.robot.v1.TransformPCDRequest\032#.via"
-  "m.robot.v1.TransformPCDResponse\"/\202\323\344\223\002)\022"
-  "\'/viam/api/v1/frame_system/transform_pcd"
-  "\022n\n\nSendTraces\022 .viam.robot.v1.SendTrace"
-  "sRequest\032!.viam.robot.v1.SendTracesRespo"
-  "nse\"\033\202\323\344\223\002\025\"\023/viam/api/v1/traces\022\225\001\n\022Upl"
-  "oadDataFromPath\022(.viam.robot.v1.UploadDa"
-  "taFromPathRequest\032).viam.robot.v1.Upload"
-  "DataFromPathResponse\"*\202\323\344\223\002$\"\"/viam/api/"
-  "v1/upload_data_from_pathB-\n\021com.viam.rob"
-  "ot.v1Z\030go.viam.com/api/robot/v1b\006proto3"
+  "ges\022O\n\022maintenance_status\030\007 \001(\0132 .viam.r"
+  "obot.v1.MaintenanceStatusR\021maintenanceSt"
+  "atus\"I\n\005State\022\025\n\021STATE_UNSPECIFIED\020\000\022\026\n\022"
+  "STATE_INITIALIZING\020\001\022\021\n\rSTATE_RUNNING\020\002\""
+  "E\n\021MaintenanceStatus\022\030\n\007allowed\030\001 \001(\010R\007a"
+  "llowed\022\026\n\006reason\030\002 \001(\tR\006reason\"\302\001\n\tJobSt"
+  "atus\022\031\n\010job_name\030\001 \001(\tR\007jobName\022P\n\026recen"
+  "t_successful_runs\030\002 \003(\0132\032.google.protobu"
+  "f.TimestampR\024recentSuccessfulRuns\022H\n\022rec"
+  "ent_failed_runs\030\003 \003(\0132\032.google.protobuf."
+  "TimestampR\020recentFailedRuns\"\220\006\n\016Resource"
+  "Status\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.Re"
+  "sourceNameR\004name\0229\n\005state\030\002 \001(\0162#.viam.r"
+  "obot.v1.ResourceStatus.StateR\005state\022=\n\014l"
+  "ast_updated\030\003 \001(\0132\032.google.protobuf.Time"
+  "stampR\013lastUpdated\022\032\n\010revision\030\004 \001(\tR\010re"
+  "vision\022\024\n\005error\030\005 \001(\tR\005error\022S\n\016cloud_me"
+  "tadata\030\006 \001(\0132\'.viam.robot.v1.GetCloudMet"
+  "adataResponseH\000R\rcloudMetadata\210\001\001\022N\n\014rea"
+  "chability\030\007 \001(\0162*.viam.robot.v1.Resource"
+  "Status.ReachabilityR\014reachability\022\033\n\006rem"
+  "ote\030\010 \001(\tH\001R\006remote\210\001\001\"\207\001\n\005State\022\025\n\021STAT"
+  "E_UNSPECIFIED\020\000\022\026\n\022STATE_UNCONFIGURED\020\001\022"
+  "\025\n\021STATE_CONFIGURING\020\002\022\017\n\013STATE_READY\020\003\022"
+  "\022\n\016STATE_REMOVING\020\004\022\023\n\017STATE_UNHEALTHY\020\005"
+  "\"\265\001\n\014Reachability\022\034\n\030REACHABILITY_UNSPEC"
+  "IFIED\020\000\022\032\n\026REACHABILITY_REACHABLE\020\001\022$\n R"
+  "EACHABILITY_REMOTE_DISCONNECTED\020\002\022\"\n\036REA"
+  "CHABILITY_SHADOWED_BY_LOCAL\020\003\022!\n\035REACHAB"
+  "ILITY_AMBIGUOUS_REMOTE\020\004B\021\n\017_cloud_metad"
+  "ataB\t\n\007_remote\"\360\002\n\014ModuleStatus\022\037\n\013modul"
+  "e_name\030\001 \001(\tR\nmoduleName\0227\n\005state\030\002 \001(\0162"
+  "!.viam.robot.v1.ModuleStatus.StateR\005stat"
+  "e\022=\n\014last_updated\030\003 \001(\0132\032.google.protobu"
+  "f.TimestampR\013lastUpdated\022\024\n\005error\030\004 \001(\tR"
+  "\005error\0221\n\024consecutive_failures\030\005 \001(\rR\023co"
+  "nsecutiveFailures\"~\n\005State\022\025\n\021STATE_UNSP"
+  "ECIFIED\020\000\022\021\n\rSTATE_PENDING\020\001\022\022\n\016STATE_ST"
+  "ARTING\020\002\022\017\n\013STATE_READY\020\003\022\023\n\017STATE_UNHEA"
+  "LTHY\020\004\022\021\n\rSTATE_CLOSING\020\005\"\322\003\n\rPackageSta"
+  "tus\022\022\n\004name\030\001 \001(\tR\004name\0225\n\004type\030\002 \001(\0162!."
+  "viam.app.packages.v1.PackageTypeR\004type\0228"
+  "\n\005state\030\003 \001(\0162\".viam.robot.v1.PackageSta"
+  "tus.StateR\005state\022\024\n\005error\030\004 \001(\tR\005error\022="
+  "\n\014last_updated\030\005 \001(\0132\032.google.protobuf.T"
+  "imestampR\013lastUpdated\022\030\n\007version\030\006 \001(\tR\007"
+  "version\022)\n\020bytes_downloaded\030\007 \001(\004R\017bytes"
+  "Downloaded\022\037\n\013total_bytes\030\010 \001(\004R\ntotalBy"
+  "tes\"\200\001\n\005State\022\025\n\021STATE_UNSPECIFIED\020\000\022\025\n\021"
+  "STATE_DOWNLOADING\020\001\022\021\n\rSTATE_LOADING\020\002\022\023"
+  "\n\017STATE_FIRST_RUN\020\003\022\017\n\013STATE_READY\020\004\022\020\n\014"
+  "STATE_FAILED\020\005\"i\n\014ConfigStatus\022\032\n\010revisi"
+  "on\030\001 \001(\tR\010revision\022=\n\014last_updated\030\002 \001(\013"
+  "2\032.google.protobuf.TimestampR\013lastUpdate"
+  "d\"\023\n\021GetVersionRequest\"k\n\022GetVersionResp"
+  "onse\022\032\n\010platform\030\001 \001(\tR\010platform\022\030\n\007vers"
+  "ion\030\002 \001(\tR\007version\022\037\n\013api_version\030\003 \001(\tR"
+  "\napiVersion\"\347\001\n\016GetPoseRequest\022%\n\016compon"
+  "ent_name\030\001 \001(\tR\rcomponentName\022+\n\021destina"
+  "tion_frame\030\002 \001(\tR\020destinationFrame\022R\n\027su"
+  "pplemental_transforms\030\003 \003(\0132\031.viam.commo"
+  "n.v1.TransformR\026supplementalTransforms\022-"
+  "\n\005extra\030c \001(\0132\027.google.protobuf.StructR\005"
+  "extra\"B\n\017GetPoseResponse\022/\n\004pose\030\001 \001(\0132\033"
+  ".viam.common.v1.PoseInFrameR\004pose*z\n\022Pee"
+  "rConnectionType\022$\n PEER_CONNECTION_TYPE_"
+  "UNSPECIFIED\020\000\022\035\n\031PEER_CONNECTION_TYPE_GR"
+  "PC\020\001\022\037\n\033PEER_CONNECTION_TYPE_WEBRTC\020\0022\210\032"
+  "\n\014RobotService\022\200\001\n\rGetOperations\022#.viam."
+  "robot.v1.GetOperationsRequest\032$.viam.rob"
+  "ot.v1.GetOperationsResponse\"$\202\323\344\223\002\036\022\034/vi"
+  "am/api/v1/operations/list\022x\n\013GetSessions"
+  "\022!.viam.robot.v1.GetSessionsRequest\032\".vi"
+  "am.robot.v1.GetSessionsResponse\"\"\202\323\344\223\002\034\022"
+  "\032/viam/api/v1/sessions/list\022\177\n\rResourceN"
+  "ames\022#.viam.robot.v1.ResourceNamesReques"
+  "t\032$.viam.robot.v1.ResourceNamesResponse\""
+  "#\202\323\344\223\002\035\022\033/viam/api/v1/resources/list\022\235\001\n"
+  "\023ResourceRPCSubtypes\022).viam.robot.v1.Res"
+  "ourceRPCSubtypesRequest\032*.viam.robot.v1."
+  "ResourceRPCSubtypesResponse\"/\202\323\344\223\002)\022\'/vi"
+  "am/api/v1/resource_rpc_subtypes/list\022\210\001\n"
+  "\017CancelOperation\022%.viam.robot.v1.CancelO"
+  "perationRequest\032&.viam.robot.v1.CancelOp"
+  "erationResponse\"&\202\323\344\223\002 \"\036/viam/api/v1/op"
+  "erations/cancel\022\215\001\n\021BlockForOperation\022\'."
+  "viam.robot.v1.BlockForOperationRequest\032("
+  ".viam.robot.v1.BlockForOperationResponse"
+  "\"%\202\323\344\223\002\037\"\035/viam/api/v1/operations/block\022"
+  "\223\001\n\024GetModelsFromModules\022*.viam.robot.v1"
+  ".GetModelsFromModulesRequest\032+.viam.robo"
+  "t.v1.GetModelsFromModulesResponse\"\"\202\323\344\223\002"
+  "\034\022\032/viam/api/v1/module_models\022n\n\tGetStat"
+  "us\022\037.viam.robot.v1.GetStatusRequest\032 .vi"
+  "am.robot.v1.GetStatusResponse\"\036\210\002\001\202\323\344\223\002\025"
+  "\022\023/viam/api/v1/status\022\200\001\n\014StreamStatus\022\""
+  ".viam.robot.v1.StreamStatusRequest\032#.via"
+  "m.robot.v1.StreamStatusResponse\"%\210\002\001\202\323\344\223"
+  "\002\034\022\032/viam/api/v1/status/stream0\001\022g\n\007Stop"
+  "All\022\035.viam.robot.v1.StopAllRequest\032\036.via"
+  "m.robot.v1.StopAllResponse\"\035\202\323\344\223\002\027\022\025/via"
+  "m/api/v1/stop_all\022v\n\014StartSession\022\".viam"
+  ".robot.v1.StartSessionRequest\032#.viam.rob"
+  "ot.v1.StartSessionResponse\"\035\202\323\344\223\002\027\"\025/via"
+  "m/api/v1/sessions\022\235\001\n\024SendSessionHeartbe"
+  "at\022*.viam.robot.v1.SendSessionHeartbeatR"
+  "equest\032+.viam.robot.v1.SendSessionHeartb"
+  "eatResponse\",\202\323\344\223\002&\"$/viam/api/v1/sessio"
+  "ns/{id}/heartbeat\022V\n\003Log\022\031.viam.robot.v1"
+  ".LogRequest\032\032.viam.robot.v1.LogResponse\""
+  "\030\202\323\344\223\002\022\"\020/viam/api/v1/log\022\210\001\n\020GetCloudMe"
+  "tadata\022&.viam.robot.v1.GetCloudMetadataR"
+  "equest\032\'.viam.robot.v1.GetCloudMetadataR"
+  "esponse\"#\202\323\344\223\002\035\022\033/viam/api/v1/cloud_meta"
+  "data\022\177\n\rRestartModule\022#.viam.robot.v1.Re"
+  "startModuleRequest\032$.viam.robot.v1.Resta"
+  "rtModuleResponse\"#\202\323\344\223\002\035\"\033/viam/api/v1/r"
+  "estart_module\022j\n\010Shutdown\022\036.viam.robot.v"
+  "1.ShutdownRequest\032\037.viam.robot.v1.Shutdo"
+  "wnResponse\"\035\202\323\344\223\002\027\"\025/viam/api/v1/shutdow"
+  "n\022\210\001\n\020GetMachineStatus\022&.viam.robot.v1.G"
+  "etMachineStatusRequest\032\'.viam.robot.v1.G"
+  "etMachineStatusResponse\"#\202\323\344\223\002\035\022\033/viam/a"
+  "pi/v1/machine_status\022o\n\nGetVersion\022 .via"
+  "m.robot.v1.GetVersionRequest\032!.viam.robo"
+  "t.v1.GetVersionResponse\"\034\202\323\344\223\002\026\022\024/viam/a"
+  "pi/v1/version\022I\n\006Tunnel\022\034.viam.robot.v1."
+  "TunnelRequest\032\035.viam.robot.v1.TunnelResp"
+  "onse(\0010\001\022w\n\013ListTunnels\022!.viam.robot.v1."
+  "ListTunnelsRequest\032\".viam.robot.v1.ListT"
+  "unnelsResponse\"!\202\323\344\223\002\033\022\031/viam/api/v1/lis"
+  "t_tunnels\022\220\001\n\021FrameSystemConfig\022\'.viam.r"
+  "obot.v1.FrameSystemConfigRequest\032(.viam."
+  "robot.v1.FrameSystemConfigResponse\"(\202\323\344\223"
+  "\002\"\022 /viam/api/v1/frame_system/config\022p\n\007"
+  "GetPose\022\035.viam.robot.v1.GetPoseRequest\032\036"
+  ".viam.robot.v1.GetPoseResponse\"&\202\323\344\223\002 \022\036"
+  "/viam/api/v1/frame_system/pose\022\214\001\n\rTrans"
+  "formPose\022#.viam.robot.v1.TransformPoseRe"
+  "quest\032$.viam.robot.v1.TransformPoseRespo"
+  "nse\"0\202\323\344\223\002*\022(/viam/api/v1/frame_system/t"
+  "ransform_pose\022\210\001\n\014TransformPCD\022\".viam.ro"
+  "bot.v1.TransformPCDRequest\032#.viam.robot."
+  "v1.TransformPCDResponse\"/\202\323\344\223\002)\022\'/viam/a"
+  "pi/v1/frame_system/transform_pcd\022n\n\nSend"
+  "Traces\022 .viam.robot.v1.SendTracesRequest"
+  "\032!.viam.robot.v1.SendTracesResponse\"\033\202\323\344"
+  "\223\002\025\"\023/viam/api/v1/traces\022\225\001\n\022UploadDataF"
+  "romPath\022(.viam.robot.v1.UploadDataFromPa"
+  "thRequest\032).viam.robot.v1.UploadDataFrom"
+  "PathResponse\"*\202\323\344\223\002$\"\"/viam/api/v1/uploa"
+  "d_data_from_pathB-\n\021com.viam.robot.v1Z\030g"
+  "o.viam.com/api/robot/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_robot_2fv1_2frobot_2eproto_deps[8] = {
   &::descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto,
@@ -1844,9 +1873,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_robot_2fv1_2frobot_
 };
 static ::_pbi::once_flag descriptor_table_robot_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_robot_2fv1_2frobot_2eproto = {
-    false, false, 11359, descriptor_table_protodef_robot_2fv1_2frobot_2eproto,
+    false, false, 11511, descriptor_table_protodef_robot_2fv1_2frobot_2eproto,
     "robot/v1/robot.proto",
-    &descriptor_table_robot_2fv1_2frobot_2eproto_once, descriptor_table_robot_2fv1_2frobot_2eproto_deps, 8, 66,
+    &descriptor_table_robot_2fv1_2frobot_2eproto_once, descriptor_table_robot_2fv1_2frobot_2eproto_deps, 8, 67,
     schemas, file_default_instances, TableStruct_robot_2fv1_2frobot_2eproto::offsets,
     file_level_metadata_robot_2fv1_2frobot_2eproto, file_level_enum_descriptors_robot_2fv1_2frobot_2eproto,
     file_level_service_descriptors_robot_2fv1_2frobot_2eproto,
@@ -11552,11 +11581,16 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetMachineStatusRequest::GetCl
 class GetMachineStatusResponse::_Internal {
  public:
   static const ::viam::robot::v1::ConfigStatus& config(const GetMachineStatusResponse* msg);
+  static const ::viam::robot::v1::MaintenanceStatus& maintenance_status(const GetMachineStatusResponse* msg);
 };
 
 const ::viam::robot::v1::ConfigStatus&
 GetMachineStatusResponse::_Internal::config(const GetMachineStatusResponse* msg) {
   return *msg->config_;
+}
+const ::viam::robot::v1::MaintenanceStatus&
+GetMachineStatusResponse::_Internal::maintenance_status(const GetMachineStatusResponse* msg) {
+  return *msg->maintenance_status_;
 }
 GetMachineStatusResponse::GetMachineStatusResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -11579,6 +11613,11 @@ GetMachineStatusResponse::GetMachineStatusResponse(const GetMachineStatusRespons
     config_ = new ::viam::robot::v1::ConfigStatus(*from.config_);
   } else {
     config_ = nullptr;
+  }
+  if (from._internal_has_maintenance_status()) {
+    maintenance_status_ = new ::viam::robot::v1::MaintenanceStatus(*from.maintenance_status_);
+  } else {
+    maintenance_status_ = nullptr;
   }
   state_ = from.state_;
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetMachineStatusResponse)
@@ -11603,6 +11642,7 @@ GetMachineStatusResponse::~GetMachineStatusResponse() {
 inline void GetMachineStatusResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete config_;
+  if (this != internal_default_instance()) delete maintenance_status_;
 }
 
 void GetMachineStatusResponse::SetCachedSize(int size) const {
@@ -11623,6 +11663,10 @@ void GetMachineStatusResponse::Clear() {
     delete config_;
   }
   config_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && maintenance_status_ != nullptr) {
+    delete maintenance_status_;
+  }
+  maintenance_status_ = nullptr;
   state_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -11702,6 +11746,14 @@ const char* GetMachineStatusResponse::_InternalParse(const char* ptr, ::_pbi::Pa
         } else
           goto handle_unusual;
         continue;
+      // .viam.robot.v1.MaintenanceStatus maintenance_status = 7 [json_name = "maintenanceStatus"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_maintenance_status(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -11777,6 +11829,13 @@ uint8_t* GetMachineStatusResponse::_InternalSerialize(
         InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // .viam.robot.v1.MaintenanceStatus maintenance_status = 7 [json_name = "maintenanceStatus"];
+  if (this->_internal_has_maintenance_status()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::maintenance_status(this),
+        _Internal::maintenance_status(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -11828,6 +11887,13 @@ size_t GetMachineStatusResponse::ByteSizeLong() const {
         *config_);
   }
 
+  // .viam.robot.v1.MaintenanceStatus maintenance_status = 7 [json_name = "maintenanceStatus"];
+  if (this->_internal_has_maintenance_status()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *maintenance_status_);
+  }
+
   // .viam.robot.v1.GetMachineStatusResponse.State state = 3 [json_name = "state"];
   if (this->_internal_state() != 0) {
     total_size += 1 +
@@ -11862,6 +11928,9 @@ void GetMachineStatusResponse::MergeFrom(const GetMachineStatusResponse& from) {
   packages_.MergeFrom(from.packages_);
   if (from._internal_has_config()) {
     _internal_mutable_config()->::viam::robot::v1::ConfigStatus::MergeFrom(from._internal_config());
+  }
+  if (from._internal_has_maintenance_status()) {
+    _internal_mutable_maintenance_status()->::viam::robot::v1::MaintenanceStatus::MergeFrom(from._internal_maintenance_status());
   }
   if (from._internal_state() != 0) {
     _internal_set_state(from._internal_state());
@@ -11899,6 +11968,227 @@ void GetMachineStatusResponse::InternalSwap(GetMachineStatusResponse* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
       file_level_metadata_robot_2fv1_2frobot_2eproto[56]);
+}
+
+// ===================================================================
+
+class MaintenanceStatus::_Internal {
+ public:
+};
+
+MaintenanceStatus::MaintenanceStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.robot.v1.MaintenanceStatus)
+}
+MaintenanceStatus::MaintenanceStatus(const MaintenanceStatus& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    reason_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_reason().empty()) {
+    reason_.Set(from._internal_reason(), 
+      GetArenaForAllocation());
+  }
+  allowed_ = from.allowed_;
+  // @@protoc_insertion_point(copy_constructor:viam.robot.v1.MaintenanceStatus)
+}
+
+inline void MaintenanceStatus::SharedCtor() {
+reason_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  reason_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+allowed_ = false;
+}
+
+MaintenanceStatus::~MaintenanceStatus() {
+  // @@protoc_insertion_point(destructor:viam.robot.v1.MaintenanceStatus)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MaintenanceStatus::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  reason_.Destroy();
+}
+
+void MaintenanceStatus::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MaintenanceStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.robot.v1.MaintenanceStatus)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  reason_.ClearToEmpty();
+  allowed_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MaintenanceStatus::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool allowed = 1 [json_name = "allowed"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          allowed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string reason = 2 [json_name = "reason"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_reason();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.robot.v1.MaintenanceStatus.reason"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MaintenanceStatus::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.robot.v1.MaintenanceStatus)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool allowed = 1 [json_name = "allowed"];
+  if (this->_internal_allowed() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_allowed(), target);
+  }
+
+  // string reason = 2 [json_name = "reason"];
+  if (!this->_internal_reason().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_reason().data(), static_cast<int>(this->_internal_reason().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.robot.v1.MaintenanceStatus.reason");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_reason(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.robot.v1.MaintenanceStatus)
+  return target;
+}
+
+size_t MaintenanceStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.robot.v1.MaintenanceStatus)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string reason = 2 [json_name = "reason"];
+  if (!this->_internal_reason().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_reason());
+  }
+
+  // bool allowed = 1 [json_name = "allowed"];
+  if (this->_internal_allowed() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MaintenanceStatus::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MaintenanceStatus::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MaintenanceStatus::GetClassData() const { return &_class_data_; }
+
+void MaintenanceStatus::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MaintenanceStatus *>(to)->MergeFrom(
+      static_cast<const MaintenanceStatus &>(from));
+}
+
+
+void MaintenanceStatus::MergeFrom(const MaintenanceStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.MaintenanceStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_reason().empty()) {
+    _internal_set_reason(from._internal_reason());
+  }
+  if (from._internal_allowed() != 0) {
+    _internal_set_allowed(from._internal_allowed());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MaintenanceStatus::CopyFrom(const MaintenanceStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.robot.v1.MaintenanceStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MaintenanceStatus::IsInitialized() const {
+  return true;
+}
+
+void MaintenanceStatus::InternalSwap(MaintenanceStatus* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &reason_, lhs_arena,
+      &other->reason_, rhs_arena
+  );
+  swap(allowed_, other->allowed_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MaintenanceStatus::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
+      file_level_metadata_robot_2fv1_2frobot_2eproto[57]);
 }
 
 // ===================================================================
@@ -12165,7 +12455,7 @@ void JobStatus::InternalSwap(JobStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JobStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[57]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[58]);
 }
 
 // ===================================================================
@@ -12670,7 +12960,7 @@ void ResourceStatus::InternalSwap(ResourceStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[58]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[59]);
 }
 
 // ===================================================================
@@ -13022,7 +13312,7 @@ void ModuleStatus::InternalSwap(ModuleStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ModuleStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[59]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[60]);
 }
 
 // ===================================================================
@@ -13469,7 +13759,7 @@ void PackageStatus::InternalSwap(PackageStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PackageStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[60]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[61]);
 }
 
 // ===================================================================
@@ -13712,7 +14002,7 @@ void ConfigStatus::InternalSwap(ConfigStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[61]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[62]);
 }
 
 // ===================================================================
@@ -13751,7 +14041,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetVersionRequest::GetClassDat
 ::PROTOBUF_NAMESPACE_ID::Metadata GetVersionRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[62]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[63]);
 }
 
 // ===================================================================
@@ -14042,7 +14332,7 @@ void GetVersionResponse::InternalSwap(GetVersionResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetVersionResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[63]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[64]);
 }
 
 // ===================================================================
@@ -14369,7 +14659,7 @@ void GetPoseRequest::InternalSwap(GetPoseRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPoseRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[64]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[65]);
 }
 
 // ===================================================================
@@ -14562,7 +14852,7 @@ void GetPoseResponse::InternalSwap(GetPoseResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPoseResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[65]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[66]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -14797,6 +15087,10 @@ Arena::CreateMaybeMessage< ::viam::robot::v1::GetMachineStatusRequest >(Arena* a
 template<> PROTOBUF_NOINLINE ::viam::robot::v1::GetMachineStatusResponse*
 Arena::CreateMaybeMessage< ::viam::robot::v1::GetMachineStatusResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::robot::v1::GetMachineStatusResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::robot::v1::MaintenanceStatus*
+Arena::CreateMaybeMessage< ::viam::robot::v1::MaintenanceStatus >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::robot::v1::MaintenanceStatus >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::robot::v1::JobStatus*
 Arena::CreateMaybeMessage< ::viam::robot::v1::JobStatus >(Arena* arena) {

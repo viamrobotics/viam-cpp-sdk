@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/gantry_server.hpp>
 
+#include <sstream>
+
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
@@ -28,14 +30,27 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::gantry::v1::MoveToPositionResponse*) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::MoveToPosition", this, context, request)([&](auto& helper, auto& gantry) {
+        // The RDK gantry client's GoToInputs (used by the motion service) sends no speeds at all,
+        // so an empty speed list is accepted and every speed passed as 0. Any other speed list must
+        // match the positions one-to-one, as the proto requires.
+        const bool has_speeds = request->speeds_mm_per_sec_size() != 0;
+        if (has_speeds && request->speeds_mm_per_sec_size() != request->positions_mm_size()) {
+            std::ostringstream message;
+            message << "Got " << request->speeds_mm_per_sec_size() << " speeds for "
+                    << request->positions_mm_size()
+                    << " positions; speeds must be omitted or match positions in length";
+            return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
+        }
+
         std::vector<Gantry::movement_coordinate> coords;
-        for (int i = 0;
-             i < std::min(request->positions_mm_size(), request->speeds_mm_per_sec_size());
-             ++i) {
-            coords.push_back({request->positions_mm(i), request->speeds_mm_per_sec(i)});
+        coords.reserve(request->positions_mm_size());
+        for (int i = 0; i < request->positions_mm_size(); ++i) {
+            coords.push_back(
+                {request->positions_mm(i), has_speeds ? request->speeds_mm_per_sec(i) : 0.0});
         }
 
         gantry->move_to_position(coords, helper.getExtra());
+        return ::grpc::Status();
     });
 }
 

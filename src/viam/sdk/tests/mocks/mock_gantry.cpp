@@ -66,8 +66,11 @@ std::vector<double> MockGantry::get_position(const sdk::ProtoStruct&) {
 void MockGantry::move_to_position(const std::vector<sdk::Gantry::movement_coordinate>& coordinates,
                                   const sdk::ProtoStruct&) {
     peek_positions = {};
-    for (const auto& coord : coordinates)
+    peek_speeds = {};
+    for (const auto& coord : coordinates) {
         peek_positions.push_back(coord.position_mm);
+        peek_speeds.push_back(coord.speed_mm_per_sec);
+    }
 }
 
 bool MockGantry::home(const sdk::ProtoStruct&) {

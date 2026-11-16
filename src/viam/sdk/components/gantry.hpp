@@ -114,6 +114,8 @@ class Gantry : public Component, public Stoppable {
         return get_kinematic_model(options, {});
     }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     /// @brief Get the kinematics data associated with the gantry as a raw file.
     /// @param extra Any additional arguments to the method.
     /// @return A variant of kinematics data; URDF variants may include meshes by filepath.
@@ -124,6 +126,7 @@ class Gantry : public Component, public Stoppable {
     /// @brief Get the kinematics data associated with the gantry as a raw file.
     /// @return A variant of kinematics data, with the type indicating the format of the data.
     [[deprecated("use get_kinematic_model")]] KinematicsData get_kinematics();
+#pragma GCC diagnostic pop
 
     API api() const override;
 
