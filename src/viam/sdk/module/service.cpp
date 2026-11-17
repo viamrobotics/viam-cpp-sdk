@@ -309,12 +309,18 @@ ModuleService::ModuleService(int argc,
                              char** argv,
                              const std::vector<std::shared_ptr<ModelRegistration>>& registrations)
     : ModuleService(
-          [argc, argv] {
+          [argc, argv]() -> std::string {
+              // viam-server passes the unprocessed socket path here; argv[1] holds a legacy
+              // form with the Windows drive letter stripped.
+              if (auto env_addr = get_env("VIAM_MODULE_ADDRESS"); env_addr && !env_addr->empty()) {
+                  return std::move(*env_addr);
+              }
               if (argc < 2) {
                   throw Exception(ErrorCondition::k_connection,
-                                  "Need socket path as command line argument");
+                                  "Need socket path as command line argument or in "
+                                  "VIAM_MODULE_ADDRESS");
               }
-              return (argv[1]);
+              return argv[1];
           }(),
           get_protocol(argc, argv)) {
     LogManager::get().set_global_log_level(argc, argv);

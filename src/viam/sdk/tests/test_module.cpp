@@ -291,6 +291,43 @@ BOOST_AUTO_TEST_CASE(test_resource_log_channel) {
         });
 }
 
+BOOST_AUTO_TEST_CASE(test_module_address_env_preferred_over_argv) {
+    char dir_template[] = "/tmp/viam_cpp_sdk_test_module_XXXXXX";
+    BOOST_REQUIRE(mkdtemp(dir_template));
+    const std::string dir(dir_template);
+    const std::string env_sock = dir + "/env.sock";
+    std::string arg_sock = dir + "/arg.sock";
+
+    // Ready would otherwise try to dial a parent that this test does not stand up.
+    BOOST_REQUIRE_EQUAL(setenv("VIAM_NO_MODULE_PARENT", "true", 1), 0);
+    BOOST_REQUIRE_EQUAL(setenv("VIAM_MODULE_ADDRESS", env_sock.c_str(), 1), 0);
+
+    {
+        char exe[] = "module";
+        char* argv[] = {exe, arg_sock.data()};
+        ModuleService module(2, argv, {});
+        ServeThread serving(module);
+
+        auto channel = grpc::CreateChannel("unix:" + env_sock, grpc::InsecureChannelCredentials());
+        auto stub = viam::module::v1::ModuleService::NewStub(channel);
+
+        grpc::ClientContext ctx;
+        ctx.set_wait_for_ready(true);
+        ctx.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(30));
+        viam::module::v1::ReadyRequest request;
+        viam::module::v1::ReadyResponse response;
+        const auto status = stub->Ready(&ctx, request, &response);
+        BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
+        BOOST_CHECK(response.ready());
+        BOOST_CHECK_NE(access(arg_sock.c_str(), F_OK), 0);
+    }
+
+    unsetenv("VIAM_MODULE_ADDRESS");
+    unsetenv("VIAM_NO_MODULE_PARENT");
+    unlink(env_sock.c_str());
+    rmdir(dir.c_str());
+}
+
 }  // namespace module
 }  // namespace sdktests
 }  // namespace viam
