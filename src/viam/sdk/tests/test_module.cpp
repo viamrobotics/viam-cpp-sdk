@@ -134,12 +134,17 @@ std::unique_ptr<viam::module::v1::ModuleService::Stub> connect_and_ready(
     grpc::ClientContext ctx;
     ctx.set_wait_for_ready(true);
     ctx.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(30));
+
     viam::module::v1::ReadyRequest request;
     request.set_raw_parent_address(parent_sock);
+
     viam::module::v1::ReadyResponse response;
+
     const auto status = stub->Ready(&ctx, request, &response);
+
     BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
     BOOST_CHECK(response.ready());
+
     return stub;
 }
 
