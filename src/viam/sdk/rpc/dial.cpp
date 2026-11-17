@@ -2,12 +2,9 @@
 
 #include <algorithm>
 #include <istream>
+#include <optional>
 #include <string>
 
-#include <boost/config.hpp>
-#include <boost/none.hpp>
-#include <boost/optional.hpp>
-#include <boost/utility/string_view.hpp>
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
@@ -51,7 +48,7 @@ struct ViamChannel::impl {
     std::unique_ptr<char, cstr_delete> path;
     std::unique_ptr<viam_dial_ffi, rust_rt_delete> rust_runtime;
 
-    boost::optional<std::string> auth_token_;
+    std::optional<std::string> auth_token_;
 };
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, char* path, void* runtime)
@@ -79,13 +76,13 @@ const std::string& Credentials::payload() const {
 
 ViamChannel::Options::Options() = default;
 
-ViamChannel::Options& ViamChannel::Options::set_credentials(boost::optional<Credentials> creds) {
+ViamChannel::Options& ViamChannel::Options::set_credentials(std::optional<Credentials> creds) {
     credentials_ = std::move(creds);
 
     return *this;
 }
 
-ViamChannel::Options& ViamChannel::Options::set_entity(boost::optional<std::string> entity) {
+ViamChannel::Options& ViamChannel::Options::set_entity(std::optional<std::string> entity) {
     auth_entity_ = std::move(entity);
 
     return *this;
@@ -110,11 +107,11 @@ ViamChannel::Options& ViamChannel::Options::set_initial_connection_attempt_timeo
     return *this;
 }
 
-const boost::optional<std::string>& ViamChannel::Options::entity() const {
+const std::optional<std::string>& ViamChannel::Options::entity() const {
     return auth_entity_;
 }
 
-const boost::optional<Credentials>& ViamChannel::Options::credentials() const {
+const std::optional<Credentials>& ViamChannel::Options::credentials() const {
     return credentials_;
 }
 
@@ -151,8 +148,8 @@ ViamChannel::Options& ViamChannel::Options::set_webrtc_disabled(bool disable_web
 }
 
 ViamChannel ViamChannel::dial_initial(const char* uri,
-                                      const boost::optional<ViamChannel::Options>& options) {
-    ViamChannel::Options opts = options.get_value_or(ViamChannel::Options());
+                                      const std::optional<ViamChannel::Options>& options) {
+    ViamChannel::Options opts = options.value_or(ViamChannel::Options());
     auto timeout = opts.timeout();
     auto attempts_remaining = opts.initial_connection_attempts();
     if (attempts_remaining == 0) {
@@ -172,14 +169,12 @@ ViamChannel ViamChannel::dial_initial(const char* uri,
             }
         }
     }
-    // the while loop will run until we either return or throw an error, so we can never reach this
-    // point
-    BOOST_UNREACHABLE_RETURN(ViamChannel(nullptr))
+    // The while loop above always returns or throws; this is unreachable.
+    return ViamChannel(nullptr);
 }
 
-ViamChannel ViamChannel::dial(const char* uri,
-                              const boost::optional<ViamChannel::Options>& options) {
-    const ViamChannel::Options opts = options.get_value_or(ViamChannel::Options());
+ViamChannel ViamChannel::dial(const char* uri, const std::optional<ViamChannel::Options>& options) {
+    const ViamChannel::Options opts = options.value_or(ViamChannel::Options());
 
     // If this flag is passed, try to dial directly through grpc if possible.
     // If grpc is too old to do a direct dial, we fall back to the rust version below even if
@@ -198,13 +193,13 @@ ViamChannel ViamChannel::dial(const char* uri,
     const char* entity = nullptr;
     const char* payload = nullptr;
 
-    if (opts.credentials()) {
-        type = opts.credentials()->type().c_str();
-        payload = opts.credentials()->payload().c_str();
+    if (const auto& creds = opts.credentials()) {
+        type = creds->type().c_str();
+        payload = creds->payload().c_str();
     }
 
-    if (opts.entity()) {
-        entity = opts.entity()->c_str();
+    if (const auto& opt_entity = opts.entity()) {
+        entity = opt_entity->c_str();
     }
     char* proxy_path = ::viam_dial(
         uri, entity, type, payload, opts.allows_insecure_downgrade(), timeout.count(), ptr);
@@ -245,9 +240,15 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const ViamChannel::Options
     ClientContext ctx;
     AuthenticateRequest req;
 
-    *req.mutable_entity() = opts.entity().get();
-    *req.mutable_credentials()->mutable_payload() = opts.credentials()->payload();
-    *req.mutable_credentials()->mutable_type() = opts.credentials()->type();
+    const auto& entity = opts.entity();
+    const auto& auth = opts.credentials();
+    if (!entity || !auth) {
+        throw Exception(ErrorCondition::k_connection,
+                        "Direct dial requires both an entity and credentials");
+    }
+    *req.mutable_entity() = *entity;
+    *req.mutable_credentials()->mutable_payload() = auth->payload();
+    *req.mutable_credentials()->mutable_type() = auth->type();
 
     AuthenticateResponse resp;
 
@@ -280,7 +281,7 @@ const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
     return pimpl_->channel_;
 }
 
-const boost::optional<std::string>& ViamChannel::auth_token() const {
+const std::optional<std::string>& ViamChannel::auth_token() const {
     return pimpl_->auth_token_;
 }
 
@@ -314,11 +315,11 @@ std::chrono::seconds Options::refresh_interval() const {
     return refresh_interval_;
 }
 
-const boost::optional<ViamChannel::Options>& Options::dial_options() const {
+const std::optional<ViamChannel::Options>& Options::dial_options() const {
     return channel_options_;
 }
 
-const boost::optional<ViamChannel::Options>& Options::channel_options() const {
+const std::optional<ViamChannel::Options>& Options::channel_options() const {
     return channel_options_;
 }
 

@@ -20,7 +20,6 @@
 #include <unordered_map>
 
 #include <boost/test/included/unit_test.hpp>
-#include <boost/variant/get.hpp>
 
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -237,10 +236,10 @@ BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
         auto input1_var = request.find("input1")->second;
         auto input2_var = request.find("input2")->second;
         const auto* const pinput1_view =
-            boost::get<MLModelService::tensor_view<float>>(&input1_var);
+            std::get_if<MLModelService::tensor_view<float>>(&input1_var);
         BOOST_REQUIRE(pinput1_view);
         const auto* const pinput2_view =
-            boost::get<MLModelService::tensor_view<std::int32_t>>(&input2_var);
+            std::get_if<MLModelService::tensor_view<std::int32_t>>(&input2_var);
         BOOST_REQUIRE(pinput2_view);
 
         const auto& input1_view = *pinput1_view;
@@ -299,10 +298,10 @@ BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
         auto output2_var = response->find("output2")->second;
 
         const auto* const poutput1_view =
-            boost::get<MLModelService::tensor_view<float>>(&output1_var);
+            std::get_if<MLModelService::tensor_view<float>>(&output1_var);
         BOOST_REQUIRE(poutput1_view);
         const auto* const poutput2_view =
-            boost::get<MLModelService::tensor_view<std::int32_t>>(&output2_var);
+            std::get_if<MLModelService::tensor_view<std::int32_t>>(&output2_var);
         BOOST_REQUIRE(poutput2_view);
 
         const auto& output1_view = *poutput1_view;
@@ -551,7 +550,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
         BOOST_REQUIRE(response->size() == 1);
         BOOST_REQUIRE(response->count("x") == 1);
         const auto& response_x = response->find("x")->second;
-        const auto* const response_x_t = boost::get<MLModelService::tensor_view<T>>(&response_x);
+        const auto* const response_x_t = std::get_if<MLModelService::tensor_view<T>>(&response_x);
         BOOST_REQUIRE(response_x_t);
         BOOST_TEST(scalar_tv == *response_x_t);
     });
@@ -611,7 +610,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
             BOOST_REQUIRE(response->count("x") == 1);
             const auto& response_x = response->find("x")->second;
             const auto* const response_x_t =
-                boost::get<MLModelService::tensor_view<T>>(&response_x);
+                std::get_if<MLModelService::tensor_view<T>>(&response_x);
             BOOST_REQUIRE(response_x_t);
             BOOST_TEST(array_tv == *response_x_t);
         });

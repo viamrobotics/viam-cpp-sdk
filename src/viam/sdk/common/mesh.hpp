@@ -2,10 +2,9 @@
 
 #include <viam/sdk/common/proto_convert.hpp>
 
+#include <optional>
 #include <string>
 #include <vector>
-
-#include <boost/optional/optional.hpp>
 
 namespace viam {
 namespace common {
@@ -28,10 +27,10 @@ struct mesh {
     std::vector<unsigned char> data;
 
     /// @brief Path the mesh was loaded from, relative to the kinematics file. Informational only.
-    boost::optional<std::string> original_file_source_path_diagnostic;
-};
+    std::optional<std::string> original_file_source_path_diagnostic;
 
-bool operator==(const mesh& lhs, const mesh& rhs);
+    friend bool operator==(const mesh&, const mesh&) = default;
+};
 
 namespace proto_convert_details {
 

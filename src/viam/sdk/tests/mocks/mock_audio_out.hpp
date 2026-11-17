@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <optional>
 #include <vector>
 
 #include <viam/sdk/common/audio.hpp>
@@ -18,10 +19,10 @@ using namespace viam::sdk;
 class MockAudioOut : public AudioOut {
    public:
     void play(std::vector<uint8_t> const& audio_data,
-              boost::optional<audio_info> info,
+              std::optional<audio_info> info,
               const sdk::ProtoStruct& extra) override;
     void play_stream(audio_info info,
-                     std::function<boost::optional<std::vector<uint8_t>>()> chunk_source,
+                     std::function<std::optional<std::vector<uint8_t>>()> chunk_source,
                      const sdk::ProtoStruct& extra) override;
     audio_properties get_properties(const sdk::ProtoStruct& extra) override;
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
@@ -41,7 +42,7 @@ class MockAudioOut : public AudioOut {
     viam::sdk::ProtoStruct map_;
     std::vector<GeometryConfig> geometries_;
     std::vector<uint8_t> last_played_audio_;
-    boost::optional<audio_info> last_played_audio_info_;
+    std::optional<audio_info> last_played_audio_info_;
     audio_info last_streamed_info_;
     std::vector<std::vector<uint8_t>> streamed_chunks_;
 };

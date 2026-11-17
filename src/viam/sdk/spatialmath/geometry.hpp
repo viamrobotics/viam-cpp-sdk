@@ -3,6 +3,7 @@
 #include <array>
 #include <string>
 #include <tuple>
+#include <variant>
 
 #include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/pose.hpp>
@@ -36,20 +37,20 @@ struct box {
     double x = 0.0;
     double y = 0.0;
     double z = 0.0;
-    friend bool operator==(const box& lhs, const box& rhs);
+    friend bool operator==(const box&, const box&) = default;
 };
 struct sphere {
     double radius = 0.0;
-    friend bool operator==(const sphere& lhs, const sphere& rhs);
+    friend bool operator==(const sphere&, const sphere&) = default;
 };
 struct capsule {
     double radius = 0.0;
     double length = 0.0;
-    friend bool operator==(const capsule& lhs, const capsule& rhs);
+    friend bool operator==(const capsule&, const capsule&) = default;
 };
 
 /// @brief The shape of a geometry: a primitive, or a `mesh` (stl/ply) for collision models.
-typedef boost::variant<struct box, struct sphere, struct capsule, mesh> geometry_specifics;
+using geometry_specifics = std::variant<struct box, struct sphere, struct capsule, mesh>;
 
 /// @brief The dimensions of a given geometry and the pose of its center.
 class GeometryConfig {
@@ -90,7 +91,7 @@ struct geo_point {
     // aggregate initializers
     double longitude = 0.0, latitude = 0.0;
 
-    friend bool operator==(const geo_point& lhs, const geo_point& rhs);
+    friend bool operator==(const geo_point&, const geo_point&) = default;
     friend std::ostream& operator<<(std::ostream& os, const geo_point& v);
 };
 
@@ -99,7 +100,7 @@ struct geo_geometry {
     geo_point location;
     std::vector<GeometryConfig> geometries;
 
-    friend bool operator==(const geo_geometry& lhs, const geo_geometry& rhs);
+    friend bool operator==(const geo_geometry&, const geo_geometry&) = default;
 };
 
 namespace proto_convert_details {

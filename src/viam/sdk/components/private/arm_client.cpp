@@ -4,8 +4,6 @@
 #include <thread>
 #include <utility>
 
-#include <boost/variant/apply_visitor.hpp>
-
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 
@@ -75,8 +73,7 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
                               }
                           }
                       };
-                      boost::apply_visitor(Visitor{request.mutable_options()},
-                                           *options.max_vel_degs_per_sec);
+                      std::visit(Visitor{request.mutable_options()}, *options.max_vel_degs_per_sec);
                   }
 
                   if (options.max_acc_degs_per_sec2) {
@@ -91,8 +88,8 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
                               }
                           }
                       };
-                      boost::apply_visitor(Visitor{request.mutable_options()},
-                                           *options.max_acc_degs_per_sec2);
+                      std::visit(Visitor{request.mutable_options()},
+                                 *options.max_acc_degs_per_sec2);
                   }
 
                   if (options.max_tcp_speed) {
@@ -109,7 +106,7 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
 }
 
 Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
-    const std::function<boost::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
+    const std::function<std::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
     const std::function<bool(Arm::trajectory_update)>& update_handler,
     const ProtoStruct& extra) {
     // TODO(RSDK-14164): this hand-rolls the BiDi stream because the SDK has no
@@ -183,7 +180,7 @@ Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
             while (auto batch = batch_source()) {
                 ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest msg;
                 auto* trajectory_batch = msg.mutable_batch();
-                for (const auto& point : *batch) {
+                for (const auto& point : *batch) {  // NOLINT(bugprone-unchecked-optional-access)
                     *trajectory_batch->add_points() = to_proto(point);
                 }
                 if (!stream->Write(msg)) {

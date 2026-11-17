@@ -15,8 +15,6 @@
 #include <sstream>
 #include <string>
 
-#include <boost/none.hpp>
-#include <boost/utility/string_ref.hpp>
 #include <google/protobuf/descriptor.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
@@ -236,7 +234,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             auto new_parent_addr = parent.grpc_conn_protocol_ + addr;
             if (parent.parent_addr_ != new_parent_addr) {
                 parent.parent_addr_ = std::move(new_parent_addr);
-                Options opts{0, boost::none};
+                Options opts{0, std::nullopt};
                 opts.set_check_every_interval(std::chrono::seconds{5})
                     .set_reconnect_every_interval(std::chrono::seconds{1});
                 parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
@@ -282,7 +280,7 @@ Dependencies ModuleService::get_dependencies_(
 std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
         // LS: I think maybe this is never hit
-        parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
+        parent_ = RobotClient::at_local_socket(parent_addr_, {0, std::nullopt});
         parent_->connect_logging();
     }
 

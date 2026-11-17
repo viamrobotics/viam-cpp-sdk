@@ -7,8 +7,8 @@ namespace viam {
 namespace sdk {
 
 ViamClient ViamClient::from_env(const char* uri) {
-    boost::optional<std::string> api_key = get_env("VIAM_API_KEY");
-    boost::optional<std::string> api_key_id = get_env("VIAM_API_KEY_ID");
+    std::optional<std::string> api_key = get_env("VIAM_API_KEY");
+    std::optional<std::string> api_key_id = get_env("VIAM_API_KEY_ID");
 
     if (!api_key) {
         throw Exception("VIAM_API_KEY must be set");

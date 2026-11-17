@@ -10,10 +10,10 @@ namespace viam {
 namespace sdk {
 
 namespace {
-thread_local boost::optional<const GrpcContextObserver> current_context{};
+thread_local std::optional<const GrpcContextObserver> current_context{};
 }  // namespace
 
-const boost::optional<const GrpcContextObserver>& GrpcContextObserver::current() noexcept {
+const std::optional<const GrpcContextObserver>& GrpcContextObserver::current() noexcept {
     return current_context;
 }
 

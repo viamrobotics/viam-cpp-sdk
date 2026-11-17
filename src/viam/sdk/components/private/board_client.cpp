@@ -187,13 +187,13 @@ void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt
 
 void BoardClient::set_power_mode(power_mode power_mode,
                                  const ProtoStruct& extra,
-                                 const boost::optional<std::chrono::microseconds>& duration) {
+                                 const std::optional<std::chrono::microseconds>& duration) {
     return make_client_helper(this, *stub_, &StubType::SetPowerMode)
         .with(extra,
               [&](auto& request) {
                   request.set_power_mode(to_proto(power_mode));
                   if (duration.has_value()) {
-                      *request.mutable_duration() = to_proto(duration.get());
+                      *request.mutable_duration() = to_proto(*duration);
                   }
               })
         .invoke();

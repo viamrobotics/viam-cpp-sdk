@@ -59,7 +59,7 @@ void {{ .ModelPascal }}::move_through_joint_positions(
 }
 
 viam::sdk::Arm::stream_outcome {{ .ModelPascal }}::move_through_joint_positions_streamed(
-        const std::function<boost::optional<std::vector<trajectory_point>> ()> & batch_source,
+        const std::function<std::optional<std::vector<trajectory_point>> ()> & batch_source,
         const std::function<bool (trajectory_update)> & update_handler,
         const viam::sdk::ProtoStruct & extra)
 {

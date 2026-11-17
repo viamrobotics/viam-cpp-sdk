@@ -33,7 +33,7 @@ class MockBoard : public viam::sdk::Board {
                       const sdk::ProtoStruct& extra) override;
     void set_power_mode(power_mode power_mode,
                         const sdk::ProtoStruct& extra,
-                        const boost::optional<std::chrono::microseconds>& duration) override;
+                        const std::optional<std::chrono::microseconds>& duration) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
     std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
@@ -48,7 +48,7 @@ class MockBoard : public viam::sdk::Board {
     Board::analog_response peek_read_analog_ret;
     Board::digital_value peek_read_digital_interrupt_ret;
     Board::power_mode peek_set_power_mode_power_mode;
-    boost::optional<std::chrono::microseconds> peek_set_power_mode_duration;
+    std::optional<std::chrono::microseconds> peek_set_power_mode_duration;
 };
 
 }  // namespace board

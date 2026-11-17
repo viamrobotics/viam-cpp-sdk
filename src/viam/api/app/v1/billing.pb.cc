@@ -888,7 +888,7 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "Id*}\n\021PaymentMethodType\022#\n\037PAYMENT_METHO"
   "D_TYPE_UNSPECIFIED\020\000\022\034\n\030PAYMENT_METHOD_T"
   "YPE_CARD\020\001\022%\n!PAYMENT_METHOD_TYPE_USBANK"
-  "ACCOUNT\020\002*\320\t\n\rUsageCostType\022\037\n\033USAGE_COS"
+  "ACCOUNT\020\002*\356\t\n\rUsageCostType\022\037\n\033USAGE_COS"
   "T_TYPE_UNSPECIFIED\020\000\022#\n\033USAGE_COST_TYPE_"
   "DATA_UPLOAD\020\001\032\002\010\001\022#\n\033USAGE_COST_TYPE_DAT"
   "A_EGRESS\020\002\032\002\010\001\022\"\n\036USAGE_COST_TYPE_REMOTE"
@@ -919,51 +919,51 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "AGE\020\031\022)\n%USAGE_COST_TYPE_PIPELINE_SINK_C"
   "OMPUTE\020\032\022\"\n\036USAGE_COST_TYPE_PREMIUM_MODU"
   "LE\020\033\022&\n\"USAGE_COST_TYPE_SIMULATION_COMPU"
-  "TE\020\034*X\n\nSourceType\022\033\n\027SOURCE_TYPE_UNSPEC"
-  "IFIED\020\000\022\023\n\017SOURCE_TYPE_ORG\020\001\022\030\n\024SOURCE_T"
-  "YPE_FRAGMENT\020\0022\317\n\n\016BillingService\022k\n\024Get"
-  "CurrentMonthUsage\022(.viam.app.v1.GetCurre"
-  "ntMonthUsageRequest\032).viam.app.v1.GetCur"
-  "rentMonthUsageResponse\022w\n\030GetOrgBillingI"
-  "nformation\022,.viam.app.v1.GetOrgBillingIn"
-  "formationRequest\032-.viam.app.v1.GetOrgBil"
-  "lingInformationResponse\022e\n\022GetInvoicesSu"
-  "mmary\022&.viam.app.v1.GetInvoicesSummaryRe"
-  "quest\032\'.viam.app.v1.GetInvoicesSummaryRe"
-  "sponse\022X\n\rGetInvoicePdf\022!.viam.app.v1.Ge"
-  "tInvoicePdfRequest\032\".viam.app.v1.GetInvo"
-  "icePdfResponse0\001\022w\n\030SendPaymentRequiredE"
-  "mail\022,.viam.app.v1.SendPaymentRequiredEm"
-  "ailRequest\032-.viam.app.v1.SendPaymentRequ"
-  "iredEmailResponse\022w\n\030GetAvailableBilling"
-  "Tiers\022,.viam.app.v1.GetAvailableBillingT"
-  "iersRequest\032-.viam.app.v1.GetAvailableBi"
-  "llingTiersResponse\022\206\001\n\035UpdateOrganizatio"
-  "nBillingTier\0221.viam.app.v1.UpdateOrganiz"
-  "ationBillingTierRequest\0322.viam.app.v1.Up"
-  "dateOrganizationBillingTierResponse\022\211\001\n\036"
-  "GetLocationBillingOrganization\0222.viam.ap"
-  "p.v1.GetLocationBillingOrganizationReque"
-  "st\0323.viam.app.v1.GetLocationBillingOrgan"
-  "izationResponse\022\222\001\n!UpdateLocationBillin"
-  "gOrganization\0225.viam.app.v1.UpdateLocati"
-  "onBillingOrganizationRequest\0326.viam.app."
-  "v1.UpdateLocationBillingOrganizationResp"
-  "onse\022e\n\022ChargeOrganization\022&.viam.app.v1"
-  ".ChargeOrganizationRequest\032\'.viam.app.v1"
-  ".ChargeOrganizationResponse\022\222\001\n!CreateIn"
-  "voiceAndChargeImmediately\0225.viam.app.v1."
-  "CreateInvoiceAndChargeImmediatelyRequest"
-  "\0326.viam.app.v1.CreateInvoiceAndChargeImm"
-  "ediatelyResponseB\030Z\026go.viam.com/api/app/"
-  "v1b\006proto3"
+  "TE\020\034\022\034\n\030USAGE_COST_TYPE_AI_USAGE\020\035*X\n\nSo"
+  "urceType\022\033\n\027SOURCE_TYPE_UNSPECIFIED\020\000\022\023\n"
+  "\017SOURCE_TYPE_ORG\020\001\022\030\n\024SOURCE_TYPE_FRAGME"
+  "NT\020\0022\317\n\n\016BillingService\022k\n\024GetCurrentMon"
+  "thUsage\022(.viam.app.v1.GetCurrentMonthUsa"
+  "geRequest\032).viam.app.v1.GetCurrentMonthU"
+  "sageResponse\022w\n\030GetOrgBillingInformation"
+  "\022,.viam.app.v1.GetOrgBillingInformationR"
+  "equest\032-.viam.app.v1.GetOrgBillingInform"
+  "ationResponse\022e\n\022GetInvoicesSummary\022&.vi"
+  "am.app.v1.GetInvoicesSummaryRequest\032\'.vi"
+  "am.app.v1.GetInvoicesSummaryResponse\022X\n\r"
+  "GetInvoicePdf\022!.viam.app.v1.GetInvoicePd"
+  "fRequest\032\".viam.app.v1.GetInvoicePdfResp"
+  "onse0\001\022w\n\030SendPaymentRequiredEmail\022,.via"
+  "m.app.v1.SendPaymentRequiredEmailRequest"
+  "\032-.viam.app.v1.SendPaymentRequiredEmailR"
+  "esponse\022w\n\030GetAvailableBillingTiers\022,.vi"
+  "am.app.v1.GetAvailableBillingTiersReques"
+  "t\032-.viam.app.v1.GetAvailableBillingTiers"
+  "Response\022\206\001\n\035UpdateOrganizationBillingTi"
+  "er\0221.viam.app.v1.UpdateOrganizationBilli"
+  "ngTierRequest\0322.viam.app.v1.UpdateOrgani"
+  "zationBillingTierResponse\022\211\001\n\036GetLocatio"
+  "nBillingOrganization\0222.viam.app.v1.GetLo"
+  "cationBillingOrganizationRequest\0323.viam."
+  "app.v1.GetLocationBillingOrganizationRes"
+  "ponse\022\222\001\n!UpdateLocationBillingOrganizat"
+  "ion\0225.viam.app.v1.UpdateLocationBillingO"
+  "rganizationRequest\0326.viam.app.v1.UpdateL"
+  "ocationBillingOrganizationResponse\022e\n\022Ch"
+  "argeOrganization\022&.viam.app.v1.ChargeOrg"
+  "anizationRequest\032\'.viam.app.v1.ChargeOrg"
+  "anizationResponse\022\222\001\n!CreateInvoiceAndCh"
+  "argeImmediately\0225.viam.app.v1.CreateInvo"
+  "iceAndChargeImmediatelyRequest\0326.viam.ap"
+  "p.v1.CreateInvoiceAndChargeImmediatelyRe"
+  "sponseB\030Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 7610, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 7640, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 29,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -1029,6 +1029,7 @@ bool UsageCostType_IsValid(int value) {
     case 26:
     case 27:
     case 28:
+    case 29:
       return true;
     default:
       return false;

@@ -19,6 +19,11 @@ export CMAKE_MIN_VERSION
 GRPC_APT_VERSION_MIN=1.51.1
 export GRPC_APT_VERSION_MIN
 
+# BOOST_APT_VERSION_MIN: minimum apt libboost-dev install-boost.sh accepts before
+# building Boost from source; doubles as the release built in that case.
+BOOST_APT_VERSION_MIN=1.74.0
+export BOOST_APT_VERSION_MIN
+
 # ---- distro identity (from /etc/os-release, never from build args) ----
 
 # shellcheck disable=SC1091

@@ -20,7 +20,7 @@ sdk::KinematicModel fake_kinematic_model() {
     left.id = "left";
     left.parent = "palm";
     left.axis = Vector3{1, 0, 0};
-    left.spec = PrismaticJoint{0.0, 40.0, 100.0, boost::none, boost::none};
+    left.spec = PrismaticJoint{0.0, 40.0, 100.0, std::nullopt, std::nullopt};
 
     KinematicJoint right;
     right.id = "right";

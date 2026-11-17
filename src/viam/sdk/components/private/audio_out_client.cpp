@@ -29,10 +29,9 @@ AudioOutClient::AudioOutClient(std::string name, const ViamChannel& channel)
           std::static_pointer_cast<::grpc::ChannelInterface>(channel.channel()))),
       channel_(&channel) {}
 
-void AudioOutClient::play_stream(
-    audio_info info,
-    std::function<boost::optional<std::vector<uint8_t>>()> chunk_source,
-    const ProtoStruct& extra) {
+void AudioOutClient::play_stream(audio_info info,
+                                 std::function<std::optional<std::vector<uint8_t>>()> chunk_source,
+                                 const ProtoStruct& extra) {
     ::grpc::ClientContext ctx;
     ::viam::component::audioout::v1::PlayStreamResponse response;
     auto writer = stub_->PlayStream(&ctx, &response);
@@ -55,6 +54,7 @@ void AudioOutClient::play_stream(
     while (auto chunk = chunk_source()) {
         ::viam::component::audioout::v1::PlayStreamRequest msg;
         auto* chunk_msg = msg.mutable_audio_chunk();
+        // NOLINTNEXTLINE(bugprone-unchecked-optional-access)
         chunk_msg->set_audio_data(std::string(chunk->begin(), chunk->end()));
         if (!writer->Write(msg)) {
             // Stream broken on server side; surface the error from Finish().
@@ -70,7 +70,7 @@ void AudioOutClient::play_stream(
 }
 
 void AudioOutClient::play(std::vector<uint8_t> const& audio_data,
-                          boost::optional<audio_info> info,
+                          std::optional<audio_info> info,
                           const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Play)
         .with(extra,

@@ -167,12 +167,12 @@ BOOST_AUTO_TEST_CASE(test_set_power_mode) {
         std::chrono::duration<int64_t, std::micro> duration = std::chrono::microseconds(15531000);
         client.set_power_mode(mode, duration);
         BOOST_CHECK(mode == mock->peek_set_power_mode_power_mode);
-        BOOST_CHECK(duration == mock->peek_set_power_mode_duration.get());
+        BOOST_CHECK(duration == *mock->peek_set_power_mode_duration);
         // Check with durations that have microsecond precision
         std::chrono::duration<int64_t, std::micro> duration_large =
             std::chrono::microseconds(3213001);
         client.set_power_mode(mode, duration_large);
-        BOOST_CHECK(duration_large == mock->peek_set_power_mode_duration.get());
+        BOOST_CHECK(duration_large == *mock->peek_set_power_mode_duration);
 
         client.set_power_mode(mode);
         BOOST_CHECK(!mock->peek_set_power_mode_duration.has_value());

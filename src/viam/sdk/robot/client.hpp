@@ -69,10 +69,10 @@ class RobotClient {
     struct operation {
         std::string id;
         std::string method;
-        boost::optional<std::string> session_id;
+        std::optional<std::string> session_id;
         ProtoStruct arguments;
-        boost::optional<time_pt> started;
-        friend bool operator==(const operation& lhs, const operation& rhs);
+        std::optional<time_pt> started;
+        friend bool operator==(const operation&, const operation&) = default;
     };
 
     struct resource_status {
@@ -87,16 +87,16 @@ class RobotClient {
 
         Name name;
         resource_state state;
-        boost::optional<time_pt> last_updated;
+        std::optional<time_pt> last_updated;
         std::string revision;
         std::string error;
-        friend bool operator==(const resource_status& lhs, const resource_status& rhs);
+        friend bool operator==(const resource_status&, const resource_status&) = default;
     };
 
     struct config_status {
         std::string revision;
-        boost::optional<time_pt> last_updated;
-        friend bool operator==(const config_status& lhs, const config_status& rhs);
+        std::optional<time_pt> last_updated;
+        friend bool operator==(const config_status&, const config_status&) = default;
     };
 
     struct module_status {
@@ -111,10 +111,10 @@ class RobotClient {
 
         std::string module_name;
         module_state state;
-        boost::optional<time_pt> last_updated;
+        std::optional<time_pt> last_updated;
         std::string error;
         std::uint32_t consecutive_failures;
-        friend bool operator==(const module_status& lhs, const module_status& rhs);
+        friend bool operator==(const module_status&, const module_status&) = default;
     };
 
     struct package_status {
@@ -140,18 +140,18 @@ class RobotClient {
         package_type type;
         package_state state;
         std::string error;
-        boost::optional<time_pt> last_updated;
+        std::optional<time_pt> last_updated;
         std::string version;
         std::uint64_t bytes_downloaded;
         std::uint64_t total_bytes;
-        friend bool operator==(const package_status& lhs, const package_status& rhs);
+        friend bool operator==(const package_status&, const package_status&) = default;
     };
 
     struct job_status {
         std::string job_name;
         std::vector<time_pt> recent_successful_runs;
         std::vector<time_pt> recent_failed_runs;
-        friend bool operator==(const job_status& lhs, const job_status& rhs);
+        friend bool operator==(const job_status&, const job_status&) = default;
     };
 
     struct machine_status {
@@ -161,7 +161,7 @@ class RobotClient {
         std::vector<module_status> modules;
         std::vector<package_status> packages;
         std::vector<job_status> job_statuses;
-        friend bool operator==(const machine_status& lhs, const machine_status& rhs);
+        friend bool operator==(const machine_status&, const machine_status&) = default;
     };
 
     explicit RobotClient(ViamChannel channel);

@@ -27,7 +27,6 @@
 #include <boost/format.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
-#include <boost/variant/get.hpp>
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/robot/client.hpp>
@@ -190,9 +189,9 @@ int main(int argc, char* argv[]) try {
             return EXIT_FAILURE;
         }
 
-        const bf::path model_path(opt_model_path.get());
+        const bf::path model_path(*opt_model_path);
         if (!bf::is_regular_file(model_path)) {
-            VIAM_SDK_LOG(error) << "The path `" << model_path.c_str()
+            VIAM_SDK_LOG(error) << "The path `" << model_path.string()
                                 << "` provided for `--model-path` is not an existing regular file";
             return EXIT_FAILURE;
         }
@@ -202,10 +201,10 @@ int main(int argc, char* argv[]) try {
             return EXIT_FAILURE;
         }
 
-        const bf::path tflite_module_path(opt_tflite_module_path.get());
+        const bf::path tflite_module_path(*opt_tflite_module_path);
         if (!bf::is_regular_file(tflite_module_path)) {
             VIAM_SDK_LOG(error)
-                << "The path `" << tflite_module_path.c_str()
+                << "The path `" << tflite_module_path.string()
                 << "` provided for `--tflite-module-path` is not an existing regular file";
             return EXIT_FAILURE;
         }
@@ -214,8 +213,9 @@ int main(int argc, char* argv[]) try {
         // any summary information or further instructions because it
         // is nice to be able to feed the results directly to `pbcopy`
         // or similar.
-        const auto config = boost::format(kRobotConfigTemplate) % bf::absolute(model_path).c_str() %
-                            bf::absolute(tflite_module_path).c_str();
+        const auto config = boost::format(kRobotConfigTemplate) %
+                            bf::absolute(model_path).string() %
+                            bf::absolute(tflite_module_path).string();
 
         VIAM_SDK_LOG(info) << config << std::endl;
 
@@ -243,11 +243,11 @@ int main(int argc, char* argv[]) try {
         // secret. Please see other examples for more details on
         // connecting to robots with the C++ SDK.
         viam::sdk::ViamChannel::Options channel_options;
-        channel_options.set_entity(opt_api_key_id.get());
-        channel_options.set_credentials(viam::sdk::Credentials("api-key", opt_api_key.get()));
+        channel_options.set_entity(*opt_api_key_id);
+        channel_options.set_credentials(viam::sdk::Credentials("api-key", *opt_api_key));
 
         auto robot =
-            vsdk::RobotClient::at_address(opt_robot_host.get(), {0, {std::move(channel_options)}});
+            vsdk::RobotClient::at_address(*opt_robot_host, {0, {std::move(channel_options)}});
 
         // Obtain a handle to the MLModelService module on the robot. Note that the string
         // `yamnet_classification_tflite` is arbitrary. It just matches what was used to name the
@@ -314,7 +314,7 @@ int main(int argc, char* argv[]) try {
         // tensor view of floats. If it is, great. Otherwise, error
         // out.
         const auto* const categories_float =
-            boost::get<vsdk::MLModelService::tensor_view<float>>(&categories->second);
+            std::get_if<vsdk::MLModelService::tensor_view<float>>(&categories->second);
         if (!categories_float) {
             VIAM_SDK_LOG(error)
                 << "A `categories` tensor was returned, but it was not of type `float`";
@@ -330,19 +330,19 @@ int main(int argc, char* argv[]) try {
             }
         } else {
             // Ensure that the label path is something we can actually read from.
-            const bf::path model_label_path(opt_model_label_path.get());
+            const bf::path model_label_path(*opt_model_label_path);
             if (!bf::is_regular_file(model_label_path)) {
                 VIAM_SDK_LOG(error)
-                    << "The path `" << model_label_path.c_str()
+                    << "The path `" << model_label_path.string()
                     << "` provided for `--model-label-path` is not an existing regular file";
                 return EXIT_FAILURE;
             }
 
             // Open the labels file, or bail.
-            std::ifstream labels_stream(model_label_path.c_str());
+            std::ifstream labels_stream(model_label_path.string());
             if (!labels_stream) {
                 VIAM_SDK_LOG(error)
-                    << "Unable to open label path `" << model_label_path.c_str() << "`";
+                    << "Unable to open label path `" << model_label_path.string() << "`";
                 return EXIT_FAILURE;
             }
 

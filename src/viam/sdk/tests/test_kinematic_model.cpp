@@ -4,12 +4,13 @@
 #include <fstream>
 #include <limits>
 #include <map>
+#include <optional>
 #include <sstream>
 #include <string>
+#include <variant>
 #include <vector>
 
 #include <boost/test/included/unit_test.hpp>
-#include <boost/variant/get.hpp>
 
 #include <google/protobuf/struct.pb.h>
 #include <google/protobuf/util/json_util.h>
@@ -206,13 +207,13 @@ KinematicModel limits_model() {
     rail.id = "rail";
     rail.parent = "base";
     rail.axis = Vector3{1, 0, 0};
-    rail.spec = PrismaticJoint{0.0, 500.0, boost::none, boost::none, boost::none};
+    rail.spec = PrismaticJoint{0.0, 500.0, std::nullopt, std::nullopt, std::nullopt};
 
     KinematicJoint wrist;
     wrist.id = "wrist";
     wrist.parent = "base";
     wrist.axis = Vector3{0, 0, 1};
-    wrist.spec = ContinuousJoint{180.0, boost::none};
+    wrist.spec = ContinuousJoint{180.0, std::nullopt};
 
     KinematicJoint follower;
     follower.id = "follower";
@@ -226,10 +227,10 @@ KinematicModel limits_model() {
     return model;
 }
 
-JointLimits make_limits(boost::optional<double> min,
-                        boost::optional<double> max,
-                        boost::optional<double> max_velocity,
-                        boost::optional<double> max_acceleration) {
+JointLimits make_limits(std::optional<double> min,
+                        std::optional<double> max,
+                        std::optional<double> max_velocity,
+                        std::optional<double> max_acceleration) {
     JointLimits limits;
     limits.min = min;
     limits.max = max;
@@ -259,13 +260,13 @@ BOOST_AUTO_TEST_SUITE(test_narrow_joint_limits)
 BOOST_AUTO_TEST_CASE(narrows_each_limit_on_its_own) {
     KinematicModel model = limits_model();
     narrow_joint_limits(model,
-                        {{"shoulder", make_limits(-31.0, boost::none, 30.0, boost::none)},
-                         {"rail", make_limits(boost::none, 250.0, 100.0, 50.0)}});
+                        {{"shoulder", make_limits(-31.0, std::nullopt, 30.0, std::nullopt)},
+                         {"rail", make_limits(std::nullopt, 250.0, 100.0, 50.0)}});
 
     BOOST_CHECK(model.joints[0].spec == joint_spec(RevoluteJoint{-31.0, 180.0, 30.0, 400.0}));
     // the rail had no speed bounds, so any value narrows it
     BOOST_CHECK(model.joints[1].spec ==
-                joint_spec(PrismaticJoint{0.0, 250.0, 100.0, 50.0, boost::none}));
+                joint_spec(PrismaticJoint{0.0, 250.0, 100.0, 50.0, std::nullopt}));
     BOOST_CHECK(model.joints[2] == limits_model().joints[2]);
 }
 
@@ -274,19 +275,20 @@ BOOST_AUTO_TEST_CASE(equal_bounds_and_locked_joint) {
     narrow_joint_limits(model, {{"shoulder", make_limits(-180.0, 180.0, 90.0, 400.0)}});
     BOOST_CHECK(model == limits_model());
 
-    narrow_joint_limits(model, {{"shoulder", make_limits(45.0, 45.0, boost::none, boost::none)}});
+    narrow_joint_limits(model, {{"shoulder", make_limits(45.0, 45.0, std::nullopt, std::nullopt)}});
     BOOST_CHECK(model.joints[0].spec == joint_spec(RevoluteJoint{45.0, 45.0, 90.0, 400.0}));
 }
 
 BOOST_AUTO_TEST_CASE(continuous_joint) {
     KinematicModel model = limits_model();
-    narrow_joint_limits(model, {{"wrist", make_limits(boost::none, boost::none, 90.0, 300.0)}});
+    narrow_joint_limits(model, {{"wrist", make_limits(std::nullopt, std::nullopt, 90.0, 300.0)}});
     BOOST_CHECK(model.joints[2].spec == joint_spec(ContinuousJoint{90.0, 300.0}));
 
     // a position bound is what makes it a revolute joint
     narrow_joint_limits(model,
-                        {{"wrist", make_limits(-90.0, boost::none, boost::none, boost::none)}});
-    BOOST_CHECK(model.joints[2].spec == joint_spec(RevoluteJoint{-90.0, boost::none, 90.0, 300.0}));
+                        {{"wrist", make_limits(-90.0, std::nullopt, std::nullopt, std::nullopt)}});
+    BOOST_CHECK(model.joints[2].spec ==
+                joint_spec(RevoluteJoint{-90.0, std::nullopt, 90.0, 300.0}));
 }
 
 BOOST_AUTO_TEST_CASE(nothing_requested_changes_nothing) {
@@ -297,7 +299,7 @@ BOOST_AUTO_TEST_CASE(nothing_requested_changes_nothing) {
 }
 
 BOOST_AUTO_TEST_CASE(refusals) {
-    const boost::optional<double> none;
+    const std::optional<double> none;
     check_refused({{"shoulder", make_limits(-181.0, none, none, none)}}, "below the model's min");
     check_refused({{"shoulder", make_limits(none, 180.5, none, none)}}, "above the model's max");
     check_refused({{"shoulder", make_limits(none, none, 91.0, none)}}, "max_velocity");
@@ -353,7 +355,7 @@ BOOST_AUTO_TEST_CASE(named_for_the_resource_with_meshes_as_returned) {
 namespace {
 
 std::size_t mesh_size(const GeometryConfig& geometry) {
-    return boost::get<mesh>(geometry.get_geometry_specifics()).data.size();
+    return std::get<mesh>(geometry.get_geometry_specifics()).data.size();
 }
 
 KinematicModel dropped(bool collision, bool visual) {
@@ -370,7 +372,7 @@ KinematicModel dropped(bool collision, bool visual) {
 }
 
 std::size_t rail_mesh_size(const KinematicModel& model) {
-    return mesh_size(*boost::get<PrismaticJoint>(model.joints[0].spec).geometry);
+    return mesh_size(*std::get<PrismaticJoint>(model.joints[0].spec).geometry);
 }
 
 }  // namespace
@@ -388,7 +390,7 @@ BOOST_AUTO_TEST_CASE(drop_unrequested_mesh_bytes_follows_the_flags) {
     BOOST_CHECK_EQUAL(mesh_size(visual_only.links[0].visual[0]), 2U);
     BOOST_CHECK_EQUAL(rail_mesh_size(visual_only), 0U);
     // everything but the bytes survives
-    const mesh& kept = boost::get<mesh>(collision.get_geometry_specifics());
+    const mesh& kept = std::get<mesh>(collision.get_geometry_specifics());
     BOOST_CHECK_EQUAL(kept.content_type, "stl");
     BOOST_CHECK(kept.original_file_source_path_diagnostic == std::string("c.stl"));
     BOOST_CHECK_EQUAL(collision.get_label(), "c");

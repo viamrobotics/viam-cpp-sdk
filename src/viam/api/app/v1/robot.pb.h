@@ -89,6 +89,9 @@ extern ConfigResponseDefaultTypeInternal _ConfigResponse_default_instance_;
 class ExternalAuthConfig;
 struct ExternalAuthConfigDefaultTypeInternal;
 extern ExternalAuthConfigDefaultTypeInternal _ExternalAuthConfig_default_instance_;
+class FollowPartRef;
+struct FollowPartRefDefaultTypeInternal;
+extern FollowPartRefDefaultTypeInternal _FollowPartRef_default_instance_;
 class Frame;
 struct FrameDefaultTypeInternal;
 extern FrameDefaultTypeInternal _Frame_default_instance_;
@@ -215,6 +218,7 @@ template<> ::viam::app::v1::ComponentConfig* Arena::CreateMaybeMessage<::viam::a
 template<> ::viam::app::v1::ConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::ConfigRequest>(Arena*);
 template<> ::viam::app::v1::ConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::ConfigResponse>(Arena*);
 template<> ::viam::app::v1::ExternalAuthConfig* Arena::CreateMaybeMessage<::viam::app::v1::ExternalAuthConfig>(Arena*);
+template<> ::viam::app::v1::FollowPartRef* Arena::CreateMaybeMessage<::viam::app::v1::FollowPartRef>(Arena*);
 template<> ::viam::app::v1::Frame* Arena::CreateMaybeMessage<::viam::app::v1::Frame>(Arena*);
 template<> ::viam::app::v1::JWKSFile* Arena::CreateMaybeMessage<::viam::app::v1::JWKSFile>(Arena*);
 template<> ::viam::app::v1::JobConfig* Arena::CreateMaybeMessage<::viam::app::v1::JobConfig>(Arena*);
@@ -9512,6 +9516,7 @@ class MaintenanceConfig final :
   enum : int {
     kMaintenanceAllowedKeyFieldNumber = 2,
     kSensorNameFieldNumber = 1,
+    kFollowPartFieldNumber = 3,
   };
   // string maintenance_allowed_key = 2 [json_name = "maintenanceAllowedKey"];
   void clear_maintenance_allowed_key();
@@ -9545,6 +9550,24 @@ class MaintenanceConfig final :
       ::viam::common::v1::ResourceName* sensor_name);
   ::viam::common::v1::ResourceName* unsafe_arena_release_sensor_name();
 
+  // .viam.app.v1.FollowPartRef follow_part = 3 [json_name = "followPart"];
+  bool has_follow_part() const;
+  private:
+  bool _internal_has_follow_part() const;
+  public:
+  void clear_follow_part();
+  const ::viam::app::v1::FollowPartRef& follow_part() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::FollowPartRef* release_follow_part();
+  ::viam::app::v1::FollowPartRef* mutable_follow_part();
+  void set_allocated_follow_part(::viam::app::v1::FollowPartRef* follow_part);
+  private:
+  const ::viam::app::v1::FollowPartRef& _internal_follow_part() const;
+  ::viam::app::v1::FollowPartRef* _internal_mutable_follow_part();
+  public:
+  void unsafe_arena_set_allocated_follow_part(
+      ::viam::app::v1::FollowPartRef* follow_part);
+  ::viam::app::v1::FollowPartRef* unsafe_arena_release_follow_part();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.MaintenanceConfig)
  private:
   class _Internal;
@@ -9554,6 +9577,175 @@ class MaintenanceConfig final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr maintenance_allowed_key_;
   ::viam::common::v1::ResourceName* sensor_name_;
+  ::viam::app::v1::FollowPartRef* follow_part_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FollowPartRef final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FollowPartRef) */ {
+ public:
+  inline FollowPartRef() : FollowPartRef(nullptr) {}
+  ~FollowPartRef() override;
+  explicit PROTOBUF_CONSTEXPR FollowPartRef(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FollowPartRef(const FollowPartRef& from);
+  FollowPartRef(FollowPartRef&& from) noexcept
+    : FollowPartRef() {
+    *this = ::std::move(from);
+  }
+
+  inline FollowPartRef& operator=(const FollowPartRef& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FollowPartRef& operator=(FollowPartRef&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FollowPartRef& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FollowPartRef* internal_default_instance() {
+    return reinterpret_cast<const FollowPartRef*>(
+               &_FollowPartRef_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    48;
+
+  friend void swap(FollowPartRef& a, FollowPartRef& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FollowPartRef* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FollowPartRef* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FollowPartRef* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FollowPartRef>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FollowPartRef& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FollowPartRef& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FollowPartRef* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.FollowPartRef";
+  }
+  protected:
+  explicit FollowPartRef(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAddressFieldNumber = 1,
+    kAuthFieldNumber = 2,
+  };
+  // string address = 1 [json_name = "address"];
+  void clear_address();
+  const std::string& address() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_address(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_address();
+  PROTOBUF_NODISCARD std::string* release_address();
+  void set_allocated_address(std::string* address);
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(const std::string& value);
+  std::string* _internal_mutable_address();
+  public:
+
+  // .viam.app.v1.RemoteAuth auth = 2 [json_name = "auth"];
+  bool has_auth() const;
+  private:
+  bool _internal_has_auth() const;
+  public:
+  void clear_auth();
+  const ::viam::app::v1::RemoteAuth& auth() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::RemoteAuth* release_auth();
+  ::viam::app::v1::RemoteAuth* mutable_auth();
+  void set_allocated_auth(::viam::app::v1::RemoteAuth* auth);
+  private:
+  const ::viam::app::v1::RemoteAuth& _internal_auth() const;
+  ::viam::app::v1::RemoteAuth* _internal_mutable_auth();
+  public:
+  void unsafe_arena_set_allocated_auth(
+      ::viam::app::v1::RemoteAuth* auth);
+  ::viam::app::v1::RemoteAuth* unsafe_arena_release_auth();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.FollowPartRef)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr address_;
+  ::viam::app::v1::RemoteAuth* auth_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -19409,9 +19601,245 @@ inline void MaintenanceConfig::set_allocated_maintenance_allowed_key(std::string
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.MaintenanceConfig.maintenance_allowed_key)
 }
 
+// .viam.app.v1.FollowPartRef follow_part = 3 [json_name = "followPart"];
+inline bool MaintenanceConfig::_internal_has_follow_part() const {
+  return this != internal_default_instance() && follow_part_ != nullptr;
+}
+inline bool MaintenanceConfig::has_follow_part() const {
+  return _internal_has_follow_part();
+}
+inline void MaintenanceConfig::clear_follow_part() {
+  if (GetArenaForAllocation() == nullptr && follow_part_ != nullptr) {
+    delete follow_part_;
+  }
+  follow_part_ = nullptr;
+}
+inline const ::viam::app::v1::FollowPartRef& MaintenanceConfig::_internal_follow_part() const {
+  const ::viam::app::v1::FollowPartRef* p = follow_part_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::FollowPartRef&>(
+      ::viam::app::v1::_FollowPartRef_default_instance_);
+}
+inline const ::viam::app::v1::FollowPartRef& MaintenanceConfig::follow_part() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MaintenanceConfig.follow_part)
+  return _internal_follow_part();
+}
+inline void MaintenanceConfig::unsafe_arena_set_allocated_follow_part(
+    ::viam::app::v1::FollowPartRef* follow_part) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(follow_part_);
+  }
+  follow_part_ = follow_part;
+  if (follow_part) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.MaintenanceConfig.follow_part)
+}
+inline ::viam::app::v1::FollowPartRef* MaintenanceConfig::release_follow_part() {
+  
+  ::viam::app::v1::FollowPartRef* temp = follow_part_;
+  follow_part_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::FollowPartRef* MaintenanceConfig::unsafe_arena_release_follow_part() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.MaintenanceConfig.follow_part)
+  
+  ::viam::app::v1::FollowPartRef* temp = follow_part_;
+  follow_part_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::FollowPartRef* MaintenanceConfig::_internal_mutable_follow_part() {
+  
+  if (follow_part_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::FollowPartRef>(GetArenaForAllocation());
+    follow_part_ = p;
+  }
+  return follow_part_;
+}
+inline ::viam::app::v1::FollowPartRef* MaintenanceConfig::mutable_follow_part() {
+  ::viam::app::v1::FollowPartRef* _msg = _internal_mutable_follow_part();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.MaintenanceConfig.follow_part)
+  return _msg;
+}
+inline void MaintenanceConfig::set_allocated_follow_part(::viam::app::v1::FollowPartRef* follow_part) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete follow_part_;
+  }
+  if (follow_part) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(follow_part);
+    if (message_arena != submessage_arena) {
+      follow_part = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, follow_part, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  follow_part_ = follow_part;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.MaintenanceConfig.follow_part)
+}
+
+// -------------------------------------------------------------------
+
+// FollowPartRef
+
+// string address = 1 [json_name = "address"];
+inline void FollowPartRef::clear_address() {
+  address_.ClearToEmpty();
+}
+inline const std::string& FollowPartRef::address() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FollowPartRef.address)
+  return _internal_address();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FollowPartRef::set_address(ArgT0&& arg0, ArgT... args) {
+ 
+ address_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.FollowPartRef.address)
+}
+inline std::string* FollowPartRef::mutable_address() {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FollowPartRef.address)
+  return _s;
+}
+inline const std::string& FollowPartRef::_internal_address() const {
+  return address_.Get();
+}
+inline void FollowPartRef::_internal_set_address(const std::string& value) {
+  
+  address_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FollowPartRef::_internal_mutable_address() {
+  
+  return address_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FollowPartRef::release_address() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FollowPartRef.address)
+  return address_.Release();
+}
+inline void FollowPartRef::set_allocated_address(std::string* address) {
+  if (address != nullptr) {
+    
+  } else {
+    
+  }
+  address_.SetAllocated(address, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (address_.IsDefault()) {
+    address_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FollowPartRef.address)
+}
+
+// .viam.app.v1.RemoteAuth auth = 2 [json_name = "auth"];
+inline bool FollowPartRef::_internal_has_auth() const {
+  return this != internal_default_instance() && auth_ != nullptr;
+}
+inline bool FollowPartRef::has_auth() const {
+  return _internal_has_auth();
+}
+inline void FollowPartRef::clear_auth() {
+  if (GetArenaForAllocation() == nullptr && auth_ != nullptr) {
+    delete auth_;
+  }
+  auth_ = nullptr;
+}
+inline const ::viam::app::v1::RemoteAuth& FollowPartRef::_internal_auth() const {
+  const ::viam::app::v1::RemoteAuth* p = auth_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::RemoteAuth&>(
+      ::viam::app::v1::_RemoteAuth_default_instance_);
+}
+inline const ::viam::app::v1::RemoteAuth& FollowPartRef::auth() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FollowPartRef.auth)
+  return _internal_auth();
+}
+inline void FollowPartRef::unsafe_arena_set_allocated_auth(
+    ::viam::app::v1::RemoteAuth* auth) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(auth_);
+  }
+  auth_ = auth;
+  if (auth) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.FollowPartRef.auth)
+}
+inline ::viam::app::v1::RemoteAuth* FollowPartRef::release_auth() {
+  
+  ::viam::app::v1::RemoteAuth* temp = auth_;
+  auth_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::RemoteAuth* FollowPartRef::unsafe_arena_release_auth() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FollowPartRef.auth)
+  
+  ::viam::app::v1::RemoteAuth* temp = auth_;
+  auth_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::RemoteAuth* FollowPartRef::_internal_mutable_auth() {
+  
+  if (auth_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::RemoteAuth>(GetArenaForAllocation());
+    auth_ = p;
+  }
+  return auth_;
+}
+inline ::viam::app::v1::RemoteAuth* FollowPartRef::mutable_auth() {
+  ::viam::app::v1::RemoteAuth* _msg = _internal_mutable_auth();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FollowPartRef.auth)
+  return _msg;
+}
+inline void FollowPartRef::set_allocated_auth(::viam::app::v1::RemoteAuth* auth) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete auth_;
+  }
+  if (auth) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(auth);
+    if (message_arena != submessage_arena) {
+      auth = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, auth, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  auth_ = auth;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FollowPartRef.auth)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

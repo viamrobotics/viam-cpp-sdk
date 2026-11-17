@@ -18,12 +18,6 @@ std::ostream& operator<<(std::ostream& os, const Base::properties& v) {
     return os;
 }
 
-bool operator==(const Base::properties& lhs, const Base::properties& rhs) {
-    return lhs.wheel_circumference_meters == rhs.wheel_circumference_meters &&
-           lhs.width_meters == rhs.width_meters &&
-           lhs.turning_radius_meters == rhs.turning_radius_meters;
-}
-
 Base::Base(std::string name) : Component(std::move(name)) {}
 
 Base::Base(const ResourceConfig& cfg) : Component(cfg) {}

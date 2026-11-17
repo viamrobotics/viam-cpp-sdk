@@ -144,6 +144,9 @@ extern LogRequestDefaultTypeInternal _LogRequest_default_instance_;
 class LogResponse;
 struct LogResponseDefaultTypeInternal;
 extern LogResponseDefaultTypeInternal _LogResponse_default_instance_;
+class MaintenanceStatus;
+struct MaintenanceStatusDefaultTypeInternal;
+extern MaintenanceStatusDefaultTypeInternal _MaintenanceStatus_default_instance_;
 class ModuleModel;
 struct ModuleModelDefaultTypeInternal;
 extern ModuleModelDefaultTypeInternal _ModuleModel_default_instance_;
@@ -288,6 +291,7 @@ template<> ::viam::robot::v1::ListTunnelsRequest* Arena::CreateMaybeMessage<::vi
 template<> ::viam::robot::v1::ListTunnelsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ListTunnelsResponse>(Arena*);
 template<> ::viam::robot::v1::LogRequest* Arena::CreateMaybeMessage<::viam::robot::v1::LogRequest>(Arena*);
 template<> ::viam::robot::v1::LogResponse* Arena::CreateMaybeMessage<::viam::robot::v1::LogResponse>(Arena*);
+template<> ::viam::robot::v1::MaintenanceStatus* Arena::CreateMaybeMessage<::viam::robot::v1::MaintenanceStatus>(Arena*);
 template<> ::viam::robot::v1::ModuleModel* Arena::CreateMaybeMessage<::viam::robot::v1::ModuleModel>(Arena*);
 template<> ::viam::robot::v1::ModuleStatus* Arena::CreateMaybeMessage<::viam::robot::v1::ModuleStatus>(Arena*);
 template<> ::viam::robot::v1::Operation* Arena::CreateMaybeMessage<::viam::robot::v1::Operation>(Arena*);
@@ -9096,6 +9100,7 @@ class GetMachineStatusResponse final :
     kModulesFieldNumber = 5,
     kPackagesFieldNumber = 6,
     kConfigFieldNumber = 2,
+    kMaintenanceStatusFieldNumber = 7,
     kStateFieldNumber = 3,
   };
   // repeated .viam.robot.v1.ResourceStatus resources = 1 [json_name = "resources"];
@@ -9188,6 +9193,24 @@ class GetMachineStatusResponse final :
       ::viam::robot::v1::ConfigStatus* config);
   ::viam::robot::v1::ConfigStatus* unsafe_arena_release_config();
 
+  // .viam.robot.v1.MaintenanceStatus maintenance_status = 7 [json_name = "maintenanceStatus"];
+  bool has_maintenance_status() const;
+  private:
+  bool _internal_has_maintenance_status() const;
+  public:
+  void clear_maintenance_status();
+  const ::viam::robot::v1::MaintenanceStatus& maintenance_status() const;
+  PROTOBUF_NODISCARD ::viam::robot::v1::MaintenanceStatus* release_maintenance_status();
+  ::viam::robot::v1::MaintenanceStatus* mutable_maintenance_status();
+  void set_allocated_maintenance_status(::viam::robot::v1::MaintenanceStatus* maintenance_status);
+  private:
+  const ::viam::robot::v1::MaintenanceStatus& _internal_maintenance_status() const;
+  ::viam::robot::v1::MaintenanceStatus* _internal_mutable_maintenance_status();
+  public:
+  void unsafe_arena_set_allocated_maintenance_status(
+      ::viam::robot::v1::MaintenanceStatus* maintenance_status);
+  ::viam::robot::v1::MaintenanceStatus* unsafe_arena_release_maintenance_status();
+
   // .viam.robot.v1.GetMachineStatusResponse.State state = 3 [json_name = "state"];
   void clear_state();
   ::viam::robot::v1::GetMachineStatusResponse_State state() const;
@@ -9209,7 +9232,167 @@ class GetMachineStatusResponse final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus > modules_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::PackageStatus > packages_;
   ::viam::robot::v1::ConfigStatus* config_;
+  ::viam::robot::v1::MaintenanceStatus* maintenance_status_;
   int state_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MaintenanceStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.MaintenanceStatus) */ {
+ public:
+  inline MaintenanceStatus() : MaintenanceStatus(nullptr) {}
+  ~MaintenanceStatus() override;
+  explicit PROTOBUF_CONSTEXPR MaintenanceStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MaintenanceStatus(const MaintenanceStatus& from);
+  MaintenanceStatus(MaintenanceStatus&& from) noexcept
+    : MaintenanceStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline MaintenanceStatus& operator=(const MaintenanceStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MaintenanceStatus& operator=(MaintenanceStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MaintenanceStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MaintenanceStatus* internal_default_instance() {
+    return reinterpret_cast<const MaintenanceStatus*>(
+               &_MaintenanceStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    57;
+
+  friend void swap(MaintenanceStatus& a, MaintenanceStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MaintenanceStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MaintenanceStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MaintenanceStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MaintenanceStatus>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MaintenanceStatus& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MaintenanceStatus& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MaintenanceStatus* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.MaintenanceStatus";
+  }
+  protected:
+  explicit MaintenanceStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kReasonFieldNumber = 2,
+    kAllowedFieldNumber = 1,
+  };
+  // string reason = 2 [json_name = "reason"];
+  void clear_reason();
+  const std::string& reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* reason);
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
+  std::string* _internal_mutable_reason();
+  public:
+
+  // bool allowed = 1 [json_name = "allowed"];
+  void clear_allowed();
+  bool allowed() const;
+  void set_allowed(bool value);
+  private:
+  bool _internal_allowed() const;
+  void _internal_set_allowed(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.MaintenanceStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
+  bool allowed_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
@@ -9263,7 +9446,7 @@ class JobStatus final :
                &_JobStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    58;
 
   friend void swap(JobStatus& a, JobStatus& b) {
     a.Swap(&b);
@@ -9451,7 +9634,7 @@ class ResourceStatus final :
                &_ResourceStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    59;
 
   friend void swap(ResourceStatus& a, ResourceStatus& b) {
     a.Swap(&b);
@@ -9792,7 +9975,7 @@ class ModuleStatus final :
                &_ModuleStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    60;
 
   friend void swap(ModuleStatus& a, ModuleStatus& b) {
     a.Swap(&b);
@@ -10036,7 +10219,7 @@ class PackageStatus final :
                &_PackageStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    61;
 
   friend void swap(PackageStatus& a, PackageStatus& b) {
     a.Swap(&b);
@@ -10318,7 +10501,7 @@ class ConfigStatus final :
                &_ConfigStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    62;
 
   friend void swap(ConfigStatus& a, ConfigStatus& b) {
     a.Swap(&b);
@@ -10485,7 +10668,7 @@ class GetVersionRequest final :
                &_GetVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    63;
 
   friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
     a.Swap(&b);
@@ -10602,7 +10785,7 @@ class GetVersionResponse final :
                &_GetVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    64;
 
   friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
     a.Swap(&b);
@@ -10782,7 +10965,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    65;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -10986,7 +11169,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    66;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -15636,6 +15819,170 @@ GetMachineStatusResponse::packages() const {
   return packages_;
 }
 
+// .viam.robot.v1.MaintenanceStatus maintenance_status = 7 [json_name = "maintenanceStatus"];
+inline bool GetMachineStatusResponse::_internal_has_maintenance_status() const {
+  return this != internal_default_instance() && maintenance_status_ != nullptr;
+}
+inline bool GetMachineStatusResponse::has_maintenance_status() const {
+  return _internal_has_maintenance_status();
+}
+inline void GetMachineStatusResponse::clear_maintenance_status() {
+  if (GetArenaForAllocation() == nullptr && maintenance_status_ != nullptr) {
+    delete maintenance_status_;
+  }
+  maintenance_status_ = nullptr;
+}
+inline const ::viam::robot::v1::MaintenanceStatus& GetMachineStatusResponse::_internal_maintenance_status() const {
+  const ::viam::robot::v1::MaintenanceStatus* p = maintenance_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::robot::v1::MaintenanceStatus&>(
+      ::viam::robot::v1::_MaintenanceStatus_default_instance_);
+}
+inline const ::viam::robot::v1::MaintenanceStatus& GetMachineStatusResponse::maintenance_status() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetMachineStatusResponse.maintenance_status)
+  return _internal_maintenance_status();
+}
+inline void GetMachineStatusResponse::unsafe_arena_set_allocated_maintenance_status(
+    ::viam::robot::v1::MaintenanceStatus* maintenance_status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(maintenance_status_);
+  }
+  maintenance_status_ = maintenance_status;
+  if (maintenance_status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.GetMachineStatusResponse.maintenance_status)
+}
+inline ::viam::robot::v1::MaintenanceStatus* GetMachineStatusResponse::release_maintenance_status() {
+  
+  ::viam::robot::v1::MaintenanceStatus* temp = maintenance_status_;
+  maintenance_status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::robot::v1::MaintenanceStatus* GetMachineStatusResponse::unsafe_arena_release_maintenance_status() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetMachineStatusResponse.maintenance_status)
+  
+  ::viam::robot::v1::MaintenanceStatus* temp = maintenance_status_;
+  maintenance_status_ = nullptr;
+  return temp;
+}
+inline ::viam::robot::v1::MaintenanceStatus* GetMachineStatusResponse::_internal_mutable_maintenance_status() {
+  
+  if (maintenance_status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::robot::v1::MaintenanceStatus>(GetArenaForAllocation());
+    maintenance_status_ = p;
+  }
+  return maintenance_status_;
+}
+inline ::viam::robot::v1::MaintenanceStatus* GetMachineStatusResponse::mutable_maintenance_status() {
+  ::viam::robot::v1::MaintenanceStatus* _msg = _internal_mutable_maintenance_status();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetMachineStatusResponse.maintenance_status)
+  return _msg;
+}
+inline void GetMachineStatusResponse::set_allocated_maintenance_status(::viam::robot::v1::MaintenanceStatus* maintenance_status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete maintenance_status_;
+  }
+  if (maintenance_status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(maintenance_status);
+    if (message_arena != submessage_arena) {
+      maintenance_status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, maintenance_status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  maintenance_status_ = maintenance_status;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetMachineStatusResponse.maintenance_status)
+}
+
+// -------------------------------------------------------------------
+
+// MaintenanceStatus
+
+// bool allowed = 1 [json_name = "allowed"];
+inline void MaintenanceStatus::clear_allowed() {
+  allowed_ = false;
+}
+inline bool MaintenanceStatus::_internal_allowed() const {
+  return allowed_;
+}
+inline bool MaintenanceStatus::allowed() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.MaintenanceStatus.allowed)
+  return _internal_allowed();
+}
+inline void MaintenanceStatus::_internal_set_allowed(bool value) {
+  
+  allowed_ = value;
+}
+inline void MaintenanceStatus::set_allowed(bool value) {
+  _internal_set_allowed(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.MaintenanceStatus.allowed)
+}
+
+// string reason = 2 [json_name = "reason"];
+inline void MaintenanceStatus::clear_reason() {
+  reason_.ClearToEmpty();
+}
+inline const std::string& MaintenanceStatus::reason() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.MaintenanceStatus.reason)
+  return _internal_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MaintenanceStatus::set_reason(ArgT0&& arg0, ArgT... args) {
+ 
+ reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.MaintenanceStatus.reason)
+}
+inline std::string* MaintenanceStatus::mutable_reason() {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.MaintenanceStatus.reason)
+  return _s;
+}
+inline const std::string& MaintenanceStatus::_internal_reason() const {
+  return reason_.Get();
+}
+inline void MaintenanceStatus::_internal_set_reason(const std::string& value) {
+  
+  reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MaintenanceStatus::_internal_mutable_reason() {
+  
+  return reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MaintenanceStatus::release_reason() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.MaintenanceStatus.reason)
+  return reason_.Release();
+}
+inline void MaintenanceStatus::set_allocated_reason(std::string* reason) {
+  if (reason != nullptr) {
+    
+  } else {
+    
+  }
+  reason_.SetAllocated(reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (reason_.IsDefault()) {
+    reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.MaintenanceStatus.reason)
+}
+
 // -------------------------------------------------------------------
 
 // JobStatus
@@ -17399,6 +17746,8 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

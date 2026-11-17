@@ -20,20 +20,6 @@ const std::vector<WorldState::transform>& WorldState::transforms() const {
     return transforms_;
 }
 
-bool operator==(const WorldState::geometries_in_frame& lhs,
-                const WorldState::geometries_in_frame& rhs) {
-    return lhs.reference_frame == rhs.reference_frame && lhs.geometries == rhs.geometries;
-}
-
-bool operator==(const WorldState::transform& lhs, const WorldState::transform& rhs) {
-    return std::tie(lhs.reference_frame, lhs.pose_in_observer_frame, lhs.physical_object) ==
-           std::tie(rhs.reference_frame, rhs.pose_in_observer_frame, rhs.physical_object);
-}
-
-bool operator==(const WorldState& lhs, const WorldState& rhs) {
-    return lhs.obstacles_ == rhs.obstacles_ && lhs.transforms_ == rhs.transforms_;
-}
-
 namespace proto_convert_details {
 
 void to_proto_impl<WorldState::geometries_in_frame>::operator()(

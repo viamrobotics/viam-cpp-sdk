@@ -1,7 +1,7 @@
 from conan import ConanFile
 from conan.errors import ConanInvalidConfiguration
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
-from conan.tools.build import valid_max_cppstd
+from conan.tools.build import check_min_cppstd
 from conan.tools.files import load
 from conan.tools.apple import is_apple_os
 import os
@@ -58,6 +58,8 @@ class ViamCppSdkRecipe(ConanFile):
                 self.options[lib].shared = True
 
     def validate(self):
+        check_min_cppstd(self, 20)
+
         if self.options.opentelemetry_tracing:
             if not self.dependencies["opentelemetry-cpp"].options.with_otlp_grpc:
                 raise ConanInvalidConfiguration("opentelemetry_tracing option requires opentelemetry-cpp/*:with_otlp_grpc")
@@ -65,10 +67,7 @@ class ViamCppSdkRecipe(ConanFile):
 
 
     def _xtensor_requires(self):
-        if valid_max_cppstd(self, 17, False):
-            return 'xtensor/[>=0.25.0 <0.27.0]'
-
-        return 'xtensor/[>=0.25.0]'
+        return 'xtensor/[>=0.26.0]'
 
     def _grpc_requires(self):
         return 'grpc/[>=1.48.4]'
@@ -89,7 +88,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         # override=True lets us specify the minimum for a transitive dep without
         # creating a direct dep
-        self.requires('xtl/[>=0.7.7]', override=True)
+        self.requires('xtl/[>=0.8.0]', override=True)
 
         if self.options.opentelemetry_tracing:
             # Oldest maintained conan package and first version with proper CMake support

@@ -25,6 +25,7 @@ struct audio_properties {
     std::vector<std::string> supported_codecs;
     int sample_rate_hz = 0;
     int num_channels = 0;
+    friend bool operator==(const audio_properties&, const audio_properties&) = default;
 };
 
 /// @struct audio_info
@@ -33,13 +34,8 @@ struct audio_info {
     std::string codec;
     int sample_rate_hz = 0;
     int num_channels = 0;
+    friend bool operator==(const audio_info&, const audio_info&) = default;
 };
-
-/// @brief Equality operator for properties
-bool operator==(const audio_properties& lhs, const audio_properties& rhs);
-
-/// @brief Equality operator for audio_info
-bool operator==(const audio_info& lhs, const audio_info& rhs);
 
 uint16_t get_bits_per_sample(const std::string& codec);
 

@@ -724,7 +724,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR MaintenanceConfig::MaintenanceConfig(
     ::_pbi::ConstantInitialized)
   : maintenance_allowed_key_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , sensor_name_(nullptr){}
+  , sensor_name_(nullptr)
+  , follow_part_(nullptr){}
 struct MaintenanceConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MaintenanceConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -734,10 +735,23 @@ struct MaintenanceConfigDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MaintenanceConfigDefaultTypeInternal _MaintenanceConfig_default_instance_;
+PROTOBUF_CONSTEXPR FollowPartRef::FollowPartRef(
+    ::_pbi::ConstantInitialized)
+  : address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , auth_(nullptr){}
+struct FollowPartRefDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FollowPartRefDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FollowPartRefDefaultTypeInternal() {}
+  union {
+    FollowPartRef _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FollowPartRefDefaultTypeInternal _FollowPartRef_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[48];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[49];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2frobot_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2frobot_2eproto = nullptr;
 
@@ -1257,6 +1271,15 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::MaintenanceConfig, sensor_name_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::MaintenanceConfig, maintenance_allowed_key_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::MaintenanceConfig, follow_part_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::FollowPartRef, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::FollowPartRef, address_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::FollowPartRef, auth_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 25, -1, sizeof(::viam::app::v1::RobotConfig)},
@@ -1307,6 +1330,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 481, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
   { 496, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
   { 507, -1, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
+  { 516, -1, -1, sizeof(::viam::app::v1::FollowPartRef)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1358,6 +1382,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_ModuleConfig_default_instance_._instance,
   &::viam::app::v1::_PackageConfig_default_instance_._instance,
   &::viam::app::v1::_MaintenanceConfig_default_instance_._instance,
+  &::viam::app::v1::_FollowPartRef_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -1570,23 +1595,27 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
   "ge\030\002 \001(\tR\007package\022\030\n\007version\030\003 \001(\tR\007vers"
   "ion\022\022\n\004type\030\004 \001(\tR\004type\0228\n\006status\030\005 \001(\0132"
   " .viam.app.v1.AppValidationStatusR\006statu"
-  "s\"\212\001\n\021MaintenanceConfig\022=\n\013sensor_name\030\001"
+  "s\"\307\001\n\021MaintenanceConfig\022=\n\013sensor_name\030\001"
   " \001(\0132\034.viam.common.v1.ResourceNameR\nsens"
   "orName\0226\n\027maintenance_allowed_key\030\002 \001(\tR"
-  "\025maintenanceAllowedKey*\277\001\n\017CredentialsTy"
-  "pe\022 \n\034CREDENTIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031"
-  "CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CREDENTIA"
-  "LS_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS_TYPE_RO"
-  "BOT_SECRET\020\003\022*\n&CREDENTIALS_TYPE_ROBOT_L"
-  "OCATION_SECRET\020\0042\262\002\n\014RobotService\022A\n\006Con"
-  "fig\022\032.viam.app.v1.ConfigRequest\032\033.viam.a"
-  "pp.v1.ConfigResponse\022P\n\013Certificate\022\037.vi"
-  "am.app.v1.CertificateRequest\032 .viam.app."
-  "v1.CertificateResponse\0228\n\003Log\022\027.viam.app"
-  ".v1.LogRequest\032\030.viam.app.v1.LogResponse"
-  "\022S\n\014NeedsRestart\022 .viam.app.v1.NeedsRest"
-  "artRequest\032!.viam.app.v1.NeedsRestartRes"
-  "ponseB\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "\025maintenanceAllowedKey\022;\n\013follow_part\030\003 "
+  "\001(\0132\032.viam.app.v1.FollowPartRefR\nfollowP"
+  "art\"V\n\rFollowPartRef\022\030\n\007address\030\001 \001(\tR\007a"
+  "ddress\022+\n\004auth\030\002 \001(\0132\027.viam.app.v1.Remot"
+  "eAuthR\004auth*\277\001\n\017CredentialsType\022 \n\034CREDE"
+  "NTIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031CREDENTIALS"
+  "_TYPE_INTERNAL\020\001\022\034\n\030CREDENTIALS_TYPE_API"
+  "_KEY\020\002\022!\n\035CREDENTIALS_TYPE_ROBOT_SECRET\020"
+  "\003\022*\n&CREDENTIALS_TYPE_ROBOT_LOCATION_SEC"
+  "RET\020\0042\262\002\n\014RobotService\022A\n\006Config\022\032.viam."
+  "app.v1.ConfigRequest\032\033.viam.app.v1.Confi"
+  "gResponse\022P\n\013Certificate\022\037.viam.app.v1.C"
+  "ertificateRequest\032 .viam.app.v1.Certific"
+  "ateResponse\0228\n\003Log\022\027.viam.app.v1.LogRequ"
+  "est\032\030.viam.app.v1.LogResponse\022S\n\014NeedsRe"
+  "start\022 .viam.app.v1.NeedsRestartRequest\032"
+  "!.viam.app.v1.NeedsRestartResponseB\030Z\026go"
+  ".viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -1596,9 +1625,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2e
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
-    false, false, 9039, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
+    false, false, 9188, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
-    &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 4, 48,
+    &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 4, 49,
     schemas, file_default_instances, TableStruct_app_2fv1_2frobot_2eproto::offsets,
     file_level_metadata_app_2fv1_2frobot_2eproto, file_level_enum_descriptors_app_2fv1_2frobot_2eproto,
     file_level_service_descriptors_app_2fv1_2frobot_2eproto,
@@ -16002,11 +16031,16 @@ void PackageConfig::InternalSwap(PackageConfig* other) {
 class MaintenanceConfig::_Internal {
  public:
   static const ::viam::common::v1::ResourceName& sensor_name(const MaintenanceConfig* msg);
+  static const ::viam::app::v1::FollowPartRef& follow_part(const MaintenanceConfig* msg);
 };
 
 const ::viam::common::v1::ResourceName&
 MaintenanceConfig::_Internal::sensor_name(const MaintenanceConfig* msg) {
   return *msg->sensor_name_;
+}
+const ::viam::app::v1::FollowPartRef&
+MaintenanceConfig::_Internal::follow_part(const MaintenanceConfig* msg) {
+  return *msg->follow_part_;
 }
 void MaintenanceConfig::clear_sensor_name() {
   if (GetArenaForAllocation() == nullptr && sensor_name_ != nullptr) {
@@ -16036,6 +16070,11 @@ MaintenanceConfig::MaintenanceConfig(const MaintenanceConfig& from)
   } else {
     sensor_name_ = nullptr;
   }
+  if (from._internal_has_follow_part()) {
+    follow_part_ = new ::viam::app::v1::FollowPartRef(*from.follow_part_);
+  } else {
+    follow_part_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.MaintenanceConfig)
 }
 
@@ -16044,7 +16083,10 @@ maintenance_allowed_key_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   maintenance_allowed_key_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-sensor_name_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&sensor_name_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&follow_part_) -
+    reinterpret_cast<char*>(&sensor_name_)) + sizeof(follow_part_));
 }
 
 MaintenanceConfig::~MaintenanceConfig() {
@@ -16060,6 +16102,7 @@ inline void MaintenanceConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   maintenance_allowed_key_.Destroy();
   if (this != internal_default_instance()) delete sensor_name_;
+  if (this != internal_default_instance()) delete follow_part_;
 }
 
 void MaintenanceConfig::SetCachedSize(int size) const {
@@ -16077,6 +16120,10 @@ void MaintenanceConfig::Clear() {
     delete sensor_name_;
   }
   sensor_name_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && follow_part_ != nullptr) {
+    delete follow_part_;
+  }
+  follow_part_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -16101,6 +16148,14 @@ const char* MaintenanceConfig::_InternalParse(const char* ptr, ::_pbi::ParseCont
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.MaintenanceConfig.maintenance_allowed_key"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.v1.FollowPartRef follow_part = 3 [json_name = "followPart"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_follow_part(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -16150,6 +16205,13 @@ uint8_t* MaintenanceConfig::_InternalSerialize(
         2, this->_internal_maintenance_allowed_key(), target);
   }
 
+  // .viam.app.v1.FollowPartRef follow_part = 3 [json_name = "followPart"];
+  if (this->_internal_has_follow_part()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::follow_part(this),
+        _Internal::follow_part(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -16180,6 +16242,13 @@ size_t MaintenanceConfig::ByteSizeLong() const {
         *sensor_name_);
   }
 
+  // .viam.app.v1.FollowPartRef follow_part = 3 [json_name = "followPart"];
+  if (this->_internal_has_follow_part()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *follow_part_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -16208,6 +16277,9 @@ void MaintenanceConfig::MergeFrom(const MaintenanceConfig& from) {
   if (from._internal_has_sensor_name()) {
     _internal_mutable_sensor_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_sensor_name());
   }
+  if (from._internal_has_follow_part()) {
+    _internal_mutable_follow_part()->::viam::app::v1::FollowPartRef::MergeFrom(from._internal_follow_part());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -16231,13 +16303,255 @@ void MaintenanceConfig::InternalSwap(MaintenanceConfig* other) {
       &maintenance_allowed_key_, lhs_arena,
       &other->maintenance_allowed_key_, rhs_arena
   );
-  swap(sensor_name_, other->sensor_name_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MaintenanceConfig, follow_part_)
+      + sizeof(MaintenanceConfig::follow_part_)
+      - PROTOBUF_FIELD_OFFSET(MaintenanceConfig, sensor_name_)>(
+          reinterpret_cast<char*>(&sensor_name_),
+          reinterpret_cast<char*>(&other->sensor_name_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MaintenanceConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
       file_level_metadata_app_2fv1_2frobot_2eproto[47]);
+}
+
+// ===================================================================
+
+class FollowPartRef::_Internal {
+ public:
+  static const ::viam::app::v1::RemoteAuth& auth(const FollowPartRef* msg);
+};
+
+const ::viam::app::v1::RemoteAuth&
+FollowPartRef::_Internal::auth(const FollowPartRef* msg) {
+  return *msg->auth_;
+}
+FollowPartRef::FollowPartRef(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.FollowPartRef)
+}
+FollowPartRef::FollowPartRef(const FollowPartRef& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  address_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    address_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_address().empty()) {
+    address_.Set(from._internal_address(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_auth()) {
+    auth_ = new ::viam::app::v1::RemoteAuth(*from.auth_);
+  } else {
+    auth_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.FollowPartRef)
+}
+
+inline void FollowPartRef::SharedCtor() {
+address_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  address_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+auth_ = nullptr;
+}
+
+FollowPartRef::~FollowPartRef() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.FollowPartRef)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void FollowPartRef::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  address_.Destroy();
+  if (this != internal_default_instance()) delete auth_;
+}
+
+void FollowPartRef::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void FollowPartRef::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.FollowPartRef)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  address_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && auth_ != nullptr) {
+    delete auth_;
+  }
+  auth_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* FollowPartRef::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string address = 1 [json_name = "address"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_address();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.FollowPartRef.address"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.v1.RemoteAuth auth = 2 [json_name = "auth"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_auth(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* FollowPartRef::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.FollowPartRef)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string address = 1 [json_name = "address"];
+  if (!this->_internal_address().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_address().data(), static_cast<int>(this->_internal_address().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.FollowPartRef.address");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_address(), target);
+  }
+
+  // .viam.app.v1.RemoteAuth auth = 2 [json_name = "auth"];
+  if (this->_internal_has_auth()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::auth(this),
+        _Internal::auth(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.FollowPartRef)
+  return target;
+}
+
+size_t FollowPartRef::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.FollowPartRef)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string address = 1 [json_name = "address"];
+  if (!this->_internal_address().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_address());
+  }
+
+  // .viam.app.v1.RemoteAuth auth = 2 [json_name = "auth"];
+  if (this->_internal_has_auth()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *auth_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FollowPartRef::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    FollowPartRef::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FollowPartRef::GetClassData() const { return &_class_data_; }
+
+void FollowPartRef::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<FollowPartRef *>(to)->MergeFrom(
+      static_cast<const FollowPartRef &>(from));
+}
+
+
+void FollowPartRef::MergeFrom(const FollowPartRef& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.FollowPartRef)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_address().empty()) {
+    _internal_set_address(from._internal_address());
+  }
+  if (from._internal_has_auth()) {
+    _internal_mutable_auth()->::viam::app::v1::RemoteAuth::MergeFrom(from._internal_auth());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void FollowPartRef::CopyFrom(const FollowPartRef& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.FollowPartRef)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FollowPartRef::IsInitialized() const {
+  return true;
+}
+
+void FollowPartRef::InternalSwap(FollowPartRef* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &address_, lhs_arena,
+      &other->address_, rhs_arena
+  );
+  swap(auth_, other->auth_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata FollowPartRef::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
+      file_level_metadata_app_2fv1_2frobot_2eproto[48]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -16436,6 +16750,10 @@ Arena::CreateMaybeMessage< ::viam::app::v1::PackageConfig >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::app::v1::MaintenanceConfig*
 Arena::CreateMaybeMessage< ::viam::app::v1::MaintenanceConfig >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::MaintenanceConfig >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::FollowPartRef*
+Arena::CreateMaybeMessage< ::viam::app::v1::FollowPartRef >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::FollowPartRef >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

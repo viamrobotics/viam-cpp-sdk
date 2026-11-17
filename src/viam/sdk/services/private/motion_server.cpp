@@ -239,7 +239,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         const std::vector<geo_geometry> bounding_regions =
             impl::from_repeated_field(request->bounding_regions());
 
-        boost::optional<double> heading;
+        std::optional<double> heading;
         if (request->has_heading()) {
             heading = request->heading();
         }

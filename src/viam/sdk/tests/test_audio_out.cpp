@@ -59,9 +59,9 @@ BOOST_AUTO_TEST_CASE(test_play_stream) {
         };
 
         std::size_t idx = 0;
-        client.play_stream(info, [&]() -> boost::optional<std::vector<std::uint8_t>> {
+        client.play_stream(info, [&]() -> std::optional<std::vector<std::uint8_t>> {
             if (idx >= chunks.size()) {
-                return boost::none;
+                return std::nullopt;
             }
             return chunks[idx++];
         });
@@ -82,9 +82,9 @@ BOOST_AUTO_TEST_CASE(test_play_stream_no_chunks) {
         info.sample_rate_hz = 48000;
         info.num_channels = 1;
 
-        // chunk_source returns boost::none immediately — empty stream.
+        // chunk_source returns std::nullopt immediately — empty stream.
         client.play_stream(
-            info, []() -> boost::optional<std::vector<std::uint8_t>> { return boost::none; });
+            info, []() -> std::optional<std::vector<std::uint8_t>> { return std::nullopt; });
 
         BOOST_CHECK(mock->last_streamed_info_ == info);
         BOOST_CHECK(mock->streamed_chunks_.empty());

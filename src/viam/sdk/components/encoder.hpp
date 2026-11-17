@@ -35,6 +35,7 @@ class Encoder : public Component {
     struct position {
         float value = 0.0f;
         position_type type = position_type::unspecified;
+        friend bool operator==(const position&, const position&) = default;
     };
 
     /// @struct properties
@@ -42,6 +43,7 @@ class Encoder : public Component {
     struct properties {
         bool ticks_count_supported = false;
         bool angle_degrees_supported = false;
+        friend bool operator==(const properties&, const properties&) = default;
     };
 
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
@@ -112,9 +114,6 @@ template <>
 struct API::traits<Encoder> {
     static API api();
 };
-
-bool operator==(const Encoder::position& lhs, const Encoder::position& rhs);
-bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs);
 
 }  // namespace sdk
 }  // namespace viam

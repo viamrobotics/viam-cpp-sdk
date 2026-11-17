@@ -1,7 +1,6 @@
 #define BOOST_TEST_MODULE test module test_discovery
 #include <viam/sdk/services/discovery.hpp>
 
-#include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
 

@@ -20,8 +20,6 @@
 #include <type_traits>
 #include <utility>
 
-#include <boost/variant/get.hpp>
-
 #include <viam/sdk/common/exception.hpp>
 
 namespace viam {
@@ -31,8 +29,7 @@ namespace mlmodel {
 
 namespace {
 
-class copy_sdk_tensor_to_api_tensor_visitor : public boost::static_visitor<void> {
-   public:
+struct copy_sdk_tensor_to_api_tensor_visitor {
     explicit copy_sdk_tensor_to_api_tensor_visitor(::viam::service::mlmodel::v1::FlatTensor* target)
         : target_(target) {}
 
@@ -144,7 +141,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
 
     if (ts) {
         auto& storage_variant = *ts->emplace(ts->end(), std::vector<T>{});
-        auto& storage = boost::get<std::vector<T>>(storage_variant);
+        auto& storage = std::get<std::vector<T>>(storage_variant);
         storage.reserve(size);
         storage.assign(data, data + size);
         data = storage.data();
@@ -197,7 +194,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
 
 void copy_sdk_tensor_to_api_tensor(const MLModelService::tensor_views& source,
                                    ::viam::service::mlmodel::v1::FlatTensor* target) {
-    boost::apply_visitor(copy_sdk_tensor_to_api_tensor_visitor{target}, source);
+    std::visit(copy_sdk_tensor_to_api_tensor_visitor{target}, source);
 }
 
 MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
