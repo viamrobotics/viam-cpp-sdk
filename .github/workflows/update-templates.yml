@@ -25,14 +25,15 @@ jobs:
       image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
 
     steps:
-      # The generator pins Clang 15 because the LibTooling interface it uses is unstable.
+      # The generator pins Clang 16 because the LibTooling interface it uses is unstable.
       - name: Install generator-only dependencies
         run: |
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-            clang-15 \
-            llvm-15-dev \
-            libclang-15-dev
+            clang-16 \
+            llvm-16-dev \
+            libclang-16-dev \
+            libzstd-dev
 
       - name: Checkout generator repository
         uses: actions/checkout@v6
@@ -47,9 +48,9 @@ jobs:
           mkdir build
           cd build
           cmake .. -G Ninja \
-            -DCMAKE_CXX_COMPILER=clang++-15 \
-            -DLLVM_DIR=/usr/lib/llvm-15/lib/cmake/llvm \
-            -DClang_DIR=/usr/lib/llvm-15/lib/cmake/clang
+            -DCMAKE_CXX_COMPILER=clang++-16 \
+            -DLLVM_DIR=/usr/lib/llvm-16/lib/cmake/llvm \
+            -DClang_DIR=/usr/lib/llvm-16/lib/cmake/clang
           ninja install
           cl_gen -h
 
@@ -75,7 +76,7 @@ jobs:
           cmake .. -G Ninja \
             -DVIAMCPPSDK_BUILD_TESTS=OFF \
             -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
-            -DCMAKE_CXX_COMPILER=clang++-15
+            -DCMAKE_CXX_COMPILER=clang++-16
 
       - name: Check for changed simple files
         working-directory: sdk
