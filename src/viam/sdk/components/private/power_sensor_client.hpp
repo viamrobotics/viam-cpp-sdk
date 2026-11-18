@@ -29,6 +29,8 @@ class PowerSensorClient : public PowerSensor {
     voltage get_voltage(const ProtoStruct& extra) override;
     current get_current(const ProtoStruct& extra) override;
     double get_power(const ProtoStruct& extra) override;
+    double get_battery_percent(const ProtoStruct& extra) override;
+    bool get_properties(const ProtoStruct& extra) override;
     ProtoStruct get_readings(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     ProtoStruct get_status() override;
@@ -37,6 +39,8 @@ class PowerSensorClient : public PowerSensor {
     using PowerSensor::get_power;
     using PowerSensor::get_readings;
     using PowerSensor::get_voltage;
+    using PowerSensor::get_battery_percent;
+    using PowerSensor::get_properties;
 
    private:
     using StubType = viam::component::powersensor::v1::PowerSensorService::StubInterface;

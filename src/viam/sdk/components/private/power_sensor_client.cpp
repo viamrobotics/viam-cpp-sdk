@@ -63,6 +63,18 @@ double PowerSensorClient::get_power(const ProtoStruct& extra) {
         .invoke([](auto& response) { return response.watts(); });
 }
 
+double PowerSensorClient::get_battery_percent(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetBatteryPercent)
+        .with(extra)
+        .invoke([](auto& response) { return response.percent(); });
+}
+
+bool PowerSensorClient::get_properties(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetProperties)
+        .with(extra)
+        .invoke([](auto& response) { return response.is_battery_percent_supported(); });
+}
+
 ProtoStruct PowerSensorClient::get_readings(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetReadings)
         .with(extra)

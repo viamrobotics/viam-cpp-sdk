@@ -61,6 +61,28 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
         });
 }
 
+::grpc::Status PowerSensorServer::GetBatteryPercent(::grpc::ServerContext* context,
+                                                    const GetBatteryPercentRequest* request,
+                                                    GetBatteryPercentResponse* response) noexcept {
+    return make_service_helper<PowerSensor>(
+        "PowerSensorServer::GetBatteryPercent", this, context, request)(
+        [&](auto& helper, auto& powersensor) {
+            const double percent = powersensor->get_battery_percent(helper.getExtra());
+            response->set_percent(percent);
+        });
+}
+
+::grpc::Status PowerSensorServer::GetProperties(::grpc::ServerContext* context,
+                                                const GetPropertiesRequest* request,
+                                                GetPropertiesResponse* response) noexcept {
+    return make_service_helper<PowerSensor>(
+        "PowerSensorServer::GetProperties", this, context, request)(
+        [&](auto& helper, auto& powersensor) {
+            const bool is_battery_percent_supported = powersensor->get_properties(helper.getExtra());
+            response->set_is_battery_percent_supported(is_battery_percent_supported);
+        });
+}
+
 ::grpc::Status PowerSensorServer::GetReadings(
     ::grpc::ServerContext* context,
     const viam::common::v1::GetReadingsRequest* request,

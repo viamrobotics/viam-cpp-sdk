@@ -74,6 +74,28 @@ class PowerSensor : public Component {
     /// @return The power reading of this sensor.
     virtual double get_power(const ProtoStruct& extra) = 0;
 
+    /// @brief Returns the remaining charge of the battery the power sensor monitors.
+    /// @return The remaining charge of the battery the power sensor monitors.
+    inline double get_battery_percent() {
+        return get_battery_percent({});
+    }
+
+    /// @brief Returns the remaining charge of the battery the power sensor monitors.
+    /// @param extra Any additional arguments to this method.
+    /// @return The remaining charge of the battery the power sensor monitors.
+    virtual double get_battery_percent(const ProtoStruct& extra) = 0;
+
+    /// @brief Returns the properties of a power sensor.
+    /// @return The properties of a power sensor.
+    inline bool get_properties() {
+        return get_properties({});
+    }
+
+    /// @brief Returns the properties of a power sensor.
+    /// @param extra Any additional arguments to this method.
+    /// @return The properties of a power sensor.
+    virtual bool get_properties(const ProtoStruct& extra) = 0;
+
     /// @brief Returns the measurements/data specific to this sensor.
     /// @return The requested measurements/data specific to this sensor.
     inline ProtoStruct get_readings() {
