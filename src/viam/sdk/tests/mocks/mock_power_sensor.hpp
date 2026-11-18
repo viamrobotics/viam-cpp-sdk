@@ -12,6 +12,8 @@ class MockPowerSensor : public sdk::PowerSensor {
     sdk::PowerSensor::voltage get_voltage(const sdk::ProtoStruct& extra) override;
     sdk::PowerSensor::current get_current(const sdk::ProtoStruct& extra) override;
     double get_power(const sdk::ProtoStruct& extra) override;
+    double get_battery_percent(const sdk::ProtoStruct& extra) override;
+    bool get_properties(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct get_readings(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     sdk::ProtoStruct get_status() override;
@@ -22,6 +24,8 @@ class MockPowerSensor : public sdk::PowerSensor {
     sdk::PowerSensor::voltage peek_voltage;
     sdk::PowerSensor::current peek_current;
     double peek_power;
+    double peek_battery_percent;
+    bool peek_is_battery_percent_supported;
 
     MockPowerSensor(std::string name) : PowerSensor(std::move(name)) {}
 };

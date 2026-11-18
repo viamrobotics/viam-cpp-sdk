@@ -56,6 +56,22 @@ BOOST_AUTO_TEST_CASE(test_get_power) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_battery_percent) {
+    std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
+    client_to_mock_pipeline<PowerSensor>(mock, [&](PowerSensor& client) {
+        mock->peek_battery_percent = 75.5;
+        BOOST_CHECK(client.get_battery_percent() == mock->peek_battery_percent);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_properties) {
+    std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
+    client_to_mock_pipeline<PowerSensor>(mock, [&](PowerSensor& client) {
+        mock->peek_is_battery_percent_supported = true;
+        BOOST_CHECK(client.get_properties() == mock->peek_is_battery_percent_supported);
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_readings) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
     client_to_mock_pipeline<PowerSensor>(mock, [](PowerSensor& client) {
