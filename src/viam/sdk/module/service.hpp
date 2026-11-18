@@ -41,6 +41,8 @@ class ModuleService {
     /// @brief Creates a new ModuleService. Socket path and log level will be
     /// inferred from passed in command line arguments, and passed in model
     /// registrations will be registered and added to module.
+    /// @remark If the `VIAM_MODULE_ADDRESS` environment variable is set, it is
+    /// preferred over the command line argument as the socket path.
     /// @param argc Number of arguments from command line.
     /// @param argv Arguments from command line.
     /// @param registrations Models to register and add to the module.

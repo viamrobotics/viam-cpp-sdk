@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <utility>
 
 #include <grpcpp/grpcpp.h>
 
@@ -50,6 +51,22 @@ struct cout_redirect {
 
    private:
     std::streambuf* old;
+};
+
+// Runs a callable on scope exit, including when a failed BOOST_REQUIRE unwinds the test.
+template <typename F>
+class scope_exit {
+   public:
+    explicit scope_exit(F f) : f_(std::move(f)) {}
+    ~scope_exit() {
+        f_();
+    }
+
+    scope_exit(const scope_exit&) = delete;
+    scope_exit& operator=(const scope_exit&) = delete;
+
+   private:
+    F f_;
 };
 
 using namespace viam::sdk;

@@ -8,6 +8,7 @@
 #include <chrono>
 #include <csignal>
 #include <cstdlib>
+#include <memory>
 #include <mutex>
 #include <string>
 #include <thread>
@@ -124,6 +125,29 @@ class ServeThread {
     std::thread thread_;
 };
 
+// Dials the module socket and sends Ready, waiting for the module to start listening.
+std::unique_ptr<viam::module::v1::ModuleService::Stub> connect_and_ready(
+    const std::string& module_sock, const std::string& parent_sock = {}) {
+    auto stub = viam::module::v1::ModuleService::NewStub(
+        grpc::CreateChannel("unix:" + module_sock, grpc::InsecureChannelCredentials()));
+
+    grpc::ClientContext ctx;
+    ctx.set_wait_for_ready(true);
+    ctx.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(30));
+
+    viam::module::v1::ReadyRequest request;
+    request.set_raw_parent_address(parent_sock);
+
+    viam::module::v1::ReadyResponse response;
+
+    const auto status = stub->Ready(&ctx, request, &response);
+
+    BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
+    BOOST_CHECK(response.ready());
+
+    return stub;
+}
+
 // Stands up a MockRobotService as the parent on one unix socket and a ModuleService on another,
 // then drives the module over gRPC the way viam-server does: Ready first, then whatever the test
 // case sends through the module stub it is handed.
@@ -134,6 +158,12 @@ void module_to_mock_parent_pipeline(const Model& model, F&& test_case) {
     const std::string dir(dir_template);
     const std::string parent_sock = dir + "/parent.sock";
     const std::string module_sock = dir + "/module.sock";
+
+    const scope_exit cleanup([&] {
+        unlink(parent_sock.c_str());
+        unlink(module_sock.c_str());
+        rmdir(dir.c_str());
+    });
 
     // the mock parent only reports resources whose model is registered, like test_robot does
     const Model motor_model("fake", "fake", "mock_motor");
@@ -158,29 +188,11 @@ void module_to_mock_parent_pipeline(const Model& model, F&& test_case) {
         // thread inherits that mask, which is what lets serve pick the signal up with sigwait.
         ServeThread serving(module);
 
-        auto channel =
-            grpc::CreateChannel("unix:" + module_sock, grpc::InsecureChannelCredentials());
-        auto stub = viam::module::v1::ModuleService::NewStub(channel);
-
-        {
-            grpc::ClientContext ctx;
-            ctx.set_wait_for_ready(true);
-            ctx.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(30));
-            viam::module::v1::ReadyRequest request;
-            request.set_raw_parent_address(parent_sock);
-            viam::module::v1::ReadyResponse response;
-            const auto status = stub->Ready(&ctx, request, &response);
-            BOOST_REQUIRE_MESSAGE(status.ok(), status.error_message());
-            BOOST_CHECK(response.ready());
-        }
-
+        const auto stub = connect_and_ready(module_sock, parent_sock);
         std::forward<F>(test_case)(*stub, parent);
     }
 
     parent_server->shutdown();
-    unlink(parent_sock.c_str());
-    unlink(module_sock.c_str());
-    rmdir(dir.c_str());
 }
 
 BOOST_AUTO_TEST_CASE(test_framesystem_seeded_into_dependencies) {
@@ -289,6 +301,33 @@ BOOST_AUTO_TEST_CASE(test_resource_log_channel) {
             }
             check_channel(2);
         });
+}
+
+BOOST_AUTO_TEST_CASE(test_module_address_env_preferred_over_argv) {
+    char dir_template[] = "/tmp/viam_cpp_sdk_test_module_XXXXXX";
+    BOOST_REQUIRE(mkdtemp(dir_template));
+    const std::string dir(dir_template);
+    const std::string env_sock = dir + "/env.sock";
+    std::string arg_sock = dir + "/arg.sock";
+
+    const scope_exit cleanup([&] {
+        unsetenv("VIAM_MODULE_ADDRESS");
+        unsetenv("VIAM_NO_MODULE_PARENT");
+        unlink(env_sock.c_str());
+        rmdir(dir.c_str());
+    });
+
+    // Ready would otherwise try to dial a parent that this test does not stand up.
+    BOOST_REQUIRE_EQUAL(setenv("VIAM_NO_MODULE_PARENT", "true", 1), 0);
+    BOOST_REQUIRE_EQUAL(setenv("VIAM_MODULE_ADDRESS", env_sock.c_str(), 1), 0);
+
+    char exe[] = "module";
+    char* argv[] = {exe, arg_sock.data()};
+    ModuleService module(2, argv, {});
+    ServeThread serving(module);
+
+    const auto stub = connect_and_ready(env_sock);
+    BOOST_CHECK_NE(access(arg_sock.c_str(), F_OK), 0);
 }
 
 }  // namespace module
