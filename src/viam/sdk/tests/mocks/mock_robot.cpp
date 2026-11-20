@@ -222,8 +222,6 @@ std::vector<ResourceName> mock_proto_resource_names_response() {
 }
 
 KinematicModel fake_frame_model() {
-    KinematicModel model;
-    model.name = "fake-frame-model";
     KinematicLink base;
     base.id = "base";
     KinematicJoint joint;
@@ -235,10 +233,7 @@ KinematicModel fake_frame_model() {
     tip.id = "tip";
     tip.parent = "j";
     tip.pose.translation = Vector3{0, 0, 10};
-    model.links = {base, tip};
-    model.joints = {joint};
-    model.output_frames = {"tip"};
-    return model;
+    return KinematicModel("fake-frame-model", {base, tip}, {joint}, {"tip"});
 }
 
 std::vector<FrameSystem::frame_system_config> mock_config_response() {

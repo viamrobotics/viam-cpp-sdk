@@ -42,7 +42,11 @@ class GripperClient : public Gripper {
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
+    KinematicModel get_kinematic_model(const kinematics_options& options,
+                                       const ProtoStruct& extra) override;
+
     using Gripper::get_geometries;
+    using Gripper::get_kinematic_model;
     using Gripper::grab;
     using Gripper::is_holding_something;
     using Gripper::open;

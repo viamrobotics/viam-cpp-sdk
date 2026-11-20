@@ -1,14 +1,399 @@
 #include <viam/sdk/common/kinematics.hpp>
 
+#include <algorithm>
+#include <cmath>
+#include <limits>
+#include <map>
+#include <optional>
+#include <set>
+#include <sstream>
+#include <string>
+#include <utility>
+#include <variant>
+#include <vector>
+
 #include <boost/math/constants/constants.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/kinematic_model_validation.hpp>
+#include <viam/sdk/common/private/kinematics_response.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 
 namespace viam {
 namespace sdk {
+
+namespace {
+
+std::string in_quotes(const std::string& s) {
+    return "\"" + s + "\"";
+}
+
+// Prints a value with as few digits as still tell it apart from its neighbours, so a refusal
+// never shows a requested value and the limit it broke as the same number.
+std::string number(double value) {
+    std::string text;
+    for (int digits = 6; digits <= std::numeric_limits<double>::max_digits10; ++digits) {
+        std::ostringstream out;
+        out.precision(digits);
+        out << value;
+        text = out.str();
+        if (!std::isfinite(value) || std::stod(text) == value) {
+            break;
+        }
+    }
+    return text;
+}
+
+void check_requested(const std::string& id, const JointLimits& requested) {
+    const std::pair<const char*, const std::optional<double>*> fields[] = {
+        {"min", &requested.min},
+        {"max", &requested.max},
+        {"max_velocity", &requested.max_velocity},
+        {"max_acceleration", &requested.max_acceleration},
+    };
+    for (const auto& field : fields) {
+        // a field is left out to say a joint is unbounded, so infinity is never a value
+        if (*field.second && !std::isfinite(**field.second)) {
+            throw Exception("joint " + in_quotes(id) + ": " + field.first +
+                            " must be a finite number, got " + number(**field.second));
+        }
+    }
+    if (requested.max_velocity && *requested.max_velocity < 0) {
+        throw Exception("joint " + in_quotes(id) + ": max_velocity cannot be negative, got " +
+                        number(*requested.max_velocity));
+    }
+    if (requested.max_acceleration && *requested.max_acceleration < 0) {
+        throw Exception("joint " + in_quotes(id) + ": max_acceleration cannot be negative, got " +
+                        number(*requested.max_acceleration));
+    }
+}
+
+// Moves the bounds of one joint to the requested ones, refusing any that would widen what the
+// joint holds. A bound the joint does not have is unbounded, so any request narrows it.
+void narrow(const std::string& id,
+            const JointLimits& requested,
+            std::optional<double>& min,
+            std::optional<double>& max,
+            std::optional<double>& max_velocity,
+            std::optional<double>& max_acceleration) {
+    if (requested.min && min && *requested.min < *min) {
+        throw Exception("joint " + in_quotes(id) + ": min " + number(*requested.min) +
+                        " is below the model's min " + number(*min));
+    }
+    if (requested.max && max && *requested.max > *max) {
+        throw Exception("joint " + in_quotes(id) + ": max " + number(*requested.max) +
+                        " is above the model's max " + number(*max));
+    }
+    if (requested.max_velocity && max_velocity && *requested.max_velocity > *max_velocity) {
+        throw Exception("joint " + in_quotes(id) + ": max_velocity " +
+                        number(*requested.max_velocity) + " is above the model's " +
+                        number(*max_velocity));
+    }
+    if (requested.max_acceleration && max_acceleration &&
+        *requested.max_acceleration > *max_acceleration) {
+        throw Exception("joint " + in_quotes(id) + ": max_acceleration " +
+                        number(*requested.max_acceleration) + " is above the model's " +
+                        number(*max_acceleration));
+    }
+    if (requested.min) {
+        min = requested.min;
+    }
+    if (requested.max) {
+        max = requested.max;
+    }
+    if (requested.max_velocity) {
+        max_velocity = requested.max_velocity;
+    }
+    if (requested.max_acceleration) {
+        max_acceleration = requested.max_acceleration;
+    }
+    if (min && max && *min > *max) {
+        throw Exception("joint " + in_quotes(id) + ": min " + number(*min) + " is above max " +
+                        number(*max));
+    }
+}
+
+struct narrow_visitor {
+    const std::string& id;
+    const JointLimits& requested;
+
+    narrow_visitor(const std::string& joint_id, const JointLimits& joint_limits)
+        : id(joint_id), requested(joint_limits) {}
+
+    joint_spec operator()(RevoluteJoint joint) const {
+        narrow(id,
+               requested,
+               joint.min_deg,
+               joint.max_deg,
+               joint.max_velocity_deg_per_sec,
+               joint.max_acceleration_deg_per_sec2);
+        return joint;
+    }
+
+    joint_spec operator()(const ContinuousJoint& joint) const {
+        RevoluteJoint bounded{std::nullopt,
+                              std::nullopt,
+                              joint.max_velocity_deg_per_sec,
+                              joint.max_acceleration_deg_per_sec2};
+        narrow(id,
+               requested,
+               bounded.min_deg,
+               bounded.max_deg,
+               bounded.max_velocity_deg_per_sec,
+               bounded.max_acceleration_deg_per_sec2);
+        // the joint stays continuous unless the request gave it a position bound
+        if (bounded.min_deg || bounded.max_deg) {
+            return bounded;
+        }
+        return ContinuousJoint{bounded.max_velocity_deg_per_sec,
+                               bounded.max_acceleration_deg_per_sec2};
+    }
+
+    joint_spec operator()(PrismaticJoint joint) const {
+        narrow(id,
+               requested,
+               joint.min_mm,
+               joint.max_mm,
+               joint.max_velocity_mm_per_sec,
+               joint.max_acceleration_mm_per_sec2);
+        return joint;
+    }
+};
+
+}  // namespace
+
+namespace impl {
+
+void validate_kinematic_model_nodes(const std::vector<kinematic_model_node>& nodes) {
+    static const char* const k_world = "world";
+
+    std::map<std::string, std::string> kinds;
+    std::map<std::string, std::string> parents;
+    for (const auto& n : nodes) {
+        if (n.id.empty()) {
+            throw Exception(std::string("a ") + n.kind + " has no id");
+        }
+        if (n.id == k_world) {
+            throw Exception(std::string("a ") + n.kind + " cannot be named " + in_quotes(k_world) +
+                            ", which is a reserved id");
+        }
+        const auto existing = kinds.find(n.id);
+        if (existing != kinds.end()) {
+            if (existing->second == n.kind) {
+                throw Exception(std::string(n.kind) + " " + in_quotes(n.id) + " is defined twice");
+            }
+            throw Exception(in_quotes(n.id) + " names both a " + existing->second + " and a " +
+                            n.kind);
+        }
+        kinds[n.id] = n.kind;
+        parents[n.id] = n.parent;
+    }
+
+    for (const auto& n : nodes) {
+        if (n.parent.empty() || n.parent == k_world) {
+            continue;
+        }
+        if (kinds.find(n.parent) == kinds.end()) {
+            throw Exception(std::string(n.kind) + " " + in_quotes(n.id) + ": parent " +
+                            in_quotes(n.parent) + " is not a link or joint in the model");
+        }
+    }
+
+    for (const auto& n : nodes) {
+        std::set<std::string> seen;
+        for (std::string cur = n.id; !cur.empty() && cur != k_world; cur = parents[cur]) {
+            if (!seen.insert(cur).second) {
+                throw Exception(kinds[cur] + " " + in_quotes(cur) + " is its own ancestor");
+            }
+        }
+    }
+
+    for (const auto& n : nodes) {
+        if (!n.mimics) {
+            continue;
+        }
+        if (*n.mimics == n.id) {
+            throw Exception("joint " + in_quotes(n.id) + " mimics itself");
+        }
+        const auto kind = kinds.find(*n.mimics);
+        if (kind == kinds.end() || kind->second != "joint") {
+            throw Exception("joint " + in_quotes(n.id) + " mimics " + in_quotes(*n.mimics) +
+                            ", which is not a joint in the model");
+        }
+        // a mimic joint follows the joint it mimics, so limits written on it would be dropped
+        // without a word
+        if (n.has_limits) {
+            throw Exception("joint " + in_quotes(n.id) +
+                            " is a mimic joint and cannot carry limits of its own");
+        }
+    }
+}
+
+// The one way around the checks in the public constructor, for a model that came over the wire.
+// A client has to be able to hold whatever a server sent it.
+struct kinematic_model_access {
+    static KinematicModel unchecked(std::string name,
+                                    std::vector<KinematicLink> links,
+                                    std::vector<KinematicJoint> joints,
+                                    std::vector<std::string> output_frames,
+                                    std::optional<KinematicProperties> properties) {
+        KinematicModel model;
+        model.name_ = std::move(name);
+        model.links_ = std::move(links);
+        model.joints_ = std::move(joints);
+        model.output_frames_ = std::move(output_frames);
+        model.properties_ = std::move(properties);
+        return model;
+    }
+};
+
+}  // namespace impl
+
+namespace {
+
+bool has_limits(const joint_spec& spec) {
+    struct visitor {
+        bool operator()(const RevoluteJoint& j) const {
+            return j.min_deg || j.max_deg || j.max_velocity_deg_per_sec ||
+                   j.max_acceleration_deg_per_sec2;
+        }
+        bool operator()(const PrismaticJoint& j) const {
+            return j.min_mm || j.max_mm || j.max_velocity_mm_per_sec ||
+                   j.max_acceleration_mm_per_sec2;
+        }
+        bool operator()(const ContinuousJoint& j) const {
+            return j.max_velocity_deg_per_sec || j.max_acceleration_deg_per_sec2;
+        }
+    };
+    return std::visit(visitor{}, spec);
+}
+
+}  // namespace
+
+KinematicModel::KinematicModel(std::string name,
+                               std::vector<KinematicLink> links,
+                               std::vector<KinematicJoint> joints,
+                               std::vector<std::string> output_frames,
+                               std::optional<KinematicProperties> properties)
+    : name_(std::move(name)),
+      links_(std::move(links)),
+      joints_(std::move(joints)),
+      output_frames_(std::move(output_frames)),
+      properties_(std::move(properties)) {
+    std::vector<impl::kinematic_model_node> nodes;
+    nodes.reserve(links_.size() + joints_.size());
+    for (const auto& link : links_) {
+        nodes.push_back({"link", link.id, link.parent, std::nullopt, false});
+    }
+    for (const auto& joint : joints_) {
+        nodes.push_back(
+            {"joint",
+             joint.id,
+             joint.parent,
+             joint.mimic ? std::optional<std::string>(joint.mimic->joint) : std::nullopt,
+             has_limits(joint.spec)});
+    }
+    impl::validate_kinematic_model_nodes(nodes);
+}
+
+const std::string& KinematicModel::name() const {
+    return name_;
+}
+
+void KinematicModel::set_name(std::string name) {
+    name_ = std::move(name);
+}
+
+const std::vector<KinematicLink>& KinematicModel::links() const {
+    return links_;
+}
+
+const std::vector<KinematicJoint>& KinematicModel::joints() const {
+    return joints_;
+}
+
+const std::vector<std::string>& KinematicModel::output_frames() const {
+    return output_frames_;
+}
+
+const std::optional<KinematicProperties>& KinematicModel::properties() const {
+    return properties_;
+}
+
+void KinematicModel::narrow_joint_limits(const std::map<std::string, JointLimits>& limits) {
+    // we narrow a copy and move it in at the end, so an error on a later joint leaves the model
+    // as it was. The map is ordered, so the joint an error names does not change between runs.
+    std::vector<KinematicJoint> narrowed = joints_;
+    for (const auto& entry : limits) {
+        const std::string& id = entry.first;
+        const JointLimits& requested = entry.second;
+        check_requested(id, requested);
+        const auto joint = std::find_if(
+            narrowed.begin(), narrowed.end(), [&](const KinematicJoint& j) { return j.id == id; });
+        if (joint == narrowed.end()) {
+            throw Exception("no joint " + in_quotes(id) + " in model " + in_quotes(name_));
+        }
+        if (joint->mimic) {
+            throw Exception("joint " + in_quotes(id) +
+                            " is a mimic joint and cannot carry limits of its own");
+        }
+        joint->spec = std::visit(narrow_visitor{id, requested}, joint->spec);
+    }
+    joints_ = std::move(narrowed);
+}
+
+namespace {
+
+// a geometry cannot be changed in place, so one that holds a mesh is rebuilt around a copy of
+// the mesh without its bytes
+void drop_mesh_bytes(GeometryConfig& geometry) {
+    const mesh* const held = std::get_if<mesh>(&geometry.get_geometry_specifics());
+    if (!held || held->data.empty()) {
+        return;
+    }
+    mesh stripped = *held;
+    stripped.data.clear();
+    geometry = GeometryConfig(
+        geometry.get_pose(), std::move(stripped), geometry.get_orientation(), geometry.get_label());
+}
+
+}  // namespace
+
+void KinematicModel::drop_unrequested_mesh_bytes(const kinematics_options& options) {
+    if (!options.include_collision_meshes && !options.include_visual_meshes) {
+        return;
+    }
+    for (auto& link : links_) {
+        if (!options.include_collision_meshes) {
+            std::for_each(link.collision.begin(), link.collision.end(), drop_mesh_bytes);
+        }
+        if (!options.include_visual_meshes) {
+            std::for_each(link.visual.begin(), link.visual.end(), drop_mesh_bytes);
+        }
+    }
+    if (options.include_collision_meshes) {
+        return;
+    }
+    for (auto& joint : joints_) {
+        auto* const prismatic = std::get_if<PrismaticJoint>(&joint.spec);
+        if (prismatic && prismatic->geometry) {
+            drop_mesh_bytes(*prismatic->geometry);
+        }
+    }
+}
+
+namespace impl {
+
+void set_response_model(const KinematicModel& model,
+                        const std::string& resource_name,
+                        common::v1::GetKinematicsResponse* response) {
+    *response->mutable_model() = to_proto(model);
+    response->mutable_model()->set_name(resource_name);
+}
+
+}  // namespace impl
 
 namespace proto_convert_details {
 
@@ -269,28 +654,28 @@ KinematicJoint from_proto_impl<common::v1::KinematicJoint>::operator()(
 
 void to_proto_impl<KinematicModel>::operator()(const KinematicModel& self,
                                                common::v1::KinematicModel* proto) const {
-    proto->set_name(self.name);
-    *proto->mutable_links() = impl::to_repeated_field(self.links);
-    *proto->mutable_joints() = impl::to_repeated_field(self.joints);
-    for (const auto& frame : self.output_frames) {
+    proto->set_name(self.name());
+    *proto->mutable_links() = impl::to_repeated_field(self.links());
+    *proto->mutable_joints() = impl::to_repeated_field(self.joints());
+    for (const auto& frame : self.output_frames()) {
         proto->add_output_frames(frame);
     }
-    if (self.properties) {
-        *proto->mutable_properties() = to_proto(*self.properties);
+    const auto& properties = self.properties();
+    if (properties) {
+        *proto->mutable_properties() = to_proto(*properties);
     }
 }
 
 KinematicModel from_proto_impl<common::v1::KinematicModel>::operator()(
     const common::v1::KinematicModel* proto) const {
-    KinematicModel result;
-    result.name = proto->name();
-    result.links = impl::from_repeated_field(proto->links());
-    result.joints = impl::from_repeated_field(proto->joints());
-    result.output_frames.assign(proto->output_frames().begin(), proto->output_frames().end());
-    if (proto->has_properties()) {
-        result.properties = from_proto(proto->properties());
-    }
-    return result;
+    return impl::kinematic_model_access::unchecked(
+        proto->name(),
+        impl::from_repeated_field(proto->links()),
+        impl::from_repeated_field(proto->joints()),
+        {proto->output_frames().begin(), proto->output_frames().end()},
+        proto->has_properties()
+            ? std::optional<KinematicProperties>(from_proto(proto->properties()))
+            : std::nullopt);
 }
 
 // The raw-bytes response fields and the KinematicsData variant are deprecated, but remain the

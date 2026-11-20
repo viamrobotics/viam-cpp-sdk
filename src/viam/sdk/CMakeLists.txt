@@ -62,6 +62,7 @@ target_sources(viamsdk
     common/client_helper.cpp
     common/exception.cpp
     common/instance.cpp
+    common/kinematic_model_file.cpp
     common/kinematics.cpp
     common/linear_algebra.cpp
     common/mesh.cpp

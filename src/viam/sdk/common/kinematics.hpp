@@ -3,6 +3,7 @@
 /// @brief Kinematics data types shared by the components that serve `GetKinematics`.
 #pragma once
 
+#include <filesystem>
 #include <map>
 #include <optional>
 #include <string>
@@ -149,21 +150,104 @@ struct KinematicJoint {
     friend bool operator==(const KinematicJoint&, const KinematicJoint&) = default;
 };
 
+/// @brief A partial update to one joint's limits, in the units the model holds them in: degrees
+/// for a revolute joint, mm for a prismatic one, per second and per second squared for the
+/// speeds. A field left out leaves that limit as it is.
+struct JointLimits {
+    std::optional<double> min;
+    std::optional<double> max;
+    std::optional<double> max_velocity;
+    std::optional<double> max_acceleration;
+};
+
+namespace impl {
+struct kinematic_model_access;
+}  // namespace impl
+
 /// @brief A component's kinematics as a tree of links and joints. Its proto JSON encoding is
 /// also the on-disk kinematics file format.
-struct KinematicModel {
-    /// @brief Set to the resource name by the SDK when served.
-    std::string name;
+///
+/// A model built here or read from a file is checked to hold together as a tree, so a component
+/// cannot serve one viam-server would misread. A model received from a server is taken as it
+/// comes.
+class KinematicModel {
+   public:
+    /// @brief A model with no links or joints.
+    KinematicModel() = default;
 
-    std::vector<KinematicLink> links;
-    std::vector<KinematicJoint> joints;
+    /// @brief Build a model from its links and joints.
+    /// @param name Replaced with the resource name by the SDK when the model is served.
+    /// @param output_frames Frames whose poses the model reports.
+    /// @throws Exception naming the link or joint at fault, for an id that is empty, "world" or
+    /// used twice, a parent that is not in the model, a link or joint that is its own ancestor,
+    /// or a mimic joint that mimics itself, mimics something that is not a joint or carries
+    /// limits of its own.
+    KinematicModel(std::string name,
+                   std::vector<KinematicLink> links,
+                   std::vector<KinematicJoint> joints,
+                   std::vector<std::string> output_frames = {},
+                   std::optional<KinematicProperties> properties = std::nullopt);
+
+    /// @brief Read a kinematic model file, which is the proto JSON of a KinematicModel.
+    ///
+    /// The parse is strict, so a field the message does not have, a number that is not finite, a
+    /// parent that is not in the model, a cycle or a mimic of something that is not a joint all
+    /// fail the read. A mesh that names a path and carries no bytes is read from that path,
+    /// relative to the model file, and comes back with its bytes, the content type taken from the
+    /// extension and the path as it was written. A mesh that already carries bytes is left alone.
+    ///
+    /// The name on the model is the one in the file. A component server replaces it with the
+    /// resource name when the model is served.
+    ///
+    /// @throws Exception naming the file and the link, joint or mesh at fault.
+    static KinematicModel from_file(const std::filesystem::path& path);
+
+    const std::string& name() const;
+    void set_name(std::string name);
+
+    const std::vector<KinematicLink>& links() const;
+    const std::vector<KinematicJoint>& joints() const;
 
     /// @brief Frames whose poses the model reports.
-    std::vector<std::string> output_frames;
+    const std::vector<std::string>& output_frames() const;
 
-    std::optional<KinematicProperties> properties;
+    const std::optional<KinematicProperties>& properties() const;
+
+    /// @brief Narrow the limits the model serves to what a resource's configuration asks of each
+    /// joint.
+    ///
+    /// Position, velocity and acceleration are checked on their own, and each value has to sit
+    /// inside what the model already holds, since a widened limit is the one that reaches
+    /// hardware. A bound the model does not have accepts any value. A min equal to max locks a
+    /// joint where it stands. A continuous joint given a min or a max becomes a revolute joint
+    /// with that bound. A mimic joint follows the joint it mimics and cannot be narrowed.
+    ///
+    /// @param limits The requested limits, keyed by joint id.
+    /// @throws Exception naming the joint, for a joint that is not in the model, a mimic joint, a
+    /// value that is not finite, a negative speed, a value that would widen a limit, or a min
+    /// that ends up above the max. The model is left untouched when this throws.
+    void narrow_joint_limits(const std::map<std::string, JointLimits>& limits);
+
+    /// @brief Clear the mesh bytes a GetKinematics request did not ask for, for a component that
+    /// holds its model with every mesh loaded, as from_file returns it.
+    ///
+    /// With either flag set, a mesh of the role that was not asked for keeps its path and content
+    /// type and loses its bytes. The geometry of a prismatic joint counts as a collision mesh.
+    /// With neither flag set the model is left whole, since such a request may come from a
+    /// viam-server that predates the flags and expects every mesh with its bytes.
+    void drop_unrequested_mesh_bytes(const kinematics_options& options);
 
     friend bool operator==(const KinematicModel&, const KinematicModel&) = default;
+
+   private:
+    // builds a model received over the wire, which skips the checks
+    friend struct impl::kinematic_model_access;
+
+    std::string name_;
+    std::vector<KinematicLink> links_;
+    std::vector<KinematicJoint> joints_;
+    std::vector<std::string> output_frames_;
+    std::optional<KinematicProperties> properties_;
 };
 
 // Base class for use below in defining kinematics data strong typedefs
