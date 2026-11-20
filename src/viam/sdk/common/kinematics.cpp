@@ -160,18 +160,18 @@ struct narrow_visitor {
 
 }  // namespace
 
-void narrow_joint_limits(KinematicModel& model, const std::map<std::string, JointLimits>& limits) {
+void KinematicModel::narrow_joint_limits(const std::map<std::string, JointLimits>& limits) {
     // we narrow a copy and move it in at the end, so an error on a later joint leaves the model
     // as it was. The map is ordered, so the joint an error names does not change between runs.
-    std::vector<KinematicJoint> joints = model.joints;
+    std::vector<KinematicJoint> narrowed = joints;
     for (const auto& entry : limits) {
         const std::string& id = entry.first;
         const JointLimits& requested = entry.second;
         check_requested(id, requested);
         const auto joint = std::find_if(
-            joints.begin(), joints.end(), [&](const KinematicJoint& j) { return j.id == id; });
-        if (joint == joints.end()) {
-            throw Exception("no joint " + in_quotes(id) + " in model " + in_quotes(model.name));
+            narrowed.begin(), narrowed.end(), [&](const KinematicJoint& j) { return j.id == id; });
+        if (joint == narrowed.end()) {
+            throw Exception("no joint " + in_quotes(id) + " in model " + in_quotes(name));
         }
         if (joint->mimic) {
             throw Exception("joint " + in_quotes(id) +
@@ -179,7 +179,7 @@ void narrow_joint_limits(KinematicModel& model, const std::map<std::string, Join
         }
         joint->spec = std::visit(narrow_visitor{id, requested}, joint->spec);
     }
-    model.joints = std::move(joints);
+    joints = std::move(narrowed);
 }
 
 namespace {
@@ -199,11 +199,11 @@ void drop_mesh_bytes(GeometryConfig& geometry) {
 
 }  // namespace
 
-void drop_unrequested_mesh_bytes(KinematicModel& model, const kinematics_options& options) {
+void KinematicModel::drop_unrequested_mesh_bytes(const kinematics_options& options) {
     if (!options.include_collision_meshes && !options.include_visual_meshes) {
         return;
     }
-    for (auto& link : model.links) {
+    for (auto& link : links) {
         if (!options.include_collision_meshes) {
             std::for_each(link.collision.begin(), link.collision.end(), drop_mesh_bytes);
         }
@@ -214,7 +214,7 @@ void drop_unrequested_mesh_bytes(KinematicModel& model, const kinematics_options
     if (options.include_collision_meshes) {
         return;
     }
-    for (auto& joint : model.joints) {
+    for (auto& joint : joints) {
         auto* const prismatic = std::get_if<PrismaticJoint>(&joint.spec);
         if (prismatic && prismatic->geometry) {
             drop_mesh_bytes(*prismatic->geometry);

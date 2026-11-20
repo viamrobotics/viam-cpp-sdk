@@ -1,3 +1,0 @@
-{"name": "m", "links": [{"id": "base", "parent": "world"}], "joints": [
- {"id": "j", "parent": "base", "type": "JOINT_TYPE_REVOLUTE", "axis": {"z": 1}},
- {"id": "j2", "parent": "base", "type": "JOINT_TYPE_REVOLUTE", "axis": {"z": 1}, "mimic": {"joint": "j"}, "limits": {"max": 10}}]}

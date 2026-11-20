@@ -101,19 +101,62 @@ target_compile_definitions(test_kinematics_model_table
     VIAMCPPSDK_TEST_TESTFILES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/testfiles"
 )
 
-# The fixture cases are a copy of rdk's referenceframe/testfiles/kinematic_models. The test gets
-# the list of case directories from here, since C++14 has no portable way to walk a directory.
-file(GLOB VIAMCPPSDK_KINEMATIC_MODEL_CASES
-  LIST_DIRECTORIES true
-  RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/testfiles/kinematic_models"
-  CONFIGURE_DEPENDS
-  "${CMAKE_CURRENT_SOURCE_DIR}/testfiles/kinematic_models/*/model.json"
-)
-list(TRANSFORM VIAMCPPSDK_KINEMATIC_MODEL_CASES REPLACE "/model.json$" "")
-list(JOIN VIAMCPPSDK_KINEMATIC_MODEL_CASES "," VIAMCPPSDK_KINEMATIC_MODEL_CASES_JOINED)
+# The kinematic model loader is held to rdk's fixtures, which every SDK's loader has to agree on.
+# We fetch that one directory at a pinned commit rather than keep a copy of it here. A build with
+# no network can point VIAMCPPSDK_KINEMATIC_MODEL_FIXTURES_DIR at the directory in an rdk checkout.
+set(VIAMCPPSDK_RDK_FIXTURES_COMMIT cefbb70808035ab976bb4df5e8184da400865ff5)
+set(VIAMCPPSDK_RDK_FIXTURES_PATH referenceframe/testfiles/kinematic_models)
+set(VIAMCPPSDK_KINEMATIC_MODEL_FIXTURES_DIR "" CACHE PATH
+  "Directory of rdk's kinematic model fixtures. Fetched from rdk when empty.")
+
+if (VIAMCPPSDK_KINEMATIC_MODEL_FIXTURES_DIR)
+  set(VIAMCPPSDK_KINEMATIC_MODELS_DIR "${VIAMCPPSDK_KINEMATIC_MODEL_FIXTURES_DIR}")
+else()
+  set(VIAMCPPSDK_RDK_FIXTURES_CHECKOUT
+    "${CMAKE_CURRENT_BINARY_DIR}/rdk_fixtures/${VIAMCPPSDK_RDK_FIXTURES_COMMIT}")
+  set(VIAMCPPSDK_KINEMATIC_MODELS_DIR
+    "${VIAMCPPSDK_RDK_FIXTURES_CHECKOUT}/${VIAMCPPSDK_RDK_FIXTURES_PATH}")
+  # the stamp is written last, so a fetch that was cut short is started over
+  if (NOT EXISTS "${VIAMCPPSDK_RDK_FIXTURES_CHECKOUT}/fetched")
+    find_package(Git QUIET)
+    set(VIAMCPPSDK_GIT_RESULT "git was not found")
+    file(REMOVE_RECURSE "${VIAMCPPSDK_RDK_FIXTURES_CHECKOUT}")
+    file(MAKE_DIRECTORY "${VIAMCPPSDK_RDK_FIXTURES_CHECKOUT}")
+    message(STATUS "Fetching kinematic model fixtures from rdk at ${VIAMCPPSDK_RDK_FIXTURES_COMMIT}")
+    # rdk is large, so we fetch the one commit without its files and let the checkout of the
+    # fixture directory pull only the files under it. Line ending conversion is off because the
+    # expected files hold the mesh bytes exactly as they are in rdk.
+    foreach(VIAMCPPSDK_GIT_ARGS IN ITEMS
+        "init;-q"
+        "remote;add;origin;https://github.com/viamrobotics/rdk.git"
+        "-c;core.autocrlf=false;fetch;-q;--depth;1;--filter=blob:none;origin;${VIAMCPPSDK_RDK_FIXTURES_COMMIT}"
+        "-c;core.autocrlf=false;checkout;-q;FETCH_HEAD;--;${VIAMCPPSDK_RDK_FIXTURES_PATH}")
+      if (NOT GIT_FOUND)
+        break()
+      endif()
+      execute_process(
+        COMMAND "${GIT_EXECUTABLE}" ${VIAMCPPSDK_GIT_ARGS}
+        WORKING_DIRECTORY "${VIAMCPPSDK_RDK_FIXTURES_CHECKOUT}"
+        RESULT_VARIABLE VIAMCPPSDK_GIT_RESULT
+      )
+      if (NOT VIAMCPPSDK_GIT_RESULT EQUAL 0)
+        break()
+      endif()
+    endforeach()
+    if (VIAMCPPSDK_GIT_RESULT EQUAL 0)
+      file(WRITE "${VIAMCPPSDK_RDK_FIXTURES_CHECKOUT}/fetched" "")
+    else()
+      # tests are on by default, so a failed fetch must not stop someone with no network from
+      # building the SDK. The fixture test fails instead, and says why.
+      message(WARNING
+        "Failed to fetch the kinematic model fixtures from rdk, so test_kinematic_model will "
+        "fail. Set VIAMCPPSDK_KINEMATIC_MODEL_FIXTURES_DIR to ${VIAMCPPSDK_RDK_FIXTURES_PATH} "
+        "in an rdk checkout to run it without the network.")
+    endif()
+  endif()
+endif()
 
 target_compile_definitions(test_kinematic_model
   PRIVATE
-    VIAMCPPSDK_TEST_KINEMATIC_MODELS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/testfiles/kinematic_models"
-    VIAMCPPSDK_TEST_KINEMATIC_MODEL_CASES="${VIAMCPPSDK_KINEMATIC_MODEL_CASES_JOINED}"
+    VIAMCPPSDK_TEST_KINEMATIC_MODELS_DIR="${VIAMCPPSDK_KINEMATIC_MODELS_DIR}"
 )

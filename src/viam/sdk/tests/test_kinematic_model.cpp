@@ -1,6 +1,8 @@
 #define BOOST_TEST_MODULE test module test_kinematic_model
 
+#include <algorithm>
 #include <cmath>
+#include <filesystem>
 #include <fstream>
 #include <limits>
 #include <map>
@@ -19,7 +21,7 @@
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/kinematic_model_file.hpp>
+#include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/private/kinematic_model_file.hpp>
 #include <viam/sdk/common/private/kinematics_response.hpp>
 
@@ -30,21 +32,22 @@ using namespace viam::sdk;
 
 namespace {
 
-const std::string k_fixture_dir = VIAMCPPSDK_TEST_KINEMATIC_MODELS_DIR;
+// cmake fetches rdk's referenceframe/testfiles/kinematic_models here at configure time
+const std::filesystem::path k_fixture_dir = VIAMCPPSDK_TEST_KINEMATIC_MODELS_DIR;
 
-// the case directories, listed by cmake since c++14 has no way to walk a directory
-std::vector<std::string> fixture_cases() {
-    std::vector<std::string> cases;
-    std::istringstream names(VIAMCPPSDK_TEST_KINEMATIC_MODEL_CASES);
-    for (std::string name; std::getline(names, name, ',');) {
-        if (!name.empty()) {
-            cases.push_back(name);
+// every case is a directory holding a model.json, sorted so a run reads the same each time
+std::vector<std::filesystem::path> fixture_cases() {
+    std::vector<std::filesystem::path> cases;
+    for (const auto& entry : std::filesystem::directory_iterator(k_fixture_dir)) {
+        if (std::filesystem::exists(entry.path() / "model.json")) {
+            cases.push_back(entry.path());
         }
     }
+    std::sort(cases.begin(), cases.end());
     return cases;
 }
 
-bool read_file(const std::string& path, std::string* out) {
+bool read_file(const std::filesystem::path& path, std::string* out) {
     std::ifstream file(path, std::ios::binary);
     if (!file) {
         return false;
@@ -87,7 +90,7 @@ const std::map<std::string, std::string>& error_wording() {
     return wording;
 }
 
-void check_error_case(const std::string& model_path, const std::string& error_json) {
+void check_error_case(const std::filesystem::path& model_path, const std::string& error_json) {
     google::protobuf::Struct want;
     BOOST_REQUIRE(google::protobuf::util::JsonStringToMessage(error_json, &want).ok());
     const std::string kind = want.fields().at("kind").string_value();
@@ -112,10 +115,11 @@ void check_error_case(const std::string& model_path, const std::string& error_js
     }
 
     // the public entry point refuses it the same way
-    BOOST_CHECK_THROW(read_kinematic_model_file(model_path), Exception);
+    BOOST_CHECK_THROW(KinematicModel::from_file(model_path), Exception);
 }
 
-void check_expected_case(const std::string& model_path, const std::string& expected_json) {
+void check_expected_case(const std::filesystem::path& model_path,
+                         const std::string& expected_json) {
     common::v1::KinematicModel expected;
     const auto status = google::protobuf::util::JsonStringToMessage(expected_json, &expected);
     BOOST_REQUIRE_MESSAGE(status.ok(), status.ToString());
@@ -128,7 +132,7 @@ void check_expected_case(const std::string& model_path, const std::string& expec
 
     // What a module holds is the sdk type, so going through it must not lose anything a second
     // trip would notice, and it has to keep every link, joint and mesh byte of the message.
-    const KinematicModel model = read_kinematic_model_file(model_path);
+    const KinematicModel model = KinematicModel::from_file(model_path);
     BOOST_CHECK(model == from_proto(to_proto(model)));
     BOOST_CHECK_EQUAL(model.name, expected.name());
     BOOST_REQUIRE_EQUAL(model.links.size(), static_cast<std::size_t>(expected.links_size()));
@@ -157,20 +161,22 @@ void check_expected_case(const std::string& model_path, const std::string& expec
 
 BOOST_AUTO_TEST_SUITE(test_kinematic_model_file)
 
-// The fixtures are a copy of rdk's referenceframe/testfiles/kinematic_models, the contract every
-// sdk's loader is held to. A case with an expected.json has to load into exactly that message,
-// mesh bytes and all, and a case with an error.json has to be refused for the reason it names.
+// The fixtures are rdk's referenceframe/testfiles/kinematic_models, the contract every sdk's
+// loader is held to. A case with an expected.json has to load into exactly that message, mesh
+// bytes and all, and a case with an error.json has to be refused for the reason it names.
 BOOST_AUTO_TEST_CASE(fixtures) {
-    const std::vector<std::string> cases = fixture_cases();
+    BOOST_REQUIRE_MESSAGE(
+        std::filesystem::is_directory(k_fixture_dir),
+        "the fixtures were not fetched at configure time, looked in " << k_fixture_dir);
+    const std::vector<std::filesystem::path> cases = fixture_cases();
     BOOST_REQUIRE_GT(cases.size(), 20U);
-    for (const auto& name : cases) {
-        BOOST_TEST_CONTEXT(name) {
-            const std::string dir = k_fixture_dir + "/" + name;
-            const std::string model_path = dir + "/model.json";
+    for (const auto& dir : cases) {
+        BOOST_TEST_CONTEXT(dir.filename().string()) {
+            const std::filesystem::path model_path = dir / "model.json";
             std::string contents;
-            if (read_file(dir + "/error.json", &contents)) {
+            if (read_file(dir / "error.json", &contents)) {
                 check_error_case(model_path, contents);
-            } else if (read_file(dir + "/expected.json", &contents)) {
+            } else if (read_file(dir / "expected.json", &contents)) {
                 check_expected_case(model_path, contents);
             } else {
                 BOOST_ERROR("case has neither expected.json nor error.json");
@@ -180,7 +186,7 @@ BOOST_AUTO_TEST_CASE(fixtures) {
 }
 
 BOOST_AUTO_TEST_CASE(missing_file) {
-    BOOST_CHECK_THROW(read_kinematic_model_file(k_fixture_dir + "/no_such_case/model.json"),
+    BOOST_CHECK_THROW(KinematicModel::from_file(k_fixture_dir / "no_such_case" / "model.json"),
                       Exception);
 }
 
@@ -243,7 +249,7 @@ JointLimits make_limits(std::optional<double> min,
 void check_refused(const std::map<std::string, JointLimits>& limits, const std::string& mention) {
     KinematicModel model = limits_model();
     try {
-        narrow_joint_limits(model, limits);
+        model.narrow_joint_limits(limits);
         BOOST_ERROR("narrow_joint_limits accepted limits it has to refuse");
     } catch (const Exception& xcp) {
         const std::string message = xcp.what();
@@ -259,9 +265,8 @@ BOOST_AUTO_TEST_SUITE(test_narrow_joint_limits)
 
 BOOST_AUTO_TEST_CASE(narrows_each_limit_on_its_own) {
     KinematicModel model = limits_model();
-    narrow_joint_limits(model,
-                        {{"shoulder", make_limits(-31.0, std::nullopt, 30.0, std::nullopt)},
-                         {"rail", make_limits(std::nullopt, 250.0, 100.0, 50.0)}});
+    model.narrow_joint_limits({{"shoulder", make_limits(-31.0, std::nullopt, 30.0, std::nullopt)},
+                               {"rail", make_limits(std::nullopt, 250.0, 100.0, 50.0)}});
 
     BOOST_CHECK(model.joints[0].spec == joint_spec(RevoluteJoint{-31.0, 180.0, 30.0, 400.0}));
     // the rail had no speed bounds, so any value narrows it
@@ -272,29 +277,29 @@ BOOST_AUTO_TEST_CASE(narrows_each_limit_on_its_own) {
 
 BOOST_AUTO_TEST_CASE(equal_bounds_and_locked_joint) {
     KinematicModel model = limits_model();
-    narrow_joint_limits(model, {{"shoulder", make_limits(-180.0, 180.0, 90.0, 400.0)}});
+    model.narrow_joint_limits({{"shoulder", make_limits(-180.0, 180.0, 90.0, 400.0)}});
     BOOST_CHECK(model == limits_model());
 
-    narrow_joint_limits(model, {{"shoulder", make_limits(45.0, 45.0, std::nullopt, std::nullopt)}});
+    model.narrow_joint_limits({{"shoulder", make_limits(45.0, 45.0, std::nullopt, std::nullopt)}});
     BOOST_CHECK(model.joints[0].spec == joint_spec(RevoluteJoint{45.0, 45.0, 90.0, 400.0}));
 }
 
 BOOST_AUTO_TEST_CASE(continuous_joint) {
     KinematicModel model = limits_model();
-    narrow_joint_limits(model, {{"wrist", make_limits(std::nullopt, std::nullopt, 90.0, 300.0)}});
+    model.narrow_joint_limits({{"wrist", make_limits(std::nullopt, std::nullopt, 90.0, 300.0)}});
     BOOST_CHECK(model.joints[2].spec == joint_spec(ContinuousJoint{90.0, 300.0}));
 
     // a position bound is what makes it a revolute joint
-    narrow_joint_limits(model,
-                        {{"wrist", make_limits(-90.0, std::nullopt, std::nullopt, std::nullopt)}});
+    model.narrow_joint_limits(
+        {{"wrist", make_limits(-90.0, std::nullopt, std::nullopt, std::nullopt)}});
     BOOST_CHECK(model.joints[2].spec ==
                 joint_spec(RevoluteJoint{-90.0, std::nullopt, 90.0, 300.0}));
 }
 
 BOOST_AUTO_TEST_CASE(nothing_requested_changes_nothing) {
     KinematicModel model = limits_model();
-    narrow_joint_limits(model, {});
-    narrow_joint_limits(model, {{"shoulder", JointLimits{}}});
+    model.narrow_joint_limits({});
+    model.narrow_joint_limits({{"shoulder", JointLimits{}}});
     BOOST_CHECK(model == limits_model());
 }
 
@@ -367,7 +372,7 @@ KinematicModel dropped(bool collision, bool visual) {
     spec.geometry = GeometryConfig(pose{}, mesh{"ply", {6}, std::string("r.ply")}, "r");
     rail.spec = spec;
     model.joints = {rail};
-    drop_unrequested_mesh_bytes(model, kinematics_options{collision, visual});
+    model.drop_unrequested_mesh_bytes(kinematics_options{collision, visual});
     return model;
 }
 

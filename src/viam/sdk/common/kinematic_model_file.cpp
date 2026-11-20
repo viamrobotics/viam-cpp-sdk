@@ -1,9 +1,10 @@
-#include <viam/sdk/common/kinematic_model_file.hpp>
+#include <viam/sdk/common/private/kinematic_model_file.hpp>
 
 #include <algorithm>
 #include <cctype>
 #include <cmath>
 #include <cstddef>
+#include <filesystem>
 #include <fstream>
 #include <map>
 #include <set>
@@ -18,7 +19,7 @@
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/private/kinematic_model_file.hpp>
+#include <viam/sdk/common/kinematics.hpp>
 
 namespace viam {
 namespace sdk {
@@ -42,7 +43,7 @@ std::string to_lower(std::string s) {
     return s;
 }
 
-bool read_file(const std::string& path, std::string* out) {
+bool read_file(const std::filesystem::path& path, std::string* out) {
     std::ifstream file(path, std::ios::binary);
     if (!file) {
         return false;
@@ -62,25 +63,10 @@ bool read_file(const std::string& path, std::string* out) {
     return true;
 }
 
-// the directory part of a path, empty when the file sits in the working directory
-std::string directory_of(const std::string& path) {
-    const auto slash = path.find_last_of("/\\");
-    if (slash == std::string::npos) {
-        return {};
-    }
-    // a file in the root directory keeps the slash, or its meshes would be looked for in the
-    // working directory
-    return path.substr(0, slash == 0 ? 1 : slash);
-}
-
-// the extension of the last element of a forward slash path, lowercased and without the dot
+// the extension of a mesh path, lowercased and without the dot
 std::string extension_of(const std::string& source) {
-    const auto slash = source.find_last_of('/');
-    const auto dot = source.find_last_of('.');
-    if (dot == std::string::npos || (slash != std::string::npos && dot < slash)) {
-        return {};
-    }
-    return to_lower(source.substr(dot + 1));
+    const std::string extension = std::filesystem::path(source).extension().string();
+    return to_lower(extension.empty() ? extension : extension.substr(1));
 }
 
 void check_finite_value(double value, const std::string& name) {
@@ -237,7 +223,7 @@ void check_mesh_path(const std::string& source) {
 
 class mesh_loader {
    public:
-    explicit mesh_loader(std::string dir) : dir_(std::move(dir)) {}
+    explicit mesh_loader(std::filesystem::path dir) : dir_(std::move(dir)) {}
 
     // A collision mesh has to be in a format viam-server can parse, while a visual mesh is only
     // ever passed along, so any format with an extension goes. The content type comes back
@@ -284,10 +270,11 @@ class mesh_loader {
         // the same file named on two links is read once
         auto cached = cache_.find(source);
         if (cached == cache_.end()) {
-            const std::string resolved = dir_.empty() ? source : dir_ + "/" + source;
+            const std::filesystem::path resolved = dir_ / source;
             std::string data;
             if (!read_file(resolved, &data)) {
-                throw Exception("failed to read mesh " + in_quotes(source) + " at " + resolved);
+                throw Exception("failed to read mesh " + in_quotes(source) + " at " +
+                                resolved.string());
             }
             cached = cache_.emplace(source, std::move(data)).first;
         }
@@ -295,11 +282,11 @@ class mesh_loader {
     }
 
    private:
-    std::string dir_;
+    std::filesystem::path dir_;
     std::map<std::string, std::string> cache_;
 };
 
-void load_meshes(common::v1::KinematicModel* model, const std::string& dir) {
+void load_meshes(common::v1::KinematicModel* model, const std::filesystem::path& dir) {
     mesh_loader loader(dir);
     const auto load = [&](common::v1::Geometry* geometry, bool collision, const std::string& at) {
         if (!geometry->has_mesh()) {
@@ -332,10 +319,10 @@ void load_meshes(common::v1::KinematicModel* model, const std::string& dir) {
 
 }  // namespace
 
-common::v1::KinematicModel read_kinematic_model_file_message(const std::string& path) {
+common::v1::KinematicModel read_kinematic_model_file_message(const std::filesystem::path& path) {
     std::string json;
     if (!read_file(path, &json)) {
-        throw Exception("failed to read kinematic model file " + path);
+        throw Exception("failed to read kinematic model file " + path.string());
     }
     try {
         common::v1::KinematicModel model;
@@ -347,16 +334,16 @@ common::v1::KinematicModel read_kinematic_model_file_message(const std::string& 
         }
         check_finite(model, "");
         validate(model);
-        load_meshes(&model, directory_of(path));
+        load_meshes(&model, path.parent_path());
         return model;
     } catch (const Exception& xcp) {
-        throw Exception("kinematic model file " + path + ": " + xcp.what());
+        throw Exception("kinematic model file " + path.string() + ": " + xcp.what());
     }
 }
 
 }  // namespace impl
 
-KinematicModel read_kinematic_model_file(const std::string& path) {
+KinematicModel KinematicModel::from_file(const std::filesystem::path& path) {
     const auto message = impl::read_kinematic_model_file_message(path);
     try {
         return from_proto(message);
@@ -364,7 +351,7 @@ KinematicModel read_kinematic_model_file(const std::string& path) {
         // the conversion reports a joint with no type or a geometry with no shape as not
         // supported, which a gripper server would pass on as having no model at all, so we
         // rethrow it as a plain error that names the file
-        throw Exception("kinematic model file " + path + ": " + xcp.what());
+        throw Exception("kinematic model file " + path.string() + ": " + xcp.what());
     }
 }
 

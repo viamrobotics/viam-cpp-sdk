@@ -1,9 +1,0 @@
-{
-  "name": "single_link",
-  "links": [
-    {
-      "id": "base",
-      "parent": "world"
-    }
-  ]
-}

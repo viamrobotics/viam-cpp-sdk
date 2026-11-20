@@ -3,6 +3,7 @@
 /// @brief Kinematics data types shared by the components that serve `GetKinematics`.
 #pragma once
 
+#include <filesystem>
 #include <map>
 #include <optional>
 #include <string>
@@ -149,9 +150,57 @@ struct KinematicJoint {
     friend bool operator==(const KinematicJoint&, const KinematicJoint&) = default;
 };
 
+/// @brief A partial update to one joint's limits, in the units the model holds them in: degrees
+/// for a revolute joint, mm for a prismatic one, per second and per second squared for the
+/// speeds. A field left out leaves that limit as it is.
+struct JointLimits {
+    std::optional<double> min;
+    std::optional<double> max;
+    std::optional<double> max_velocity;
+    std::optional<double> max_acceleration;
+};
+
 /// @brief A component's kinematics as a tree of links and joints. Its proto JSON encoding is
 /// also the on-disk kinematics file format.
 struct KinematicModel {
+    /// @brief Read a kinematic model file, which is the proto JSON of a KinematicModel.
+    ///
+    /// The parse is strict, so a field the message does not have, a number that is not finite, a
+    /// parent that is not in the model, a cycle or a mimic of something that is not a joint all
+    /// fail the read. A mesh that names a path and carries no bytes is read from that path,
+    /// relative to the model file, and comes back with its bytes, the content type taken from the
+    /// extension and the path as it was written. A mesh that already carries bytes is left alone.
+    ///
+    /// The name on the model is the one in the file. A component server replaces it with the
+    /// resource name when the model is served.
+    ///
+    /// @throws Exception naming the file and the link, joint or mesh at fault.
+    static KinematicModel from_file(const std::filesystem::path& path);
+
+    /// @brief Narrow the limits the model serves to what a resource's configuration asks of each
+    /// joint.
+    ///
+    /// Position, velocity and acceleration are checked on their own, and each value has to sit
+    /// inside what the model already holds, since a widened limit is the one that reaches
+    /// hardware. A bound the model does not have accepts any value. A min equal to max locks a
+    /// joint where it stands. A continuous joint given a min or a max becomes a revolute joint
+    /// with that bound. A mimic joint follows the joint it mimics and cannot be narrowed.
+    ///
+    /// @param limits The requested limits, keyed by joint id.
+    /// @throws Exception naming the joint, for a joint that is not in the model, a mimic joint, a
+    /// value that is not finite, a negative speed, a value that would widen a limit, or a min
+    /// that ends up above the max. The model is left untouched when this throws.
+    void narrow_joint_limits(const std::map<std::string, JointLimits>& limits);
+
+    /// @brief Clear the mesh bytes a GetKinematics request did not ask for, for a component that
+    /// holds its model with every mesh loaded, as from_file returns it.
+    ///
+    /// With either flag set, a mesh of the role that was not asked for keeps its path and content
+    /// type and loses its bytes. The geometry of a prismatic joint counts as a collision mesh.
+    /// With neither flag set the model is left whole, since such a request may come from a
+    /// viam-server that predates the flags and expects every mesh with its bytes.
+    void drop_unrequested_mesh_bytes(const kinematics_options& options);
+
     /// @brief Set to the resource name by the SDK when served.
     std::string name;
 
@@ -165,40 +214,6 @@ struct KinematicModel {
 
     friend bool operator==(const KinematicModel&, const KinematicModel&) = default;
 };
-
-/// @brief A partial update to one joint's limits, in the units the model holds them in: degrees
-/// for a revolute joint, mm for a prismatic one, per second and per second squared for the
-/// speeds. A field left out leaves that limit as it is.
-struct JointLimits {
-    std::optional<double> min;
-    std::optional<double> max;
-    std::optional<double> max_velocity;
-    std::optional<double> max_acceleration;
-};
-
-/// @brief Narrow the limits a model serves to what a resource's configuration asks of each joint.
-///
-/// Position, velocity and acceleration are checked on their own, and each value has to sit
-/// inside what the model already holds, since a widened limit is the one that reaches hardware.
-/// A bound the model does not have accepts any value. A min equal to max locks a joint where it
-/// stands. A continuous joint given a min or a max becomes a revolute joint with that bound. A
-/// mimic joint follows the joint it mimics and cannot be narrowed.
-///
-/// @param model The model to narrow in place. It is left untouched when this throws.
-/// @param limits The requested limits, keyed by joint id.
-/// @throws Exception naming the joint, for a joint that is not in the model, a mimic joint, a
-/// value that is not finite, a negative speed, a value that would widen a limit, or a min that
-/// ends up above the max.
-void narrow_joint_limits(KinematicModel& model, const std::map<std::string, JointLimits>& limits);
-
-/// @brief Clear the mesh bytes a GetKinematics request did not ask for, for a component that
-/// holds its model with every mesh loaded, as read_kinematic_model_file returns it.
-///
-/// With either flag set, a mesh of the role that was not asked for keeps its path and content
-/// type and loses its bytes. The geometry of a prismatic joint counts as a collision mesh. With
-/// neither flag set the model is left whole, since such a request may come from a viam-server
-/// that predates the flags and expects every mesh with its bytes.
-void drop_unrequested_mesh_bytes(KinematicModel& model, const kinematics_options& options);
 
 // Base class for use below in defining kinematics data strong typedefs
 template <class Tag>
