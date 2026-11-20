@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(test_get_kinematic_model) {
     client_to_mock_pipeline<Gantry>(mock, [&](Gantry& client) {
         // the server names the model for the resource, whatever name it came with
         KinematicModel expected = fake_kinematic_model();
-        expected.name = mock->name();
+        expected.set_name(mock->name());
         BOOST_CHECK(client.get_kinematic_model() == expected);
         BOOST_CHECK(!mock->peek_kinematics_options.include_collision_meshes);
 

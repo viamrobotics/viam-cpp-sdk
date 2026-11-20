@@ -134,9 +134,9 @@ void check_expected_case(const std::filesystem::path& model_path,
     // trip would notice, and it has to keep every link, joint and mesh byte of the message.
     const KinematicModel model = KinematicModel::from_file(model_path);
     BOOST_CHECK(model == from_proto(to_proto(model)));
-    BOOST_CHECK_EQUAL(model.name, expected.name());
-    BOOST_REQUIRE_EQUAL(model.links.size(), static_cast<std::size_t>(expected.links_size()));
-    BOOST_REQUIRE_EQUAL(model.joints.size(), static_cast<std::size_t>(expected.joints_size()));
+    BOOST_CHECK_EQUAL(model.name(), expected.name());
+    BOOST_REQUIRE_EQUAL(model.links().size(), static_cast<std::size_t>(expected.links_size()));
+    BOOST_REQUIRE_EQUAL(model.joints().size(), static_cast<std::size_t>(expected.joints_size()));
     const common::v1::KinematicModel served = to_proto(model);
     for (int i = 0; i < expected.links_size(); ++i) {
         // the sdk type always holds a pose, where the message can leave one out, so the pose
@@ -197,9 +197,6 @@ namespace {
 // a revolute joint with every bound, a prismatic joint with only a position range, a continuous
 // joint, and a joint that mimics the first
 KinematicModel limits_model() {
-    KinematicModel model;
-    model.name = "arm";
-
     KinematicLink base;
     base.id = "base";
 
@@ -228,9 +225,7 @@ KinematicModel limits_model() {
     follower.spec = RevoluteJoint{};
     follower.mimic = MimicJoint{"shoulder", 1.0, 0.0};
 
-    model.links = {base};
-    model.joints = {shoulder, rail, wrist, follower};
-    return model;
+    return KinematicModel("arm", {base}, {shoulder, rail, wrist, follower});
 }
 
 JointLimits make_limits(std::optional<double> min,
@@ -261,6 +256,84 @@ void check_refused(const std::map<std::string, JointLimits>& limits, const std::
 
 }  // namespace
 
+BOOST_AUTO_TEST_SUITE(test_kinematic_model_construction)
+
+namespace {
+
+KinematicLink link(std::string id, std::string parent = "") {
+    KinematicLink result;
+    result.id = std::move(id);
+    result.parent = std::move(parent);
+    return result;
+}
+
+KinematicJoint joint(std::string id, std::string parent, std::optional<MimicJoint> mimic = {}) {
+    KinematicJoint result;
+    result.id = std::move(id);
+    result.parent = std::move(parent);
+    result.mimic = std::move(mimic);
+    return result;
+}
+
+// building the model has to fail naming what is wrong with it
+void check_rejected(const std::vector<KinematicLink>& links,
+                    const std::vector<KinematicJoint>& joints,
+                    const std::string& mention) {
+    try {
+        const KinematicModel model("arm", links, joints);
+        BOOST_ERROR("built a model that has to be refused: " << mention);
+    } catch (const Exception& xcp) {
+        const std::string message = xcp.what();
+        BOOST_CHECK_MESSAGE(message.find(mention) != std::string::npos,
+                            "error does not mention \"" << mention << "\": " << message);
+    }
+}
+
+}  // namespace
+
+BOOST_AUTO_TEST_CASE(a_sound_model_is_built_as_given) {
+    const KinematicModel model(
+        "arm", {link("base"), link("tip", "j")}, {joint("j", "base")}, {"tip"});
+    BOOST_CHECK_EQUAL(model.name(), "arm");
+    BOOST_CHECK_EQUAL(model.links().size(), 2U);
+    BOOST_CHECK_EQUAL(model.joints().size(), 1U);
+    BOOST_CHECK_EQUAL(model.output_frames().at(0), "tip");
+    BOOST_CHECK(!model.properties());
+
+    // an empty model is where a component with nothing to serve starts
+    BOOST_CHECK(KinematicModel() == KinematicModel("", {}, {}));
+}
+
+BOOST_AUTO_TEST_CASE(a_broken_tree_is_refused) {
+    check_rejected({link("")}, {}, "has no id");
+    check_rejected({link("world")}, {}, "reserved id");
+    check_rejected({link("base"), link("base")}, {}, "defined twice");
+    check_rejected({link("base")}, {joint("base", "")}, "names both");
+    check_rejected({link("base"), link("tip", "bse")}, {}, "\"bse\" is not a link or joint");
+    check_rejected({link("a", "b"), link("b", "a")}, {}, "its own ancestor");
+}
+
+BOOST_AUTO_TEST_CASE(a_bad_mimic_is_refused) {
+    const std::vector<KinematicLink> links = {link("base")};
+    check_rejected(links, {joint("j", "base", MimicJoint{"j", 1.0, 0.0})}, "mimics itself");
+    check_rejected(links, {joint("j", "base", MimicJoint{"base", 1.0, 0.0})}, "not a joint");
+
+    KinematicJoint limited = joint("follower", "base", MimicJoint{"j", 1.0, 0.0});
+    limited.spec = RevoluteJoint{-90.0, std::nullopt, std::nullopt, std::nullopt};
+    check_rejected(links, {joint("j", "base"), limited}, "cannot carry limits");
+}
+
+// a client has to be able to hold whatever a server sent, so the wire path does not check
+BOOST_AUTO_TEST_CASE(a_model_off_the_wire_is_taken_as_it_comes) {
+    common::v1::KinematicModel proto;
+    proto.add_links()->set_id("base");
+    proto.add_links()->set_id("base");
+    const KinematicModel model = from_proto(proto);
+    BOOST_CHECK_EQUAL(model.links().size(), 2U);
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
 BOOST_AUTO_TEST_SUITE(test_narrow_joint_limits)
 
 BOOST_AUTO_TEST_CASE(narrows_each_limit_on_its_own) {
@@ -268,11 +341,11 @@ BOOST_AUTO_TEST_CASE(narrows_each_limit_on_its_own) {
     model.narrow_joint_limits({{"shoulder", make_limits(-31.0, std::nullopt, 30.0, std::nullopt)},
                                {"rail", make_limits(std::nullopt, 250.0, 100.0, 50.0)}});
 
-    BOOST_CHECK(model.joints[0].spec == joint_spec(RevoluteJoint{-31.0, 180.0, 30.0, 400.0}));
+    BOOST_CHECK(model.joints()[0].spec == joint_spec(RevoluteJoint{-31.0, 180.0, 30.0, 400.0}));
     // the rail had no speed bounds, so any value narrows it
-    BOOST_CHECK(model.joints[1].spec ==
+    BOOST_CHECK(model.joints()[1].spec ==
                 joint_spec(PrismaticJoint{0.0, 250.0, 100.0, 50.0, std::nullopt}));
-    BOOST_CHECK(model.joints[2] == limits_model().joints[2]);
+    BOOST_CHECK(model.joints()[2] == limits_model().joints()[2]);
 }
 
 BOOST_AUTO_TEST_CASE(equal_bounds_and_locked_joint) {
@@ -281,18 +354,18 @@ BOOST_AUTO_TEST_CASE(equal_bounds_and_locked_joint) {
     BOOST_CHECK(model == limits_model());
 
     model.narrow_joint_limits({{"shoulder", make_limits(45.0, 45.0, std::nullopt, std::nullopt)}});
-    BOOST_CHECK(model.joints[0].spec == joint_spec(RevoluteJoint{45.0, 45.0, 90.0, 400.0}));
+    BOOST_CHECK(model.joints()[0].spec == joint_spec(RevoluteJoint{45.0, 45.0, 90.0, 400.0}));
 }
 
 BOOST_AUTO_TEST_CASE(continuous_joint) {
     KinematicModel model = limits_model();
     model.narrow_joint_limits({{"wrist", make_limits(std::nullopt, std::nullopt, 90.0, 300.0)}});
-    BOOST_CHECK(model.joints[2].spec == joint_spec(ContinuousJoint{90.0, 300.0}));
+    BOOST_CHECK(model.joints()[2].spec == joint_spec(ContinuousJoint{90.0, 300.0}));
 
     // a position bound is what makes it a revolute joint
     model.narrow_joint_limits(
         {{"wrist", make_limits(-90.0, std::nullopt, std::nullopt, std::nullopt)}});
-    BOOST_CHECK(model.joints[2].spec ==
+    BOOST_CHECK(model.joints()[2].spec ==
                 joint_spec(RevoluteJoint{-90.0, std::nullopt, 90.0, 300.0}));
 }
 
@@ -334,15 +407,16 @@ BOOST_AUTO_TEST_SUITE(test_kinematics_response)
 
 namespace {
 
-KinematicModel mesh_model() {
+KinematicLink mesh_link() {
     KinematicLink link;
     link.id = "base";
     link.collision = {GeometryConfig(pose{}, mesh{"stl", {1, 2, 3}, std::string("c.stl")}, "c")};
     link.visual = {GeometryConfig(pose{}, mesh{"glb", {4, 5}, std::string("v.glb")}, "v")};
-    KinematicModel model;
-    model.name = "name_in_the_file";
-    model.links = {link};
-    return model;
+    return link;
+}
+
+KinematicModel mesh_model() {
+    return KinematicModel("name_in_the_file", {mesh_link()}, {});
 }
 
 }  // namespace
@@ -364,20 +438,19 @@ std::size_t mesh_size(const GeometryConfig& geometry) {
 }
 
 KinematicModel dropped(bool collision, bool visual) {
-    KinematicModel model = mesh_model();
     KinematicJoint rail;
     rail.id = "rail";
     rail.parent = "base";
     PrismaticJoint spec;
     spec.geometry = GeometryConfig(pose{}, mesh{"ply", {6}, std::string("r.ply")}, "r");
     rail.spec = spec;
-    model.joints = {rail};
+    KinematicModel model("name_in_the_file", {mesh_link()}, {rail});
     model.drop_unrequested_mesh_bytes(kinematics_options{collision, visual});
     return model;
 }
 
 std::size_t rail_mesh_size(const KinematicModel& model) {
-    return mesh_size(*std::get<PrismaticJoint>(model.joints[0].spec).geometry);
+    return mesh_size(*std::get<PrismaticJoint>(model.joints()[0].spec).geometry);
 }
 
 }  // namespace
@@ -385,14 +458,14 @@ std::size_t rail_mesh_size(const KinematicModel& model) {
 BOOST_AUTO_TEST_CASE(drop_unrequested_mesh_bytes_follows_the_flags) {
     // a request with neither flag may predate them, so the model stays whole
     const KinematicModel whole = dropped(false, false);
-    BOOST_CHECK_EQUAL(mesh_size(whole.links[0].collision[0]), 3U);
-    BOOST_CHECK_EQUAL(mesh_size(whole.links[0].visual[0]), 2U);
+    BOOST_CHECK_EQUAL(mesh_size(whole.links()[0].collision[0]), 3U);
+    BOOST_CHECK_EQUAL(mesh_size(whole.links()[0].visual[0]), 2U);
     BOOST_CHECK_EQUAL(rail_mesh_size(whole), 1U);
 
     const KinematicModel visual_only = dropped(false, true);
-    const GeometryConfig& collision = visual_only.links[0].collision[0];
+    const GeometryConfig& collision = visual_only.links()[0].collision[0];
     BOOST_CHECK_EQUAL(mesh_size(collision), 0U);
-    BOOST_CHECK_EQUAL(mesh_size(visual_only.links[0].visual[0]), 2U);
+    BOOST_CHECK_EQUAL(mesh_size(visual_only.links()[0].visual[0]), 2U);
     BOOST_CHECK_EQUAL(rail_mesh_size(visual_only), 0U);
     // everything but the bytes survives
     const mesh& kept = std::get<mesh>(collision.get_geometry_specifics());
@@ -401,8 +474,8 @@ BOOST_AUTO_TEST_CASE(drop_unrequested_mesh_bytes_follows_the_flags) {
     BOOST_CHECK_EQUAL(collision.get_label(), "c");
 
     const KinematicModel collision_only = dropped(true, false);
-    BOOST_CHECK_EQUAL(mesh_size(collision_only.links[0].collision[0]), 3U);
-    BOOST_CHECK_EQUAL(mesh_size(collision_only.links[0].visual[0]), 0U);
+    BOOST_CHECK_EQUAL(mesh_size(collision_only.links()[0].collision[0]), 3U);
+    BOOST_CHECK_EQUAL(mesh_size(collision_only.links()[0].visual[0]), 0U);
     BOOST_CHECK_EQUAL(rail_mesh_size(collision_only), 1U);
 }
 

@@ -21,8 +21,6 @@ std::map<std::string, sdk::mesh> fake_3d_models() {
 // round trip covers the whole model. The empty name is filled in by the server.
 sdk::KinematicModel fake_kinematic_model() {
     using namespace sdk;
-    KinematicModel model;
-
     KinematicLink base;
     base.id = "base";
     base.collision = {GeometryConfig(
@@ -47,7 +45,6 @@ sdk::KinematicModel fake_kinematic_model() {
     j2.axis = Vector3{1, 0, 0};
     j2.spec = PrismaticJoint{
         0.0, 500.0, std::nullopt, 10.0, GeometryConfig(pose{}, capsule{1, 2}, "rail")};
-    j2.mimic = MimicJoint{"j1", 2.0, 1.0};
 
     KinematicLink link2;
     link2.id = "link2";
@@ -60,17 +57,19 @@ sdk::KinematicModel fake_kinematic_model() {
     j3.parent = "link2";
     j3.axis = Vector3{0, 1, 0};
     j3.spec = ContinuousJoint{};
+    // a mimic joint cannot carry limits of its own, so the one without any is the mimic
+    j3.mimic = MimicJoint{"j1", 2.0, 1.0};
 
     KinematicLink tool;
     tool.id = "tool";
     tool.parent = "j3";
     tool.pose.orientation = axis_angles{0, 0, 1, 45};
 
-    model.links = {base, link1, link2, tool};
-    model.joints = {j1, j2, j3};
-    model.output_frames = {"tool"};
-    model.properties = KinematicProperties{30.0, std::nullopt};
-    return model;
+    return KinematicModel("",
+                          {base, link1, link2, tool},
+                          {j1, j2, j3},
+                          {"tool"},
+                          KinematicProperties{30.0, std::nullopt});
 }
 
 #pragma GCC diagnostic push

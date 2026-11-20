@@ -160,9 +160,34 @@ struct JointLimits {
     std::optional<double> max_acceleration;
 };
 
+namespace impl {
+struct kinematic_model_access;
+}  // namespace impl
+
 /// @brief A component's kinematics as a tree of links and joints. Its proto JSON encoding is
 /// also the on-disk kinematics file format.
-struct KinematicModel {
+///
+/// A model built here or read from a file is checked to hold together as a tree, so a component
+/// cannot serve one viam-server would misread. A model received from a server is taken as it
+/// comes.
+class KinematicModel {
+   public:
+    /// @brief A model with no links or joints.
+    KinematicModel() = default;
+
+    /// @brief Build a model from its links and joints.
+    /// @param name Replaced with the resource name by the SDK when the model is served.
+    /// @param output_frames Frames whose poses the model reports.
+    /// @throws Exception naming the link or joint at fault, for an id that is empty, "world" or
+    /// used twice, a parent that is not in the model, a link or joint that is its own ancestor,
+    /// or a mimic joint that mimics itself, mimics something that is not a joint or carries
+    /// limits of its own.
+    KinematicModel(std::string name,
+                   std::vector<KinematicLink> links,
+                   std::vector<KinematicJoint> joints,
+                   std::vector<std::string> output_frames = {},
+                   std::optional<KinematicProperties> properties = std::nullopt);
+
     /// @brief Read a kinematic model file, which is the proto JSON of a KinematicModel.
     ///
     /// The parse is strict, so a field the message does not have, a number that is not finite, a
@@ -176,6 +201,17 @@ struct KinematicModel {
     ///
     /// @throws Exception naming the file and the link, joint or mesh at fault.
     static KinematicModel from_file(const std::filesystem::path& path);
+
+    const std::string& name() const;
+    void set_name(std::string name);
+
+    const std::vector<KinematicLink>& links() const;
+    const std::vector<KinematicJoint>& joints() const;
+
+    /// @brief Frames whose poses the model reports.
+    const std::vector<std::string>& output_frames() const;
+
+    const std::optional<KinematicProperties>& properties() const;
 
     /// @brief Narrow the limits the model serves to what a resource's configuration asks of each
     /// joint.
@@ -201,18 +237,17 @@ struct KinematicModel {
     /// viam-server that predates the flags and expects every mesh with its bytes.
     void drop_unrequested_mesh_bytes(const kinematics_options& options);
 
-    /// @brief Set to the resource name by the SDK when served.
-    std::string name;
-
-    std::vector<KinematicLink> links;
-    std::vector<KinematicJoint> joints;
-
-    /// @brief Frames whose poses the model reports.
-    std::vector<std::string> output_frames;
-
-    std::optional<KinematicProperties> properties;
-
     friend bool operator==(const KinematicModel&, const KinematicModel&) = default;
+
+   private:
+    // builds a model received over the wire, which skips the checks
+    friend struct impl::kinematic_model_access;
+
+    std::string name_;
+    std::vector<KinematicLink> links_;
+    std::vector<KinematicJoint> joints_;
+    std::vector<std::string> output_frames_;
+    std::optional<KinematicProperties> properties_;
 };
 
 // Base class for use below in defining kinematics data strong typedefs

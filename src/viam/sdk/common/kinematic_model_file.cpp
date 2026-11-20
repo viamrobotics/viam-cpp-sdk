@@ -7,7 +7,7 @@
 #include <filesystem>
 #include <fstream>
 #include <map>
-#include <set>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -20,6 +20,7 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
+#include <viam/sdk/common/private/kinematic_model_validation.hpp>
 
 namespace viam {
 namespace sdk {
@@ -29,8 +30,6 @@ namespace {
 
 using google::protobuf::FieldDescriptor;
 using google::protobuf::Message;
-
-const char* const k_world = "world";
 
 std::string in_quotes(const std::string& s) {
     return "\"" + s + "\"";
@@ -117,89 +116,28 @@ void check_finite(const Message& message, const std::string& prefix) {
     }
 }
 
-// Checks the references a file author can get wrong. viam-server treats a parent it does not know
-// as the world, so a misspelled parent has to be caught here or the link quietly moves to the
-// root.
 void validate(const common::v1::KinematicModel& model) {
-    struct node {
-        const char* kind;
-        std::string id;
-        std::string parent;
-    };
-    std::vector<node> nodes;
+    std::vector<kinematic_model_node> nodes;
+    nodes.reserve(static_cast<std::size_t>(model.links_size()) +
+                  static_cast<std::size_t>(model.joints_size()));
     for (const auto& link : model.links()) {
-        nodes.push_back({"link", link.id(), link.parent()});
+        nodes.push_back({"link", link.id(), link.parent(), std::nullopt, false});
     }
     for (const auto& joint : model.joints()) {
-        nodes.push_back({"joint", joint.id(), joint.parent()});
+        const auto& limits = joint.limits();
+        nodes.push_back(
+            {"joint",
+             joint.id(),
+             joint.parent(),
+             joint.has_mimic() ? std::optional<std::string>(joint.mimic().joint()) : std::nullopt,
+             limits.has_min() || limits.has_max() || limits.has_max_velocity() ||
+                 limits.has_max_acceleration()});
     }
+    // a model built in code may start out empty, but a file with nothing in it is a mistake
     if (nodes.empty()) {
         throw Exception("model has no links or joints");
     }
-
-    std::map<std::string, std::string> kinds;
-    std::map<std::string, std::string> parents;
-    for (const auto& n : nodes) {
-        if (n.id.empty()) {
-            throw Exception(std::string("a ") + n.kind + " has no id");
-        }
-        if (n.id == k_world) {
-            throw Exception(std::string("a ") + n.kind + " cannot be named " + in_quotes(k_world) +
-                            ", which is a reserved id");
-        }
-        const auto existing = kinds.find(n.id);
-        if (existing != kinds.end()) {
-            if (existing->second == n.kind) {
-                throw Exception(std::string(n.kind) + " " + in_quotes(n.id) + " is defined twice");
-            }
-            throw Exception(in_quotes(n.id) + " names both a " + existing->second + " and a " +
-                            n.kind);
-        }
-        kinds[n.id] = n.kind;
-        parents[n.id] = n.parent;
-    }
-
-    for (const auto& n : nodes) {
-        if (n.parent.empty() || n.parent == k_world) {
-            continue;
-        }
-        if (kinds.find(n.parent) == kinds.end()) {
-            throw Exception(std::string(n.kind) + " " + in_quotes(n.id) + ": parent " +
-                            in_quotes(n.parent) + " is not a link or joint in the model");
-        }
-    }
-
-    for (const auto& n : nodes) {
-        std::set<std::string> seen;
-        for (std::string cur = n.id; !cur.empty() && cur != k_world; cur = parents[cur]) {
-            if (!seen.insert(cur).second) {
-                throw Exception(kinds[cur] + " " + in_quotes(cur) + " is its own ancestor");
-            }
-        }
-    }
-
-    for (const auto& joint : model.joints()) {
-        if (!joint.has_mimic()) {
-            continue;
-        }
-        const std::string& source = joint.mimic().joint();
-        if (source == joint.id()) {
-            throw Exception("joint " + in_quotes(joint.id()) + " mimics itself");
-        }
-        const auto kind = kinds.find(source);
-        if (kind == kinds.end() || kind->second != "joint") {
-            throw Exception("joint " + in_quotes(joint.id()) + " mimics " + in_quotes(source) +
-                            ", which is not a joint in the model");
-        }
-        // a mimic joint follows the joint it mimics, so limits written on it would be dropped
-        // without a word
-        const auto& limits = joint.limits();
-        if (limits.has_min() || limits.has_max() || limits.has_max_velocity() ||
-            limits.has_max_acceleration()) {
-            throw Exception("joint " + in_quotes(joint.id()) +
-                            " is a mimic joint and cannot carry limits of its own");
-        }
-    }
+    validate_kinematic_model_nodes(nodes);
 }
 
 // A source path has to survive a module install and a trip over the wire, so it is relative to

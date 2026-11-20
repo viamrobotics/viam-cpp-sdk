@@ -9,9 +9,6 @@ namespace gripper {
 using namespace viam::sdk;
 
 sdk::KinematicModel fake_kinematic_model() {
-    KinematicModel model;
-    model.name = "fake_gripper";
-
     KinematicLink palm;
     palm.id = "palm";
     palm.collision = {GeometryConfig(pose{}, box{80, 40, 60}, "palm_box")};
@@ -39,10 +36,8 @@ sdk::KinematicModel fake_kinematic_model() {
     right_finger.parent = "right";
     right_finger.pose.translation = Vector3{0, 0, 60};
 
-    model.links = {palm, left_finger, right_finger};
-    model.joints = {left, right};
-    model.output_frames = {"left_finger"};
-    return model;
+    return KinematicModel(
+        "fake_gripper", {palm, left_finger, right_finger}, {left, right}, {"left_finger"});
 }
 
 std::shared_ptr<MockGripper> MockGripper::get_mock_gripper() {

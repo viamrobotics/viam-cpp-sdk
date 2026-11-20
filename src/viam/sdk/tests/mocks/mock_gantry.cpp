@@ -12,9 +12,6 @@ std::vector<double> fake_lengths() {
 
 sdk::KinematicModel fake_kinematic_model() {
     using namespace sdk;
-    KinematicModel model;
-    model.name = "fake_gantry";
-
     KinematicLink base;
     base.id = "base";
 
@@ -30,10 +27,7 @@ sdk::KinematicModel fake_kinematic_model() {
     carriage.pose.translation = Vector3{0, 0, 50};
     carriage.pose.orientation = orientation_vector_degrees{0, 0, 1, 90};
 
-    model.links = {base, carriage};
-    model.joints = {axis};
-    model.output_frames = {"carriage"};
-    return model;
+    return KinematicModel("fake_gantry", {base, carriage}, {axis}, {"carriage"});
 }
 
 #pragma GCC diagnostic push
