@@ -32,6 +32,9 @@ static const char* GripperService_method_names[] = {
   "/viam.component.gripper.v1.GripperService/IsHoldingSomething",
   "/viam.component.gripper.v1.GripperService/GetCurrentInputs",
   "/viam.component.gripper.v1.GripperService/GoToInputs",
+  "/viam.component.gripper.v1.GripperService/SetPercentOpen",
+  "/viam.component.gripper.v1.GripperService/GetPercentOpen",
+  "/viam.component.gripper.v1.GripperService/GetProperties",
   "/viam.component.gripper.v1.GripperService/DoCommand",
   "/viam.component.gripper.v1.GripperService/GetStatus",
   "/viam.component.gripper.v1.GripperService/GetGeometries",
@@ -52,10 +55,13 @@ GripperService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_IsHoldingSomething_(GripperService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetCurrentInputs_(GripperService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GoToInputs_(GripperService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(GripperService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(GripperService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(GripperService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKinematics_(GripperService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPercentOpen_(GripperService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPercentOpen_(GripperService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProperties_(GripperService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(GripperService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(GripperService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(GripperService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematics_(GripperService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GripperService::Stub::Open(::grpc::ClientContext* context, const ::viam::component::gripper::v1::OpenRequest& request, ::viam::component::gripper::v1::OpenResponse* response) {
@@ -215,6 +221,75 @@ void GripperService::Stub::async::GoToInputs(::grpc::ClientContext* context, con
 ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>* GripperService::Stub::AsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGoToInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GripperService::Stub::SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::viam::component::gripper::v1::SetPercentOpenResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPercentOpen_, context, request, response);
+}
+
+void GripperService::Stub::async::SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPercentOpen_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::async::SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPercentOpen_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>* GripperService::Stub::PrepareAsyncSetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gripper::v1::SetPercentOpenResponse, ::viam::component::gripper::v1::SetPercentOpenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPercentOpen_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>* GripperService::Stub::AsyncSetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPercentOpenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GripperService::Stub::GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::viam::component::gripper::v1::GetPercentOpenResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPercentOpen_, context, request, response);
+}
+
+void GripperService::Stub::async::GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPercentOpen_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::async::GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPercentOpen_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>* GripperService::Stub::PrepareAsyncGetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gripper::v1::GetPercentOpenResponse, ::viam::component::gripper::v1::GetPercentOpenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPercentOpen_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>* GripperService::Stub::AsyncGetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPercentOpenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GripperService::Stub::GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::viam::component::gripper::v1::GetPropertiesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProperties_, context, request, response);
+}
+
+void GripperService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>* GripperService::Stub::PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gripper::v1::GetPropertiesResponse, ::viam::component::gripper::v1::GetPropertiesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProperties_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>* GripperService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPropertiesRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -385,6 +460,36 @@ GripperService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GripperService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GripperService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::gripper::v1::SetPercentOpenRequest* req,
+             ::viam::component::gripper::v1::SetPercentOpenResponse* resp) {
+               return service->SetPercentOpen(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GripperService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::gripper::v1::GetPercentOpenRequest* req,
+             ::viam::component::gripper::v1::GetPercentOpenResponse* resp) {
+               return service->GetPercentOpen(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GripperService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::gripper::v1::GetPropertiesRequest* req,
+             ::viam::component::gripper::v1::GetPropertiesResponse* resp) {
+               return service->GetProperties(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -393,7 +498,7 @@ GripperService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[8],
+      GripperService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
@@ -403,7 +508,7 @@ GripperService::Service::Service() {
                return service->GetStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[9],
+      GripperService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
@@ -413,7 +518,7 @@ GripperService::Service::Service() {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[10],
+      GripperService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
@@ -470,6 +575,27 @@ GripperService::Service::~Service() {
 }
 
 ::grpc::Status GripperService::Service::GoToInputs(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::SetPercentOpen(::grpc::ServerContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::GetPercentOpen(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::GetProperties(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -51,6 +51,12 @@ namespace viam {
 namespace component {
 namespace powersensor {
 namespace v1 {
+class GetBatteryPercentRequest;
+struct GetBatteryPercentRequestDefaultTypeInternal;
+extern GetBatteryPercentRequestDefaultTypeInternal _GetBatteryPercentRequest_default_instance_;
+class GetBatteryPercentResponse;
+struct GetBatteryPercentResponseDefaultTypeInternal;
+extern GetBatteryPercentResponseDefaultTypeInternal _GetBatteryPercentResponse_default_instance_;
 class GetCurrentRequest;
 struct GetCurrentRequestDefaultTypeInternal;
 extern GetCurrentRequestDefaultTypeInternal _GetCurrentRequest_default_instance_;
@@ -63,6 +69,12 @@ extern GetPowerRequestDefaultTypeInternal _GetPowerRequest_default_instance_;
 class GetPowerResponse;
 struct GetPowerResponseDefaultTypeInternal;
 extern GetPowerResponseDefaultTypeInternal _GetPowerResponse_default_instance_;
+class GetPropertiesRequest;
+struct GetPropertiesRequestDefaultTypeInternal;
+extern GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+class GetPropertiesResponse;
+struct GetPropertiesResponseDefaultTypeInternal;
+extern GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 class GetVoltageRequest;
 struct GetVoltageRequestDefaultTypeInternal;
 extern GetVoltageRequestDefaultTypeInternal _GetVoltageRequest_default_instance_;
@@ -74,10 +86,14 @@ extern GetVoltageResponseDefaultTypeInternal _GetVoltageResponse_default_instanc
 }  // namespace component
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
+template<> ::viam::component::powersensor::v1::GetBatteryPercentRequest* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetBatteryPercentRequest>(Arena*);
+template<> ::viam::component::powersensor::v1::GetBatteryPercentResponse* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetBatteryPercentResponse>(Arena*);
 template<> ::viam::component::powersensor::v1::GetCurrentRequest* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetCurrentRequest>(Arena*);
 template<> ::viam::component::powersensor::v1::GetCurrentResponse* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetCurrentResponse>(Arena*);
 template<> ::viam::component::powersensor::v1::GetPowerRequest* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetPowerRequest>(Arena*);
 template<> ::viam::component::powersensor::v1::GetPowerResponse* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetPowerResponse>(Arena*);
+template<> ::viam::component::powersensor::v1::GetPropertiesRequest* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetPropertiesRequest>(Arena*);
+template<> ::viam::component::powersensor::v1::GetPropertiesResponse* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetPropertiesResponse>(Arena*);
 template<> ::viam::component::powersensor::v1::GetVoltageRequest* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetVoltageRequest>(Arena*);
 template<> ::viam::component::powersensor::v1::GetVoltageResponse* Arena::CreateMaybeMessage<::viam::component::powersensor::v1::GetVoltageResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -1041,6 +1057,650 @@ class GetPowerResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GetBatteryPercentRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.powersensor.v1.GetBatteryPercentRequest) */ {
+ public:
+  inline GetBatteryPercentRequest() : GetBatteryPercentRequest(nullptr) {}
+  ~GetBatteryPercentRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetBatteryPercentRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetBatteryPercentRequest(const GetBatteryPercentRequest& from);
+  GetBatteryPercentRequest(GetBatteryPercentRequest&& from) noexcept
+    : GetBatteryPercentRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetBatteryPercentRequest& operator=(const GetBatteryPercentRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetBatteryPercentRequest& operator=(GetBatteryPercentRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetBatteryPercentRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetBatteryPercentRequest* internal_default_instance() {
+    return reinterpret_cast<const GetBatteryPercentRequest*>(
+               &_GetBatteryPercentRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(GetBatteryPercentRequest& a, GetBatteryPercentRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetBatteryPercentRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetBatteryPercentRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetBatteryPercentRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetBatteryPercentRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetBatteryPercentRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetBatteryPercentRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetBatteryPercentRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.powersensor.v1.GetBatteryPercentRequest";
+  }
+  protected:
+  explicit GetBatteryPercentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.component.powersensor.v1.GetBatteryPercentRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetBatteryPercentResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.powersensor.v1.GetBatteryPercentResponse) */ {
+ public:
+  inline GetBatteryPercentResponse() : GetBatteryPercentResponse(nullptr) {}
+  ~GetBatteryPercentResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetBatteryPercentResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetBatteryPercentResponse(const GetBatteryPercentResponse& from);
+  GetBatteryPercentResponse(GetBatteryPercentResponse&& from) noexcept
+    : GetBatteryPercentResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetBatteryPercentResponse& operator=(const GetBatteryPercentResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetBatteryPercentResponse& operator=(GetBatteryPercentResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetBatteryPercentResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetBatteryPercentResponse* internal_default_instance() {
+    return reinterpret_cast<const GetBatteryPercentResponse*>(
+               &_GetBatteryPercentResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(GetBatteryPercentResponse& a, GetBatteryPercentResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetBatteryPercentResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetBatteryPercentResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetBatteryPercentResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetBatteryPercentResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetBatteryPercentResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetBatteryPercentResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetBatteryPercentResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.powersensor.v1.GetBatteryPercentResponse";
+  }
+  protected:
+  explicit GetBatteryPercentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPercentFieldNumber = 1,
+    kIsChargingFieldNumber = 2,
+  };
+  // double percent = 1 [json_name = "percent"];
+  void clear_percent();
+  double percent() const;
+  void set_percent(double value);
+  private:
+  double _internal_percent() const;
+  void _internal_set_percent(double value);
+  public:
+
+  // bool is_charging = 2 [json_name = "isCharging"];
+  void clear_is_charging();
+  bool is_charging() const;
+  void set_is_charging(bool value);
+  private:
+  bool _internal_is_charging() const;
+  void _internal_set_is_charging(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.powersensor.v1.GetBatteryPercentResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double percent_;
+  bool is_charging_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPropertiesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.powersensor.v1.GetPropertiesRequest) */ {
+ public:
+  inline GetPropertiesRequest() : GetPropertiesRequest(nullptr) {}
+  ~GetPropertiesRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesRequest(const GetPropertiesRequest& from);
+  GetPropertiesRequest(GetPropertiesRequest&& from) noexcept
+    : GetPropertiesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesRequest& operator=(const GetPropertiesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesRequest& operator=(GetPropertiesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesRequest*>(
+               &_GetPropertiesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.powersensor.v1.GetPropertiesRequest";
+  }
+  protected:
+  explicit GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.component.powersensor.v1.GetPropertiesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPropertiesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.powersensor.v1.GetPropertiesResponse) */ {
+ public:
+  inline GetPropertiesResponse() : GetPropertiesResponse(nullptr) {}
+  ~GetPropertiesResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesResponse(const GetPropertiesResponse& from);
+  GetPropertiesResponse(GetPropertiesResponse&& from) noexcept
+    : GetPropertiesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesResponse& operator=(const GetPropertiesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesResponse& operator=(GetPropertiesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesResponse*>(
+               &_GetPropertiesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.powersensor.v1.GetPropertiesResponse";
+  }
+  protected:
+  explicit GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIsBatteryPercentSupportedFieldNumber = 1,
+    kIsChargingSupportedFieldNumber = 2,
+  };
+  // bool is_battery_percent_supported = 1 [json_name = "isBatteryPercentSupported"];
+  void clear_is_battery_percent_supported();
+  bool is_battery_percent_supported() const;
+  void set_is_battery_percent_supported(bool value);
+  private:
+  bool _internal_is_battery_percent_supported() const;
+  void _internal_set_is_battery_percent_supported(bool value);
+  public:
+
+  // bool is_charging_supported = 2 [json_name = "isChargingSupported"];
+  void clear_is_charging_supported();
+  bool is_charging_supported() const;
+  void set_is_charging_supported(bool value);
+  private:
+  bool _internal_is_charging_supported() const;
+  void _internal_set_is_charging_supported(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.powersensor.v1.GetPropertiesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  bool is_battery_percent_supported_;
+  bool is_charging_supported_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto;
+};
 // ===================================================================
 
 
@@ -1577,9 +2237,383 @@ inline void GetPowerResponse::set_watts(double value) {
   // @@protoc_insertion_point(field_set:viam.component.powersensor.v1.GetPowerResponse.watts)
 }
 
+// -------------------------------------------------------------------
+
+// GetBatteryPercentRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetBatteryPercentRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetBatteryPercentRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetBatteryPercentRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetBatteryPercentRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.powersensor.v1.GetBatteryPercentRequest.name)
+}
+inline std::string* GetBatteryPercentRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.powersensor.v1.GetBatteryPercentRequest.name)
+  return _s;
+}
+inline const std::string& GetBatteryPercentRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetBatteryPercentRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetBatteryPercentRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetBatteryPercentRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.powersensor.v1.GetBatteryPercentRequest.name)
+  return name_.Release();
+}
+inline void GetBatteryPercentRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.powersensor.v1.GetBatteryPercentRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetBatteryPercentRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetBatteryPercentRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetBatteryPercentRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetBatteryPercentRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetBatteryPercentRequest.extra)
+  return _internal_extra();
+}
+inline void GetBatteryPercentRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.powersensor.v1.GetBatteryPercentRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetBatteryPercentRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetBatteryPercentRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.powersensor.v1.GetBatteryPercentRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetBatteryPercentRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetBatteryPercentRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.powersensor.v1.GetBatteryPercentRequest.extra)
+  return _msg;
+}
+inline void GetBatteryPercentRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.powersensor.v1.GetBatteryPercentRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetBatteryPercentResponse
+
+// double percent = 1 [json_name = "percent"];
+inline void GetBatteryPercentResponse::clear_percent() {
+  percent_ = 0;
+}
+inline double GetBatteryPercentResponse::_internal_percent() const {
+  return percent_;
+}
+inline double GetBatteryPercentResponse::percent() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetBatteryPercentResponse.percent)
+  return _internal_percent();
+}
+inline void GetBatteryPercentResponse::_internal_set_percent(double value) {
+  
+  percent_ = value;
+}
+inline void GetBatteryPercentResponse::set_percent(double value) {
+  _internal_set_percent(value);
+  // @@protoc_insertion_point(field_set:viam.component.powersensor.v1.GetBatteryPercentResponse.percent)
+}
+
+// bool is_charging = 2 [json_name = "isCharging"];
+inline void GetBatteryPercentResponse::clear_is_charging() {
+  is_charging_ = false;
+}
+inline bool GetBatteryPercentResponse::_internal_is_charging() const {
+  return is_charging_;
+}
+inline bool GetBatteryPercentResponse::is_charging() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetBatteryPercentResponse.is_charging)
+  return _internal_is_charging();
+}
+inline void GetBatteryPercentResponse::_internal_set_is_charging(bool value) {
+  
+  is_charging_ = value;
+}
+inline void GetBatteryPercentResponse::set_is_charging(bool value) {
+  _internal_set_is_charging(value);
+  // @@protoc_insertion_point(field_set:viam.component.powersensor.v1.GetBatteryPercentResponse.is_charging)
+}
+
+// -------------------------------------------------------------------
+
+// GetPropertiesRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetPropertiesRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetPropertiesRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetPropertiesRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPropertiesRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.powersensor.v1.GetPropertiesRequest.name)
+}
+inline std::string* GetPropertiesRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.powersensor.v1.GetPropertiesRequest.name)
+  return _s;
+}
+inline const std::string& GetPropertiesRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetPropertiesRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.powersensor.v1.GetPropertiesRequest.name)
+  return name_.Release();
+}
+inline void GetPropertiesRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.powersensor.v1.GetPropertiesRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetPropertiesRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetPropertiesRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPropertiesRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPropertiesRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetPropertiesRequest.extra)
+  return _internal_extra();
+}
+inline void GetPropertiesRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.powersensor.v1.GetPropertiesRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.powersensor.v1.GetPropertiesRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.powersensor.v1.GetPropertiesRequest.extra)
+  return _msg;
+}
+inline void GetPropertiesRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.powersensor.v1.GetPropertiesRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetPropertiesResponse
+
+// bool is_battery_percent_supported = 1 [json_name = "isBatteryPercentSupported"];
+inline void GetPropertiesResponse::clear_is_battery_percent_supported() {
+  is_battery_percent_supported_ = false;
+}
+inline bool GetPropertiesResponse::_internal_is_battery_percent_supported() const {
+  return is_battery_percent_supported_;
+}
+inline bool GetPropertiesResponse::is_battery_percent_supported() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetPropertiesResponse.is_battery_percent_supported)
+  return _internal_is_battery_percent_supported();
+}
+inline void GetPropertiesResponse::_internal_set_is_battery_percent_supported(bool value) {
+  
+  is_battery_percent_supported_ = value;
+}
+inline void GetPropertiesResponse::set_is_battery_percent_supported(bool value) {
+  _internal_set_is_battery_percent_supported(value);
+  // @@protoc_insertion_point(field_set:viam.component.powersensor.v1.GetPropertiesResponse.is_battery_percent_supported)
+}
+
+// bool is_charging_supported = 2 [json_name = "isChargingSupported"];
+inline void GetPropertiesResponse::clear_is_charging_supported() {
+  is_charging_supported_ = false;
+}
+inline bool GetPropertiesResponse::_internal_is_charging_supported() const {
+  return is_charging_supported_;
+}
+inline bool GetPropertiesResponse::is_charging_supported() const {
+  // @@protoc_insertion_point(field_get:viam.component.powersensor.v1.GetPropertiesResponse.is_charging_supported)
+  return _internal_is_charging_supported();
+}
+inline void GetPropertiesResponse::_internal_set_is_charging_supported(bool value) {
+  
+  is_charging_supported_ = value;
+}
+inline void GetPropertiesResponse::set_is_charging_supported(bool value) {
+  _internal_set_is_charging_supported(value);
+  // @@protoc_insertion_point(field_set:viam.component.powersensor.v1.GetPropertiesResponse.is_charging_supported)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

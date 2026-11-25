@@ -58,6 +58,18 @@ extern GetCurrentInputsRequestDefaultTypeInternal _GetCurrentInputsRequest_defau
 class GetCurrentInputsResponse;
 struct GetCurrentInputsResponseDefaultTypeInternal;
 extern GetCurrentInputsResponseDefaultTypeInternal _GetCurrentInputsResponse_default_instance_;
+class GetPercentOpenRequest;
+struct GetPercentOpenRequestDefaultTypeInternal;
+extern GetPercentOpenRequestDefaultTypeInternal _GetPercentOpenRequest_default_instance_;
+class GetPercentOpenResponse;
+struct GetPercentOpenResponseDefaultTypeInternal;
+extern GetPercentOpenResponseDefaultTypeInternal _GetPercentOpenResponse_default_instance_;
+class GetPropertiesRequest;
+struct GetPropertiesRequestDefaultTypeInternal;
+extern GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+class GetPropertiesResponse;
+struct GetPropertiesResponseDefaultTypeInternal;
+extern GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 class GoToInputsRequest;
 struct GoToInputsRequestDefaultTypeInternal;
 extern GoToInputsRequestDefaultTypeInternal _GoToInputsRequest_default_instance_;
@@ -88,6 +100,12 @@ extern OpenRequestDefaultTypeInternal _OpenRequest_default_instance_;
 class OpenResponse;
 struct OpenResponseDefaultTypeInternal;
 extern OpenResponseDefaultTypeInternal _OpenResponse_default_instance_;
+class SetPercentOpenRequest;
+struct SetPercentOpenRequestDefaultTypeInternal;
+extern SetPercentOpenRequestDefaultTypeInternal _SetPercentOpenRequest_default_instance_;
+class SetPercentOpenResponse;
+struct SetPercentOpenResponseDefaultTypeInternal;
+extern SetPercentOpenResponseDefaultTypeInternal _SetPercentOpenResponse_default_instance_;
 class StopRequest;
 struct StopRequestDefaultTypeInternal;
 extern StopRequestDefaultTypeInternal _StopRequest_default_instance_;
@@ -101,6 +119,10 @@ extern StopResponseDefaultTypeInternal _StopResponse_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::component::gripper::v1::GetCurrentInputsRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GetCurrentInputsRequest>(Arena*);
 template<> ::viam::component::gripper::v1::GetCurrentInputsResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GetCurrentInputsResponse>(Arena*);
+template<> ::viam::component::gripper::v1::GetPercentOpenRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GetPercentOpenRequest>(Arena*);
+template<> ::viam::component::gripper::v1::GetPercentOpenResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GetPercentOpenResponse>(Arena*);
+template<> ::viam::component::gripper::v1::GetPropertiesRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GetPropertiesRequest>(Arena*);
+template<> ::viam::component::gripper::v1::GetPropertiesResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GetPropertiesResponse>(Arena*);
 template<> ::viam::component::gripper::v1::GoToInputsRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GoToInputsRequest>(Arena*);
 template<> ::viam::component::gripper::v1::GoToInputsResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GoToInputsResponse>(Arena*);
 template<> ::viam::component::gripper::v1::GrabRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GrabRequest>(Arena*);
@@ -111,6 +133,8 @@ template<> ::viam::component::gripper::v1::IsMovingRequest* Arena::CreateMaybeMe
 template<> ::viam::component::gripper::v1::IsMovingResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::IsMovingResponse>(Arena*);
 template<> ::viam::component::gripper::v1::OpenRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::OpenRequest>(Arena*);
 template<> ::viam::component::gripper::v1::OpenResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::OpenResponse>(Arena*);
+template<> ::viam::component::gripper::v1::SetPercentOpenRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::SetPercentOpenRequest>(Arena*);
+template<> ::viam::component::gripper::v1::SetPercentOpenResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::SetPercentOpenResponse>(Arena*);
 template<> ::viam::component::gripper::v1::StopRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::StopRequest>(Arena*);
 template<> ::viam::component::gripper::v1::StopResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::StopResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -2272,6 +2296,923 @@ class GoToInputsResponse final :
   typedef void DestructorSkippable_;
   friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
 };
+// -------------------------------------------------------------------
+
+class SetPercentOpenRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.SetPercentOpenRequest) */ {
+ public:
+  inline SetPercentOpenRequest() : SetPercentOpenRequest(nullptr) {}
+  ~SetPercentOpenRequest() override;
+  explicit PROTOBUF_CONSTEXPR SetPercentOpenRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SetPercentOpenRequest(const SetPercentOpenRequest& from);
+  SetPercentOpenRequest(SetPercentOpenRequest&& from) noexcept
+    : SetPercentOpenRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetPercentOpenRequest& operator=(const SetPercentOpenRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetPercentOpenRequest& operator=(SetPercentOpenRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetPercentOpenRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetPercentOpenRequest* internal_default_instance() {
+    return reinterpret_cast<const SetPercentOpenRequest*>(
+               &_SetPercentOpenRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(SetPercentOpenRequest& a, SetPercentOpenRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetPercentOpenRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetPercentOpenRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetPercentOpenRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetPercentOpenRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SetPercentOpenRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SetPercentOpenRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SetPercentOpenRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.SetPercentOpenRequest";
+  }
+  protected:
+  explicit SetPercentOpenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+    kPercentOpenFieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // double percent_open = 2 [json_name = "percentOpen"];
+  void clear_percent_open();
+  double percent_open() const;
+  void set_percent_open(double value);
+  private:
+  double _internal_percent_open() const;
+  void _internal_set_percent_open(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.SetPercentOpenRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  double percent_open_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetPercentOpenResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.SetPercentOpenResponse) */ {
+ public:
+  inline SetPercentOpenResponse() : SetPercentOpenResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR SetPercentOpenResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SetPercentOpenResponse(const SetPercentOpenResponse& from);
+  SetPercentOpenResponse(SetPercentOpenResponse&& from) noexcept
+    : SetPercentOpenResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetPercentOpenResponse& operator=(const SetPercentOpenResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetPercentOpenResponse& operator=(SetPercentOpenResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetPercentOpenResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetPercentOpenResponse* internal_default_instance() {
+    return reinterpret_cast<const SetPercentOpenResponse*>(
+               &_SetPercentOpenResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(SetPercentOpenResponse& a, SetPercentOpenResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetPercentOpenResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetPercentOpenResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetPercentOpenResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetPercentOpenResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SetPercentOpenResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SetPercentOpenResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.SetPercentOpenResponse";
+  }
+  protected:
+  explicit SetPercentOpenResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.SetPercentOpenResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPercentOpenRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.GetPercentOpenRequest) */ {
+ public:
+  inline GetPercentOpenRequest() : GetPercentOpenRequest(nullptr) {}
+  ~GetPercentOpenRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPercentOpenRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPercentOpenRequest(const GetPercentOpenRequest& from);
+  GetPercentOpenRequest(GetPercentOpenRequest&& from) noexcept
+    : GetPercentOpenRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPercentOpenRequest& operator=(const GetPercentOpenRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPercentOpenRequest& operator=(GetPercentOpenRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPercentOpenRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPercentOpenRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPercentOpenRequest*>(
+               &_GetPercentOpenRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(GetPercentOpenRequest& a, GetPercentOpenRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPercentOpenRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPercentOpenRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPercentOpenRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPercentOpenRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPercentOpenRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPercentOpenRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPercentOpenRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.GetPercentOpenRequest";
+  }
+  protected:
+  explicit GetPercentOpenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.GetPercentOpenRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPercentOpenResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.GetPercentOpenResponse) */ {
+ public:
+  inline GetPercentOpenResponse() : GetPercentOpenResponse(nullptr) {}
+  ~GetPercentOpenResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPercentOpenResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPercentOpenResponse(const GetPercentOpenResponse& from);
+  GetPercentOpenResponse(GetPercentOpenResponse&& from) noexcept
+    : GetPercentOpenResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPercentOpenResponse& operator=(const GetPercentOpenResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPercentOpenResponse& operator=(GetPercentOpenResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPercentOpenResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPercentOpenResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPercentOpenResponse*>(
+               &_GetPercentOpenResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(GetPercentOpenResponse& a, GetPercentOpenResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPercentOpenResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPercentOpenResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPercentOpenResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPercentOpenResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPercentOpenResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPercentOpenResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPercentOpenResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.GetPercentOpenResponse";
+  }
+  protected:
+  explicit GetPercentOpenResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPercentOpenFieldNumber = 1,
+  };
+  // double percent_open = 1 [json_name = "percentOpen"];
+  void clear_percent_open();
+  double percent_open() const;
+  void set_percent_open(double value);
+  private:
+  double _internal_percent_open() const;
+  void _internal_set_percent_open(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.GetPercentOpenResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double percent_open_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPropertiesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.GetPropertiesRequest) */ {
+ public:
+  inline GetPropertiesRequest() : GetPropertiesRequest(nullptr) {}
+  ~GetPropertiesRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesRequest(const GetPropertiesRequest& from);
+  GetPropertiesRequest(GetPropertiesRequest&& from) noexcept
+    : GetPropertiesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesRequest& operator=(const GetPropertiesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesRequest& operator=(GetPropertiesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesRequest*>(
+               &_GetPropertiesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.GetPropertiesRequest";
+  }
+  protected:
+  explicit GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.GetPropertiesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPropertiesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.GetPropertiesResponse) */ {
+ public:
+  inline GetPropertiesResponse() : GetPropertiesResponse(nullptr) {}
+  ~GetPropertiesResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesResponse(const GetPropertiesResponse& from);
+  GetPropertiesResponse(GetPropertiesResponse&& from) noexcept
+    : GetPropertiesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesResponse& operator=(const GetPropertiesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesResponse& operator=(GetPropertiesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesResponse*>(
+               &_GetPropertiesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.GetPropertiesResponse";
+  }
+  protected:
+  explicit GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPercentOpenSupportedFieldNumber = 1,
+  };
+  // bool percent_open_supported = 1 [json_name = "percentOpenSupported"];
+  void clear_percent_open_supported();
+  bool percent_open_supported() const;
+  void set_percent_open_supported(bool value);
+  private:
+  bool _internal_percent_open_supported() const;
+  void _internal_set_percent_open_supported(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.GetPropertiesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  bool percent_open_supported_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
 // ===================================================================
 
 
@@ -3519,9 +4460,510 @@ inline void GoToInputsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Stru
 
 // GoToInputsResponse
 
+// -------------------------------------------------------------------
+
+// SetPercentOpenRequest
+
+// string name = 1 [json_name = "name"];
+inline void SetPercentOpenRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& SetPercentOpenRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.SetPercentOpenRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SetPercentOpenRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.SetPercentOpenRequest.name)
+}
+inline std::string* SetPercentOpenRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.SetPercentOpenRequest.name)
+  return _s;
+}
+inline const std::string& SetPercentOpenRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void SetPercentOpenRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SetPercentOpenRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SetPercentOpenRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.SetPercentOpenRequest.name)
+  return name_.Release();
+}
+inline void SetPercentOpenRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.SetPercentOpenRequest.name)
+}
+
+// double percent_open = 2 [json_name = "percentOpen"];
+inline void SetPercentOpenRequest::clear_percent_open() {
+  percent_open_ = 0;
+}
+inline double SetPercentOpenRequest::_internal_percent_open() const {
+  return percent_open_;
+}
+inline double SetPercentOpenRequest::percent_open() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.SetPercentOpenRequest.percent_open)
+  return _internal_percent_open();
+}
+inline void SetPercentOpenRequest::_internal_set_percent_open(double value) {
+  
+  percent_open_ = value;
+}
+inline void SetPercentOpenRequest::set_percent_open(double value) {
+  _internal_set_percent_open(value);
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.SetPercentOpenRequest.percent_open)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool SetPercentOpenRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool SetPercentOpenRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& SetPercentOpenRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& SetPercentOpenRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.SetPercentOpenRequest.extra)
+  return _internal_extra();
+}
+inline void SetPercentOpenRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.gripper.v1.SetPercentOpenRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPercentOpenRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPercentOpenRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.SetPercentOpenRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPercentOpenRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPercentOpenRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.SetPercentOpenRequest.extra)
+  return _msg;
+}
+inline void SetPercentOpenRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.SetPercentOpenRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// SetPercentOpenResponse
+
+// -------------------------------------------------------------------
+
+// GetPercentOpenRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetPercentOpenRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetPercentOpenRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.GetPercentOpenRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPercentOpenRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.GetPercentOpenRequest.name)
+}
+inline std::string* GetPercentOpenRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.GetPercentOpenRequest.name)
+  return _s;
+}
+inline const std::string& GetPercentOpenRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetPercentOpenRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPercentOpenRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPercentOpenRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.GetPercentOpenRequest.name)
+  return name_.Release();
+}
+inline void GetPercentOpenRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.GetPercentOpenRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetPercentOpenRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetPercentOpenRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPercentOpenRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPercentOpenRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.GetPercentOpenRequest.extra)
+  return _internal_extra();
+}
+inline void GetPercentOpenRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.gripper.v1.GetPercentOpenRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPercentOpenRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPercentOpenRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.GetPercentOpenRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPercentOpenRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPercentOpenRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.GetPercentOpenRequest.extra)
+  return _msg;
+}
+inline void GetPercentOpenRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.GetPercentOpenRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetPercentOpenResponse
+
+// double percent_open = 1 [json_name = "percentOpen"];
+inline void GetPercentOpenResponse::clear_percent_open() {
+  percent_open_ = 0;
+}
+inline double GetPercentOpenResponse::_internal_percent_open() const {
+  return percent_open_;
+}
+inline double GetPercentOpenResponse::percent_open() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.GetPercentOpenResponse.percent_open)
+  return _internal_percent_open();
+}
+inline void GetPercentOpenResponse::_internal_set_percent_open(double value) {
+  
+  percent_open_ = value;
+}
+inline void GetPercentOpenResponse::set_percent_open(double value) {
+  _internal_set_percent_open(value);
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.GetPercentOpenResponse.percent_open)
+}
+
+// -------------------------------------------------------------------
+
+// GetPropertiesRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetPropertiesRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetPropertiesRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.GetPropertiesRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPropertiesRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.GetPropertiesRequest.name)
+}
+inline std::string* GetPropertiesRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.GetPropertiesRequest.name)
+  return _s;
+}
+inline const std::string& GetPropertiesRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetPropertiesRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.GetPropertiesRequest.name)
+  return name_.Release();
+}
+inline void GetPropertiesRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.GetPropertiesRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetPropertiesRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetPropertiesRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPropertiesRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPropertiesRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.GetPropertiesRequest.extra)
+  return _internal_extra();
+}
+inline void GetPropertiesRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.gripper.v1.GetPropertiesRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.GetPropertiesRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.GetPropertiesRequest.extra)
+  return _msg;
+}
+inline void GetPropertiesRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.GetPropertiesRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetPropertiesResponse
+
+// bool percent_open_supported = 1 [json_name = "percentOpenSupported"];
+inline void GetPropertiesResponse::clear_percent_open_supported() {
+  percent_open_supported_ = false;
+}
+inline bool GetPropertiesResponse::_internal_percent_open_supported() const {
+  return percent_open_supported_;
+}
+inline bool GetPropertiesResponse::percent_open_supported() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.GetPropertiesResponse.percent_open_supported)
+  return _internal_percent_open_supported();
+}
+inline void GetPropertiesResponse::_internal_set_percent_open_supported(bool value) {
+  
+  percent_open_supported_ = value;
+}
+inline void GetPropertiesResponse::set_percent_open_supported(bool value) {
+  _internal_set_percent_open_supported(value);
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.GetPropertiesResponse.percent_open_supported)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
