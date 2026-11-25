@@ -17,6 +17,7 @@ namespace v1 {
 class RectangularPrism;
 class Sphere;
 class Capsule;
+class Cylinder;
 
 class Geometry;
 class GetGeometriesResponse;
@@ -31,7 +32,7 @@ class GeoGeometry;
 namespace viam {
 namespace sdk {
 
-enum class GeometryType { box, sphere, capsule, point, mesh };
+enum class GeometryType { box, sphere, capsule, cylinder, point, mesh };
 
 struct box {
     double x = 0.0;
@@ -48,9 +49,14 @@ struct capsule {
     double length = 0.0;
     friend bool operator==(const capsule&, const capsule&) = default;
 };
+struct cylinder {
+    double radius = 0.0;
+    double length = 0.0;
+    friend bool operator==(const cylinder&, const cylinder&) = default;
+};
 
 /// @brief The shape of a geometry: a primitive, or a `mesh` (stl/ply) for collision models.
-using geometry_specifics = std::variant<struct box, struct sphere, struct capsule, mesh>;
+using geometry_specifics = std::variant<struct box, struct sphere, struct capsule, struct cylinder, mesh>;
 
 /// @brief The dimensions of a given geometry and the pose of its center.
 class GeometryConfig {
@@ -133,6 +139,16 @@ struct to_proto_impl<capsule> {
 template <>
 struct from_proto_impl<common::v1::Capsule> {
     capsule operator()(const common::v1::Capsule*) const;
+};
+
+template <>
+struct to_proto_impl<cylinder> {
+    void operator()(const cylinder&, common::v1::Cylinder*) const;
+};
+
+template <>
+struct from_proto_impl<common::v1::Cylinder> {
+    cylinder operator()(const common::v1::Cylinder*) const;
 };
 
 template <>

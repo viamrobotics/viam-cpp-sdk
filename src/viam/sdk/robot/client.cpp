@@ -40,6 +40,7 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::app::packages::v1::PackageType;
+using viam::app::v1::ModuleVersionInfo;
 using viam::common::v1::Transform;
 using viam::robot::v1::ConfigStatus;
 using viam::robot::v1::GetMachineStatusResponse;
@@ -211,6 +212,17 @@ RobotClient::job_status from_proto_impl<JobStatus>::operator()(const JobStatus* 
     return js;
 }
 
+RobotClient::module_version_info from_proto_impl<ModuleVersionInfo>::operator()(
+    const ModuleVersionInfo* proto) const {
+    RobotClient::module_version_info mvi;
+    mvi.name = proto->name();
+    mvi.version = proto->version();
+    mvi.platform = proto->platform();
+    mvi.arch = proto->arch();
+    mvi.os = proto->os();
+    return mvi;
+}
+
 RobotClient::machine_status from_proto_impl<GetMachineStatusResponse>::operator()(
     const GetMachineStatusResponse* proto) const {
     RobotClient::machine_status ms;
@@ -230,6 +242,11 @@ RobotClient::machine_status from_proto_impl<GetMachineStatusResponse>::operator(
     ms.modules = impl::from_repeated_field(proto->modules());
     ms.packages = impl::from_repeated_field(proto->packages());
     ms.job_statuses = impl::from_repeated_field(proto->job_statuses());
+    ms.module_versions = impl::from_repeated_field(proto->module_versions());
+    if (proto->has_viam_server_uptime()) {
+        ms.viam_server_uptime = from_proto(proto->viam_server_uptime());
+    }
+    ms.reconfigure_blocked = proto->reconfigure_blocked();
     return ms;
 }
 

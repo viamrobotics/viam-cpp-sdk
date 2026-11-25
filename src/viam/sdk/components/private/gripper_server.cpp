@@ -1,6 +1,7 @@
 #include <viam/sdk/components/private/gripper_server.hpp>
 
 #include <viam/sdk/common/private/service_helper.hpp>
+#include <viam/sdk/components/gripper.hpp>
 
 namespace viam {
 namespace sdk {
@@ -85,6 +86,61 @@ GripperServer::GripperServer(std::shared_ptr<ResourceManager> manager)
         const ProtoStruct result = gripper->get_status();
         *response->mutable_result() = to_proto(result);
     });
+}
+
+::grpc::Status GripperServer::SetPercentOpen(
+    ::grpc::ServerContext* context,
+    const ::viam::component::gripper::v1::SetPercentOpenRequest* request,
+    ::viam::component::gripper::v1::SetPercentOpenResponse*) noexcept {
+    return make_service_helper<Gripper>("GripperServer::SetPercentOpen", this, context, request)(
+        [&](auto& helper, auto& gripper) { gripper->set_percent_open(request->percent_open(), helper.getExtra()); });
+}
+
+::grpc::Status GripperServer::GetPercentOpen(
+    ::grpc::ServerContext* context,
+    const ::viam::component::gripper::v1::GetPercentOpenRequest* request,
+    ::viam::component::gripper::v1::GetPercentOpenResponse* response) noexcept {
+    return make_service_helper<Gripper>("GripperServer::GetPercentOpen", this, context, request)(
+        [&](auto& helper, auto& gripper) { response->set_percent_open(gripper->get_percent_open(helper.getExtra())); });
+}
+
+::grpc::Status GripperServer::GetProperties(
+    ::grpc::ServerContext* context,
+    const ::viam::component::gripper::v1::GetPropertiesRequest* request,
+    ::viam::component::gripper::v1::GetPropertiesResponse* response) noexcept {
+    return make_service_helper<Gripper>("GripperServer::GetProperties", this, context, request)(
+        [&](auto& helper, auto& gripper) {
+            const Gripper::properties prop = gripper->get_properties(helper.getExtra());
+            *(response->mutable_properties()) = to_proto(prop);
+        });
+}
+
+// to_proto specializations
+
+// to_proto for Gripper::holding_status
+::viam::component::gripper::v1::IsHoldingSomethingResponse GripperServer::to_proto(
+    const Gripper::holding_status& hs) {
+    ::viam::component::gripper::v1::IsHoldingSomethingResponse response;
+    response.set_is_holding_something(hs.is_holding_something);
+    *response.mutable_meta() = to_proto(hs.meta);
+    return response;
+}
+
+// to_proto for Gripper::properties
+::viam::component::gripper::v1::GetPropertiesResponse GripperServer::to_proto(
+    const Gripper::properties& prop) {
+    ::viam::component::gripper::v1::GetPropertiesResponse response;
+    response.set_holds_item(prop.holds_item);
+    response.set_can_grasp(prop.can_grasp);
+    return response;
+}
+
+// to_proto for Gripper::percent_open_status
+::viam::component::gripper::v1::GetPercentOpenResponse GripperServer::to_proto(
+    const Gripper::percent_open_status& pos) {
+    ::viam::component::gripper::v1::GetPercentOpenResponse response;
+    response.set_percent_open(pos.percent_open);
+    return response;
 }
 
 }  // namespace impl

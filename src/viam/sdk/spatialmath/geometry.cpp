@@ -40,6 +40,9 @@ GeometryType GeometryConfig::get_geometry_type() const {
         auto operator()(const mesh&) const {
             return GeometryType::mesh;
         }
+        auto operator()(const cylinder& c) const {
+            return GeometryType::cylinder;
+        }
     };
 
     return std::visit(Visitor{}, geometry_specifics_);
@@ -107,6 +110,15 @@ capsule from_proto_impl<common::v1::Capsule>::operator()(const common::v1::Capsu
     return {proto->radius_mm(), proto->length_mm()};
 }
 
+void to_proto_impl<cylinder>::operator()(const cylinder& self, common::v1::Cylinder* proto) const {
+    proto->set_radius_mm(self.radius);
+    proto->set_length_mm(self.length);
+}
+
+cylinder from_proto_impl<common::v1::Cylinder>::operator()(const common::v1::Cylinder* proto) const {
+    return {proto->radius_mm(), proto->length_mm()};
+}
+
 void to_proto_impl<GeometryConfig>::operator()(const GeometryConfig& self,
                                                common::v1::Geometry* proto) const {
     struct Visitor {
@@ -126,6 +138,10 @@ void to_proto_impl<GeometryConfig>::operator()(const GeometryConfig& self,
 
         void operator()(const mesh& m) {
             *geometry.mutable_mesh() = to_proto(m);
+        }
+
+        void operator()(const cylinder& c) {
+            *geometry.mutable_cylinder() = to_proto(c);
         }
     };
 
@@ -147,6 +163,8 @@ GeometryConfig from_proto_impl<common::v1::Geometry>::operator()(
                 return from_proto(proto->capsule());
             case viam::common::v1::Geometry::GeometryTypeCase::kMesh:
                 return from_proto(proto->mesh());
+            case viam::common::v1::Geometry::GeometryTypeCase::kCylinder:
+                return from_proto(proto->cylinder());
             case viam::common::v1::Geometry::GeometryTypeCase::
                 GEOMETRY_TYPE_NOT_SET:  // fallthrough
             default:

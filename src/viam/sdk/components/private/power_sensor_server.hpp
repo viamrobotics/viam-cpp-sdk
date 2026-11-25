@@ -37,6 +37,14 @@ class PowerSensorServer : public ResourceServer, public PowerSensorService::Serv
                             const GetPowerRequest* request,
                             GetPowerResponse* response) noexcept override;
 
+    ::grpc::Status GetBatteryPercent(::grpc::ServerContext* context,
+                                     const GetBatteryPercentRequest* request,
+                                     GetBatteryPercentResponse* response) noexcept override;
+
+    ::grpc::Status GetProperties(::grpc::ServerContext* context,
+                                 const GetPropertiesRequest* request,
+                                 GetPropertiesResponse* response) noexcept override;
+
     ::grpc::Status GetReadings(::grpc::ServerContext* context,
                                const viam::common::v1::GetReadingsRequest* request,
                                viam::common::v1::GetReadingsResponse* response) noexcept override;
