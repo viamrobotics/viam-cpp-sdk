@@ -63,6 +63,22 @@ class PowerSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPowerResponse>> PrepareAsyncGetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPowerResponse>>(PrepareAsyncGetPowerRaw(context, request, cq));
     }
+    // GetBatteryPercent returns the remaining charge of the battery the power sensor monitors
+    virtual ::grpc::Status GetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetBatteryPercentResponse>> AsyncGetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetBatteryPercentResponse>>(AsyncGetBatteryPercentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetBatteryPercentResponse>> PrepareAsyncGetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetBatteryPercentResponse>>(PrepareAsyncGetBatteryPercentRaw(context, request, cq));
+    }
+    // GetProperties returns the properties of a power sensor
+    virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::viam::component::powersensor::v1::GetPropertiesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     // GetReadings returns the readings of a sensor of the underlying robot.
     virtual ::grpc::Status GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>> AsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -99,6 +115,12 @@ class PowerSensorService final {
       // GetPower returns the power reading of a power sensor in watts
       virtual void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetBatteryPercent returns the remaining charge of the battery the power sensor monitors
+      virtual void GetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetProperties returns the properties of a power sensor
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest* request, ::viam::component::powersensor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest* request, ::viam::component::powersensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetReadings returns the readings of a sensor of the underlying robot.
       virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -119,6 +141,10 @@ class PowerSensorService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetCurrentResponse>* PrepareAsyncGetCurrentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPowerResponse>* AsyncGetPowerRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPowerResponse>* PrepareAsyncGetPowerRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetBatteryPercentResponse>* AsyncGetBatteryPercentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetBatteryPercentResponse>* PrepareAsyncGetBatteryPercentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>* AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>* PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -150,6 +176,20 @@ class PowerSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPowerResponse>> PrepareAsyncGetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPowerResponse>>(PrepareAsyncGetPowerRaw(context, request, cq));
     }
+    ::grpc::Status GetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetBatteryPercentResponse>> AsyncGetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetBatteryPercentResponse>>(AsyncGetBatteryPercentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetBatteryPercentResponse>> PrepareAsyncGetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetBatteryPercentResponse>>(PrepareAsyncGetBatteryPercentRaw(context, request, cq));
+    }
+    ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::viam::component::powersensor::v1::GetPropertiesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     ::grpc::Status GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>> AsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>>(AsyncGetReadingsRaw(context, request, cq));
@@ -180,6 +220,10 @@ class PowerSensorService final {
       void GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)>) override;
       void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetBatteryPercent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest* request, ::viam::component::powersensor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest* request, ::viam::component::powersensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
@@ -203,6 +247,10 @@ class PowerSensorService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetCurrentResponse>* PrepareAsyncGetCurrentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPowerResponse>* AsyncGetPowerRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPowerResponse>* PrepareAsyncGetPowerRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetBatteryPercentResponse>* AsyncGetBatteryPercentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetBatteryPercentResponse>* PrepareAsyncGetBatteryPercentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -212,6 +260,8 @@ class PowerSensorService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetVoltage_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCurrent_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPower_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetBatteryPercent_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
     const ::grpc::internal::RpcMethod rpcmethod_GetReadings_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_GetStatus_;
@@ -228,6 +278,10 @@ class PowerSensorService final {
     virtual ::grpc::Status GetCurrent(::grpc::ServerContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response);
     // GetPower returns the power reading of a power sensor in watts
     virtual ::grpc::Status GetPower(::grpc::ServerContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response);
+    // GetBatteryPercent returns the remaining charge of the battery the power sensor monitors
+    virtual ::grpc::Status GetBatteryPercent(::grpc::ServerContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response);
+    // GetProperties returns the properties of a power sensor
+    virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest* request, ::viam::component::powersensor::v1::GetPropertiesResponse* response);
     // GetReadings returns the readings of a sensor of the underlying robot.
     virtual ::grpc::Status GetReadings(::grpc::ServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response);
     // DoCommand sends/receives arbitrary commands
@@ -296,12 +350,52 @@ class PowerSensorService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetBatteryPercent : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetBatteryPercent() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_GetBatteryPercent() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetBatteryPercent(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* /*request*/, ::viam::component::powersensor::v1::GetBatteryPercentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetBatteryPercent(::grpc::ServerContext* context, ::viam::component::powersensor::v1::GetBatteryPercentRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::powersensor::v1::GetBatteryPercentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetProperties() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::powersensor::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::viam::component::powersensor::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::powersensor::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetReadings() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
@@ -312,7 +406,7 @@ class PowerSensorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetReadings(::grpc::ServerContext* context, ::viam::common::v1::GetReadingsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetReadingsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -321,7 +415,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -332,7 +426,7 @@ class PowerSensorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -341,7 +435,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStatus() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -352,10 +446,10 @@ class PowerSensorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::viam::common::v1::GetStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetVoltage<WithAsyncMethod_GetCurrent<WithAsyncMethod_GetPower<WithAsyncMethod_GetReadings<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<Service > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetVoltage<WithAsyncMethod_GetCurrent<WithAsyncMethod_GetPower<WithAsyncMethod_GetBatteryPercent<WithAsyncMethod_GetProperties<WithAsyncMethod_GetReadings<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetVoltage : public BaseClass {
    private:
@@ -438,18 +532,72 @@ class PowerSensorService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPowerRequest* /*request*/, ::viam::component::powersensor::v1::GetPowerResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetBatteryPercent : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetBatteryPercent() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetBatteryPercentRequest, ::viam::component::powersensor::v1::GetBatteryPercentResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* request, ::viam::component::powersensor::v1::GetBatteryPercentResponse* response) { return this->GetBatteryPercent(context, request, response); }));}
+    void SetMessageAllocatorFor_GetBatteryPercent(
+        ::grpc::MessageAllocator< ::viam::component::powersensor::v1::GetBatteryPercentRequest, ::viam::component::powersensor::v1::GetBatteryPercentResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetBatteryPercentRequest, ::viam::component::powersensor::v1::GetBatteryPercentResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetBatteryPercent() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetBatteryPercent(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* /*request*/, ::viam::component::powersensor::v1::GetBatteryPercentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetBatteryPercent(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* /*request*/, ::viam::component::powersensor::v1::GetBatteryPercentResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetPropertiesRequest, ::viam::component::powersensor::v1::GetPropertiesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::powersensor::v1::GetPropertiesRequest* request, ::viam::component::powersensor::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    void SetMessageAllocatorFor_GetProperties(
+        ::grpc::MessageAllocator< ::viam::component::powersensor::v1::GetPropertiesRequest, ::viam::component::powersensor::v1::GetPropertiesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetPropertiesRequest, ::viam::component::powersensor::v1::GetPropertiesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::powersensor::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::powersensor::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetReadings() {
-      ::grpc::Service::MarkMethodCallback(3,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) { return this->GetReadings(context, request, response); }));}
     void SetMessageAllocatorFor_GetReadings(
         ::grpc::MessageAllocator< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -470,13 +618,13 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -497,13 +645,13 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) { return this->GetStatus(context, request, response); }));}
     void SetMessageAllocatorFor_GetStatus(
         ::grpc::MessageAllocator< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -518,7 +666,7 @@ class PowerSensorService final {
     virtual ::grpc::ServerUnaryReactor* GetStatus(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetStatusRequest* /*request*/, ::viam::common::v1::GetStatusResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetVoltage<WithCallbackMethod_GetCurrent<WithCallbackMethod_GetPower<WithCallbackMethod_GetReadings<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<Service > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetVoltage<WithCallbackMethod_GetCurrent<WithCallbackMethod_GetPower<WithCallbackMethod_GetBatteryPercent<WithCallbackMethod_GetProperties<WithCallbackMethod_GetReadings<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetVoltage : public BaseClass {
@@ -572,12 +720,46 @@ class PowerSensorService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetBatteryPercent : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetBatteryPercent() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_GetBatteryPercent() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetBatteryPercent(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* /*request*/, ::viam::component::powersensor::v1::GetBatteryPercentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetProperties() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::powersensor::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetReadings() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
@@ -594,7 +776,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -611,7 +793,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStatus() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -683,12 +865,52 @@ class PowerSensorService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetBatteryPercent : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetBatteryPercent() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_GetBatteryPercent() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetBatteryPercent(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* /*request*/, ::viam::component::powersensor::v1::GetBatteryPercentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetBatteryPercent(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::powersensor::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetReadings() {
-      ::grpc::Service::MarkMethodRaw(3);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
@@ -699,7 +921,7 @@ class PowerSensorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetReadings(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -708,7 +930,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -719,7 +941,7 @@ class PowerSensorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -728,7 +950,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -739,7 +961,7 @@ class PowerSensorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -809,12 +1031,56 @@ class PowerSensorService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetBatteryPercent : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetBatteryPercent() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBatteryPercent(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetBatteryPercent() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetBatteryPercent(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* /*request*/, ::viam::component::powersensor::v1::GetBatteryPercentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetBatteryPercent(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::powersensor::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetReadings() {
-      ::grpc::Service::MarkMethodRawCallback(3,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReadings(context, request, response); }));
@@ -836,7 +1102,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -858,7 +1124,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStatus(context, request, response); }));
@@ -956,12 +1222,66 @@ class PowerSensorService final {
     virtual ::grpc::Status StreamedGetPower(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::powersensor::v1::GetPowerRequest,::viam::component::powersensor::v1::GetPowerResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetBatteryPercent : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetBatteryPercent() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::powersensor::v1::GetBatteryPercentRequest, ::viam::component::powersensor::v1::GetBatteryPercentResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::powersensor::v1::GetBatteryPercentRequest, ::viam::component::powersensor::v1::GetBatteryPercentResponse>* streamer) {
+                       return this->StreamedGetBatteryPercent(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetBatteryPercent() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetBatteryPercent(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetBatteryPercentRequest* /*request*/, ::viam::component::powersensor::v1::GetBatteryPercentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetBatteryPercent(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::powersensor::v1::GetBatteryPercentRequest,::viam::component::powersensor::v1::GetBatteryPercentResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetProperties() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::powersensor::v1::GetPropertiesRequest, ::viam::component::powersensor::v1::GetPropertiesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::powersensor::v1::GetPropertiesRequest, ::viam::component::powersensor::v1::GetPropertiesResponse>* streamer) {
+                       return this->StreamedGetProperties(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::powersensor::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::powersensor::v1::GetPropertiesRequest,::viam::component::powersensor::v1::GetPropertiesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetReadings() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
             [this](::grpc::ServerContext* context,
@@ -988,7 +1308,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1015,7 +1335,7 @@ class PowerSensorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStatus() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](::grpc::ServerContext* context,
@@ -1036,9 +1356,9 @@ class PowerSensorService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetStatusRequest,::viam::common::v1::GetStatusResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetVoltage<WithStreamedUnaryMethod_GetCurrent<WithStreamedUnaryMethod_GetPower<WithStreamedUnaryMethod_GetReadings<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetVoltage<WithStreamedUnaryMethod_GetCurrent<WithStreamedUnaryMethod_GetPower<WithStreamedUnaryMethod_GetBatteryPercent<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetReadings<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetVoltage<WithStreamedUnaryMethod_GetCurrent<WithStreamedUnaryMethod_GetPower<WithStreamedUnaryMethod_GetReadings<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetVoltage<WithStreamedUnaryMethod_GetCurrent<WithStreamedUnaryMethod_GetPower<WithStreamedUnaryMethod_GetBatteryPercent<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetReadings<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

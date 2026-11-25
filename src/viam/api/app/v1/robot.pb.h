@@ -38,6 +38,7 @@
 #include "common/v1/common.pb.h"
 #include <google/protobuf/duration.pb.h>
 #include <google/protobuf/struct.pb.h>
+#include "robot/v1/robot.pb.h"
 #include "tagger/v1/tagger.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -125,6 +126,9 @@ extern ModuleConfigDefaultTypeInternal _ModuleConfig_default_instance_;
 class ModuleConfig_EnvEntry_DoNotUse;
 struct ModuleConfig_EnvEntry_DoNotUseDefaultTypeInternal;
 extern ModuleConfig_EnvEntry_DoNotUseDefaultTypeInternal _ModuleConfig_EnvEntry_DoNotUse_default_instance_;
+class ModuleVersionInfo;
+struct ModuleVersionInfoDefaultTypeInternal;
+extern ModuleVersionInfoDefaultTypeInternal _ModuleVersionInfo_default_instance_;
 class NeedsRestartRequest;
 struct NeedsRestartRequestDefaultTypeInternal;
 extern NeedsRestartRequestDefaultTypeInternal _NeedsRestartRequest_default_instance_;
@@ -230,6 +234,7 @@ template<> ::viam::app::v1::LogResponse* Arena::CreateMaybeMessage<::viam::app::
 template<> ::viam::app::v1::MaintenanceConfig* Arena::CreateMaybeMessage<::viam::app::v1::MaintenanceConfig>(Arena*);
 template<> ::viam::app::v1::ModuleConfig* Arena::CreateMaybeMessage<::viam::app::v1::ModuleConfig>(Arena*);
 template<> ::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse>(Arena*);
+template<> ::viam::app::v1::ModuleVersionInfo* Arena::CreateMaybeMessage<::viam::app::v1::ModuleVersionInfo>(Arena*);
 template<> ::viam::app::v1::NeedsRestartRequest* Arena::CreateMaybeMessage<::viam::app::v1::NeedsRestartRequest>(Arena*);
 template<> ::viam::app::v1::NeedsRestartResponse* Arena::CreateMaybeMessage<::viam::app::v1::NeedsRestartResponse>(Arena*);
 template<> ::viam::app::v1::NetworkConfig* Arena::CreateMaybeMessage<::viam::app::v1::NetworkConfig>(Arena*);
@@ -7454,11 +7459,14 @@ class AgentInfo final :
   enum : int {
     kIpsFieldNumber = 3,
     kPlatformTagsFieldNumber = 7,
+    kModuleVersionsFieldNumber = 8,
     kHostFieldNumber = 1,
     kOsFieldNumber = 2,
     kVersionFieldNumber = 4,
     kGitRevisionFieldNumber = 5,
     kPlatformFieldNumber = 6,
+    kViamServerUptimeFieldNumber = 9,
+    kReconfigureBlockedFieldNumber = 10,
   };
   // repeated string ips = 3 [json_name = "ips"];
   int ips_size() const;
@@ -7507,6 +7515,24 @@ class AgentInfo final :
   const std::string& _internal_platform_tags(int index) const;
   std::string* _internal_add_platform_tags();
   public:
+
+  // repeated .viam.app.v1.ModuleVersionInfo module_versions = 8 [json_name = "moduleVersions"];
+  int module_versions_size() const;
+  private:
+  int _internal_module_versions_size() const;
+  public:
+  void clear_module_versions();
+  ::viam::app::v1::ModuleVersionInfo* mutable_module_versions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleVersionInfo >*
+      mutable_module_versions();
+  private:
+  const ::viam::app::v1::ModuleVersionInfo& _internal_module_versions(int index) const;
+  ::viam::app::v1::ModuleVersionInfo* _internal_add_module_versions();
+  public:
+  const ::viam::app::v1::ModuleVersionInfo& module_versions(int index) const;
+  ::viam::app::v1::ModuleVersionInfo* add_module_versions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleVersionInfo >&
+      module_versions() const;
 
   // string host = 1 [json_name = "host"];
   void clear_host();
@@ -7582,6 +7608,33 @@ class AgentInfo final :
   std::string* _internal_mutable_platform();
   public:
 
+  // .google.protobuf.Duration viam_server_uptime = 9 [json_name = "viamServerUptime"];
+  bool has_viam_server_uptime() const;
+  private:
+  bool _internal_has_viam_server_uptime() const;
+  public:
+  void clear_viam_server_uptime();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& viam_server_uptime() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_viam_server_uptime();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_viam_server_uptime();
+  void set_allocated_viam_server_uptime(::PROTOBUF_NAMESPACE_ID::Duration* viam_server_uptime);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_viam_server_uptime() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_viam_server_uptime();
+  public:
+  void unsafe_arena_set_allocated_viam_server_uptime(
+      ::PROTOBUF_NAMESPACE_ID::Duration* viam_server_uptime);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_viam_server_uptime();
+
+  // bool reconfigure_blocked = 10 [json_name = "reconfigureBlocked"];
+  void clear_reconfigure_blocked();
+  bool reconfigure_blocked() const;
+  void set_reconfigure_blocked(bool value);
+  private:
+  bool _internal_reconfigure_blocked() const;
+  void _internal_set_reconfigure_blocked(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.AgentInfo)
  private:
   class _Internal;
@@ -7593,11 +7646,247 @@ class AgentInfo final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> ips_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> platform_tags_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleVersionInfo > module_versions_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr host_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr os_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr git_revision_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr platform_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* viam_server_uptime_;
+  bool reconfigure_blocked_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ModuleVersionInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ModuleVersionInfo) */ {
+ public:
+  inline ModuleVersionInfo() : ModuleVersionInfo(nullptr) {}
+  ~ModuleVersionInfo() override;
+  explicit PROTOBUF_CONSTEXPR ModuleVersionInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ModuleVersionInfo(const ModuleVersionInfo& from);
+  ModuleVersionInfo(ModuleVersionInfo&& from) noexcept
+    : ModuleVersionInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline ModuleVersionInfo& operator=(const ModuleVersionInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModuleVersionInfo& operator=(ModuleVersionInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModuleVersionInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModuleVersionInfo* internal_default_instance() {
+    return reinterpret_cast<const ModuleVersionInfo*>(
+               &_ModuleVersionInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    36;
+
+  friend void swap(ModuleVersionInfo& a, ModuleVersionInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModuleVersionInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModuleVersionInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModuleVersionInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModuleVersionInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ModuleVersionInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ModuleVersionInfo& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModuleVersionInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ModuleVersionInfo";
+  }
+  protected:
+  explicit ModuleVersionInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleIdFieldNumber = 1,
+    kRunningVersionFieldNumber = 2,
+    kModuleNameFieldNumber = 8,
+    kRunningForFieldNumber = 3,
+    kStateFieldNumber = 4,
+    kConsecutiveFailuresFieldNumber = 6,
+    kReadyCountFieldNumber = 7,
+  };
+  // string module_id = 1 [json_name = "moduleId"];
+  void clear_module_id();
+  const std::string& module_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_id();
+  PROTOBUF_NODISCARD std::string* release_module_id();
+  void set_allocated_module_id(std::string* module_id);
+  private:
+  const std::string& _internal_module_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_id(const std::string& value);
+  std::string* _internal_mutable_module_id();
+  public:
+
+  // string running_version = 2 [json_name = "runningVersion"];
+  void clear_running_version();
+  const std::string& running_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_running_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_running_version();
+  PROTOBUF_NODISCARD std::string* release_running_version();
+  void set_allocated_running_version(std::string* running_version);
+  private:
+  const std::string& _internal_running_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_running_version(const std::string& value);
+  std::string* _internal_mutable_running_version();
+  public:
+
+  // string module_name = 8 [json_name = "moduleName"];
+  void clear_module_name();
+  const std::string& module_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_name();
+  PROTOBUF_NODISCARD std::string* release_module_name();
+  void set_allocated_module_name(std::string* module_name);
+  private:
+  const std::string& _internal_module_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_name(const std::string& value);
+  std::string* _internal_mutable_module_name();
+  public:
+
+  // .google.protobuf.Duration running_for = 3 [json_name = "runningFor"];
+  bool has_running_for() const;
+  private:
+  bool _internal_has_running_for() const;
+  public:
+  void clear_running_for();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& running_for() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_running_for();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_running_for();
+  void set_allocated_running_for(::PROTOBUF_NAMESPACE_ID::Duration* running_for);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_running_for() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_running_for();
+  public:
+  void unsafe_arena_set_allocated_running_for(
+      ::PROTOBUF_NAMESPACE_ID::Duration* running_for);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_running_for();
+
+  // .viam.robot.v1.ModuleStatus.State state = 4 [json_name = "state"];
+  void clear_state();
+  ::viam::robot::v1::ModuleStatus_State state() const;
+  void set_state(::viam::robot::v1::ModuleStatus_State value);
+  private:
+  ::viam::robot::v1::ModuleStatus_State _internal_state() const;
+  void _internal_set_state(::viam::robot::v1::ModuleStatus_State value);
+  public:
+
+  // uint32 consecutive_failures = 6 [json_name = "consecutiveFailures"];
+  void clear_consecutive_failures();
+  uint32_t consecutive_failures() const;
+  void set_consecutive_failures(uint32_t value);
+  private:
+  uint32_t _internal_consecutive_failures() const;
+  void _internal_set_consecutive_failures(uint32_t value);
+  public:
+
+  // uint32 ready_count = 7 [json_name = "readyCount"];
+  void clear_ready_count();
+  uint32_t ready_count() const;
+  void set_ready_count(uint32_t value);
+  private:
+  uint32_t _internal_ready_count() const;
+  void _internal_set_ready_count(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleVersionInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr running_version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_name_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* running_for_;
+  int state_;
+  uint32_t consecutive_failures_;
+  uint32_t ready_count_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -7650,7 +7939,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -7819,7 +8108,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -7971,7 +8260,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -8119,7 +8408,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -8299,7 +8588,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -8466,7 +8755,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -8583,7 +8872,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -8731,7 +9020,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -8938,7 +9227,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    46;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -9227,7 +9516,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -9443,7 +9732,7 @@ class MaintenanceConfig final :
                &_MaintenanceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   friend void swap(MaintenanceConfig& a, MaintenanceConfig& b) {
     a.Swap(&b);
@@ -9631,7 +9920,7 @@ class FollowPartRef final :
                &_FollowPartRef_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   friend void swap(FollowPartRef& a, FollowPartRef& b) {
     a.Swap(&b);
@@ -17934,6 +18223,450 @@ AgentInfo::mutable_platform_tags() {
   return &platform_tags_;
 }
 
+// repeated .viam.app.v1.ModuleVersionInfo module_versions = 8 [json_name = "moduleVersions"];
+inline int AgentInfo::_internal_module_versions_size() const {
+  return module_versions_.size();
+}
+inline int AgentInfo::module_versions_size() const {
+  return _internal_module_versions_size();
+}
+inline void AgentInfo::clear_module_versions() {
+  module_versions_.Clear();
+}
+inline ::viam::app::v1::ModuleVersionInfo* AgentInfo::mutable_module_versions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AgentInfo.module_versions)
+  return module_versions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleVersionInfo >*
+AgentInfo::mutable_module_versions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.AgentInfo.module_versions)
+  return &module_versions_;
+}
+inline const ::viam::app::v1::ModuleVersionInfo& AgentInfo::_internal_module_versions(int index) const {
+  return module_versions_.Get(index);
+}
+inline const ::viam::app::v1::ModuleVersionInfo& AgentInfo::module_versions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AgentInfo.module_versions)
+  return _internal_module_versions(index);
+}
+inline ::viam::app::v1::ModuleVersionInfo* AgentInfo::_internal_add_module_versions() {
+  return module_versions_.Add();
+}
+inline ::viam::app::v1::ModuleVersionInfo* AgentInfo::add_module_versions() {
+  ::viam::app::v1::ModuleVersionInfo* _add = _internal_add_module_versions();
+  // @@protoc_insertion_point(field_add:viam.app.v1.AgentInfo.module_versions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleVersionInfo >&
+AgentInfo::module_versions() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.AgentInfo.module_versions)
+  return module_versions_;
+}
+
+// .google.protobuf.Duration viam_server_uptime = 9 [json_name = "viamServerUptime"];
+inline bool AgentInfo::_internal_has_viam_server_uptime() const {
+  return this != internal_default_instance() && viam_server_uptime_ != nullptr;
+}
+inline bool AgentInfo::has_viam_server_uptime() const {
+  return _internal_has_viam_server_uptime();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& AgentInfo::_internal_viam_server_uptime() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = viam_server_uptime_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& AgentInfo::viam_server_uptime() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AgentInfo.viam_server_uptime)
+  return _internal_viam_server_uptime();
+}
+inline void AgentInfo::unsafe_arena_set_allocated_viam_server_uptime(
+    ::PROTOBUF_NAMESPACE_ID::Duration* viam_server_uptime) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(viam_server_uptime_);
+  }
+  viam_server_uptime_ = viam_server_uptime;
+  if (viam_server_uptime) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.AgentInfo.viam_server_uptime)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* AgentInfo::release_viam_server_uptime() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = viam_server_uptime_;
+  viam_server_uptime_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* AgentInfo::unsafe_arena_release_viam_server_uptime() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AgentInfo.viam_server_uptime)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = viam_server_uptime_;
+  viam_server_uptime_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* AgentInfo::_internal_mutable_viam_server_uptime() {
+  
+  if (viam_server_uptime_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    viam_server_uptime_ = p;
+  }
+  return viam_server_uptime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* AgentInfo::mutable_viam_server_uptime() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_viam_server_uptime();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AgentInfo.viam_server_uptime)
+  return _msg;
+}
+inline void AgentInfo::set_allocated_viam_server_uptime(::PROTOBUF_NAMESPACE_ID::Duration* viam_server_uptime) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(viam_server_uptime_);
+  }
+  if (viam_server_uptime) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(viam_server_uptime));
+    if (message_arena != submessage_arena) {
+      viam_server_uptime = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, viam_server_uptime, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  viam_server_uptime_ = viam_server_uptime;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AgentInfo.viam_server_uptime)
+}
+
+// bool reconfigure_blocked = 10 [json_name = "reconfigureBlocked"];
+inline void AgentInfo::clear_reconfigure_blocked() {
+  reconfigure_blocked_ = false;
+}
+inline bool AgentInfo::_internal_reconfigure_blocked() const {
+  return reconfigure_blocked_;
+}
+inline bool AgentInfo::reconfigure_blocked() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AgentInfo.reconfigure_blocked)
+  return _internal_reconfigure_blocked();
+}
+inline void AgentInfo::_internal_set_reconfigure_blocked(bool value) {
+  
+  reconfigure_blocked_ = value;
+}
+inline void AgentInfo::set_reconfigure_blocked(bool value) {
+  _internal_set_reconfigure_blocked(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.AgentInfo.reconfigure_blocked)
+}
+
+// -------------------------------------------------------------------
+
+// ModuleVersionInfo
+
+// string module_id = 1 [json_name = "moduleId"];
+inline void ModuleVersionInfo::clear_module_id() {
+  module_id_.ClearToEmpty();
+}
+inline const std::string& ModuleVersionInfo::module_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersionInfo.module_id)
+  return _internal_module_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleVersionInfo::set_module_id(ArgT0&& arg0, ArgT... args) {
+ 
+ module_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersionInfo.module_id)
+}
+inline std::string* ModuleVersionInfo::mutable_module_id() {
+  std::string* _s = _internal_mutable_module_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersionInfo.module_id)
+  return _s;
+}
+inline const std::string& ModuleVersionInfo::_internal_module_id() const {
+  return module_id_.Get();
+}
+inline void ModuleVersionInfo::_internal_set_module_id(const std::string& value) {
+  
+  module_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleVersionInfo::_internal_mutable_module_id() {
+  
+  return module_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleVersionInfo::release_module_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersionInfo.module_id)
+  return module_id_.Release();
+}
+inline void ModuleVersionInfo::set_allocated_module_id(std::string* module_id) {
+  if (module_id != nullptr) {
+    
+  } else {
+    
+  }
+  module_id_.SetAllocated(module_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_id_.IsDefault()) {
+    module_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersionInfo.module_id)
+}
+
+// string module_name = 8 [json_name = "moduleName"];
+inline void ModuleVersionInfo::clear_module_name() {
+  module_name_.ClearToEmpty();
+}
+inline const std::string& ModuleVersionInfo::module_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersionInfo.module_name)
+  return _internal_module_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleVersionInfo::set_module_name(ArgT0&& arg0, ArgT... args) {
+ 
+ module_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersionInfo.module_name)
+}
+inline std::string* ModuleVersionInfo::mutable_module_name() {
+  std::string* _s = _internal_mutable_module_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersionInfo.module_name)
+  return _s;
+}
+inline const std::string& ModuleVersionInfo::_internal_module_name() const {
+  return module_name_.Get();
+}
+inline void ModuleVersionInfo::_internal_set_module_name(const std::string& value) {
+  
+  module_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleVersionInfo::_internal_mutable_module_name() {
+  
+  return module_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleVersionInfo::release_module_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersionInfo.module_name)
+  return module_name_.Release();
+}
+inline void ModuleVersionInfo::set_allocated_module_name(std::string* module_name) {
+  if (module_name != nullptr) {
+    
+  } else {
+    
+  }
+  module_name_.SetAllocated(module_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_name_.IsDefault()) {
+    module_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersionInfo.module_name)
+}
+
+// string running_version = 2 [json_name = "runningVersion"];
+inline void ModuleVersionInfo::clear_running_version() {
+  running_version_.ClearToEmpty();
+}
+inline const std::string& ModuleVersionInfo::running_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersionInfo.running_version)
+  return _internal_running_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleVersionInfo::set_running_version(ArgT0&& arg0, ArgT... args) {
+ 
+ running_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersionInfo.running_version)
+}
+inline std::string* ModuleVersionInfo::mutable_running_version() {
+  std::string* _s = _internal_mutable_running_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersionInfo.running_version)
+  return _s;
+}
+inline const std::string& ModuleVersionInfo::_internal_running_version() const {
+  return running_version_.Get();
+}
+inline void ModuleVersionInfo::_internal_set_running_version(const std::string& value) {
+  
+  running_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleVersionInfo::_internal_mutable_running_version() {
+  
+  return running_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleVersionInfo::release_running_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersionInfo.running_version)
+  return running_version_.Release();
+}
+inline void ModuleVersionInfo::set_allocated_running_version(std::string* running_version) {
+  if (running_version != nullptr) {
+    
+  } else {
+    
+  }
+  running_version_.SetAllocated(running_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (running_version_.IsDefault()) {
+    running_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersionInfo.running_version)
+}
+
+// .google.protobuf.Duration running_for = 3 [json_name = "runningFor"];
+inline bool ModuleVersionInfo::_internal_has_running_for() const {
+  return this != internal_default_instance() && running_for_ != nullptr;
+}
+inline bool ModuleVersionInfo::has_running_for() const {
+  return _internal_has_running_for();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& ModuleVersionInfo::_internal_running_for() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = running_for_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& ModuleVersionInfo::running_for() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersionInfo.running_for)
+  return _internal_running_for();
+}
+inline void ModuleVersionInfo::unsafe_arena_set_allocated_running_for(
+    ::PROTOBUF_NAMESPACE_ID::Duration* running_for) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(running_for_);
+  }
+  running_for_ = running_for;
+  if (running_for) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ModuleVersionInfo.running_for)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ModuleVersionInfo::release_running_for() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = running_for_;
+  running_for_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ModuleVersionInfo::unsafe_arena_release_running_for() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersionInfo.running_for)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = running_for_;
+  running_for_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ModuleVersionInfo::_internal_mutable_running_for() {
+  
+  if (running_for_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    running_for_ = p;
+  }
+  return running_for_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ModuleVersionInfo::mutable_running_for() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_running_for();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersionInfo.running_for)
+  return _msg;
+}
+inline void ModuleVersionInfo::set_allocated_running_for(::PROTOBUF_NAMESPACE_ID::Duration* running_for) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(running_for_);
+  }
+  if (running_for) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(running_for));
+    if (message_arena != submessage_arena) {
+      running_for = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, running_for, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  running_for_ = running_for;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersionInfo.running_for)
+}
+
+// .viam.robot.v1.ModuleStatus.State state = 4 [json_name = "state"];
+inline void ModuleVersionInfo::clear_state() {
+  state_ = 0;
+}
+inline ::viam::robot::v1::ModuleStatus_State ModuleVersionInfo::_internal_state() const {
+  return static_cast< ::viam::robot::v1::ModuleStatus_State >(state_);
+}
+inline ::viam::robot::v1::ModuleStatus_State ModuleVersionInfo::state() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersionInfo.state)
+  return _internal_state();
+}
+inline void ModuleVersionInfo::_internal_set_state(::viam::robot::v1::ModuleStatus_State value) {
+  
+  state_ = value;
+}
+inline void ModuleVersionInfo::set_state(::viam::robot::v1::ModuleStatus_State value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersionInfo.state)
+}
+
+// uint32 consecutive_failures = 6 [json_name = "consecutiveFailures"];
+inline void ModuleVersionInfo::clear_consecutive_failures() {
+  consecutive_failures_ = 0u;
+}
+inline uint32_t ModuleVersionInfo::_internal_consecutive_failures() const {
+  return consecutive_failures_;
+}
+inline uint32_t ModuleVersionInfo::consecutive_failures() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersionInfo.consecutive_failures)
+  return _internal_consecutive_failures();
+}
+inline void ModuleVersionInfo::_internal_set_consecutive_failures(uint32_t value) {
+  
+  consecutive_failures_ = value;
+}
+inline void ModuleVersionInfo::set_consecutive_failures(uint32_t value) {
+  _internal_set_consecutive_failures(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersionInfo.consecutive_failures)
+}
+
+// uint32 ready_count = 7 [json_name = "readyCount"];
+inline void ModuleVersionInfo::clear_ready_count() {
+  ready_count_ = 0u;
+}
+inline uint32_t ModuleVersionInfo::_internal_ready_count() const {
+  return ready_count_;
+}
+inline uint32_t ModuleVersionInfo::ready_count() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersionInfo.ready_count)
+  return _internal_ready_count();
+}
+inline void ModuleVersionInfo::_internal_set_ready_count(uint32_t value) {
+  
+  ready_count_ = value;
+}
+inline void ModuleVersionInfo::set_ready_count(uint32_t value) {
+  _internal_set_ready_count(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersionInfo.ready_count)
+}
+
 // -------------------------------------------------------------------
 
 // ConfigRequest
@@ -19838,6 +20571,8 @@ inline void FollowPartRef::set_allocated_auth(::viam::app::v1::RemoteAuth* auth)
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -66,6 +66,9 @@ extern AxisAnglesDefaultTypeInternal _AxisAngles_default_instance_;
 class Capsule;
 struct CapsuleDefaultTypeInternal;
 extern CapsuleDefaultTypeInternal _Capsule_default_instance_;
+class Cylinder;
+struct CylinderDefaultTypeInternal;
+extern CylinderDefaultTypeInternal _Cylinder_default_instance_;
 class DoCommandRequest;
 struct DoCommandRequestDefaultTypeInternal;
 extern DoCommandRequestDefaultTypeInternal _DoCommandRequest_default_instance_;
@@ -215,6 +218,7 @@ template<> ::viam::common::v1::ActuatorStatus* Arena::CreateMaybeMessage<::viam:
 template<> ::viam::common::v1::AudioInfo* Arena::CreateMaybeMessage<::viam::common::v1::AudioInfo>(Arena*);
 template<> ::viam::common::v1::AxisAngles* Arena::CreateMaybeMessage<::viam::common::v1::AxisAngles>(Arena*);
 template<> ::viam::common::v1::Capsule* Arena::CreateMaybeMessage<::viam::common::v1::Capsule>(Arena*);
+template<> ::viam::common::v1::Cylinder* Arena::CreateMaybeMessage<::viam::common::v1::Cylinder>(Arena*);
 template<> ::viam::common::v1::DoCommandRequest* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandRequest>(Arena*);
 template<> ::viam::common::v1::DoCommandResponse* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandResponse>(Arena*);
 template<> ::viam::common::v1::EulerAngles* Arena::CreateMaybeMessage<::viam::common::v1::EulerAngles>(Arena*);
@@ -1763,6 +1767,160 @@ class Capsule final :
 };
 // -------------------------------------------------------------------
 
+class Cylinder final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.Cylinder) */ {
+ public:
+  inline Cylinder() : Cylinder(nullptr) {}
+  ~Cylinder() override;
+  explicit PROTOBUF_CONSTEXPR Cylinder(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Cylinder(const Cylinder& from);
+  Cylinder(Cylinder&& from) noexcept
+    : Cylinder() {
+    *this = ::std::move(from);
+  }
+
+  inline Cylinder& operator=(const Cylinder& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Cylinder& operator=(Cylinder&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Cylinder& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Cylinder* internal_default_instance() {
+    return reinterpret_cast<const Cylinder*>(
+               &_Cylinder_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(Cylinder& a, Cylinder& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Cylinder* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Cylinder* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Cylinder* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Cylinder>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Cylinder& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Cylinder& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Cylinder* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.Cylinder";
+  }
+  protected:
+  explicit Cylinder(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRadiusMmFieldNumber = 1,
+    kLengthMmFieldNumber = 2,
+  };
+  // double radius_mm = 1 [json_name = "radiusMm"];
+  void clear_radius_mm();
+  double radius_mm() const;
+  void set_radius_mm(double value);
+  private:
+  double _internal_radius_mm() const;
+  void _internal_set_radius_mm(double value);
+  public:
+
+  // double length_mm = 2 [json_name = "lengthMm"];
+  void clear_length_mm();
+  double length_mm() const;
+  void set_length_mm(double value);
+  private:
+  double _internal_length_mm() const;
+  void _internal_set_length_mm(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.Cylinder)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double radius_mm_;
+  double length_mm_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RectangularPrism final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.RectangularPrism) */ {
  public:
@@ -1811,7 +1969,7 @@ class RectangularPrism final :
                &_RectangularPrism_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(RectangularPrism& a, RectangularPrism& b) {
     a.Swap(&b);
@@ -1963,7 +2121,7 @@ class Mesh final :
                &_Mesh_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Mesh& a, Mesh& b) {
     a.Swap(&b);
@@ -2148,7 +2306,7 @@ class PointCloud final :
                &_PointCloud_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(PointCloud& a, PointCloud& b) {
     a.Swap(&b);
@@ -2297,6 +2455,7 @@ class Geometry final :
     kCapsule = 5,
     kMesh = 6,
     kPointcloud = 7,
+    kCylinder = 8,
     GEOMETRY_TYPE_NOT_SET = 0,
   };
 
@@ -2305,7 +2464,7 @@ class Geometry final :
                &_Geometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(Geometry& a, Geometry& b) {
     a.Swap(&b);
@@ -2383,6 +2542,7 @@ class Geometry final :
     kCapsuleFieldNumber = 5,
     kMeshFieldNumber = 6,
     kPointcloudFieldNumber = 7,
+    kCylinderFieldNumber = 8,
   };
   // string label = 4 [json_name = "label"];
   void clear_label();
@@ -2506,6 +2666,24 @@ class Geometry final :
       ::viam::common::v1::PointCloud* pointcloud);
   ::viam::common::v1::PointCloud* unsafe_arena_release_pointcloud();
 
+  // .viam.common.v1.Cylinder cylinder = 8 [json_name = "cylinder"];
+  bool has_cylinder() const;
+  private:
+  bool _internal_has_cylinder() const;
+  public:
+  void clear_cylinder();
+  const ::viam::common::v1::Cylinder& cylinder() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Cylinder* release_cylinder();
+  ::viam::common::v1::Cylinder* mutable_cylinder();
+  void set_allocated_cylinder(::viam::common::v1::Cylinder* cylinder);
+  private:
+  const ::viam::common::v1::Cylinder& _internal_cylinder() const;
+  ::viam::common::v1::Cylinder* _internal_mutable_cylinder();
+  public:
+  void unsafe_arena_set_allocated_cylinder(
+      ::viam::common::v1::Cylinder* cylinder);
+  ::viam::common::v1::Cylinder* unsafe_arena_release_cylinder();
+
   void clear_geometry_type();
   GeometryTypeCase geometry_type_case() const;
   // @@protoc_insertion_point(class_scope:viam.common.v1.Geometry)
@@ -2516,6 +2694,7 @@ class Geometry final :
   void set_has_capsule();
   void set_has_mesh();
   void set_has_pointcloud();
+  void set_has_cylinder();
 
   inline bool has_geometry_type() const;
   inline void clear_has_geometry_type();
@@ -2533,6 +2712,7 @@ class Geometry final :
     ::viam::common::v1::Capsule* capsule_;
     ::viam::common::v1::Mesh* mesh_;
     ::viam::common::v1::PointCloud* pointcloud_;
+    ::viam::common::v1::Cylinder* cylinder_;
   } geometry_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -2589,7 +2769,7 @@ class GeometriesInFrame final :
                &_GeometriesInFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(GeometriesInFrame& a, GeometriesInFrame& b) {
     a.Swap(&b);
@@ -2757,7 +2937,7 @@ class PointCloudObject final :
                &_PointCloudObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(PointCloudObject& a, PointCloudObject& b) {
     a.Swap(&b);
@@ -2925,7 +3105,7 @@ class GeoPoint final :
                &_GeoPoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(GeoPoint& a, GeoPoint& b) {
     a.Swap(&b);
@@ -3085,7 +3265,7 @@ class GeoPose final :
                &_GeoPose_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(GeoPose& a, GeoPose& b) {
     a.Swap(&b);
@@ -3301,7 +3481,7 @@ class GeoGeometry final :
                &_GeoGeometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(GeoGeometry& a, GeoGeometry& b) {
     a.Swap(&b);
@@ -3473,7 +3653,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -3698,7 +3878,7 @@ class WorldState final :
                &_WorldState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(WorldState& a, WorldState& b) {
     a.Swap(&b);
@@ -3870,7 +4050,7 @@ class ActuatorStatus final :
                &_ActuatorStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(ActuatorStatus& a, ActuatorStatus& b) {
     a.Swap(&b);
@@ -4013,7 +4193,7 @@ class ResponseMetadata final :
                &_ResponseMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(ResponseMetadata& a, ResponseMetadata& b) {
     a.Swap(&b);
@@ -4166,7 +4346,7 @@ class DoCommandRequest final :
                &_DoCommandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(DoCommandRequest& a, DoCommandRequest& b) {
     a.Swap(&b);
@@ -4334,7 +4514,7 @@ class DoCommandResponse final :
                &_DoCommandResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(DoCommandResponse& a, DoCommandResponse& b) {
     a.Swap(&b);
@@ -4486,7 +4666,7 @@ class GetStatusRequest final :
                &_GetStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
     a.Swap(&b);
@@ -4634,7 +4814,7 @@ class GetStatusResponse final :
                &_GetStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
     a.Swap(&b);
@@ -4786,7 +4966,7 @@ class GetKinematicsRequest final :
                &_GetKinematicsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
     a.Swap(&b);
@@ -5002,7 +5182,7 @@ class GetKinematicsResponse final :
                &_GetKinematicsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
     a.Swap(&b);
@@ -5207,7 +5387,7 @@ class KinematicModel final :
                &_KinematicModel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(KinematicModel& a, KinematicModel& b) {
     a.Swap(&b);
@@ -5441,7 +5621,7 @@ class KinematicLink final :
                &_KinematicLink_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(KinematicLink& a, KinematicLink& b) {
     a.Swap(&b);
@@ -5673,7 +5853,7 @@ class LinkPose final :
                &_LinkPose_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(LinkPose& a, LinkPose& b) {
     a.Swap(&b);
@@ -5920,7 +6100,7 @@ class Quaternion final :
                &_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(Quaternion& a, Quaternion& b) {
     a.Swap(&b);
@@ -6096,7 +6276,7 @@ class EulerAngles final :
                &_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(EulerAngles& a, EulerAngles& b) {
     a.Swap(&b);
@@ -6261,7 +6441,7 @@ class AxisAngles final :
                &_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(AxisAngles& a, AxisAngles& b) {
     a.Swap(&b);
@@ -6437,7 +6617,7 @@ class KinematicJoint final :
                &_KinematicJoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(KinematicJoint& a, KinematicJoint& b) {
     a.Swap(&b);
@@ -6692,7 +6872,7 @@ class JointLimits final :
                &_JointLimits_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(JointLimits& a, JointLimits& b) {
     a.Swap(&b);
@@ -6885,7 +7065,7 @@ class MimicJoint final :
                &_MimicJoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(MimicJoint& a, MimicJoint& b) {
     a.Swap(&b);
@@ -7055,7 +7235,7 @@ class KinematicProperties final :
                &_KinematicProperties_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(KinematicProperties& a, KinematicProperties& b) {
     a.Swap(&b);
@@ -7218,7 +7398,7 @@ class GetGeometriesRequest final :
                &_GetGeometriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
     a.Swap(&b);
@@ -7386,7 +7566,7 @@ class GetGeometriesResponse final :
                &_GetGeometriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
     a.Swap(&b);
@@ -7538,7 +7718,7 @@ class Get3DModelsRequest final :
                &_Get3DModelsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   friend void swap(Get3DModelsRequest& a, Get3DModelsRequest& b) {
     a.Swap(&b);
@@ -7732,7 +7912,7 @@ class Get3DModelsResponse final :
                &_Get3DModelsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(Get3DModelsResponse& a, Get3DModelsResponse& b) {
     a.Swap(&b);
@@ -7890,7 +8070,7 @@ class GetWorldPoseResponse final :
                &_GetWorldPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   friend void swap(GetWorldPoseResponse& a, GetWorldPoseResponse& b) {
     a.Swap(&b);
@@ -8042,7 +8222,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    45;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -8236,7 +8416,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -8394,7 +8574,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -8666,7 +8846,7 @@ class AudioInfo final :
                &_AudioInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   friend void swap(AudioInfo& a, AudioInfo& b) {
     a.Swap(&b);
@@ -8836,7 +9016,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    50;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -9004,7 +9184,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    51;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -10089,6 +10269,50 @@ inline void Capsule::set_length_mm(double value) {
 
 // -------------------------------------------------------------------
 
+// Cylinder
+
+// double radius_mm = 1 [json_name = "radiusMm"];
+inline void Cylinder::clear_radius_mm() {
+  radius_mm_ = 0;
+}
+inline double Cylinder::_internal_radius_mm() const {
+  return radius_mm_;
+}
+inline double Cylinder::radius_mm() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Cylinder.radius_mm)
+  return _internal_radius_mm();
+}
+inline void Cylinder::_internal_set_radius_mm(double value) {
+  
+  radius_mm_ = value;
+}
+inline void Cylinder::set_radius_mm(double value) {
+  _internal_set_radius_mm(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Cylinder.radius_mm)
+}
+
+// double length_mm = 2 [json_name = "lengthMm"];
+inline void Cylinder::clear_length_mm() {
+  length_mm_ = 0;
+}
+inline double Cylinder::_internal_length_mm() const {
+  return length_mm_;
+}
+inline double Cylinder::length_mm() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Cylinder.length_mm)
+  return _internal_length_mm();
+}
+inline void Cylinder::_internal_set_length_mm(double value) {
+  
+  length_mm_ = value;
+}
+inline void Cylinder::set_length_mm(double value) {
+  _internal_set_length_mm(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Cylinder.length_mm)
+}
+
+// -------------------------------------------------------------------
+
 // RectangularPrism
 
 // .viam.common.v1.Vector3 dims_mm = 1 [json_name = "dimsMm"];
@@ -10868,6 +11092,80 @@ inline ::viam::common::v1::PointCloud* Geometry::_internal_mutable_pointcloud() 
 inline ::viam::common::v1::PointCloud* Geometry::mutable_pointcloud() {
   ::viam::common::v1::PointCloud* _msg = _internal_mutable_pointcloud();
   // @@protoc_insertion_point(field_mutable:viam.common.v1.Geometry.pointcloud)
+  return _msg;
+}
+
+// .viam.common.v1.Cylinder cylinder = 8 [json_name = "cylinder"];
+inline bool Geometry::_internal_has_cylinder() const {
+  return geometry_type_case() == kCylinder;
+}
+inline bool Geometry::has_cylinder() const {
+  return _internal_has_cylinder();
+}
+inline void Geometry::set_has_cylinder() {
+  _oneof_case_[0] = kCylinder;
+}
+inline void Geometry::clear_cylinder() {
+  if (_internal_has_cylinder()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete geometry_type_.cylinder_;
+    }
+    clear_has_geometry_type();
+  }
+}
+inline ::viam::common::v1::Cylinder* Geometry::release_cylinder() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Geometry.cylinder)
+  if (_internal_has_cylinder()) {
+    clear_has_geometry_type();
+    ::viam::common::v1::Cylinder* temp = geometry_type_.cylinder_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    geometry_type_.cylinder_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::Cylinder& Geometry::_internal_cylinder() const {
+  return _internal_has_cylinder()
+      ? *geometry_type_.cylinder_
+      : reinterpret_cast< ::viam::common::v1::Cylinder&>(::viam::common::v1::_Cylinder_default_instance_);
+}
+inline const ::viam::common::v1::Cylinder& Geometry::cylinder() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Geometry.cylinder)
+  return _internal_cylinder();
+}
+inline ::viam::common::v1::Cylinder* Geometry::unsafe_arena_release_cylinder() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.Geometry.cylinder)
+  if (_internal_has_cylinder()) {
+    clear_has_geometry_type();
+    ::viam::common::v1::Cylinder* temp = geometry_type_.cylinder_;
+    geometry_type_.cylinder_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Geometry::unsafe_arena_set_allocated_cylinder(::viam::common::v1::Cylinder* cylinder) {
+  clear_geometry_type();
+  if (cylinder) {
+    set_has_cylinder();
+    geometry_type_.cylinder_ = cylinder;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.Geometry.cylinder)
+}
+inline ::viam::common::v1::Cylinder* Geometry::_internal_mutable_cylinder() {
+  if (!_internal_has_cylinder()) {
+    clear_geometry_type();
+    set_has_cylinder();
+    geometry_type_.cylinder_ = CreateMaybeMessage< ::viam::common::v1::Cylinder >(GetArenaForAllocation());
+  }
+  return geometry_type_.cylinder_;
+}
+inline ::viam::common::v1::Cylinder* Geometry::mutable_cylinder() {
+  ::viam::common::v1::Cylinder* _msg = _internal_mutable_cylinder();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Geometry.cylinder)
   return _msg;
 }
 
@@ -16300,6 +16598,8 @@ inline void GetPropertiesResponse::set_num_channels(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

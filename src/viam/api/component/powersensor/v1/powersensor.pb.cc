@@ -101,11 +101,63 @@ struct GetPowerResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPowerResponseDefaultTypeInternal _GetPowerResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetBatteryPercentRequest::GetBatteryPercentRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct GetBatteryPercentRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetBatteryPercentRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetBatteryPercentRequestDefaultTypeInternal() {}
+  union {
+    GetBatteryPercentRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetBatteryPercentRequestDefaultTypeInternal _GetBatteryPercentRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetBatteryPercentResponse::GetBatteryPercentResponse(
+    ::_pbi::ConstantInitialized)
+  : percent_(0)
+  , is_charging_(false){}
+struct GetBatteryPercentResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetBatteryPercentResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetBatteryPercentResponseDefaultTypeInternal() {}
+  union {
+    GetBatteryPercentResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetBatteryPercentResponseDefaultTypeInternal _GetBatteryPercentResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct GetPropertiesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesRequestDefaultTypeInternal() {}
+  union {
+    GetPropertiesRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
+    ::_pbi::ConstantInitialized)
+  : is_battery_percent_supported_(false)
+  , is_charging_supported_(false){}
+struct GetPropertiesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesResponseDefaultTypeInternal() {}
+  union {
+    GetPropertiesResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 }  // namespace v1
 }  // namespace powersensor
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[6];
+static ::_pb::Metadata file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[10];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto = nullptr;
 
@@ -157,6 +209,38 @@ const uint32_t TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto::o
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerResponse, watts_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetBatteryPercentRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetBatteryPercentRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetBatteryPercentRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetBatteryPercentResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetBatteryPercentResponse, percent_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetBatteryPercentResponse, is_charging_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPropertiesRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPropertiesRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPropertiesRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPropertiesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPropertiesResponse, is_battery_percent_supported_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPropertiesResponse, is_charging_supported_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::powersensor::v1::GetVoltageRequest)},
@@ -165,6 +249,10 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 24, -1, -1, sizeof(::viam::component::powersensor::v1::GetCurrentResponse)},
   { 32, -1, -1, sizeof(::viam::component::powersensor::v1::GetPowerRequest)},
   { 40, -1, -1, sizeof(::viam::component::powersensor::v1::GetPowerResponse)},
+  { 47, -1, -1, sizeof(::viam::component::powersensor::v1::GetBatteryPercentRequest)},
+  { 55, -1, -1, sizeof(::viam::component::powersensor::v1::GetBatteryPercentResponse)},
+  { 63, -1, -1, sizeof(::viam::component::powersensor::v1::GetPropertiesRequest)},
+  { 71, -1, -1, sizeof(::viam::component::powersensor::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -174,6 +262,10 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::powersensor::v1::_GetCurrentResponse_default_instance_._instance,
   &::viam::component::powersensor::v1::_GetPowerRequest_default_instance_._instance,
   &::viam::component::powersensor::v1::_GetPowerResponse_default_instance_._instance,
+  &::viam::component::powersensor::v1::_GetBatteryPercentRequest_default_instance_._instance,
+  &::viam::component::powersensor::v1::_GetBatteryPercentResponse_default_instance_._instance,
+  &::viam::component::powersensor::v1::_GetPropertiesRequest_default_instance_._instance,
+  &::viam::component::powersensor::v1::_GetPropertiesResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -191,34 +283,54 @@ const char descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_
   "\007amperes\022\023\n\005is_ac\030\002 \001(\010R\004isAc\"T\n\017GetPowe"
   "rRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c "
   "\001(\0132\027.google.protobuf.StructR\005extra\"(\n\020G"
-  "etPowerResponse\022\024\n\005watts\030\001 \001(\001R\005watts2\326\007"
-  "\n\022PowerSensorService\022\255\001\n\nGetVoltage\0220.vi"
-  "am.component.powersensor.v1.GetVoltageRe"
-  "quest\0321.viam.component.powersensor.v1.Ge"
-  "tVoltageResponse\":\202\323\344\223\0024\0222/viam/api/v1/c"
-  "omponent/power_sensor/{name}/voltage\022\255\001\n"
-  "\nGetCurrent\0220.viam.component.powersensor"
-  ".v1.GetCurrentRequest\0321.viam.component.p"
-  "owersensor.v1.GetCurrentResponse\":\202\323\344\223\0024"
-  "\0222/viam/api/v1/component/power_sensor/{n"
-  "ame}/current\022\245\001\n\010GetPower\022..viam.compone"
-  "nt.powersensor.v1.GetPowerRequest\032/.viam"
-  ".component.powersensor.v1.GetPowerRespon"
-  "se\"8\202\323\344\223\0022\0220/viam/api/v1/component/power"
-  "_sensor/{name}/power\022\223\001\n\013GetReadings\022\".v"
-  "iam.common.v1.GetReadingsRequest\032#.viam."
-  "common.v1.GetReadingsResponse\";\202\323\344\223\0025\0223/"
-  "viam/api/v1/component/power_sensor/{name"
-  "}/readings\022\217\001\n\tDoCommand\022 .viam.common.v"
-  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
-  "mmandResponse\"=\202\323\344\223\0027\"5/viam/api/v1/comp"
-  "onent/power_sensor/{name}/do_command\022\217\001\n"
-  "\tGetStatus\022 .viam.common.v1.GetStatusReq"
-  "uest\032!.viam.common.v1.GetStatusResponse\""
-  "=\202\323\344\223\0027\0225/viam/api/v1/component/power_se"
-  "nsor/{name}/get_statusBM\n!com.viam.compo"
-  "nent.powersensor.v1Z(go.viam.com/api/com"
-  "ponent/powersensor/v1b\006proto3"
+  "etPowerResponse\022\024\n\005watts\030\001 \001(\001R\005watts\"]\n"
+  "\030GetBatteryPercentRequest\022\022\n\004name\030\001 \001(\tR"
+  "\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf.S"
+  "tructR\005extra\"V\n\031GetBatteryPercentRespons"
+  "e\022\030\n\007percent\030\001 \001(\001R\007percent\022\037\n\013is_chargi"
+  "ng\030\002 \001(\010R\nisCharging\"Y\n\024GetPropertiesReq"
+  "uest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132"
+  "\027.google.protobuf.StructR\005extra\"\214\001\n\025GetP"
+  "ropertiesResponse\022\?\n\034is_battery_percent_"
+  "supported\030\001 \001(\010R\031isBatteryPercentSupport"
+  "ed\0222\n\025is_charging_supported\030\002 \001(\010R\023isCha"
+  "rgingSupported2\337\n\n\022PowerSensorService\022\255\001"
+  "\n\nGetVoltage\0220.viam.component.powersenso"
+  "r.v1.GetVoltageRequest\0321.viam.component."
+  "powersensor.v1.GetVoltageResponse\":\202\323\344\223\002"
+  "4\0222/viam/api/v1/component/power_sensor/{"
+  "name}/voltage\022\255\001\n\nGetCurrent\0220.viam.comp"
+  "onent.powersensor.v1.GetCurrentRequest\0321"
+  ".viam.component.powersensor.v1.GetCurren"
+  "tResponse\":\202\323\344\223\0024\0222/viam/api/v1/componen"
+  "t/power_sensor/{name}/current\022\245\001\n\010GetPow"
+  "er\022..viam.component.powersensor.v1.GetPo"
+  "werRequest\032/.viam.component.powersensor."
+  "v1.GetPowerResponse\"8\202\323\344\223\0022\0220/viam/api/v"
+  "1/component/power_sensor/{name}/power\022\312\001"
+  "\n\021GetBatteryPercent\0227.viam.component.pow"
+  "ersensor.v1.GetBatteryPercentRequest\0328.v"
+  "iam.component.powersensor.v1.GetBatteryP"
+  "ercentResponse\"B\202\323\344\223\002<\022:/viam/api/v1/com"
+  "ponent/power_sensor/{name}/battery_perce"
+  "nt\022\271\001\n\rGetProperties\0223.viam.component.po"
+  "wersensor.v1.GetPropertiesRequest\0324.viam"
+  ".component.powersensor.v1.GetPropertiesR"
+  "esponse\"=\202\323\344\223\0027\0225/viam/api/v1/component/"
+  "power_sensor/{name}/properties\022\223\001\n\013GetRe"
+  "adings\022\".viam.common.v1.GetReadingsReque"
+  "st\032#.viam.common.v1.GetReadingsResponse\""
+  ";\202\323\344\223\0025\0223/viam/api/v1/component/power_se"
+  "nsor/{name}/readings\022\217\001\n\tDoCommand\022 .via"
+  "m.common.v1.DoCommandRequest\032!.viam.comm"
+  "on.v1.DoCommandResponse\"=\202\323\344\223\0027\"5/viam/a"
+  "pi/v1/component/power_sensor/{name}/do_c"
+  "ommand\022\217\001\n\tGetStatus\022 .viam.common.v1.Ge"
+  "tStatusRequest\032!.viam.common.v1.GetStatu"
+  "sResponse\"=\202\323\344\223\0027\0225/viam/api/v1/componen"
+  "t/power_sensor/{name}/get_statusBM\n!com."
+  "viam.component.powersensor.v1Z(go.viam.c"
+  "om/api/component/powersensor/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -227,9 +339,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fpowerse
 };
 static ::_pbi::once_flag descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto = {
-    false, false, 1669, descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
+    false, false, 2479, descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
     "component/powersensor/v1/powersensor.proto",
-    &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once, descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps, 3, 6,
+    &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once, descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps, 3, 10,
     schemas, file_default_instances, TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto::offsets,
     file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto, file_level_enum_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
     file_level_service_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
@@ -1591,6 +1703,914 @@ void GetPowerResponse::InternalSwap(GetPowerResponse* other) {
       file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[5]);
 }
 
+// ===================================================================
+
+class GetBatteryPercentRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetBatteryPercentRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetBatteryPercentRequest::_Internal::extra(const GetBatteryPercentRequest* msg) {
+  return *msg->extra_;
+}
+void GetBatteryPercentRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+GetBatteryPercentRequest::GetBatteryPercentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetBatteryPercentRequest)
+}
+GetBatteryPercentRequest::GetBatteryPercentRequest(const GetBatteryPercentRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetBatteryPercentRequest)
+}
+
+inline void GetBatteryPercentRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+GetBatteryPercentRequest::~GetBatteryPercentRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetBatteryPercentRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetBatteryPercentRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void GetBatteryPercentRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetBatteryPercentRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetBatteryPercentRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetBatteryPercentRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.powersensor.v1.GetBatteryPercentRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetBatteryPercentRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetBatteryPercentRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.powersensor.v1.GetBatteryPercentRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetBatteryPercentRequest)
+  return target;
+}
+
+size_t GetBatteryPercentRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetBatteryPercentRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetBatteryPercentRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetBatteryPercentRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetBatteryPercentRequest::GetClassData() const { return &_class_data_; }
+
+void GetBatteryPercentRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetBatteryPercentRequest *>(to)->MergeFrom(
+      static_cast<const GetBatteryPercentRequest &>(from));
+}
+
+
+void GetBatteryPercentRequest::MergeFrom(const GetBatteryPercentRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetBatteryPercentRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetBatteryPercentRequest::CopyFrom(const GetBatteryPercentRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.powersensor.v1.GetBatteryPercentRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetBatteryPercentRequest::IsInitialized() const {
+  return true;
+}
+
+void GetBatteryPercentRequest::InternalSwap(GetBatteryPercentRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetBatteryPercentRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
+      file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[6]);
+}
+
+// ===================================================================
+
+class GetBatteryPercentResponse::_Internal {
+ public:
+};
+
+GetBatteryPercentResponse::GetBatteryPercentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetBatteryPercentResponse)
+}
+GetBatteryPercentResponse::GetBatteryPercentResponse(const GetBatteryPercentResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&percent_, &from.percent_,
+    static_cast<size_t>(reinterpret_cast<char*>(&is_charging_) -
+    reinterpret_cast<char*>(&percent_)) + sizeof(is_charging_));
+  // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetBatteryPercentResponse)
+}
+
+inline void GetBatteryPercentResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&percent_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&is_charging_) -
+    reinterpret_cast<char*>(&percent_)) + sizeof(is_charging_));
+}
+
+GetBatteryPercentResponse::~GetBatteryPercentResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetBatteryPercentResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetBatteryPercentResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetBatteryPercentResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetBatteryPercentResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetBatteryPercentResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&percent_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&is_charging_) -
+      reinterpret_cast<char*>(&percent_)) + sizeof(is_charging_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetBatteryPercentResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // double percent = 1 [json_name = "percent"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          percent_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool is_charging = 2 [json_name = "isCharging"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          is_charging_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetBatteryPercentResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetBatteryPercentResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double percent = 1 [json_name = "percent"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_percent = this->_internal_percent();
+  uint64_t raw_percent;
+  memcpy(&raw_percent, &tmp_percent, sizeof(tmp_percent));
+  if (raw_percent != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_percent(), target);
+  }
+
+  // bool is_charging = 2 [json_name = "isCharging"];
+  if (this->_internal_is_charging() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_is_charging(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetBatteryPercentResponse)
+  return target;
+}
+
+size_t GetBatteryPercentResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetBatteryPercentResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // double percent = 1 [json_name = "percent"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_percent = this->_internal_percent();
+  uint64_t raw_percent;
+  memcpy(&raw_percent, &tmp_percent, sizeof(tmp_percent));
+  if (raw_percent != 0) {
+    total_size += 1 + 8;
+  }
+
+  // bool is_charging = 2 [json_name = "isCharging"];
+  if (this->_internal_is_charging() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetBatteryPercentResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetBatteryPercentResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetBatteryPercentResponse::GetClassData() const { return &_class_data_; }
+
+void GetBatteryPercentResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetBatteryPercentResponse *>(to)->MergeFrom(
+      static_cast<const GetBatteryPercentResponse &>(from));
+}
+
+
+void GetBatteryPercentResponse::MergeFrom(const GetBatteryPercentResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetBatteryPercentResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_percent = from._internal_percent();
+  uint64_t raw_percent;
+  memcpy(&raw_percent, &tmp_percent, sizeof(tmp_percent));
+  if (raw_percent != 0) {
+    _internal_set_percent(from._internal_percent());
+  }
+  if (from._internal_is_charging() != 0) {
+    _internal_set_is_charging(from._internal_is_charging());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetBatteryPercentResponse::CopyFrom(const GetBatteryPercentResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.powersensor.v1.GetBatteryPercentResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetBatteryPercentResponse::IsInitialized() const {
+  return true;
+}
+
+void GetBatteryPercentResponse::InternalSwap(GetBatteryPercentResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetBatteryPercentResponse, is_charging_)
+      + sizeof(GetBatteryPercentResponse::is_charging_)
+      - PROTOBUF_FIELD_OFFSET(GetBatteryPercentResponse, percent_)>(
+          reinterpret_cast<char*>(&percent_),
+          reinterpret_cast<char*>(&other->percent_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetBatteryPercentResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
+      file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[7]);
+}
+
+// ===================================================================
+
+class GetPropertiesRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPropertiesRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetPropertiesRequest::_Internal::extra(const GetPropertiesRequest* msg) {
+  return *msg->extra_;
+}
+void GetPropertiesRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+GetPropertiesRequest::GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetPropertiesRequest)
+}
+GetPropertiesRequest::GetPropertiesRequest(const GetPropertiesRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetPropertiesRequest)
+}
+
+inline void GetPropertiesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+GetPropertiesRequest::~GetPropertiesRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetPropertiesRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void GetPropertiesRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.powersensor.v1.GetPropertiesRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.powersensor.v1.GetPropertiesRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetPropertiesRequest)
+  return target;
+}
+
+size_t GetPropertiesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetPropertiesRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesRequest::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesRequest *>(to)->MergeFrom(
+      static_cast<const GetPropertiesRequest &>(from));
+}
+
+
+void GetPropertiesRequest::MergeFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetPropertiesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.powersensor.v1.GetPropertiesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesRequest::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
+      file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[8]);
+}
+
+// ===================================================================
+
+class GetPropertiesResponse::_Internal {
+ public:
+};
+
+GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetPropertiesResponse)
+}
+GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&is_battery_percent_supported_, &from.is_battery_percent_supported_,
+    static_cast<size_t>(reinterpret_cast<char*>(&is_charging_supported_) -
+    reinterpret_cast<char*>(&is_battery_percent_supported_)) + sizeof(is_charging_supported_));
+  // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetPropertiesResponse)
+}
+
+inline void GetPropertiesResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&is_battery_percent_supported_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&is_charging_supported_) -
+    reinterpret_cast<char*>(&is_battery_percent_supported_)) + sizeof(is_charging_supported_));
+}
+
+GetPropertiesResponse::~GetPropertiesResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetPropertiesResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetPropertiesResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&is_battery_percent_supported_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&is_charging_supported_) -
+      reinterpret_cast<char*>(&is_battery_percent_supported_)) + sizeof(is_charging_supported_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool is_battery_percent_supported = 1 [json_name = "isBatteryPercentSupported"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          is_battery_percent_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool is_charging_supported = 2 [json_name = "isChargingSupported"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          is_charging_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool is_battery_percent_supported = 1 [json_name = "isBatteryPercentSupported"];
+  if (this->_internal_is_battery_percent_supported() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_is_battery_percent_supported(), target);
+  }
+
+  // bool is_charging_supported = 2 [json_name = "isChargingSupported"];
+  if (this->_internal_is_charging_supported() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_is_charging_supported(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetPropertiesResponse)
+  return target;
+}
+
+size_t GetPropertiesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetPropertiesResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool is_battery_percent_supported = 1 [json_name = "isBatteryPercentSupported"];
+  if (this->_internal_is_battery_percent_supported() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool is_charging_supported = 2 [json_name = "isChargingSupported"];
+  if (this->_internal_is_charging_supported() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesResponse::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesResponse *>(to)->MergeFrom(
+      static_cast<const GetPropertiesResponse &>(from));
+}
+
+
+void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetPropertiesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_is_battery_percent_supported() != 0) {
+    _internal_set_is_battery_percent_supported(from._internal_is_battery_percent_supported());
+  }
+  if (from._internal_is_charging_supported() != 0) {
+    _internal_set_is_charging_supported(from._internal_is_charging_supported());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.powersensor.v1.GetPropertiesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesResponse::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, is_charging_supported_)
+      + sizeof(GetPropertiesResponse::is_charging_supported_)
+      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, is_battery_percent_supported_)>(
+          reinterpret_cast<char*>(&is_battery_percent_supported_),
+          reinterpret_cast<char*>(&other->is_battery_percent_supported_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
+      file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[9]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace powersensor
@@ -1620,6 +2640,22 @@ Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetPowerRequest >
 template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetPowerResponse*
 Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetPowerResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetPowerResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetBatteryPercentRequest*
+Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetBatteryPercentRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetBatteryPercentRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetBatteryPercentResponse*
+Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetBatteryPercentResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetBatteryPercentResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetPropertiesRequest*
+Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetPropertiesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetPropertiesRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetPropertiesResponse*
+Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetPropertiesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetPropertiesResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -95,6 +95,41 @@ class GripperService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>> PrepareAsyncGoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>>(PrepareAsyncGoToInputsRaw(context, request, cq));
     }
+    // SetPercentOpen moves the gripper to a normalized opening, where 0.0 is fully closed (where
+    // Grab moves to) and 1.0 is fully open (where Open moves to). The gripper maps the value
+    // linearly onto its range of motion and owns any inversion of its hardware scale.
+    // A percent_open that is NaN or outside 0.0-1.0 returns InvalidArgument.
+    // This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
+    // If the gripper does not support percent open (GetProperties reports
+    // percent_open_supported = false or is Unimplemented, or SetPercentOpen is Unimplemented),
+    // the server falls back to Grab for a percent_open below 0.5 and Open for 0.5 and above.
+    virtual ::grpc::Status SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::viam::component::gripper::v1::SetPercentOpenResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::SetPercentOpenResponse>> AsyncSetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::SetPercentOpenResponse>>(AsyncSetPercentOpenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::SetPercentOpenResponse>> PrepareAsyncSetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::SetPercentOpenResponse>>(PrepareAsyncSetPercentOpenRaw(context, request, cq));
+    }
+    // GetPercentOpen returns the measured opening of the gripper on the same 0.0 (closed) to
+    // 1.0 (open) scale as SetPercentOpen. Returns Unimplemented if the gripper does not support
+    // percent open; there is no fallback.
+    virtual ::grpc::Status GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::viam::component::gripper::v1::GetPercentOpenResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPercentOpenResponse>> AsyncGetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPercentOpenResponse>>(AsyncGetPercentOpenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPercentOpenResponse>> PrepareAsyncGetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPercentOpenResponse>>(PrepareAsyncGetPercentOpenRaw(context, request, cq));
+    }
+    // GetProperties returns the capabilities of the gripper.
+    // A gripper that returns Unimplemented for GetProperties is treated as having
+    // percent_open_supported = false.
+    virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::viam::component::gripper::v1::GetPropertiesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -151,6 +186,26 @@ class GripperService final {
       // GoToInputs moves the gripper to the given input values.
       virtual void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // SetPercentOpen moves the gripper to a normalized opening, where 0.0 is fully closed (where
+      // Grab moves to) and 1.0 is fully open (where Open moves to). The gripper maps the value
+      // linearly onto its range of motion and owns any inversion of its hardware scale.
+      // A percent_open that is NaN or outside 0.0-1.0 returns InvalidArgument.
+      // This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
+      // If the gripper does not support percent open (GetProperties reports
+      // percent_open_supported = false or is Unimplemented, or SetPercentOpen is Unimplemented),
+      // the server falls back to Grab for a percent_open below 0.5 and Open for 0.5 and above.
+      virtual void SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetPercentOpen returns the measured opening of the gripper on the same 0.0 (closed) to
+      // 1.0 (open) scale as SetPercentOpen. Returns Unimplemented if the gripper does not support
+      // percent open; there is no fallback.
+      virtual void GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetProperties returns the capabilities of the gripper.
+      // A gripper that returns Unimplemented for GetProperties is treated as having
+      // percent_open_supported = false.
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -182,6 +237,12 @@ class GripperService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetCurrentInputsResponse>* PrepareAsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>* AsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>* PrepareAsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::SetPercentOpenResponse>* AsyncSetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::SetPercentOpenResponse>* PrepareAsyncSetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPercentOpenResponse>* AsyncGetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPercentOpenResponse>* PrepareAsyncGetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetStatusResponse>* AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -243,6 +304,27 @@ class GripperService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>> PrepareAsyncGoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>>(PrepareAsyncGoToInputsRaw(context, request, cq));
     }
+    ::grpc::Status SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::viam::component::gripper::v1::SetPercentOpenResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>> AsyncSetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>>(AsyncSetPercentOpenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>> PrepareAsyncSetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>>(PrepareAsyncSetPercentOpenRaw(context, request, cq));
+    }
+    ::grpc::Status GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::viam::component::gripper::v1::GetPercentOpenResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>> AsyncGetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>>(AsyncGetPercentOpenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>> PrepareAsyncGetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>>(PrepareAsyncGetPercentOpenRaw(context, request, cq));
+    }
+    ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::viam::component::gripper::v1::GetPropertiesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
@@ -288,6 +370,12 @@ class GripperService final {
       void GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, std::function<void(::grpc::Status)>) override;
       void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPercentOpen(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)>) override;
@@ -321,6 +409,12 @@ class GripperService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>* PrepareAsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>* AsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>* PrepareAsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>* AsyncSetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::SetPercentOpenResponse>* PrepareAsyncSetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>* AsyncGetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPercentOpenResponse>* PrepareAsyncGetPercentOpenRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -336,6 +430,9 @@ class GripperService final {
     const ::grpc::internal::RpcMethod rpcmethod_IsHoldingSomething_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCurrentInputs_;
     const ::grpc::internal::RpcMethod rpcmethod_GoToInputs_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetPercentOpen_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetPercentOpen_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_GetStatus_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGeometries_;
@@ -361,6 +458,23 @@ class GripperService final {
     virtual ::grpc::Status GetCurrentInputs(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response);
     // GoToInputs moves the gripper to the given input values.
     virtual ::grpc::Status GoToInputs(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response);
+    // SetPercentOpen moves the gripper to a normalized opening, where 0.0 is fully closed (where
+    // Grab moves to) and 1.0 is fully open (where Open moves to). The gripper maps the value
+    // linearly onto its range of motion and owns any inversion of its hardware scale.
+    // A percent_open that is NaN or outside 0.0-1.0 returns InvalidArgument.
+    // This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
+    // If the gripper does not support percent open (GetProperties reports
+    // percent_open_supported = false or is Unimplemented, or SetPercentOpen is Unimplemented),
+    // the server falls back to Grab for a percent_open below 0.5 and Open for 0.5 and above.
+    virtual ::grpc::Status SetPercentOpen(::grpc::ServerContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response);
+    // GetPercentOpen returns the measured opening of the gripper on the same 0.0 (closed) to
+    // 1.0 (open) scale as SetPercentOpen. Returns Unimplemented if the gripper does not support
+    // percent open; there is no fallback.
+    virtual ::grpc::Status GetPercentOpen(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response);
+    // GetProperties returns the capabilities of the gripper.
+    // A gripper that returns Unimplemented for GetProperties is treated as having
+    // percent_open_supported = false.
+    virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
     // GetStatus returns the status of the resource
@@ -511,12 +625,72 @@ class GripperService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_SetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetPercentOpen() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_SetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::SetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::SetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPercentOpen(::grpc::ServerContext* context, ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gripper::v1::SetPercentOpenResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetPercentOpen() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_GetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::GetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetPercentOpen(::grpc::ServerContext* context, ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gripper::v1::GetPercentOpenResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetProperties() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPropertiesRequest* /*request*/, ::viam::component::gripper::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::viam::component::gripper::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gripper::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -527,7 +701,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -536,7 +710,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStatus() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -547,7 +721,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::viam::common::v1::GetStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -556,7 +730,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(12);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -567,7 +741,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -576,7 +750,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(13);
     }
     ~WithAsyncMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -587,10 +761,10 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::viam::common::v1::GetKinematicsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetKinematicsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Open<WithAsyncMethod_Grab<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_IsHoldingSomething<WithAsyncMethod_GetCurrentInputs<WithAsyncMethod_GoToInputs<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetGeometries<WithAsyncMethod_GetKinematics<Service > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_Open<WithAsyncMethod_Grab<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_IsHoldingSomething<WithAsyncMethod_GetCurrentInputs<WithAsyncMethod_GoToInputs<WithAsyncMethod_SetPercentOpen<WithAsyncMethod_GetPercentOpen<WithAsyncMethod_GetProperties<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetGeometries<WithAsyncMethod_GetKinematics<Service > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Open : public BaseClass {
    private:
@@ -781,18 +955,99 @@ class GripperService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetPercentOpen() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gripper::v1::SetPercentOpenRequest* request, ::viam::component::gripper::v1::SetPercentOpenResponse* response) { return this->SetPercentOpen(context, request, response); }));}
+    void SetMessageAllocatorFor_SetPercentOpen(
+        ::grpc::MessageAllocator< ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::SetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::SetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetPercentOpen(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gripper::v1::SetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::SetPercentOpenResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetPercentOpen() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gripper::v1::GetPercentOpenRequest* request, ::viam::component::gripper::v1::GetPercentOpenResponse* response) { return this->GetPercentOpen(context, request, response); }));}
+    void SetMessageAllocatorFor_GetPercentOpen(
+        ::grpc::MessageAllocator< ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::GetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetPercentOpen(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gripper::v1::GetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::GetPercentOpenResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gripper::v1::GetPropertiesRequest* request, ::viam::component::gripper::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    void SetMessageAllocatorFor_GetProperties(
+        ::grpc::MessageAllocator< ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPropertiesRequest* /*request*/, ::viam::component::gripper::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gripper::v1::GetPropertiesRequest* /*request*/, ::viam::component::gripper::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -813,13 +1068,13 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) { return this->GetStatus(context, request, response); }));}
     void SetMessageAllocatorFor_GetStatus(
         ::grpc::MessageAllocator< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -840,13 +1095,13 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
         ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -867,13 +1122,13 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response) { return this->GetKinematics(context, request, response); }));}
     void SetMessageAllocatorFor_GetKinematics(
         ::grpc::MessageAllocator< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -888,7 +1143,7 @@ class GripperService final {
     virtual ::grpc::ServerUnaryReactor* GetKinematics(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetKinematicsRequest* /*request*/, ::viam::common::v1::GetKinematicsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Open<WithCallbackMethod_Grab<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_IsHoldingSomething<WithCallbackMethod_GetCurrentInputs<WithCallbackMethod_GoToInputs<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetGeometries<WithCallbackMethod_GetKinematics<Service > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_Open<WithCallbackMethod_Grab<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_IsHoldingSomething<WithCallbackMethod_GetCurrentInputs<WithCallbackMethod_GoToInputs<WithCallbackMethod_SetPercentOpen<WithCallbackMethod_GetPercentOpen<WithCallbackMethod_GetProperties<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetGeometries<WithCallbackMethod_GetKinematics<Service > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Open : public BaseClass {
@@ -1010,12 +1265,63 @@ class GripperService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetPercentOpen() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_SetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::SetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::SetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetPercentOpen() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_GetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::GetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetProperties() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPropertiesRequest* /*request*/, ::viam::component::gripper::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1032,7 +1338,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStatus() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1049,7 +1355,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(12);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1066,7 +1372,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(13);
     }
     ~WithGenericMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1218,12 +1524,72 @@ class GripperService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_SetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetPercentOpen() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_SetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::SetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::SetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPercentOpen(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetPercentOpen() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_GetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::GetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetPercentOpen(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPropertiesRequest* /*request*/, ::viam::component::gripper::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1234,7 +1600,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1243,7 +1609,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1254,7 +1620,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1263,7 +1629,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(12);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1274,7 +1640,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1283,7 +1649,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(13);
     }
     ~WithRawMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1294,7 +1660,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1452,12 +1818,78 @@ class GripperService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetPercentOpen() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPercentOpen(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::SetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::SetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetPercentOpen(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetPercentOpen() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPercentOpen(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::GetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetPercentOpen(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPropertiesRequest* /*request*/, ::viam::component::gripper::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1479,7 +1911,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStatus(context, request, response); }));
@@ -1501,7 +1933,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
@@ -1523,7 +1955,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetKinematics(context, request, response); }));
@@ -1729,12 +2161,93 @@ class GripperService final {
     virtual ::grpc::Status StreamedGoToInputs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gripper::v1::GoToInputsRequest,::viam::component::gripper::v1::GoToInputsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetPercentOpen() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gripper::v1::SetPercentOpenRequest, ::viam::component::gripper::v1::SetPercentOpenResponse>* streamer) {
+                       return this->StreamedSetPercentOpen(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::SetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::SetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetPercentOpen(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gripper::v1::SetPercentOpenRequest,::viam::component::gripper::v1::SetPercentOpenResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetPercentOpen : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetPercentOpen() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gripper::v1::GetPercentOpenRequest, ::viam::component::gripper::v1::GetPercentOpenResponse>* streamer) {
+                       return this->StreamedGetPercentOpen(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetPercentOpen() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetPercentOpen(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPercentOpenRequest* /*request*/, ::viam::component::gripper::v1::GetPercentOpenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetPercentOpen(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gripper::v1::GetPercentOpenRequest,::viam::component::gripper::v1::GetPercentOpenResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetProperties() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gripper::v1::GetPropertiesRequest, ::viam::component::gripper::v1::GetPropertiesResponse>* streamer) {
+                       return this->StreamedGetProperties(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetPropertiesRequest* /*request*/, ::viam::component::gripper::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gripper::v1::GetPropertiesRequest,::viam::component::gripper::v1::GetPropertiesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1761,7 +2274,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStatus() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](::grpc::ServerContext* context,
@@ -1788,7 +2301,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1815,7 +2328,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(13,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
             [this](::grpc::ServerContext* context,
@@ -1836,9 +2349,9 @@ class GripperService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetKinematics(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetKinematicsRequest,::viam::common::v1::GetKinematicsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_GetCurrentInputs<WithStreamedUnaryMethod_GoToInputs<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_GetCurrentInputs<WithStreamedUnaryMethod_GoToInputs<WithStreamedUnaryMethod_SetPercentOpen<WithStreamedUnaryMethod_GetPercentOpen<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_GetCurrentInputs<WithStreamedUnaryMethod_GoToInputs<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_GetCurrentInputs<WithStreamedUnaryMethod_GoToInputs<WithStreamedUnaryMethod_SetPercentOpen<WithStreamedUnaryMethod_GetPercentOpen<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
