@@ -13,6 +13,8 @@
 #include <viam/sdk/tests/test_utils.hpp>
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::PowerSensor::battery_percent_status)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::PowerSensor::properties)
 
 namespace viam {
 namespace sdktests {
@@ -53,6 +55,23 @@ BOOST_AUTO_TEST_CASE(test_get_power) {
     client_to_mock_pipeline<PowerSensor>(mock, [&](PowerSensor& client) {
         mock->peek_power = 10.0;
         BOOST_CHECK(client.get_power() == mock->peek_power);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_battery_percent) {
+    std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
+    client_to_mock_pipeline<PowerSensor>(mock, [&](PowerSensor& client) {
+        mock->peek_battery_percent = {50.0, false};
+        BOOST_CHECK(client.get_battery_percent() == mock->peek_battery_percent);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_properties) {
+    std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
+    client_to_mock_pipeline<PowerSensor>(mock, [&](PowerSensor& client) {
+        PowerSensor::Properties expected = {{10.0, false}, {10.0, false}, 10.0, {50.0, false}};
+        mock->peek_properties = expected;
+        BOOST_CHECK(client.get_properties() == mock->peek_properties);
     });
 }
 

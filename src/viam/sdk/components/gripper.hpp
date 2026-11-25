@@ -28,6 +28,20 @@ class Gripper : public Component, public Stoppable {
         ProtoStruct meta;
     };
 
+    /// @struct percent_open_status
+    /// @brief the percent open of the gripper
+    struct percent_open_status {
+        double percent_open = 0.0;
+        ProtoStruct meta;
+    };
+
+    /// @struct properties
+    /// @brief properties of the gripper
+    struct properties {
+        bool supports_percentage = false;
+        ProtoStruct meta;
+    };
+
     /// @brief Open the gripper.
     inline void open() {
         return open({});
@@ -51,7 +65,7 @@ class Gripper : public Component, public Stoppable {
     /// @brief Reports whether the gripper is holding onto a object (alongside other information).
     /// @return holding_status (see `holding_status` struct for more info).
     inline holding_status is_holding_something() {
-        return holding_status({});
+        return is_holding_something({});
     }
 
     /// @brief Reports whether the gripper is holding onto a object (alongside other information).
@@ -79,6 +93,45 @@ class Gripper : public Component, public Stoppable {
     /// @brief Returns `GeometryConfig`s associated with the calling arm
     /// @param extra Any additional arguments to the method
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
+
+    /// @brief Set the percent open of the gripper.
+    /// @param percent_open The percent open of the gripper.
+    inline void set_percent_open(double percent_open) {
+        return set_percent_open(percent_open, {});
+    }
+
+    /// @brief Set the percent open of the gripper.
+    /// @param percent_open The percent open of the gripper.
+    /// @param extra Any additional arguments to the method.
+    virtual void set_percent_open(double percent_open, const ProtoStruct& extra) = 0;
+
+    /// @brief Get the percent open of the gripper.
+    /// @return double The percent open of the gripper.
+    inline double get_percent_open() {
+        return get_percent_open({});
+    }
+
+    /// @brief Get the percent open of the gripper.
+    /// @param extra Any additional arguments to the method.
+    /// @return double The percent open of the gripper.
+    virtual double get_percent_open(const ProtoStruct& extra) = 0;
+
+    /// @brief Get the properties of the gripper.
+    /// @return properties The properties of the gripper.
+    inline properties get_properties() {
+        return get_properties({});
+    }
+
+    /// @brief Get the properties of the gripper.
+    /// @param extra Any additional arguments to the method.
+    /// @return properties The properties of the gripper.
+    virtual properties get_properties(const ProtoStruct& extra) = 0;
+
+    using Stoppable::stop;
+    using Stoppable::is_stopped;
+    using Gripper::set_percent_open;
+    using Gripper::get_percent_open;
+    using Gripper::get_properties;
 
     API api() const override;
 

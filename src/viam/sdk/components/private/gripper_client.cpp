@@ -67,6 +67,52 @@ ProtoStruct GripperClient::get_status() {
     });
 }
 
+void GripperClient::set_percent_open(double percent_open, const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::SetPercentOpen)
+        .with(extra)
+        .with([&](auto& request) { request.set_percent_open(percent_open); })
+        .invoke();
+}
+
+double GripperClient::get_percent_open(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetPercentOpen)
+        .with(extra)
+        .invoke([](auto& response) { return response.percent_open(); });
+}
+
+Gripper::properties GripperClient::get_properties(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetProperties)
+        .with(extra)
+        .invoke([](auto& response) {
+            Gripper::properties props;
+            props.holds_something = response.holds_something();
+            props.can_grasp = response.can_grasp();
+            return props;
+        });
+}
+
+// Specializations for from_proto
+template <>
+Gripper::holding_status from_proto(const viam::component::gripper::v1::IsHoldingSomethingResponse& proto) {
+    Gripper::holding_status holding_status;
+    holding_status.is_holding_something = proto.is_holding_something();
+    holding_status.meta = from_proto(proto.meta());
+    return holding_status;
+}
+
+template <>
+Gripper::properties from_proto(const viam::component::gripper::v1::GetPropertiesResponse& proto) {
+    Gripper::properties props;
+    props.holds_something = proto.holds_something();
+    props.can_grasp = proto.can_grasp();
+    return props;
+}
+
+template <>
+double from_proto(const viam::component::gripper::v1::GetPercentOpenResponse& proto) {
+    return proto.percent_open();
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

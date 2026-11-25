@@ -26,7 +26,8 @@ std::vector<GeometryConfig> fake_geometries() {
     return {GeometryConfig(p, sphere{1}, "sphere"),
             GeometryConfig(p, box{1, 2, 3}, "box"),
             GeometryConfig(p, sphere{0}, "point"),
-            GeometryConfig(p, capsule{2, 4}, "capsule")};
+            GeometryConfig(p, capsule{2, 4}, "capsule"),
+            GeometryConfig(p, capsule{2, 4}, "cylinder")};
 }
 
 std::vector<ResourceConfig> fake_discovered_resources() {

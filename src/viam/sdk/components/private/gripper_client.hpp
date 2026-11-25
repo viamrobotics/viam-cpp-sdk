@@ -42,11 +42,20 @@ class GripperClient : public Gripper {
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
+    void set_percent_open(double percent_open, const ProtoStruct& extra) override;
+
+    double get_percent_open(const ProtoStruct& extra) override;
+
+    Gripper::properties get_properties(const ProtoStruct& extra) override;
+
     using Gripper::get_geometries;
     using Gripper::grab;
     using Gripper::is_holding_something;
     using Gripper::open;
     using Gripper::stop;
+    using Gripper::set_percent_open;
+    using Gripper::get_percent_open;
+    using Gripper::get_properties;
 
    private:
     using StubType = viam::component::gripper::v1::GripperService::StubInterface;

@@ -47,6 +47,18 @@ sdk::ProtoStruct MockGripper::get_status() {
     return fake_status();
 }
 
+void MockGripper::set_percent_open(const int percent_open) {
+    percent_open_ = percent_open;
+}
+
+int MockGripper::get_percent_open() {
+    return percent_open_;
+}
+
+Gripper::Properties MockGripper::get_properties() {
+    return fake_properties();
+}
+
 }  // namespace gripper
 }  // namespace sdktests
 }  // namespace viam

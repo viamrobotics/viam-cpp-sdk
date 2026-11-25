@@ -28,6 +28,7 @@ class ConfigStatus;
 class GetMachineStatusResponse;
 class JobStatus;
 class ModuleStatus;
+class ModuleVersionInfo;
 class Operation;
 class PackageStatus;
 class ResourceStatus;
@@ -99,6 +100,12 @@ class RobotClient {
         friend bool operator==(const config_status&, const config_status&) = default;
     };
 
+    struct module_version_info {
+        std::string version;
+        std::string checksum;
+        friend bool operator==(const module_version_info&, const module_version_info&) = default;
+    };
+
     struct module_status {
         enum class module_state : uint8_t {
             k_unspecified,
@@ -114,6 +121,7 @@ class RobotClient {
         std::optional<time_pt> last_updated;
         std::string error;
         std::uint32_t consecutive_failures;
+        module_version_info version_info;
         friend bool operator==(const module_status&, const module_status&) = default;
     };
 
@@ -161,6 +169,8 @@ class RobotClient {
         std::vector<module_status> modules;
         std::vector<package_status> packages;
         std::vector<job_status> job_statuses;
+        std::chrono::seconds viam_server_uptime;
+        bool reconfigure_blocked;
         friend bool operator==(const machine_status&, const machine_status&) = default;
     };
 
@@ -366,6 +376,11 @@ struct from_proto_impl<robot::v1::PackageStatus> {
 template <>
 struct from_proto_impl<robot::v1::JobStatus> {
     RobotClient::job_status operator()(const robot::v1::JobStatus*) const;
+};
+
+template <>
+struct from_proto_impl<robot::v1::ModuleVersionInfo> {
+    RobotClient::module_version_info operator()(const robot::v1::ModuleVersionInfo*) const;
 };
 
 template <>

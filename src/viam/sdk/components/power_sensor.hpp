@@ -39,6 +39,24 @@ class PowerSensor : public Component {
         friend bool operator==(const current&, const current&) = default;
     };
 
+    /// @struct battery_percent_status
+    struct battery_percent_status {
+        /// Percentage of battery remaining.
+        double percent = 0.0;
+        friend bool operator==(const battery_percent_status&, const battery_percent_status&) = default;
+    };
+
+    /// @struct properties
+    struct properties {
+        /// Whether the power sensor is charging.
+        bool is_charging = false;
+        /// Whether the power sensor is discharging.
+        bool is_discharging = false;
+        /// Whether the power sensor is plugged in.
+        bool is_plugged_in = false;
+        friend bool operator==(const properties&, const properties&) = default;
+    };
+
     API api() const override;
 
     /// @brief Returns the voltage reading of this sensor.
@@ -73,6 +91,28 @@ class PowerSensor : public Component {
     /// @param extra Any additional arguments to this method.
     /// @return The power reading of this sensor.
     virtual double get_power(const ProtoStruct& extra) = 0;
+
+    /// @brief Returns the battery percentage status of this sensor.
+    /// @return The battery percentage status of this sensor.
+    inline battery_percent_status get_battery_percent() {
+        return get_battery_percent({});
+    }
+
+    /// @brief Returns the battery percentage status of this sensor.
+    /// @param extra Any additional arguments to this method.
+    /// @return The battery percentage status of this sensor.
+    virtual battery_percent_status get_battery_percent(const ProtoStruct& extra) = 0;
+
+    /// @brief Returns the properties of this sensor.
+    /// @return The properties of this sensor.
+    inline properties get_properties() {
+        return get_properties({});
+    }
+
+    /// @brief Returns the properties of this sensor.
+    /// @param extra Any additional arguments to this method.
+    /// @return The properties of this sensor.
+    virtual properties get_properties(const ProtoStruct& extra) = 0;
 
     /// @brief Returns the measurements/data specific to this sensor.
     /// @return The requested measurements/data specific to this sensor.

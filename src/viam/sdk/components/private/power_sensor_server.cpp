@@ -26,6 +26,20 @@ GetCurrentResponse to_proto(const PowerSensor::current& c) {
     return proto;
 }
 
+GetBatteryPercentResponse to_proto(const PowerSensor::battery_percent_status& bps) {
+    GetBatteryPercentResponse proto;
+    proto.set_battery_percent(bps.battery_percent);
+    return proto;
+}
+
+GetPropertiesResponse to_proto(const PowerSensor::properties& props) {
+    GetPropertiesResponse proto;
+    proto.set_max_voltage(props.max_voltage);
+    proto.set_max_current(props.max_current);
+    proto.set_max_power(props.max_power);
+    return proto;
+}
+
 PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
@@ -58,6 +72,31 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
         [&](auto& helper, auto& powersensor) {
             const double watts = powersensor->get_power(helper.getExtra());
             response->set_watts(watts);
+        });
+}
+
+::grpc::Status PowerSensorServer::GetBatteryPercent(
+    ::grpc::ServerContext* context,
+    const GetBatteryPercentRequest* request,
+    GetBatteryPercentResponse* response) noexcept {
+    return make_service_helper<PowerSensor>(
+        "PowerSensorServer::GetBatteryPercent", this, context, request)(
+        [&](auto& helper, auto& powersensor) {
+            const PowerSensor::battery_percent_status result =
+                powersensor->get_battery_percent(helper.getExtra());
+            *response = to_proto(result);
+        });
+}
+
+::grpc::Status PowerSensorServer::GetProperties(
+    ::grpc::ServerContext* context,
+    const GetPropertiesRequest* request,
+    GetPropertiesResponse* response) noexcept {
+    return make_service_helper<PowerSensor>(
+        "PowerSensorServer::GetProperties", this, context, request)(
+        [&](auto& helper, auto& powersensor) {
+            const PowerSensor::properties result = powersensor->get_properties(helper.getExtra());
+            *response = to_proto(result);
         });
 }
 

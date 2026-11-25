@@ -187,6 +187,43 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     BOOST_CHECK_EQUAL(proto_gcfg.box().dims_mm().x(), box.dims_mm().x());
     BOOST_CHECK_EQUAL(proto_gcfg.box().dims_mm().y(), box.dims_mm().y());
     BOOST_CHECK_EQUAL(proto_gcfg.box().dims_mm().z(), box.dims_mm().z());
+
+    // Add cylinder geometry
+    viam::common::v1::Geometry g_cylinder;
+    viam::common::v1::Cylinder cylinder;
+    viam::common::v1::Vector3 radius;
+    radius.set_x(1);
+    radius.set_y(0);
+    radius.set_z(0);
+    viam::common::v1::Vector3 height;
+    height.set_x(2);
+    height.set_y(0);
+    height.set_z(0);
+    *cylinder.mutable_radius() = radius;
+    *cylinder.mutable_height() = height;
+    *g_cylinder.mutable_label() = "cylinder_label";
+    *g_cylinder.mutable_center() = pose;
+    *g_cylinder.mutable_cylinder() = cylinder;
+
+    GeometryConfig gcfg_cylinder = GeometryConfig::from_proto(g_cylinder);
+    BOOST_CHECK_EQUAL(gcfg_cylinder.get_label(), "cylinder_label");
+    BOOST_CHECK_EQUAL(gcfg_cylinder.get_pose(), from_proto(pose));
+    BOOST_CHECK_EQUAL(gcfg_cylinder.get_geometry_type(), GeometryType::cylinder);
+
+    common::v1::Geometry gs_cylinder = to_proto(gcfg_cylinder);
+    BOOST_ASSERT(gs_cylinder.has_cylinder());
+    BOOST_CHECK_EQUAL(gs_cylinder.cylinder().radius().x(), radius.x());
+    BOOST_CHECK_EQUAL(gs_cylinder.cylinder().height().x(), height.x());
+
+    viam::app::v1::Frame proto_lc_cylinder = to_proto(LinkConfig("parent", Pose(), {}));
+    proto_lc_cylinder.mutable_geometry()->CopyFrom(gs_cylinder);
+
+    LinkConfig lc_cylinder = from_proto(proto_lc_cylinder);
+    GeometryConfig gcfg_cylinder_roundtrip = lc_cylinder.get_geometry_config();
+    BOOST_CHECK_EQUAL(gcfg_cylinder_roundtrip.get_label(), "cylinder_label");
+    BOOST_CHECK_EQUAL(gcfg_cylinder_roundtrip.get_geometry_type(), GeometryType::cylinder);
+    BOOST_CHECK_EQUAL(gcfg_cylinder_roundtrip.get_cylinder().radius().x, radius.x());
+    BOOST_CHECK_EQUAL(gcfg_cylinder_roundtrip.get_cylinder().height().x, height.x());
 }
 
 BOOST_AUTO_TEST_CASE(test_resource) {

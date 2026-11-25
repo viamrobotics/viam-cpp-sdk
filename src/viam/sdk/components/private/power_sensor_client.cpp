@@ -40,6 +40,23 @@ PowerSensor::current from_proto(const GetCurrentResponse& proto) {
     return c;
 }
 
+PowerSensor::battery_percent from_proto(const GetBatteryPercentResponse& proto) {
+    PowerSensor::battery_percent bp;
+    bp.percent = proto.percent();
+    bp.time = proto.time();
+    return bp;
+}
+
+PowerSensor::properties from_proto(const GetPropertiesResponse& proto) {
+    PowerSensor::properties p;
+    p.max_rpm = proto.max_rpm();
+    p.max_watts = proto.max_watts();
+    p.max_volts = proto.max_volts();
+    p.is_rechargeable = proto.is_rechargeable();
+    p.is_continuous = proto.is_continuous();
+    return p;
+}
+
 PowerSensorClient::PowerSensorClient(std::string name, const ViamChannel& channel)
     : PowerSensor(std::move(name)),
       stub_(PowerSensorService::NewStub(channel.channel())),
@@ -53,6 +70,18 @@ PowerSensor::voltage PowerSensorClient::get_voltage(const ProtoStruct& extra) {
 
 PowerSensor::current PowerSensorClient::get_current(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetCurrent)
+        .with(extra)
+        .invoke([](auto& response) { return from_proto(response); });
+}
+
+PowerSensor::battery_percent PowerSensorClient::get_battery_percent(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetBatteryPercent)
+        .with(extra)
+        .invoke([](auto& response) { return from_proto(response); });
+}
+
+PowerSensor::properties PowerSensorClient::get_properties(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
 }

@@ -9,6 +9,8 @@
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::ProtoValue)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Gripper::percent_open_status)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Gripper::properties)
 
 namespace viam {
 namespace sdktests {
@@ -93,6 +95,31 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
         const ProtoStruct status = client.get_status();
         const ProtoStruct expected = fake_status();
         BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_set_percent_open) {
+    std::shared_ptr<MockGripper> mock = MockGripper::get_mock_gripper();
+    client_to_mock_pipeline<Gripper>(mock, [&](Gripper& client) {
+        mock->peek_set_percent_open_called = false;
+        client.set_percent_open(50);
+        BOOST_CHECK(mock->peek_set_percent_open_called);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_percent_open) {
+    std::shared_ptr<MockGripper> mock = MockGripper::get_mock_gripper();
+    client_to_mock_pipeline<Gripper>(mock, [](Gripper& client) {
+        const Gripper::percent_open_status percent_open = client.get_percent_open();
+        BOOST_CHECK_EQUAL(percent_open.percent_open, 50);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_properties) {
+    std::shared_ptr<MockGripper> mock = MockGripper::get_mock_gripper();
+    client_to_mock_pipeline<Gripper>(mock, [](Gripper& client) {
+        const Gripper::properties props = client.get_properties();
+        BOOST_CHECK_EQUAL(props.can_per_component, true);
     });
 }
 

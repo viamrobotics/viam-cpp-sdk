@@ -18,8 +18,14 @@ PowerSensor::current MockPowerSensor::get_current(const ProtoStruct&) {
 double MockPowerSensor::get_power(const ProtoStruct&) {
     return this->peek_power;
 };
+double MockPowerSensor::get_battery_percent(const ProtoStruct&) {
+    return this->peek_battery_percent;
+};
 ProtoStruct MockPowerSensor::get_readings(const ProtoStruct&) {
     return fake_map();
+};
+ProtoStruct MockPowerSensor::get_properties() {
+    return fake_properties();
 };
 ProtoStruct MockPowerSensor::do_command(const ProtoStruct& command) {
     return command;

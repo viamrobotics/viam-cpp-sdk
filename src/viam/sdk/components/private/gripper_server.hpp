@@ -44,6 +44,18 @@ class GripperServer : public ResourceServer,
         const ::viam::component::gripper::v1::IsMovingRequest* request,
         ::viam::component::gripper::v1::IsMovingResponse* response) noexcept override;
 
+    ::grpc::Status SetPercentOpen(::grpc::ServerContext* context,
+                                  const ::viam::component::gripper::v1::SetPercentOpenRequest* request,
+                                  ::viam::component::gripper::v1::SetPercentOpenResponse* response) noexcept override;
+
+    ::grpc::Status GetPercentOpen(::grpc::ServerContext* context,
+                                  const ::viam::component::gripper::v1::GetPercentOpenRequest* request,
+                                  ::viam::component::gripper::v1::GetPercentOpenResponse* response) noexcept override;
+
+    ::grpc::Status GetProperties(::grpc::ServerContext* context,
+                                 const ::viam::component::gripper::v1::GetPropertiesRequest* request,
+                                 ::viam::component::gripper::v1::GetPropertiesResponse* response) noexcept override;
+
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
